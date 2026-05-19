@@ -28,6 +28,15 @@ const locationIcons = {
   "-20°C 3 salle -80": "3️⃣"
 };
 
+const userIcons = {
+  Vincent: "🧬",
+  Luigi: "⚗️",
+  Elina: "🔬",
+  Floricia: "🧫",
+  Caroline: "🧪",
+  Christian: "🧭"
+};
+
 const inventoryCategories = [
   "Procédé ExAdEx L2",
   "Culture Cell",
@@ -226,6 +235,7 @@ const currentUserName = document.querySelector("#currentUserName");
 const sidebarUser = document.querySelector("#sidebarUser");
 const sidebarUserName = document.querySelector("#sidebarUserName");
 const searchInput = document.querySelector("#searchInput");
+const controlBar = document.querySelector(".control-bar");
 const categoryFilter = document.querySelector("#categoryFilter");
 const dialog = document.querySelector("#itemDialog");
 const form = document.querySelector("#itemForm");
@@ -284,6 +294,8 @@ document.querySelectorAll(".nav-item").forEach(button => {
     document.querySelectorAll(".nav-item").forEach(item => item.classList.toggle("active", item === button));
     document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
     document.querySelector(`#${activeView}View`).classList.add("active");
+    controlBar.classList.toggle("hidden", activeView === "history");
+    app.classList.toggle("history-mode", activeView === "history");
   });
 });
 
@@ -302,15 +314,9 @@ function persist() {
 }
 
 function updateUserIdentity() {
-  const initials = currentName
-    .split(/\s+/)
-    .filter(Boolean)
-    .map(part => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-  currentUser.textContent = initials;
-  sidebarUser.textContent = initials;
+  const userIcon = userIcons[currentName] || "👤";
+  currentUser.textContent = userIcon;
+  sidebarUser.textContent = userIcon;
   currentUserName.textContent = currentName;
   sidebarUserName.textContent = currentName;
 }
@@ -424,12 +430,19 @@ function renderSamples() {
 }
 
 function renderHistory() {
-  document.querySelector("#historyList").innerHTML = history.filter(entry => !["Connexion", "Deconnexion"].includes(entry.action)).map(entry => `
+  document.querySelector("#historyList").innerHTML = history.filter(entry => !["Connexion", "Deconnexion"].includes(entry.action)).map(entry => {
+    const action = entry.action === "Item supprime" ? "Item supprimé" : entry.action;
+    const detail = entry.detail.replace(" a supprime ", " a supprimé ");
+    return `
     <article class="history-entry">
-      <time>${escapeHtml(entry.date)}</time>
-      <div><strong>${escapeHtml(entry.action)}</strong> - ${escapeHtml(entry.user)}<br><span>${escapeHtml(entry.detail)}</span></div>
+      <div class="history-meta">
+        <time>${escapeHtml(entry.date)}</time>
+        <span class="history-user"><span>${userIcons[entry.user] || "👤"}</span>${escapeHtml(entry.user)}</span>
+      </div>
+      <div><strong>${escapeHtml(action)}</strong><br><span>${escapeHtml(detail)}</span></div>
     </article>
-  `).join("");
+  `;
+  }).join("");
 }
 
 function renderLocations() {
@@ -573,7 +586,7 @@ function deleteItem() {
   const item = items.find(entry => entry.id === id);
   if (!item) return;
   items = items.filter(entry => entry.id !== id);
-  addHistory("Item supprime", `${currentName} a supprime ${item.name} de l'inventaire.`);
+  addHistory("Item supprimé", `${currentName} a supprimé ${item.name} de l'inventaire.`);
   persist();
   dialog.close();
   render();

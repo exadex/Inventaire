@@ -162,6 +162,9 @@ input:focus, select:focus, textarea:focus {
 
 .app-shell { min-height: 100vh; display: grid; grid-template-columns: 280px 1fr; }
 .sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   padding: 24px;
   background: rgba(255,255,255,0.68);
   border-right: 1px solid var(--line);
@@ -188,7 +191,7 @@ input:focus, select:focus, textarea:focus {
 .avatars span, .user-pill, .avatar-mini {
   width: 36px; height: 36px; border-radius: 50%;
   display: grid; place-items: center;
-  background: var(--mint); color: #24451e; font-weight: 850;
+  background: var(--mint); color: #24451e; font-size: 18px; font-weight: 850;
   border: 2px solid white;
 }
 .avatars span + span { margin-left: -8px; }
@@ -199,6 +202,20 @@ input:focus, select:focus, textarea:focus {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .top-actions { display: flex; align-items: center; gap: 10px; }
+.history-mode .topbar h2,
+.history-mode .top-actions,
+.history-mode .metrics,
+.history-mode .alerts,
+.history-mode .control-bar {
+  display: none;
+}
+.history-mode #historyView .section-heading h3 {
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+}
+.history-mode #historyView .section-heading {
+  margin-bottom: 30px;
+}
 
 .metrics {
   display: grid;
@@ -358,7 +375,7 @@ td { font-size: 14px; }
 .timeline { display: grid; gap: 10px; }
 .history-entry {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 150px 1fr;
   gap: 14px;
   background: rgba(255,255,255,0.82);
   border: 1px solid var(--line);
@@ -366,6 +383,23 @@ td { font-size: 14px; }
   padding: 14px;
 }
 .history-entry time { color: var(--muted); font-size: 12px; font-weight: 760; }
+.history-meta {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.history-user {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+}
+.history-user span {
+  font-size: 18px;
+}
 
 .location-card strong { display: block; font-size: 18px; margin-bottom: 0; }
 .location-card p { color: var(--muted); margin-bottom: 2px; }
@@ -510,7 +544,7 @@ td { font-size: 14px; }
 @media (max-width: 1000px) {
   .app-shell { grid-template-columns: 1fr; }
   .auth-visual { display: none; }
-  .sidebar { position: sticky; top: 0; z-index: 5; border-right: 0; border-bottom: 1px solid var(--line); }
+  .sidebar { height: auto; z-index: 5; border-right: 0; border-bottom: 1px solid var(--line); }
   .nav { grid-template-columns: repeat(5, 1fr); }
   .team-card { display: none; }
   .metrics, .inventory-grid, .location-grid, .order-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }

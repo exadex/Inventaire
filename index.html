@@ -13,12 +13,19 @@
         <p class="eyebrow">SHAPING RESEARCH WITH REAL HUMAN DATA</p>
         <h1>ExAdEx Inventaire</h1>
         <p class="auth-copy">
-          Entrez votre nom pour signer chaque ajout, modification, suppression et demande de commande.
+          S&eacute;lectionnez votre nom pour signer chaque ajout, modification, suppression et demande de commande.
         </p>
         <form id="loginForm" class="login-form">
           <label>
             Nom
-            <input id="nameInput" type="text" value="Caroline" autocomplete="name" required />
+            <select id="nameInput" required>
+              <option value="Caroline">Caroline</option>
+              <option value="Christian">Christian</option>
+              <option value="Elina">Elina</option>
+              <option value="Floricia">Floricia</option>
+              <option value="Luigi">Luigi</option>
+              <option value="Vincent">Vincent</option>
+            </select>
           </label>
           <button class="primary-btn" type="submit">Se connecter</button>
         </form>

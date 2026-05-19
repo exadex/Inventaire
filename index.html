@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ExAdEx Inventaire</title>
+    <link rel="stylesheet" href="design.css" />
+  </head>
+  <body>
+    <div id="auth" class="auth-shell">
+      <section class="auth-panel">
+        <div class="brand-mark">EX</div>
+        <p class="eyebrow">SHAPING RESEARCH WITH REAL HUMAN DATA</p>
+        <h1>ExAdEx Inventaire</h1>
+        <p class="auth-copy">
+          Entrez votre nom pour signer chaque ajout, modification, suppression et demande de commande.
+        </p>
+        <form id="loginForm" class="login-form">
+          <label>
+            Nom
+            <input id="nameInput" type="text" value="Caroline" autocomplete="name" required />
+          </label>
+          <button class="primary-btn" type="submit">Se connecter</button>
+        </form>
+      </section>
+    </div>
+
+    <div id="app" class="app-shell hidden">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">EX</div>
+          <div>
+            <strong>ExAdEx Inventaire</strong>
+            <span>Biobank & Inventory</span>
+          </div>
+        </div>
+        <nav class="nav">
+          <button class="nav-item active" data-view="inventory">Inventaire</button>
+          <button class="nav-item" data-view="samples">&Eacute;chantillons</button>
+          <button class="nav-item" data-view="history">Historique</button>
+          <button class="nav-item" data-view="locations">Localisations</button>
+          <button class="nav-item" data-view="orders">A commander</button>
+        </nav>
+        <div class="team-card">
+          <p>Identit&eacute; active</p>
+          <div class="active-identity">
+            <span class="avatar-mini" id="sidebarUser">CB</span>
+            <strong id="sidebarUserName">Caroline</strong>
+          </div>
+          <small>Chaque action laisse une trace avec ce nom.</small>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Tableau de bord</p>
+            <h2>Inventaire du laboratoire</h2>
+          </div>
+          <div class="top-actions">
+            <div class="user-pill" id="currentUser">CB</div>
+            <span class="current-name" id="currentUserName">Caroline</span>
+            <button id="logoutBtn" class="ghost-btn">D&eacute;connexion</button>
+            <button id="addItemBtn" class="primary-btn">Ajouter</button>
+          </div>
+        </header>
+
+        <section class="metrics" id="metrics"></section>
+        <section class="alerts" id="alerts"></section>
+
+        <section class="control-bar">
+          <label class="search-box">
+            <span>Rech.</span>
+            <input id="searchInput" type="search" placeholder="Rechercher un item, tag, localisation..." />
+          </label>
+          <div class="filter-row" id="statusFilters">
+            <button class="chip active" data-status="all">Tout</button>
+            <button class="chip" data-status="ok">OK</button>
+            <button class="chip" data-status="warning">Attention</button>
+            <button class="chip" data-status="critical">Critique</button>
+          </div>
+          <select id="categoryFilter" class="select">
+            <option value="all">Toutes cat&eacute;gories</option>
+          </select>
+        </section>
+
+        <section class="view active" id="inventoryView">
+          <div class="section-heading">
+            <h3>Niveaux de stock</h3>
+            <span id="resultCount"></span>
+          </div>
+          <div class="inventory-grid" id="inventoryGrid"></div>
+        </section>
+
+        <section class="view" id="samplesView">
+          <div class="section-heading">
+            <h3>&Eacute;chantillons biologiques</h3>
+            <span>Patient IDs anonymis&eacute;s</span>
+          </div>
+          <div class="sample-table-wrap">
+            <table class="sample-table">
+              <thead>
+                <tr>
+                  <th>Patient ID</th>
+                  <th>D&eacute;p&ocirc;t</th>
+                  <th>Date</th>
+                  <th>Condition</th>
+                  <th>Analyse</th>
+                  <th>Localisation</th>
+                </tr>
+              </thead>
+              <tbody id="sampleRows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="view" id="historyView">
+          <div class="section-heading">
+            <h3>Historique des modifications</h3>
+            <span>Tra&ccedil;abilit&eacute; simple par nom utilisateur</span>
+          </div>
+          <div class="timeline" id="historyList"></div>
+        </section>
+
+        <section class="view" id="locationsView">
+          <div class="section-heading">
+            <h3>Carte des localisations</h3>
+            <span>Freezers, bo&icirc;tes, &eacute;tag&egrave;res et pi&egrave;ces</span>
+          </div>
+          <div class="location-grid" id="locationGrid"></div>
+        </section>
+
+        <section class="view" id="ordersView">
+          <div class="section-heading">
+            <h3>A commander</h3>
+            <span>Demandes tri&eacute;es par priorit&eacute;</span>
+          </div>
+          <div class="order-toolbar">
+            <button id="addOrderBtn" class="primary-btn">Ajouter une demande</button>
+          </div>
+          <div class="order-list" id="orderList"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="itemDialog" class="modal">
+      <form id="itemForm" method="dialog">
+        <div class="modal-header">
+          <h3 id="modalTitle">Nouvel item</h3>
+          <button class="icon-btn" value="cancel" type="submit">&times;</button>
+        </div>
+        <input type="hidden" id="itemId" />
+        <div class="form-grid">
+          <label>Nom<input id="name" required /></label>
+          <label>Cat&eacute;gorie<input id="category" required /></label>
+          <label>Quantit&eacute;<input id="quantity" type="number" min="0" step="0.1" required /></label>
+          <label>Unit&eacute;<input id="unit" required /></label>
+          <label>Seuil minimum<input id="minStock" type="number" min="0" step="0.1" required /></label>
+          <label>Capacit&eacute; max<input id="maxStock" type="number" min="0" step="0.1" required /></label>
+          <label>Localisation<input id="location" required /></label>
+          <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
+        </div>
+        <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>
+        <div class="modal-actions">
+          <button id="deleteItemBtn" class="danger-btn" type="button">Supprimer</button>
+          <button class="ghost-btn" value="cancel" type="submit">Annuler</button>
+          <button class="primary-btn" id="saveItemBtn" type="button">Enregistrer</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="orderDialog" class="modal">
+      <form id="orderForm" method="dialog">
+        <div class="modal-header">
+          <h3>Nouvelle demande de commande</h3>
+          <button class="icon-btn" value="cancel" type="submit">&times;</button>
+        </div>
+        <div class="form-grid">
+          <label>Item<input id="orderItemName" required /></label>
+          <label>Quantit&eacute; demand&eacute;e<input id="orderQuantity" required placeholder="ex. 2 kits, 500 mL" /></label>
+          <label>Priorit&eacute;
+            <select id="orderPriority" required>
+              <option value="critique">Critique</option>
+              <option value="muy urgente">Muy urgente</option>
+              <option value="urgente">Urgente</option>
+              <option value="no urgente">No urgente</option>
+            </select>
+          </label>
+          <label>Fournisseur<input id="orderSupplier" placeholder="Thermo Fisher, Merck..." /></label>
+        </div>
+        <label class="full-label">Notes<textarea id="orderNotes" rows="3"></textarea></label>
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="submit">Annuler</button>
+          <button class="primary-btn" id="saveOrderBtn" type="button">Ajouter &agrave; la liste</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>

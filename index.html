@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ExAdEx Inventaire</title>
+    <title>Inventaire</title>
     <link rel="stylesheet" href="design.css" />
   </head>
   <body>
@@ -44,9 +44,9 @@
         <nav class="nav">
           <button class="nav-item active" data-view="inventory">Inventaire</button>
           <button class="nav-item" data-view="samples">&Eacute;chantillons</button>
-          <button class="nav-item" data-view="history">Historique</button>
           <button class="nav-item" data-view="locations">Localisations</button>
-          <button class="nav-item" data-view="orders">A commander</button>
+          <button class="nav-item" data-view="orders">&Agrave; commander</button>
+          <button class="nav-item" data-view="history">Historique</button>
         </nav>
         <div class="team-card">
           <p>Identit&eacute; active</p>
@@ -78,7 +78,7 @@
         <section class="control-bar">
           <label class="search-box">
             <span>Rech.</span>
-            <input id="searchInput" type="search" placeholder="Rechercher un item, tag, localisation..." />
+            <input id="searchInput" type="search" placeholder="Rechercher par nom, localisation, categorie ou tag..." />
           </label>
           <div class="filter-row" id="statusFilters">
             <button class="chip active" data-status="all">Tout</button>
@@ -121,31 +121,31 @@
           </div>
         </section>
 
-        <section class="view" id="historyView">
-          <div class="section-heading">
-            <h3>Historique des modifications</h3>
-            <span>Tra&ccedil;abilit&eacute; simple par nom utilisateur</span>
-          </div>
-          <div class="timeline" id="historyList"></div>
-        </section>
-
         <section class="view" id="locationsView">
           <div class="section-heading">
             <h3>Carte des localisations</h3>
-            <span>Freezers, bo&icirc;tes, &eacute;tag&egrave;res et pi&egrave;ces</span>
+            <span>Zones officielles du laboratoire</span>
           </div>
           <div class="location-grid" id="locationGrid"></div>
         </section>
 
         <section class="view" id="ordersView">
           <div class="section-heading">
-            <h3>A commander</h3>
+            <h3>&Agrave; commander</h3>
             <span>Demandes tri&eacute;es par priorit&eacute;</span>
           </div>
           <div class="order-toolbar">
             <button id="addOrderBtn" class="primary-btn">Ajouter une demande</button>
           </div>
           <div class="order-list" id="orderList"></div>
+        </section>
+
+        <section class="view" id="historyView">
+          <div class="section-heading">
+            <h3>Historique des modifications</h3>
+            <span>Tra&ccedil;abilit&eacute; simple par nom utilisateur</span>
+          </div>
+          <div class="timeline" id="historyList"></div>
         </section>
       </main>
     </div>
@@ -154,23 +154,39 @@
       <form id="itemForm" method="dialog">
         <div class="modal-header">
           <h3 id="modalTitle">Nouvel item</h3>
-          <button class="icon-btn" value="cancel" type="submit">&times;</button>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
         </div>
         <input type="hidden" id="itemId" />
         <div class="form-grid">
-          <label>Nom<input id="name" required /></label>
-          <label>Cat&eacute;gorie<input id="category" required /></label>
-          <label>Quantit&eacute;<input id="quantity" type="number" min="0" step="0.1" required /></label>
-          <label>Unit&eacute;<input id="unit" required /></label>
-          <label>Seuil minimum<input id="minStock" type="number" min="0" step="0.1" required /></label>
-          <label>Capacit&eacute; max<input id="maxStock" type="number" min="0" step="0.1" required /></label>
-          <label>Localisation<input id="location" required /></label>
+          <label><span>Nom <span class="required-star">*</span></span><input id="name" required /></label>
+          <label><span>Cat&eacute;gorie <span class="required-star">*</span></span><select id="category" required></select></label>
+          <label><span>Quantit&eacute; <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="0.1" required /></label>
+          <label><span>Unit&eacute; <span class="required-star">*</span></span><input id="unit" required /></label>
+          <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
+          <label><span>Capacit&eacute; max <span class="required-star">*</span></span><input id="maxStock" type="number" min="0" step="0.1" required /></label>
+          <label><span>Localisation <span class="required-star">*</span></span><select id="location" required></select></label>
           <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
         </div>
         <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>
+        <section class="reference-section">
+          <div class="reference-heading">
+            <h4>R&eacute;f&eacute;rences</h4>
+          </div>
+          <div class="reference-block">
+            <strong>R&eacute;f&eacute;rence principale</strong>
+            <div class="reference-grid">
+              <label>R&eacute;f&eacute;rence<input id="primaryReference" /></label>
+              <label>Quantit&eacute;<input id="primaryReferenceQuantity" /></label>
+              <label>Prix<input id="primaryReferencePrice" /></label>
+            </div>
+          </div>
+          <button class="ghost-btn compact-btn secondary-reference-add" id="addSecondaryReferenceBtn" type="button">Ajouter une r&eacute;f&eacute;rence secondaire</button>
+          <div class="secondary-references" id="secondaryReferencesList"></div>
+        </section>
+        <p class="required-legend"><span class="required-star">*</span> champs obligatoires</p>
         <div class="modal-actions">
           <button id="deleteItemBtn" class="danger-btn" type="button">Supprimer</button>
-          <button class="ghost-btn" value="cancel" type="submit">Annuler</button>
+          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
           <button class="primary-btn" id="saveItemBtn" type="button">Enregistrer</button>
         </div>
       </form>

@@ -1,3 +1,68 @@
+const inventoryLocations = [
+  "Laboratoire",
+  "Culture",
+  "Chambre froide",
+  "-80°C",
+  "-20°C blanc labo",
+  "-20°C gris labo",
+  "-20°C Floricia labo",
+  "Bureau",
+  "Frigo labo",
+  "-20°C 1 salle -80",
+  "-20°C 2 salle -80",
+  "-20°C 3 salle -80"
+];
+
+const locationIcons = {
+  "Laboratoire": "🔬",
+  "Culture": "🧫",
+  "Chambre froide": "❄️",
+  "-80°C": "🧊",
+  "-20°C blanc labo": "⬜",
+  "-20°C gris labo": "◻️",
+  "-20°C Floricia labo": "🌸",
+  "Bureau": "💻",
+  "Frigo labo": "🧃",
+  "-20°C 1 salle -80": "1️⃣",
+  "-20°C 2 salle -80": "2️⃣",
+  "-20°C 3 salle -80": "3️⃣"
+};
+
+const inventoryCategories = [
+  "Procédé ExAdEx L2",
+  "Culture Cell",
+  "Biomol",
+  "Microscopie",
+  "Qualité",
+  "FACS",
+  "Muse",
+  "Bureautique",
+  "Code Famille",
+  "Cones pipettes",
+  "Indispensable"
+];
+
+const legacyCategoryMap = {
+  Enzymes: "Procédé ExAdEx L2",
+  Milieux: "Culture Cell",
+  Anticorps: "Biomol",
+  Primers: "Biomol",
+  Composes: "Culture Cell",
+  Consommables: "Indispensable",
+  Kits: "Biomol"
+};
+
+const legacyLocationMap = {
+  "Freezer -20C / Rack B2": "-20°C blanc labo",
+  "Chambre froide / Etagere 3": "Chambre froide",
+  "Freezer -80C / Boite AC-04": "-80°C",
+  "Freezer -20C / Boite PR-12": "-20°C gris labo",
+  "Freezer -20C / Rack C1": "-20°C Floricia labo",
+  "Salle culture / Armoire A": "Culture",
+  "Chambre froide / Kit shelf": "Chambre froide",
+  "Stock central / Bac C": "Laboratoire"
+};
+
 const seedItems = [
   {
     id: "itm-001",
@@ -7,7 +72,7 @@ const seedItems = [
     unit: "flacons",
     minStock: 3,
     maxStock: 12,
-    location: "Freezer -20C / Rack B2",
+    location: "-20°C blanc labo",
     tags: ["digestion", "adipose"],
     notes: "Lot valide pour dissociation de tissu adipeux humain."
   },
@@ -19,7 +84,7 @@ const seedItems = [
     unit: "bouteilles",
     minStock: 4,
     maxStock: 16,
-    location: "Chambre froide / Etagere 3",
+    location: "Chambre froide",
     tags: ["culture", "ex vivo"],
     notes: "A verifier avant mise en culture longue."
   },
@@ -31,7 +96,7 @@ const seedItems = [
     unit: "uL",
     minStock: 25,
     maxStock: 100,
-    location: "Freezer -80C / Boite AC-04",
+    location: "-80°C",
     tags: ["IF", "adipocyte"],
     notes: "Dilution courante 1:400."
   },
@@ -43,7 +108,7 @@ const seedItems = [
     unit: "tubes",
     minStock: 6,
     maxStock: 24,
-    location: "Freezer -20C / Boite PR-12",
+    location: "-20°C gris labo",
     tags: ["qPCR", "differenciation"],
     notes: "Forward + reverse aliquotes."
   },
@@ -55,7 +120,7 @@ const seedItems = [
     unit: "flacon",
     minStock: 2,
     maxStock: 8,
-    location: "Freezer -20C / Rack C1",
+    location: "-20°C Floricia labo",
     tags: ["stimulation", "metabolisme"],
     notes: "Preparer nouvel aliquotage."
   },
@@ -67,7 +132,7 @@ const seedItems = [
     unit: "plaques",
     minStock: 20,
     maxStock: 80,
-    location: "Salle culture / Armoire A",
+    location: "Culture",
     tags: ["culture", "explants"],
     notes: "Reservees aux fragments de tissu."
   },
@@ -79,7 +144,7 @@ const seedItems = [
     unit: "kit",
     minStock: 1,
     maxStock: 4,
-    location: "Chambre froide / Kit shelf",
+    location: "Chambre froide",
     tags: ["ELISA", "secretion"],
     notes: "Commander avant prochaine serie."
   },
@@ -91,7 +156,7 @@ const seedItems = [
     unit: "tubes",
     minStock: 150,
     maxStock: 500,
-    location: "Stock central / Bac C",
+    location: "Laboratoire",
     tags: ["cryostock", "aliquot"],
     notes: "Compatible azote liquide."
   }
@@ -144,12 +209,13 @@ const defaultHistory = [
   { date: "2026-05-16", user: "Ines", action: "Note modifiee", detail: "Anti-Perilipin A: dilution de travail confirmee." }
 ];
 
-let items = load("exadex_items", load("adipovault_items", seedItems));
+let items = migrateItems(load("exadex_items", load("adipovault_items", seedItems)));
 let orders = load("exadex_orders", defaultOrders);
 let history = load("exadex_history", load("adipovault_history", defaultHistory));
 let statusFilter = "all";
 let activeView = "inventory";
 let currentName = "Caroline";
+let selectedLocation = null;
 
 const auth = document.querySelector("#auth");
 const app = document.querySelector("#app");
@@ -165,12 +231,17 @@ const dialog = document.querySelector("#itemDialog");
 const form = document.querySelector("#itemForm");
 const orderDialog = document.querySelector("#orderDialog");
 const orderForm = document.querySelector("#orderForm");
+const secondaryReferencesList = document.querySelector("#secondaryReferencesList");
+const addSecondaryReferenceBtn = document.querySelector("#addSecondaryReferenceBtn");
 
-const fields = ["itemId", "name", "category", "quantity", "unit", "minStock", "maxStock", "location", "tags", "notes"]
+const fields = ["itemId", "name", "category", "quantity", "unit", "minStock", "maxStock", "location", "tags", "notes", "primaryReference", "primaryReferenceQuantity", "primaryReferencePrice"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 const orderFields = ["orderItemName", "orderQuantity", "orderPriority", "orderSupplier", "orderNotes"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+
+renderCategoryOptions();
+renderLocationOptions();
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -179,13 +250,11 @@ loginForm.addEventListener("submit", (event) => {
   updateUserIdentity();
   auth.classList.add("hidden");
   app.classList.remove("hidden");
-  addHistory("Connexion", `${currentName} a ouvert une session.`);
   persist();
   render();
 });
 
 document.querySelector("#logoutBtn").addEventListener("click", () => {
-  addHistory("Deconnexion", `${currentName} a ferme sa session.`);
   persist();
   app.classList.add("hidden");
   auth.classList.remove("hidden");
@@ -194,6 +263,7 @@ document.querySelector("#logoutBtn").addEventListener("click", () => {
 document.querySelector("#addItemBtn").addEventListener("click", () => openModal());
 document.querySelector("#saveItemBtn").addEventListener("click", saveItem);
 document.querySelector("#deleteItemBtn").addEventListener("click", deleteItem);
+addSecondaryReferenceBtn.addEventListener("click", () => addSecondaryReferenceRow());
 document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal);
 document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
 searchInput.addEventListener("input", renderInventory);
@@ -268,9 +338,20 @@ function render() {
 
 function renderCategories() {
   const selected = categoryFilter.value || "all";
-  const categories = [...new Set(items.map(item => item.category))].sort();
-  categoryFilter.innerHTML = `<option value="all">Toutes categories</option>${categories.map(category => `<option>${escapeHtml(category)}</option>`).join("")}`;
-  categoryFilter.value = categories.includes(selected) ? selected : "all";
+  categoryFilter.innerHTML = `<option value="all">Toutes categories</option>${inventoryCategories.map(category => `<option>${escapeHtml(category)}</option>`).join("")}`;
+  categoryFilter.value = inventoryCategories.includes(selected) ? selected : "all";
+}
+
+function renderCategoryOptions() {
+  fields.category.innerHTML = inventoryCategories
+    .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
+    .join("");
+}
+
+function renderLocationOptions() {
+  fields.location.innerHTML = inventoryLocations
+    .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
+    .join("");
 }
 
 function renderMetrics() {
@@ -299,10 +380,11 @@ function renderAlerts() {
 }
 
 function renderInventory() {
-  const query = searchInput.value.trim().toLowerCase();
+  const query = normalizeSearch(searchInput.value);
   const category = categoryFilter.value;
   const filtered = items.filter(item => {
-    const haystack = [item.name, item.category, item.location, item.notes, ...item.tags].join(" ").toLowerCase();
+    const referenceText = itemReferencesText(item.references);
+    const haystack = normalizeSearch([item.name, item.location, item.category, ...item.tags, referenceText].join(" "));
     return (!query || haystack.includes(query))
       && (statusFilter === "all" || itemStatus(item) === statusFilter)
       && (category === "all" || item.category === category);
@@ -325,6 +407,7 @@ function renderInventory() {
           <span>Max : ${item.maxStock} ${escapeHtml(item.unit)}</span>
         </div>
         <div class="tags">${item.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+        ${item.references?.primary?.reference ? `<small>Ref. principale : ${escapeHtml(item.references.primary.reference)}</small>` : ""}
         <div class="card-actions">
           <small>${escapeHtml(item.location)}</small>
           <button class="text-btn" onclick="openModal('${item.id}')">Modifier</button>
@@ -341,7 +424,7 @@ function renderSamples() {
 }
 
 function renderHistory() {
-  document.querySelector("#historyList").innerHTML = history.map(entry => `
+  document.querySelector("#historyList").innerHTML = history.filter(entry => !["Connexion", "Deconnexion"].includes(entry.action)).map(entry => `
     <article class="history-entry">
       <time>${escapeHtml(entry.date)}</time>
       <div><strong>${escapeHtml(entry.action)}</strong> - ${escapeHtml(entry.user)}<br><span>${escapeHtml(entry.detail)}</span></div>
@@ -351,18 +434,67 @@ function renderHistory() {
 
 function renderLocations() {
   const groups = items.reduce((acc, item) => {
-    const place = item.location.split("/")[0].trim();
+    const place = item.location;
     acc[place] ||= [];
     acc[place].push(item);
     return acc;
   }, {});
-  document.querySelector("#locationGrid").innerHTML = Object.entries(groups).map(([place, group]) => `
-    <article class="location-card">
+
+  const locationGrid = document.querySelector("#locationGrid");
+
+  if (selectedLocation) {
+    const group = groups[selectedLocation] || [];
+    locationGrid.innerHTML = `
+      <div class="location-room">
+        <div class="location-room-header">
+          <button class="room-exit-btn" id="backToLocationsBtn" type="button" aria-label="Retour aux salles" title="Retour aux salles">↩️</button>
+          <div>
+            <span class="room-icon">${locationIcons[selectedLocation] || "📍"}</span>
+            <h4>${escapeHtml(selectedLocation)}</h4>
+            <p>${group.length} reference${group.length > 1 ? "s" : ""} dans cette salle</p>
+          </div>
+        </div>
+        <div class="room-item-list">
+          ${group.length ? group.map(item => `
+            <article class="room-item">
+              <div>
+                <strong>${escapeHtml(item.name)}</strong>
+                <span>${escapeHtml(item.category)} · ${item.quantity} ${escapeHtml(item.unit)} · Tags: ${item.tags.map(tag => escapeHtml(tag)).join(", ") || "aucun"}</span>
+              </div>
+              <button class="text-btn" type="button" data-item-id="${escapeHtml(item.id)}">Modifier</button>
+            </article>
+          `).join("") : `<div class="empty-room">Aucun item dans cette salle pour le moment.</div>`}
+        </div>
+      </div>
+    `;
+    document.querySelector("#backToLocationsBtn").addEventListener("click", () => {
+      selectedLocation = null;
+      renderLocations();
+    });
+    locationGrid.querySelectorAll("[data-item-id]").forEach(button => {
+      button.addEventListener("click", () => openModal(button.dataset.itemId));
+    });
+    return;
+  }
+
+  locationGrid.innerHTML = inventoryLocations.map(place => {
+    const group = groups[place] || [];
+    return `
+    <button class="location-card" type="button" data-location="${escapeHtml(place)}">
+      <span class="location-icon">${locationIcons[place] || "📍"}</span>
       <strong>${escapeHtml(place)}</strong>
       <p>${group.length} reference${group.length > 1 ? "s" : ""}</p>
-      <div class="mini-list">${group.slice(0, 4).map(item => `<span>${escapeHtml(item.name)} - ${escapeHtml(item.location.split("/").slice(1).join("/").trim())}</span>`).join("")}</div>
-    </article>
-  `).join("");
+      <div class="mini-list">${group.slice(0, 3).map(item => `<span>${escapeHtml(item.name)}</span>`).join("") || "<span>Salle vide</span>"}</div>
+      <span class="enter-room"><span class="enter-room-icon">🚪</span> Entrer</span>
+    </button>
+  `;
+  }).join("");
+  locationGrid.querySelectorAll("[data-location]").forEach(card => {
+    card.addEventListener("click", () => {
+      selectedLocation = card.dataset.location;
+      renderLocations();
+    });
+  });
 }
 
 function renderOrders() {
@@ -387,18 +519,23 @@ function renderOrders() {
 
 function openModal(id) {
   const item = items.find(entry => entry.id === id);
+  const references = normalizeReferences(item?.references);
   document.querySelector("#modalTitle").textContent = item ? "Modifier item" : "Nouvel item";
   document.querySelector("#deleteItemBtn").style.display = item ? "inline-block" : "none";
   fields.itemId.value = item?.id || "";
   fields.name.value = item?.name || "";
-  fields.category.value = item?.category || "";
+  fields.category.value = item?.category || inventoryCategories[0];
   fields.quantity.value = item?.quantity ?? "";
   fields.unit.value = item?.unit || "";
   fields.minStock.value = item?.minStock ?? "";
   fields.maxStock.value = item?.maxStock ?? "";
-  fields.location.value = item?.location || "";
+  fields.location.value = item?.location || inventoryLocations[0];
   fields.tags.value = item?.tags?.join(", ") || "";
   fields.notes.value = item?.notes || "";
+  fields.primaryReference.value = references.primary.reference;
+  fields.primaryReferenceQuantity.value = references.primary.quantity;
+  fields.primaryReferencePrice.value = references.primary.price;
+  renderSecondaryReferences(references.secondary);
   dialog.showModal();
 }
 
@@ -415,7 +552,8 @@ function saveItem() {
     maxStock: Number(fields.maxStock.value),
     location: fields.location.value.trim(),
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
-    notes: fields.notes.value.trim()
+    notes: fields.notes.value.trim(),
+    references: getItemReferences()
   };
   const index = items.findIndex(entry => entry.id === id);
   if (index >= 0) {
@@ -486,6 +624,87 @@ function addHistory(action, detail) {
   });
 }
 
+function migrateItems(itemList) {
+  return itemList.map(item => ({
+    ...item,
+    category: inventoryCategories.includes(item.category)
+      ? item.category
+      : legacyCategoryMap[item.category] || inventoryCategories[0],
+    location: inventoryLocations.includes(item.location)
+      ? item.location
+      : legacyLocationMap[item.location] || inventoryLocations[0],
+    references: normalizeReferences(item.references)
+  }));
+}
+
+function addSecondaryReferenceRow(reference = {}) {
+  const row = document.createElement("div");
+  row.className = "secondary-reference-row";
+  const referenceNumber = secondaryReferencesList.children.length + 1;
+  row.innerHTML = `
+    <label>R&eacute;f&eacute;rence secondaire ${referenceNumber}<input class="secondary-reference" value="${escapeHtml(reference.reference || "")}" /></label>
+    <label>Quantit&eacute;<input class="secondary-reference-quantity" value="${escapeHtml(reference.quantity || "")}" /></label>
+    <label>Prix<input class="secondary-reference-price" value="${escapeHtml(reference.price || "")}" /></label>
+    <button class="ghost-btn" type="button">Retirer</button>
+  `;
+  row.querySelector("button").addEventListener("click", () => {
+    row.remove();
+    renumberSecondaryReferences();
+  });
+  secondaryReferencesList.append(row);
+}
+
+function renderSecondaryReferences(references = []) {
+  secondaryReferencesList.innerHTML = "";
+  references.forEach(reference => addSecondaryReferenceRow(reference));
+}
+
+function renumberSecondaryReferences() {
+  secondaryReferencesList.querySelectorAll(".secondary-reference-row").forEach((row, index) => {
+    row.querySelector("label").firstChild.textContent = `Référence secondaire ${index + 1}`;
+  });
+}
+
+function getItemReferences() {
+  const secondary = [...secondaryReferencesList.querySelectorAll(".secondary-reference-row")]
+    .map(row => ({
+      reference: row.querySelector(".secondary-reference").value.trim(),
+      quantity: row.querySelector(".secondary-reference-quantity").value.trim(),
+      price: row.querySelector(".secondary-reference-price").value.trim()
+    }))
+    .filter(reference => reference.reference || reference.quantity || reference.price);
+
+  return {
+    primary: {
+      reference: fields.primaryReference.value.trim(),
+      quantity: fields.primaryReferenceQuantity.value.trim(),
+      price: fields.primaryReferencePrice.value.trim()
+    },
+    secondary
+  };
+}
+
+function normalizeReferences(references) {
+  return {
+    primary: {
+      reference: references?.primary?.reference || "",
+      quantity: references?.primary?.quantity || "",
+      price: references?.primary?.price || ""
+    },
+    secondary: Array.isArray(references?.secondary) ? references.secondary : []
+  };
+}
+
+function itemReferencesText(references) {
+  const normalized = normalizeReferences(references);
+  return [
+    normalized.primary.reference,
+    normalized.primary.quantity,
+    normalized.primary.price,
+    ...normalized.secondary.flatMap(reference => [reference.reference, reference.quantity, reference.price])
+  ].filter(Boolean).join(" ");
+}
+
 function priorityRank(priority) {
   return {
     critique: 0,
@@ -506,6 +725,14 @@ function priorityLabel(priority) {
 
 function slugPriority(priority) {
   return priority.replace(/\s+/g, "-");
+}
+
+function normalizeSearch(value) {
+  return String(value)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
 }
 
 function escapeHtml(value) {

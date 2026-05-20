@@ -194,7 +194,7 @@ const defaultOrders = [
     id: "ord-002",
     itemName: "Collagenase type I",
     quantity: "6 flacons",
-    priority: "muy urgente",
+    priority: "tres urgent",
     supplier: "Worthington",
     notes: "Stock sous seuil minimum.",
     requestedBy: "CB",
@@ -204,7 +204,7 @@ const defaultOrders = [
     id: "ord-003",
     itemName: "Cryotubes 2 mL steriles",
     quantity: "1 carton",
-    priority: "no urgente",
+    priority: "pas urgent",
     supplier: "Corning",
     notes: "Reassort pour cryostock.",
     requestedBy: "IR",
@@ -212,19 +212,93 @@ const defaultOrders = [
   }
 ];
 
+const protocolTemplates = [
+  {
+    id: "tpl-rtqpcr",
+    name: "RT-qPCR",
+    protocol: "RT-qPCR",
+    notes: "Preparation gene expression: extraction, reverse transcription et mix qPCR.",
+    items: [
+      { itemId: "itm-004", name: "Primer PPARG humain", perConditionQuantity: 1, unit: "tubes", notes: "Forward + reverse par condition" },
+      { itemId: "itm-008", name: "Cryotubes 2 mL steriles", perConditionQuantity: 2, unit: "tubes", notes: "Aliquotage RNA/cDNA" }
+    ]
+  },
+  {
+    id: "tpl-elisa",
+    name: "ELISA adipokines",
+    protocol: "ELISA",
+    notes: "Dosage proteique en plaques, compatible surnageants de culture.",
+    items: [
+      { itemId: "itm-007", name: "Kit ELISA Adiponectine", perConditionQuantity: 0.08, unit: "kit", notes: "Plaque et standards inclus" },
+      { itemId: "itm-008", name: "Cryotubes 2 mL steriles", perConditionQuantity: 1, unit: "tubes", notes: "Stockage surnageants" }
+    ]
+  },
+  {
+    id: "tpl-lipolyse",
+    name: "Lipolyse",
+    protocol: "Lipolyse",
+    notes: "Stimulation metabolique et collecte du milieu.",
+    items: [
+      { itemId: "itm-002", name: "DMEM/F12 + GlutaMAX", perConditionQuantity: 500, unit: "uL", notes: "Milieu par condition" },
+      { itemId: "itm-005", name: "Insuline humaine recombinante", perConditionQuantity: 0.02, unit: "flacon", notes: "Stimulation" }
+    ]
+  },
+  {
+    id: "tpl-glucose",
+    name: "Glucose uptake",
+    protocol: "Glucose uptake",
+    notes: "Mesure d'absorption du glucose sur adipocytes/explants.",
+    items: [
+      { itemId: "itm-002", name: "DMEM/F12 + GlutaMAX", perConditionQuantity: 500, unit: "uL", notes: "Milieu par condition" },
+      { itemId: "itm-006", name: "Plaques 24 puits low attachment", perConditionQuantity: 0.05, unit: "plaques", notes: "Puits experimentaux" }
+    ]
+  },
+  {
+    id: "tpl-imagerie",
+    name: "Imagerie",
+    protocol: "Imagerie",
+    notes: "Preparation echantillons et immunofluorescence.",
+    items: [
+      { itemId: "itm-003", name: "Anti-Perilipin A", perConditionQuantity: 3, unit: "uL", notes: "Anticorps primaire" },
+      { itemId: "itm-006", name: "Plaques 24 puits low attachment", perConditionQuantity: 0.05, unit: "plaques", notes: "Culture/imagerie" }
+    ]
+  }
+];
+
+const defaultExperiments = [
+  {
+    id: "exp-001",
+    name: "Adiponectine secretion pilot",
+    templateId: "tpl-elisa",
+    templateName: "ELISA adipokines",
+    conditions: 4,
+    replicates: 3,
+    status: "draft",
+    notes: "Premiere version a ajuster selon volume surnageants.",
+    createdBy: "Caroline",
+    updatedAt: "2026-05-19 16:20",
+    items: protocolTemplates[1].items.map(templateItem => ({
+      ...templateItem,
+      quantity: Number((templateItem.perConditionQuantity * 12).toFixed(3))
+    }))
+  }
+];
+
 const defaultHistory = [
-  { date: "Aujourd'hui 09:12", user: "Caroline", action: "Stock ajuste", detail: "Collagenase type I passee a 2 flacons." },
-  { date: "Hier 17:35", user: "Marie", action: "Demande de commande", detail: "Kit ELISA Adiponectine ajoute a la liste A commander." },
-  { date: "2026-05-16", user: "Ines", action: "Note modifiee", detail: "Anti-Perilipin A: dilution de travail confirmee." }
+  { date: "Aujourd'hui 09:12", user: "Caroline", action: "Stock ajusté", detail: "Collagenase type I passée à 2 flacons." },
+  { date: "Hier 17:35", user: "Marie", action: "Demande de commande", detail: "Kit ELISA Adiponectine ajouté à la liste À commander." },
+  { date: "2026-05-16", user: "Ines", action: "Note modifiée", detail: "Anti-Perilipin A: dilution de travail confirmée." }
 ];
 
 let items = migrateItems(load("exadex_items", load("adipovault_items", seedItems)));
 let orders = load("exadex_orders", defaultOrders);
+let experiments = migrateExperiments(load("exadex_experiments", defaultExperiments));
 let history = load("exadex_history", load("adipovault_history", defaultHistory));
 let statusFilter = "all";
 let activeView = "inventory";
 let currentName = "Caroline";
 let selectedLocation = null;
+let selectedExperimentId = null;
 
 const auth = document.querySelector("#auth");
 const app = document.querySelector("#app");
@@ -237,14 +311,27 @@ const sidebarUserName = document.querySelector("#sidebarUserName");
 const searchInput = document.querySelector("#searchInput");
 const controlBar = document.querySelector(".control-bar");
 const categoryFilter = document.querySelector("#categoryFilter");
+const experimentSearchInput = document.querySelector("#experimentSearchInput");
+const experimentStatusFilter = document.querySelector("#experimentStatusFilter");
 const dialog = document.querySelector("#itemDialog");
 const form = document.querySelector("#itemForm");
+const stockDialog = document.querySelector("#stockDialog");
+const stockForm = document.querySelector("#stockForm");
+const experimentDialog = document.querySelector("#experimentDialog");
+const experimentForm = document.querySelector("#experimentForm");
+const experimentItemsList = document.querySelector("#experimentItemsList");
 const orderDialog = document.querySelector("#orderDialog");
 const orderForm = document.querySelector("#orderForm");
 const secondaryReferencesList = document.querySelector("#secondaryReferencesList");
 const addSecondaryReferenceBtn = document.querySelector("#addSecondaryReferenceBtn");
 
-const fields = ["itemId", "name", "category", "quantity", "unit", "minStock", "maxStock", "location", "tags", "notes", "primaryReference", "primaryReferenceQuantity", "primaryReferencePrice"]
+const fields = ["itemId", "name", "category", "quantity", "unit", "minStock", "maxStock", "location", "protocol", "tags", "notes", "primaryReference", "primaryReferenceNotes"]
+  .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+
+const stockFields = ["stockItemId", "stockItemName", "stockCurrentQuantity", "stockTitle", "stockAction", "stockAmount", "stockUnit", "stockNotes"]
+  .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+
+const experimentFields = ["experimentId", "experimentTemplate", "experimentName", "experimentConditions", "experimentReplicates", "experimentStatus", "experimentTotalConditions", "experimentNotes"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 const orderFields = ["orderItemName", "orderQuantity", "orderPriority", "orderSupplier", "orderNotes"]
@@ -252,6 +339,7 @@ const orderFields = ["orderItemName", "orderQuantity", "orderPriority", "orderSu
 
 renderCategoryOptions();
 renderLocationOptions();
+renderTemplateOptions();
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -273,11 +361,32 @@ document.querySelector("#logoutBtn").addEventListener("click", () => {
 document.querySelector("#addItemBtn").addEventListener("click", () => openModal());
 document.querySelector("#saveItemBtn").addEventListener("click", saveItem);
 document.querySelector("#deleteItemBtn").addEventListener("click", deleteItem);
+document.querySelector("#saveStockBtn").addEventListener("click", saveStockUpdate);
+document.querySelector("#addExperimentBtn").addEventListener("click", () => openExperimentModal());
+document.querySelector("#saveExperimentBtn").addEventListener("click", saveExperiment);
+document.querySelector("#addExperimentItemBtn").addEventListener("click", () => addExperimentItemRow());
 addSecondaryReferenceBtn.addEventListener("click", () => addSecondaryReferenceRow());
 document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal);
 document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
+document.querySelector("#closeOrderDialogBtn").addEventListener("click", () => orderDialog.close());
+document.querySelector("#cancelOrderBtn").addEventListener("click", () => orderDialog.close());
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
+experimentSearchInput.addEventListener("input", renderExperiments);
+experimentStatusFilter.addEventListener("change", renderExperiments);
+experimentDialog.addEventListener("close", () => {
+  experimentFields.experimentTemplate.disabled = false;
+});
+experimentFields.experimentTemplate.addEventListener("change", () => buildExperimentItemsFromTemplate());
+experimentFields.experimentConditions.addEventListener("input", recalculateExperimentTemplateQuantities);
+experimentFields.experimentReplicates.addEventListener("input", recalculateExperimentTemplateQuantities);
+experimentItemsList.addEventListener("input", updateExperimentModalStock);
+experimentItemsList.addEventListener("change", (event) => {
+  if (event.target.classList.contains("experiment-item-select")) {
+    hydrateExperimentItemRow(event.target.closest(".experiment-item-row"), event.target.value);
+  }
+  updateExperimentModalStock();
+});
 
 document.querySelectorAll(".chip").forEach(button => {
   button.addEventListener("click", () => {
@@ -294,8 +403,9 @@ document.querySelectorAll(".nav-item").forEach(button => {
     document.querySelectorAll(".nav-item").forEach(item => item.classList.toggle("active", item === button));
     document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
     document.querySelector(`#${activeView}View`).classList.add("active");
-    controlBar.classList.toggle("hidden", activeView === "history");
+    controlBar.classList.toggle("hidden", activeView !== "inventory");
     app.classList.toggle("history-mode", activeView === "history");
+    if (activeView === "experiments") renderExperiments();
   });
 });
 
@@ -310,6 +420,7 @@ function load(key, fallback) {
 function persist() {
   localStorage.setItem("exadex_items", JSON.stringify(items));
   localStorage.setItem("exadex_orders", JSON.stringify(orders));
+  localStorage.setItem("exadex_experiments", JSON.stringify(experiments));
   localStorage.setItem("exadex_history", JSON.stringify(history));
 }
 
@@ -331,6 +442,10 @@ function statusLabel(status) {
   return { ok: "En stock", warning: "Attention", critical: "Critique" }[status];
 }
 
+function statusLabelExperiment(status) {
+  return { draft: "Draft", running: "Running", completed: "Completed" }[status] || status;
+}
+
 function render() {
   renderCategories();
   renderMetrics();
@@ -340,6 +455,7 @@ function render() {
   renderHistory();
   renderLocations();
   renderOrders();
+  renderExperiments();
 }
 
 function renderCategories() {
@@ -357,6 +473,12 @@ function renderCategoryOptions() {
 function renderLocationOptions() {
   fields.location.innerHTML = inventoryLocations
     .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
+    .join("");
+}
+
+function renderTemplateOptions() {
+  experimentFields.experimentTemplate.innerHTML = protocolTemplates
+    .map(template => `<option value="${escapeHtml(template.id)}">${escapeHtml(template.name)}</option>`)
     .join("");
 }
 
@@ -390,7 +512,7 @@ function renderInventory() {
   const category = categoryFilter.value;
   const filtered = items.filter(item => {
     const referenceText = itemReferencesText(item.references);
-    const haystack = normalizeSearch([item.name, item.location, item.category, ...item.tags, referenceText].join(" "));
+    const haystack = normalizeSearch([item.name, item.location, item.category, item.protocol, ...item.tags, referenceText].join(" "));
     return (!query || haystack.includes(query))
       && (statusFilter === "all" || itemStatus(item) === statusFilter)
       && (category === "all" || item.category === category);
@@ -413,10 +535,14 @@ function renderInventory() {
           <span>Max : ${item.maxStock} ${escapeHtml(item.unit)}</span>
         </div>
         <div class="tags">${item.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+        ${item.protocol ? `<small>Protocole : ${escapeHtml(item.protocol)}</small>` : ""}
         ${item.references?.primary?.reference ? `<small>Ref. principale : ${escapeHtml(item.references.primary.reference)}</small>` : ""}
         <div class="card-actions">
           <small>${escapeHtml(item.location)}</small>
-          <button class="text-btn" onclick="openModal('${item.id}')">Modifier</button>
+          <div class="card-button-stack">
+            <button class="text-btn" onclick="openModal('${item.id}')">Modifier</button>
+            <button class="text-btn" onclick="openStockModal('${item.id}')">Stock update</button>
+          </div>
         </div>
       </article>
     `;
@@ -524,10 +650,112 @@ function renderOrders() {
       <p>${escapeHtml(order.notes || "Aucune note")}</p>
       <div class="card-actions">
         <small>Ajoute par ${escapeHtml(order.requestedBy)} - ${escapeHtml(order.createdAt)}</small>
-        <button class="text-btn" onclick="markOrderDone('${order.id}')">Marquer commande</button>
+        <button class="text-btn" onclick="markOrderDone('${order.id}')">Effacer</button>
       </div>
     </article>
   `).join("");
+}
+
+function renderExperiments() {
+  const query = normalizeSearch(experimentSearchInput.value);
+  const status = experimentStatusFilter.value;
+  const filtered = experiments.filter(experiment => {
+    const haystack = normalizeSearch([experiment.name, experiment.templateName, experiment.createdBy, experiment.status].join(" "));
+    return (!query || haystack.includes(query))
+      && (status === "all" || experiment.status === status);
+  });
+
+  const detail = selectedExperimentId ? experiments.find(experiment => experiment.id === selectedExperimentId) : null;
+  document.querySelector("#experimentDetail").innerHTML = detail ? renderExperimentDetail(detail) : "";
+  document.querySelector("#experimentGrid").classList.toggle("hidden", Boolean(detail));
+  document.querySelector("#experimentGrid").innerHTML = filtered.map(experiment => {
+    const totalConditions = experiment.conditions * experiment.replicates;
+    const stock = experimentStockSummary(experiment);
+    return `
+      <article class="experiment-card">
+        <div class="item-head">
+          <div>
+            <strong>${escapeHtml(experiment.name)}</strong>
+            <span class="category">${escapeHtml(experiment.templateName)} - ${totalConditions} conditions totales</span>
+          </div>
+          <span class="experiment-status ${escapeHtml(experiment.status)}">${escapeHtml(statusLabelExperiment(experiment.status))}</span>
+        </div>
+        <div class="experiment-stats">
+          <span>${experiment.conditions} conditions</span>
+          <span>${experiment.replicates} replicats</span>
+          <span class="${stock.ok ? "stock-ok" : "stock-alert"}">${stock.ok ? "Stock OK" : `${stock.missing} alerte${stock.missing > 1 ? "s" : ""}`}</span>
+        </div>
+        <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
+        <div class="card-actions">
+          <small>${escapeHtml(experiment.createdBy)} - ${escapeHtml(experiment.updatedAt)}</small>
+          <div class="card-button-stack">
+            <button class="text-btn" type="button" onclick="selectExperiment('${experiment.id}')">Ouvrir</button>
+            <button class="text-btn" type="button" onclick="openExperimentModal('${experiment.id}')">Modifier</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("") || `<div class="empty-room">Aucune experience ne correspond a cette recherche.</div>`;
+}
+
+function renderExperimentDetail(experiment) {
+  const totalConditions = experiment.conditions * experiment.replicates;
+  const rows = experiment.items.map(line => {
+    const inventoryItem = findInventoryItem(line);
+    const available = Number(inventoryItem?.quantity ?? 0);
+    const needed = Number(line.quantity || 0);
+    const comparable = inventoryItem && inventoryItem.unit === line.unit;
+    const enough = comparable && available >= needed;
+    const stateLabel = !inventoryItem ? "Non connecte" : !comparable ? "Unite differente" : enough ? "Suffisant" : "Insuffisant";
+    return `
+      <tr>
+        <td><strong>${escapeHtml(line.name)}</strong><br><span>${escapeHtml(line.notes || "")}</span></td>
+        <td>${formatQuantity(needed, line.unit)}</td>
+        <td>${inventoryItem ? `${inventoryItem.quantity} ${escapeHtml(inventoryItem.unit)}` : "Non connecte"}</td>
+        <td><span class="stock-pill ${enough ? "ok" : "alert"}">${stateLabel}</span></td>
+      </tr>
+    `;
+  }).join("");
+  const canConsume = experiment.status !== "completed" && experimentStockSummary(experiment).ok;
+
+  return `
+    <section class="experiment-detail-panel">
+      <div class="detail-topline">
+        <button class="ghost-btn compact-btn" type="button" onclick="selectExperiment(null)">Retour</button>
+        <div class="detail-actions">
+          <button class="ghost-btn compact-btn" type="button" onclick="openExperimentModal('${experiment.id}')">Modifier</button>
+          <button class="primary-btn compact-btn" type="button" onclick="consumeExperimentStock('${experiment.id}')" ${canConsume ? "" : "disabled"}>Consommer le stock</button>
+        </div>
+      </div>
+      <div class="experiment-detail-head">
+        <div>
+          <span class="experiment-status ${escapeHtml(experiment.status)}">${escapeHtml(statusLabelExperiment(experiment.status))}</span>
+          <h3>${escapeHtml(experiment.name)}</h3>
+          <p>${escapeHtml(experiment.templateName)} - ${experiment.conditions} conditions x ${experiment.replicates} replicats = ${totalConditions} conditions totales</p>
+        </div>
+        <small>Mis a jour par ${escapeHtml(experiment.createdBy)} - ${escapeHtml(experiment.updatedAt)}</small>
+      </div>
+      <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
+      <div class="sample-table-wrap">
+        <table class="sample-table experiment-table">
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Besoin total</th>
+              <th>Stock disponible</th>
+              <th>Controle</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function selectExperiment(id) {
+  selectedExperimentId = id;
+  renderExperiments();
 }
 
 function openModal(id) {
@@ -543,11 +771,11 @@ function openModal(id) {
   fields.minStock.value = item?.minStock ?? "";
   fields.maxStock.value = item?.maxStock ?? "";
   fields.location.value = item?.location || inventoryLocations[0];
+  fields.protocol.value = item?.protocol || "";
   fields.tags.value = item?.tags?.join(", ") || "";
   fields.notes.value = item?.notes || "";
   fields.primaryReference.value = references.primary.reference;
-  fields.primaryReferenceQuantity.value = references.primary.quantity;
-  fields.primaryReferencePrice.value = references.primary.price;
+  fields.primaryReferenceNotes.value = references.primary.notes;
   renderSecondaryReferences(references.secondary);
   dialog.showModal();
 }
@@ -564,6 +792,7 @@ function saveItem() {
     minStock: Number(fields.minStock.value),
     maxStock: Number(fields.maxStock.value),
     location: fields.location.value.trim(),
+    protocol: fields.protocol.value.trim(),
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
     notes: fields.notes.value.trim(),
     references: getItemReferences()
@@ -571,13 +800,248 @@ function saveItem() {
   const index = items.findIndex(entry => entry.id === id);
   if (index >= 0) {
     items[index] = item;
-    addHistory("Item modifie", `${currentName} a modifie ${item.name}.`);
+    addHistory("Item modifié", `${currentName} a modifié ${item.name}.`);
   } else {
     items.unshift(item);
-    addHistory("Item ajoute", `${currentName} a ajoute ${item.name} dans ${item.category}.`);
+    addHistory("Item ajouté", `${currentName} a ajouté ${item.name} dans ${item.category}.`);
   }
   persist();
   dialog.close();
+  render();
+}
+
+function openStockModal(id) {
+  const item = items.find(entry => entry.id === id);
+  if (!item) return;
+
+  stockForm.reset();
+  stockFields.stockItemId.value = item.id;
+  stockFields.stockItemName.value = item.name;
+  stockFields.stockCurrentQuantity.value = `${item.quantity} ${item.unit}`;
+  stockFields.stockAction.value = "used";
+  stockFields.stockTitle.value = "";
+  stockFields.stockAmount.value = "";
+  stockFields.stockUnit.value = item.unit;
+  stockFields.stockNotes.value = "";
+  stockDialog.showModal();
+}
+
+function saveStockUpdate() {
+  if (!stockForm.reportValidity()) return;
+  const id = stockFields.stockItemId.value;
+  const item = items.find(entry => entry.id === id);
+  if (!item) return;
+
+  const amount = Number(stockFields.stockAmount.value);
+  const direction = stockFields.stockAction.value;
+  const nextQuantity = direction === "received"
+    ? Number(item.quantity) + amount
+    : Number(item.quantity) - amount;
+
+  if (nextQuantity < 0) {
+    stockFields.stockAmount.setCustomValidity("La quantite ne peut pas devenir negative.");
+    stockForm.reportValidity();
+    stockFields.stockAmount.setCustomValidity("");
+    return;
+  }
+
+  const title = stockFields.stockTitle.value.trim();
+  const previousQuantity = item.quantity;
+  item.quantity = Number(nextQuantity.toFixed(3));
+
+  const actionLabel = direction === "received" ? "reçu" : "pris";
+  const note = stockFields.stockNotes.value.trim();
+  addHistory(
+    "Stock mis à jour",
+    `${currentName} a ${actionLabel} ${amount} ${item.unit} pour ${item.name} (${title}). Stock: ${previousQuantity} -> ${item.quantity} ${item.unit}.${note ? ` Note: ${note}` : ""}`
+  );
+
+  persist();
+  stockDialog.close();
+  render();
+}
+
+function openExperimentModal(id) {
+  const experiment = experiments.find(entry => entry.id === id);
+  const template = protocolTemplates.find(entry => entry.id === (experiment?.templateId || protocolTemplates[0].id));
+  experimentForm.reset();
+  document.querySelector("#experimentModalTitle").textContent = experiment ? "Modifier experience" : "Nouvelle experience";
+  experimentFields.experimentId.value = experiment?.id || "";
+  experimentFields.experimentTemplate.value = experiment?.templateId || template.id;
+  experimentFields.experimentName.value = experiment?.name || "";
+  experimentFields.experimentConditions.value = experiment?.conditions || 1;
+  experimentFields.experimentReplicates.value = experiment?.replicates || 1;
+  experimentFields.experimentStatus.value = experiment?.status || "draft";
+  experimentFields.experimentNotes.value = experiment?.notes || template.notes || "";
+  experimentFields.experimentTemplate.disabled = Boolean(experiment);
+  experimentItemsList.innerHTML = "";
+  if (experiment) {
+    experiment.items.forEach(line => addExperimentItemRow(line));
+  } else {
+    buildExperimentItemsFromTemplate();
+  }
+  updateExperimentTotalConditions();
+  updateExperimentModalStock();
+  experimentDialog.showModal();
+}
+
+function buildExperimentItemsFromTemplate() {
+  const template = protocolTemplates.find(entry => entry.id === experimentFields.experimentTemplate.value);
+  if (!template) return;
+  if (!experimentFields.experimentId.value && !experimentFields.experimentName.value.trim()) {
+    experimentFields.experimentName.value = `${template.name} - ${new Intl.DateTimeFormat("fr-FR").format(new Date())}`;
+  }
+  if (!experimentFields.experimentNotes.value.trim()) {
+    experimentFields.experimentNotes.value = template.notes || "";
+  }
+  experimentItemsList.innerHTML = "";
+  const total = updateExperimentTotalConditions();
+  template.items.forEach(templateItem => addExperimentItemRow({
+    ...templateItem,
+    quantity: Number((templateItem.perConditionQuantity * total).toFixed(3))
+  }));
+  updateExperimentModalStock();
+}
+
+function recalculateExperimentTemplateQuantities() {
+  const total = updateExperimentTotalConditions();
+  experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row => {
+    const perCondition = Number(row.dataset.perCondition || 0);
+    if (perCondition > 0) {
+      row.querySelector(".experiment-item-quantity").value = Number((perCondition * total).toFixed(3));
+    }
+  });
+  updateExperimentModalStock();
+}
+
+function updateExperimentTotalConditions() {
+  const total = Math.max(1, Number(experimentFields.experimentConditions.value || 1)) * Math.max(1, Number(experimentFields.experimentReplicates.value || 1));
+  experimentFields.experimentTotalConditions.value = total;
+  return total;
+}
+
+function addExperimentItemRow(line = {}) {
+  const selectedItem = findInventoryItem(line) || items[0];
+  const row = document.createElement("div");
+  row.className = "experiment-item-row";
+  row.dataset.perCondition = line.perConditionQuantity || "";
+  row.innerHTML = `
+    <select class="experiment-item-select" required>
+      ${items.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`).join("")}
+    </select>
+    <input class="experiment-item-quantity" type="number" min="0" step="0.001" value="${escapeHtml(line.quantity ?? "")}" required />
+    <input class="experiment-item-unit" value="${escapeHtml(line.unit || selectedItem?.unit || "")}" required />
+    <span class="experiment-stock-state"></span>
+    <button class="ghost-btn compact-btn" type="button">Retirer</button>
+    <input class="experiment-item-notes" value="${escapeHtml(line.notes || "")}" placeholder="Notes ligne" />
+  `;
+  row.querySelector(".experiment-item-select").value = selectedItem?.id || "";
+  row.querySelector("button").addEventListener("click", () => {
+    row.remove();
+    updateExperimentModalStock();
+  });
+  experimentItemsList.append(row);
+  updateExperimentModalStock();
+}
+
+function hydrateExperimentItemRow(row, itemId) {
+  const item = items.find(entry => entry.id === itemId);
+  if (!row || !item) return;
+  row.querySelector(".experiment-item-unit").value = item.unit;
+  row.dataset.perCondition = "";
+}
+
+function updateExperimentModalStock() {
+  experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row => {
+    const item = items.find(entry => entry.id === row.querySelector(".experiment-item-select").value);
+    const needed = Number(row.querySelector(".experiment-item-quantity").value || 0);
+    const unit = row.querySelector(".experiment-item-unit").value.trim();
+    const state = row.querySelector(".experiment-stock-state");
+    if (!item) {
+      state.className = "experiment-stock-state stock-alert";
+      state.textContent = "Non connecte";
+      return;
+    }
+    if (unit && item.unit !== unit) {
+      state.className = "experiment-stock-state stock-alert";
+      state.textContent = `${item.quantity} ${item.unit} - unite differente`;
+      return;
+    }
+    const ok = Number(item.quantity) >= needed;
+    state.className = `experiment-stock-state ${ok ? "stock-ok" : "stock-alert"}`;
+    state.textContent = `${item.quantity} ${item.unit}`;
+  });
+}
+
+function saveExperiment() {
+  if (!experimentForm.reportValidity()) return;
+  const template = protocolTemplates.find(entry => entry.id === experimentFields.experimentTemplate.value);
+  const id = experimentFields.experimentId.value || `exp-${Date.now()}`;
+  const experiment = {
+    id,
+    name: experimentFields.experimentName.value.trim(),
+    templateId: experimentFields.experimentTemplate.value,
+    templateName: template?.name || "Template inconnu",
+    conditions: Number(experimentFields.experimentConditions.value),
+    replicates: Number(experimentFields.experimentReplicates.value),
+    status: experimentFields.experimentStatus.value,
+    notes: experimentFields.experimentNotes.value.trim(),
+    createdBy: currentName,
+    updatedAt: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+    items: getExperimentRows()
+  };
+  const index = experiments.findIndex(entry => entry.id === id);
+  if (index >= 0) {
+    experiment.createdBy = experiments[index].createdBy || currentName;
+    experiments[index] = experiment;
+    addHistory("Experience modifiée", `${currentName} a modifié ${experiment.name}.`);
+  } else {
+    experiments.unshift(experiment);
+    addHistory("Experience créée", `${currentName} a créé ${experiment.name} depuis ${experiment.templateName}.`);
+  }
+  persist();
+  selectedExperimentId = id;
+  experimentFields.experimentTemplate.disabled = false;
+  experimentDialog.close();
+  renderExperiments();
+  renderHistory();
+}
+
+function getExperimentRows() {
+  return [...experimentItemsList.querySelectorAll(".experiment-item-row")]
+    .map(row => {
+      const item = items.find(entry => entry.id === row.querySelector(".experiment-item-select").value);
+      return {
+        itemId: item?.id || "",
+        name: item?.name || "",
+        quantity: Number(row.querySelector(".experiment-item-quantity").value || 0),
+        unit: row.querySelector(".experiment-item-unit").value.trim(),
+        notes: row.querySelector(".experiment-item-notes").value.trim(),
+        perConditionQuantity: Number(row.dataset.perCondition || 0)
+      };
+    })
+    .filter(line => line.itemId && line.quantity >= 0);
+}
+
+function consumeExperimentStock(id) {
+  const experiment = experiments.find(entry => entry.id === id);
+  if (!experiment) return;
+  if (experiment.status === "completed") return;
+  const summary = experimentStockSummary(experiment);
+  if (!summary.ok) {
+    addHistory("Consommation bloquée", `${currentName} a tente de consommer ${experiment.name}, mais le stock est insuffisant.`);
+    window.alert("Stock insuffisant ou unité différente: consommation bloquée.");
+    renderHistory();
+    return;
+  }
+  experiment.items.forEach(line => {
+    const item = findInventoryItem(line);
+    if (item) item.quantity = Number((Number(item.quantity) - Number(line.quantity || 0)).toFixed(3));
+  });
+  experiment.status = "completed";
+  experiment.updatedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
+  addHistory("Experience consommée", `${currentName} a consommé le stock pour ${experiment.name}.`);
+  persist();
   render();
 }
 
@@ -611,7 +1075,7 @@ function saveOrder() {
     createdAt: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date())
   };
   orders.unshift(order);
-  addHistory("Demande de commande", `${currentName} a ajoute ${order.itemName} a la liste A commander (${priorityLabel(order.priority)}).`);
+  addHistory("Demande de commande", `${currentName} a ajouté ${order.itemName} à la liste À commander (${priorityLabel(order.priority)}).`);
   persist();
   orderDialog.close();
   renderOrders();
@@ -622,7 +1086,7 @@ function markOrderDone(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order) return;
   orders = orders.filter(entry => entry.id !== id);
-  addHistory("Commande effectuee", `${currentName} a marque ${order.itemName} comme commande.`);
+  addHistory("Commande effectuée", `${currentName} a marqué ${order.itemName} comme commande.`);
   persist();
   renderOrders();
   renderHistory();
@@ -646,8 +1110,39 @@ function migrateItems(itemList) {
     location: inventoryLocations.includes(item.location)
       ? item.location
       : legacyLocationMap[item.location] || inventoryLocations[0],
+    protocol: item.protocol || "",
+    tags: Array.isArray(item.tags) ? item.tags : [],
     references: normalizeReferences(item.references)
   }));
+}
+
+function migrateExperiments(experimentList) {
+  return experimentList.map(experiment => ({
+    ...experiment,
+    status: ["draft", "running", "completed"].includes(experiment.status) ? experiment.status : "draft",
+    conditions: Math.max(1, Number(experiment.conditions || 1)),
+    replicates: Math.max(1, Number(experiment.replicates || 1)),
+    items: Array.isArray(experiment.items) ? experiment.items : []
+  }));
+}
+
+function findInventoryItem(line) {
+  return items.find(item => item.id === line.itemId)
+    || items.find(item => normalizeSearch(item.name) === normalizeSearch(line.name || ""));
+}
+
+function experimentStockSummary(experiment) {
+  const missing = experiment.items.filter(line => {
+    const item = findInventoryItem(line);
+    return !item || item.unit !== line.unit || Number(item.quantity) < Number(line.quantity || 0);
+  }).length;
+  return { ok: missing === 0, missing };
+}
+
+function formatQuantity(quantity, unit) {
+  const value = Number(quantity || 0);
+  if (unit === "uL" && value >= 1000) return `${Number((value / 1000).toFixed(3))} mL`;
+  return `${Number(value.toFixed(3))} ${escapeHtml(unit)}`;
 }
 
 function addSecondaryReferenceRow(reference = {}) {
@@ -656,8 +1151,7 @@ function addSecondaryReferenceRow(reference = {}) {
   const referenceNumber = secondaryReferencesList.children.length + 1;
   row.innerHTML = `
     <label>R&eacute;f&eacute;rence secondaire ${referenceNumber}<input class="secondary-reference" value="${escapeHtml(reference.reference || "")}" /></label>
-    <label>Quantit&eacute;<input class="secondary-reference-quantity" value="${escapeHtml(reference.quantity || "")}" /></label>
-    <label>Prix<input class="secondary-reference-price" value="${escapeHtml(reference.price || "")}" /></label>
+    <label>Notes<input class="secondary-reference-notes" value="${escapeHtml(reference.notes || "")}" /></label>
     <button class="ghost-btn" type="button">Retirer</button>
   `;
   row.querySelector("button").addEventListener("click", () => {
@@ -682,29 +1176,32 @@ function getItemReferences() {
   const secondary = [...secondaryReferencesList.querySelectorAll(".secondary-reference-row")]
     .map(row => ({
       reference: row.querySelector(".secondary-reference").value.trim(),
-      quantity: row.querySelector(".secondary-reference-quantity").value.trim(),
-      price: row.querySelector(".secondary-reference-price").value.trim()
+      notes: row.querySelector(".secondary-reference-notes").value.trim()
     }))
-    .filter(reference => reference.reference || reference.quantity || reference.price);
+    .filter(reference => reference.reference || reference.notes);
 
   return {
     primary: {
       reference: fields.primaryReference.value.trim(),
-      quantity: fields.primaryReferenceQuantity.value.trim(),
-      price: fields.primaryReferencePrice.value.trim()
+      notes: fields.primaryReferenceNotes.value.trim()
     },
     secondary
   };
 }
 
 function normalizeReferences(references) {
+  const legacyPrimaryNotes = [references?.primary?.quantity, references?.primary?.price].filter(Boolean).join(" - ");
   return {
     primary: {
       reference: references?.primary?.reference || "",
-      quantity: references?.primary?.quantity || "",
-      price: references?.primary?.price || ""
+      notes: references?.primary?.notes || legacyPrimaryNotes
     },
-    secondary: Array.isArray(references?.secondary) ? references.secondary : []
+    secondary: Array.isArray(references?.secondary)
+      ? references.secondary.map(reference => ({
+        reference: reference.reference || "",
+        notes: reference.notes || [reference.quantity, reference.price].filter(Boolean).join(" - ")
+      }))
+      : []
   };
 }
 
@@ -712,27 +1209,26 @@ function itemReferencesText(references) {
   const normalized = normalizeReferences(references);
   return [
     normalized.primary.reference,
-    normalized.primary.quantity,
-    normalized.primary.price,
-    ...normalized.secondary.flatMap(reference => [reference.reference, reference.quantity, reference.price])
+    normalized.primary.notes,
+    ...normalized.secondary.flatMap(reference => [reference.reference, reference.notes])
   ].filter(Boolean).join(" ");
 }
 
 function priorityRank(priority) {
   return {
     critique: 0,
-    "muy urgente": 1,
-    urgente: 2,
-    "no urgente": 3
+    "tres urgent": 1,
+    urgent: 2,
+    "pas urgent": 3
   }[priority] ?? 9;
 }
 
 function priorityLabel(priority) {
   return {
     critique: "Critique",
-    "muy urgente": "Muy urgente",
-    urgente: "Urgente",
-    "no urgente": "No urgente"
+    "tres urgent": "Très urgent",
+    urgent: "Urgent",
+    "pas urgent": "Pas urgent"
   }[priority] || priority;
 }
 

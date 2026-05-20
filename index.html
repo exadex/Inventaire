@@ -11,7 +11,7 @@
       <section class="auth-panel">
         <div class="brand-mark">EX</div>
         <p class="eyebrow">SHAPING RESEARCH WITH REAL HUMAN DATA</p>
-        <h1>ExAdEx Inventaire</h1>
+        <h1>Inventaire ExAdEx</h1>
         <p class="auth-copy">
           S&eacute;lectionnez votre nom pour signer chaque ajout, modification, suppression et demande de commande.
         </p>
@@ -37,7 +37,7 @@
         <div class="brand">
           <div class="brand-mark">EX</div>
           <div>
-            <strong>ExAdEx Inventaire</strong>
+            <strong>Inventaire ExAdEx</strong>
             <span>Biobank & Inventory</span>
           </div>
         </div>
@@ -45,6 +45,7 @@
           <button class="nav-item active" data-view="inventory">Inventaire</button>
           <button class="nav-item" data-view="samples">&Eacute;chantillons</button>
           <button class="nav-item" data-view="locations">Localisations</button>
+          <button class="nav-item" data-view="experiments">Expériences</button>
           <button class="nav-item" data-view="orders">&Agrave; commander</button>
           <button class="nav-item" data-view="history">Historique</button>
         </nav>
@@ -129,6 +130,36 @@
           <div class="location-grid" id="locationGrid"></div>
         </section>
 
+        <section class="view" id="experimentsView">
+          <div class="section-heading">
+            <h3>Expériences</h3>
+            <span>Templates, consommation prévisionnelle et suivi</span>
+          </div>
+
+          <div class="control-bar experiment-controls">
+            <label class="search-box">
+              <span>Rech.</span>
+              <input
+                id="experimentSearchInput"
+                type="search"
+                placeholder="Rechercher par nom, template, créateur ou statut..."
+              />
+            </label>
+
+            <select id="experimentStatusFilter" class="select">
+              <option value="all">Tous statuts</option>
+              <option value="draft">Draft</option>
+              <option value="running">Running</option>
+              <option value="completed">Completed</option>
+            </select>
+
+            <button id="addExperimentBtn" class="primary-btn" type="button">Ajouter une expérience</button>
+          </div>
+
+          <div id="experimentDetail"></div>
+          <div class="inventory-grid" id="experimentGrid"></div>
+        </section>
+
         <section class="view" id="ordersView">
           <div class="section-heading">
             <h3>&Agrave; commander</h3>
@@ -157,30 +188,39 @@
           <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
         </div>
         <input type="hidden" id="itemId" />
-        <div class="form-grid">
-          <label><span>Nom <span class="required-star">*</span></span><input id="name" required /></label>
-          <label><span>Cat&eacute;gorie <span class="required-star">*</span></span><select id="category" required></select></label>
-          <label><span>Quantit&eacute; <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="0.1" required /></label>
-          <label><span>Unit&eacute; <span class="required-star">*</span></span><input id="unit" required /></label>
-          <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
-          <label><span>Capacit&eacute; max <span class="required-star">*</span></span><input id="maxStock" type="number" min="0" step="0.1" required /></label>
-          <label><span>Localisation <span class="required-star">*</span></span><select id="location" required></select></label>
-          <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
-        </div>
+          <div class="form-grid">
+            <label><span>Nom <span class="required-star">*</span></span><input id="name" required /></label>
+            <label><span>Catégorie <span class="required-star">*</span></span><select id="category" required></select></label>
+            <label><span>Quantité <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="0.1" required /></label>
+            <label><span>Unité <span class="required-star">*</span></span><input id="unit" required /></label>
+            <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
+            <label><span>Capacité max <span class="required-star">*</span></span><input id="maxStock" type="number" min="0" step="0.1" required /></label>
+            <label><span>Localisation <span class="required-star">*</span></span><select id="location" required></select></label>
+            <label><span>Protocole</span><input id="protocol" placeholder="ELISA, RT-qPCR, culture..." /></label>
+            <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
+          </div>
         <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>
         <section class="reference-section">
           <div class="reference-heading">
-            <h4>R&eacute;f&eacute;rences</h4>
+            <h4>Références</h4>
           </div>
+
           <div class="reference-block">
-            <strong>R&eacute;f&eacute;rence principale</strong>
+            <strong>Référence principale</strong>
             <div class="reference-grid">
-              <label>R&eacute;f&eacute;rence<input id="primaryReference" /></label>
-              <label>Quantit&eacute;<input id="primaryReferenceQuantity" /></label>
-              <label>Prix<input id="primaryReferencePrice" /></label>
+              <label>Référence<input id="primaryReference" /></label>
+              <label>Notes<input id="primaryReferenceNotes" /></label>
             </div>
           </div>
-          <button class="ghost-btn compact-btn secondary-reference-add" id="addSecondaryReferenceBtn" type="button">Ajouter une r&eacute;f&eacute;rence secondaire</button>
+
+          <button
+            class="ghost-btn compact-btn secondary-reference-add"
+            id="addSecondaryReferenceBtn"
+            type="button"
+          >
+            Ajouter une référence secondaire
+          </button>
+
           <div class="secondary-references" id="secondaryReferencesList"></div>
         </section>
         <p class="required-legend"><span class="required-star">*</span> champs obligatoires</p>
@@ -192,29 +232,171 @@
       </form>
     </dialog>
 
+    <dialog id="stockDialog" class="modal">
+      <form id="stockForm" method="dialog">
+        <div class="modal-header">
+          <h3 id="stockDialogTitle">Mise à jour du stock</h3>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
+        </div>
+
+        <input type="hidden" id="stockItemId" />
+
+        <div class="form-grid">
+          <label>
+            <span>Item</span>
+            <input id="stockItemName" type="text" readonly />
+          </label>
+
+          <label>
+            <span>Stock actuel</span>
+            <input id="stockCurrentQuantity" type="text" readonly />
+          </label>
+
+          <label>
+            <span>Action</span>
+            <select id="stockAction" required>
+              <option value="used">Utilisé</option>
+              <option value="received">Reçu</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Titre / contexte</span>
+            <input id="stockTitle" type="text" placeholder="Ex. expérience pilote, réception fournisseur..." />
+          </label>
+
+          <label>
+            <span>Quantité</span>
+            <input id="stockAmount" type="number" min="0" step="0.001" required />
+          </label>
+
+          <label>
+            <span>Unité</span>
+            <input id="stockUnit" type="text" required />
+          </label>
+        </div>
+
+        <label class="full-label">
+          <span>Notes</span>
+          <textarea id="stockNotes" rows="3"></textarea>
+        </label>
+
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
+          <button class="primary-btn" id="saveStockBtn" type="button">Enregistrer</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="experimentDialog" class="modal">
+      <form id="experimentForm" method="dialog">
+        <div class="modal-header">
+          <h3 id="experimentModalTitle">Nouvelle expérience</h3>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
+        </div>
+
+        <input type="hidden" id="experimentId" />
+
+        <div class="form-grid">
+          <label>
+            <span>Template</span>
+            <select id="experimentTemplate" required></select>
+          </label>
+
+          <label>
+            <span>Nom de l’expérience</span>
+            <input id="experimentName" required />
+          </label>
+
+          <label>
+            <span>Conditions</span>
+            <input id="experimentConditions" type="number" min="1" step="1" value="1" required />
+          </label>
+
+          <label>
+            <span>Réplicats</span>
+            <input id="experimentReplicates" type="number" min="1" step="1" value="1" required />
+          </label>
+
+          <label>
+            <span>Statut</span>
+            <select id="experimentStatus" required>
+              <option value="draft">Draft</option>
+              <option value="running">Running</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Conditions totales</span>
+            <input id="experimentTotalConditions" type="number" value="1" readonly />
+          </label>
+        </div>
+
+        <label class="full-label">
+          Notes
+          <textarea id="experimentNotes" rows="3"></textarea>
+        </label>
+
+        <section class="reference-section">
+          <div class="reference-heading">
+            <h4>Items consommés</h4>
+            <button id="addExperimentItemBtn" class="ghost-btn compact-btn" type="button">Ajouter une ligne</button>
+          </div>
+          <div id="experimentItemsList" class="experiment-items-list"></div>
+        </section>
+
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
+          <button class="primary-btn" id="saveExperimentBtn" type="button">Enregistrer</button>
+        </div>
+      </form>
+    </dialog>
+
     <dialog id="orderDialog" class="modal">
       <form id="orderForm" method="dialog">
         <div class="modal-header">
           <h3>Nouvelle demande de commande</h3>
-          <button class="icon-btn" value="cancel" type="submit">&times;</button>
+          <button class="icon-btn" value="cancel" type="button" id="closeOrderDialogBtn">&times;</button>
         </div>
+
         <div class="form-grid">
-          <label>Item<input id="orderItemName" required /></label>
-          <label>Quantit&eacute; demand&eacute;e<input id="orderQuantity" required placeholder="ex. 2 kits, 500 mL" /></label>
-          <label>Priorit&eacute;
+          <label>
+            <span>Item <span class="required-star">*</span></span>
+            <input id="orderItemName" required />
+          </label>
+
+          <label>
+            <span>Quantité demandée <span class="required-star">*</span></span>
+            <input id="orderQuantity" required placeholder="ex. 2 kits, 500 mL" />
+          </label>
+
+          <label>
+            <span>Priorité <span class="required-star">*</span></span>
             <select id="orderPriority" required>
               <option value="critique">Critique</option>
-              <option value="muy urgente">Muy urgente</option>
-              <option value="urgente">Urgente</option>
-              <option value="no urgente">No urgente</option>
+              <option value="tres urgent">Très urgent</option>
+              <option value="urgent">Urgent</option>
+              <option value="pas urgent">Pas urgent</option>
             </select>
           </label>
-          <label>Fournisseur<input id="orderSupplier" placeholder="Thermo Fisher, Merck..." /></label>
+
+          <label>
+            <span>Fournisseur</span>
+            <input id="orderSupplier" placeholder="Thermo Fisher, Merck..." />
+          </label>
         </div>
-        <label class="full-label">Notes<textarea id="orderNotes" rows="3"></textarea></label>
+
+        <label class="full-label">
+          <span>Notes</span>
+          <textarea id="orderNotes" rows="3"></textarea>
+        </label>
+
+        <p class="required-legend"><span class="required-star">*</span> champs obligatoires</p>
+
         <div class="modal-actions">
-          <button class="ghost-btn" value="cancel" type="submit">Annuler</button>
-          <button class="primary-btn" id="saveOrderBtn" type="button">Ajouter &agrave; la liste</button>
+          <button class="ghost-btn" type="button" id="cancelOrderBtn">Annuler</button>
+          <button class="primary-btn" id="saveOrderBtn" type="button">Ajouter à la liste</button>
         </div>
       </form>
     </dialog>

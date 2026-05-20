@@ -97,6 +97,9 @@
             <h3>Niveaux de stock</h3>
             <span id="resultCount"></span>
           </div>
+
+          <div id="inventoryDetail"></div>
+
           <div class="inventory-grid" id="inventoryGrid"></div>
         </section>
 
@@ -196,7 +199,12 @@
             <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
             <label><span>Capacité max <span class="required-star">*</span></span><input id="maxStock" type="number" min="0" step="0.1" required /></label>
             <label><span>Localisation <span class="required-star">*</span></span><select id="location" required></select></label>
-            <label><span>Protocole</span><input id="protocol" placeholder="ELISA, RT-qPCR, culture..." /></label>
+            <label>
+              <span>Protocole</span>
+              <select id="protocol">
+                <option value="">Aucun protocole</option>
+              </select>
+            </label>
             <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
           </div>
         <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>
@@ -208,8 +216,13 @@
           <div class="reference-block">
             <strong>Référence principale</strong>
             <div class="reference-grid">
+              <label>Fournisseur<input id="primarySupplier" /></label>
               <label>Référence<input id="primaryReference" /></label>
+              <label>Lien<input id="primaryLink" type="url" /></label>
               <label>Notes<input id="primaryReferenceNotes" /></label>
+              <label>Prix<input id="primaryPrice" /></label>
+              <label>Prix unitaire<input id="primaryUnitPrice" /></label>
+              <label>Délais de livraison<input id="primaryLeadTime" /></label>
             </div>
           </div>
 

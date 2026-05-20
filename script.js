@@ -299,6 +299,8 @@ let activeView = "inventory";
 let currentName = "Caroline";
 let selectedLocation = null;
 let selectedExperimentId = null;
+let selectedItemId = null;
+let itemReturnContext = { view: "inventory", experimentId: null, location: null };
 
 const auth = document.querySelector("#auth");
 const app = document.querySelector("#app");
@@ -325,8 +327,26 @@ const orderForm = document.querySelector("#orderForm");
 const secondaryReferencesList = document.querySelector("#secondaryReferencesList");
 const addSecondaryReferenceBtn = document.querySelector("#addSecondaryReferenceBtn");
 
-const fields = ["itemId", "name", "category", "quantity", "unit", "minStock", "maxStock", "location", "protocol", "tags", "notes", "primaryReference", "primaryReferenceNotes"]
-  .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+const fields = [
+  "itemId",
+  "name",
+  "category",
+  "quantity",
+  "unit",
+  "minStock",
+  "maxStock",
+  "location",
+  "protocol",
+  "tags",
+  "notes",
+  "primarySupplier",
+  "primaryReference",
+  "primaryLink",
+  "primaryReferenceNotes",
+  "primaryPrice",
+  "primaryUnitPrice",
+  "primaryLeadTime"
+].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 const stockFields = ["stockItemId", "stockItemName", "stockCurrentQuantity", "stockTitle", "stockAction", "stockAmount", "stockUnit", "stockNotes"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
@@ -397,15 +417,41 @@ document.querySelectorAll(".chip").forEach(button => {
   });
 });
 
-document.querySelectorAll(".nav-item").forEach(button => {
+document.querySelectorAll(".nav-item").forEach((button) => {
   button.addEventListener("click", () => {
     activeView = button.dataset.view;
-    document.querySelectorAll(".nav-item").forEach(item => item.classList.toggle("active", item === button));
-    document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
+
+    selectedItemId = null;
+    selectedExperimentId = null;
+    selectedLocation = null;
+    itemReturnContext = { view: activeView, experimentId: null };
+
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.classList.toggle("active", item === button);
+    });
+
+    document.querySelectorAll(".view").forEach((view) => {
+      view.classList.remove("active");
+    });
+
     document.querySelector(`#${activeView}View`).classList.add("active");
+
     controlBar.classList.toggle("hidden", activeView !== "inventory");
     app.classList.toggle("history-mode", activeView === "history");
-    if (activeView === "experiments") renderExperiments();
+
+    if (activeView === "inventory") {
+      renderInventory();
+    } else if (activeView === "experiments") {
+      renderExperiments();
+    } else if (activeView === "locations") {
+      renderLocations();
+    } else if (activeView === "orders") {
+      renderOrders();
+    } else if (activeView === "history") {
+      renderHistory();
+    } else if (activeView === "samples") {
+      renderSamples();
+    }
   });
 });
 
@@ -510,43 +556,188 @@ function renderAlerts() {
 function renderInventory() {
   const query = normalizeSearch(searchInput.value);
   const category = categoryFilter.value;
-  const filtered = items.filter(item => {
+
+  const filtered = items.filter((item) => {
     const referenceText = itemReferencesText(item.references);
-    const haystack = normalizeSearch([item.name, item.location, item.category, item.protocol, ...item.tags, referenceText].join(" "));
-    return (!query || haystack.includes(query))
-      && (statusFilter === "all" || itemStatus(item) === statusFilter)
-      && (category === "all" || item.category === category);
+    const haystack = normalizeSearch([
+      item.name,
+      item.location,
+      item.category,
+      item.protocol,
+      ...item.tags,
+      referenceText
+    ].join(" "));
+
+    return (
+      (!query || haystack.includes(query)) &&
+      (statusFilter === "all" || itemStatus(item) === statusFilter) &&
+      (category === "all" || item.category === category)
+    );
   });
 
-  document.querySelector("#resultCount").textContent = `${filtered.length} resultat${filtered.length > 1 ? "s" : ""}`;
-  document.querySelector("#inventoryGrid").innerHTML = filtered.map(item => {
+  document.querySelector("#resultCount").textContent =
+    `${filtered.length} résultat${filtered.length > 1 ? "s" : ""}`;
+
+  const detail = selectedItemId
+    ? items.find((item) => item.id === selectedItemId)
+    : null;
+
+  document.querySelector("#inventoryDetail").innerHTML = detail
+    ? renderInventoryDetail(detail)
+    : "";
+
+  document.querySelector("#inventoryGrid").classList.toggle("hidden", Boolean(detail));
+
+  document.querySelector("#inventoryGrid").innerHTML = filtered.map((item) => {
     const status = itemStatus(item);
-    const percent = Math.min(100, Math.round((Number(item.quantity) / Number(item.maxStock || 1)) * 100));
+    const percent = Math.min(100, Math.round((Number(item.quantity) / Math.max(Number(item.maxStock), 1)) * 100));
+
     return `
-      <article class="item-card">
+      <article class="item-card item-preview-card" onclick="openItemDetail('${escapeHtml(item.id)}', { view: 'inventory' })">
         <div class="item-head">
           <strong>${escapeHtml(item.name)}</strong>
-          <span class="badge ${status}">${statusLabel(status)}</span>
+          <span class="badge ${status}">${escapeHtml(statusLabel(status))}</span>
         </div>
+
         <span class="category">${escapeHtml(item.category)}</span>
-        <div class="bar"><span class="${status}" style="width:${percent}%"></span></div>
+
+        <div class="bar">
+          <span class="${status}" style="width:${percent}%"></span>
+        </div>
+
         <div class="stock-line">
           <span>${item.quantity} ${escapeHtml(item.unit)}</span>
-          <span>Max : ${item.maxStock} ${escapeHtml(item.unit)}</span>
+          <span>Max ${item.maxStock} ${escapeHtml(item.unit)}</span>
         </div>
-        <div class="tags">${item.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
-        ${item.protocol ? `<small>Protocole : ${escapeHtml(item.protocol)}</small>` : ""}
-        ${item.references?.primary?.reference ? `<small>Ref. principale : ${escapeHtml(item.references.primary.reference)}</small>` : ""}
+
+        ${item.tags?.length ? `
+          <div class="tags">
+            ${item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+          </div>
+        ` : ""}
+
+        ${item.protocol ? `<small>Protocole: ${escapeHtml(item.protocol)}</small>` : ""}
+        <small>${escapeHtml(item.location)}</small>
+
         <div class="card-actions">
-          <small>${escapeHtml(item.location)}</small>
+          <span></span>
           <div class="card-button-stack">
-            <button class="text-btn" onclick="openModal('${item.id}')">Modifier</button>
-            <button class="text-btn" onclick="openStockModal('${item.id}')">Stock update</button>
+            <button
+              class="text-btn"
+              type="button"
+              onclick="event.stopPropagation(); openModal('${escapeHtml(item.id)}')"
+            >
+              Modifier
+            </button>
+            <button
+              class="text-btn"
+              type="button"
+              onclick="event.stopPropagation(); openStockModal('${escapeHtml(item.id)}')"
+            >
+              Stock update
+            </button>
           </div>
         </div>
       </article>
     `;
   }).join("");
+}
+
+function renderInventoryDetail(item) {
+  const status = itemStatus(item);
+  const references = normalizeReferences(item.references);
+  const percent = Math.min(100, Math.round((Number(item.quantity) / Math.max(Number(item.maxStock), 1)) * 100));
+
+  return `
+    <section class="inventory-detail-panel">
+      <div class="detail-topline">
+        <button
+          class="room-exit-btn"
+          type="button"
+          onclick="returnFromItemDetail()"
+          aria-label="Retour"
+          title="Retour"
+        >
+          ↩️
+        </button>
+
+        <div class="detail-actions">
+          <button class="ghost-btn compact-btn" type="button" onclick="openModal('${escapeHtml(item.id)}')">
+            Modifier
+          </button>
+          <button class="primary-btn compact-btn" type="button" onclick="openStockModal('${escapeHtml(item.id)}')">
+            Stock update
+          </button>
+        </div>
+      </div>
+
+      <div class="experiment-detail-head">
+        <div>
+          <span class="badge ${status}">${escapeHtml(statusLabel(status))}</span>
+          <h3>${escapeHtml(item.name)}</h3>
+          <p>${escapeHtml(item.category)} - ${escapeHtml(item.location)}</p>
+        </div>
+
+        <small>ID: ${escapeHtml(item.id)}</small>
+      </div>
+
+      <div class="stock-summary">
+        <strong>${item.quantity} ${escapeHtml(item.unit)}</strong>
+        <span>Minimum: ${item.minStock} ${escapeHtml(item.unit)}</span>
+        <span>Maximum: ${item.maxStock} ${escapeHtml(item.unit)}</span>
+        <div class="bar">
+          <span class="${status}" style="width:${percent}%"></span>
+        </div>
+      </div>
+
+      ${item.tags?.length ? `
+        <div>
+          <h4>Tags</h4>
+          <div class="tags">
+            ${item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+          </div>
+        </div>
+      ` : ""}
+
+      ${item.protocol ? `
+        <div>
+          <h4>Protocole</h4>
+          <p>${escapeHtml(item.protocol)}</p>
+        </div>
+      ` : ""}
+
+      ${item.notes ? `
+        <div>
+          <h4>Notes</h4>
+          <p>${escapeHtml(item.notes)}</p>
+        </div>
+      ` : ""}
+
+      <div>
+        <h4>Références</h4>
+
+        ${references.primary.reference || references.primary.notes ? `
+          <div class="reference-block">
+            <strong>Référence principale</strong>
+            <p>${escapeHtml(references.primary.reference || "—")}</p>
+            ${references.primary.notes ? `<p>${escapeHtml(references.primary.notes)}</p>` : ""}
+          </div>
+        ` : "<p>Aucune référence principale.</p>"}
+
+        ${references.secondary.length ? `
+          <div class="secondary-references">
+            ${references.secondary.map((reference, index) => `
+              <div class="reference-block">
+                <strong>Référence secondaire ${index + 1}</strong>
+                <p>${escapeHtml(reference.reference || "—")}</p>
+                ${reference.notes ? `<p>${escapeHtml(reference.notes)}</p>` : ""}
+              </div>
+            `).join("")}
+          </div>
+        ` : ""}
+      </div>
+    </section>
+  `;
 }
 
 function renderSamples() {
@@ -596,10 +787,19 @@ function renderLocations() {
         <div class="room-item-list">
           ${group.length ? group.map(item => `
             <article class="room-item">
-              <div>
-                <strong>${escapeHtml(item.name)}</strong>
-                <span>${escapeHtml(item.category)} · ${item.quantity} ${escapeHtml(item.unit)} · Tags: ${item.tags.map(tag => escapeHtml(tag)).join(", ") || "aucun"}</span>
-              </div>
+            <div>
+              <button
+                class="text-btn location-item-link"
+                type="button"
+                onclick="openItemDetail('${escapeHtml(item.id)}', { view: 'locations', location: '${escapeHtml(selectedLocation)}' })"
+              >
+                ${escapeHtml(item.name)}
+              </button>
+              <span>
+                ${escapeHtml(item.category)} · ${item.quantity} ${escapeHtml(item.unit)} ·
+                Tags: ${item.tags.map(tag => escapeHtml(tag)).join(", ") || "aucun"}
+              </span>
+            </div>
               <button class="text-btn" type="button" data-item-id="${escapeHtml(item.id)}">Modifier</button>
             </article>
           `).join("") : `<div class="empty-room">Aucun item dans cette salle pour le moment.</div>`}
@@ -671,30 +871,41 @@ function renderExperiments() {
   document.querySelector("#experimentGrid").innerHTML = filtered.map(experiment => {
     const totalConditions = experiment.conditions * experiment.replicates;
     const stock = experimentStockSummary(experiment);
-    return `
-      <article class="experiment-card">
-        <div class="item-head">
-          <div>
-            <strong>${escapeHtml(experiment.name)}</strong>
-            <span class="category">${escapeHtml(experiment.templateName)} - ${totalConditions} conditions totales</span>
-          </div>
-          <span class="experiment-status ${escapeHtml(experiment.status)}">${escapeHtml(statusLabelExperiment(experiment.status))}</span>
+  return `
+    <article class="experiment-card experiment-preview-card" onclick="selectExperiment('${escapeHtml(experiment.id)}')">
+      <div class="item-head">
+        <div>
+          <strong>${escapeHtml(experiment.name)}</strong>
+          <span class="category">${escapeHtml(experiment.templateName)} - ${totalConditions} conditions totales</span>
         </div>
-        <div class="experiment-stats">
-          <span>${experiment.conditions} conditions</span>
-          <span>${experiment.replicates} replicats</span>
-          <span class="${stock.ok ? "stock-ok" : "stock-alert"}">${stock.ok ? "Stock OK" : `${stock.missing} alerte${stock.missing > 1 ? "s" : ""}`}</span>
+        <span class="experiment-status ${escapeHtml(experiment.status)}">${escapeHtml(statusLabelExperiment(experiment.status))}</span>
+      </div>
+
+      <div class="experiment-stats">
+        <span>${experiment.conditions} conditions</span>
+        <span>${experiment.replicates} replicats</span>
+        <span class="${stock.ok ? "stock-ok" : "stock-alert"}">
+          ${stock.ok ? "Stock OK" : `${stock.missing} alerte${stock.missing > 1 ? "s" : ""}`}
+        </span>
+      </div>
+
+      <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
+
+      <div class="card-actions">
+        <small>${escapeHtml(experiment.createdBy)} - ${escapeHtml(experiment.updatedAt)}</small>
+
+        <div class="card-button-stack">
+          <button
+            class="text-btn"
+            type="button"
+            onclick="event.stopPropagation(); openExperimentModal('${escapeHtml(experiment.id)}')"
+          >
+            Modifier
+          </button>
         </div>
-        <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
-        <div class="card-actions">
-          <small>${escapeHtml(experiment.createdBy)} - ${escapeHtml(experiment.updatedAt)}</small>
-          <div class="card-button-stack">
-            <button class="text-btn" type="button" onclick="selectExperiment('${experiment.id}')">Ouvrir</button>
-            <button class="text-btn" type="button" onclick="openExperimentModal('${experiment.id}')">Modifier</button>
-          </div>
-        </div>
-      </article>
-    `;
+      </div>
+    </article>
+  `;
   }).join("") || `<div class="empty-room">Aucune experience ne correspond a cette recherche.</div>`;
 }
 
@@ -709,7 +920,21 @@ function renderExperimentDetail(experiment) {
     const stateLabel = !inventoryItem ? "Non connecte" : !comparable ? "Unite differente" : enough ? "Suffisant" : "Insuffisant";
     return `
       <tr>
-        <td><strong>${escapeHtml(line.name)}</strong><br><span>${escapeHtml(line.notes || "")}</span></td>
+      <td>
+        ${
+          inventoryItem
+            ? `<button
+                class="text-btn experiment-product-link"
+                type="button"
+                onclick="openItemDetail('${escapeHtml(inventoryItem.id)}', { view: 'experiments', experimentId: '${escapeHtml(experiment.id)}' })"
+              >
+                ${escapeHtml(line.name)}
+              </button>`
+            : `<strong>${escapeHtml(line.name)}</strong>`
+        }
+        <br>
+        <span>${escapeHtml(line.notes || "")}</span>
+      </td>
         <td>${formatQuantity(needed, line.unit)}</td>
         <td>${inventoryItem ? `${inventoryItem.quantity} ${escapeHtml(inventoryItem.unit)}` : "Non connecte"}</td>
         <td><span class="stock-pill ${enough ? "ok" : "alert"}">${stateLabel}</span></td>
@@ -721,7 +946,15 @@ function renderExperimentDetail(experiment) {
   return `
     <section class="experiment-detail-panel">
       <div class="detail-topline">
-        <button class="ghost-btn compact-btn" type="button" onclick="selectExperiment(null)">Retour</button>
+        <button
+          class="room-exit-btn"
+          type="button"
+          onclick="selectExperiment(null)"
+          aria-label="Retour"
+          title="Retour"
+        >
+          ↩️
+        </button>
         <div class="detail-actions">
           <button class="ghost-btn compact-btn" type="button" onclick="openExperimentModal('${experiment.id}')">Modifier</button>
           <button class="primary-btn compact-btn" type="button" onclick="consumeExperimentStock('${experiment.id}')" ${canConsume ? "" : "disabled"}>Consommer le stock</button>
@@ -753,9 +986,104 @@ function renderExperimentDetail(experiment) {
   `;
 }
 
+function renderProtocolOptions() {
+  const selected = fields.protocol.value || "";
+  const protocols = [...new Set(protocolTemplates.map((template) => template.protocol).filter(Boolean))];
+
+  fields.protocol.innerHTML = `
+    <option value="">Aucun protocole</option>
+    ${protocols
+      .map((protocol) => `<option value="${escapeHtml(protocol)}">${escapeHtml(protocol)}</option>`)
+      .join("")}
+  `;
+
+  fields.protocol.value = protocols.includes(selected) ? selected : "";
+}
+
+function selectItem(id) {
+  selectedItemId = id;
+  renderInventory();
+}
+
 function selectExperiment(id) {
   selectedExperimentId = id;
   renderExperiments();
+}
+
+function openItemFromExperiment(id) {
+  selectedItemId = id;
+  activeView = "inventory";
+
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.classList.toggle("active", item.dataset.view === "inventory");
+  });
+
+  document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+  document.querySelector("#inventoryView").classList.add("active");
+
+  controlBar.classList.remove("hidden");
+  app.classList.remove("history-mode");
+
+  renderInventory();
+}
+
+function openItemDetail(id, context = {}) {
+  itemReturnContext = {
+    view: context.view || activeView || "inventory",
+    experimentId: context.experimentId ?? selectedExperimentId ?? null,
+    location: context.location ?? selectedLocation ?? null
+  };
+
+  selectedItemId = id;
+  activeView = "inventory";
+
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.classList.toggle("active", item.dataset.view === "inventory");
+  });
+
+  document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+  document.querySelector("#inventoryView").classList.add("active");
+
+  controlBar.classList.remove("hidden");
+  app.classList.remove("history-mode");
+
+  renderInventory();
+}
+
+function returnFromItemDetail() {
+  selectedItemId = null;
+
+  if (itemReturnContext.view === "experiments" && itemReturnContext.experimentId) {
+    activeView = "experiments";
+    selectedExperimentId = itemReturnContext.experimentId;
+
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.classList.toggle("active", item.dataset.view === "experiments");
+    });
+
+    document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+    document.querySelector("#experimentsView").classList.add("active");
+
+    controlBar.classList.add("hidden");
+    app.classList.remove("history-mode");
+
+    renderExperiments();
+    return;
+  }
+
+  activeView = itemReturnContext.view || "inventory";
+
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.classList.toggle("active", item.dataset.view === activeView);
+  });
+
+  document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+  document.querySelector(`#${activeView}View`).classList.add("active");
+
+  controlBar.classList.toggle("hidden", activeView !== "inventory");
+  app.classList.toggle("history-mode", activeView === "history");
+
+  render();
 }
 
 function openModal(id) {
@@ -771,11 +1099,17 @@ function openModal(id) {
   fields.minStock.value = item?.minStock ?? "";
   fields.maxStock.value = item?.maxStock ?? "";
   fields.location.value = item?.location || inventoryLocations[0];
+  renderProtocolOptions();
   fields.protocol.value = item?.protocol || "";
   fields.tags.value = item?.tags?.join(", ") || "";
   fields.notes.value = item?.notes || "";
-  fields.primaryReference.value = references.primary.reference;
-  fields.primaryReferenceNotes.value = references.primary.notes;
+  fields.primarySupplier.value = references.primary.supplier || "";
+  fields.primaryReference.value = references.primary.reference || "";
+  fields.primaryLink.value = references.primary.link || "";
+  fields.primaryReferenceNotes.value = references.primary.notes || "";
+  fields.primaryPrice.value = references.primary.price || "";
+  fields.primaryUnitPrice.value = references.primary.unitPrice || "";
+  fields.primaryLeadTime.value = references.primary.leadTime || "";
   renderSecondaryReferences(references.secondary);
   dialog.showModal();
 }
@@ -1053,6 +1387,9 @@ function deleteItem() {
   addHistory("Item supprimé", `${currentName} a supprimé ${item.name} de l'inventaire.`);
   persist();
   dialog.close();
+  if (selectedItemId === id) {
+    selectedItemId = null;
+  }
   render();
 }
 
@@ -1174,33 +1511,47 @@ function renumberSecondaryReferences() {
 
 function getItemReferences() {
   const secondary = [...secondaryReferencesList.querySelectorAll(".secondary-reference-row")]
-    .map(row => ({
+    .map((row) => ({
       reference: row.querySelector(".secondary-reference").value.trim(),
       notes: row.querySelector(".secondary-reference-notes").value.trim()
     }))
-    .filter(reference => reference.reference || reference.notes);
+    .filter((reference) => reference.reference || reference.notes);
 
   return {
     primary: {
+      supplier: fields.primarySupplier.value.trim(),
       reference: fields.primaryReference.value.trim(),
-      notes: fields.primaryReferenceNotes.value.trim()
+      link: fields.primaryLink.value.trim(),
+      notes: fields.primaryReferenceNotes.value.trim(),
+      price: fields.primaryPrice.value.trim(),
+      unitPrice: fields.primaryUnitPrice.value.trim(),
+      leadTime: fields.primaryLeadTime.value.trim()
     },
     secondary
   };
 }
 
 function normalizeReferences(references) {
-  const legacyPrimaryNotes = [references?.primary?.quantity, references?.primary?.price].filter(Boolean).join(" - ");
+  const legacyPrimaryNotes = [
+    references?.primary?.quantity,
+    references?.primary?.price
+  ].filter(Boolean).join(" - ");
+
   return {
     primary: {
+      supplier: references?.primary?.supplier || "",
       reference: references?.primary?.reference || "",
-      notes: references?.primary?.notes || legacyPrimaryNotes
+      link: references?.primary?.link || "",
+      notes: references?.primary?.notes || legacyPrimaryNotes || "",
+      price: references?.primary?.price || "",
+      unitPrice: references?.primary?.unitPrice || "",
+      leadTime: references?.primary?.leadTime || ""
     },
     secondary: Array.isArray(references?.secondary)
-      ? references.secondary.map(reference => ({
-        reference: reference.reference || "",
-        notes: reference.notes || [reference.quantity, reference.price].filter(Boolean).join(" - ")
-      }))
+      ? references.secondary.map((reference) => ({
+          reference: reference.reference || "",
+          notes: reference.notes || [reference.quantity, reference.price].filter(Boolean).join(" - ")
+        }))
       : []
   };
 }
@@ -1208,9 +1559,14 @@ function normalizeReferences(references) {
 function itemReferencesText(references) {
   const normalized = normalizeReferences(references);
   return [
+    normalized.primary.supplier,
     normalized.primary.reference,
+    normalized.primary.link,
     normalized.primary.notes,
-    ...normalized.secondary.flatMap(reference => [reference.reference, reference.notes])
+    normalized.primary.price,
+    normalized.primary.unitPrice,
+    normalized.primary.leadTime,
+    ...normalized.secondary.flatMap((reference) => [reference.reference, reference.notes])
   ].filter(Boolean).join(" ");
 }
 

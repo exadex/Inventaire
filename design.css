@@ -27,6 +27,12 @@ body {
   min-height: 100vh;
 }
 
+.location-item-link {
+  padding: 0;
+  font-weight: 800;
+  text-align: left;
+}
+
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 .hidden { display: none !important; }
@@ -265,6 +271,56 @@ input:focus, select:focus, textarea:focus {
 .view.active { display: block; }
 .section-heading { margin: 8px 0 12px; }
 .section-heading span, #resultCount { color: var(--muted); font-size: 13px; }
+
+.inventory-detail-panel {
+  display: grid;
+  gap: 16px;
+  background: rgba(255,255,255,0.86);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 28px rgba(31, 37, 34, 0.06);
+  margin-bottom: 14px;
+}
+
+.item-preview-card {
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.item-preview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(31, 37, 34, 0.10);
+  border-color: rgba(55, 103, 215, 0.22);
+}
+
+.experiment-preview-card {
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.experiment-preview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(31, 37, 34, 0.10);
+  border-color: rgba(55, 103, 215, 0.22);
+}
+
+.experiment-product-link {
+  padding: 0;
+  font-weight: 800;
+  text-align: left;
+}
+
+.inventory-detail-panel h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.inventory-detail-panel p {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
 
 .inventory-grid, .location-grid, .order-list, .experiment-grid {
   display: grid;

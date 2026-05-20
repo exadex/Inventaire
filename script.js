@@ -716,25 +716,80 @@ function renderInventoryDetail(item) {
       <div>
         <h4>Références</h4>
 
-        ${references.primary.reference || references.primary.notes ? `
-          <div class="reference-block">
-            <strong>Référence principale</strong>
-            <p>${escapeHtml(references.primary.reference || "—")}</p>
-            ${references.primary.notes ? `<p>${escapeHtml(references.primary.notes)}</p>` : ""}
-          </div>
-        ` : "<p>Aucune référence principale.</p>"}
-
-        ${references.secondary.length ? `
-          <div class="secondary-references">
-            ${references.secondary.map((reference, index) => `
+        ${
+          references.primary.supplier ||
+          references.primary.reference ||
+          references.primary.link ||
+          references.primary.notes ||
+          references.primary.price ||
+          references.primary.unitPrice ||
+          references.primary.leadTime
+            ? `
               <div class="reference-block">
-                <strong>Référence secondaire ${index + 1}</strong>
-                <p>${escapeHtml(reference.reference || "—")}</p>
-                ${reference.notes ? `<p>${escapeHtml(reference.notes)}</p>` : ""}
+                <strong>Référence principale</strong>
+
+                <div class="item-detail-stack">
+                  <div class="item-detail-row">
+                    <span class="item-detail-label">Fournisseur</span>
+                    <div class="item-detail-value">${escapeHtml(references.primary.supplier || "—")}</div>
+                  </div>
+
+                  <div class="item-detail-row">
+                    <span class="item-detail-label">Référence</span>
+                    <div class="item-detail-value">${escapeHtml(references.primary.reference || "—")}</div>
+                  </div>
+
+                  <div class="item-detail-row">
+                    <span class="item-detail-label">Lien</span>
+                    <div class="item-detail-value">
+                      ${
+                        references.primary.link
+                          ? `<a href="${escapeHtml(references.primary.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(references.primary.link)}</a>`
+                          : "—"
+                      }
+                    </div>
+                  </div>
+
+                  <div class="item-detail-row">
+                    <span class="item-detail-label">Notes</span>
+                    <div class="item-detail-value">${escapeHtml(references.primary.notes || "—")}</div>
+                  </div>
+
+                  <div class="item-detail-row">
+                    <span class="item-detail-label">Prix</span>
+                    <div class="item-detail-value">${escapeHtml(references.primary.price || "—")}</div>
+                  </div>
+
+                  <div class="item-detail-row">
+                    <span class="item-detail-label">Prix unitaire</span>
+                    <div class="item-detail-value">${escapeHtml(references.primary.unitPrice || "—")}</div>
+                  </div>
+
+                  <div class="item-detail-row">
+                    <span class="item-detail-label">Délais de livraison</span>
+                    <div class="item-detail-value">${escapeHtml(references.primary.leadTime || "—")}</div>
+                  </div>
+                </div>
               </div>
-            `).join("")}
-          </div>
-        ` : ""}
+            `
+            : "<p>Aucune référence principale.</p>"
+        }
+
+        ${
+          references.secondary.length
+            ? `
+              <div class="secondary-references">
+                ${references.secondary.map((reference, index) => `
+                  <div class="reference-block">
+                    <strong>Référence secondaire ${index + 1}</strong>
+                    <p>${escapeHtml(reference.reference || "—")}</p>
+                    ${reference.notes ? `<p>${escapeHtml(reference.notes)}</p>` : ""}
+                  </div>
+                `).join("")}
+              </div>
+            `
+            : ""
+        }
       </div>
     </section>
   `;

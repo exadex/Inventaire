@@ -327,6 +327,104 @@ input:focus, select:focus, textarea:focus {
   grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 12px;
 }
+
+/* de aqui hasta la siguiente nota = diseno de la ficha de cada item */
+
+.inventory-detail-panel {
+  gap: 18px;
+}
+
+.inventory-detail-panel > div {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(31, 37, 34, 0.06);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.inventory-detail-panel h4 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.reference-block {
+  background: #fff;
+  border: 1px solid rgba(31, 37, 34, 0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 12px rgba(31, 37, 34, 0.04);
+}
+
+.reference-block + .reference-block {
+  margin-top: 10px;
+}
+
+.reference-block strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.reference-block p {
+  margin: 0;
+  color: var(--text);
+}
+
+.reference-block p + p {
+  margin-top: 6px;
+}
+
+.secondary-references {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.item-detail-stack {
+  display: grid;
+  gap: 8px;
+}
+
+.item-detail-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(31, 37, 34, 0.06);
+}
+
+.item-detail-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.item-detail-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.item-detail-value {
+  color: var(--text);
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.item-detail-value a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* fin del diseno de la ficha de cada item */
+
 .item-card, .location-card, .order-card, .experiment-card {
   background: rgba(255,255,255,0.84);
   border: 1px solid var(--line);

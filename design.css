@@ -241,6 +241,8 @@ input:focus, select:focus, textarea:focus {
 .metric-card.warning strong { color: var(--amber); }
 .metric-card.critical strong { color: var(--red); }
 
+/* aqui empieza el diseno de las alertas rojas que aparecen si los items estan en critico */
+
 .alerts { display: grid; gap: 8px; margin-bottom: 22px; }
 .alert {
   background: var(--red-soft);
@@ -250,6 +252,48 @@ input:focus, select:focus, textarea:focus {
   padding: 12px 16px;
   font-weight: 760;
 }
+
+.alerts-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.alerts-header-text {
+  display: grid;
+  gap: 2px;
+}
+
+.alerts-header-text strong {
+  font-size: 14px;
+}
+
+.alerts-header-text span {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.alerts-toggle-btn {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--red);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.alerts-list {
+  display: grid;
+  gap: 8px;
+}
+
+/* fin del diseno de las alertas */
 
 .control-bar {
   justify-content: flex-start;
@@ -708,6 +752,100 @@ td { font-size: 14px; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* de aqui hasta el final es todo diseno relacionado con la seleccion de ubicaciones el menu desglosable */
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.location-field {
+  position: relative;
+  display: grid;
+  gap: 7px;
+}
+
+.location-dropdown {
+  position: relative;
+}
+
+.location-trigger {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid #8ea0e8;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  font: inherit;
+  font-weight: 700;
+  box-shadow: 0 0 0 3px rgba(109, 124, 226, 0.08);
+}
+
+.location-trigger:focus,
+.location-trigger:hover {
+  border-color: #6f7ee6;
+}
+
+.location-trigger-arrow {
+  font-size: 18px;
+  color: #2a2a2a;
+  line-height: 1;
+}
+
+.location-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-height: 280px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #9aa7e8;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 18px rgba(31, 37, 34, 0.08);
+  padding: 4px 0;
+}
+
+.location-menu.hidden {
+  display: none !important;
+}
+
+.location-option {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.location-option:hover {
+  background: #f3f5ff;
+}
+
+.location-option input[type="checkbox"] {
+  accent-color: #7b3fe4;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.location-option span {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* fin del diseno del menu desglosable de ubicaciones */
+
 .empty-room {
   background: rgba(255,255,255,0.72);
   border: 1px dashed var(--line);

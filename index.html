@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Inventaire</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
     <link rel="stylesheet" href="design.css" />
   </head>
   <body>
@@ -198,7 +199,20 @@
             <label><span>Unité <span class="required-star">*</span></span><input id="unit" required /></label>
             <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
             <label><span>Capacité max <span class="required-star">*</span></span><input id="maxStock" type="number" min="0" step="0.1" required /></label>
-            <label><span>Localisation <span class="required-star">*</span></span><select id="location" required></select></label>
+            <label class="location-field">
+              <span>Localisation <span class="required-star">*</span></span>
+
+              <div class="location-dropdown" id="locationDropdown">
+                <button type="button" class="location-trigger" id="locationTrigger" aria-expanded="false">
+                  <span id="locationTriggerText">Sélectionner une ou plusieurs localisations</span>
+                  <span class="location-trigger-arrow">⌄</span>
+                </button>
+
+                <div class="location-menu hidden" id="locationMenu"></div>
+              </div>
+
+              <input id="location" type="hidden" required />
+            </label>
             <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
           </div>
         <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>

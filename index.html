@@ -199,12 +199,6 @@
             <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
             <label><span>Capacité max <span class="required-star">*</span></span><input id="maxStock" type="number" min="0" step="0.1" required /></label>
             <label><span>Localisation <span class="required-star">*</span></span><select id="location" required></select></label>
-            <label>
-              <span>Protocole</span>
-              <select id="protocol">
-                <option value="">Aucun protocole</option>
-              </select>
-            </label>
             <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
           </div>
         <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>
@@ -413,6 +407,26 @@
         </div>
       </form>
     </dialog>
+
+    <div id="loginLoader" class="login-loader" aria-hidden="true">
+      <div class="login-loader-card">
+        <div class="login-loader-orbit">
+          <span class="orbit-ring ring-1"></span>
+          <span class="orbit-ring ring-2"></span>
+          <span class="orbit-core">EX</span>
+        </div>
+
+        <p class="login-loader-kicker">ExAdEx Inventaire</p>
+        <h2>Préparation de l’inventaire</h2>
+        <p class="login-loader-copy">
+          Synchronisation des données et ouverture du tableau de bord…
+        </p>
+
+        <div class="login-loader-bar">
+          <span></span>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

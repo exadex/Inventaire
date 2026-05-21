@@ -336,7 +336,6 @@ const fields = [
   "minStock",
   "maxStock",
   "location",
-  "protocol",
   "tags",
   "notes",
   "primarySupplier",
@@ -361,15 +360,33 @@ renderCategoryOptions();
 renderLocationOptions();
 renderTemplateOptions();
 
+// animacion de inicio
+const loginLoader = document.querySelector("#loginLoader");
+const authPanel = document.querySelector(".auth-panel");
+
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
   currentName = nameInput.value.trim();
   if (!currentName) return;
+
+  const submitBtn = loginForm.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+
   updateUserIdentity();
-  auth.classList.add("hidden");
-  app.classList.remove("hidden");
-  persist();
-  render();
+
+  authPanel?.classList.add("is-loading");
+  loginLoader.classList.add("is-visible");
+
+  setTimeout(() => {
+    auth.classList.add("hidden");
+    app.classList.remove("hidden");
+    persist();
+    render();
+
+    loginLoader.classList.remove("is-visible");
+    authPanel?.classList.remove("is-loading");
+    submitBtn.disabled = false;
+  }, 3000);
 });
 
 document.querySelector("#logoutBtn").addEventListener("click", () => {
@@ -563,7 +580,6 @@ function renderInventory() {
       item.name,
       item.location,
       item.category,
-      item.protocol,
       ...item.tags,
       referenceText
     ].join(" "));
@@ -616,7 +632,6 @@ function renderInventory() {
           </div>
         ` : ""}
 
-        ${item.protocol ? `<small>Protocole: ${escapeHtml(item.protocol)}</small>` : ""}
         <small>${escapeHtml(item.location)}</small>
 
         <div class="card-actions">
@@ -646,7 +661,10 @@ function renderInventory() {
 function renderInventoryDetail(item) {
   const status = itemStatus(item);
   const references = normalizeReferences(item.references);
-  const percent = Math.min(100, Math.round((Number(item.quantity) / Math.max(Number(item.maxStock), 1)) * 100));
+  const percent = Math.min(
+    100,
+    Math.round((Number(item.quantity) / Math.max(Number(item.maxStock), 1)) * 100)
+  );
 
   return `
     <section class="inventory-detail-panel">
@@ -729,46 +747,24 @@ function renderInventoryDetail(item) {
                 <strong>Référence principale</strong>
 
                 <div class="item-detail-stack">
-                  <div class="item-detail-row">
-                    <span class="item-detail-label">Fournisseur</span>
-                    <div class="item-detail-value">${escapeHtml(references.primary.supplier || "—")}</div>
-                  </div>
+                  ${renderDetailRow("Fournisseur", references.primary.supplier)}
+                  ${renderDetailRow("Référence", references.primary.reference)}
 
-                  <div class="item-detail-row">
-                    <span class="item-detail-label">Référence</span>
-                    <div class="item-detail-value">${escapeHtml(references.primary.reference || "—")}</div>
-                  </div>
-
-                  <div class="item-detail-row">
-                    <span class="item-detail-label">Lien</span>
-                    <div class="item-detail-value">
-                      ${
-                        references.primary.link
-                          ? `<a href="${escapeHtml(references.primary.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(references.primary.link)}</a>`
-                          : "—"
-                      }
+                  ${references.primary.link ? `
+                    <div class="item-detail-row">
+                      <span class="item-detail-label">Lien</span>
+                      <div class="item-detail-value">
+                        <a href="${escapeHtml(references.primary.link)}" target="_blank" rel="noopener noreferrer">
+                          ${escapeHtml(references.primary.link)}
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  ` : ""}
 
-                  <div class="item-detail-row">
-                    <span class="item-detail-label">Notes</span>
-                    <div class="item-detail-value">${escapeHtml(references.primary.notes || "—")}</div>
-                  </div>
-
-                  <div class="item-detail-row">
-                    <span class="item-detail-label">Prix</span>
-                    <div class="item-detail-value">${escapeHtml(references.primary.price || "—")}</div>
-                  </div>
-
-                  <div class="item-detail-row">
-                    <span class="item-detail-label">Prix unitaire</span>
-                    <div class="item-detail-value">${escapeHtml(references.primary.unitPrice || "—")}</div>
-                  </div>
-
-                  <div class="item-detail-row">
-                    <span class="item-detail-label">Délais de livraison</span>
-                    <div class="item-detail-value">${escapeHtml(references.primary.leadTime || "—")}</div>
-                  </div>
+                  ${renderDetailRow("Notes", references.primary.notes)}
+                  ${renderDetailRow("Prix", references.primary.price)}
+                  ${renderDetailRow("Prix unitaire", references.primary.unitPrice)}
+                  ${renderDetailRow("Délais de livraison", references.primary.leadTime)}
                 </div>
               </div>
             `
@@ -782,8 +778,10 @@ function renderInventoryDetail(item) {
                 ${references.secondary.map((reference, index) => `
                   <div class="reference-block">
                     <strong>Référence secondaire ${index + 1}</strong>
-                    <p>${escapeHtml(reference.reference || "—")}</p>
-                    ${reference.notes ? `<p>${escapeHtml(reference.notes)}</p>` : ""}
+                    <div class="item-detail-stack">
+                      ${renderDetailRow("Référence", reference.reference)}
+                      ${renderDetailRow("Notes", reference.notes)}
+                    </div>
                   </div>
                 `).join("")}
               </div>
@@ -1041,18 +1039,15 @@ function renderExperimentDetail(experiment) {
   `;
 }
 
-function renderProtocolOptions() {
-  const selected = fields.protocol.value || "";
-  const protocols = [...new Set(protocolTemplates.map((template) => template.protocol).filter(Boolean))];
-
-  fields.protocol.innerHTML = `
-    <option value="">Aucun protocole</option>
-    ${protocols
-      .map((protocol) => `<option value="${escapeHtml(protocol)}">${escapeHtml(protocol)}</option>`)
-      .join("")}
+// funcion para ocultar filas vacias o con datos no relevantes en el detalle del item
+function renderDetailRow(label, value) {
+  if (!value || !String(value).trim()) return "";
+  return `
+    <div class="item-detail-row">
+      <span class="item-detail-label">${escapeHtml(label)}</span>
+      <div class="item-detail-value">${escapeHtml(value)}</div>
+    </div>
   `;
-
-  fields.protocol.value = protocols.includes(selected) ? selected : "";
 }
 
 function selectItem(id) {
@@ -1154,8 +1149,6 @@ function openModal(id) {
   fields.minStock.value = item?.minStock ?? "";
   fields.maxStock.value = item?.maxStock ?? "";
   fields.location.value = item?.location || inventoryLocations[0];
-  renderProtocolOptions();
-  fields.protocol.value = item?.protocol || "";
   fields.tags.value = item?.tags?.join(", ") || "";
   fields.notes.value = item?.notes || "";
   fields.primarySupplier.value = references.primary.supplier || "";
@@ -1181,7 +1174,6 @@ function saveItem() {
     minStock: Number(fields.minStock.value),
     maxStock: Number(fields.maxStock.value),
     location: fields.location.value.trim(),
-    protocol: fields.protocol.value.trim(),
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
     notes: fields.notes.value.trim(),
     references: getItemReferences()
@@ -1502,7 +1494,6 @@ function migrateItems(itemList) {
     location: inventoryLocations.includes(item.location)
       ? item.location
       : legacyLocationMap[item.location] || inventoryLocations[0],
-    protocol: item.protocol || "",
     tags: Array.isArray(item.tags) ? item.tags : [],
     references: normalizeReferences(item.references)
   }));

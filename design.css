@@ -856,3 +856,147 @@ td { font-size: 14px; }
   .auth-shell { padding: 18px; }
   .auth-panel { padding: 24px; }
 }
+
+/* inicio del diseno de la animacion inicio */
+
+.login-loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, rgba(170, 184, 173, 0.16), transparent 32%),
+    rgba(247, 248, 246, 0.82);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  z-index: 9999;
+}
+
+.login-loader.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.login-loader-card {
+  width: min(420px, calc(100vw - 32px));
+  padding: 32px 28px 26px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(31, 37, 34, 0.08);
+  box-shadow:
+    0 24px 60px rgba(31, 37, 34, 0.10),
+    0 8px 24px rgba(31, 37, 34, 0.06);
+  text-align: center;
+}
+
+.login-loader-orbit {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+}
+
+.orbit-core {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f2522 0%, #43524c 100%);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 10px 24px rgba(31, 37, 34, 0.18);
+  animation: loaderCorePulse 1.8s ease-in-out infinite;
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(86, 104, 95, 0.18);
+}
+
+.ring-1 {
+  animation: loaderSpin 3s linear infinite;
+}
+
+.ring-2 {
+  inset: 10px;
+  border-color: rgba(86, 104, 95, 0.28);
+  animation: loaderSpinReverse 2.4s linear infinite;
+}
+
+.login-loader-kicker {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted, #6f7c75);
+}
+
+.login-loader-card h2 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.1;
+  color: var(--text, #1f2522);
+}
+
+.login-loader-copy {
+  margin: 10px auto 18px;
+  max-width: 32ch;
+  color: var(--muted, #6f7c75);
+  line-height: 1.5;
+}
+
+.login-loader-bar {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(31, 37, 34, 0.08);
+}
+
+.login-loader-bar span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7f9487 0%, #2f3d37 100%);
+  animation: loaderBar 1.5s ease-in-out infinite alternate;   /* aqui cambias como se mueve la barra */
+}
+
+.auth-panel.is-loading {
+  opacity: 0.55;
+  transform: scale(0.99);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+@keyframes loaderSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes loaderSpinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes loaderCorePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 10px 24px rgba(31, 37, 34, 0.18); }
+  50% { transform: scale(1.06); box-shadow: 0 14px 28px rgba(31, 37, 34, 0.24); }
+}
+
+@keyframes loaderBar {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(150%); }
+}
+
+/* fin animacion inicio */

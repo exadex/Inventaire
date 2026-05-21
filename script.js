@@ -1252,7 +1252,10 @@ const defaultHistory = [
   { date: "2026-05-16", user: "Ines", action: "Note modifiée", detail: "Anti-Perilipin A: dilution de travail confirmée." }
 ];
 
-let items = migrateItems(load("exadex_items", load("adipovault_items", seedItems)));
+const storedItems = migrateItems(load("exadex_items", load("adipovault_items", [])));
+const baseItems = migrateItems(seedItems);
+
+let items = mergeItems(baseItems, storedItems);
 let orders = load("exadex_orders", defaultOrders);
 let experiments = migrateExperiments(load("exadex_experiments", defaultExperiments));
 let history = load("exadex_history", load("adipovault_history", defaultHistory));
@@ -2570,6 +2573,22 @@ function migrateItems(itemList) {
     tags: Array.isArray(item.tags) ? item.tags : [],
     references: normalizeReferences(item.references)
   }));
+}
+
+// funcion para conservar both los items que yo genero en VS como los items que cualquiera anade a github
+function mergeItems(baseItems, storedItems) {
+  const merged = new Map();
+
+  baseItems.forEach(item => {
+    merged.set(item.id, item);
+  });
+
+  storedItems.forEach(item => {
+    const existing = merged.get(item.id);
+    merged.set(item.id, existing ? { ...existing, ...item } : item);
+  });
+
+  return Array.from(merged.values());
 }
 
 function migrateExperiments(experimentList) {

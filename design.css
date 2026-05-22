@@ -78,6 +78,7 @@ button { cursor: pointer; }
   letter-spacing: 0;
 }
 
+/* Tipografía "tableau de bord" */
 .eyebrow {
   color: var(--green);
   font-size: 12px;
@@ -90,7 +91,7 @@ button { cursor: pointer; }
 h1, h2, h3, p { margin-top: 0; }
 h1 { font-size: clamp(42px, 6vw, 72px); margin-bottom: 12px; letter-spacing: 0; }
 h2 { font-size: clamp(25px, 3vw, 38px); margin-bottom: 0; letter-spacing: 0; }
-h3 { font-size: 17px; margin-bottom: 0; }
+h3 { font-size: 25px; margin-bottom: 5px; } /* titulos de cada seccion */
 
 .auth-panel h1 { font-size: clamp(30px, 5vw, 46px); }
 .auth-copy { color: var(--muted); line-height: 1.6; max-width: 42ch; margin-left: auto; margin-right: auto; }
@@ -215,10 +216,7 @@ input:focus, select:focus, textarea:focus {
 .history-mode .control-bar {
   display: none;
 }
-.history-mode #historyView .section-heading h3 {
-  font-size: clamp(30px, 4vw, 48px);
-  line-height: 1.08;
-}
+
 .history-mode #historyView .section-heading {
   margin-bottom: 30px;
 }

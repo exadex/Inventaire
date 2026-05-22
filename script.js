@@ -1259,6 +1259,9 @@ let items = mergeItems(baseItems, storedItems);
 let orders = load("exadex_orders", defaultOrders);
 let experiments = migrateExperiments(load("exadex_experiments", defaultExperiments));
 let history = load("exadex_history", load("adipovault_history", defaultHistory));
+
+persist();
+
 let statusFilter = "all";
 let activeView = "inventory";
 let currentName = "Caroline";

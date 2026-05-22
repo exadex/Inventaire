@@ -77,27 +77,33 @@
         <section class="metrics" id="metrics"></section>
         <section class="alerts" id="alerts"></section>
 
-        <section class="control-bar">
-          <label class="search-box">
-            <span>Rech.</span>
-            <input id="searchInput" type="search" placeholder="Rechercher par nom, localisation, categorie ou tag..." />
-          </label>
-          <div class="filter-row" id="statusFilters">
-            <button class="chip active" data-status="all">Tout</button>
-            <button class="chip" data-status="ok">OK</button>
-            <button class="chip" data-status="warning">Attention</button>
-            <button class="chip" data-status="critical">Critique</button>
-          </div>
-          <select id="categoryFilter" class="select">
-            <option value="all">Toutes cat&eacute;gories</option>
-          </select>
-        </section>
-
         <section class="view active" id="inventoryView">
           <div class="section-heading">
             <h3>Niveaux de stock</h3>
             <span id="resultCount"></span>
           </div>
+
+          <section class="control-bar">
+            <label class="search-box">
+              <span>Rech.</span>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Rechercher par nom, localisation, categorie ou tag..."
+              />
+            </label>
+
+            <div class="filter-row" id="statusFilters">
+              <button class="chip active" data-status="all" type="button">Tout</button>
+              <button class="chip" data-status="ok" type="button">OK</button>
+              <button class="chip" data-status="warning" type="button">Attention</button>
+              <button class="chip" data-status="critical" type="button">Critique</button>
+            </div>
+
+            <select id="categoryFilter" class="select">
+              <option value="all">Toutes catégories</option>
+            </select>
+          </section>
 
           <div id="inventoryDetail"></div>
 
@@ -106,7 +112,7 @@
 
         <section class="view" id="samplesView">
           <div class="section-heading">
-            <h3>&Eacute;chantillons biologiques</h3>
+            <h3>&Eacute;chantillons biologiques (en cours)</h3>
             <span>Patient IDs anonymis&eacute;s</span>
           </div>
           <div class="sample-table-wrap">
@@ -136,7 +142,7 @@
 
         <section class="view" id="experimentsView">
           <div class="section-heading">
-            <h3>Expériences</h3>
+            <h3>Expériences (en cours)</h3>
             <span>Templates, consommation prévisionnelle et suivi</span>
           </div>
 

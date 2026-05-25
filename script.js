@@ -1942,7 +1942,7 @@ function renderOrdersHistory() {
         <button
           class="room-exit-btn"
           type="button"
-          onclick="selectExperiment(null)"
+          onclick="closeOrdersHistory()"
           aria-label="Retour"
           title="Retour"
         >

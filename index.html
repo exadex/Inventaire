@@ -23,6 +23,7 @@
               <option value="Caroline">Caroline</option>
               <option value="Christian">Christian</option>
               <option value="Elina">Elina</option>
+              <option value="Enora">Enora</option>
               <option value="Floricia">Floricia</option>
               <option value="Luigi">Luigi</option>
               <option value="Vincent">Vincent</option>
@@ -172,13 +173,42 @@
 
         <section class="view" id="ordersView">
           <div class="section-heading">
-            <h3>&Agrave; commander</h3>
-            <span>Demandes tri&eacute;es par priorit&eacute;</span>
+            <h3>À commander</h3>
+            <span>Demandes triées par statut</span>
           </div>
+
           <div class="order-toolbar">
-            <button id="addOrderBtn" class="primary-btn">Ajouter une demande</button>
+            <button id="ordersHistoryBtn" class="ghost-btn" type="button" onclick="openOrdersHistory()">Historique</button>
+            <button id="addOrderBtn" class="primary-btn" type="button">Nouvelle demande</button>
           </div>
-          <div class="order-list" id="orderList"></div>
+
+          <div id="orderDetail"></div>
+
+          <div class="order-flow">
+            <section class="order-step">
+              <div class="order-column-head">
+                <h4>Liste des demandes
+                <span id="requestedCount"></span></h4>
+              </div>
+              <div class="order-list" id="requestedOrderList"></div>
+            </section>
+
+            <section id="existingItemFields" class="order-step">
+              <div class="order-column-head">
+                <h4>Commandé
+                <span id="orderedCount"></span></h4>
+              </div>
+              <div class="order-list" id="orderedOrderList"></div>
+            </section>
+
+            <section id="newItemFields" class="order-step hidden">
+              <div class="order-column-head">
+                <h4>Arrivé
+                <span id="receivedCount"></span></h4>
+              </div>
+              <div class="order-list" id="receivedOrderList"></div>
+            </section>
+          </div>
         </section>
 
         <section class="view" id="historyView">
@@ -389,8 +419,16 @@
 
         <div class="form-grid">
           <label>
+            <span>Type de demande <span class="required-star">*</span></span>
+            <select id="orderItemMode" required>
+              <option value="existing">Item existant</option>
+              <option value="new">Nouvel item</option>
+            </select>
+          </label>
+
+          <label>
             <span>Item <span class="required-star">*</span></span>
-            <input id="orderItemName" required />
+            <select id="orderInventoryItem"></select>
           </label>
 
           <label>
@@ -407,12 +445,6 @@
               <option value="pas urgent">Pas urgent</option>
             </select>
           </label>
-
-          <label>
-            <span>Fournisseur</span>
-            <input id="orderSupplier" placeholder="Thermo Fisher, Merck..." />
-          </label>
-        </div>
 
         <label class="full-label">
           <span>Notes</span>
@@ -448,6 +480,9 @@
       </div>
     </div>
 
+    <script src="const.js"></script>
+    <script src="seed_items.js"></script>
+    <script src="protocols.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

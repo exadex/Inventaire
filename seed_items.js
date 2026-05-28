@@ -1,4 +1,11 @@
-const seedItems = [
+// hacer esto en la consola cada vez que actualizas los seedItems
+// localStorage.removeItem("exadex_items");
+// localStorage.removeItem("adipovault_items");
+// location.reload();
+
+
+const seedItems = 
+[
   {
     "id": "itm-CSV-0001",
     "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
@@ -8,10 +15,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 2,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Bouchon"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 394075B | Fournisseur: Dutscher | Prix: 13,1 | Prix unitaire: 0,166 | Lien: https://www.dutscher.com/article/394075B"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "394075B",
+        "link": "https://www.dutscher.com/article/394075B",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "13,1",
+        "unitPrice": "0,166",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0002",
@@ -22,10 +44,26 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 5,
     "location": "Bureau",
+    "locations": [
+      "Bureau",
+      "Culture L2"
+    ],
     "tags": [
       "Seringue luer lock"
     ],
-    "notes": "Conditionnement: 120 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 100081 | Fournisseur: bastide | Prix: 38 | Prix unitaire: 0,316666667 | Lien: https://www.bastideleconfortmedical.com/seringues-3-pieces-20-ml-bd-plastipak-cone-luer-lock-100081.html"
+    "notes": "120",
+    "references": {
+      "primary": {
+        "supplier": "bastide",
+        "reference": "100081",
+        "link": "https://www.bastideleconfortmedical.com/seringues-3-pieces-20-ml-bd-plastipak-cone-luer-lock-100081.html",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "38",
+        "unitPrice": "0,316666667",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0003",
@@ -36,10 +74,25 @@ const seedItems = [
     "minStock": 2,
     "maxStock": 12,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Tulipe"
     ],
-    "notes": "Conditionnement: 20 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: FD0000000-LLF24 | Fournisseur: Aestetic group | Prix: 46 | Prix unitaire: 2,3 | Lien: https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/527-raccord-d-emulsion-de-graisse-fll-o-12mm-x20.html"
+    "notes": "20",
+    "references": {
+      "primary": {
+        "supplier": "Aestetic group",
+        "reference": "FD0000000-LLF24",
+        "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/527-raccord-d-emulsion-de-graisse-fll-o-12mm-x20.html",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "46",
+        "unitPrice": "2,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0004",
@@ -50,10 +103,25 @@ const seedItems = [
     "minStock": 2,
     "maxStock": 10,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Tulipe"
     ],
-    "notes": "Conditionnement: 20 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: FD0000000-LLF14 | Fournisseur: Aestetic group | Prix: 46 | Prix unitaire: 2,3 | Lien: https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/526-raccord-d-emulsion-de-graisse-fll-o-14mm-x20.html"
+    "notes": "20",
+    "references": {
+      "primary": {
+        "supplier": "Aestetic group",
+        "reference": "FD0000000-LLF14",
+        "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/526-raccord-d-emulsion-de-graisse-fll-o-14mm-x20.html",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "46",
+        "unitPrice": "2,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0005",
@@ -64,10 +132,25 @@ const seedItems = [
     "minStock": 2,
     "maxStock": 12,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Tulipe"
     ],
-    "notes": "Conditionnement: 20 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: FD0000000-LLF12 | Fournisseur: Aestetic group | Prix: 46 | Prix unitaire: 2,3 | Lien: https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html"
+    "notes": "20",
+    "references": {
+      "primary": {
+        "supplier": "Aestetic group",
+        "reference": "FD0000000-LLF12",
+        "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "46",
+        "unitPrice": "2,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0006",
@@ -78,10 +161,25 @@ const seedItems = [
     "minStock": 1,
     "maxStock": 6,
     "location": "Culture L1",
+    "locations": [
+      "Culture L1"
+    ],
     "tags": [
       "Coating ULA"
     ],
-    "notes": "Conditionnement: 60ml | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: F202005 | Fournisseur: faCellitate | Prix: 60 | Prix unitaire: 1e/ml | Lien: faCellitate – BIOFLOAT™ FLEX coating solution [F202005] for 3D cell culture | Délais livraison: 10 jours"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "faCellitate",
+        "reference": "F202005",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques · faCellitate – BIOFLOAT™ FLEX coating solution [F202005] for 3D cell culture",
+        "price": "60",
+        "unitPrice": "1e/ml",
+        "leadTime": "10 jours"
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0007",
@@ -92,10 +190,25 @@ const seedItems = [
     "minStock": 1,
     "maxStock": 2,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Flask ULA T25"
     ],
-    "notes": "Conditionnement: 200 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: CNA6-1 | Fournisseur: Roth/greiner bio | Prix: 116 | Prix unitaire: 0,58"
+    "notes": "200",
+    "references": {
+      "primary": {
+        "supplier": "Roth/greiner bio",
+        "reference": "CNA6-1",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "116",
+        "unitPrice": "0,58",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0008",
@@ -106,10 +219,25 @@ const seedItems = [
     "minStock": 1,
     "maxStock": 11,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Plaque 6 ula"
     ],
-    "notes": "Conditionnement: 24 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 3471 | Fournisseur: Dutscher | Prix: 339 | Lien: https://www.dutscher.com/article/003471"
+    "notes": "24",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "3471",
+        "link": "https://www.dutscher.com/article/003471",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "339",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0009",
@@ -119,11 +247,27 @@ const seedItems = [
     "unit": "mL",
     "minStock": 1,
     "maxStock": 4,
-    "location": "Frigo labo",
+    "location": "Culture L2",
+    "locations": [
+      "Culture L2",
+      "Frigo culture L1"
+    ],
     "tags": [
       "ACL"
     ],
-    "notes": "Conditionnement: 50mL | Notes référence: NA71 : Sérum et autre milieu pour culture cellulaire animale | Référence: 00-4300-54 | Fournisseur: ThermoFischer | Prix: 62 | Lien: https://www.thermofisher.com/order/catalog/product/00-4300-54?SID=srch-srp-00-4300-54"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "ThermoFischer",
+        "reference": "00-4300-54",
+        "link": "https://www.thermofisher.com/order/catalog/product/00-4300-54?SID=srch-srp-00-4300-54",
+        "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
+        "price": "62",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0010",
@@ -134,10 +278,17 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 4,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Antibiotique"
     ],
-    "notes": ""
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0011",
@@ -148,10 +299,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 2,
     "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
     "tags": [
       "Antifongique"
     ],
-    "notes": "Conditionnement: 50mg | Notes référence: NA76 Antibiotiques Pour Culture Cellulaire | Référence: 0,28 | Fournisseur: Sigma | Prix: 287 | Prix unitaire: 5,75 | Lien: https://www.sigmaaldrich.com/FR/fr/substance/amphotericinbsolution924081397893"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Sigma",
+        "reference": "0,28",
+        "link": "https://www.sigmaaldrich.com/FR/fr/substance/amphotericinbsolution924081397893",
+        "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
+        "price": "287",
+        "unitPrice": "5,75",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0012",
@@ -161,11 +327,27 @@ const seedItems = [
     "unit": "mL",
     "minStock": 0,
     "maxStock": 4,
-    "location": "Culture",
+    "location": "Culture L1",
+    "locations": [
+      "Culture L1",
+      "Culture L2"
+    ],
     "tags": [
       "Antibiotique"
     ],
-    "notes": "Conditionnement: 20ml | Notes référence: NA76 Antibiotiques Pour Culture Cellulaire | Référence: 11520506 | Fournisseur: thermofischer | Prix: 220 | Prix unitaire: 11 | Lien: https://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "thermofischer",
+        "reference": "11520506",
+        "link": "https://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506",
+        "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
+        "price": "220",
+        "unitPrice": "11",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0013",
@@ -176,10 +358,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Culture L2",
+    "locations": [
+      "Culture L2"
+    ],
     "tags": [
       "Antibiotique"
     ],
-    "notes": "Conditionnement: 10ml | Notes référence: NA76 Antibiotiques Pour Culture Cellulaire | Référence: 15710064 | Fournisseur: Life tech | Prix: 16,11 | Prix unitaire: 1,5"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Life tech",
+        "reference": "15710064",
+        "link": "",
+        "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
+        "price": "16,11",
+        "unitPrice": "1,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0014",
@@ -190,24 +387,54 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Antifongique"
     ],
-    "notes": "Conditionnement: 100mg | Notes référence: NA76 Antibiotiques Pour Culture Cellulaire | Référence: 17660917 | Fournisseur: fischer | Prix: 90,9 | Lien: https://www.fishersci.fr/shop/products/amphotericin-b-mp-biomedicals-5/17660917?change_lang=true"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "fischer",
+        "reference": "17660917",
+        "link": "https://www.fishersci.fr/shop/products/amphotericin-b-mp-biomedicals-5/17660917?change_lang=true",
+        "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
+        "price": "90,9",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0015",
     "name": "Invivogen FUNGIN 75 MG (10 MG/ML)",
     "category": "Procédé ExAdEx L2",
     "quantity": 1.5,
-    "unit": "mL",
+    "unit": "mg",
     "minStock": 0,
     "maxStock": 3,
     "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
     "tags": [
       "Antifongique"
     ],
-    "notes": "Conditionnement: 75mg | Notes référence: NA76 Antibiotiques Pour Culture Cellulaire | Référence: ant-fn-1 | Fournisseur: invivogen | Prix: 148 | Lien: https://www.fishersci.com/shop/products/fungin-75-mg-10-mg-ml/NC9326704"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "invivogen",
+        "reference": "ant-fn-1",
+        "link": "https://www.fishersci.com/shop/products/fungin-75-mg-10-mg-ml/NC9326704",
+        "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
+        "price": "148",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0016",
@@ -218,10 +445,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 2,
     "location": "Culture L1",
+    "locations": [
+      "Culture L1"
+    ],
     "tags": [
       "Antifongique"
     ],
-    "notes": "Conditionnement: 5mg | Notes référence: NA76 Antibiotiques Pour Culture Cellulaire | Référence: SML0425-5MG | Fournisseur: Merck | Prix: 112 | Lien: https://www.sigmaaldrich.com/FR/fr/substance/caspofungindiacetate121342179463173"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Merck",
+        "reference": "SML0425-5MG",
+        "link": "https://www.sigmaaldrich.com/FR/fr/substance/caspofungindiacetate121342179463173",
+        "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
+        "price": "112",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0017",
@@ -232,10 +474,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 8,
     "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
     "tags": [
       "Antibiotique"
     ],
-    "notes": "Conditionnement: 250mg | Notes référence: NA76 Antibiotiques Pour Culture Cellulaire | Référence: ant-pm-05 | Fournisseur: invivogen | Prix: 119 | Lien: https://www.invivogen.com/primocin"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "invivogen",
+        "reference": "ant-pm-05",
+        "link": "https://www.invivogen.com/primocin",
+        "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
+        "price": "119",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0018",
@@ -245,11 +502,26 @@ const seedItems = [
     "unit": "mL",
     "minStock": 1,
     "maxStock": 8,
-    "location": "Culture",
+    "location": "Frigo culture L1",
+    "locations": [
+      "Frigo culture L1"
+    ],
     "tags": [
       "Milieu EGM"
     ],
-    "notes": "Conditionnement: 500ml | Notes référence: NA71 : Sérum et autre milieu pour culture cellulaire animale | Référence: C-22011 | Fournisseur: Promocell | Prix: 153,85 | Lien: https://promocell.com/product/endothelial-cell-growth-medium-2/ | Délais livraison: 15 jours"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Promocell",
+        "reference": "C-22011",
+        "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
+        "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
+        "price": "153,85",
+        "unitPrice": "",
+        "leadTime": "15 jours"
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0019",
@@ -259,11 +531,26 @@ const seedItems = [
     "unit": "mL",
     "minStock": 1,
     "maxStock": 8,
-    "location": "Culture",
+    "location": "-20°C culture L1",
+    "locations": [
+      "-20°C culture L1"
+    ],
     "tags": [
       "Milieu EGM"
     ],
-    "notes": "Conditionnement: 500ml | Notes référence: NA71 : Sérum et autre milieu pour culture cellulaire animale | Référence: C-39216 | Fournisseur: Promocell | Prix: 50,85 | Prix unitaire: 2 | Lien: https://promocell.com/product/endothelial-cell-growth-medium-2/ | Délais livraison: 15 jours"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Promocell",
+        "reference": "C-39216",
+        "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
+        "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
+        "price": "50,85",
+        "unitPrice": "2",
+        "leadTime": "15 jours"
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0020",
@@ -274,10 +561,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 4,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Bouchon"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: BD 408531 | Fournisseur: termofischer | Prix: 130 | Prix unitaire: 2,6 | Lien: https://www.fishersci.com/shop/products/bd-luer-lok-caps/1482331"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "termofischer",
+        "reference": "BD 408531",
+        "link": "https://www.fishersci.com/shop/products/bd-luer-lok-caps/1482331",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "130",
+        "unitPrice": "2,6",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0021",
@@ -288,10 +590,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Bouchon"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 394074 | Prix: 34 | Prix unitaire: 0,34 | Lien: https://www.dutscher.com/article/394074"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "394074",
+        "link": "https://www.dutscher.com/article/394074",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "34",
+        "unitPrice": "0,34",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0022",
@@ -302,10 +619,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Bouchon"
     ],
-    "notes": "Conditionnement: 200 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 394080 | Fournisseur: ThermoFischer | Prix: 50 | Prix unitaire: 0,25 | Lien: https://www.fishersci.fr/shop/products/x200-bouchons-luer-lock-st/16654462#?keyword=394080"
+    "notes": "200",
+    "references": {
+      "primary": {
+        "supplier": "ThermoFischer",
+        "reference": "394080",
+        "link": "https://www.fishersci.fr/shop/products/x200-bouchons-luer-lock-st/16654462#?keyword=394080",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "50",
+        "unitPrice": "0,25",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0023",
@@ -316,10 +648,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Bouchon"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Prix: 77 | Prix unitaire: 0,77 | Lien: https://www.aestheticgroup.fr/en/caps/125-luer-lock-cap-mc1711.html?search_query=FD0001711-MC&results=1"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.aestheticgroup.fr/en/caps/125-luer-lock-cap-mc1711.html?search_query=FD0001711-MC&results=1",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "77",
+        "unitPrice": "0,77",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0024",
@@ -330,10 +677,25 @@ const seedItems = [
     "minStock": 2,
     "maxStock": 4,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Bouchon"
     ],
-    "notes": "Conditionnement: 200 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: EF000 | Fournisseur: Bexen medical | Prix: 25 | Prix unitaire: 0,125 | Lien: https://www.bexenmedical.com/fr/materiel-medical/seringues-enfit"
+    "notes": "200",
+    "references": {
+      "primary": {
+        "supplier": "Bexen medical",
+        "reference": "EF000",
+        "link": "https://www.bexenmedical.com/fr/materiel-medical/seringues-enfit",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "25",
+        "unitPrice": "0,125",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0025",
@@ -344,10 +706,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "celldisc"
     ],
-    "notes": "Conditionnement: ECHANTILLON | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 678101 | Fournisseur: Greiner bio | Prix: ECHANTILLON | Prix unitaire: ECHANTILLON | Lien: https://shop.gbo.com/fr/france/products/bioscience/mass-cell-culture/bs-celldisc/celldisc-tc-und-advanced-tc/678101.html?sword_list%5B0%5D=678101&no_cache=1&_ga=2.265742541.314801138.1677662655-627813974.1674230259"
+    "notes": "ECHANTILLON",
+    "references": {
+      "primary": {
+        "supplier": "Greiner bio",
+        "reference": "678101",
+        "link": "https://shop.gbo.com/fr/france/products/bioscience/mass-cell-culture/bs-celldisc/celldisc-tc-und-advanced-tc/678101.html?sword_list%5B0%5D=678101&no_cache=1&_ga=2.265742541.314801138.1677662655-627813974.1674230259",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "ECHANTILLON",
+        "unitPrice": "ECHANTILLON",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0026",
@@ -358,10 +735,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "celldisc"
     ],
-    "notes": "Conditionnement: ECHANTILLON | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 678104 | Fournisseur: Greiner bio | Prix: ECHANTILLON | Prix unitaire: ECHANTILLON"
+    "notes": "ECHANTILLON",
+    "references": {
+      "primary": {
+        "supplier": "Greiner bio",
+        "reference": "678104",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "ECHANTILLON",
+        "unitPrice": "ECHANTILLON",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0027",
@@ -372,10 +764,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Blouse"
     ],
-    "notes": "Conditionnement: 30 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Fournisseur: Fisher scientific | Prix: 198"
+    "notes": "30",
+    "references": {
+      "primary": {
+        "supplier": "Fisher scientific",
+        "reference": "",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "198",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0028",
@@ -385,11 +792,27 @@ const seedItems = [
     "unit": "unités",
     "minStock": 0,
     "maxStock": 1,
-    "location": "Culture",
+    "location": "Culture L1",
+    "locations": [
+      "Culture L1",
+      "Culture L2"
+    ],
     "tags": [
       "Blouse"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Prix unitaire: 0 | Lien: https://www.labotienda.com/fr/produits-laboratoire/blouse-jetable-taille-xl-blanche-1-pc/"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.labotienda.com/fr/produits-laboratoire/blouse-jetable-taille-xl-blanche-1-pc/",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0029",
@@ -400,10 +823,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Flask cell repelent"
     ],
-    "notes": "Conditionnement: ECHANTILLON | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 658985 | Fournisseur: Greiner bio | Prix: ECHANTILLON | Prix unitaire: ECHANTILLON | Lien: https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/support-de-culture-cellstar-cell-repellent-surface/flacons-surface-cell-repellent/658985.html?sword_list%5B0%5D=658985&no_cache=1&_ga=2.197454317.314801138.1677662655-627813974.1674230259"
+    "notes": "ECHANTILLON",
+    "references": {
+      "primary": {
+        "supplier": "Greiner bio",
+        "reference": "658985",
+        "link": "https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/support-de-culture-cellstar-cell-repellent-surface/flacons-surface-cell-repellent/658985.html?sword_list%5B0%5D=658985&no_cache=1&_ga=2.197454317.314801138.1677662655-627813974.1674230259",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "ECHANTILLON",
+        "unitPrice": "ECHANTILLON",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0030",
@@ -414,10 +852,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Flask culture suspension"
     ],
-    "notes": "Conditionnement: ECHANTILLON | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: réf 658195 | Fournisseur: Greiner bio | Prix: ECHANTILLON | Prix unitaire: ECHANTILLON | Lien: https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/flacons-cellstar/flacons-pour-culture-en-suspension/658195.html?sword_list%5B0%5D=658195&no_cache=1&_ga=2.268338764.314801138.1677662655-627813974.1674230259"
+    "notes": "ECHANTILLON",
+    "references": {
+      "primary": {
+        "supplier": "Greiner bio",
+        "reference": "réf 658195",
+        "link": "https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/flacons-cellstar/flacons-pour-culture-en-suspension/658195.html?sword_list%5B0%5D=658195&no_cache=1&_ga=2.268338764.314801138.1677662655-627813974.1674230259",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "ECHANTILLON",
+        "unitPrice": "ECHANTILLON",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0031",
@@ -428,10 +881,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Flask culture suspension"
     ],
-    "notes": "Conditionnement: ECHANTILLON | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 662102 | Fournisseur: Greiner bio | Prix: ECHANTILLON | Prix unitaire: ECHANTILLON | Lien: https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/plaques-multi-puits-cellstar/657185.html?sword_list%5B0%5D=657185&no_cache=1&_ga=2.261006799.314801138.1677662655-627813974.1674230259"
+    "notes": "ECHANTILLON",
+    "references": {
+      "primary": {
+        "supplier": "Greiner bio",
+        "reference": "662102",
+        "link": "https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/plaques-multi-puits-cellstar/657185.html?sword_list%5B0%5D=657185&no_cache=1&_ga=2.261006799.314801138.1677662655-627813974.1674230259",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "ECHANTILLON",
+        "unitPrice": "ECHANTILLON",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0032",
@@ -442,10 +910,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Flask culture suspension"
     ],
-    "notes": "Conditionnement: ECHANTILLON | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 657185 | Fournisseur: Greiner bio | Prix: ECHANTILLON | Prix unitaire: ECHANTILLON"
+    "notes": "ECHANTILLON",
+    "references": {
+      "primary": {
+        "supplier": "Greiner bio",
+        "reference": "657185",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "ECHANTILLON",
+        "unitPrice": "ECHANTILLON",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0033",
@@ -456,10 +939,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Flask ULA T25"
     ],
-    "notes": "Conditionnement: 25 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 004616B | Fournisseur: Dutscher | Prix: 300 | Prix unitaire: 12 | Lien: https://www.dutscher.com/article/004616B"
+    "notes": "25",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "004616B",
+        "link": "https://www.dutscher.com/article/004616B",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "300",
+        "unitPrice": "12",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0034",
@@ -470,10 +968,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Flask ULA T25"
     ],
-    "notes": "Conditionnement: 10 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 330193 | Prix: 120 | Prix unitaire: 12"
+    "notes": "10",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "330193",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "120",
+        "unitPrice": "12",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0035",
@@ -484,10 +997,25 @@ const seedItems = [
     "minStock": 0.5,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Flask ULA T25"
     ],
-    "notes": "Conditionnement: 25 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 4616+ | Fournisseur: Dutscher | Prix: 64,25 | Prix unitaire: 2,57 | Lien: https://www.carlroth.com/fr/fr/bouteilles-assiettes-plats-pour-culture-cellulaire/flacons-pour-culture-suspension-cellstar-bouchon-a-vis-avec-filtre/p/cna6.1"
+    "notes": "25",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "4616+",
+        "link": "https://www.carlroth.com/fr/fr/bouteilles-assiettes-plats-pour-culture-cellulaire/flacons-pour-culture-suspension-cellstar-bouchon-a-vis-avec-filtre/p/cna6.1",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "64,25",
+        "unitPrice": "2,57",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0036",
@@ -498,10 +1026,26 @@ const seedItems = [
     "minStock": 1,
     "maxStock": 2,
     "location": "Bureau",
+    "locations": [
+      "Bureau",
+      "Réserve"
+    ],
     "tags": [
       "Flask ULA T75"
     ],
-    "notes": "Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 174951 | Fournisseur: ThermoFischer | Prix unitaire: #DIV/0!"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "ThermoFischer",
+        "reference": "174951",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "",
+        "unitPrice": "#DIV/0!",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0037",
@@ -512,10 +1056,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Plaque 24 ula"
     ],
-    "notes": "Conditionnement: ECHANTILLON | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 662970 | Fournisseur: Greiner bio | Prix: ECHANTILLON | Prix unitaire: ECHANTILLON | Lien: https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/support-de-culture-cellstar-cell-repellent-surface/microplaques-surface-cell-repellent/657970.html?sword_list%5B0%5D=657970&no_cache=1&_ga=2.29147902.314801138.1677662655-627813974.1674230259"
+    "notes": "ECHANTILLON",
+    "references": {
+      "primary": {
+        "supplier": "Greiner bio",
+        "reference": "662970",
+        "link": "https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/support-de-culture-cellstar-cell-repellent-surface/microplaques-surface-cell-repellent/657970.html?sword_list%5B0%5D=657970&no_cache=1&_ga=2.29147902.314801138.1677662655-627813974.1674230259",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "ECHANTILLON",
+        "unitPrice": "ECHANTILLON",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0038",
@@ -526,10 +1085,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Robinet"
     ],
-    "notes": "Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 92831"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "92831",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0039",
@@ -540,10 +1114,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Robinet"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 70334 ou 92831 | Fournisseur: distrimed | Prix: 50 | Prix unitaire: 0,5 | Lien: https://www.distrimed.com/product_info.php?products_id=8067"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "distrimed",
+        "reference": "70334 ou 92831",
+        "link": "https://www.distrimed.com/product_info.php?products_id=8067",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "50",
+        "unitPrice": "0,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0040",
@@ -554,10 +1143,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Robinet"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: ROB600 | Fournisseur: robé médical | Prix: 42 | Prix unitaire: 0,42 | Lien: https://www.robe-materiel-medical.com/Robinet-3-voies-BD-Connecta-ROB600-materiel-medical.htm"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "robé médical",
+        "reference": "ROB600",
+        "link": "https://www.robe-materiel-medical.com/Robinet-3-voies-BD-Connecta-ROB600-materiel-medical.htm",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "42",
+        "unitPrice": "0,42",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0041",
@@ -568,10 +1172,25 @@ const seedItems = [
     "minStock": 4,
     "maxStock": 8,
     "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Robinet luer"
     ],
-    "notes": "Conditionnement: 300 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 1104,19 | Fournisseur: bexen medical | Prix: 55 | Prix unitaire: 0,183333333 | Lien: https://www.bexenmedical.com/fr/materiel-medical/robinet-luer-lock | Délais livraison: rapide"
+    "notes": "300",
+    "references": {
+      "primary": {
+        "supplier": "bexen medical",
+        "reference": "1104,19",
+        "link": "https://www.bexenmedical.com/fr/materiel-medical/robinet-luer-lock",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "55",
+        "unitPrice": "0,183333333",
+        "leadTime": "rapide"
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0042",
@@ -581,11 +1200,26 @@ const seedItems = [
     "unit": "seringues",
     "minStock": 3,
     "maxStock": 6,
-    "location": "Laboratoire",
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Seringue"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 5010 | Fournisseur: Honke sass Wolf | Prix: 125 | Prix unitaire: 1,25 | Lien: https://www.henkesasswolf.de/en/search/?tx_indexedsearch_pi2%5Baction%5D=search&tx_indexedsearch_pi2%5Bcontroller%5D=Search&cHash=492a628381d5a9e4d38274fe2b890249"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Honke sass Wolf",
+        "reference": "5010",
+        "link": "https://www.henkesasswolf.de/en/search/?tx_indexedsearch_pi2%5Baction%5D=search&tx_indexedsearch_pi2%5Bcontroller%5D=Search&cHash=492a628381d5a9e4d38274fe2b890249",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "125",
+        "unitPrice": "1,25",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0043",
@@ -596,10 +1230,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Seringue"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Fournisseur: Dutscher | Prix: 11 | Prix unitaire: 0,22 | Lien: https://www.dutscher.com/article/050833"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "",
+        "link": "https://www.dutscher.com/article/050833",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "11",
+        "unitPrice": "0,22",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0044",
@@ -609,11 +1258,26 @@ const seedItems = [
     "unit": "seringues",
     "minStock": 1,
     "maxStock": 2,
-    "location": "Laboratoire",
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Seringue 10 ml"
     ],
-    "notes": "Conditionnement: 10 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 5100-000V0 | Fournisseur: Honke sass Wolf | Prix: 125 | Prix unitaire: 12,5 | Lien: https://www.henkesasswolf.de/en/search/?tx_indexedsearch_pi2%5Baction%5D=search&tx_indexedsearch_pi2%5Bcontroller%5D=Search&cHash=492a628381d5a9e4d38274fe2b890249"
+    "notes": "10",
+    "references": {
+      "primary": {
+        "supplier": "Honke sass Wolf",
+        "reference": "5100-000V0",
+        "link": "https://www.henkesasswolf.de/en/search/?tx_indexedsearch_pi2%5Baction%5D=search&tx_indexedsearch_pi2%5Bcontroller%5D=Search&cHash=492a628381d5a9e4d38274fe2b890249",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "125",
+        "unitPrice": "12,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0045",
@@ -623,11 +1287,26 @@ const seedItems = [
     "unit": "seringues",
     "minStock": 2,
     "maxStock": 6,
-    "location": "Culture",
+    "location": "Culture L1",
+    "locations": [
+      "Culture L1"
+    ],
     "tags": [
       "Seringue"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 50008 | Fournisseur: Terumo | Prix: 30 | Prix unitaire: 0,3"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Terumo",
+        "reference": "50008",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "30",
+        "unitPrice": "0,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0046",
@@ -637,11 +1316,26 @@ const seedItems = [
     "unit": "seringues",
     "minStock": 1,
     "maxStock": 2,
-    "location": "Laboratoire",
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Seringue 100ml"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: SS+01EH1 | Fournisseur: Terumo | Prix: 34,7 | Prix unitaire: 0,347 | Lien: https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Terumo",
+        "reference": "SS+01EH1",
+        "link": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "34,7",
+        "unitPrice": "0,347",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0047",
@@ -652,10 +1346,26 @@ const seedItems = [
     "minStock": 3,
     "maxStock": 6,
     "location": "Bureau",
+    "locations": [
+      "Bureau",
+      "Culture L2"
+    ],
     "tags": [
       "Seringue luer lock"
     ],
-    "notes": "Conditionnement: 120 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 300629 | Fournisseur: Aestetic group | Prix: 70 | Prix unitaire: 0,583333333 | Lien: https://www.aestheticgroup.fr/fr/recherche?controller=search&orderby=position&orderway=desc&search_query=300629&submit_search="
+    "notes": "120",
+    "references": {
+      "primary": {
+        "supplier": "Aestetic group",
+        "reference": "300629",
+        "link": "https://www.aestheticgroup.fr/fr/recherche?controller=search&orderby=position&orderway=desc&search_query=300629&submit_search=",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "70",
+        "unitPrice": "0,583333333",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0048",
@@ -666,10 +1376,25 @@ const seedItems = [
     "minStock": 3,
     "maxStock": 6,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Seringue luer lock"
     ],
-    "notes": "Conditionnement: 192 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 302830 | Fournisseur: Dutscher | Prix: 121 | Prix unitaire: 0,630208333 | Lien: https://www.dutscher.com/article/302830 | Délais livraison: 1 mois"
+    "notes": "192",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "302830",
+        "link": "https://www.dutscher.com/article/302830",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "121",
+        "unitPrice": "0,630208333",
+        "leadTime": "1 mois"
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0049",
@@ -680,10 +1405,26 @@ const seedItems = [
     "minStock": 8,
     "maxStock": 16,
     "location": "Bureau",
+    "locations": [
+      "Bureau",
+      "Réserve"
+    ],
     "tags": [
       "Seringue luer lock"
     ],
-    "notes": "Conditionnement: 300 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: EF020 | Fournisseur: Bexen medical | Prix: 75 | Prix unitaire: 0,25 | Lien: https://www.bexenmedical.com/fr/materiel-medical/seringues-enfit"
+    "notes": "300",
+    "references": {
+      "primary": {
+        "supplier": "Bexen medical",
+        "reference": "EF020",
+        "link": "https://www.bexenmedical.com/fr/materiel-medical/seringues-enfit",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "75",
+        "unitPrice": "0,25",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0050",
@@ -694,10 +1435,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Seringue luer lock"
     ],
-    "notes": "Conditionnement: 120 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: SLL20 | Fournisseur: robé médical | Prix: 60,47 | Prix unitaire: 0,503916667 | Lien: https://www.robe-materiel-medical.com/Seringues-3-pieces-NIPRO-Luer-Lock-Boite-de-100-SLL20-materiel-medical.htm"
+    "notes": "120",
+    "references": {
+      "primary": {
+        "supplier": "robé médical",
+        "reference": "SLL20",
+        "link": "https://www.robe-materiel-medical.com/Seringues-3-pieces-NIPRO-Luer-Lock-Boite-de-100-SLL20-materiel-medical.htm",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "60,47",
+        "unitPrice": "0,503916667",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0051",
@@ -707,11 +1463,26 @@ const seedItems = [
     "unit": "mL",
     "minStock": 1,
     "maxStock": 2,
-    "location": "Laboratoire",
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Seringue luer lock"
     ],
-    "notes": "Conditionnement: 25 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 15349067 | Fournisseur: ThermoFischer | Prix: 30 | Prix unitaire: 0 | Lien: https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB"
+    "notes": "25",
+    "references": {
+      "primary": {
+        "supplier": "ThermoFischer",
+        "reference": "15349067",
+        "link": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "30",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0052",
@@ -722,10 +1493,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Seringue luer lock"
     ],
-    "notes": "Conditionnement: 10 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 12713MED / 90357MED | Fournisseur: materiel medical | Prix: 50 | Prix unitaire: 5 | Lien: https://www.materielmedical.fr/4727-seringues-3-pieces-luer-lock-euromedis.html"
+    "notes": "10",
+    "references": {
+      "primary": {
+        "supplier": "materiel medical",
+        "reference": "12713MED / 90357MED",
+        "link": "https://www.materielmedical.fr/4727-seringues-3-pieces-luer-lock-euromedis.html",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "50",
+        "unitPrice": "5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0053",
@@ -736,10 +1522,25 @@ const seedItems = [
     "minStock": 2,
     "maxStock": 4,
     "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Tamis/ Filtre"
     ],
-    "notes": "Conditionnement: 25 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 149195 | Fournisseur: Dutscher | Prix: 180 | Prix unitaire: 7,2 | Lien: https://www.dutscher.com/article/149195"
+    "notes": "25",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "149195",
+        "link": "https://www.dutscher.com/article/149195",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "180",
+        "unitPrice": "7,2",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0054",
@@ -750,10 +1551,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Tamis/ Filtre"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 257240 | Fournisseur: dutscher | Prix: 40 | Prix unitaire: 0,8"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "dutscher",
+        "reference": "257240",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "40",
+        "unitPrice": "0,8",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0055",
@@ -764,10 +1580,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 6,
     "location": "Culture L1",
+    "locations": [
+      "Culture L1"
+    ],
     "tags": [
       "Tamis/ Filtre"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 257160 | Fournisseur: dutscher | Prix: 40 | Prix unitaire: 0,8"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "dutscher",
+        "reference": "257160",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "40",
+        "unitPrice": "0,8",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0056",
@@ -778,10 +1609,25 @@ const seedItems = [
     "minStock": 2,
     "maxStock": 4,
     "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Tamis/ Filtre"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Fournisseur: starstedt | Prix: 180 | Lien: UGAP"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "starstedt",
+        "reference": "",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques · UGAP",
+        "price": "180",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0057",
@@ -792,10 +1638,25 @@ const seedItems = [
     "minStock": 1,
     "maxStock": 2,
     "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Tamis/ Filtre"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 352360 | Fournisseur: servilab | Prix: 100*"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "servilab",
+        "reference": "352360",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "100*",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0058",
@@ -806,10 +1667,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Tamis/ Filtre"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 352350 | Fournisseur: servilab | Prix: 100*"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "servilab",
+        "reference": "352350",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "100*",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0059",
@@ -819,11 +1695,26 @@ const seedItems = [
     "unit": "unités",
     "minStock": 0,
     "maxStock": 4,
-    "location": "Laboratoire",
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
     "tags": [
       "Tamis/ Filtre"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: 352340 | Fournisseur: servilab | Prix: 100*"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "servilab",
+        "reference": "352340",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "100*",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0060",
@@ -834,10 +1725,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Filtre"
     ],
-    "notes": "Conditionnement: 1 | Notes référence: VA.03 | Référence: 391-2093 | Fournisseur: vwr | Prix: 20"
+    "notes": "1",
+    "references": {
+      "primary": {
+        "supplier": "vwr",
+        "reference": "391-2093",
+        "link": "",
+        "notes": "VA.03",
+        "price": "20",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0061",
@@ -848,10 +1754,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Tulipe"
     ],
-    "notes": "Conditionnement: 24 | Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: CGTU DAT4L1.2MM | Fournisseur: Benewmedical | Prix unitaire: 0"
+    "notes": "24",
+    "references": {
+      "primary": {
+        "supplier": "Benewmedical",
+        "reference": "CGTU DAT4L1.2MM",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0062",
@@ -862,10 +1783,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Tulipe"
     ],
-    "notes": "Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: CGTU DAT4L1.4MM | Fournisseur: Benewmedical"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Benewmedical",
+        "reference": "CGTU DAT4L1.4MM",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0063",
@@ -876,10 +1812,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 1,
     "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
     "tags": [
       "Tulipe"
     ],
-    "notes": "Notes référence: NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques | Référence: CGTU DAT4L2.4MM | Fournisseur: Benewmedical"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Benewmedical",
+        "reference": "CGTU DAT4L2.4MM",
+        "link": "",
+        "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0064",
@@ -890,10 +1841,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 12,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Antibiotique"
     ],
-    "notes": "Conditionnement: 100Ml | Référence: 15140122 | Fournisseur: thermofischer | Prix: 10 | Prix unitaire: 0,1 | Lien: https://www.thermofisher.com/order/catalog/product/15140122?SKULINK | Délais livraison: 1mois"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "thermofischer",
+        "reference": "15140122",
+        "link": "https://www.thermofisher.com/order/catalog/product/15140122?SKULINK",
+        "notes": "",
+        "price": "10",
+        "unitPrice": "0,1",
+        "leadTime": "1mois"
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0065",
@@ -904,10 +1870,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 6,
     "location": "Culture L1",
+    "locations": [
+      "Culture L1"
+    ],
     "tags": [
       "lame chirurgicale"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: NB.16 / 90189084 | Référence: 764315 | Fournisseur: Dutscher"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "764315",
+        "link": "",
+        "notes": "NB.16 / 90189084",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0066",
@@ -918,10 +1899,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 2,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants L2 verts"
     ],
-    "notes": "Notes référence: HA.01"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "HA.01",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0067",
@@ -932,10 +1928,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 2,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants L2 verts"
     ],
-    "notes": "Notes référence: HA.01"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "HA.01",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0068",
@@ -946,10 +1957,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 12,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants L2 verts"
     ],
-    "notes": "Conditionnement: 150 | Notes référence: HA.01 | Référence: 065745B | Fournisseur: Dutscher | Prix: 16,47"
+    "notes": "150",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "065745B",
+        "link": "",
+        "notes": "HA.01",
+        "price": "16,47",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0069",
@@ -960,10 +1986,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 8,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants L2 verts"
     ],
-    "notes": "Conditionnement: 150 | Notes référence: HA.01 | Référence: 065744B | Fournisseur: Dutscher | Prix: 16,47"
+    "notes": "150",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "065744B",
+        "link": "",
+        "notes": "HA.01",
+        "price": "16,47",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0070",
@@ -974,10 +2015,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 6,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants bleus"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: HA.01 | Référence: 65927 | Fournisseur: Dutscher | Prix: 4,3"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "65927",
+        "link": "",
+        "notes": "HA.01",
+        "price": "4,3",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0071",
@@ -988,10 +2044,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 12,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants bleus"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: HA.01 | Référence: 65928 | Fournisseur: Dutscher | Prix: 5,8"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "65928",
+        "link": "",
+        "notes": "HA.01",
+        "price": "5,8",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0072",
@@ -1002,10 +2073,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 10,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants bleus"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: HA.01 | Fournisseur: Dutscher"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "",
+        "link": "",
+        "notes": "HA.01",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0073",
@@ -1016,10 +2102,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 8,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants bleus"
     ],
-    "notes": "Conditionnement: 100 | Notes référence: HA.01 | Fournisseur: Dutscher"
+    "notes": "100",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "",
+        "link": "",
+        "notes": "HA.01",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0074",
@@ -1030,10 +2131,25 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 4,
     "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
     "tags": [
       "Gants oranges"
     ],
-    "notes": "Conditionnement: 50 | Notes référence: HA.01 | Référence: 65706 | Fournisseur: Dutscher | Prix: 24,3"
+    "notes": "50",
+    "references": {
+      "primary": {
+        "supplier": "Dutscher",
+        "reference": "65706",
+        "link": "",
+        "notes": "HA.01",
+        "price": "24,3",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   },
   {
     "id": "itm-CSV-0075",
@@ -1044,9 +2160,24 @@ const seedItems = [
     "minStock": 0,
     "maxStock": 4,
     "location": "Culture L1",
+    "locations": [
+      "Culture L1"
+    ],
     "tags": [
       "Congelation"
     ],
-    "notes": "Conditionnement: 500mL | Référence: D4540 | Fournisseur: Merck Sigma | Prix: 120"
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "Merck Sigma",
+        "reference": "D4540",
+        "link": "",
+        "notes": "",
+        "price": "120",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   }
 ]

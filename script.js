@@ -81,7 +81,8 @@ let alertsExpanded = false;
 let selectedLocation = null;
 let selectedExperimentId = null;
 let selectedItemId = null;
-let itemReturnContext = { view: "inventory", experimentId: null, location: null };
+let itemReturnContext = { view: "inventory", experimentId: null, location: null, scrollY: 0 };
+let viewReturnScrollY = { experiments: 0, locations: 0 };
 let selectedOrderId = null;
 let ordersMode = "board";
 
@@ -160,6 +161,17 @@ const orderFields = [
 renderCategoryOptions();
 renderLocationOptions();
 renderTemplateOptions();
+
+// Dialog para confirmar la cantidad a anadir al inventario al recibir una orden
+const receiveInventoryDialog = document.querySelector("#receiveInventoryDialog");
+const receiveInventoryForm = document.querySelector("#receiveInventoryForm");
+const receiveInventoryFields = [
+  "receiveOrderId",
+  "receiveInventoryItemName",
+  "receiveInventoryRequestedText",
+  "receiveQuantity",
+  "receiveUnit"
+].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 // animacion de inicio
 const loginLoader = document.querySelector("#loginLoader");
@@ -273,6 +285,11 @@ document.querySelectorAll(".nav-item").forEach((button) => {
   });
 });
 
+// Listeners para dialogo de recepcion de inventario al recibir una orden
+document.querySelector("#confirmReceiveInventoryBtn").addEventListener("click", confirmReceiveInventory);
+document.querySelector("#closeReceiveInventoryDialogBtn").addEventListener("click", () => receiveInventoryDialog.close());
+document.querySelector("#cancelReceiveInventoryBtn").addEventListener("click", () => receiveInventoryDialog.close());
+
 function load(key, fallback) {
   try {
     return JSON.parse(localStorage.getItem(key)) || fallback;
@@ -320,6 +337,19 @@ function render() {
   renderLocations();
   renderOrders();
   renderExperiments();
+}
+
+function getPageScrollY() {
+  return window.scrollY || window.pageYOffset || 0;
+}
+
+function restorePageScrollY(scrollY) {
+  if (typeof scrollY !== "number" || Number.isNaN(scrollY)) return;
+  const targetY = Math.max(0, scrollY);
+  window.requestAnimationFrame(() => {
+    window.scrollTo(0, targetY);
+    window.requestAnimationFrame(() => window.scrollTo(0, targetY));
+  });
 }
 
 function renderCategories() {
@@ -598,8 +628,8 @@ function renderInventoryDetail(item) {
                   ` : ""}
 
                   ${renderDetailRow("Notes", references.primary.notes)}
-                  ${renderDetailRow("Prix", references.primary.price)}
-                  ${renderDetailRow("Prix unitaire", references.primary.unitPrice)}
+                  ${renderDetailRow("Prix", formatPriceEuro(references.primary.price))}
+                  ${renderDetailRow("Prix unitaire", formatPriceEuro(references.primary.unitPrice))}
                   ${renderDetailRow("Délais de livraison", references.primary.leadTime)}
                 </div>
               </div>
@@ -627,6 +657,19 @@ function renderInventoryDetail(item) {
       </div>
     </section>
   `;
+}
+
+// Funcion para formatear precios con simbolo de euro, asegurando que el simbolo no se duplique si ya esta presente
+function formatPriceEuro(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+
+  if (raw.includes("€")) return raw;
+
+  const numericOnly = /^\d+(?:[.,]\d+)?$/.test(raw);
+  if (!numericOnly) return raw;
+
+  return `${raw} €`;
 }
 
 function renderOrderDetail(order) {
@@ -791,8 +834,8 @@ function renderOrderDetail(order) {
                   ` : ""}
 
                   ${renderDetailRow("Notes", references.primary.notes)}
-                  ${renderDetailRow("Prix", references.primary.price)}
-                  ${renderDetailRow("Prix unitaire", references.primary.unitPrice)}
+                  ${renderDetailRow("Prix", formatPriceEuro(references.primary.price))}
+                  ${renderDetailRow("Prix unitaire", formatPriceEuro(references.primary.unitPrice))}
                   ${renderDetailRow("Délais de livraison", references.primary.leadTime)}
                 </div>
               </div>
@@ -895,6 +938,7 @@ function renderLocations() {
     document.querySelector("#backToLocationsBtn").addEventListener("click", () => {
       selectedLocation = null;
       renderLocations();
+      restorePageScrollY(viewReturnScrollY.locations);
     });
     locationGrid.querySelectorAll("[data-item-id]").forEach(button => {
       button.addEventListener("click", () => openModal(button.dataset.itemId));
@@ -916,6 +960,7 @@ function renderLocations() {
   }).join("");
   locationGrid.querySelectorAll("[data-location]").forEach(card => {
     card.addEventListener("click", () => {
+      viewReturnScrollY.locations = getPageScrollY();
       selectedLocation = card.dataset.location;
       renderLocations();
     });
@@ -958,8 +1003,10 @@ function renderOrders() {
   }
 
   const visibleOrders = orders.filter((order) => {
+    if (order.status === "received" && order.addedToInventory) return false;
     if (order.status !== "received") return true;
     if (!order.receivedAtRaw) return true;
+
     const age = Date.now() - new Date(order.receivedAtRaw).getTime();
     return age < 7 * 24 * 60 * 60 * 1000;
   });
@@ -1033,6 +1080,7 @@ function renderOrders() {
             order.status === "received"
               ? `
                 <button class="text-btn" type="button" onclick="event.stopPropagation(); moveOrderBackToOrdered('${escapeHtml(order.id)}')">← Retour</button>
+                <button class="text-btn" type="button" onclick="event.stopPropagation(); openReceiveInventoryDialog('${escapeHtml(order.id)}')">Ajouter à l'inventaire</button>
               `
               : ""
           }
@@ -1312,8 +1360,16 @@ function selectItem(id) {
 }
 
 function selectExperiment(id) {
+  if (id) {
+    viewReturnScrollY.experiments = getPageScrollY();
+  }
+
   selectedExperimentId = id;
   renderExperiments();
+
+  if (!id) {
+    restorePageScrollY(viewReturnScrollY.experiments);
+  }
 }
 
 function selectOrder(id) {
@@ -1342,7 +1398,8 @@ function openItemDetail(id, context = {}) {
   itemReturnContext = {
     view: context.view || activeView || "inventory",
     experimentId: context.experimentId ?? selectedExperimentId ?? null,
-    location: context.location ?? selectedLocation ?? null
+    location: context.location ?? selectedLocation ?? null,
+    scrollY: getPageScrollY()
   };
 
   selectedItemId = id;
@@ -1379,6 +1436,7 @@ function returnFromItemDetail() {
     app.classList.remove("history-mode");
 
     renderExperiments();
+    restorePageScrollY(itemReturnContext.scrollY);
     return;
   }
 
@@ -1395,6 +1453,7 @@ function returnFromItemDetail() {
   app.classList.toggle("history-mode", activeView === "history");
 
   render();
+  restorePageScrollY(itemReturnContext.scrollY);
 }
 
 function openModal(id) {
@@ -1811,32 +1870,16 @@ function moveOrderToReceived(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || order.status !== "ordered") return;
 
-  const receivedAmount = Number(order.requestedQuantity || 0);
-
   order.status = "received";
-  order.receivedQuantity = receivedAmount;
+  order.receivedQuantity = Number(order.requestedQuantity || 0);
   order.receivedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
   order.receivedAtRaw = new Date().toISOString();
   order.receivedBy = currentName;
 
-  if (order.inventoryItemId) {
-    const item = items.find(entry => entry.id === order.inventoryItemId);
-    if (item) {
-      item.quantity = Number((Number(item.quantity) + receivedAmount).toFixed(3));
-    }
-  } else if (order.newItemData) {
-    const newItem = {
-      id: `itm-${Date.now()}`,
-      ...order.newItemData,
-      quantity: receivedAmount
-    };
-    items.unshift(newItem);
-    order.inventoryItemId = newItem.id;
-  }
-
-  addHistory("Commande reçue", `${currentName} a réceptionné ${order.itemName}.`);
+  addHistory("Commande reçue", `${currentName} a marqué ${order.itemName} comme arrivé.`);
   persist();
-  render();
+  renderOrders();
+  renderHistory();
 }
 
 function moveOrderBackToRequested(id) {
@@ -1858,32 +1901,149 @@ function moveOrderBackToOrdered(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || order.status !== "received") return;
 
-  const receivedAmount = Number(order.receivedQuantity ?? order.requestedQuantity ?? 0);
-  const item = order.inventoryItemId
-    ? items.find(entry => entry.id === order.inventoryItemId)
-    : null;
-
-  if (item) {
-    if (Number(item.quantity) < receivedAmount) {
-      window.alert("Impossible de revenir en arrière : le stock actuel est inférieur à la quantité reçue.");
-      return;
-    }
-
-    if (order.newItemData && Number(item.quantity) === receivedAmount) {
-      items = items.filter(entry => entry.id !== item.id);
-      order.inventoryItemId = "";
-    } else {
-      item.quantity = Number((Number(item.quantity) - receivedAmount).toFixed(3));
-    }
-  }
-
   order.status = "ordered";
-  order.receivedQuantity = "";
+  order.receivedQuantity = 0;
   order.receivedAt = "";
   order.receivedAtRaw = "";
   order.receivedBy = "";
 
   addHistory("Réception annulée", `${currentName} a renvoyé ${order.itemName} vers "Commandé".`);
+  persist();
+  renderOrders();
+  renderHistory();
+}
+
+function addReceivedOrderToInventory(id) {
+  const order = orders.find(entry => entry.id === id);
+  if (!order || order.status !== "received") return;
+
+  const unit =
+    order.itemMode === "existing"
+      ? (items.find(entry => entry.id === order.inventoryItemId)?.unit || order.newItemData?.unit || "")
+      : (order.newItemData?.unit || "");
+
+  const defaultQuantity = Number(order.requestedQuantity || 0);
+
+  const answer = window.prompt(
+    `Quantité à ajouter à l'inventaire (${unit}) :`,
+    String(defaultQuantity)
+  );
+
+  if (answer === null) return;
+
+  const confirmedQuantity = Number(String(answer).replace(",", "."));
+
+  if (!Number.isFinite(confirmedQuantity) || confirmedQuantity < 0) {
+    window.alert("Merci d'entrer une quantité valide.");
+    return;
+  }
+
+  if (order.itemMode === "existing" && order.inventoryItemId) {
+    const item = items.find(entry => entry.id === order.inventoryItemId);
+    if (!item) {
+      window.alert("L'article lié dans l'inventaire est introuvable.");
+      return;
+    }
+
+    item.quantity = Number((Number(item.quantity) + confirmedQuantity).toFixed(3));
+  } else if (order.newItemData) {
+    const newItem = {
+      id: `itm-${Date.now()}`,
+      ...order.newItemData,
+      quantity: Number(confirmedQuantity.toFixed(3))
+    };
+
+    items.unshift(newItem);
+    order.inventoryItemId = newItem.id;
+  } else {
+    window.alert("Impossible d'ajouter cette commande à l'inventaire.");
+    return;
+  }
+
+  addHistory(
+    "Ajout à l'inventaire",
+    `${currentName} a ajouté ${confirmedQuantity} ${unit || ""} de ${order.itemName} à l'inventaire.`
+  );
+
+  orders = orders.filter(entry => entry.id !== id);
+
+  persist();
+  render();
+}
+
+// Funcion para confirmar la cantidad recibida antes de agregarla al inventario, en lugar de asumir que es igual a la cantidad solicitada
+function openReceiveInventoryDialog(id) {
+  const order = orders.find(entry => entry.id === id);
+  if (!order || order.status !== "received") return;
+
+  const linkedItem = order.inventoryItemId
+    ? items.find(entry => entry.id === order.inventoryItemId)
+    : null;
+
+  const unit = linkedItem?.unit || order.newItemData?.unit || "";
+  const requestedQuantity = Number(order.requestedQuantity || 0);
+
+  receiveInventoryFields.receiveOrderId.value = order.id;
+  receiveInventoryFields.receiveInventoryItemName.textContent = order.itemName;
+  receiveInventoryFields.receiveInventoryRequestedText.textContent = `Quantité demandée : ${requestedQuantity} ${unit}`.trim();
+  receiveInventoryFields.receiveQuantity.value = requestedQuantity;
+  receiveInventoryFields.receiveUnit.value = unit;
+
+  receiveInventoryDialog.showModal();
+}
+
+// idem que la anterior
+function confirmReceiveInventory() {
+  if (!receiveInventoryForm.reportValidity()) return;
+
+  const id = receiveInventoryFields.receiveOrderId.value;
+  const order = orders.find(entry => entry.id === id);
+  if (!order || order.status !== "received") return;
+
+  const confirmedQuantity = Number(receiveInventoryFields.receiveQuantity.value);
+  const unit = receiveInventoryFields.receiveUnit.value || "";
+
+  if (!Number.isFinite(confirmedQuantity) || confirmedQuantity < 0) {
+    window.alert("Merci d'entrer une quantité valide.");
+    return;
+  }
+
+  const finalQuantity = Number(confirmedQuantity.toFixed(3));
+
+  if (order.itemMode === "existing" && order.inventoryItemId) {
+    const item = items.find(entry => entry.id === order.inventoryItemId);
+    if (!item) {
+      window.alert("L'article lié dans l'inventaire est introuvable.");
+      return;
+    }
+
+    item.quantity = Number((Number(item.quantity) + finalQuantity).toFixed(3));
+  } else if (order.newItemData) {
+    const newItem = {
+      id: `itm-${Date.now()}`,
+      ...order.newItemData,
+      quantity: finalQuantity
+    };
+
+    items.unshift(newItem);
+    order.inventoryItemId = newItem.id;
+  } else {
+    window.alert("Impossible d'ajouter cette commande à l'inventaire.");
+    return;
+  }
+
+  order.receivedQuantity = finalQuantity;
+  order.addedToInventory = true;
+  order.addedToInventoryQuantity = finalQuantity;
+  order.addedToInventoryAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
+  order.addedToInventoryAtRaw = new Date().toISOString();
+
+  addHistory(
+    "Ajout à l'inventaire",
+    `${currentName} a ajouté ${finalQuantity} ${unit} de ${order.itemName} à l'inventaire.`
+  );
+
+  receiveInventoryDialog.close();
   persist();
   render();
 }
@@ -1901,6 +2061,24 @@ function closeOrdersHistory() {
 
 function formatOrderHistoryDate(value) {
   return value ? escapeHtml(value) : "—";
+}
+
+function getOrderUnit(order) {
+  const linkedItem = order.inventoryItemId
+    ? items.find(entry => entry.id === order.inventoryItemId)
+    : null;
+
+  return linkedItem?.unit || order.newItemData?.unit || "";
+}
+
+function formatOrderHistoryQuantity(order) {
+  const unit = getOrderUnit(order);
+
+  if (order.addedToInventoryQuantity !== undefined && order.addedToInventoryQuantity !== null && order.addedToInventoryQuantity !== "") {
+    return `Quantité ajoutée à l'inventaire : ${order.addedToInventoryQuantity} ${unit}`.trim();
+  }
+
+  return `Quantité demandée : ${order.requestedQuantity ?? "—"} ${unit}`.trim();
 }
 
 function renderOrdersHistory() {
@@ -1969,7 +2147,7 @@ function renderOrdersHistory() {
                 <div class="order-history-table-row">
                   <div class="order-history-product">
                     <strong>${escapeHtml(order.itemName)}</strong>
-                    <span>Quantité demandée : ${escapeHtml(String(order.requestedQuantity ?? "—"))}</span>
+                    <span>${escapeHtml(formatOrderHistoryQuantity(order))}</span>
                   </div>
                   <div>${formatOrderHistoryDate(order.requestedAt || order.createdAt)}</div>
                   <div>${formatOrderHistoryDate(order.orderedAt)}</div>

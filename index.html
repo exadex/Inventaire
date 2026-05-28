@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Inventaire</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
     <link rel="stylesheet" href="design.css" />
   </head>
   <body>
@@ -456,6 +455,42 @@
         <div class="modal-actions">
           <button class="ghost-btn" type="button" id="cancelOrderBtn">Annuler</button>
           <button class="primary-btn" id="saveOrderBtn" type="button">Ajouter à la liste</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="receiveInventoryDialog" class="modal">
+      <form id="receiveInventoryForm" method="dialog" novalidate>
+        <div class="modal-header">
+          <div>
+            <h3>Ajouter à l'inventaire</h3>
+            <p>Confirmez la quantité reçue avant l'ajout au stock.</p>
+          </div>
+          <button id="closeReceiveInventoryDialogBtn" class="icon-btn" type="button" aria-label="Fermer">✕</button>
+        </div>
+
+        <div class="stock-summary">
+          <strong id="receiveInventoryItemName">—</strong>
+          <span id="receiveInventoryRequestedText">Quantité demandée : —</span>
+        </div>
+
+        <input id="receiveOrderId" type="hidden" />
+
+        <div class="form-grid">
+          <label>
+            Quantité à ajouter
+            <input id="receiveQuantity" type="number" min="0" step="0.001" required />
+          </label>
+
+          <label>
+            Unité
+            <input id="receiveUnit" type="text" readonly />
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button id="cancelReceiveInventoryBtn" class="ghost-btn" type="button">Annuler</button>
+          <button id="confirmReceiveInventoryBtn" class="primary-btn" type="button">Confirmer</button>
         </div>
       </form>
     </dialog>

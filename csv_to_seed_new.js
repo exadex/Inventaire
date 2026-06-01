@@ -171,6 +171,73 @@ function getRowValue(row, key) {
   return "";
 }
 
+function getHeaderIndex(headers, key) {
+  const aliases = csvFieldAliases[key] || [key];
+
+  for (const alias of aliases) {
+    const normalized = normalizeHeaderName(alias);
+    const index = headers.indexOf(normalized);
+    if (index !== -1) return index;
+  }
+
+  return -1;
+}
+
+function parseCsvTextToSeedItems(csvText) {
+  const lines = csvText
+    .split("\n")
+    .map(line => line.trimEnd())
+    .filter(line => line.trim() !== "");
+
+  if (lines.length < 2) {
+    throw new Error("El CSV parece vacío o solo tiene cabecera.");
+  }
+
+  const delimiter = detectDelimiter(csvText);
+  const rawHeaders = parseDelimitedLine(lines[0], delimiter).map(cleanCsvValue);
+  const headers = rawHeaders.map(normalizeHeaderName);
+
+  const importantKeys = [
+    "category",
+    "tags",
+    "name",
+    "notes",
+    "quantity",
+    "location",
+    "referenceNotes",
+    "reference",
+    "supplier",
+    "price",
+    "unitPrice",
+    "minStock",
+    "link",
+    "leadTime"
+  ];
+
+  if (getHeaderIndex(headers, "name") === -1) {
+    throw new Error('Falta la columna obligatoria "Nom" / "Name".');
+  }
+
+  const rows = lines.slice(1).map((line) => {
+    const values = parseDelimitedLine(line, delimiter);
+    const row = {};
+
+    importantKeys.forEach((key) => {
+      const index = getHeaderIndex(headers, key);
+      if (index === -1) return;
+
+      const matchedHeader = headers[index];
+      row[matchedHeader] = cleanCsvValue(values[index] || "");
+    });
+
+    return row;
+  });
+
+  return rows
+    .filter(row => !shouldSkipCsvRow(row))
+    .map((row, index) => buildItemFromCsvRow(row, index));
+}
+
 // Devuelve true si parece una URL real usable en href.
 function isLikelyUrl(value) {
   const raw = normalizeSpaces(value);
@@ -230,7 +297,14 @@ function inferUnitFromRow(row) {
 function buildNotesFromCsv(row) {
   const notes = normalizeSpaces(getRowValue(row, "notes"));
   if (!notes) return "";
-  if (isPureTechnicalNote(notes)) return "";
+
+  const isConditionnementValue = /^\d+(?:[.,]\d+)?\s*[a-zA-Zµμ]+?$/.test(notes) ||
+    /^\d+(?:[.,]\d+)?$/.test(notes);
+
+  if (isConditionnementValue) {
+    return `Conditionnement : ${notes}`;
+  }
+
   return notes;
 }
 
@@ -613,128 +687,122 @@ function migrateItems(list) {
   });
 }
 
-// Parsea el CSV completo y devuelve seedItems listos.
-function parseCsvTextToSeedItems(csvText) {
-  const lines = csvText
-    .split("\n")
-    .map(line => line.trimEnd())
-    .filter(line => line.trim() !== "");
-
-  if (lines.length < 2) {
-    throw new Error("El CSV parece vacío o solo tiene cabecera.");
-  }
-
-  const delimiter = detectDelimiter(csvText);
-  const rawHeaders = parseDelimitedLine(lines[0], delimiter).map(cleanCsvValue);
-  const headers = rawHeaders.map(normalizeHeaderName);
-
-  const rows = lines.slice(1).map((line, lineIndex) => {
-    const values = parseDelimitedLine(line, delimiter);
-    const row = {};
-
-    headers.forEach((header, i) => {
-      row[header] = cleanCsvValue(values[i] || "");
-    });
-
-    if (values.length !== headers.length) {
-      console.warn(`Fila ${lineIndex + 2}: columnas esperadas=${headers.length}, columnas leídas=${values.length}`, {
-        line,
-        values
-      });
-    }
-
-    return row;
-  });
-
-  return rows
-    .filter(row => !shouldSkipCsvRow(row))
-    .map((row, index) => buildItemFromCsvRow(row, index));
-}
 
 // Pega aquí tu bloque CSV o texto copiado desde Excel.
-const csvText = `
- Catégories 	 Tags 	 Nom 	 Notes 	 Quantité 	 Localisation 	Effacer	Notes référence	Référence	 Fournisseur 	Prix 	Prix Unitaire	Seuil minimum	Lien	Effacer2	Effacer3	Délais livraison
-Procédé ExAdEx L2	 Bouchon 	 Bouchon BD Luer - Lok™ avec protection mâle/femelle 	100	1	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	394075B	 Dutscher 	13,1	0,166	0	https://www.dutscher.com/article/394075B			
-Procédé ExAdEx L2	 Seringue luer lock 	 Seringue BD 3P 20 ml Cone luer Lock  	120	2,5	 Bureau ,  Culture L2 	L2	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	100081	 bastide 	38	0,316666667	NC	https://www.bastideleconfortmedical.com/seringues-3-pieces-20-ml-bd-plastipak-cone-luer-lock-100081.html	.		
-Procédé ExAdEx L2	 Tulipe 	 REDUCTEUR SU 1.2MM 	20	6	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	FD0000000-LLF24	 Aestetic group 	46	2,3	 2 boites	https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/527-raccord-d-emulsion-de-graisse-fll-o-12mm-x20.html	13/10/2022	1Boite pour 20 prélèvements	
-Procédé ExAdEx L2	 Tulipe 	 REDUCTEUR SU 1.4MM 	20	5	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	FD0000000-LLF14	 Aestetic group 	46	2,3	2 boites	https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/526-raccord-d-emulsion-de-graisse-fll-o-14mm-x20.html	13/10/2022	1Boite pour 20 prélèvements	
-Procédé ExAdEx L2	 Tulipe 	 REDUCTEUR SU 2.4MM 	20	6	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	FD0000000-LLF12	 Aestetic group 	46	2,3	2 boites	https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html	13/10/2022	1Boite pour 20 prélèvements	
-Procédé ExAdEx L2	 Coating ULA 	 biocoating flask ula 	 60ml 	3	 Culture L1 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	F202005	 faCellitate 	60	1e/ml	1	faCellitate – BIOFLOAT™ FLEX coating solution [F202005] for 3D cell culture	27/03/2023		10 jours
-Procédé ExAdEx L2	 Flask ULA T25 	  T25 Flask non traitée future ULA 	200	0,5	 bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	CNA6-1	 Roth/greiner bio 	116	0,58	1		28/02/2023		
-Procédé ExAdEx L2	 Plaque 6 ula 	 Plaque Corning 6 puits ULA  	24	5,5	 bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3471	 Dutscher 	339		1	https://www.dutscher.com/article/003471			
-Procédé ExAdEx L2	ACL	ACL -eBioscience™ 10X RBC Lysis Buffer (Multi-species) 50 ml	50mL	2	Culture L2 ,  frigo Culture L1		NA71 : Sérum et autre milieu pour culture cellulaire animale	00-4300-54	ThermoFischer 	62		1	https://www.thermofisher.com/order/catalog/product/00-4300-54?SID=srch-srp-00-4300-54	recu		
-Procédé ExAdEx L2	Antibiotique	 Pour milieu + PBS ? Chercher REF  		2												
-Procédé ExAdEx L2	Antifongique	Amphotericin B solution	50mg	1	 Chambre froide 		NA76 Antibiotiques Pour Culture Cellulaire	0,28	Sigma	287	5,75		https://www.sigmaaldrich.com/FR/fr/substance/amphotericinbsolution924081397893	.		
-Procédé ExAdEx L2	Antibiotique	Gibco™ Gentamicine (50 mg/ml)	20ml	2	 Culture L1 , Culture L2 		NA76 Antibiotiques Pour Culture Cellulaire	11520506	thermofischer 	220	11		https://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506	reçu 05/23		
-Procédé ExAdEx L2	Antibiotique	0,5	10ml	0,5	Culture L2		NA76 Antibiotiques Pour Culture Cellulaire	15710064	Life tech	16,11	1,5					
-Procédé ExAdEx L2	Antifongique	Amphotéricine B, MP Biomedicals	100mg				NA76 Antibiotiques Pour Culture Cellulaire	17660917	fischer	90,9			https://www.fishersci.fr/shop/products/amphotericin-b-mp-biomedicals-5/17660917?change_lang=true			
-Procédé ExAdEx L2	Antifongique	Invivogen FUNGIN 75 MG (10 MG/ML)	75mg	1,5	 -20°C blanc labo 		NA76 Antibiotiques Pour Culture Cellulaire	ant-fn-1	invivogen	148			https://www.fishersci.com/shop/products/fungin-75-mg-10-mg-ml/NC9326704			
-Procédé ExAdEx L2	Antifongique	Caspofongin Diacetate	5mg	1	Culture L1		NA76 Antibiotiques Pour Culture Cellulaire	SML0425-5MG	Merck	112			https://www.sigmaaldrich.com/FR/fr/substance/caspofungindiacetate121342179463173			
-Procédé ExAdEx L2	Antibiotique	Primocin	250mg	4	-20°C blanc labo		NA76 Antibiotiques Pour Culture Cellulaire	ant-pm-05	invivogen	119			https://www.invivogen.com/primocin			
-Procédé ExAdEx L2	Milieu EGM	Endothelial Cell Growth Medium 2	500ml	4	figo labo culture	Milieu + suppléments	NA71 : Sérum et autre milieu pour culture cellulaire animale	C-22011	Promocell	153,85		1	https://promocell.com/product/endothelial-cell-growth-medium-2/	22/03/2023		15 jours
-Procédé ExAdEx L2	Milieu EGM	SupplementMix / Endothelial   Cell Growth Medium 2	500ml	4	Congèl labo culture		NA71 : Sérum et autre milieu pour culture cellulaire animale	  C-39216	Promocell	50,85	2	1	https://promocell.com/product/endothelial-cell-growth-medium-2/	22/03/2023		15 jours
-Procédé ExAdEx L2	 Bouchon 	 BD luer lock caps 	50	2	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	BD 408531	 termofischer 	130	2,6	nc	https://www.fishersci.com/shop/products/bd-luer-lok-caps/1482331	.		
-Procédé ExAdEx L2	 Bouchon 	 BD Luer-Lok™ cap with membrane latex-free 	100	 s 	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	394074		34	0,34	NC	https://www.dutscher.com/article/394074	.		
-Procédé ExAdEx L2	 Bouchon 	 Bouchon ler lock  st 	200	 s 	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	394080	 ThermoFischer  	50	0,25	NC	https://www.fishersci.fr/shop/products/x200-bouchons-luer-lock-st/16654462#?keyword=394080	.	1 bouchon par prélèvement=1 commande 100 prélèvement	
-Procédé ExAdEx L2	 Bouchon 	 Bouchon Luer Lock (MC1711) 	100	 s 	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques			77	0,77	NC	https://www.aestheticgroup.fr/en/caps/125-luer-lock-cap-mc1711.html?search_query=FD0001711-MC&results=1	.		
-Procédé ExAdEx L2	 Bouchon 	 bouchon seringue violet Enfit 20 ml *300 	200	 s 	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	EF000	 Bexen medical 	25	0,125	2  boites	https://www.bexenmedical.com/fr/materiel-medical/seringues-enfit	19/10/2022		
-Procédé ExAdEx L2	 celldisc 	 sdv 	 ECHANTILLON 	 ECHANTILLON 			NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	678101	 Greiner bio  	ECHANTILLON	ECHANTILLON	NC	https://shop.gbo.com/fr/france/products/bioscience/mass-cell-culture/bs-celldisc/celldisc-tc-und-advanced-tc/678101.html?sword_list%5B0%5D=678101&no_cache=1&_ga=2.265742541.314801138.1677662655-627813974.1674230259	.		
-Procédé ExAdEx L2	 celldisc 	 CELLDISC, 4 LAYER, 1000 CM², PS, CLEAR, TC, STANDARD SCREW CAP RED, STERILE 	 ECHANTILLON 	 ECHANTILLON 			NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	678104	 Greiner bio  	ECHANTILLON	ECHANTILLON	NC		.		
-Procédé ExAdEx L2	 Blouse  	 Blouse jetable X30 IC 270B WS Labcoat LG (Sterile­only, Double bag) 	30				NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques		 Fisher scientific 	198						
-Procédé ExAdEx L2	 Blouse  	 Blouse jetable ENDO protectlab taille XL  	50	 x 	 Culture L1, Culture L2 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques				0	échantillon	https://www.labotienda.com/fr/produits-laboratoire/blouse-jetable-taille-xl-blanche-1-pc/	.		
-Procédé ExAdEx L2	 Flask cell repelent 	 CELL CULTURE FLASK, 250 ML, 75 CM², PS, CLEAR, CELLSTAR®, CELL-REPELLENT SURFACE, WHITE FILTER SCREW CAP 	 ECHANTILLON 	 ECHANTILLON 			NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	658985	 Greiner bio  	ECHANTILLON	ECHANTILLON	échantillon	https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/support-de-culture-cellstar-cell-repellent-surface/flacons-surface-cell-repellent/658985.html?sword_list%5B0%5D=658985&no_cache=1&_ga=2.197454317.314801138.1677662655-627813974.1674230259	.		
-Procédé ExAdEx L2	 Flask culture suspension 	 Flacon pour culture en suspension, 250ml, PS,bch vissant avec filtre blanc, transparent, CELLSTAR 	 ECHANTILLON 	 ECHANTILLON 			NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	réf 658195	 Greiner bio  	ECHANTILLON	ECHANTILLON	échantillon	https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/flacons-cellstar/flacons-pour-culture-en-suspension/658195.html?sword_list%5B0%5D=658195&no_cache=1&_ga=2.268338764.314801138.1677662655-627813974.1674230259	.		
-Procédé ExAdEx L2	 Flask culture suspension 	 Plaque multi puits culture suspension, 24 puits 	 ECHANTILLON 	 ECHANTILLON 			NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	662102	 Greiner bio  	ECHANTILLON	ECHANTILLON	échantillon	https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/plaques-multi-puits-cellstar/657185.html?sword_list%5B0%5D=657185&no_cache=1&_ga=2.261006799.314801138.1677662655-627813974.1674230259	.		
-Procédé ExAdEx L2	 Flask culture suspension 	 Plaque multi puits culture suspension, 6 puits 	 ECHANTILLON 	 ECHANTILLON 			NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	657185	 Greiner bio  	ECHANTILLON	ECHANTILLON	échantillon		.		
-Procédé ExAdEx L2							NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques									
-Procédé ExAdEx L2	 Flask ULA T25 	 T 25 cm²FLACON DE CULTURE  ULA  COL u INCLINÉ BOUCHON VENTILÉ STÉRILE. 	25		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	004616B	 Dutscher 	300	12	NC	https://www.dutscher.com/article/004616B	.		
-Procédé ExAdEx L2	 Flask ULA T25 	 T25cm FLACON DE CULTURE  ULA VENTILE STERILE x5x2 	10				NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	330193		120	12	Ref -		10/10/2022		
-Procédé ExAdEx L2	 Flask ULA T25  	 T25cm FLACON DE CULTURE  ULA RECTANGLE  COL INCLINE BOUCHON VENTILE STERILE x5x5 	25		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	4616+	 Dutscher 	64,25	2,57	0,5	https://www.carlroth.com/fr/fr/bouteilles-assiettes-plats-pour-culture-cellulaire/flacons-pour-culture-suspension-cellstar-bouchon-a-vis-avec-filtre/p/cna6.1	16/12/2022		
-Procédé ExAdEx L2	 Flask ULA T75 	 T 75cm²FLACON DE CULTURE  ULA  COL INCLINÉ  u BOUCHON VENTILÉ STÉRILE. x6 x4 		1	 Bureau, réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	174951	 ThermoFischer  		#DIV/0!	1		.		
-Procédé ExAdEx L2	 Plaque 24 ula 	 Plaque 24 puits, Repellent, avec LID, stérile 	 ECHANTILLON 	 ECHANTILLON 			NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	662970	 Greiner bio  	ECHANTILLON	ECHANTILLON	échantillon	https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/support-de-culture-cellstar-cell-repellent-surface/microplaques-surface-cell-repellent/657970.html?sword_list%5B0%5D=657970&no_cache=1&_ga=2.29147902.314801138.1677662655-627813974.1674230259	.		
-Procédé ExAdEx L2							NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques									
-Procédé ExAdEx L2	 Robinet 	 3 voie seuls 			 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	92831				NC		.		
-Procédé ExAdEx L2	 Robinet 	 3 voies seuls, rotation 360° (boite de 100) 	100		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	70334 ou 92831	 distrimed 	50	0,5	NC	https://www.distrimed.com/product_info.php?products_id=8067	.		
-Procédé ExAdEx L2	 Robinet 	 Robinet Blanc 3 voies BD Connecta - Boîte de 100 	100		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	ROB600	 robé médical 	42	0,42	NC	https://www.robe-materiel-medical.com/Robinet-3-voies-BD-Connecta-ROB600-materiel-medical.htm	.		
-Procédé ExAdEx L2	 Robinet luer  	 Robinet 3 voies luer lock  	300		 Réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	1104,19	 bexen medical 	55	0,183333333	4	https://www.bexenmedical.com/fr/materiel-medical/robinet-luer-lock	19/10/2022		rapide
-Procédé ExAdEx L2	 Seringue 	 Seringue 1ml soft jet  	100		 réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	5010	 Honke sass Wolf 	125	1,25	3	https://www.henkesasswolf.de/en/search/?tx_indexedsearch_pi2%5Baction%5D=search&tx_indexedsearch_pi2%5Bcontroller%5D=Search&cHash=492a628381d5a9e4d38274fe2b890249	.		
-Procédé ExAdEx L2	 Seringue 	 Seringue non luer lock  	50		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	  	 Dutscher 	11	0,22	NC	https://www.dutscher.com/article/050833	.		
-Procédé ExAdEx L2	 Seringue 10 ml 	 Seringue 10ml 	10		 réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	5100-000V0	 Honke sass Wolf 	125	12,5	1	https://www.henkesasswolf.de/en/search/?tx_indexedsearch_pi2%5Baction%5D=search&tx_indexedsearch_pi2%5Bcontroller%5D=Search&cHash=492a628381d5a9e4d38274fe2b890249	.		
-Procédé ExAdEx L2	 Seringue 	 Seringue 10ml 	100	3	 Culture 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	50008	 Terumo 	30	0,3	2		07/07/2022		
-Procédé ExAdEx L2	 Seringue 100ml 	 Seringue 100ml  	100	 - 	 réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	SS+01EH1	 Terumo 	34,7	0,347	1	https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB	.		
-Procédé ExAdEx L2	 Seringue luer lock 	 Seringue BD 3P 20 ml Cone luer Lock  	120	2,5	 Bureau ,  Culture L2 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	300629	 Aestetic group 	70	0,583333333	3	https://www.aestheticgroup.fr/fr/recherche?controller=search&orderby=position&orderway=desc&search_query=300629&submit_search=	.		
-Procédé ExAdEx L2	 Seringue luer lock 	 SERINGUE BD PLASTIPAK 3 PCS 20ml LUER LOCK STERILE GAMMA x192 	192		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	302830	 Dutscher 	121	0,630208333	3	https://www.dutscher.com/article/302830	15/11/2022		1 mois
-Procédé ExAdEx L2	 Seringue luer lock 	 Seringue Enfit 20 ml Luer lock  	300		 Bureau, réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	EF020	 Bexen medical 	75	0,25	8	https://www.bexenmedical.com/fr/materiel-medical/seringues-enfit	19/10/2022		
-Procédé ExAdEx L2	 Seringue luer lock 	 Seringues 3 pièces luer lock 20 ml / bte de 50 	120		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	SLL20	 robé médical 	60,47	0,503916667	NC	https://www.robe-materiel-medical.com/Seringues-3-pieces-NIPRO-Luer-Lock-Boite-de-100-SLL20-materiel-medical.htm	.		
-Procédé ExAdEx L2	 Seringue luer lock 	 Seringue luer lock  50 mL 	25	1	 Reserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	15349067	 ThermoFischer  	30	0	1	https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB	.		
-Procédé ExAdEx L2	 Seringue luer lock 	 Seringues 3 pièces Luer Lock Euromedis*50 	10		 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	12713MED / 90357MED	 materiel medical  	50	5	NC	https://www.materielmedical.fr/4727-seringues-3-pieces-luer-lock-euromedis.html	.		
-Procédé ExAdEx L2	 Tamis/ Filtre 	 Filtre - tamis cellulaire Pluristrainer. Porosité 60 	25	 - 	 Réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	149195	 Dutscher 	180	7,2	2	https://www.dutscher.com/article/149195	.		
-Procédé ExAdEx L2	 Tamis/ Filtre 	 filtre 0,22 13mm 	50				NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	257240	 dutscher 	40	0,8	ref- 		31/07/2022		
-Procédé ExAdEx L2	 Tamis/ Filtre 	 filtre 0,22 33mm 	50	3	 Culture L1 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	257160	 dutscher 	40	0,8	ref- 		31/07/2022		
-Procédé ExAdEx L2	 Tamis/ Filtre 	 filtre 0,45 	50	1	 Réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques		 starstedt 	180		2	UGAP			
-Procédé ExAdEx L2	 Tamis/ Filtre 	 Tamis 100 	50	0,5	 Réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	352360	 servilab 	100*		1				
-Procédé ExAdEx L2	 Tamis/ Filtre 	 Tamis 70 	50	0,5	 Réserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	352350	 servilab 	100*						
-Procédé ExAdEx L2	 Tamis/ Filtre 	 Tamis 40 	50	2	 Reserve 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	352340	 servilab 	100*						
-Procédé ExAdEx L2	 Filtre 	Filtre, non stérile, 60 mm Ø, 0,45 µm	1	 - 			VA.03	391-2093	 vwr 	20						
-Procédé ExAdEx L2	 Tulipe 	 REDUCTEUR SU 1.2MM 	24	 nc 	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	CGTU DAT4L1.2MM	 Benewmedical 		0	NC		.		
-Procédé ExAdEx L2	 Tulipe 	 REDUCTEUR SU 1.4MMref 		 nc 	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	CGTU DAT4L1.4MM	 Benewmedical 			NC		.		
-Procédé ExAdEx L2	 Tulipe 	 REDUCTEUR SU 2.4MM ref 		 nc 	 Bureau 		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	CGTU DAT4L2.4MM	 Benewmedical 			NC		.		
-Procédé ExAdEx L2																
-Procédé ExAdEx L2	Antibiotique	pen/strep stock	100Ml	6	5			15140122	thermofischer	10	0,1		https://www.thermofisher.com/order/catalog/product/15140122?SKULINK	28/02/2023		1mois
-Procédé ExAdEx L2																
-Procédé ExAdEx L2	 lame chirurgicale  	Lame chirurgicale n° 23 pour bistouri	100	3	 Culture L1 		NB.16 / 90189084	764315	 Dutscher 							
-Procédé ExAdEx L2																
-Procédé ExAdEx L2	 Gants L2 verts 	 Gants L2 - taille L 		1			HA.01									
-Procédé ExAdEx L2	 Gants L2 verts 	 Gants L2 - taille M 		1			HA.01									
-Procédé ExAdEx L2	 Gants L2 verts 	 Gants L2 - S 	150	6			HA.01	065745B	 Dutscher 	16,47						
-Procédé ExAdEx L2	 Gants L2 verts 	 Gants L2 - XS 	150	4			HA.01	065744B	 Dutscher 	16,47						
-Procédé ExAdEx L2	 Gants bleus 	 Gants - taille XS 	100	3			HA.01	65927	 Dutscher 	4,3						
-Procédé ExAdEx L2	 Gants bleus 	 Gants - taille S 	100	6			HA.01	65928	Dutscher	5,8						
-Procédé ExAdEx L2	 Gants bleus 	 Gants - taille M 	100	5			HA.01		Dutscher							
-Procédé ExAdEx L2	 Gants bleus 	 Gants - taille L 	100	4			HA.01		Dutscher							
-Procédé ExAdEx L2	 Gants oranges 	 Gants orange S 	50	2			HA.01	65706	Dutscher	24,3						
-Procédé ExAdEx L2	 Congelation 	 DMSO 	 500mL 	2	Culture L1			D4540	Merck Sigma	120						
-
+const csvText = `Catégorie	 Tags 	 Nom 	 Notes 	 Quantité 	 Localisation 	Notes référence	Référence	 Fournisseur 	Prix 	Prix Unitaire	Seuil minimum	Lien	Délais livraison
+Culture Cell	Agarose	Agarose low gelling temperature Bioreagent Sigma 10G	100g	15mL (falcon) + 10g neuf	placard floricia		A9045	Sigma	118	0,23	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/a9045	
+Culture Cell	Agarose	Agarose Bioreagent for molecular biology	100g	1,00	Placard produits chimiques		A9539	Merck	110,6				
+Culture Cell	Agarase	Agarase from pseudomonas atlantica Sigma	100g	1,00	placard produit chimique		A6306	Sigma	141	0,28/ml	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306	
+Culture Cell	Boite culture 2D	boite ø 60	500	0,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833901	starstedt	75	0,15	0,5	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3901/	
+Culture Cell	Boite culture 2D	Boîte C.C 100 mm, standard	300	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3902	starstedt	68,22	0,2274	0,5	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3903/	
+Culture Cell	Boite culture 2D	boite ø 150	100	0,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833902	starstedt	60	0,6	0,5	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3902/	
+Culture Cell	Boite culture 2D	boite ø 35	50	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833900	starstedt	73	1,5	0,5	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3900/	
+Culture Cell	BSA	BSA free fatty acid  25g	25g	3,00	port frigo labo en bas		A6003-25G	merck	450	18e/g		https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003	15 jours
+Culture Cell	Collagénase	Collagenase A from Clostridium histolycum (500mg) 	500mg	1,00	frigo salle culture		10103586001	Sigma Merck	305,76	0,64	0,5	https://www.sigmaaldrich.com/FR/fr/product/roche/collaro	15 jours
+Culture Cell	Accumax 	Accumax solution	100 ml	1,00	L2 Congel 		A7089-100ML	Sigma	200	2	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/a7089	
+Culture Cell	Trypsine	Trypsine 0,5 + EDTA 1X	100ml	5,00	congel grand labo		25300-054	thermofischer	59,3	0,59	1	https://www.thermofisher.com/order/catalog/product/25300054?SID=srch-hj-25300-054	
+Culture Cell	Collagénase	Collagénase A	10g	1,50	frigo labo culture		A6003-10G	Merck	200	20€/g		https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003	
+Culture Cell	BRL	Rosiglitazone BRL	50mg	NC		NA71 : Sérum et autre milieu pour culture cellulaire animale	R2408-50MG	Sigma	280	23	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/i7018	
+Culture Cell	T3	(T3) 3,3′,5-Triiodo-L-thyronine sodium Salt	100ml	NC		NA71 : Sérum et autre milieu pour culture cellulaire animale	T6397	Sigma	67	0,67	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/i7018	
+Culture Cell	BRL	Rosiglithazone BRL 49653 		NC	congèle salle de culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	49653						
+Culture Cell	DEX	Dexamethasone (PM : 392.46)	100mg	NC		NA71 : Sérum et autre milieu pour culture cellulaire animale	D4902	Sigma	75	0,75	1	https://www.sigmaaldrich.com/FR/fr/substance/dexamethasone3924650022?gclid=CjwKCAjw2K6lBhBXEiwA5RjtCdSCdJwZu2sP4yeAnOsKIbfaI-7aJ4e-wlrgmkCRX6qXiMlsfM0iXRoCKjgQAvD_BwE&gclsrc=aw.ds	
+Culture Cell	NAC	n-acetyl-L-cysteine	5G	NC	frigo salle de culture L1	NA71 : Sérum et autre milieu pour culture cellulaire animale	A7250	sigma 					
+Culture Cell	Insuline	Insuline, humain recombinant, zinc solution, 4mg/ml	5 ml 	NC	-20 pièce -80	NA71 : Sérum et autre milieu pour culture cellulaire animale	12585014	gibco	95	19€/ml			
+Culture Cell	Vascular network	18-beta Glycyrrhetinic Acid (Enoxolone)	10g	1,00	Placard Floricia	NA71 : Sérum et autre milieu pour culture cellulaire animale	G10105-10G 	Merck	110			https://www.sigmaaldrich.com/FR/fr/product/aldrich/g10105?srsltid=AfmBOoroOGL3FoP0JhXxnyyHi-JixsymSZPcTFBXkrrtczLwAoVEwUEe	
+Culture Cell	TGFb	Human TGFb1 recombinant protein peprotech	2ug	1,50	Congel gris labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	100-21-2ug	thermofischer	75	16	1	https://www.thermofisher.com/antibody/product/Human-TGF-beta-1-Recombinant-Protein/100-21-1MG	
+Culture Cell	Triacsin C	Triacsin C, acyl-CoA synthetase inhibitor	100µg	1,00	salle de culture congel tiroir 1	NA71 : Sérum et autre milieu pour culture cellulaire animale	ab141888	abcam	200	2€/µg		https://www.abcam.com/products/biochemicals/triacsin-c-acyl-coa-synthetase-inhibitor-ab141888.html?productWallTab=ShowAll	
+Culture Cell	Acide Ascorbique	Sodium L ascorbate	100g	1,00	placard culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	A4034-100G						
+Culture Cell	TNF	SB 10mM	10mG	1,00	-20 gris	NA71 : Sérum et autre milieu pour culture cellulaire animale	HB3555-10mg	hello bio 	200	20		https://hellobio.com/sb-431542.html	
+Culture Cell	PDGF-AB	5 μM 429 platelet-derived growth factor-AB (PDGF-AB, R&D Systems 10ug)	10ug	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	222-AB-010	RD system	245				
+Culture Cell	lysophosphatidic acid	5 μM lysophosphatidic acid (1mg // 3854/1) R&D systems	1mg	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	3854/1	RD system	89				
+Culture Cell	Semaglutide	Semaglutide	1mg	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	TA9H97BAEA07	Sigma	136				
+Culture Cell	Liraglutide	Liraglutide	5mg	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	SML3925-5mg	Merck	165				
+Culture Cell	Tirzepatide	Tirzepatide 	5mg	1,00	+4°C frigo labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	AABH9A95AC09	Sigma	198				
+Culture Cell	TNFa	Human TNFa recombinant protein peprotech	10ug	1,00	Congel gris labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	300-01A-10UG	thermofischer	75				
+Culture Cell	Celecoxib	Celecoxib	10mg	1,00	RT placard culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	3786/10	Tocris		191		https://www.tocris.com/products/celecoxib_3786	
+Culture Cell	Nintedanib	Nintedanib	10mg	2,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	7049/10	Tocris		91		https://www.tocris.com/products/nintedanib_7049	
+Culture Cell	Milieu DMEM	DMEM sans glucose (pour glucose uptake)	500mL	1,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	11966025	Thermofisher	18			DMEM, sans glucose	
+Culture Cell	Milieu DMEM	DMEM sans glu	500 ml		Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	D6046	Sigma	32	0,06	1		
+Culture Cell	Milieu DMEM	DMEM glutamax 1g/L	500 ml	5,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	21885-025	ThermoFischer 	16,5	0,006	3		Rapide
+Culture Cell	Milieu DMEM	DMEM glutamax 4,5g/l	500ml	24,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	31960-021		75,5	0,75	3		
+Culture Cell	Milieu DMEM	DMEM/F12 (1:1) W GLUT-I 500ML	DMEM/F12 (1:1) W GLUT-I 500ML	7,00	Frigo grand labo/chambre froide	NA71 : Sérum et autre milieu pour culture cellulaire animale	31331028	thermofischer	62			https://www.thermofisher.com/order/catalog/product/31331093?SID=srch-hj-31331093	
+Culture Cell	Milieu EGM	SupplementMix: Contains all media supplements premixed in one vial		11,00		NA71 : Sérum et autre milieu pour culture cellulaire animale	c-39216	Promocell	 56,50 € 	2,8	2	https://promocell.com/product/endothelial-cell-growth-medium-2/	
+Culture Cell	Milieu EGM	SupplementPack: Contains all media supplements as individual vials		6,00	Frigo grand labo/-20 grand labo (supp séparés)	NA71 : Sérum et autre milieu pour culture cellulaire animale	c-39211		 234,00 € 	23,4	1		
+Culture Cell	Milieu	Basal medium 2 (500ml) 	500ml	11,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	c-22211	Promocell	 140,00 € 	0,28	1	https://promocell.com/product/endothelial-cell-growth-medium-2/	
+Culture Cell	Milieu PBS	PBS		5,00	Frigo Labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	14190-094	thermofischer	23,4	1,15	2	https://www.thermofisher.com/order/catalog/product/14190094	rapide
+Culture Cell	Milieu PBS	PBS poche cytiva Sangamo (a aliquoter en stérile dans bouteilles 250mL  attention P/S)	5L	1,00	Chambre froide placard 								
+Culture Cell	Glutamax	Supplément GlutaMAX™	100ml	s	x		35050061	thermofischer	62			https://www.thermofisher.com/order/catalog/product/35050061	
+Culture Cell	Milieu EGM	Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix	500mL	2,00	Frigo grand labo/-20 grand labo (supp)		c-22011	Promocell	146	14,6	1	https://promocell.com/product/endothelial-cell-growth-medium-2/	
+Culture Cell	Milieu	3-Isobutyl-1-methylxanthine (IBMX)	250mg	NC			I7018-250MG	Sigma	250	1	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/d4902	
+Culture Cell	Milieu	RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES (pour lipolyse)	500mL	1,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	72400021	Thermofisher	25			RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES	
+Culture Cell	Pastette	Pipette stérile Pasteur 3 ml (a commander de preference)	1000	2,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	390513	Dutscher	52		1	https://www.dutscher.com/article/390513	
+Culture Cell	Pastette	Pipette 3,5 ml non stérile	200	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1171	starstedt	18,5	0,0925	1	Produit - Sarstedt	
+Culture Cell	Pastette	Pipette  Pasteur 3 ml ( ref de secours)	840	1,00	Réserve		86.1171.001	starstedt	73	0,086904762	1	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-de-transfert/produit/86.1171.001/	
+Culture Cell													
+Culture Cell	Pipette	Pipette  1 ml		0,25	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1251.001	starstedt	231		0,5	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1251.001/	
+Culture Cell	Pipette	Pipette 5 ml		3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1253.001	starstedt	310		0,5	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1253.001/	
+Culture Cell	Pipette	Pipette 10 ml	500	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1254.001	starstedt	179		1	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1254.001/	
+Culture Cell	Plaque 6 	Plaque 6 puits, standard, fond plat	500	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3920	starstedt	44,45	0,0889	1	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3920/	
+Culture Cell	Plaque 12	Plaque 12 Puits	50	3,00		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833921	starstedt	43				
+Culture Cell	Plaque 24	Plaque 24W fond plat	50	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3922	Sarstedt					
+Culture Cell	Plaque 48	Plaque 48 puits fond plats standart	1000	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3923	starstedt	55,2	0,0552	1	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3923/	
+Culture Cell	Plaque 96 	Plaque 96 puits  Standard, fond plat	100	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3924	starstedt	100	1	1	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3924/	
+Culture Cell	Plaque 6 puit ula	Plaque 6 puits ULA	24	5,50	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3471	Dutscher	248				
+Culture Cell	Plaque 6 puit ula	plaque 6 puit ULA	7	2,00	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	174932	thermofischer	123	17,57142857		https://www.thermofisher.com/order/catalog/product/174932?SKULINK	
+Culture Cell	 Plaque 24 ula 	 Plaque Corning 24 puits  ULA 	 24 	1,50	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3473	Dutscher	700	29,16666667	1	https://www.dutscher.com/article/003473	
+Culture Cell	 Plaque 96 ula 	 Plaque corning 96 puits ULA 	 24 	2,00	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	7007	Dutscher	700	29,16666667	2	https://www.dutscher.com/article/007007	
+Culture Cell	Eppendorf	Microtube 0,5ml	5000	3,00	Réserve	NB11	72,699	starstedt	61	0,0122	0,5		
+Culture Cell	Eppendorf	Microtube 1,5 ml	5000	2,00	Réserve	NB11	72,690,001	starstedt	50	0,01	2	https://www.sarstedt.com/fr/produits/laboratoire/microtubes-a-vis-tubes-a-reaction/tubes-a-reaction/produit/72.706/	
+Culture Cell	Eppendorf	Microtube 2ml	5000	2,00	Réserve	NB12	72 691	starstedt	70	0,014	0,5		
+Culture Cell		Microtube 1,7mL low adhesion	1000	1,00	L1	NB11	011720	dutscher	43				
+Culture Cell	Tube prelevement	contenant 120ml (bouteilles bouchon jaune)	250	1,5 cartons	L1		759922420	starstedt	74,8	0,2992	1		
+Culture Cell	CryotubeTube	Cryotubes 1,8 ml	50	3 boites	Réserve		72379006	starstedt	14	0,28	1		
+Culture Cell	Tube FACS	Falcon facs 5ml	500	0,00	Réserve		62526028	starstedt	72	0	1		
+Culture Cell	Tube FACS	falcon fac 15 ml	500	1,00	Réserve		352059	starstedt	215	0,43	1	ugap	
+Culture Cell	Falcon 15	Falcon 15	500 (50/sac)	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	62554502	starstedt	53		1	https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.554.502/	
+Culture Cell	Falcon 50	Falcon 50 	300 (25/sac)	5,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	62547254	starstedt	32	0	1	https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.547.254/	
+Culture Cell	Pointes	cones 1000µL non filtrés	10x500		Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703050	starstedt	46		2	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3050/	
+Culture Cell	Pointes	cones  1000µL non filtrés	500*5000	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	2869314	starstedt	45			https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12	rapide
+Culture Cell	Pointes	cones 200µL non filtrés	1000	5,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703030	starstedt	45		2	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3030/	
+Culture Cell	Pointes	cones 10µl non filtrés	480/b 1920/carton	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703010200	starstedt	45		2	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3010.200/	
+Culture Cell	Pointes	cones filtrés 1000µL	1920	1,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	2869323	starstedt	113				
+Culture Cell	Pointes	cones filtrés 200µL	1920		Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703031355	starstedt	80				
+Culture Cell	Pointes	cones filtrés 200µL	960/b	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	14220	Dutscher	155		2	https://www.dutscher.com/article/014220	
+Culture Cell	Pointes (référence ok)	cones filtrés 20uL	1920	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	70.3020.255	starstedt					
+Culture Cell	Pointes	cones filtrés 20uL	1920		Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3020255	starstedt	82				
+Culture Cell	Pointes	cones filtrés 20µL	5000	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	11963466	ThermoFischer 	555	0,111	2	https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-1/11963466	
+Culture Cell	Pointes (référence ok)	cones filtrés 10µL	1920	1,00	Reserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	70.3010.205	sarstedt	68,16	0,0355		https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.205/	
+Culture Cell	Cone multicanaux	cliptip 300 ext low retention 	960	1,00	bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	94410610	ThermoFischer 	55	0,057291667	1		
+Culture Cell	Décontamination	Biocidal ZF	6	6,00	Labo		ZF006	Biovalley 	480	79,33333333	1	https://www.biovalley.fr/desinfectant-mycoplasmes-pour-surfaces-2002/mycoplasma-off-surface-disinfection-347000036.html	
+Culture Cell	Décontamination	Phagospray	5L	0,50	Labo		972500	Dutscher	32,85				
+Culture Cell	Décontamination	Mycoplasma Off 1L	1	1,00	Labo		15-1000	Biovalley 	325	65	1	https://www.biovalley.fr/desinfectant-mycoplasmes-pour-surfaces-2002/mycoplasma-off-surface-disinfection-347000036.html	
+Culture Cell	Flask	T12 	840	S	Réserve			starstedt	51,24	0,061	1	ugap	
+Culture Cell	Flask	T25 	25	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3910.002		186	7,44	2	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3910.002/	
+Culture Cell	Flask	T25 	300	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	2582557	starstedt	170	0,566666667			
+Culture Cell	Flask	T75 		1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3814	starstedt	490		0,5	https://www.dutscher.com/article/003814	
+Culture Cell		Sac Kraft pour Dasri (conditionnement par 25)	25	2	Labo		PAP822GP002	Labo+	34,26				
+Culture Cell	Masque	Masque médical OP-AIR à élastiques Type II bleu	960			HA.02	475407	Dutscher	113,1	0,1178125			
+Culture Cell	Masque	Masque De Protection Respiratoire Jetable 3 plis	50			HA.02	911817	Labo Plus	1,02	0,0204			
+Culture Cell	Collagen matrix	Collagen from bovine achilles tendon 10g	10g	1,00			C9879-10G	Sigma	370	37	1	https://www.sigmaaldrich.com/FR/fr/product/roche/collaro	
+Culture Cell	Milieu	gelatine solution		1,00	Frigo grand labo							.	
+Culture Cell	Milieu	3dGRO Organoid Freeze medium	500 ml	1,00	Frigo labo		SCM301	Sigma	150	0,3	1		
+Culture Cell	Milieu	Azide 0,1M solution	1ml	0,50	Frigo labo		08591-1ML	Sigma	60	60			
+Culture Cell	Milieu	F10HAM	500 ml	1,00	Frigo grand labo		N6908	Sigma	121	0,24	1		
+Culture Cell	Milieu	Formoterol fumarate dihydrate	100mg	1,00			F9552-10 mg 	Sigma	67,7	0,67	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/f9552	
+Culture Cell	Milieu	herpes		5,00	Frigo grand labo		BEPP7-737E		130		1		
+Culture Cell	Milieu	L-glutamine		7,00	Frigo grand labo		BE17-605E	lonza	240		1		
+Culture Cell	Milieu	NA pyruvate	50 ml	2,00	Frigo grand labo				50,25	1			
+Culture Cell	Milieu	Sodium Acetate Solution 		2,00			71196-100 ml	Sigma	253		1	https://www.sigmaaldrich.com/FR/fr/product/sigma/71196	
+Culture Cell	Milieu MEM	MEM 100X		4,00	Frigo grand labo		M7145		293		1		
+Culture Cell	Milieu MEM	MEM nea 100X		6,00	Frigo grand labo		11140-035		293	29,3	1		
+Culture Cell	plaque 24 insert	insert culture plaque 24 puits 0,4µm		NC			353095	Dutscher	215				
+Culture Cell	plaque 24 insert	Plaque companion 24 puits 6,3µm		NC			353595	Dutscher	110				
+Culture Cell	Plaque 6 	Plaque 6 puits, Repellent, avec LID, stérile	 ECHANTILLON	échantillon			657970	Greiner bio 	 ECHANTILLON	 ECHANTILLON			
+Culture Cell	Plaque 96 	Plaque 96 puits applied OPTIQUE	20	1,00	Réserve		10407314	ThermoFischer 	200	10	0,5	https://www.fishersci.fr/shop/products/applied-biosystems-microamp-optical-96-well-reaction-plate-barcode-4/p-4918085	
+Culture Cell	Plaque 96 	 support de Plaque 96 puits applied Veriflex	10	1,00	Réserve		10361235	ThermoFischer 	120	12	0,5	https://www.fishersci.fr/shop/products/p/10361235	
+Culture Cell	repet tip	repet tip 1,25 mL	100	1,00	Réserve		F164530	gilson 	46	0,46	0,5		
+Culture Cell	 Tamis/ Filtre 	 filtre 0,22 	 50 	 Réserve 	 1 	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	SF13CA22S	 starstedt 	103	2,06	1	UGAP	1 tous les 3 mois
+		 petrie dish 100x100x20 carrée 				NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques							
 `;
 
 // Genera los seedItems y los copia al portapapeles.

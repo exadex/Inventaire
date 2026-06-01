@@ -1,3 +1,11 @@
+// extructura de la app :
+// seedBaseItems son los items base que vienen “de fábrica”, 
+// webItems son los items creados por ti desde la interfaz, 
+// seedOverrides guarda los cambios hechos sobre items base, 
+// y deletedSeedIds guarda qué items base has decidido borrar
+// Después, buildItems() junta esas cuatro capas y crea items, que es la lista final que realmente ve el usuario en pantalla, 
+// items es una “foto reconstruida”, no la fuente original
+
 const seedSamples = [
   ["PAT-AX41", "Abdominal", "2026-05-12", "Hypoxie 1% O2", "RNA-seq", "LN2 / Canister 2 / Box 17"],
   ["PAT-NQ08", "Facial", "2026-05-03", "Temoin ex vivo 24h", "Histologie", "Freezer -80C / Box H-03"],
@@ -64,10 +72,51 @@ const defaultHistory = [
   { date: "2026-05-16", user: "Ines", action: "Note modifiée", detail: "Anti-Perilipin A: dilution de travail confirmée." }
 ];
 
-const storedItems = migrateItems(load("exadex_items", load("adipovault_items", [])));
-const baseItems = migrateItems(seedItems);
+const seedBaseItems = migrateItems(seedItems).map(item => ({
+  ...item,
+  source: "seed"
+}));
 
-let items = mergeItems(baseItems, storedItems);
+let webItems = migrateItems(
+  load("exadex_web_items", load("adipovault_web_items", []))
+).map(item => ({
+  ...item,
+  source: "web"
+}));
+
+let seedOverrides = load(
+  "exadex_seed_overrides",
+  load("adipovault_seed_overrides", {})
+);
+
+let deletedSeedIds = load(
+  "exadex_deleted_seed_ids",
+  load("adipovault_deleted_seed_ids", [])
+);
+
+function buildItems() {
+  const deletedIds = new Set(deletedSeedIds);
+
+  const patchedSeedItems = seedBaseItems
+    .filter(item => !deletedIds.has(item.id))
+    .map(item => ({
+      ...item,
+      ...(seedOverrides[item.id] || {}),
+      source: "seed"
+    }));
+
+  const seedIds = new Set(patchedSeedItems.map(item => item.id));
+
+  const cleanWebItems = webItems
+    .filter(item => !deletedIds.has(item.id) && !seedIds.has(item.id))
+    .map(item => ({
+      ...item,
+      source: "web"
+    }));
+
+  return [...patchedSeedItems, ...cleanWebItems];
+}
+
 let orders = load("exadex_orders", defaultOrders);
 let experiments = migrateExperiments(load("exadex_experiments", defaultExperiments));
 let history = load("exadex_history", load("adipovault_history", defaultHistory));
@@ -298,8 +347,11 @@ function load(key, fallback) {
   }
 }
 
+// guarda en localStorage el estado actual de items, ordenes, experimentos, etc
 function persist() {
-  localStorage.setItem("exadex_items", JSON.stringify(items));
+  localStorage.setItem("exadex_web_items", JSON.stringify(webItems));
+  localStorage.setItem("exadex_seed_overrides", JSON.stringify(seedOverrides));
+  localStorage.setItem("exadex_deleted_seed_ids", JSON.stringify(deletedSeedIds));
   localStorage.setItem("exadex_orders", JSON.stringify(orders));
   localStorage.setItem("exadex_experiments", JSON.stringify(experiments));
   localStorage.setItem("exadex_history", JSON.stringify(history));
@@ -353,9 +405,8 @@ function restorePageScrollY(scrollY) {
 }
 
 function renderCategories() {
-  const selected = categoryFilter.value || "all";
   categoryFilter.innerHTML = `<option value="all">Toutes categories</option>${inventoryCategories.map(category => `<option>${escapeHtml(category)}</option>`).join("")}`;
-  categoryFilter.value = inventoryCategories.includes(selected) ? selected : "all";
+  categoryFilter.value = "all";
 }
 
 function renderCategoryOptions() {
@@ -440,22 +491,22 @@ function renderInventory() {
   const query = normalizeSearch(searchInput.value);
   const category = categoryFilter.value;
 
-  const filtered = items.filter((item) => {
-    const referenceText = itemReferencesText(item.references);
-    const haystack = normalizeSearch([
-      item.name,
-      ...getItemLocations(item),
-      item.category,
-      ...item.tags,
-      referenceText
-    ].join(" "));
+  const filtered = items
+    .filter(item => {
+      const referenceText = itemReferencesText(item.references);
+      const haystack = normalizeSearch([
+        item.name,
+        ...getItemLocations(item),
+        item.category,
+        ...item.tags,
+        referenceText
+      ].join(" "));
 
-    return (
-      (!query || haystack.includes(query)) &&
-      (statusFilter === "all" || itemStatus(item) === statusFilter) &&
-      (category === "all" || item.category === category)
-    );
-  });
+      return (!query || haystack.includes(query)) &&
+        (statusFilter === "all" || itemStatus(item) === statusFilter) &&
+        (category === "all" || item.category === category);
+    })
+    .sort((a, b) => getItemAddedTime(b) - getItemAddedTime(a));
 
   document.querySelector("#resultCount").textContent =
     `${filtered.length} résultat${filtered.length > 1 ? "s" : ""}`;
@@ -1485,11 +1536,15 @@ function openModal(id) {
 function saveItem() {
   if (!form.reportValidity()) return;
 
-  const id = fields.itemId.value || `itm-${Date.now()}`;
   const selectedLocations = getSelectedLocations();
+  const existingId = fields.itemId.value.trim();
+
+  const existingItem = existingId
+    ? items.find(entry => entry.id === existingId)
+    : null;
 
   const item = {
-    id,
+    id: existingId || `web-${Date.now()}`,
     name: fields.name.value.trim(),
     category: fields.category.value.trim(),
     quantity: Number(fields.quantity.value),
@@ -1500,19 +1555,32 @@ function saveItem() {
     location: selectedLocations[0] || "",
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
     notes: fields.notes.value.trim(),
-    references: getItemReferences()
+    references: getItemReferences(),
+    createdAtRaw: existingItem?.createdAtRaw || new Date().toISOString(),
+    createdAt: existingItem?.createdAt || new Intl.DateTimeFormat("fr-FR", {
+      dateStyle: "short",
+      timeStyle: "short"
+    }).format(new Date())
   };
 
-  const index = items.findIndex(entry => entry.id === id);
+  const isSeedItem = seedBaseItems.some(entry => entry.id === item.id);
+  const webIndex = webItems.findIndex(entry => entry.id === item.id);
 
-  if (index >= 0) {
-    items[index] = item;
+  if (isSeedItem) {
+    seedOverrides[item.id] = {
+      ...(seedOverrides[item.id] || {}),
+      ...item
+    };
+    addHistory("Item modifié", `${currentName} a modifié ${item.name}.`);
+  } else if (webIndex >= 0) {
+    webItems[webIndex] = { ...item, source: "web" };
     addHistory("Item modifié", `${currentName} a modifié ${item.name}.`);
   } else {
-    items.unshift(item);
+    webItems.unshift({ ...item, source: "web" });
     addHistory("Item ajouté", `${currentName} a ajouté ${item.name} dans ${item.category}.`);
   }
 
+  items = buildItems();
   persist();
   dialog.close();
   render();
@@ -1534,8 +1602,110 @@ function openStockModal(id) {
   stockDialog.showModal();
 }
 
+function isSeedItemId(id) {
+  return seedBaseItems.some(item => item.id === id);
+}
+
+function deleteItem() {
+  const id = fields.itemId.value;
+  const item = items.find(entry => entry.id === id);
+  if (!item) return;
+
+  if (isSeedItemId(id)) {
+    if (!deletedSeedIds.includes(id)) {
+      deletedSeedIds.push(id);
+    }
+    delete seedOverrides[id];
+  } else {
+    webItems = webItems.filter(entry => entry.id !== id);
+  }
+
+  items = buildItems();
+
+  addHistory("Item supprimé", `${currentName} a supprimé ${item.name} de l'inventaire.`);
+  persist();
+  dialog.close();
+
+  if (selectedItemId === id) {
+    selectedItemId = null;
+  }
+
+  render();
+}
+
+function patchStoredItem(id, patch) {
+  const current = items.find(entry => entry.id === id);
+  if (!current) return null;
+
+  const nextPatch = typeof patch === "function" ? patch(current) : patch;
+  if (!nextPatch || typeof nextPatch !== "object") return current;
+
+  if (isSeedItemId(id)) {
+    seedOverrides[id] = {
+      ...(seedOverrides[id] || {}),
+      ...nextPatch
+    };
+  } else {
+    const index = webItems.findIndex(entry => entry.id === id);
+
+    if (index >= 0) {
+      webItems[index] = {
+        ...webItems[index],
+        ...nextPatch,
+        source: "web"
+      };
+    } else {
+      webItems.unshift({
+        ...current,
+        ...nextPatch,
+        source: "web"
+      });
+    }
+  }
+
+  items = buildItems();
+  return items.find(entry => entry.id === id) || null;
+}
+
+// funcion para crear un nuevo item dentro de webItems a partir de datos, sin necesidad de pasar por el formulario, y que se añada directamente al inventario y se guarde en el historial
+function createStoredItem(itemData) {
+  const now = new Date();
+
+  const newItem = {
+    id: `itm-${Date.now()}`,
+    name: itemData.name?.trim() || "",
+    category: itemData.category?.trim() || inventoryCategories[0],
+    quantity: Number(itemData.quantity ?? 0),
+    unit: itemData.unit?.trim() || "",
+    minStock: Number(itemData.minStock ?? 0),
+    maxStock: Number(itemData.maxStock ?? 0),
+    locations: Array.isArray(itemData.locations)
+      ? itemData.locations
+      : itemData.location
+        ? [itemData.location]
+        : [],
+    location: Array.isArray(itemData.locations)
+      ? (itemData.locations[0] || "")
+      : (itemData.location || ""),
+    tags: Array.isArray(itemData.tags) ? itemData.tags : [],
+    notes: itemData.notes?.trim() || "",
+    references: normalizeReferences(itemData.references),
+    createdAtRaw: now.toISOString(),
+    createdAt: new Intl.DateTimeFormat("fr-FR", {
+      dateStyle: "short",
+      timeStyle: "short"
+    }).format(now),
+    source: "web"
+  };
+
+  webItems.unshift(newItem);
+  items = buildItems();
+  return items.find(entry => entry.id === newItem.id) || newItem;
+}
+
 function saveStockUpdate() {
   if (!stockForm.reportValidity()) return;
+
   const id = stockFields.stockItemId.value;
   const item = items.find(entry => entry.id === id);
   if (!item) return;
@@ -1554,14 +1724,18 @@ function saveStockUpdate() {
   }
 
   const title = stockFields.stockTitle.value.trim();
-  const previousQuantity = item.quantity;
-  item.quantity = Number(nextQuantity.toFixed(3));
+  const note = stockFields.stockNotes.value.trim();
+  const previousQuantity = Number(item.quantity);
+  const updatedItem = patchStoredItem(id, {
+    quantity: Number(nextQuantity.toFixed(3))
+  });
+
+  if (!updatedItem) return;
 
   const actionLabel = direction === "received" ? "reçu" : "pris";
-  const note = stockFields.stockNotes.value.trim();
   addHistory(
     "Stock mis à jour",
-    `${currentName} a ${actionLabel} ${amount} ${item.unit} pour ${item.name} (${title}). Stock: ${previousQuantity} -> ${item.quantity} ${item.unit}.${note ? ` Note: ${note}` : ""}`
+    `${currentName} a ${actionLabel} ${amount} ${updatedItem.unit} pour ${updatedItem.name} (${title}). Stock: ${previousQuantity} -> ${updatedItem.quantity} ${updatedItem.unit}.${note ? ` Note: ${note}` : ""}`
   );
 
   persist();
@@ -1735,6 +1909,7 @@ function consumeExperimentStock(id) {
   const experiment = experiments.find(entry => entry.id === id);
   if (!experiment) return;
   if (experiment.status === "completed") return;
+
   const summary = experimentStockSummary(experiment);
   if (!summary.ok) {
     addHistory("Consommation bloquée", `${currentName} a tente de consommer ${experiment.name}, mais le stock est insuffisant.`);
@@ -1742,28 +1917,28 @@ function consumeExperimentStock(id) {
     renderHistory();
     return;
   }
-  experiment.items.forEach(line => {
+
+  for (const line of experiment.items) {
     const item = findInventoryItem(line);
-    if (item) item.quantity = Number((Number(item.quantity) - Number(line.quantity || 0)).toFixed(3));
-  });
+    if (!item) continue;
+
+    const nextQuantity = Number(
+      (Number(item.quantity) - Number(line.quantity || 0)).toFixed(3)
+    );
+
+    patchStoredItem(item.id, {
+      quantity: nextQuantity
+    });
+  }
+
   experiment.status = "completed";
-  experiment.updatedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
+  experiment.updatedAt = new Intl.DateTimeFormat("fr-FR", {
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(new Date());
+
   addHistory("Experience consommée", `${currentName} a consommé le stock pour ${experiment.name}.`);
   persist();
-  render();
-}
-
-function deleteItem() {
-  const id = fields.itemId.value;
-  const item = items.find(entry => entry.id === id);
-  if (!item) return;
-  items = items.filter(entry => entry.id !== id);
-  addHistory("Item supprimé", `${currentName} a supprimé ${item.name} de l'inventaire.`);
-  persist();
-  dialog.close();
-  if (selectedItemId === id) {
-    selectedItemId = null;
-  }
   render();
 }
 
@@ -1913,64 +2088,6 @@ function moveOrderBackToOrdered(id) {
   renderHistory();
 }
 
-function addReceivedOrderToInventory(id) {
-  const order = orders.find(entry => entry.id === id);
-  if (!order || order.status !== "received") return;
-
-  const unit =
-    order.itemMode === "existing"
-      ? (items.find(entry => entry.id === order.inventoryItemId)?.unit || order.newItemData?.unit || "")
-      : (order.newItemData?.unit || "");
-
-  const defaultQuantity = Number(order.requestedQuantity || 0);
-
-  const answer = window.prompt(
-    `Quantité à ajouter à l'inventaire (${unit}) :`,
-    String(defaultQuantity)
-  );
-
-  if (answer === null) return;
-
-  const confirmedQuantity = Number(String(answer).replace(",", "."));
-
-  if (!Number.isFinite(confirmedQuantity) || confirmedQuantity < 0) {
-    window.alert("Merci d'entrer une quantité valide.");
-    return;
-  }
-
-  if (order.itemMode === "existing" && order.inventoryItemId) {
-    const item = items.find(entry => entry.id === order.inventoryItemId);
-    if (!item) {
-      window.alert("L'article lié dans l'inventaire est introuvable.");
-      return;
-    }
-
-    item.quantity = Number((Number(item.quantity) + confirmedQuantity).toFixed(3));
-  } else if (order.newItemData) {
-    const newItem = {
-      id: `itm-${Date.now()}`,
-      ...order.newItemData,
-      quantity: Number(confirmedQuantity.toFixed(3))
-    };
-
-    items.unshift(newItem);
-    order.inventoryItemId = newItem.id;
-  } else {
-    window.alert("Impossible d'ajouter cette commande à l'inventaire.");
-    return;
-  }
-
-  addHistory(
-    "Ajout à l'inventaire",
-    `${currentName} a ajouté ${confirmedQuantity} ${unit || ""} de ${order.itemName} à l'inventaire.`
-  );
-
-  orders = orders.filter(entry => entry.id !== id);
-
-  persist();
-  render();
-}
-
 // Funcion para confirmar la cantidad recibida antes de agregarla al inventario, en lugar de asumir que es igual a la cantidad solicitada
 function openReceiveInventoryDialog(id) {
   const order = orders.find(entry => entry.id === id);
@@ -2017,16 +2134,19 @@ function confirmReceiveInventory() {
       return;
     }
 
-    item.quantity = Number((Number(item.quantity) + finalQuantity).toFixed(3));
+    patchStoredItem(item.id, {
+      quantity: Number((Number(item.quantity) + finalQuantity).toFixed(3))
+    });
   } else if (order.newItemData) {
-    const newItem = {
-      id: `itm-${Date.now()}`,
+    const createdItem = createStoredItem({
       ...order.newItemData,
-      quantity: finalQuantity
-    };
+      quantity: finalQuantity,
+      locations: order.newItemData.locations || (
+        order.newItemData.location ? [order.newItemData.location] : []
+      )
+    });
 
-    items.unshift(newItem);
-    order.inventoryItemId = newItem.id;
+    order.inventoryItemId = createdItem.id;
   } else {
     window.alert("Impossible d'ajouter cette commande à l'inventaire.");
     return;
@@ -2035,7 +2155,10 @@ function confirmReceiveInventory() {
   order.receivedQuantity = finalQuantity;
   order.addedToInventory = true;
   order.addedToInventoryQuantity = finalQuantity;
-  order.addedToInventoryAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
+  order.addedToInventoryAt = new Intl.DateTimeFormat("fr-FR", {
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(new Date());
   order.addedToInventoryAtRaw = new Date().toISOString();
 
   addHistory(
@@ -2165,8 +2288,14 @@ function renderOrdersHistory() {
 function markOrderDone(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order) return;
+
   orders = orders.filter(entry => entry.id !== id);
-  addHistory("Commande effectuée", `${currentName} a marqué ${order.itemName} comme commande.`);
+
+  addHistory(
+    "Demande supprimée",
+    `${currentName} a supprimé la demande pour ${order.itemName}.`
+  );
+
   persist();
   renderOrders();
   renderHistory();
@@ -2222,8 +2351,22 @@ function migrateExperiments(experimentList) {
 }
 
 function findInventoryItem(line) {
-  return items.find(item => item.id === line.itemId)
-    || items.find(item => normalizeSearch(item.name) === normalizeSearch(line.name || ""));
+  if (line?.itemId) {
+    return items.find(item => item.id === line.itemId) || null;
+  }
+
+  const normalizedName = normalizeSearch(line?.name || "");
+  if (!normalizedName) return null;
+
+  const matches = items.filter(item =>
+    normalizeSearch(item.name) === normalizedName
+  );
+
+  if (matches.length === 1) {
+    return matches[0];
+  }
+
+  return null;
 }
 
 function experimentStockSummary(experiment) {
@@ -2232,6 +2375,25 @@ function experimentStockSummary(experiment) {
     return !item || item.unit !== line.unit || Number(item.quantity) < Number(line.quantity || 0);
   }).length;
   return { ok: missing === 0, missing };
+}
+
+function getItemAddedTime(item) {
+  if (item?.createdAtRaw) {
+    const parsed = new Date(item.createdAtRaw).getTime();
+    if (!Number.isNaN(parsed)) return parsed;
+  }
+
+  if (item?.createdAt) {
+    const parsed = new Date(item.createdAt).getTime();
+    if (!Number.isNaN(parsed)) return parsed;
+  }
+
+  const idMatch = String(item?.id || "").match(/^(?:web|itm)-(\d{10,})$/);
+  if (idMatch) {
+    return Number(idMatch[1]);
+  }
+
+  return 0;
 }
 
 function formatQuantity(quantity, unit) {
@@ -2366,3 +2528,6 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
+// dejar al final
+let items = buildItems();

@@ -2190,7 +2190,7 @@ function addExperimentItemRow(line = {}, options = {}) {
           class="experiment-item-quantity"
           type="number"
           min="0"
-          step="0.001"
+          step="1"
           value="${escapeHtml(line.quantity ?? "")}"
           ${quantityEditable ? "" : "readonly"}
           required
@@ -2228,7 +2228,7 @@ function addExperimentItemRow(line = {}, options = {}) {
           class="experiment-item-quantity"
           type="number"
           min="0"
-          step="0.001"
+          step="1"
           value="${escapeHtml(line.quantity ?? "")}"
           ${quantityEditable ? "" : "readonly"}
           required

@@ -14,6 +14,7 @@ const protocolTemplates = [
       },
       {
         name: "Qiazol",
+        quantityEditable: false,
         unit: "uL",
         perConditionQuantity: 600,
         notes: "",
@@ -24,6 +25,7 @@ const protocolTemplates = [
         unit: "bille",
         perConditionQuantity: 1,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -31,6 +33,7 @@ const protocolTemplates = [
         unit: "tube",
         perConditionQuantity: 2,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -38,6 +41,7 @@ const protocolTemplates = [
         unit: "uL",
         perConditionQuantity: 350,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -45,6 +49,7 @@ const protocolTemplates = [
         unit: "tube",
         perConditionQuantity: 3,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -52,6 +57,7 @@ const protocolTemplates = [
         unit: "uL",
         perConditionQuantity: 150,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -59,6 +65,7 @@ const protocolTemplates = [
         unit: "uL",
         perConditionQuantity: 1,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -74,6 +81,7 @@ const protocolTemplates = [
         unit: "uL",
         perConditionQuantity: 116,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -81,6 +89,7 @@ const protocolTemplates = [
         unit: "uL",
         perConditionQuantity: 300,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -88,6 +97,7 @@ const protocolTemplates = [
         unit: "colonne",
         perConditionQuantity: 1,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -95,6 +105,7 @@ const protocolTemplates = [
         unit: "tube",
         perConditionQuantity: 1,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -102,6 +113,7 @@ const protocolTemplates = [
         unit: "uL",
         perConditionQuantity: 400,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       },
       {
@@ -109,6 +121,7 @@ const protocolTemplates = [
         unit: "mL",
         perConditionQuantity: 1.1,
         notes: "",
+        quantityEditable: false,
         manualLinkOnly: true
       }
     ]

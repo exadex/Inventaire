@@ -14,64 +14,6 @@ const seedSamples = [
   ["PAT-TB52", "Abdominal", "2026-04-15", "Differenciation J7", "Immunofluorescence", "Freezer -20C / Slides S-02"]
 ];
 
-const defaultOrders = [
-  {
-    id: "ord-001",
-    itemName: "Kit ELISA Adiponectine",
-    quantity: "2 kits",
-    priority: "critique",
-    supplier: "R&D Systems",
-    notes: "Necessaire pour serie secretion adipokines.",
-    requestedBy: "ML",
-    createdAt: "2026-05-18 17:35"
-  },
-  {
-    id: "ord-002",
-    itemName: "Collagenase type I",
-    quantity: "6 flacons",
-    priority: "tres urgent",
-    supplier: "Worthington",
-    notes: "Stock sous seuil minimum.",
-    requestedBy: "CB",
-    createdAt: "2026-05-19 09:12"
-  },
-  {
-    id: "ord-003",
-    itemName: "Cryotubes 2 mL steriles",
-    quantity: "1 carton",
-    priority: "pas urgent",
-    supplier: "Corning",
-    notes: "Reassort pour cryostock.",
-    requestedBy: "IR",
-    createdAt: "2026-05-15 10:04"
-  }
-];
-
-const defaultExperiments = [
-  {
-    id: "exp-001",
-    name: "Adiponectine secretion pilot",
-    templateId: "tpl-elisa",
-    templateName: "ELISA adipokines",
-    conditions: 4,
-    replicates: 3,
-    status: "draft",
-    notes: "Premiere version a ajuster selon volume surnageants.",
-    createdBy: "Caroline",
-    updatedAt: "2026-05-19 16:20",
-    items: protocolTemplates[1].items.map(templateItem => ({
-      ...templateItem,
-      quantity: Number((templateItem.perConditionQuantity * 12).toFixed(3))
-    }))
-  }
-];
-
-const defaultHistory = [
-  { date: "Aujourd'hui 09:12", user: "Caroline", action: "Stock ajusté", detail: "Collagenase type I passée à 2 flacons." },
-  { date: "Hier 17:35", user: "Marie", action: "Demande de commande", detail: "Kit ELISA Adiponectine ajouté à la liste À commander." },
-  { date: "2026-05-16", user: "Ines", action: "Note modifiée", detail: "Anti-Perilipin A: dilution de travail confirmée." }
-];
-
 const seedBaseItems = migrateItems(seedItems).map(item => ({
   ...item,
   source: "seed"
@@ -94,6 +36,8 @@ let deletedSeedIds = load(
   load("adipovault_deleted_seed_ids", [])
 );
 
+
+// no mover esta funcion
 function buildItems() {
   const deletedIds = new Set(deletedSeedIds);
 
@@ -117,9 +61,12 @@ function buildItems() {
   return [...patchedSeedItems, ...cleanWebItems];
 }
 
-let orders = load("exadex_orders", defaultOrders);
-let experiments = migrateExperiments(load("exadex_experiments", defaultExperiments));
-let history = load("exadex_history", load("adipovault_history", defaultHistory));
+// dejar despues de function(buildItems)
+let items = buildItems();
+
+let orders = load("exadex_orders");
+let experiments = migrateExperiments(load("exadex_experiments"));
+let history = load("exadex_history", load("adipovault_history"));
 
 persist();
 
@@ -187,8 +134,29 @@ const fields = [
 const stockFields = ["stockItemId", "stockItemName", "stockCurrentQuantity", "stockTitle", "stockAction", "stockAmount", "stockUnit", "stockNotes"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
-const experimentFields = ["experimentId", "experimentTemplate", "experimentName", "experimentConditions", "experimentReplicates", "experimentStatus", "experimentTotalConditions", "experimentNotes"]
-  .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+const experimentFields = [
+  "experimentId",
+  "experimentTemplate",
+  "experimentName",
+  "experimentConditions",
+  "experimentReplicates",
+  "experimentStatus",
+  "experimentTotalConditions",
+  "experimentTemplateNotes",
+  "experimentNotes",
+  "rtqpcrPartRT",
+  "rtqpcrPartDilution",
+  "rtqpcrPartQPCR",
+  "rtqpcrSampleConditions",
+  "rtqpcrSampleReplicates",
+  "rtqpcrQpcrConditions",
+  "rtqpcrPrimerCount",
+  "rtqpcrQpcrReplicates",
+  "rtqpcrDeadVolumeConditions"
+].reduce((acc, id) => ({
+  ...acc,
+  [id]: document.querySelector(`#${id}`)
+}), {});
 
 const orderFields = [
   "orderItemMode",
@@ -261,9 +229,17 @@ document.querySelector("#addItemBtn").addEventListener("click", () => openModal(
 document.querySelector("#saveItemBtn").addEventListener("click", saveItem);
 document.querySelector("#deleteItemBtn").addEventListener("click", deleteItem);
 document.querySelector("#saveStockBtn").addEventListener("click", saveStockUpdate);
-document.querySelector("#addExperimentBtn").addEventListener("click", () => openExperimentModal());
+document.querySelector("#addExperimentBtn").addEventListener("click", openExperimentModal);
 document.querySelector("#saveExperimentBtn").addEventListener("click", saveExperiment);
-document.querySelector("#addExperimentItemBtn").addEventListener("click", () => addExperimentItemRow());
+
+const deleteExperimentBtn = document.querySelector("#deleteExperimentBtn");
+if (deleteExperimentBtn) {
+  deleteExperimentBtn.addEventListener("click", deleteExperiment);
+}
+
+document.querySelector("#addExperimentItemBtn").addEventListener("click", () =>
+  addExperimentItemRow({}, { showInventorySelect: true })
+);
 addSecondaryReferenceBtn.addEventListener("click", () => addSecondaryReferenceRow());
 document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal);
 document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
@@ -276,10 +252,34 @@ experimentStatusFilter.addEventListener("change", renderExperiments);
 experimentDialog.addEventListener("close", () => {
   experimentFields.experimentTemplate.disabled = false;
 });
-experimentFields.experimentTemplate.addEventListener("change", () => buildExperimentItemsFromTemplate());
+experimentFields.experimentTemplate.addEventListener("change", () => {
+  const template = protocolTemplates.find(
+    entry => entry.id === experimentFields.experimentTemplate.value
+  );
+
+  syncRtQpcrConfigVisibility(template);
+  setDefaultExperimentName(template, true);
+  buildExperimentItemsFromTemplate();
+});
 experimentFields.experimentConditions.addEventListener("input", recalculateExperimentTemplateQuantities);
 experimentFields.experimentReplicates.addEventListener("input", recalculateExperimentTemplateQuantities);
 experimentItemsList.addEventListener("input", updateExperimentModalStock);
+[
+  "rtqpcrPartRT",
+  "rtqpcrPartDilution",
+  "rtqpcrPartQPCR",
+  "rtqpcrSampleConditions",
+  "rtqpcrSampleReplicates",
+  "rtqpcrQpcrConditions",
+  "rtqpcrPrimerCount",
+  "rtqpcrQpcrReplicates",
+  "rtqpcrDeadVolumeConditions"
+].forEach((key) => {
+  const field = experimentFields[key];
+  if (!field) return;
+  field.addEventListener("input", recalculateExperimentTemplateQuantities);
+  field.addEventListener("change", recalculateExperimentTemplateQuantities);
+});
 experimentItemsList.addEventListener("change", (event) => {
   if (event.target.classList.contains("experiment-item-select")) {
     hydrateExperimentItemRow(event.target.closest(".experiment-item-row"), event.target.value);
@@ -1216,9 +1216,38 @@ function renderExperiments() {
   const detail = selectedExperimentId ? experiments.find(experiment => experiment.id === selectedExperimentId) : null;
   document.querySelector("#experimentDetail").innerHTML = detail ? renderExperimentDetail(detail) : "";
   document.querySelector("#experimentGrid").classList.toggle("hidden", Boolean(detail));
-  document.querySelector("#experimentGrid").innerHTML = filtered.map(experiment => {
-    const totalConditions = experiment.conditions * experiment.replicates;
-    const stock = experimentStockSummary(experiment);
+
+  const lists = {
+    draft: document.querySelector("#draftExperimentList"),
+    running: document.querySelector("#runningExperimentList"),
+    completed: document.querySelector("#completedExperimentList")
+  };
+
+  const counts = {
+    draft: document.querySelector("#draftExperimentCount"),
+    running: document.querySelector("#runningExperimentCount"),
+    completed: document.querySelector("#completedExperimentCount")
+  };
+
+  Object.values(lists).forEach(list => {
+    if (list) list.innerHTML = "";
+  });
+
+  ["draft", "running", "completed"].forEach(state => {
+    const stateExperiments = filtered.filter(experiment => experiment.status === state);
+    if (counts[state]) counts[state].textContent = `(${stateExperiments.length})`;
+    if (!lists[state]) return;
+
+    lists[state].innerHTML = stateExperiments.length
+      ? stateExperiments.map(renderExperimentCard).join("")
+      : `<div class="empty-room">Aucune experience.</div>`;
+  });
+}
+
+function renderExperimentCard(experiment) {
+  const totalConditions = experiment.conditions * experiment.replicates;
+  const stock = experimentStockSummary(experiment);
+
   return `
     <article class="experiment-card experiment-preview-card" onclick="selectExperiment('${escapeHtml(experiment.id)}')">
       <div class="item-head">
@@ -1254,12 +1283,17 @@ function renderExperiments() {
       </div>
     </article>
   `;
-  }).join("") || `<div class="empty-room">Aucune experience ne correspond a cette recherche.</div>`;
+}
+
+function getExperimentTemplateNotes(experiment) {
+  const template = protocolTemplates.find(entry => entry.id === experiment.templateId);
+  return template?.notes || experiment.templateNotes || "";
 }
 
 function renderExperimentDetail(experiment) {
   const totalConditions = experiment.conditions * experiment.replicates;
-  const rows = experiment.items.map(line => {
+  const templateNotes = getExperimentTemplateNotes(experiment);
+  const rows = getMergedExperimentLines(experiment.items).map(line => {
     const inventoryItem = findInventoryItem(line);
     const available = Number(inventoryItem?.quantity ?? 0);
     const needed = Number(line.quantity || 0);
@@ -1316,7 +1350,16 @@ function renderExperimentDetail(experiment) {
         </div>
         <small>Mis a jour par ${escapeHtml(experiment.createdBy)} - ${escapeHtml(experiment.updatedAt)}</small>
       </div>
-      <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
+      <div class="experiment-notes-grid">
+        <div>
+          <h4>Template Notes</h4>
+          <p>${escapeHtml(templateNotes || "Aucune note de template")}</p>
+        </div>
+        <div>
+          <h4>Experience Notes</h4>
+          <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
+        </div>
+      </div>
       <div class="sample-table-wrap">
         <table class="sample-table experiment-table">
           <thead>
@@ -1745,54 +1788,244 @@ function saveStockUpdate() {
 
 function openExperimentModal(id) {
   const experiment = experiments.find(entry => entry.id === id);
-  const template = protocolTemplates.find(entry => entry.id === (experiment?.templateId || protocolTemplates[0].id));
+  const template = protocolTemplates.find(
+    entry => entry.id === (experiment?.templateId || protocolTemplates[0].id)
+  );
+
   experimentForm.reset();
-  document.querySelector("#experimentModalTitle").textContent = experiment ? "Modifier experience" : "Nouvelle experience";
+
+  document.querySelector("#experimentModalTitle").textContent =
+    experiment ? "Modifier experience" : "Nouvelle experience";
+
+  const deleteExperimentBtn = document.querySelector("#deleteExperimentBtn");
+  if (deleteExperimentBtn) {
+    deleteExperimentBtn.style.display = experiment ? "inline-flex" : "none";
+  }
+
   experimentFields.experimentId.value = experiment?.id || "";
   experimentFields.experimentTemplate.value = experiment?.templateId || template.id;
   experimentFields.experimentName.value = experiment?.name || "";
   experimentFields.experimentConditions.value = experiment?.conditions || 1;
   experimentFields.experimentReplicates.value = experiment?.replicates || 1;
   experimentFields.experimentStatus.value = experiment?.status || "draft";
-  experimentFields.experimentNotes.value = experiment?.notes || template.notes || "";
+  experimentFields.experimentTemplateNotes.value = template?.notes || "";
+  experimentFields.experimentNotes.value = experiment?.notes || "";
   experimentFields.experimentTemplate.disabled = Boolean(experiment);
+
+  const isRtQpcr = template?.mode === "rtqpcr";
+  const rtqpcrQPCRBlock = document.querySelector("#rtqpcrQPCRBlock");
+  const rtqpcrConfigData = experiment?.rtqpcrConfig || {};
+
+  syncRtQpcrConfigVisibility(template);
+
+  if (isRtQpcr) {
+    experimentFields.rtqpcrPartRT.checked = rtqpcrConfigData.parts?.rt ?? true;
+    experimentFields.rtqpcrPartDilution.checked = rtqpcrConfigData.parts?.dilution ?? true;
+    experimentFields.rtqpcrPartQPCR.checked = rtqpcrConfigData.parts?.qpcr ?? true;
+
+    experimentFields.experimentConditions.value =
+      rtqpcrConfigData.sampleConditions ?? experiment?.conditions ?? 1;
+    experimentFields.experimentReplicates.value =
+      rtqpcrConfigData.sampleReplicates ?? experiment?.replicates ?? 1;
+    if (experimentFields.rtqpcrSampleConditions) {
+      experimentFields.rtqpcrSampleConditions.value = experimentFields.experimentConditions.value;
+    }
+    if (experimentFields.rtqpcrSampleReplicates) {
+      experimentFields.rtqpcrSampleReplicates.value = experimentFields.experimentReplicates.value;
+    }
+    if (experimentFields.rtqpcrQpcrConditions) {
+      experimentFields.rtqpcrQpcrConditions.value =
+        rtqpcrConfigData.qpcrConditions ?? rtqpcrConfigData.sampleConditions ?? experiment?.conditions ?? 1;
+    }
+    experimentFields.rtqpcrPrimerCount.value =
+      rtqpcrConfigData.primerCount ?? template.sections.qpcr.defaults.primerCount;
+    experimentFields.rtqpcrQpcrReplicates.value =
+      rtqpcrConfigData.qpcrReplicates ?? template.sections.qpcr.defaults.qpcrReplicates;
+    experimentFields.rtqpcrDeadVolumeConditions.value =
+      rtqpcrConfigData.deadVolumeConditions ?? template.sections.qpcr.defaults.deadVolumeConditions;
+
+    rtqpcrQPCRBlock?.classList.toggle("hidden", !experimentFields.rtqpcrPartQPCR.checked);
+    experimentFields.experimentTotalConditions.value = getRtQpcrSampleTotal();
+  }
+
   experimentItemsList.innerHTML = "";
+
   if (experiment) {
-    experiment.items.forEach(line => addExperimentItemRow(line));
+    getMergedExperimentLines(experiment.items).forEach(line => addExperimentItemRow(line));
   } else {
     buildExperimentItemsFromTemplate();
   }
+
   updateExperimentTotalConditions();
   updateExperimentModalStock();
   experimentDialog.showModal();
 }
 
+function syncRtQpcrConfigVisibility(template) {
+  const currentTemplate =
+    template ||
+    protocolTemplates.find(entry => entry.id === experimentFields.experimentTemplate.value);
+
+  const isRtQpcr = currentTemplate?.mode === "rtqpcr";
+  const rtqpcrConfigBox = document.querySelector("#rtqpcrConfig");
+  const rtqpcrQPCRBlock = document.querySelector("#rtqpcrQPCRBlock");
+
+  rtqpcrConfigBox?.classList.toggle("hidden", !isRtQpcr);
+  rtqpcrQPCRBlock?.classList.toggle(
+    "hidden",
+    !isRtQpcr || !experimentFields.rtqpcrPartQPCR?.checked
+  );
+}
+
+function setDefaultExperimentName(template, force = false) {
+  if (!template || experimentFields.experimentId.value) return;
+  if (!force && experimentFields.experimentName.value.trim()) return;
+
+  const today = new Intl.DateTimeFormat("fr-FR").format(new Date());
+  experimentFields.experimentName.value = `${template.name} - ${today}`;
+}
+
 function buildExperimentItemsFromTemplate() {
   const template = protocolTemplates.find(entry => entry.id === experimentFields.experimentTemplate.value);
   if (!template) return;
-  if (!experimentFields.experimentId.value && !experimentFields.experimentName.value.trim()) {
-    experimentFields.experimentName.value = `${template.name} - ${new Intl.DateTimeFormat("fr-FR").format(new Date())}`;
-  }
-  if (!experimentFields.experimentNotes.value.trim()) {
-    experimentFields.experimentNotes.value = template.notes || "";
-  }
+
+  syncRtQpcrConfigVisibility(template);
+
+  setDefaultExperimentName(template);
+
+  experimentFields.experimentTemplateNotes.value = template.notes || "";
+
   experimentItemsList.innerHTML = "";
+
+  if (template.mode === "rtqpcr") {
+    buildRtQpcrItemsFromTemplate(template);
+    updateExperimentModalStock();
+    return;
+  }
+
   const total = updateExperimentTotalConditions();
-  template.items.forEach(templateItem => addExperimentItemRow({
-    ...templateItem,
-    quantity: Number((templateItem.perConditionQuantity * total).toFixed(3))
-  }));
+  const templateLines = template.items.map(templateItem => ({
+      ...templateItem,
+      quantity: Number((templateItem.perConditionQuantity * total).toFixed(3))
+    }));
+
+  getMergedExperimentLines(templateLines).forEach(line => addExperimentItemRow(line));
+
   updateExperimentModalStock();
 }
 
+function buildRtQpcrItemsFromTemplate(template) {
+  syncRtQpcrSampleFields();
+
+  const sampleTotal = getRtQpcrSampleTotal();
+  const qpcrReactionBaseTotal = getRtQpcrReactionBaseTotal();
+  const qpcrReactionTotal = getRtQpcrReactionTotalWithDeadVolume();
+  const lines = [];
+
+  if (experimentFields.rtqpcrPartRT?.checked) {
+    template.sections.rt.items.forEach(item => {
+      if (item.quantityMode === "rtWaterRange") {
+        lines.push({
+          isManual: true,
+          manualLinkOnly: true,
+          itemId: "",
+          name: item.name,
+          quantity: 0,
+          quantityMin: item.minPerSample * sampleTotal,
+          quantityMax: item.maxPerSample * sampleTotal,
+          quantityDisplay: formatRange(
+            item.minPerSample * sampleTotal,
+            item.maxPerSample * sampleTotal,
+            item.unit
+          ),
+          unit: item.unit,
+          notes: item.notes,
+          quantityEditable: false
+        });
+        return;
+      }
+
+      lines.push({
+        isManual: true,
+        manualLinkOnly: true,
+        itemId: "",
+        name: item.name,
+        quantity: Number((item.perSample * sampleTotal).toFixed(3)),
+        unit: item.unit,
+        notes: item.notes,
+        quantityEditable: false
+      });
+    });
+  }
+
+  if (experimentFields.rtqpcrPartDilution?.checked) {
+    template.sections.dilution.items.forEach(item => {
+      lines.push({
+        isManual: true,
+        manualLinkOnly: true,
+        itemId: "",
+        name: item.name,
+        quantity: Number((item.perSample * sampleTotal).toFixed(3)),
+        unit: item.unit,
+        notes: item.notes,
+        quantityEditable: false
+      });
+    });
+  }
+
+  if (experimentFields.rtqpcrPartQPCR?.checked) {
+    template.sections.qpcr.items.forEach(item => {
+      let total = 0;
+
+      if (item.quantityMode === "qpcrSample") {
+        total = item.perReaction * qpcrReactionBaseTotal;
+      } else {
+        total = item.perReaction * qpcrReactionTotal;
+      }
+
+      lines.push({
+        isManual: true,
+        manualLinkOnly: true,
+        itemId: "",
+        name: item.name,
+        quantity: Number(total.toFixed(3)),
+        unit: item.unit,
+        notes: item.notes,
+        quantityEditable: false
+      });
+    });
+  }
+
+  getMergedExperimentLines(lines).forEach(line => addExperimentItemRow(line));
+}
+
 function recalculateExperimentTemplateQuantities() {
+  const template = protocolTemplates.find(
+    entry => entry.id === experimentFields.experimentTemplate.value
+  );
+  if (!template) return;
+
+  if (template.mode === "rtqpcr") {
+    const rtqpcrQPCRBlock = document.querySelector("#rtqpcrQPCRBlock");
+    rtqpcrQPCRBlock?.classList.toggle("hidden", !experimentFields.rtqpcrPartQPCR?.checked);
+
+    syncRtQpcrSampleFields();
+    experimentFields.experimentTotalConditions.value = getRtQpcrSampleTotal();
+    buildExperimentItemsFromTemplate();
+    return;
+  }
+
   const total = updateExperimentTotalConditions();
+
   experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row => {
     const perCondition = Number(row.dataset.perCondition || 0);
     if (perCondition > 0) {
-      row.querySelector(".experiment-item-quantity").value = Number((perCondition * total).toFixed(3));
+      row.querySelector(".experiment-item-quantity").value = Number(
+        (perCondition * total).toFixed(3)
+      );
     }
   });
+
   updateExperimentModalStock();
 }
 
@@ -1802,77 +2035,364 @@ function updateExperimentTotalConditions() {
   return total;
 }
 
-function addExperimentItemRow(line = {}) {
-  const selectedItem = findInventoryItem(line) || items[0];
+function syncRtQpcrSampleFields() {
+  if (experimentFields.rtqpcrSampleConditions) {
+    experimentFields.rtqpcrSampleConditions.value = experimentFields.experimentConditions.value || 1;
+  }
+
+  if (experimentFields.rtqpcrSampleReplicates) {
+    experimentFields.rtqpcrSampleReplicates.value = experimentFields.experimentReplicates.value || 1;
+  }
+}
+
+//funciones para el protocolo qPCR
+function isRtQpcrTemplate(templateId = experimentFields.experimentTemplate.value) {
+  const template = protocolTemplates.find(entry => entry.id === templateId);
+  return template?.mode === "rtqpcr";
+}
+
+function getRtQpcrSampleTotal() {
+  const conditions = Math.max(1, Number(experimentFields.experimentConditions?.value || 1));
+  const replicates = Math.max(1, Number(experimentFields.experimentReplicates?.value || 1));
+  return conditions * replicates;
+}
+
+function getRtQpcrReactionBaseTotal() {
+  const qpcrConditions = Math.max(1, Number(experimentFields.rtqpcrQpcrConditions?.value || experimentFields.experimentConditions?.value || 1));
+  const primerCount = Math.max(1, Number(experimentFields.rtqpcrPrimerCount?.value || 1));
+  const qpcrReplicates = Math.max(1, Number(experimentFields.rtqpcrQpcrReplicates?.value || 2));
+  return qpcrConditions * primerCount * qpcrReplicates;
+}
+
+function getRtQpcrReactionTotalWithDeadVolume() {
+  const base = getRtQpcrReactionBaseTotal();
+  const deadVolumeConditions = Math.max(0, Number(experimentFields.rtqpcrDeadVolumeConditions?.value || 2));
+  return base + deadVolumeConditions;
+}
+
+function formatRange(min, max, unit) {
+  return `${Number(min.toFixed(3))} - ${Number(max.toFixed(3))} ${unit}`;
+}
+
+function getMergedExperimentLines(lines = []) {
+  const merged = new Map();
+
+  lines.forEach(line => {
+    const unit = line.unit || "";
+    const name = line.name || "";
+    const itemKey = line.itemId || "";
+    const key = `${normalizeSearch(name)}|${normalizeSearch(unit)}|${itemKey}`;
+    const quantity = Number(line.quantity || 0);
+    const quantityMin = line.quantityMin !== undefined
+      ? Number(line.quantityMin || 0)
+      : quantity;
+    const quantityMax = line.quantityMax !== undefined
+      ? Number(line.quantityMax || 0)
+      : quantity;
+
+    if (!key.trim()) {
+      merged.set(`unique-${merged.size}`, { ...line });
+      return;
+    }
+
+    if (!merged.has(key)) {
+      const normalizedLine = {
+        ...line,
+        quantity: Number(quantityMax.toFixed(3)),
+        quantityMin: Number(quantityMin.toFixed(3)),
+        quantityMax: Number(quantityMax.toFixed(3))
+      };
+
+      normalizedLine.quantityDisplay = quantityMin !== quantityMax
+        ? formatRange(quantityMin, quantityMax, unit)
+        : line.quantityDisplay || "";
+
+      merged.set(key, normalizedLine);
+      return;
+    }
+
+    const existing = merged.get(key);
+    const existingMin = Number(existing.quantityMin ?? existing.quantity ?? 0);
+    const existingMax = Number(existing.quantityMax ?? existing.quantity ?? 0);
+    const nextMin = Number((existingMin + quantityMin).toFixed(3));
+    const nextMax = Number((existingMax + quantityMax).toFixed(3));
+    const existingNotes = String(existing.notes || "");
+    const nextNotes = String(line.notes || "");
+    const notes = [existingNotes, nextNotes]
+      .filter(Boolean)
+      .filter((note, index, all) => all.indexOf(note) === index)
+      .join(" + ");
+
+    merged.set(key, {
+      ...existing,
+      quantity: nextMax,
+      quantityMin: nextMin,
+      quantityMax: nextMax,
+      quantityDisplay: nextMin !== nextMax ? formatRange(nextMin, nextMax, unit) : "",
+      notes,
+      perConditionQuantity: Number((Number(existing.perConditionQuantity || 0) + Number(line.perConditionQuantity || 0)).toFixed(3))
+    });
+  });
+
+  return Array.from(merged.values());
+}
+
+
+// items de experimentos no vinculados con items del inventarios por ahora
+function addExperimentItemRow(line = {}, options = {}) {
+  const isManual =
+    line.isManual === true ||
+    line.manualLinkOnly === true ||
+    !line.itemId;
+
+  const explicitItem = line.itemId
+    ? items.find(entry => entry.id === line.itemId)
+    : null;
+
+  const selectedItem = explicitItem || (!line.manualLinkOnly ? findInventoryItem(line) : null);
+  const quantityEditable = line.quantityEditable !== false;
+  const quantityHint = line.quantityDisplay
+    ? `<small class="experiment-quantity-hint">${escapeHtml(line.quantityDisplay)}</small>`
+    : "";
+
+  const protocolName = line.name || selectedItem?.name || "";
+  const unitValue = line.unit || selectedItem?.unit || "";
+  const showInventorySelect = options.showInventorySelect === true;
+
   const row = document.createElement("div");
   row.className = "experiment-item-row";
-  row.dataset.perCondition = line.perConditionQuantity || "";
-  row.innerHTML = `
-    <select class="experiment-item-select" required>
-      ${items.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`).join("")}
-    </select>
-    <input class="experiment-item-quantity" type="number" min="0" step="0.001" value="${escapeHtml(line.quantity ?? "")}" required />
-    <input class="experiment-item-unit" value="${escapeHtml(line.unit || selectedItem?.unit || "")}" required />
-    <span class="experiment-stock-state"></span>
-    <button class="ghost-btn compact-btn" type="button">Retirer</button>
-    <input class="experiment-item-notes" value="${escapeHtml(line.notes || "")}" placeholder="Notes ligne" />
-  `;
-  row.querySelector(".experiment-item-select").value = selectedItem?.id || "";
+  row.dataset.rowMode = isManual ? "manual" : "template";
+  row.dataset.perCondition = Number(line.perConditionQuantity ?? 0);
+  row.dataset.protocolName = protocolName;
+  row.dataset.quantityEditable = quantityEditable ? "true" : "false";
+  row.dataset.manualLinkOnly = line.manualLinkOnly ? "true" : "false";
+  row.dataset.itemId = line.itemId || selectedItem?.id || "";
+  row.dataset.lineNotes = line.notes || "";
+  row.dataset.quantityDisplay = line.quantityDisplay || "";
+  row.dataset.quantityMin = line.quantityMin ?? "";
+  row.dataset.quantityMax = line.quantityMax ?? "";
+
+  if (showInventorySelect) {
+    row.innerHTML = `
+      <div class="experiment-item-linker">
+        <div class="experiment-item-label">
+          <strong>${escapeHtml(protocolName)}</strong>
+        </div>
+
+        <select class="experiment-item-select">
+          <option value="">Choisir un item inventaire</option>
+          ${items.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`).join("")}
+        </select>
+      </div>
+
+      <div class="experiment-quantity-wrap">
+        <input
+          class="experiment-item-quantity"
+          type="number"
+          min="0"
+          step="0.001"
+          value="${escapeHtml(line.quantity ?? "")}"
+          ${quantityEditable ? "" : "readonly"}
+          required
+        >
+        ${quantityHint}
+      </div>
+
+      <input
+        class="experiment-item-unit"
+        value="${escapeHtml(unitValue)}"
+        readonly
+        required
+      >
+
+      <span class="experiment-stock-state"></span>
+
+      <button class="ghost-btn compact-btn" type="button">Retirer</button>
+    `;
+
+    row.querySelector(".experiment-item-select").value = line.itemId || "";
+  } else {
+    row.innerHTML = `
+      <div class="experiment-item-label">
+        <strong>${escapeHtml(protocolName || "Produit")}</strong>
+      </div>
+
+      <input
+        type="hidden"
+        class="experiment-item-id"
+        value="${escapeHtml(line.itemId || selectedItem?.id || "")}"
+      >
+
+      <div class="experiment-quantity-wrap">
+        <input
+          class="experiment-item-quantity"
+          type="number"
+          min="0"
+          step="0.001"
+          value="${escapeHtml(line.quantity ?? "")}"
+          ${quantityEditable ? "" : "readonly"}
+          required
+        >
+        ${quantityHint}
+      </div>
+
+      <input
+        class="experiment-item-unit"
+        value="${escapeHtml(unitValue)}"
+        readonly
+        required
+      >
+
+      <span class="experiment-stock-state"></span>
+
+      <button class="ghost-btn compact-btn" type="button">Retirer</button>
+    `;
+  }
+
   row.querySelector("button").addEventListener("click", () => {
     row.remove();
     updateExperimentModalStock();
   });
+
   experimentItemsList.append(row);
   updateExperimentModalStock();
 }
 
 function hydrateExperimentItemRow(row, itemId) {
+  if (!row) return;
+
   const item = items.find(entry => entry.id === itemId);
-  if (!row || !item) return;
-  row.querySelector(".experiment-item-unit").value = item.unit;
-  row.dataset.perCondition = "";
+  row.dataset.itemId = item?.id || "";
+  row.querySelector(".experiment-item-unit").value = item?.unit || "";
+  updateExperimentModalStock();
 }
 
 function updateExperimentModalStock() {
   experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row => {
-    const item = items.find(entry => entry.id === row.querySelector(".experiment-item-select").value);
+    const item = getExperimentRowItem(row);
     const needed = Number(row.querySelector(".experiment-item-quantity").value || 0);
     const unit = row.querySelector(".experiment-item-unit").value.trim();
     const state = row.querySelector(".experiment-stock-state");
+
     if (!item) {
       state.className = "experiment-stock-state stock-alert";
       state.textContent = "Non connecte";
       return;
     }
-    if (unit && item.unit !== unit) {
+
+    if (unit !== item.unit || !unit) {
       state.className = "experiment-stock-state stock-alert";
       state.textContent = `${item.quantity} ${item.unit} - unite differente`;
       return;
     }
+
     const ok = Number(item.quantity) >= needed;
     state.className = `experiment-stock-state ${ok ? "stock-ok" : "stock-alert"}`;
     state.textContent = `${item.quantity} ${item.unit}`;
   });
 }
 
+function getExperimentRows() {
+  return [...experimentItemsList.querySelectorAll(".experiment-item-row")]
+    .map(row => {
+      const item = getExperimentRowItem(row);
+      const isManual = row.dataset.rowMode === "manual";
+
+      return {
+        isManual,
+        itemId: item?.id || row.dataset.itemId || "",
+        name: row.dataset.protocolName || item?.name || "",
+        quantity: Number(row.querySelector(".experiment-item-quantity").value || 0),
+        unit: row.querySelector(".experiment-item-unit").value.trim(),
+        notes: row.dataset.lineNotes || "",
+        perConditionQuantity: Number(row.dataset.perCondition || 0),
+        quantityEditable: row.dataset.quantityEditable === "true",
+        manualLinkOnly: row.dataset.manualLinkOnly === "true",
+        quantityDisplay: row.dataset.quantityDisplay || "",
+        quantityMin: row.dataset.quantityMin === "" ? undefined : Number(row.dataset.quantityMin),
+        quantityMax: row.dataset.quantityMax === "" ? undefined : Number(row.dataset.quantityMax)
+      };
+    })
+    .filter(line =>
+      line.name ||
+      line.itemId ||
+      line.quantity > 0 ||
+      line.quantityDisplay
+    );
+}
+
+function getExperimentRowItem(row) {
+  if (!row) return null;
+
+  const select = row.querySelector(".experiment-item-select");
+  const hiddenId = row.querySelector(".experiment-item-id")?.value || row.dataset.itemId || "";
+  const itemId = select?.value || hiddenId;
+
+  return itemId
+    ? items.find(entry => entry.id === itemId) || null
+    : null;
+}
+
 function saveExperiment() {
   if (!experimentForm.reportValidity()) return;
-  const template = protocolTemplates.find(entry => entry.id === experimentFields.experimentTemplate.value);
+
+  if (
+    isRtQpcrTemplate() &&
+    !experimentFields.rtqpcrPartRT.checked &&
+    !experimentFields.rtqpcrPartDilution.checked &&
+    !experimentFields.rtqpcrPartQPCR.checked
+  ) {
+    window.alert("Merci de sélectionner au moins une partie : RT, dilution cDNA ou qPCR.");
+    return;
+  }
+
+  const template = protocolTemplates.find(
+    entry => entry.id === experimentFields.experimentTemplate.value
+  );
+
   const id = experimentFields.experimentId.value || `exp-${Date.now()}`;
+
   const experiment = {
     id,
     name: experimentFields.experimentName.value.trim(),
     templateId: experimentFields.experimentTemplate.value,
     templateName: template?.name || "Template inconnu",
-    conditions: Number(experimentFields.experimentConditions.value),
-    replicates: Number(experimentFields.experimentReplicates.value),
+
+    conditions: Number(experimentFields.experimentConditions.value || 1),
+
+    replicates: Number(experimentFields.experimentReplicates.value || 1),
+
     status: experimentFields.experimentStatus.value,
     notes: experimentFields.experimentNotes.value.trim(),
+
+    rtqpcrConfig: isRtQpcrTemplate()
+      ? {
+          parts: {
+            rt: experimentFields.rtqpcrPartRT.checked,
+            dilution: experimentFields.rtqpcrPartDilution.checked,
+            qpcr: experimentFields.rtqpcrPartQPCR.checked
+          },
+          sampleConditions: Number(experimentFields.experimentConditions.value || 1),
+          sampleReplicates: Number(experimentFields.experimentReplicates.value || 1),
+          qpcrConditions: Number(experimentFields.rtqpcrQpcrConditions?.value || experimentFields.experimentConditions.value || 1),
+          primerCount: Number(experimentFields.rtqpcrPrimerCount.value || 1),
+          qpcrReplicates: Number(experimentFields.rtqpcrQpcrReplicates.value || 2),
+          deadVolumeConditions: Number(experimentFields.rtqpcrDeadVolumeConditions.value || 2)
+        }
+      : null,
+
     createdBy: currentName,
-    updatedAt: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
-    items: getExperimentRows()
+    updatedAt: new Intl.DateTimeFormat("fr-FR", {
+      dateStyle: "short",
+      timeStyle: "short"
+    }).format(new Date()),
+
+    templateNotes: experimentFields.experimentTemplateNotes.value,
+    items: getMergedExperimentLines(getExperimentRows())
   };
+
   const index = experiments.findIndex(entry => entry.id === id);
+
   if (index >= 0) {
     experiment.createdBy = experiments[index].createdBy || currentName;
     experiments[index] = experiment;
@@ -1881,6 +2401,7 @@ function saveExperiment() {
     experiments.unshift(experiment);
     addHistory("Experience créée", `${currentName} a créé ${experiment.name} depuis ${experiment.templateName}.`);
   }
+
   persist();
   selectedExperimentId = id;
   experimentFields.experimentTemplate.disabled = false;
@@ -1889,20 +2410,30 @@ function saveExperiment() {
   renderHistory();
 }
 
-function getExperimentRows() {
-  return [...experimentItemsList.querySelectorAll(".experiment-item-row")]
-    .map(row => {
-      const item = items.find(entry => entry.id === row.querySelector(".experiment-item-select").value);
-      return {
-        itemId: item?.id || "",
-        name: item?.name || "",
-        quantity: Number(row.querySelector(".experiment-item-quantity").value || 0),
-        unit: row.querySelector(".experiment-item-unit").value.trim(),
-        notes: row.querySelector(".experiment-item-notes").value.trim(),
-        perConditionQuantity: Number(row.dataset.perCondition || 0)
-      };
-    })
-    .filter(line => line.itemId && line.quantity >= 0);
+function deleteExperiment() {
+  const id = experimentFields.experimentId.value;
+  const experiment = experiments.find(entry => entry.id === id);
+  if (!experiment) return;
+
+  const confirmed = window.confirm(`Supprimer l'expérience "${experiment.name}" ?`);
+  if (!confirmed) return;
+
+  experiments = experiments.filter(entry => entry.id !== id);
+
+  addHistory(
+    "Experience supprimee",
+    `${currentName} a supprime ${experiment.name}.`
+  );
+
+  if (selectedExperimentId === id) {
+    selectedExperimentId = null;
+  }
+
+  experimentFields.experimentTemplate.disabled = false;
+  experimentDialog.close();
+  persist();
+  renderExperiments();
+  renderHistory();
 }
 
 function consumeExperimentStock(id) {
@@ -1918,7 +2449,7 @@ function consumeExperimentStock(id) {
     return;
   }
 
-  for (const line of experiment.items) {
+  for (const line of getMergedExperimentLines(experiment.items)) {
     const item = findInventoryItem(line);
     if (!item) continue;
 
@@ -2355,22 +2886,21 @@ function findInventoryItem(line) {
     return items.find(item => item.id === line.itemId) || null;
   }
 
-  const normalizedName = normalizeSearch(line?.name || "");
+  if (line?.manualLinkOnly) {
+    return null;
+  }
+
+  const normalizedName = normalizeSearch(line?.name);
   if (!normalizedName) return null;
 
-  const matches = items.filter(item =>
-    normalizeSearch(item.name) === normalizedName
-  );
-
-  if (matches.length === 1) {
-    return matches[0];
-  }
+  const matches = items.filter(item => normalizeSearch(item.name) === normalizedName);
+  if (matches.length === 1) return matches[0];
 
   return null;
 }
 
 function experimentStockSummary(experiment) {
-  const missing = experiment.items.filter(line => {
+  const missing = getMergedExperimentLines(experiment.items).filter(line => {
     const item = findInventoryItem(line);
     return !item || item.unit !== line.unit || Number(item.quantity) < Number(line.quantity || 0);
   }).length;
@@ -2528,6 +3058,3 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
-
-// dejar al final
-let items = buildItems();

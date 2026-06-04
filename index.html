@@ -142,7 +142,7 @@
 
         <section class="view" id="experimentsView">
           <div class="section-heading">
-            <h3>Expériences (en cours)</h3>
+            <h3>Expériences</h3>
             <span>Templates, consommation prévisionnelle et suivi</span>
           </div>
 
@@ -156,7 +156,7 @@
               />
             </label>
 
-            <select id="experimentStatusFilter" class="select">
+            <select id="experimentStatusFilter" class="select hidden">
               <option value="all">Tous statuts</option>
               <option value="draft">Draft</option>
               <option value="running">Running</option>
@@ -167,7 +167,28 @@
           </div>
 
           <div id="experimentDetail"></div>
-          <div class="inventory-grid" id="experimentGrid"></div>
+          <div class="order-flow experiment-flow" id="experimentGrid">
+            <section class="order-step">
+              <div class="order-column-head">
+                <h4>Brouillon <span id="draftExperimentCount"></span></h4>
+              </div>
+              <div class="order-list" id="draftExperimentList"></div>
+            </section>
+
+            <section class="order-step">
+              <div class="order-column-head">
+                <h4>En cours <span id="runningExperimentCount"></span></h4>
+              </div>
+              <div class="order-list" id="runningExperimentList"></div>
+            </section>
+
+            <section class="order-step">
+              <div class="order-column-head">
+                <h4>Terminé <span id="completedExperimentCount"></span></h4>
+              </div>
+              <div class="order-list" id="completedExperimentList"></div>
+            </section>
+          </div>
         </section>
 
         <section class="view" id="ordersView">
@@ -344,7 +365,7 @@
       </form>
     </dialog>
 
-    <dialog id="experimentDialog" class="modal">
+    <dialog id="experimentDialog" class="modal experiment-modal">
       <form id="experimentForm" method="dialog">
         <div class="modal-header">
           <h3 id="experimentModalTitle">Nouvelle expérience</h3>
@@ -377,9 +398,9 @@
           <label>
             <span>Statut</span>
             <select id="experimentStatus" required>
-              <option value="draft">Draft</option>
-              <option value="running">Running</option>
-              <option value="completed">Completed</option>
+              <option value="draft">Brouillon</option>
+              <option value="running">En cours</option>
+              <option value="completed">Terminé</option>
             </select>
           </label>
 
@@ -390,9 +411,55 @@
         </div>
 
         <label class="full-label">
-          Notes
+          <span>Template Notes</span>
+          <textarea id="experimentTemplateNotes" rows="3" readonly></textarea>
+        </label>
+
+        <label class="full-label">
+          <span>Experience Notes</span>
           <textarea id="experimentNotes" rows="3"></textarea>
         </label>
+
+        <div id="rtqpcrConfig" class="rtqpcr-config hidden">
+          <div class="rtqpcr-section-picker">
+            <label><input type="checkbox" id="rtqpcrPartRT" checked> RT</label>
+            <label><input type="checkbox" id="rtqpcrPartDilution" checked> Dilution cDNA</label>
+            <label><input type="checkbox" id="rtqpcrPartQPCR" checked> qPCR</label>
+          </div>
+
+          <div class="rtqpcr-general-block">
+            <label>
+              Conditions échantillons
+              <input id="rtqpcrSampleConditions" type="number" min="1" step="1" value="1">
+            </label>
+            <label>
+              Réplicats échantillons
+              <input id="rtqpcrSampleReplicates" type="number" min="1" step="1" value="1">
+            </label>
+          </div>
+
+          <div id="rtqpcrQPCRBlock" class="rtqpcr-qpcr-block">
+            <label>
+              Conditions qPCR
+              <input id="rtqpcrQpcrConditions" type="number" min="1" step="1" value="1">
+            </label>
+            <label>
+              Nombre de primers / gènes
+              <input id="rtqpcrPrimerCount" type="number" min="1" step="1" value="1">
+            </label>
+            <label>
+              Réplicats qPCR
+              <select id="rtqpcrQpcrReplicates">
+                <option value="1">Simple</option>
+                <option value="2" selected>Duplicats</option>
+              </select>
+            </label>
+            <label>
+              Volume mort (conditions)
+              <input id="rtqpcrDeadVolumeConditions" type="number" min="0" step="1" value="2">
+            </label>
+          </div>
+        </div>
 
         <section class="reference-section">
           <div class="reference-heading">
@@ -403,8 +470,12 @@
         </section>
 
         <div class="modal-actions">
-          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
-          <button class="primary-btn" id="saveExperimentBtn" type="button">Enregistrer</button>
+          <button type="button" class="danger-btn" id="deleteExperimentBtn">Supprimer</button>
+
+          <div class="modal-actions-right">
+            <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
+            <button class="primary-btn" id="saveExperimentBtn" type="button">Enregistrer</button>
+          </div>
         </div>
       </form>
     </dialog>

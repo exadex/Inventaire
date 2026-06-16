@@ -65,7 +65,10 @@ function buildItems() {
 let items = buildItems();
 
 let orders = load("exadex_orders");
-let experiments = migrateExperiments(load("exadex_experiments"));
+const loadedExperiments = load("exadex_experiments");
+let experiments = migrateExperiments(
+  Array.isArray(loadedExperiments) ? loadedExperiments : []
+);
 let history = load("exadex_history", load("adipovault_history"));
 
 persist();
@@ -2872,12 +2875,16 @@ function mergeItems(baseItems, storedItems) {
 }
 
 function migrateExperiments(experimentList) {
-  return experimentList.map(experiment => ({
+  const safeList = Array.isArray(experimentList) ? experimentList : [];
+
+  return safeList.map(experiment => ({
     ...experiment,
-    status: ["draft", "running", "completed"].includes(experiment.status) ? experiment.status : "draft",
-    conditions: Math.max(1, Number(experiment.conditions || 1)),
-    replicates: Math.max(1, Number(experiment.replicates || 1)),
-    items: Array.isArray(experiment.items) ? experiment.items : []
+    status: ["draft", "running", "completed"].includes(experiment?.status)
+      ? experiment.status
+      : "draft",
+    conditions: Math.max(1, Number(experiment?.conditions || 1)),
+    replicates: Math.max(1, Number(experiment?.replicates || 1)),
+    items: Array.isArray(experiment?.items) ? experiment.items : []
   }));
 }
 

@@ -49,10 +49,17 @@ function buildItems() {
       source: "seed"
     }));
 
+  const seenMergedIds = new Set(patchedSeedItems.map(item => item.id));
+
   const seedIds = new Set(patchedSeedItems.map(item => item.id));
 
   const cleanWebItems = webItems
     .filter(item => !deletedIds.has(item.id) && !seedIds.has(item.id))
+    .filter(item => {
+      if (!item.id || seenMergedIds.has(item.id)) return false;
+      seenMergedIds.add(item.id);
+      return true;
+    })
     .map(item => ({
       ...item,
       source: "web"
@@ -355,9 +362,9 @@ function persist() {
   localStorage.setItem("exadex_web_items", JSON.stringify(webItems));
   localStorage.setItem("exadex_seed_overrides", JSON.stringify(seedOverrides));
   localStorage.setItem("exadex_deleted_seed_ids", JSON.stringify(deletedSeedIds));
-  localStorage.setItem("exadex_orders", JSON.stringify(orders));
-  localStorage.setItem("exadex_experiments", JSON.stringify(experiments));
-  localStorage.setItem("exadex_history", JSON.stringify(history));
+  localStorage.setItem("exadex_orders", JSON.stringify(orders || []));
+  localStorage.setItem("exadex_experiments", JSON.stringify(experiments || []));
+  localStorage.setItem("exadex_history", JSON.stringify(history || []));
 }
 
 function updateUserIdentity() {
@@ -2844,18 +2851,36 @@ function addHistory(action, detail) {
   });
 }
 
+function createSafeItemId(prefix = "itm-web") {
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
 function migrateItems(itemList) {
-  return itemList.map(item => ({
-    ...item,
-    category: inventoryCategories.includes(item.category)
-      ? item.category
-      : legacyCategoryMap[item.category] || inventoryCategories[0],
-    location: inventoryLocations.includes(item.location)
-      ? item.location
-      : legacyLocationMap[item.location] || inventoryLocations[0],
-    tags: Array.isArray(item.tags) ? item.tags : [],
-    references: normalizeReferences(item.references)
-  }));
+  const safeList = Array.isArray(itemList) ? itemList : [];
+  const seenIds = new Set();
+
+  return safeList.map((item) => {
+    let id = typeof item?.id === "string" ? item.id.trim() : "";
+
+    if (!id || seenIds.has(id)) {
+      id = createSafeItemId();
+    }
+
+    seenIds.add(id);
+
+    return {
+      ...item,
+      id,
+      category: inventoryCategories.includes(item?.category)
+        ? item.category
+        : legacyCategoryMap[item?.category] || inventoryCategories[0],
+      location: inventoryLocations.includes(item?.location)
+        ? item.location
+        : legacyLocationMap[item?.location] || inventoryLocations[0],
+      tags: Array.isArray(item?.tags) ? item.tags : [],
+      references: normalizeReferences(item?.references)
+    };
+  });
 }
 
 // funcion para conservar both los items que yo genero en VS como los items que cualquiera anade a github

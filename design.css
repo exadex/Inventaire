@@ -562,7 +562,8 @@ textarea[readonly] {
 .experiment-status.running { color: var(--amber); background: #fff1d8; }
 .experiment-status.completed { color: var(--green); background: #e2f2d5; }
 .stock-ok, .stock-pill.ok { color: var(--green); background: #e2f2d5; }
-.stock-alert, .stock-pill.alert { color: var(--red); background: #ffe4e4; }
+.stock-low, .stock-pill.warning { color: var(--amber); background: #fff1d8; }
+.stock-alert, .stock-missing, .stock-pill.alert { color: var(--red); background: #ffe4e4; }
 .experiment-detail-panel {
   display: grid;
   gap: 16px;
@@ -1068,6 +1069,13 @@ td { font-size: 14px; }
 .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
 .icon-btn { width: 38px; height: 38px; padding: 0; border-radius: 50%; background: #f1f1ec; }
 .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.order-mode-fields {
+  display: grid;
+  gap: 10px;
+}
+.order-item-picker {
+  gap: 8px;
+}
 .full-label { margin-top: 14px; }
 .required-star { color: var(--red); font-weight: 900; }
 .reference-section {

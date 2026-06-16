@@ -43,7 +43,7 @@ docker-compose.yml  Lancement conteneur local
 ## Modèle de données recommandé
 
 - `users`: id, name, role, created_at
-- `inventory_items`: id, name, category_id, quantity, unit, min_stock, max_stock, location_id, protocol, notes
+- `inventory_items`: id, name, category_id, quantity, unit, min_stock, location_id, protocol, notes
 - `categories`: id, name, color
 - `tags`: id, name
 - `item_tags`: item_id, tag_id
@@ -59,7 +59,7 @@ docker-compose.yml  Lancement conteneur local
 
 ## Lancement
 
-Ouvrir `index.html` dans le navigateur. Les données sont persistées dans `localStorage` pour ce MVP.
+Ouvrir `index.html` dans le navigateur. Les donnees partagees sont chargees depuis `shared_data.json` quand GitHub est configure; sinon le cache local permet de continuer a tester en local.
 
 Avec Docker:
 
@@ -68,3 +68,33 @@ docker compose up --build
 ```
 
 Puis ouvrir `http://localhost:8080`.
+
+## Persistance partagee GitHub
+
+Les donnees modifiables ne sont plus traitees comme des donnees locales au navigateur:
+
+- `seed_items.js`: inventaire initial/default, utilise uniquement pour initialiser `shared_data.json` quand celui-ci est vide.
+- `protocols.js`: templates de protocoles en lecture seule, toujours versionnes dans le depot.
+- `shared_data.json`: source de verite partagee pour `inventoryItems`, `experiments`, `orders` et `history`.
+- `localStorage`: cache local et migration des anciennes donnees MVP uniquement.
+
+Le navigateur lit et ecrit `shared_data.json` avec l'API GitHub Contents via `github_storage.js`.
+
+Configuration runtime:
+
+```js
+localStorage.setItem("exadex_github_storage_config", JSON.stringify({
+  owner: "ORGANISATION_OU_USER",
+  repo: "NOM_DU_REPO",
+  branch: "main",
+  path: "shared_data.json"
+}));
+
+localStorage.setItem("exadex_github_token", "GITHUB_FINE_GRAINED_TOKEN");
+```
+
+Le token doit avoir le droit Contents read/write sur ce depot. Sans token, l'application peut lire les donnees publiques configurees mais ne peut pas sauvegarder les modifications. Pour une mise en production robuste, preferer un petit backend/proxy afin de ne pas exposer de token GitHub dans le navigateur.
+
+Migration:
+
+Au premier chargement, si `shared_data.json` est vide, l'application initialise l'inventaire depuis `seed_items.js` et tente aussi de reprendre les anciennes cles `localStorage` (`exadex_web_items`, `exadex_seed_overrides`, `exadex_deleted_seed_ids`, `exadex_orders`, `exadex_experiments`, `exadex_history`). Apres sauvegarde GitHub, `shared_data.json` devient la source commune pour tous les utilisateurs.

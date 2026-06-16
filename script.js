@@ -1,10 +1,7 @@
-// extructura de la app :
-// seedBaseItems son los items base que vienen “de fábrica”, 
-// webItems son los items creados por ti desde la interfaz, 
-// seedOverrides guarda los cambios hechos sobre items base, 
-// y deletedSeedIds guarda qué items base has decidido borrar
-// Después, buildItems() junta esas cuatro capas y crea items, que es la lista final que realmente ve el usuario en pantalla, 
-// items es una “foto reconstruida”, no la fuente original
+// Estructura de datos:
+// seedBaseItems viene del repositorio y solo sirve como bootstrap/default.
+// sharedState es la fuente editable: inventario, experimentos, pedidos e historial.
+// sharedState se cachea localmente, pero la fuente compartida es shared_data.json via GitHub.
 
 const seedSamples = [
   ["PAT-AX41", "Abdominal", "2026-05-12", "Hypoxie 1% O2", "RNA-seq", "LN2 / Canister 2 / Box 17"],
@@ -19,66 +16,29 @@ const seedBaseItems = migrateItems(seedItems).map(item => ({
   source: "seed"
 }));
 
-let webItems = migrateItems(
-  load("exadex_web_items", load("adipovault_web_items", []))
-).map(item => ({
-  ...item,
-  source: "web"
-}));
-
-let seedOverrides = load(
-  "exadex_seed_overrides",
-  load("adipovault_seed_overrides", {})
-);
-
-let deletedSeedIds = load(
-  "exadex_deleted_seed_ids",
-  load("adipovault_deleted_seed_ids", [])
-);
+let sharedDataSha = null;
+let sharedDataMode = "loading";
+let sharedDataSaveTimer = null;
+let sharedDataLastError = "";
+let sharedState = createSharedState(load("exadex_shared_state_cache"));
 
 
 // no mover esta funcion
 function buildItems() {
-  const deletedIds = new Set(deletedSeedIds);
-
-  const patchedSeedItems = seedBaseItems
-    .filter(item => !deletedIds.has(item.id))
-    .map(item => ({
-      ...item,
-      ...(seedOverrides[item.id] || {}),
-      source: "seed"
-    }));
-
-  const seenMergedIds = new Set(patchedSeedItems.map(item => item.id));
-
-  const seedIds = new Set(patchedSeedItems.map(item => item.id));
-
-  const cleanWebItems = webItems
-    .filter(item => !deletedIds.has(item.id) && !seedIds.has(item.id))
-    .filter(item => {
-      if (!item.id || seenMergedIds.has(item.id)) return false;
-      seenMergedIds.add(item.id);
-      return true;
-    })
-    .map(item => ({
-      ...item,
-      source: "web"
-    }));
-
-  return [...patchedSeedItems, ...cleanWebItems];
+  return migrateItems(sharedState.inventoryItems).map(item => ({
+    ...item,
+    source: item.source || (isSeedItemId(item.id) ? "seed" : "web")
+  }));
 }
 
 // dejar despues de function(buildItems)
 let items = buildItems();
 
-let orders = load("exadex_orders");
-const loadedExperiments = load("exadex_experiments");
-let experiments = migrateExperiments(
-  Array.isArray(loadedExperiments) ? loadedExperiments : []
-);
-let history = load("exadex_history", load("adipovault_history"));
+let orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
+let experiments = migrateExperiments(sharedState.experiments);
+let history = Array.isArray(sharedState.history) ? sharedState.history : [];
 
-persist();
+hydrateSharedData();
 
 let statusFilter = "all";
 let activeView = "inventory";
@@ -91,6 +51,7 @@ let itemReturnContext = { view: "inventory", experimentId: null, location: null,
 let viewReturnScrollY = { experiments: 0, locations: 0 };
 let selectedOrderId = null;
 let ordersMode = "board";
+let pendingOrderInventoryLink = null;
 
 const auth = document.querySelector("#auth");
 const app = document.querySelector("#app");
@@ -128,7 +89,6 @@ const fields = [
   "quantity",
   "unit",
   "minStock",
-  "maxStock",
   "location",
   "tags",
   "notes",
@@ -170,19 +130,12 @@ const experimentFields = [
 
 const orderFields = [
   "orderItemMode",
+  "orderInventorySearch",
   "orderInventoryItem",
-  "orderItemName",
   "orderQuantity",
   "orderPriority",
   "orderNotes",
-  "orderNewName",
-  "orderNewCategory",
-  "orderNewUnit",
-  "orderNewMinStock",
-  "orderNewMaxStock",
-  "orderNewLocation",
-  "orderNewTags",
-  "orderNewItemNotes"
+  "orderNewName"
 ].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 renderCategoryOptions();
@@ -247,6 +200,10 @@ if (deleteExperimentBtn) {
   deleteExperimentBtn.addEventListener("click", deleteExperiment);
 }
 
+dialog.addEventListener("close", () => {
+  pendingOrderInventoryLink = null;
+});
+
 document.querySelector("#addExperimentItemBtn").addEventListener("click", () =>
   addExperimentItemRow({}, { showInventorySelect: true })
 );
@@ -255,6 +212,8 @@ document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal)
 document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
 document.querySelector("#closeOrderDialogBtn").addEventListener("click", () => orderDialog.close());
 document.querySelector("#cancelOrderBtn").addEventListener("click", () => orderDialog.close());
+orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
+orderFields.orderInventorySearch.addEventListener("input", renderOrderItemOptions);
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
 experimentSearchInput.addEventListener("input", renderExperiments);
@@ -357,14 +316,144 @@ function load(key, fallback) {
   }
 }
 
-// guarda en localStorage el estado actual de items, ordenes, experimentos, etc
-function persist() {
-  localStorage.setItem("exadex_web_items", JSON.stringify(webItems));
-  localStorage.setItem("exadex_seed_overrides", JSON.stringify(seedOverrides));
-  localStorage.setItem("exadex_deleted_seed_ids", JSON.stringify(deletedSeedIds));
-  localStorage.setItem("exadex_orders", JSON.stringify(orders || []));
-  localStorage.setItem("exadex_experiments", JSON.stringify(experiments || []));
-  localStorage.setItem("exadex_history", JSON.stringify(history || []));
+function createSharedState(rawState = null) {
+  const legacyWebItems = migrateItems(
+    load("exadex_web_items", load("adipovault_web_items", []))
+  ).map(item => ({
+    ...item,
+    source: "web"
+  }));
+
+  const legacySeedOverrides = load(
+    "exadex_seed_overrides",
+    load("adipovault_seed_overrides", {})
+  ) || {};
+
+  const legacyDeletedSeedIds = load(
+    "exadex_deleted_seed_ids",
+    load("adipovault_deleted_seed_ids", [])
+  ) || [];
+
+  const migratedSeedItems = seedBaseItems
+    .filter(item => !legacyDeletedSeedIds.includes(item.id))
+    .map(item => ({
+      ...item,
+      ...(legacySeedOverrides[item.id] || {}),
+      source: "seed"
+    }));
+
+  const seedIds = new Set(migratedSeedItems.map(item => item.id));
+  const migratedInventoryItems = [
+    ...migratedSeedItems,
+    ...legacyWebItems.filter(item => !seedIds.has(item.id))
+  ];
+
+  const source = rawState && typeof rawState === "object" ? rawState : {};
+  const hasSharedInventory =
+    Array.isArray(source.inventoryItems) &&
+    (source.inventoryItems.length > 0 || Boolean(source.updatedAt));
+
+  return {
+    version: 1,
+    inventoryItems: migrateItems(hasSharedInventory ? source.inventoryItems : migratedInventoryItems),
+    experiments: migrateExperiments(
+      Array.isArray(source.experiments)
+        ? source.experiments
+        : load("exadex_experiments", [])
+    ),
+    orders: Array.isArray(source.orders)
+      ? source.orders
+      : load("exadex_orders", []),
+    history: Array.isArray(source.history)
+      ? source.history
+      : load("exadex_history", load("adipovault_history", [])),
+    updatedAt: source.updatedAt || ""
+  };
+}
+
+function syncRuntimeStateFromShared() {
+  sharedState.inventoryItems = migrateItems(sharedState.inventoryItems);
+  sharedState.experiments = migrateExperiments(sharedState.experiments);
+  sharedState.orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
+  sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
+
+  items = buildItems();
+  orders = sharedState.orders;
+  experiments = sharedState.experiments;
+  history = sharedState.history;
+}
+
+function syncSharedStateFromRuntime() {
+  sharedState.inventoryItems = migrateItems(items);
+  sharedState.experiments = migrateExperiments(experiments);
+  sharedState.orders = Array.isArray(orders) ? orders : [];
+  sharedState.history = Array.isArray(history) ? history : [];
+  sharedState.updatedAt = new Date().toISOString();
+}
+
+async function hydrateSharedData() {
+  try {
+    const storage = window.ExadexGithubStorage;
+
+    if (!storage) {
+      sharedDataMode = "cache-only";
+      syncRuntimeStateFromShared();
+      persist({ skipRemote: true });
+      return;
+    }
+
+    const result = await storage.loadSharedData();
+    sharedDataMode = result.mode;
+    sharedDataSha = result.sha;
+
+    if (result.data) {
+      sharedState = createSharedState(result.data);
+      syncRuntimeStateFromShared();
+      persist({ skipRemote: true });
+
+      if (!app.classList.contains("hidden")) {
+        render();
+      }
+    } else {
+      syncRuntimeStateFromShared();
+      persist({ skipRemote: result.mode !== "github-write" });
+    }
+  } catch (error) {
+    sharedDataMode = "cache-fallback";
+    sharedDataLastError = error.message || String(error);
+    console.warn("Shared storage unavailable; using local cache.", error);
+    syncRuntimeStateFromShared();
+    persist({ skipRemote: true });
+  }
+}
+
+function scheduleSharedSave() {
+  window.clearTimeout(sharedDataSaveTimer);
+  sharedDataSaveTimer = window.setTimeout(async () => {
+    try {
+      const storage = window.ExadexGithubStorage;
+      if (!storage) return;
+      const config = storage.getConfig();
+      if (!config.owner || !config.repo || !config.path || !config.token) return;
+
+      sharedDataSha = await storage.saveSharedData(sharedState, sharedDataSha);
+      sharedDataMode = "github-write";
+      sharedDataLastError = "";
+    } catch (error) {
+      sharedDataLastError = error.message || String(error);
+      console.warn("Shared storage save failed.", error);
+    }
+  }, 400);
+}
+
+// guarda una copia cache local y publica el estado compartido en GitHub cuando esta configurado
+function persist(options = {}) {
+  syncSharedStateFromRuntime();
+  localStorage.setItem("exadex_shared_state_cache", JSON.stringify(sharedState));
+
+  if (!options.skipRemote) {
+    scheduleSharedSave();
+  }
 }
 
 function updateUserIdentity() {
@@ -375,10 +464,28 @@ function updateUserIdentity() {
   sidebarUserName.textContent = currentName;
 }
 
+const STOCK_WARNING_MULTIPLIER = 1.5;
+
 function itemStatus(item) {
-  if (Number(item.quantity) <= Number(item.minStock)) return "critical";
-  if (Number(item.quantity) <= Number(item.minStock) * 1.5) return "warning";
+  const quantity = Number(item.quantity || 0);
+  const minStock = Number(item.minStock || 0);
+
+  if (minStock <= 0) return quantity < 0 ? "critical" : "ok";
+  if (quantity <= minStock) return "critical";
+  if (quantity <= minStock * STOCK_WARNING_MULTIPLIER) return "warning";
   return "ok";
+}
+
+function stockLevelPercent(item) {
+  const quantity = Number(item.quantity || 0);
+  const minStock = Number(item.minStock || 0);
+
+  if (minStock <= 0) return quantity < 0 ? 0 : 100;
+
+  return Math.max(
+    0,
+    Math.min(100, Math.round((quantity / (minStock * STOCK_WARNING_MULTIPLIER)) * 100))
+  );
 }
 
 function statusLabel(status) {
@@ -533,7 +640,7 @@ function renderInventory() {
 
   document.querySelector("#inventoryGrid").innerHTML = filtered.map((item) => {
     const status = itemStatus(item);
-    const percent = Math.min(100, Math.round((Number(item.quantity) / Math.max(Number(item.maxStock), 1)) * 100));
+    const percent = stockLevelPercent(item);
 
     return `
       <article class="item-card item-preview-card" onclick="openItemDetail('${escapeHtml(item.id)}', { view: 'inventory' })">
@@ -550,7 +657,7 @@ function renderInventory() {
 
         <div class="stock-line">
           <span>${item.quantity} ${escapeHtml(item.unit)}</span>
-          <span>Max ${item.maxStock} ${escapeHtml(item.unit)}</span>
+          <span>Min ${item.minStock} ${escapeHtml(item.unit)}</span>
         </div>
 
         ${item.tags?.length ? `
@@ -590,7 +697,7 @@ function renderInventoryDetail(item) {
   const references = normalizeReferences(item.references);
   const percent = Math.min(
     100,
-    Math.round((Number(item.quantity) / Math.max(Number(item.maxStock), 1)) * 100)
+    stockLevelPercent(item)
   );
 
   return `
@@ -629,7 +736,6 @@ function renderInventoryDetail(item) {
       <div class="stock-summary">
         <strong>${item.quantity} ${escapeHtml(item.unit)}</strong>
         <span>Minimum: ${item.minStock} ${escapeHtml(item.unit)}</span>
-        <span>Maximum: ${item.maxStock} ${escapeHtml(item.unit)}</span>
         <div class="bar">
           <span class="${status}" style="width:${percent}%"></span>
         </div>
@@ -786,7 +892,7 @@ function renderOrderDetail(order) {
   const references = normalizeReferences(item.references);
   const percent = Math.min(
     100,
-    Math.round((Number(item.quantity) / Math.max(Number(item.maxStock), 1)) * 100)
+    stockLevelPercent(item)
   );
 
   return `
@@ -835,7 +941,6 @@ function renderOrderDetail(order) {
       <div class="stock-summary">
         <strong>${item.quantity} ${escapeHtml(item.unit)}</strong>
         <span>Minimum: ${item.minStock} ${escapeHtml(item.unit)}</span>
-        <span>Maximum: ${item.maxStock} ${escapeHtml(item.unit)}</span>
         <div class="bar">
           <span class="${status}" style="width:${percent}%"></span>
         </div>
@@ -1177,9 +1282,21 @@ function renderOrders() {
 }
 
 function renderOrderItemOptions() {
-  orderFields.orderInventoryItem.innerHTML = items
+  const query = normalizeSearch(orderFields.orderInventorySearch?.value || "");
+  const filtered = items.filter(item => {
+    const haystack = normalizeSearch([
+      item.name,
+      item.category,
+      ...getItemLocations(item),
+      ...item.tags
+    ].join(" "));
+
+    return !query || haystack.includes(query);
+  });
+
+  orderFields.orderInventoryItem.innerHTML = filtered
     .map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`)
-    .join("");
+    .join("") || `<option value="">Aucun item trouvé</option>`;
 }
 
 // funcion para la fecha que aparece en las tarjetas de ordenes, para mostrarla en formato DD/MM/YY o devolver "—" si no hay fecha o si el formato no se reconoce
@@ -1212,6 +1329,8 @@ function toggleOrderModeFields() {
   const isExisting = orderFields.orderItemMode.value === "existing";
   existingBlock.classList.toggle("hidden", !isExisting);
   newBlock.classList.toggle("hidden", isExisting);
+  orderFields.orderInventoryItem.required = isExisting;
+  orderFields.orderNewName.required = !isExisting;
 }
 
 function renderExperiments() {
@@ -1309,7 +1428,19 @@ function renderExperimentDetail(experiment) {
     const needed = Number(line.quantity || 0);
     const comparable = inventoryItem && inventoryItem.unit === line.unit;
     const enough = comparable && available >= needed;
-    const stateLabel = !inventoryItem ? "Non connecte" : !comparable ? "Unite differente" : enough ? "Suffisant" : "Insuffisant";
+    const lowStock = comparable && (!enough || itemStatus(inventoryItem) !== "ok");
+    const stateLabel = !inventoryItem
+      ? "Manquant"
+      : !comparable
+        ? "Unite differente"
+        : lowStock
+          ? "Stock bas"
+          : "Connecte";
+    const stateClass = !inventoryItem || !comparable
+      ? "alert"
+      : lowStock
+        ? "warning"
+        : "ok";
     return `
       <tr>
       <td>
@@ -1329,7 +1460,7 @@ function renderExperimentDetail(experiment) {
       </td>
         <td>${formatQuantity(needed, line.unit)}</td>
         <td>${inventoryItem ? `${inventoryItem.quantity} ${escapeHtml(inventoryItem.unit)}` : "Non connecte"}</td>
-        <td><span class="stock-pill ${enough ? "ok" : "alert"}">${stateLabel}</span></td>
+        <td><span class="stock-pill ${stateClass}">${stateLabel}</span></td>
       </tr>
     `;
   }).join("");
@@ -1560,21 +1691,21 @@ function returnFromItemDetail() {
   restorePageScrollY(itemReturnContext.scrollY);
 }
 
-function openModal(id) {
+function openModal(id, options = {}) {
   const item = items.find(entry => entry.id === id);
+  const prefill = options.prefill || {};
   const references = normalizeReferences(item?.references);
   document.querySelector("#modalTitle").textContent = item ? "Modifier item" : "Nouvel item";
   document.querySelector("#deleteItemBtn").style.display = item ? "inline-block" : "none";
   fields.itemId.value = item?.id || "";
-  fields.name.value = item?.name || "";
-  fields.category.value = item?.category || inventoryCategories[0];
-  fields.quantity.value = item?.quantity ?? "";
-  fields.unit.value = item?.unit || "";
-  fields.minStock.value = item?.minStock ?? "";
-  fields.maxStock.value = item?.maxStock ?? "";
-  setSelectedLocations(item ? getItemLocations(item) : []);
-  fields.tags.value = item?.tags?.join(", ") || "";
-  fields.notes.value = item?.notes || "";
+  fields.name.value = item?.name || prefill.name || "";
+  fields.category.value = item?.category || prefill.category || inventoryCategories[0];
+  fields.quantity.value = item?.quantity ?? prefill.quantity ?? "";
+  fields.unit.value = item?.unit || prefill.unit || "";
+  fields.minStock.value = item?.minStock ?? prefill.minStock ?? "";
+  setSelectedLocations(item ? getItemLocations(item) : (prefill.locations || []));
+  fields.tags.value = item?.tags?.join(", ") || prefill.tags?.join(", ") || "";
+  fields.notes.value = item?.notes || prefill.notes || "";
   fields.primarySupplier.value = references.primary.supplier || "";
   fields.primaryReference.value = references.primary.reference || "";
   fields.primaryLink.value = references.primary.link || "";
@@ -1603,7 +1734,6 @@ function saveItem() {
     quantity: Number(fields.quantity.value),
     unit: fields.unit.value.trim(),
     minStock: Number(fields.minStock.value),
-    maxStock: Number(fields.maxStock.value),
     locations: selectedLocations,
     location: selectedLocations[0] || "",
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
@@ -1617,23 +1747,25 @@ function saveItem() {
   };
 
   const isSeedItem = seedBaseItems.some(entry => entry.id === item.id);
-  const webIndex = webItems.findIndex(entry => entry.id === item.id);
+  const itemIndex = items.findIndex(entry => entry.id === item.id);
 
-  if (isSeedItem) {
-    seedOverrides[item.id] = {
-      ...(seedOverrides[item.id] || {}),
-      ...item
+  if (itemIndex >= 0) {
+    items[itemIndex] = {
+      ...items[itemIndex],
+      ...item,
+      source: isSeedItem ? "seed" : (items[itemIndex].source || "web")
     };
     addHistory("Item modifié", `${currentName} a modifié ${item.name}.`);
-  } else if (webIndex >= 0) {
-    webItems[webIndex] = { ...item, source: "web" };
-    addHistory("Item modifié", `${currentName} a modifié ${item.name}.`);
   } else {
-    webItems.unshift({ ...item, source: "web" });
+    items.unshift({ ...item, source: "web" });
     addHistory("Item ajouté", `${currentName} a ajouté ${item.name} dans ${item.category}.`);
   }
 
-  items = buildItems();
+  if (pendingOrderInventoryLink && !existingId) {
+    linkCreatedItemToOrder(pendingOrderInventoryLink.orderId, item);
+    pendingOrderInventoryLink = null;
+  }
+
   persist();
   dialog.close();
   render();
@@ -1664,16 +1796,7 @@ function deleteItem() {
   const item = items.find(entry => entry.id === id);
   if (!item) return;
 
-  if (isSeedItemId(id)) {
-    if (!deletedSeedIds.includes(id)) {
-      deletedSeedIds.push(id);
-    }
-    delete seedOverrides[id];
-  } else {
-    webItems = webItems.filter(entry => entry.id !== id);
-  }
-
-  items = buildItems();
+  items = items.filter(entry => entry.id !== id);
 
   addHistory("Item supprimé", `${currentName} a supprimé ${item.name} de l'inventaire.`);
   persist();
@@ -1694,21 +1817,25 @@ function patchStoredItem(id, patch) {
   if (!nextPatch || typeof nextPatch !== "object") return current;
 
   if (isSeedItemId(id)) {
-    seedOverrides[id] = {
-      ...(seedOverrides[id] || {}),
-      ...nextPatch
-    };
+    const index = items.findIndex(entry => entry.id === id);
+    if (index >= 0) {
+      items[index] = {
+        ...items[index],
+        ...nextPatch,
+        source: "seed"
+      };
+    }
   } else {
-    const index = webItems.findIndex(entry => entry.id === id);
+    const index = items.findIndex(entry => entry.id === id);
 
     if (index >= 0) {
-      webItems[index] = {
-        ...webItems[index],
+      items[index] = {
+        ...items[index],
         ...nextPatch,
         source: "web"
       };
     } else {
-      webItems.unshift({
+      items.unshift({
         ...current,
         ...nextPatch,
         source: "web"
@@ -1716,11 +1843,10 @@ function patchStoredItem(id, patch) {
     }
   }
 
-  items = buildItems();
   return items.find(entry => entry.id === id) || null;
 }
 
-// funcion para crear un nuevo item dentro de webItems a partir de datos, sin necesidad de pasar por el formulario, y que se añada directamente al inventario y se guarde en el historial
+// funcion para crear un nuevo item dentro del inventario compartido, sin pasar por el formulario
 function createStoredItem(itemData) {
   const now = new Date();
 
@@ -1731,7 +1857,6 @@ function createStoredItem(itemData) {
     quantity: Number(itemData.quantity ?? 0),
     unit: itemData.unit?.trim() || "",
     minStock: Number(itemData.minStock ?? 0),
-    maxStock: Number(itemData.maxStock ?? 0),
     locations: Array.isArray(itemData.locations)
       ? itemData.locations
       : itemData.location
@@ -1751,8 +1876,7 @@ function createStoredItem(itemData) {
     source: "web"
   };
 
-  webItems.unshift(newItem);
-  items = buildItems();
+  items.unshift(newItem);
   return items.find(entry => entry.id === newItem.id) || newItem;
 }
 
@@ -2159,7 +2283,7 @@ function addExperimentItemRow(line = {}, options = {}) {
     ? items.find(entry => entry.id === line.itemId)
     : null;
 
-  const selectedItem = explicitItem || (!line.manualLinkOnly ? findInventoryItem(line) : null);
+  const selectedItem = explicitItem || findInventoryItem(line);
   const quantityEditable = line.quantityEditable !== false;
   const quantityHint = line.quantityDisplay
     ? `<small class="experiment-quantity-hint">${escapeHtml(line.quantityDisplay)}</small>`
@@ -2285,20 +2409,21 @@ function updateExperimentModalStock() {
     const state = row.querySelector(".experiment-stock-state");
 
     if (!item) {
-      state.className = "experiment-stock-state stock-alert";
-      state.textContent = "Non connecte";
+      state.className = "experiment-stock-state stock-missing";
+      state.textContent = "Manquant";
       return;
     }
 
     if (unit !== item.unit || !unit) {
-      state.className = "experiment-stock-state stock-alert";
+      state.className = "experiment-stock-state stock-missing";
       state.textContent = `${item.quantity} ${item.unit} - unite differente`;
       return;
     }
 
     const ok = Number(item.quantity) >= needed;
-    state.className = `experiment-stock-state ${ok ? "stock-ok" : "stock-alert"}`;
-    state.textContent = `${item.quantity} ${item.unit}`;
+    const lowStock = !ok || itemStatus(item) !== "ok";
+    state.className = `experiment-stock-state ${lowStock ? "stock-low" : "stock-ok"}`;
+    state.textContent = `${lowStock ? "Stock bas" : "Connecte"} · ${item.quantity} ${item.unit}`;
   });
 }
 
@@ -2485,6 +2610,8 @@ function consumeExperimentStock(id) {
 
 function openOrderModal() {
   orderForm.reset();
+  orderFields.orderInventorySearch.value = "";
+  orderFields.orderNewName.value = "";
   renderOrderItemOptions();
   orderFields.orderItemMode.value = "existing";
   orderFields.orderPriority.value = "critique";
@@ -2525,12 +2652,15 @@ function saveOrder() {
       newItemData: null
     };
   } else {
+    const newItemName = orderFields.orderNewName.value.trim();
+    if (!newItemName) return;
+
     order = {
       id: `ord-${Date.now()}`,
       status: "requested",
       itemMode: "new",
       inventoryItemId: null,
-      itemName: orderFields.orderNewName.value.trim(),
+      itemName: newItemName,
       requestedQuantity: Number(orderFields.orderQuantity.value),
       receivedQuantity: 0,
       priority: orderFields.orderPriority.value,
@@ -2544,18 +2674,7 @@ function saveOrder() {
       receivedBy: "",
       receivedAt: "",
       receivedAtRaw: "",
-      newItemData: {
-        name: orderFields.orderNewName.value.trim(),
-        category: orderFields.orderNewCategory.value.trim(),
-        quantity: 0,
-        unit: orderFields.orderNewUnit.value.trim(),
-        minStock: Number(orderFields.orderNewMinStock.value),
-        maxStock: Number(orderFields.orderNewMaxStock.value),
-        location: orderFields.orderNewLocation.value.trim(),
-        tags: orderFields.orderNewTags.value.split(",").map(tag => tag.trim()).filter(Boolean),
-        notes: orderFields.orderNewItemNotes.value.trim(),
-        references: { primary: {}, secondary: [] }
-      }
+      newItemData: { name: newItemName }
     };
   }
 
@@ -2634,6 +2753,19 @@ function openReceiveInventoryDialog(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || order.status !== "received") return;
 
+  if (order.itemMode === "new" && !order.inventoryItemId) {
+    const quantity = Number(order.receivedQuantity || order.requestedQuantity || 0);
+    pendingOrderInventoryLink = { orderId: order.id };
+    openModal(null, {
+      prefill: {
+        name: order.itemName || order.newItemData?.name || "",
+        quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : "",
+        notes: order.notes || ""
+      }
+    });
+    return;
+  }
+
   const linkedItem = order.inventoryItemId
     ? items.find(entry => entry.id === order.inventoryItemId)
     : null;
@@ -2648,6 +2780,25 @@ function openReceiveInventoryDialog(id) {
   receiveInventoryFields.receiveUnit.value = unit;
 
   receiveInventoryDialog.showModal();
+}
+
+function linkCreatedItemToOrder(orderId, item) {
+  const order = orders.find(entry => entry.id === orderId);
+  if (!order || !item) return;
+
+  order.inventoryItemId = item.id;
+  order.addedToInventory = true;
+  order.addedToInventoryQuantity = Number(item.quantity || 0);
+  order.addedToInventoryAt = new Intl.DateTimeFormat("fr-FR", {
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(new Date());
+  order.addedToInventoryAtRaw = new Date().toISOString();
+
+  addHistory(
+    "Ajout à l'inventaire",
+    `${currentName} a créé ${item.name} depuis la demande de commande ${order.itemName}.`
+  );
 }
 
 // idem que la anterior
@@ -2668,7 +2819,7 @@ function confirmReceiveInventory() {
 
   const finalQuantity = Number(confirmedQuantity.toFixed(3));
 
-  if (order.itemMode === "existing" && order.inventoryItemId) {
+  if (order.inventoryItemId) {
     const item = items.find(entry => entry.id === order.inventoryItemId);
     if (!item) {
       window.alert("L'article lié dans l'inventaire est introuvable.");
@@ -2860,6 +3011,7 @@ function migrateItems(itemList) {
   const seenIds = new Set();
 
   return safeList.map((item) => {
+    const { maxStock, ...itemWithoutMaxStock } = item || {};
     let id = typeof item?.id === "string" ? item.id.trim() : "";
 
     if (!id || seenIds.has(id)) {
@@ -2869,7 +3021,7 @@ function migrateItems(itemList) {
     seenIds.add(id);
 
     return {
-      ...item,
+      ...itemWithoutMaxStock,
       id,
       category: inventoryCategories.includes(item?.category)
         ? item.category
@@ -2918,17 +3070,33 @@ function findInventoryItem(line) {
     return items.find(item => item.id === line.itemId) || null;
   }
 
-  if (line?.manualLinkOnly) {
-    return null;
-  }
+  return findInventoryItemByProtocolName(line?.name);
+}
 
-  const normalizedName = normalizeSearch(line?.name);
-  if (!normalizedName) return null;
+function findInventoryItemByProtocolName(name) {
+  const rawName = String(name || "").trim();
+  if (!rawName) return null;
 
-  const matches = items.filter(item => normalizeSearch(item.name) === normalizedName);
-  if (matches.length === 1) return matches[0];
+  const exact = items.filter(item => String(item.name || "").trim() === rawName);
+  if (exact.length === 1) return exact[0];
+
+  const lowerName = rawName.toLowerCase();
+  const lowerMatches = items.filter(item => String(item.name || "").trim().toLowerCase() === lowerName);
+  if (lowerMatches.length === 1) return lowerMatches[0];
+
+  const normalizedName = normalizeSearch(rawName);
+  const normalizedMatches = items.filter(item => normalizeSearch(item.name) === normalizedName);
+  if (normalizedMatches.length === 1) return normalizedMatches[0];
+
+  const relaxedName = normalizeProtocolMatchText(rawName);
+  const relaxedMatches = items.filter(item => normalizeProtocolMatchText(item.name) === relaxedName);
+  if (relaxedMatches.length === 1) return relaxedMatches[0];
 
   return null;
+}
+
+function normalizeProtocolMatchText(value) {
+  return normalizeSearch(value).replace(/[^a-z0-9]+/g, "");
 }
 
 function experimentStockSummary(experiment) {

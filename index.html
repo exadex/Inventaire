@@ -213,7 +213,7 @@
               <div class="order-list" id="requestedOrderList"></div>
             </section>
 
-            <section id="existingItemFields" class="order-step">
+            <section id="orderedOrderSection" class="order-step">
               <div class="order-column-head">
                 <h4>Commandé
                 <span id="orderedCount"></span></h4>
@@ -221,7 +221,7 @@
               <div class="order-list" id="orderedOrderList"></div>
             </section>
 
-            <section id="newItemFields" class="order-step hidden">
+            <section id="receivedOrderSection" class="order-step">
               <div class="order-column-head">
                 <h4>Arrivé
                 <span id="receivedCount"></span></h4>
@@ -254,7 +254,6 @@
             <label><span>Quantité <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="0.1" required /></label>
             <label><span>Unité <span class="required-star">*</span></span><input id="unit" required /></label>
             <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
-            <label><span>Capacité max <span class="required-star">*</span></span><input id="maxStock" type="number" min="0" step="0.1" required /></label>
             <label class="location-field">
               <span>Localisation <span class="required-star">*</span></span>
 
@@ -496,10 +495,20 @@
             </select>
           </label>
 
-          <label>
-            <span>Item <span class="required-star">*</span></span>
-            <select id="orderInventoryItem"></select>
-          </label>
+          <div id="existingItemFields" class="order-mode-fields">
+            <label class="order-item-picker">
+              <span>Item <span class="required-star">*</span></span>
+              <input id="orderInventorySearch" type="search" placeholder="Rechercher par nom, categorie, localisation..." />
+              <select id="orderInventoryItem"></select>
+            </label>
+          </div>
+
+          <div id="newItemFields" class="order-mode-fields hidden">
+            <label>
+              <span>Nom du nouvel item <span class="required-star">*</span></span>
+              <input id="orderNewName" autocomplete="off" />
+            </label>
+          </div>
 
           <label>
             <span>Quantité demandée <span class="required-star">*</span></span>
@@ -515,6 +524,7 @@
               <option value="pas urgent">Pas urgent</option>
             </select>
           </label>
+        </div>
 
         <label class="full-label">
           <span>Notes</span>
@@ -589,6 +599,7 @@
     <script src="const.js"></script>
     <script src="seed_items.js"></script>
     <script src="protocols.js"></script>
+    <script src="github_storage.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

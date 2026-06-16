@@ -5416,5 +5416,6094 @@ const seedItems =
       },
       "secondary": []
     }
+  },
+  {
+    "id": "itm-CSV-0001",
+    "name": "Qiazol",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.qiagen.com/fr-us/products/discovery-and-translational-research/lab-essentials/buffers-reagents/qiazol-lysis-reagent",
+        "notes": "",
+        "price": "303",
+        "unitPrice": "1,515",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0002",
+    "name": "Stainless steel beads 5mm",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.qiagen.com/fr-us/products/instruments-and-automation/accessories/beads/?catno=69989",
+        "notes": "",
+        "price": "151",
+        "unitPrice": "0,755",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0003",
+    "name": "Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/zymoclean-gel-rna-recovery-kit-w-zymo-spin-ic-columns-capped-50-preps-zr1011",
+        "notes": "",
+        "price": "187",
+        "unitPrice": "3,74",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0004",
+    "name": "Direct Zol RNA MicroPrep",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "271",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0005",
+    "name": "Wash Buffer",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/rna-wash-buffer-12-ml-zr1003-3-12-1",
+        "notes": "",
+        "price": "46",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0006",
+    "name": "miRNeasy Kits",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide",
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.qiagen.com/us/products/discovery-and-translational-research/dna-rna-purification/rna-purification/mirna/mirneasy-kits",
+        "notes": "",
+        "price": "534",
+        "unitPrice": "534",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0007",
+    "name": "Kit extraction ADN",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "42",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0008",
+    "name": "isopropanol",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0009",
+    "name": "Glycogène",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C gris labo",
+    "locations": [
+      "-20°C gris labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "77",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0010",
+    "name": "M-MLV RT (5)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://france.promega.com/products/pcr/rt-pcr/m-mlv-reverse-transcriptase/?catNum=M1705",
+        "notes": "",
+        "price": "250",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0011",
+    "name": "OneScript RT Mix for qPCR w/gDNAOut (OwiScript)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo",
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/onescript-rt-mix-for-qpcr-w-gdnaout-ozya012?search-context-name=OZYA012",
+        "notes": "",
+        "price": "204",
+        "unitPrice": "2,01",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0012",
+    "name": "SuperScript™ II Reverse Transcriptase",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo",
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/18064014",
+        "notes": "",
+        "price": "376",
+        "unitPrice": "7,52",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0013",
+    "name": "High capacity cDNA reverse transcription kit",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "1147",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0014",
+    "name": "Smart ladder",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.eurogentec.com/en/catalog/smartladder-200-to-10000-bp~62cddba9-b196-47b3-bec0-c700aed35e2e",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0015",
+    "name": "Tampon TAE UltraPure™, 10X",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "53",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0016",
+    "name": "GelRed® Nucleic Acid Gel Stain, 10, 000X in DMSO",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/gelred-r-nucleic-acid-gel-stain-10-000x-in-dmso-btm41002-1",
+        "notes": "",
+        "price": "165",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0017",
+    "name": "Tube PCR colone de 8 bouchon plat",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "tubes",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire",
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.dutscher.com/product/0B-35-03",
+        "notes": "",
+        "price": "46",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0018",
+    "name": "Sybersafe",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "260",
+        "unitPrice": "#DIV/0!",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0019",
+    "name": "dNTP",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0020",
+    "name": "Film PCR",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "Echantillon",
+        "unitPrice": "Echantillon",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0021",
+    "name": "Plaque optique 96 puits lecture rapide",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.fishersci.fr/shop/products/applied-biosystems-microamp-fast-optical-96-well-reaction-plate-0-1ml-1/10670986?searchHijack=true&searchTerm=4346907&searchType=RAPID&matchedCatNo=4346907",
+        "notes": "",
+        "price": "65",
+        "unitPrice": "6,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0022",
+    "name": "8 pCPT 2 o me CAMP Am",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "225",
+        "unitPrice": "2,25",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0023",
+    "name": "TB Green qPCR Premix Ex Taq II (Tli RNaseH Plus) (5 x 5 ml)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.takarabio.com/products/real-time-pcr/real-time-pcr-kits/dye-based-qpcr-mixes/tb-green-premix-ex-taq-ii-(tli-rnase-h-plus)?catalog=RR820A",
+        "notes": "",
+        "price": "162",
+        "unitPrice": "6,75",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0024",
+    "name": "Film plaque qPCR",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/fr/produits/laboratoire/pcr-biologie-moleculaire/films-pcr/produit/95.1994/",
+        "notes": "",
+        "price": "60",
+        "unitPrice": "0,6",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0025",
+    "name": "GoTaq® G2 DNA polymerase",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://france.promega.com/products/pcr/taq-polymerase/gotaq-g2-dna-polymerase/?catNum=M7845",
+        "notes": "",
+        "price": "152,872",
+        "unitPrice": "0,305744",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0026",
+    "name": "Plaque 96 qPcr",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire",
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/fr/produits/laboratoire/pcr-biologie-moleculaire/plaques-pcr/produit/72.1981/",
+        "notes": "",
+        "price": "60",
+        "unitPrice": "0,6",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0027",
+    "name": "(sybr green) OneGreen fast qPCR premix (OwiGreen)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-80°C",
+    "locations": [
+      "-80°C"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/onegreen-fast-qpcr-premix-ozya008",
+        "notes": "",
+        "price": "683",
+        "unitPrice": "27,32",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0028",
+    "name": "MicroAmp™ Fast 96-Well Tray",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "141",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0029",
+    "name": "Barrettes de 8 bouchons optiques MicroAmp™ (bouchons)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "208",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0030",
+    "name": "Multiply uStripPro 0,2mL barrettes 8 tubes (avec bouchons)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "tubes",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "290",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0031",
+    "name": "Barrette de 8 tubes rapide MicroAmp™, 0,1 ml",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "159",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0032",
+    "name": "ETOH",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0033",
+    "name": "Triton x-100",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "50",
+        "unitPrice": "0,2/ml",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0034",
+    "name": "Tween",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0035",
+    "name": "Edu",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.fishersci.fr/shop/products/molecular-probes-click-it-edu-alexa-fluor-594-imaging-kit/10410845",
+        "notes": "",
+        "price": "780",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0036",
+    "name": "Glucose uptake",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-80°C",
+    "locations": [
+      "-80°C"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://france.promega.com/products/energy-metabolism/metabolite-detection-assays/glucose-uptake_glo-assay/?catNum=J1341",
+        "notes": "",
+        "price": "458",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0037",
+    "name": "Glycerol Detection assay (lipolyse)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-80°C",
+    "locations": [
+      "-80°C"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://france.promega.com/products/energy-metabolism/lipid-metabolism-assay/glycerol-glo-assay/?catNum=J3150",
+        "notes": "",
+        "price": "587",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0038",
+    "name": "duo set ELISA Ancillary Reagent Kit 2",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.rndsystems.com/search?keywords=Duoset+Ancillary+Reagent+Kit+2",
+        "notes": "",
+        "price": "200",
+        "unitPrice": "40e/plaque",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0039",
+    "name": "Human Adiponectine/Acrp30 DuoSet ELISA (5 plates)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.rndsystems.com/search?keywords=Human+Adiponectine%2FAcrp30+DuoSet+ELISA+",
+        "notes": "",
+        "price": "378",
+        "unitPrice": "4e/µL/réaction",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0040",
+    "name": "Human IL-6 DuoSet ELISA 5 plates",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.rndsystems.com/search?keywords=Human+IL-6+DuoSet+ELISA",
+        "notes": "",
+        "price": "283",
+        "unitPrice": "60€/plaque",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0041",
+    "name": "Human RSPO2 ELISA",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "630",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0042",
+    "name": "human VEGF Duoset ELISA",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.rndsystems.com/products/human-vegf-duoset-elisa_dy293b#assay-procedure",
+        "notes": "",
+        "price": "300",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0043",
+    "name": "Human FGF-21",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0044",
+    "name": "Human interleukin 6 (IL6)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/human-interleukin-6-il6-elisa-hudl01522?search-context-name=HUDL01522",
+        "notes": "",
+        "price": "713",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0045",
+    "name": "Human Pro-Collagen I alpha 1 DuoSet ELISA",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "378",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0046",
+    "name": "Human Adiponectin (ADP)",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/human-adiponectin-adp-elisa-hudl00090?search-context-name=HUDL00090",
+        "notes": "",
+        "price": "713",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0047",
+    "name": "Human IL-1beta/IL-1F2 Duoset Elisa, 5 plates",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "325",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0048",
+    "name": "Human TIMP1",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "325",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0049",
+    "name": "Barrettes",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire",
+      "Bureau"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "180",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0050",
+    "name": "DuoSet ELISA Ancillary Reagent Kit 2",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "213,3",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0051",
+    "name": "Human GDF-15 DuoSet ELISA, 15 Plate",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "820,8",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0052",
+    "name": "ENZ CHECK GELATINASE/COL 1 kit",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/E12055?SID=srch-srp-E12055",
+        "notes": "",
+        "price": "614",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0053",
+    "name": "FGF21 qPCR Primer Pairs, Human",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.interchim.com/rapid_search2.php",
+        "notes": "",
+        "price": "61",
+        "unitPrice": "2,541666667",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0054",
+    "name": "ICAM-1 qPCR Primer Pairs, Human",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.interchim.com/rapid_search2.php",
+        "notes": "",
+        "price": "100",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0055",
+    "name": "HUMAN DPP4 QPCR PRIMER PAIRS",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.interchim.com/rapid_search.php",
+        "notes": "",
+        "price": "196",
+        "unitPrice": "9,8",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0056",
+    "name": "acetate foil transport type PCR",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.dutscher.com/article/760215",
+        "notes": "",
+        "price": "106",
+        "unitPrice": "2,12",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0057",
+    "name": "Film adhésif AeraSeal™ stérile",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306",
+        "notes": "",
+        "price": "106",
+        "unitPrice": "0,110416667",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0058",
+    "name": "Smart ladder SF",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.eurogentec.com/en/catalog/smartladder-sf-100-to-1000-bp~c21045de-6dbd-4b04-83ce-e2525c7fb69d",
+        "notes": "",
+        "price": "réflexion",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0059",
+    "name": "eagle medium sans glu",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "22",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0060",
+    "name": "gelatine solution",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0061",
+    "name": "Insuline, humain recombinant, zinc solution, 4mg/ml",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "95",
+        "unitPrice": "19€/ml",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0062",
+    "name": "Liberase TL res Grade",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "50",
+        "unitPrice": "5€/ml",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0063",
+    "name": "RNA ext reag tri reagent",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "200",
+        "unitPrice": "2€/ml",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0064",
+    "name": "RQ1 Rnase-free DNAse",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "70",
+        "unitPrice": "0,07",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0065",
+    "name": "CCT 031374 hydrobromide",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "170",
+        "unitPrice": "17€/mg",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0066",
+    "name": "Glycogen 20mg/ml",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "90",
+        "unitPrice": "180€/µl",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0067",
+    "name": "ICG 001",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "250",
+        "unitPrice": "25€/mg",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0068",
+    "name": "JW67",
+    "category": "Biomol",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "190",
+        "unitPrice": "19€/mg",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0069",
+    "name": "Fluoromount-G, with DAPI",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/00-4959-52?SID=srch-srp-00-4959-52",
+        "notes": "",
+        "price": "95",
+        "unitPrice": "4,75",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0070",
+    "name": "Oro",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "127",
+        "unitPrice": "0,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0071",
+    "name": "Picro Sirius red Stain Kit",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/picro-sirius-red-stain-kit-connective-tissue-stain-ab150681.html",
+        "notes": "",
+        "price": "246,82",
+        "unitPrice": "1",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0072",
+    "name": "Solution Acide acétique ( dans le kit de psr)",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "246,82",
+        "unitPrice": "1",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0073",
+    "name": "Apo -Transferrine humain",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/21331046",
+        "notes": "",
+        "price": "166",
+        "unitPrice": "16",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0074",
+    "name": "CL 316,243 hydrate de chez Sigma Aldrich",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/c5976",
+        "notes": "",
+        "price": "295",
+        "unitPrice": "59",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0075",
+    "name": "Glut 4",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "92",
+        "unitPrice": "4,6",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0076",
+    "name": "Prox 1",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "demande échantillon",
+        "unitPrice": "demande échantillon",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0077",
+    "name": "IFN2A humain de chez Sigma Aldrich",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/srp4594",
+        "notes": "",
+        "price": "255",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0078",
+    "name": "PDGF Receptor α (D1E1E) XP® Rabbit mAb #3174",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "99",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0079",
+    "name": "anti fibronectin Mouse",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "350",
+        "unitPrice": "1,75",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0080",
+    "name": "anti human Lyve 1",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "600",
+        "unitPrice": "6",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0081",
+    "name": "anti-cd31 HUMAN",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/cd31-antibody-ab28364.html",
+        "notes": "",
+        "price": "425$",
+        "unitPrice": "4,25",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0082",
+    "name": "Anti-CD34 antibody [QBEND-10]",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/cd34-antibody-qbend-10-ab8536.html",
+        "notes": "",
+        "price": "489",
+        "unitPrice": "9,78",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0083",
+    "name": "anti-CD68 antibody",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/cd68-antibody-epr20545-ab213363.html",
+        "notes": "",
+        "price": "495",
+        "unitPrice": "4,9",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0084",
+    "name": "Anti-Collagen IV antibody",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/collagen-iv-antibody-ab6586.html",
+        "notes": "",
+        "price": "489",
+        "unitPrice": "4,9",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0085",
+    "name": "Anti-Elastin antibody",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/elastin-antibody-ab21610.html",
+        "notes": "",
+        "price": "489",
+        "unitPrice": "1,95",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0086",
+    "name": "anti-ICAM1 antibody MEM-111",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/icam1-antibody-mem-111-ab2213.html",
+        "notes": "",
+        "price": "500",
+        "unitPrice": "5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0087",
+    "name": "Anti-Laminin antibody",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/laminin-antibody-ab11575.html",
+        "notes": "",
+        "price": "489",
+        "unitPrice": "3,9",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0088",
+    "name": "Collagen VI Monoclonal Antibody (COL-6) 100 ul",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "uL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "Anti-Collagen Type VI Antibody, clone 3C4 | MAB1944 (merckmillipore.com)",
+        "price": "516",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0089",
+    "name": "Collagen I Monoclonal Antibody (COL-1) 100 ul",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "uL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/collagen-i-antibody-epr22894-89-ab260043.html",
+        "notes": "",
+        "price": "510",
+        "unitPrice": "5,1",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0090",
+    "name": "Human DPP4/CD26 antibody polyclonal goat",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "490",
+        "unitPrice": "4,9",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0091",
+    "name": "Tyrosine Hydroxylase antibody RABBIT polyclonal",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "150",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0092",
+    "name": "CGRP antibody [4901] MOUSE Monoclonal",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "605",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0093",
+    "name": "Perilipin 1 antibody GOAT Polyclonal",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "485",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0094",
+    "name": "Hyaluronan Binding Protein HABP Biotin conjugated",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "635",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0095",
+    "name": "Anti-Collagen III antibody [EPR17673]",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "390",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0096",
+    "name": "ICAM-2/CD102",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "457",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0097",
+    "name": "Anti-rabbit IGG 488 50ul",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/sab4600044",
+        "notes": "",
+        "price": "90",
+        "unitPrice": "1,8",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0098",
+    "name": "Donkey Anti-Goat IgG H&L (Alexa Fluor® 488)",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/donkey-goat-igg-hl-alexa-fluor-488-ab150129.html",
+        "notes": "",
+        "price": "159",
+        "unitPrice": "0,318",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0099",
+    "name": "DAPI",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/D1306?SID=srch-srp-D1306",
+        "notes": "",
+        "price": "200",
+        "unitPrice": "20",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0100",
+    "name": "Mouse Alexa fluor 568",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0101",
+    "name": "AF 647 Rabbit",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0102",
+    "name": "Steptavidin AF633",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "378",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0103",
+    "name": "Donkey anti-mouse 488",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "375",
+        "unitPrice": "375",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0104",
+    "name": "Agarase from pseudomonas atlantica Sigma",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306",
+        "notes": "",
+        "price": "141",
+        "unitPrice": "0,28/ml",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0105",
+    "name": "Mouse TNFa antibody 100 microg",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bio-techne.com/p/antibodies/mouse-tnf-alpha-antibody-mp6-xt22_mab4101",
+        "notes": "",
+        "price": "275",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0106",
+    "name": "Recombinant Human TNFa",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bio-techne.com/p/proteins-enzymes/recombinant-human-tnf-alpha-hek293-expressed-protein-cf_10291-ta",
+        "notes": "",
+        "price": "207",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0107",
+    "name": "capillaire /tube hematocrite 1,5 mm dia/ 75 mm long",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "tubes",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "20",
+        "unitPrice": "0,2",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0108",
+    "name": "Grace Bio-Labs FastWells 9 mm diam. x 1.0 mm depth",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664112",
+        "notes": "",
+        "price": "61",
+        "unitPrice": "6,1",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0109",
+    "name": "Grace Bio-Labs FastWells reagent barriers",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664113",
+        "notes": "",
+        "price": "3,1",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0110",
+    "name": "Grace Bio-Labs wells, 12 (Round, 4.5mm diameter, 0.5mm depth)",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664506",
+        "notes": "",
+        "price": "6",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0111",
+    "name": "Grace Bio-Labswells, 24 (Round, 2mm diameter, 0.5mm depth)",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664508",
+        "notes": "",
+        "price": "30",
+        "unitPrice": "0,03",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0112",
+    "name": "Galls microfibre filtre 2,5 cm",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "122,2",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0113",
+    "name": "oct componoun tissue",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "138",
+        "unitPrice": "2",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0114",
+    "name": "PAF- PIERCE 16% FORM.METHANOL 10X 10ml",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/28908",
+        "notes": "",
+        "price": "92",
+        "unitPrice": "2",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0115",
+    "name": "Invitrogen™ eBioscience™ Fluoromount-G™, with DAPI",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "50,85",
+        "unitPrice": "2",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0116",
+    "name": "Star-Frost slides 76 x 26 mm standard version Blue",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.dutscher.com/article/100204B",
+        "notes": "",
+        "price": "15",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0117",
+    "name": "Rat igG1 isotype control",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bio-techne.com/p/isotype-controls/rat-igg1-isotype-control_mab005",
+        "notes": "",
+        "price": "194",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0118",
+    "name": "Sucrose",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "90",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0119",
+    "name": "Urea",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "83",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0120",
+    "name": "Ether benzyl DBE",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "58,6",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0121",
+    "name": "ethyl cinamate",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "22,4",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0122",
+    "name": "DCM",
+    "category": "Microscopie",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "96,6",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0123",
+    "name": "XTT Cell Proliferation Kit II",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/roche/11465015001#product-documentation",
+        "notes": "",
+        "price": "",
+        "unitPrice": "0,2",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0124",
+    "name": "XTT assay kit prêt à l'emplois",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.abcam.com/products/assay-kits/xtt-assay-kit-ab232856.html",
+        "notes": "",
+        "price": "",
+        "unitPrice": "1,666666667",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0125",
+    "name": "bacterio diam 90 mm avec ou sans ergot sterile",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "",
+        "unitPrice": "0,05",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0126",
+    "name": "Milieu déshydraté gélose nutritive",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "",
+        "unitPrice": "225,25",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0127",
+    "name": "Gélose nutritive",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bio-world.com/microbiological-media/nutrient-agar-p-30620055",
+        "notes": "",
+        "price": "",
+        "unitPrice": "155",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0128",
+    "name": "Glucosée de sabouraud, Gélose",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "",
+        "unitPrice": "82,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0129",
+    "name": "Sabouraud Dextrose Agar",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bio-world.com/index.php?main_page=product_info&products_id=30622001",
+        "notes": "",
+        "price": "",
+        "unitPrice": "107",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0130",
+    "name": "Bouillon Luria mofication miller 0,5g NaCl (LB)",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "",
+        "unitPrice": "65",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0131",
+    "name": "Mycostrip",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.invivogen.com/mycostrip?gclid=Cj0KCQjwwYSwBhDcARIsAOyL0fidnFpoEfcfjw4vCPaobOQd6PuZwqOwrI7SbfyvBTcK2PofbGya_AUaAva0EALw_wcB",
+        "notes": "",
+        "price": "",
+        "unitPrice": "11,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0132",
+    "name": "Mycostrip",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.invivogen.com/mycostrip?gclid=Cj0KCQjwwYSwBhDcARIsAOyL0fidnFpoEfcfjw4vCPaobOQd6PuZwqOwrI7SbfyvBTcK2PofbGya_AUaAva0EALw_wcB",
+        "notes": "",
+        "price": "",
+        "unitPrice": "350",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0133",
+    "name": "kit mycoplasme Venor®GeM OneStep",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://minerva-biolabs.com/en/mycoplasma-detection-kits/venorgem-onestep-2#/173-package_size-25_reactions",
+        "notes": "",
+        "price": "",
+        "unitPrice": "7",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0134",
+    "name": "LDH-Glo Cytotoxicity Assay",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-80°C",
+    "locations": [
+      "-80°C"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://france.promega.com/products/cell-health-assays/cell-viability-and-cytotoxicity-assays/ldh-glo-cytotoxicity-assay/?catNum=J2380",
+        "notes": "",
+        "price": "",
+        "unitPrice": "250",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0135",
+    "name": "kit de Viablilite/cytotoxicite Molecular Probe Live/Dead",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/fr/fr/L3224",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0136",
+    "name": "Live/Dead Fixable Staining Kit 488/515",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0137",
+    "name": "cell proliferation kit III (EdU-594; FM)",
+    "category": "Qualité",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0138",
+    "name": "CD90 APC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bdbiosciences.com/en-us/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/apc-mouse-anti-human-cd90.559869",
+        "notes": "",
+        "price": "350",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0139",
+    "name": "CD105 Fluo",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0140",
+    "name": "CD140a PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd140a.556002",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0141",
+    "name": "CD142 PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/antibody/product/CD142-Antibody-clone-HTF-1-Monoclonal/12-1429-42",
+        "notes": "",
+        "price": "270",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0142",
+    "name": "CD26 FITC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.biolegend.com/en-us/products/fitc-anti-human-cd26-antibody-610",
+        "notes": "",
+        "price": "215",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0143",
+    "name": "CD26FITC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bdbiosciences.com/en-fr/products/reagents/flow-cytometry-reagents/clinical-discovery-research/single-color-antibodies-ruo-gmp/fitc-mouse-anti-human-cd26.340426",
+        "notes": "",
+        "price": "300",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0144",
+    "name": "CD26FITC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.interchim.com/rapid_search.php",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0145",
+    "name": "CD31 PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0146",
+    "name": "CD34 APC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0147",
+    "name": "CD34 PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd34.555822",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0148",
+    "name": "CD45 PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd45.555483",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0149",
+    "name": "CD54 APC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "230",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0150",
+    "name": "CD73 PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0151",
+    "name": "CD90 PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd90.555596",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0152",
+    "name": "Fcblock 1",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "200",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0153",
+    "name": "FITC anti-huma CD26",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "170",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0154",
+    "name": "IgG1 APC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0155",
+    "name": "IgG1 k PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "190",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0156",
+    "name": "IgG2A APC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0157",
+    "name": "IgG2bK PE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0158",
+    "name": "MSCA1 APC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0159",
+    "name": "CD90-FITC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0160",
+    "name": "CD146 RPE",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0161",
+    "name": "CD45-PC5",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0162",
+    "name": "IgG1 mouse FITC",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0163",
+    "name": "CD34-BV650",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0164",
+    "name": "IgG1-BV650",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0165",
+    "name": "NucBlue Live cell stain",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0166",
+    "name": "Draq5",
+    "category": "FACS",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0167",
+    "name": "Guava instrument cleaning Fluid ( ICF)",
+    "category": "Muse",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "37,5",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0168",
+    "name": "pile LR42",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0169",
+    "name": "Pile multicanaux",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0170",
+    "name": "pile plate",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0171",
+    "name": "pochette carton",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {},
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0172",
+    "name": "Minuteur 3 canaux",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "17",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0173",
+    "name": "Blouse jetable ENDO protectlab taille XL",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "3,1",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0174",
+    "name": "Pince à bouts plats, arrondis, acier inoxydable",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "53",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0175",
+    "name": "Cryoboîte blanche en carton ClearLine® - capacité : 100 cryotubes - recouverte d'un film étanche",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "tubes",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "6",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0176",
+    "name": "Portoir pour tubes coniques 15 ml SPL - 104,1 x 127,9 , 48,1 mm",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "14,8",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0177",
+    "name": "Portoir pour tubes coniques 50 ml SPL - 132,7 x 249,7 x 48,1 mm",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "23,3",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0178",
+    "name": "Portoir multifonctions tubes de culture",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "tubes",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "7,9",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0179",
+    "name": "Marqueur noir ultra fin",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "4,6",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0180",
+    "name": "Portoir Unirack PCR double face coloris bleu",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "8,8",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0181",
+    "name": "Boîte en ABS pour lame de microscopie - capacité 12 lames",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "2,2",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0182",
+    "name": "Economical box for 25 microscope slides (Blue)",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "9,7",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0183",
+    "name": "Economical box for 100 microscope slides (White)",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "12,7",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0184",
+    "name": "blouse l2",
+    "category": "Bureautique",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.fishersci.fr/shop/products/tyvek-isoclean-ic-270b-ws-lab-coat-sterile-double-bagged-6/17879323?searchHijack=true&searchTerm=tyvek-isoclean-ic-270b-ws-lab-coat-sterile-double-bagged-6&searchType=Rapid&matchedCatNo=17879313",
+        "notes": "",
+        "price": "",
+        "unitPrice": "",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0185",
+    "name": "Pipette tip, 10 µl, transparent, PCR Performance Tested, 1,000 piece(s)/bag",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010/",
+        "notes": "",
+        "price": "140",
+        "unitPrice": "0,014",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0186",
+    "name": "Filter tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.255/",
+        "notes": "",
+        "price": "81,6",
+        "unitPrice": "0,0425",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0187",
+    "name": "Pipette tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.205/",
+        "notes": "",
+        "price": "68,16",
+        "unitPrice": "0,0355",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0188",
+    "name": "Filter tip, 20 µl, transparent, Biosphere® plus, 96 piece(s)/box",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3020.255/",
+        "notes": "",
+        "price": "81,6",
+        "unitPrice": "0,0425",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0189",
+    "name": "Pipette tip, 200 µl, transparent, PCR Performance Tested, 1,000 piece(s)/bag",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3030/",
+        "notes": "",
+        "price": "49",
+        "unitPrice": "0,0049",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0190",
+    "name": "Filter tip, 200 µl, transparent, Biosphere® plus, 96 piece(s)/box",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3031.255/",
+        "notes": "",
+        "price": "85,44",
+        "unitPrice": "0,0445",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0191",
+    "name": "Pipette tip, 200 µl, transparent, PCR Performance Tested, 96 piece(s)/box",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3030.200/",
+        "notes": "",
+        "price": "66,24",
+        "unitPrice": "0,0345",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0192",
+    "name": "Pipette tip, 1,000 µl, transparent, PCR Performance Tested, 500 piece(s)/bag",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050/",
+        "notes": "",
+        "price": "37,5",
+        "unitPrice": "0,0075",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0193",
+    "name": "Filter tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.255/",
+        "notes": "",
+        "price": "113,28",
+        "unitPrice": "0,059",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0194",
+    "name": "Pipette tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box",
+    "category": "Cones pipettes",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.205/",
+        "notes": "",
+        "price": "80,64",
+        "unitPrice": "0,042",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0195",
+    "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.dutscher.com/article/394075B",
+        "notes": "",
+        "price": "13,1",
+        "unitPrice": "0,166",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0196",
+    "name": "Seringue BD 3P 20 ml Cone luer Lock",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Bureau",
+    "locations": [
+      "Bureau",
+      "Culture L2"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bastideleconfortmedical.com/seringues-3-pieces-20-ml-bd-plastipak-cone-luer-lock-100081.html",
+        "notes": "",
+        "price": "38",
+        "unitPrice": "0,316666667",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0197",
+    "name": "REDUCTEUR SU 1.2MM",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/527-raccord-d-emulsion-de-graisse-fll-o-12mm-x20.html",
+        "notes": "",
+        "price": "46",
+        "unitPrice": "2,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0198",
+    "name": "REDUCTEUR SU 1.4MM",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/526-raccord-d-emulsion-de-graisse-fll-o-14mm-x20.html",
+        "notes": "",
+        "price": "46",
+        "unitPrice": "2,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0199",
+    "name": "REDUCTEUR SU 2.4MM",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html",
+        "notes": "",
+        "price": "46",
+        "unitPrice": "2,3",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0200",
+    "name": "Plaque Corning 6 puits ULA",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "plaques",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Bureau",
+    "locations": [
+      "Bureau"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.dutscher.com/article/003471",
+        "notes": "",
+        "price": "339",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0201",
+    "name": "ACL -eBioscience™ 10X RBC Lysis Buffer (Multi-species) 50 ml",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Culture L2",
+    "locations": [
+      "Culture L2",
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/00-4300-54?SID=srch-srp-00-4300-54",
+        "notes": "",
+        "price": "62",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0202",
+    "name": "Amphotericin B solution",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Chambre froide",
+    "locations": [
+      "Chambre froide"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/substance/amphotericinbsolution924081397893",
+        "notes": "",
+        "price": "287",
+        "unitPrice": "5,75",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0203",
+    "name": "Gibco™ Gentamicine (50 mg/ml)",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Culture L1",
+    "locations": [
+      "Culture L1",
+      "Culture L2"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506",
+        "notes": "",
+        "price": "220",
+        "unitPrice": "11",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0204",
+    "name": "Invivogen FUNGIN 75 MG (10 MG/ML)",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.fishersci.com/shop/products/fungin-75-mg-10-mg-ml/NC9326704",
+        "notes": "",
+        "price": "148",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0205",
+    "name": "Endothelial Cell Growth Medium 2",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo culture L1",
+    "locations": [
+      "Frigo culture L1"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
+        "notes": "",
+        "price": "153,85",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0206",
+    "name": "SupplementMix / Endothelial Cell Growth Medium 2",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C culture L1",
+    "locations": [
+      "-20°C culture L1"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
+        "notes": "",
+        "price": "50,85",
+        "unitPrice": "2",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0207",
+    "name": "pen/strep stock",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/15140122?SKULINK",
+        "notes": "",
+        "price": "10",
+        "unitPrice": "0,1",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0208",
+    "name": "BSA free fatty acid 25g",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003",
+        "notes": "",
+        "price": "450",
+        "unitPrice": "18e/g",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0209",
+    "name": "Collagenase A from Clostridium histolycum (500mg)",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo culture L1",
+    "locations": [
+      "Frigo culture L1"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/roche/collaro",
+        "notes": "",
+        "price": "305,76",
+        "unitPrice": "0,64",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0210",
+    "name": "PBS",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Frigo labo",
+    "locations": [
+      "Frigo labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/14190094",
+        "notes": "",
+        "price": "23,4",
+        "unitPrice": "1,15",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0211",
+    "name": "Pipette stérile Pasteur 3 ml (a commander de preference)",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.dutscher.com/article/390513",
+        "notes": "",
+        "price": "52",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0212",
+    "name": "Qiazol",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.qiagen.com/fr-us/products/discovery-and-translational-research/lab-essentials/buffers-reagents/qiazol-lysis-reagent",
+        "notes": "",
+        "price": "303",
+        "unitPrice": "1,515",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0213",
+    "name": "Stainless steel beads 5mm",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.qiagen.com/fr-us/products/instruments-and-automation/accessories/beads/?catno=69989",
+        "notes": "",
+        "price": "151",
+        "unitPrice": "0,755",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0214",
+    "name": "Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/zymoclean-gel-rna-recovery-kit-w-zymo-spin-ic-columns-capped-50-preps-zr1011",
+        "notes": "",
+        "price": "187",
+        "unitPrice": "3,74",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0215",
+    "name": "M-MLV RT (5)",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://france.promega.com/products/pcr/rt-pcr/m-mlv-reverse-transcriptase/?catNum=M1705",
+        "notes": "",
+        "price": "250",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0216",
+    "name": "OneScript RT Mix for qPCR w/gDNAOut (OwiScript)",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo",
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/onescript-rt-mix-for-qpcr-w-gdnaout-ozya012?search-context-name=OZYA012",
+        "notes": "",
+        "price": "204",
+        "unitPrice": "2,01",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0217",
+    "name": "SuperScript™ II Reverse Transcriptase",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo",
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.thermofisher.com/order/catalog/product/18064014",
+        "notes": "",
+        "price": "376",
+        "unitPrice": "7,52",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0218",
+    "name": "(sybr green) OneGreen fast qPCR premix (OwiGreen)",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-80°C",
+    "locations": [
+      "-80°C"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://yris.ozyme.fr/fr/company/ozyme/product/onegreen-fast-qpcr-premix-ozya008",
+        "notes": "",
+        "price": "683",
+        "unitPrice": "27,32",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0219",
+    "name": "XTT Cell Proliferation Kit II",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sigmaaldrich.com/FR/fr/product/roche/11465015001#product-documentation",
+        "notes": "",
+        "price": "0,2",
+        "unitPrice": "0,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0220",
+    "name": "bacterio diam 90 mm avec ou sans ergot sterile",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "0,05",
+        "unitPrice": "1",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0221",
+    "name": "Gélose nutritive",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bio-world.com/microbiological-media/nutrient-agar-p-30620055",
+        "notes": "",
+        "price": "155",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0222",
+    "name": "Sabouraud Dextrose Agar",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Laboratoire",
+    "locations": [
+      "Laboratoire"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.bio-world.com/index.php?main_page=product_info&products_id=30622001",
+        "notes": "",
+        "price": "107",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0223",
+    "name": "kit mycoplasme Venor®GeM OneStep",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "-20°C blanc labo",
+    "locations": [
+      "-20°C blanc labo"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://minerva-biolabs.com/en/mycoplasma-detection-kits/venorgem-onestep-2#/173-package_size-25_reactions",
+        "notes": "",
+        "price": "7",
+        "unitPrice": "0,5",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0224",
+    "name": "Microtube 0,5ml",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "tubes",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "61",
+        "unitPrice": "0,0122",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0225",
+    "name": "Microtube 1,5 ml",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "mL",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/fr/produits/laboratoire/microtubes-a-vis-tubes-a-reaction/tubes-a-reaction/produit/72.706/",
+        "notes": "",
+        "price": "50",
+        "unitPrice": "0,01",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0226",
+    "name": "Microtube 2ml",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "tubes",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "70",
+        "unitPrice": "0,014",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0227",
+    "name": "cones filtrés 1000µL",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "113",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0228",
+    "name": "cones filtrés 200µL",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.dutscher.com/article/014220",
+        "notes": "",
+        "price": "155",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0229",
+    "name": "cones filtrés 20µL",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-1/11963466",
+        "notes": "",
+        "price": "555",
+        "unitPrice": "0,111",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0230",
+    "name": "cones 1000µL non filtrés",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12",
+        "notes": "",
+        "price": "45",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0231",
+    "name": "cones 200µL non filtrés",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3030/",
+        "notes": "",
+        "price": "45",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0232",
+    "name": "cones 10µl non filtrés",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3010.200/",
+        "notes": "",
+        "price": "45",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0233",
+    "name": "Falcon 15",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.554.502/",
+        "notes": "",
+        "price": "53",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
+  },
+  {
+    "id": "itm-CSV-0234",
+    "name": "Falcon 50",
+    "category": "Indispensable",
+    "quantity": 0,
+    "unit": "unités",
+    "minStock": 0,
+    "maxStock": 1,
+    "location": "Réserve",
+    "locations": [
+      "Réserve"
+    ],
+    "tags": [],
+    "notes": "",
+    "references": {
+      "primary": {
+        "supplier": "",
+        "reference": "",
+        "link": "",
+        "notes": "",
+        "price": "32",
+        "unitPrice": "0",
+        "leadTime": ""
+      },
+      "secondary": []
+    }
   }
 ]

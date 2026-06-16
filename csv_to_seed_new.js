@@ -689,120 +689,244 @@ function migrateItems(list) {
 
 
 // Pega aquí tu bloque CSV o texto copiado desde Excel.
-const csvText = `Catégorie	 Tags 	 Nom 	 Notes 	 Quantité 	 Localisation 	Notes référence	Référence	 Fournisseur 	Prix 	Prix Unitaire	Seuil minimum	Lien	Délais livraison
-Culture Cell	Agarose	Agarose low gelling temperature Bioreagent Sigma 10G	100g	15mL (falcon) + 10g neuf	placard floricia		A9045	Sigma	118	0,23	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/a9045	
-Culture Cell	Agarose	Agarose Bioreagent for molecular biology	100g	1,00	Placard produits chimiques		A9539	Merck	110,6				
-Culture Cell	Agarase	Agarase from pseudomonas atlantica Sigma	100g	1,00	placard produit chimique		A6306	Sigma	141	0,28/ml	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306	
-Culture Cell	Boite culture 2D	boite ø 60	500	0,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833901	starstedt	75	0,15	0,5	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3901/	
-Culture Cell	Boite culture 2D	Boîte C.C 100 mm, standard	300	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3902	starstedt	68,22	0,2274	0,5	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3903/	
-Culture Cell	Boite culture 2D	boite ø 150	100	0,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833902	starstedt	60	0,6	0,5	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3902/	
-Culture Cell	Boite culture 2D	boite ø 35	50	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833900	starstedt	73	1,5	0,5	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3900/	
-Culture Cell	BSA	BSA free fatty acid  25g	25g	3,00	port frigo labo en bas		A6003-25G	merck	450	18e/g		https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003	15 jours
-Culture Cell	Collagénase	Collagenase A from Clostridium histolycum (500mg) 	500mg	1,00	frigo salle culture		10103586001	Sigma Merck	305,76	0,64	0,5	https://www.sigmaaldrich.com/FR/fr/product/roche/collaro	15 jours
-Culture Cell	Accumax 	Accumax solution	100 ml	1,00	L2 Congel 		A7089-100ML	Sigma	200	2	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/a7089	
-Culture Cell	Trypsine	Trypsine 0,5 + EDTA 1X	100ml	5,00	congel grand labo		25300-054	thermofischer	59,3	0,59	1	https://www.thermofisher.com/order/catalog/product/25300054?SID=srch-hj-25300-054	
-Culture Cell	Collagénase	Collagénase A	10g	1,50	frigo labo culture		A6003-10G	Merck	200	20€/g		https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003	
-Culture Cell	BRL	Rosiglitazone BRL	50mg	NC		NA71 : Sérum et autre milieu pour culture cellulaire animale	R2408-50MG	Sigma	280	23	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/i7018	
-Culture Cell	T3	(T3) 3,3′,5-Triiodo-L-thyronine sodium Salt	100ml	NC		NA71 : Sérum et autre milieu pour culture cellulaire animale	T6397	Sigma	67	0,67	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/i7018	
-Culture Cell	BRL	Rosiglithazone BRL 49653 		NC	congèle salle de culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	49653						
-Culture Cell	DEX	Dexamethasone (PM : 392.46)	100mg	NC		NA71 : Sérum et autre milieu pour culture cellulaire animale	D4902	Sigma	75	0,75	1	https://www.sigmaaldrich.com/FR/fr/substance/dexamethasone3924650022?gclid=CjwKCAjw2K6lBhBXEiwA5RjtCdSCdJwZu2sP4yeAnOsKIbfaI-7aJ4e-wlrgmkCRX6qXiMlsfM0iXRoCKjgQAvD_BwE&gclsrc=aw.ds	
-Culture Cell	NAC	n-acetyl-L-cysteine	5G	NC	frigo salle de culture L1	NA71 : Sérum et autre milieu pour culture cellulaire animale	A7250	sigma 					
-Culture Cell	Insuline	Insuline, humain recombinant, zinc solution, 4mg/ml	5 ml 	NC	-20 pièce -80	NA71 : Sérum et autre milieu pour culture cellulaire animale	12585014	gibco	95	19€/ml			
-Culture Cell	Vascular network	18-beta Glycyrrhetinic Acid (Enoxolone)	10g	1,00	Placard Floricia	NA71 : Sérum et autre milieu pour culture cellulaire animale	G10105-10G 	Merck	110			https://www.sigmaaldrich.com/FR/fr/product/aldrich/g10105?srsltid=AfmBOoroOGL3FoP0JhXxnyyHi-JixsymSZPcTFBXkrrtczLwAoVEwUEe	
-Culture Cell	TGFb	Human TGFb1 recombinant protein peprotech	2ug	1,50	Congel gris labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	100-21-2ug	thermofischer	75	16	1	https://www.thermofisher.com/antibody/product/Human-TGF-beta-1-Recombinant-Protein/100-21-1MG	
-Culture Cell	Triacsin C	Triacsin C, acyl-CoA synthetase inhibitor	100µg	1,00	salle de culture congel tiroir 1	NA71 : Sérum et autre milieu pour culture cellulaire animale	ab141888	abcam	200	2€/µg		https://www.abcam.com/products/biochemicals/triacsin-c-acyl-coa-synthetase-inhibitor-ab141888.html?productWallTab=ShowAll	
-Culture Cell	Acide Ascorbique	Sodium L ascorbate	100g	1,00	placard culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	A4034-100G						
-Culture Cell	TNF	SB 10mM	10mG	1,00	-20 gris	NA71 : Sérum et autre milieu pour culture cellulaire animale	HB3555-10mg	hello bio 	200	20		https://hellobio.com/sb-431542.html	
-Culture Cell	PDGF-AB	5 μM 429 platelet-derived growth factor-AB (PDGF-AB, R&D Systems 10ug)	10ug	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	222-AB-010	RD system	245				
-Culture Cell	lysophosphatidic acid	5 μM lysophosphatidic acid (1mg // 3854/1) R&D systems	1mg	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	3854/1	RD system	89				
-Culture Cell	Semaglutide	Semaglutide	1mg	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	TA9H97BAEA07	Sigma	136				
-Culture Cell	Liraglutide	Liraglutide	5mg	1,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	SML3925-5mg	Merck	165				
-Culture Cell	Tirzepatide	Tirzepatide 	5mg	1,00	+4°C frigo labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	AABH9A95AC09	Sigma	198				
-Culture Cell	TNFa	Human TNFa recombinant protein peprotech	10ug	1,00	Congel gris labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	300-01A-10UG	thermofischer	75				
-Culture Cell	Celecoxib	Celecoxib	10mg	1,00	RT placard culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	3786/10	Tocris		191		https://www.tocris.com/products/celecoxib_3786	
-Culture Cell	Nintedanib	Nintedanib	10mg	2,00	-20°C culture	NA71 : Sérum et autre milieu pour culture cellulaire animale	7049/10	Tocris		91		https://www.tocris.com/products/nintedanib_7049	
-Culture Cell	Milieu DMEM	DMEM sans glucose (pour glucose uptake)	500mL	1,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	11966025	Thermofisher	18			DMEM, sans glucose	
-Culture Cell	Milieu DMEM	DMEM sans glu	500 ml		Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	D6046	Sigma	32	0,06	1		
-Culture Cell	Milieu DMEM	DMEM glutamax 1g/L	500 ml	5,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	21885-025	ThermoFischer 	16,5	0,006	3		Rapide
-Culture Cell	Milieu DMEM	DMEM glutamax 4,5g/l	500ml	24,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	31960-021		75,5	0,75	3		
-Culture Cell	Milieu DMEM	DMEM/F12 (1:1) W GLUT-I 500ML	DMEM/F12 (1:1) W GLUT-I 500ML	7,00	Frigo grand labo/chambre froide	NA71 : Sérum et autre milieu pour culture cellulaire animale	31331028	thermofischer	62			https://www.thermofisher.com/order/catalog/product/31331093?SID=srch-hj-31331093	
-Culture Cell	Milieu EGM	SupplementMix: Contains all media supplements premixed in one vial		11,00		NA71 : Sérum et autre milieu pour culture cellulaire animale	c-39216	Promocell	 56,50 € 	2,8	2	https://promocell.com/product/endothelial-cell-growth-medium-2/	
-Culture Cell	Milieu EGM	SupplementPack: Contains all media supplements as individual vials		6,00	Frigo grand labo/-20 grand labo (supp séparés)	NA71 : Sérum et autre milieu pour culture cellulaire animale	c-39211		 234,00 € 	23,4	1		
-Culture Cell	Milieu	Basal medium 2 (500ml) 	500ml	11,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	c-22211	Promocell	 140,00 € 	0,28	1	https://promocell.com/product/endothelial-cell-growth-medium-2/	
-Culture Cell	Milieu PBS	PBS		5,00	Frigo Labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	14190-094	thermofischer	23,4	1,15	2	https://www.thermofisher.com/order/catalog/product/14190094	rapide
-Culture Cell	Milieu PBS	PBS poche cytiva Sangamo (a aliquoter en stérile dans bouteilles 250mL  attention P/S)	5L	1,00	Chambre froide placard 								
-Culture Cell	Glutamax	Supplément GlutaMAX™	100ml	s	x		35050061	thermofischer	62			https://www.thermofisher.com/order/catalog/product/35050061	
-Culture Cell	Milieu EGM	Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix	500mL	2,00	Frigo grand labo/-20 grand labo (supp)		c-22011	Promocell	146	14,6	1	https://promocell.com/product/endothelial-cell-growth-medium-2/	
-Culture Cell	Milieu	3-Isobutyl-1-methylxanthine (IBMX)	250mg	NC			I7018-250MG	Sigma	250	1	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/d4902	
-Culture Cell	Milieu	RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES (pour lipolyse)	500mL	1,00	Frigo grand labo	NA71 : Sérum et autre milieu pour culture cellulaire animale	72400021	Thermofisher	25			RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES	
-Culture Cell	Pastette	Pipette stérile Pasteur 3 ml (a commander de preference)	1000	2,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	390513	Dutscher	52		1	https://www.dutscher.com/article/390513	
-Culture Cell	Pastette	Pipette 3,5 ml non stérile	200	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1171	starstedt	18,5	0,0925	1	Produit - Sarstedt	
-Culture Cell	Pastette	Pipette  Pasteur 3 ml ( ref de secours)	840	1,00	Réserve		86.1171.001	starstedt	73	0,086904762	1	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-de-transfert/produit/86.1171.001/	
-Culture Cell													
-Culture Cell	Pipette	Pipette  1 ml		0,25	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1251.001	starstedt	231		0,5	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1251.001/	
-Culture Cell	Pipette	Pipette 5 ml		3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1253.001	starstedt	310		0,5	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1253.001/	
-Culture Cell	Pipette	Pipette 10 ml	500	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	86.1254.001	starstedt	179		1	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1254.001/	
-Culture Cell	Plaque 6 	Plaque 6 puits, standard, fond plat	500	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3920	starstedt	44,45	0,0889	1	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3920/	
-Culture Cell	Plaque 12	Plaque 12 Puits	50	3,00		NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	833921	starstedt	43				
-Culture Cell	Plaque 24	Plaque 24W fond plat	50	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3922	Sarstedt					
-Culture Cell	Plaque 48	Plaque 48 puits fond plats standart	1000	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3923	starstedt	55,2	0,0552	1	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3923/	
-Culture Cell	Plaque 96 	Plaque 96 puits  Standard, fond plat	100	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3924	starstedt	100	1	1	https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3924/	
-Culture Cell	Plaque 6 puit ula	Plaque 6 puits ULA	24	5,50	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3471	Dutscher	248				
-Culture Cell	Plaque 6 puit ula	plaque 6 puit ULA	7	2,00	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	174932	thermofischer	123	17,57142857		https://www.thermofisher.com/order/catalog/product/174932?SKULINK	
-Culture Cell	 Plaque 24 ula 	 Plaque Corning 24 puits  ULA 	 24 	1,50	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3473	Dutscher	700	29,16666667	1	https://www.dutscher.com/article/003473	
-Culture Cell	 Plaque 96 ula 	 Plaque corning 96 puits ULA 	 24 	2,00	Bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	7007	Dutscher	700	29,16666667	2	https://www.dutscher.com/article/007007	
-Culture Cell	Eppendorf	Microtube 0,5ml	5000	3,00	Réserve	NB11	72,699	starstedt	61	0,0122	0,5		
-Culture Cell	Eppendorf	Microtube 1,5 ml	5000	2,00	Réserve	NB11	72,690,001	starstedt	50	0,01	2	https://www.sarstedt.com/fr/produits/laboratoire/microtubes-a-vis-tubes-a-reaction/tubes-a-reaction/produit/72.706/	
-Culture Cell	Eppendorf	Microtube 2ml	5000	2,00	Réserve	NB12	72 691	starstedt	70	0,014	0,5		
-Culture Cell		Microtube 1,7mL low adhesion	1000	1,00	L1	NB11	011720	dutscher	43				
-Culture Cell	Tube prelevement	contenant 120ml (bouteilles bouchon jaune)	250	1,5 cartons	L1		759922420	starstedt	74,8	0,2992	1		
-Culture Cell	CryotubeTube	Cryotubes 1,8 ml	50	3 boites	Réserve		72379006	starstedt	14	0,28	1		
-Culture Cell	Tube FACS	Falcon facs 5ml	500	0,00	Réserve		62526028	starstedt	72	0	1		
-Culture Cell	Tube FACS	falcon fac 15 ml	500	1,00	Réserve		352059	starstedt	215	0,43	1	ugap	
-Culture Cell	Falcon 15	Falcon 15	500 (50/sac)	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	62554502	starstedt	53		1	https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.554.502/	
-Culture Cell	Falcon 50	Falcon 50 	300 (25/sac)	5,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	62547254	starstedt	32	0	1	https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.547.254/	
-Culture Cell	Pointes	cones 1000µL non filtrés	10x500		Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703050	starstedt	46		2	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3050/	
-Culture Cell	Pointes	cones  1000µL non filtrés	500*5000	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	2869314	starstedt	45			https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12	rapide
-Culture Cell	Pointes	cones 200µL non filtrés	1000	5,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703030	starstedt	45		2	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3030/	
-Culture Cell	Pointes	cones 10µl non filtrés	480/b 1920/carton	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703010200	starstedt	45		2	https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3010.200/	
-Culture Cell	Pointes	cones filtrés 1000µL	1920	1,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	2869323	starstedt	113				
-Culture Cell	Pointes	cones filtrés 200µL	1920		Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	703031355	starstedt	80				
-Culture Cell	Pointes	cones filtrés 200µL	960/b	3,50	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	14220	Dutscher	155		2	https://www.dutscher.com/article/014220	
-Culture Cell	Pointes (référence ok)	cones filtrés 20uL	1920	3,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	70.3020.255	starstedt					
-Culture Cell	Pointes	cones filtrés 20uL	1920		Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3020255	starstedt	82				
-Culture Cell	Pointes	cones filtrés 20µL	5000	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	11963466	ThermoFischer 	555	0,111	2	https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-1/11963466	
-Culture Cell	Pointes (référence ok)	cones filtrés 10µL	1920	1,00	Reserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	70.3010.205	sarstedt	68,16	0,0355		https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.205/	
-Culture Cell	Cone multicanaux	cliptip 300 ext low retention 	960	1,00	bureau	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	94410610	ThermoFischer 	55	0,057291667	1		
-Culture Cell	Décontamination	Biocidal ZF	6	6,00	Labo		ZF006	Biovalley 	480	79,33333333	1	https://www.biovalley.fr/desinfectant-mycoplasmes-pour-surfaces-2002/mycoplasma-off-surface-disinfection-347000036.html	
-Culture Cell	Décontamination	Phagospray	5L	0,50	Labo		972500	Dutscher	32,85				
-Culture Cell	Décontamination	Mycoplasma Off 1L	1	1,00	Labo		15-1000	Biovalley 	325	65	1	https://www.biovalley.fr/desinfectant-mycoplasmes-pour-surfaces-2002/mycoplasma-off-surface-disinfection-347000036.html	
-Culture Cell	Flask	T12 	840	S	Réserve			starstedt	51,24	0,061	1	ugap	
-Culture Cell	Flask	T25 	25	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	83.3910.002		186	7,44	2	https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3910.002/	
-Culture Cell	Flask	T25 	300	1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	2582557	starstedt	170	0,566666667			
-Culture Cell	Flask	T75 		1,00	Réserve	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	3814	starstedt	490		0,5	https://www.dutscher.com/article/003814	
-Culture Cell		Sac Kraft pour Dasri (conditionnement par 25)	25	2	Labo		PAP822GP002	Labo+	34,26				
-Culture Cell	Masque	Masque médical OP-AIR à élastiques Type II bleu	960			HA.02	475407	Dutscher	113,1	0,1178125			
-Culture Cell	Masque	Masque De Protection Respiratoire Jetable 3 plis	50			HA.02	911817	Labo Plus	1,02	0,0204			
-Culture Cell	Collagen matrix	Collagen from bovine achilles tendon 10g	10g	1,00			C9879-10G	Sigma	370	37	1	https://www.sigmaaldrich.com/FR/fr/product/roche/collaro	
-Culture Cell	Milieu	gelatine solution		1,00	Frigo grand labo							.	
-Culture Cell	Milieu	3dGRO Organoid Freeze medium	500 ml	1,00	Frigo labo		SCM301	Sigma	150	0,3	1		
-Culture Cell	Milieu	Azide 0,1M solution	1ml	0,50	Frigo labo		08591-1ML	Sigma	60	60			
-Culture Cell	Milieu	F10HAM	500 ml	1,00	Frigo grand labo		N6908	Sigma	121	0,24	1		
-Culture Cell	Milieu	Formoterol fumarate dihydrate	100mg	1,00			F9552-10 mg 	Sigma	67,7	0,67	1	https://www.sigmaaldrich.com/FR/fr/product/sigma/f9552	
-Culture Cell	Milieu	herpes		5,00	Frigo grand labo		BEPP7-737E		130		1		
-Culture Cell	Milieu	L-glutamine		7,00	Frigo grand labo		BE17-605E	lonza	240		1		
-Culture Cell	Milieu	NA pyruvate	50 ml	2,00	Frigo grand labo				50,25	1			
-Culture Cell	Milieu	Sodium Acetate Solution 		2,00			71196-100 ml	Sigma	253		1	https://www.sigmaaldrich.com/FR/fr/product/sigma/71196	
-Culture Cell	Milieu MEM	MEM 100X		4,00	Frigo grand labo		M7145		293		1		
-Culture Cell	Milieu MEM	MEM nea 100X		6,00	Frigo grand labo		11140-035		293	29,3	1		
-Culture Cell	plaque 24 insert	insert culture plaque 24 puits 0,4µm		NC			353095	Dutscher	215				
-Culture Cell	plaque 24 insert	Plaque companion 24 puits 6,3µm		NC			353595	Dutscher	110				
-Culture Cell	Plaque 6 	Plaque 6 puits, Repellent, avec LID, stérile	 ECHANTILLON	échantillon			657970	Greiner bio 	 ECHANTILLON	 ECHANTILLON			
-Culture Cell	Plaque 96 	Plaque 96 puits applied OPTIQUE	20	1,00	Réserve		10407314	ThermoFischer 	200	10	0,5	https://www.fishersci.fr/shop/products/applied-biosystems-microamp-optical-96-well-reaction-plate-barcode-4/p-4918085	
-Culture Cell	Plaque 96 	 support de Plaque 96 puits applied Veriflex	10	1,00	Réserve		10361235	ThermoFischer 	120	12	0,5	https://www.fishersci.fr/shop/products/p/10361235	
-Culture Cell	repet tip	repet tip 1,25 mL	100	1,00	Réserve		F164530	gilson 	46	0,46	0,5		
-Culture Cell	 Tamis/ Filtre 	 filtre 0,22 	 50 	 Réserve 	 1 	NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques	SF13CA22S	 starstedt 	103	2,06	1	UGAP	1 tous les 3 mois
-		 petrie dish 100x100x20 carrée 				NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques							
+const csvText = `Categorie;Famille;Nom;Conditionnement;stock;Emplacement;Instruction commandes ;code famille;Description;Référence de stock;Prix ;Prix Unitaire;Seuil de réapprovisionnement;Lien;Date de la dernière commande/ qt;Fréquence normal d'utilisation ;livraison
+Biomol;Extration ARN;Qiazol;200ml;1;Grand labo placard ;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Qiagen;79306;303;1,515;0,5;https://www.qiagen.com/fr-us/products/discovery-and-translational-research/lab-essentials/buffers-reagents/qiazol-lysis-reagent;44995;600µl/lyse;15 jours
+Biomol;Extration ARN;Stainless steel beads 5mm;200;1,5;Grand labo placard ;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Qiagen;69989;151;0,755;1;https://www.qiagen.com/fr-us/products/instruments-and-automation/accessories/beads/?catno=69989;44879;;1 mois 
+Biomol;KIT ARN;Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps;50;4,5;labo placard;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Ozyme ;ZR1011;187;3,74;0,5;https://yris.ozyme.fr/fr/company/ozyme/product/zymoclean-gel-rna-recovery-kit-w-zymo-spin-ic-columns-capped-50-preps-zr1011;;1/mois;
+Biomol;Kit ARN;Direct Zol RNA MicroPrep;50;2,5;Labo placard;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Ozyme ;ZR2060;271;;;;;;
+Biomol;Kit ARN;Wash Buffer;12mL;0;RT;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Ozyme ;ZR-1003-3-12;46;;;https://yris.ozyme.fr/fr/company/ozyme/product/rna-wash-buffer-12-ml-zr1003-3-12-1;;;
+Biomol;Extraction miR;miRNeasy Kits ;;0,5;spin column chambre froide et le reste labo floricia;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Qiagen;217084;534;534;;https://www.qiagen.com/us/products/discovery-and-translational-research/dna-rna-purification/rna-purification/mirna/mirneasy-kits;;;
+Biomol;Extraction ADN;Kit extraction ADN;10 prep;1;Grand labo placard ;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Ozyme ;ZD4001T;42;;;;;;
+Biomol;Extration ARN;isopropanol;;1;;;;;;;;;;.;;
+Biomol;Extraction ARN;Glycogène;;3;Congel gris labo;;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;ThermoFischer ;R0551;77;;;;;;
+Biomol;RT;M-MLV RT (5);50 000 u : 250 reactions;0,75;;;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);promega;M1705;250;;devis en cours;https://france.promega.com/products/pcr/rt-pcr/m-mlv-reverse-transcriptase/?catNum=M1705;44887;1 tous les 6 mois;
+Biomol;RT;OneScript RT Mix for qPCR w/gDNAOut (OwiScript);100 reactions;2 (+ 2 arrivés décongelés);labo congel, tiroir rt;;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);Ozyme ;OZYA012-100;204;2,01;;https://yris.ozyme.fr/fr/company/ozyme/product/onescript-rt-mix-for-qpcr-w-gdnaout-ozya012?search-context-name=OZYA012;;;
+Biomol;RT;SuperScript™ II Reverse Transcriptase;50 reactions;2 + 1 (mars 2025);labo congel, tiroir rt;;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);ThermoFischer ; 18064014;376;7,52;;https://www.thermofisher.com/order/catalog/product/18064014;;;
+Biomol;RT;High capacity cDNA reverse transcription kit;1000;1;labo congel ;;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);;4368813;1147;;;;;;
+Biomol;ladder;Smart ladder ;;NC;Congel labo;;;;MW-1700-10;;;0,5;https://www.eurogentec.com/en/catalog/smartladder-200-to-10000-bp~62cddba9-b196-47b3-bec0-c700aed35e2e;.;;
+Biomol;Buffer;Tampon TAE UltraPure™, 10X;4L;1;Labo sana;;;ThermoFischer ; 15558026;53;;;;;;
+Biomol;Colorant gel;GelRed® Nucleic Acid Gel Stain, 10, 000X in DMSO;0,5mL;1,5;labo etagère produit chimique;;NA.31;Ozyme ;BTM41002;165;;;https://yris.ozyme.fr/fr/company/ozyme/product/gelred-r-nucleic-acid-gel-stain-10-000x-in-dmso-btm41002-1;;;
+Biomol;PCR;Tube PCR colone de 8 bouchon plat;8x96;3;Labo Tiroir + 2 réserve;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;32031/2054;46;;1;https://www.dutscher.com/product/0B-35-03;.;;
+Biomol;PCR;Sybersafe;500 *l;1;Congel labo;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;ThermoFischer ;s11494;260;#DIV/0!;1;;.;;
+Biomol;PCR;dNTP;;1;Congel petit labo;;;;;;;;;;;
+Biomol;PCR;Film PCR ;100;0;Placard;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;eppendorf;30127790;Echantillon;Echantillon;1;;.;;
+Biomol;PCR;Plaque optique 96 puits lecture rapide;10;1;labo placard ;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;ThermoFischer ;4346907;65;6,5;0,5;https://www.fishersci.fr/shop/products/applied-biosystems-microamp-fast-optical-96-well-reaction-plate-0-1ml-1/10670986?searchHijack=true&searchTerm=4346907&searchType=RAPID&matchedCatNo=4346907;.;;
+Biomol;PCR;8 pCPT 2 o me CAMP Am;100u;?;;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;biotechn;4853;225;2,25;;;44855;;
+Biomol;qPCR;TB Green qPCR Premix Ex Taq II (Tli RNaseH Plus) (5 x 5 ml) ;24;NC;Congel labo;;;Ozyme ;TAKRR820W;162;6,75;1;https://www.takarabio.com/products/real-time-pcr/real-time-pcr-kits/dye-based-qpcr-mixes/tb-green-premix-ex-taq-ii-(tli-rnase-h-plus)?catalog=RR820A;.;;
+Biomol;qPCR;Film plaque qPCR;100;3;Placard labo;;;starstedt;951994;60;0,6;0,5;https://www.sarstedt.com/fr/produits/laboratoire/pcr-biologie-moleculaire/films-pcr/produit/95.1994/;44966;;
+Biomol;qPCR;GoTaq® G2 DNA polymerase;500u;1,5 (+1 à tester);;;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);promega;M7845;152,872;0,305744;;https://france.promega.com/products/pcr/taq-polymerase/gotaq-g2-dna-polymerase/?catNum=M7845;44887;;
+Biomol;qPCR;Plaque 96 qPcr;100;3;Labo solène + réserve;;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);starstedt;721981;60;0,6;1;https://www.sarstedt.com/fr/produits/laboratoire/pcr-biologie-moleculaire/plaques-pcr/produit/72.1981/;44966;2/3 mois;
+Biomol;qPCR;(sybr green) OneGreen fast qPCR premix (OwiGreen);5x5ml;7;congel -80°C;;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);Ozyme ;OZYA008-1000;683;27,32;2;https://yris.ozyme.fr/fr/company/ozyme/product/onegreen-fast-qpcr-premix-ozya008;.;;
+Biomol;qPCR;MicroAmp™ Fast 96-Well Tray;10;;;;;ThermoFischer ;4358305;141;;;;;;
+Biomol;qPCR;Barrettes de 8 bouchons optiques MicroAmp™ (bouchons);300;;;;;ThermoFischer ;4323032;208;;;;;;
+Biomol;qPCR;Multiply uStripPro 0,2mL barrettes 8 tubes (avec bouchons);480;1;Labo;;;Sarstedt;72.991.022;290;;;;;;
+Biomol;qPCR;Barrette de 8 tubes rapide MicroAmp™, 0,1 ml;125;;;;;ThermoFischer ;4358293;159;;;;;;
+Biomol;Chimie;ETOH;;1;;;;;;;;0,25;;.;;
+Biomol;Chimie;Triton x-100;250ml;1;Labo;;;merck;T8787;50;0,2/ml;;;.;;
+Biomol;Chimie;Tween;500ml;1;Labo;;;;;;;;;.;;
+Biomol;KIT;Edu;;2;labo frigo;;;ThermoFischer ;C10339;780;;;https://www.fishersci.fr/shop/products/molecular-probes-click-it-edu-alexa-fluor-594-imaging-kit/10410845;.;;
+Biomol;Kit biolum;Glucose uptake;5mL;1;-80;;NA32 Reactifs Et Kits Pour Le Marquage Et La Detection Des Proteines;;J1341;458;;;https://france.promega.com/products/energy-metabolism/metabolite-detection-assays/glucose-uptake_glo-assay/?catNum=J1341;;;
+Biomol;Kit biolum;Glycerol Detection assay (lipolyse);5mL;1;-80;;NA32 Reactifs Et Kits Pour Le Marquage Et La Detection Des Proteines;Promega;J3150;587;;;https://france.promega.com/products/energy-metabolism/lipid-metabolism-assay/glycerol-glo-assay/?catNum=J3150;.;;
+Biomol;KIT ELISA (1);duo set ELISA Ancillary Reagent Kit 2;plaque de 96 puits;2;labo frigo;à commander tout le temps si on utilise le KIT Elisa 2 ou 3 pour avoir les plaques + reactifs;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;R&D systems;DY008B;200;40e/plaque;0,5;https://www.rndsystems.com/search?keywords=Duoset+Ancillary+Reagent+Kit+2;44876;;
+Biomol;KIT ELISA (2);Human Adiponectine/Acrp30 DuoSet ELISA (5 plates);10µl/reaction (5 plates);1;labo frigo;commander avec kit elisa 1;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;R&D systems;DY1065-05;378;4e/µL/réaction;1;https://www.rndsystems.com/search?keywords=Human+Adiponectine%2FAcrp30+DuoSet+ELISA+;44876;;
+Biomol;KIT ELISA (3);Human IL-6 DuoSet ELISA 5 plates;5 plaques 96W;1,5;labo frigo;commander avec kit elisa 1;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;R&D systems;DY206-05;283;60€/plaque;0,5;https://www.rndsystems.com/search?keywords=Human+IL-6+DuoSet+ELISA;44876;;
+Biomol;KIT ELISA;Human RSPO2 ELISA ;1plaque;1?;;commander seul;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;;HUFI06699;630;;;;44936;;
+Biomol;KIT ELISA;human VEGF Duoset ELISA;réflexion;ref envisagé;;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;R&D systems;DY293B-05;300;;;https://www.rndsystems.com/products/human-vegf-duoset-elisa_dy293b#assay-procedure;.;;
+Biomol;KIT ELISA;Human FGF-21;1 plaque 96 puits;1;grand labo frigo;commander seul;;;;;;;;;;
+Biomol;KIT ELISA;Human interleukin 6 (IL6);plaque + reactifs;;;;;Ozyme ;HUDL01522;713;;;https://yris.ozyme.fr/fr/company/ozyme/product/human-interleukin-6-il6-elisa-hudl01522?search-context-name=HUDL01522;;;
+Biomol;KIT ELISA;Human Pro-Collagen I alpha 1 DuoSet ELISA;;2;chambre froide;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;R&D systems;DY6220-05;378;;;;;;
+Biomol;KIT ELISA;Human Adiponectin (ADP);plaque + reactifs;;chambre froide;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;;HUDL00090;713;;;https://yris.ozyme.fr/fr/company/ozyme/product/human-adiponectin-adp-elisa-hudl00090?search-context-name=HUDL00090;;;
+Biomol;KIT ELISA;Human IL-1beta/IL-1F2 Duoset Elisa, 5 plates;5 plates;1;chambre froide;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;biotechne;DY201-05;325;;;;;;
+Biomol;;Human TIMP1;5 plates;1;chambre froide;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;biotechne;DY970-05;325;;;;;;
+Biomol;KIT ELISA;Barrettes ;;4 cartons (320);tiroir ELISA labo + stock bureau;Attention barrettes doubles ;;ThermoFischer ;469914;180;;;;;;
+Biomol;KIT ELISA;DuoSet ELISA Ancillary Reagent Kit 2;;1;chambre froide;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;Bio-techne;DY008B;213,3;;;;;;
+Biomol;KIT ELISA;Human GDF-15 DuoSet ELISA, 15 Plate ;;1;chambre froide;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;Bio-techne;DY957;820,8;;;;;;
+Biomol;KIT ;ENZ CHECK GELATINASE/COL 1 kit;250 - 200 assays;1;Tiroir ELISA -20;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;ThermoFischer ;E12055;614;;;https://www.thermofisher.com/order/catalog/product/E12055?SID=srch-srp-E12055;;;
+Biomol;Primer;FGF21 qPCR Primer Pairs, Human;24;1;labo frigo;;;Interchim ;Ref : HP100794;61;2,541666667;1;https://www.interchim.com/rapid_search2.php;.;;
+Biomol;Primer;ICAM-1 qPCR Primer Pairs, Human;10 pièces;1;labo frigo;;;Interchim ; Ref : HP100384;100;;1;https://www.interchim.com/rapid_search2.php;.;;
+Biomol;Primer;HUMAN DPP4 QPCR PRIMER PAIRS;20 plaques;1;labo frigo;;;Interchim ; Ref : HP100649;196;9,8;1;https://www.interchim.com/rapid_search.php;.;;
+Biomol;Transport;acetate foil transport type PCR;50;NC;;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;82,1586;106;2,12;1;https://www.dutscher.com/article/760215;.;;
+Biomol;Transport;Film adhésif AeraSeal™ stérile;960;NC;Labo Placard;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;760215;106;0,110416667;1;https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306;.;;
+Biomol;ladder;Smart ladder SF;réflexion;NC;;;;;MW-1800-04 ;réflexion;;0,5;https://www.eurogentec.com/en/catalog/smartladder-sf-100-to-1000-bp~c21045de-6dbd-4b04-83ce-e2525c7fb69d;.;;
+Biomol;Milieu;eagle medium sans glu ;500mL;2;Frigo grand labo;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;ThermoFischer ;11966025;22;;1;;.;;
+Biomol;Milieu;gelatine solution;;?;Frigo grand labo;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;;;;;;;.;;
+Biomol;Milieu;Insuline, humain recombinant, zinc solution, 4mg/ml;5 ml ;?;;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;gibco;12585014;95;19€/ml;;;;Produit de différentiation;
+Biomol;?;Liberase TL res Grade ;10mg;NC;;;;sigma;5401020001;50;5€/ml;;;44663;;
+Biomol;?;RNA ext reag tri reagent;100ml;NC;;;;sigma;TR118-200;200;2€/ml;;;44642;;
+Biomol;?;RQ1 Rnase-free DNAse;1000u;NC;;;;promega;M6101;70;0,07;;;44712;;
+Biomol;?;CCT 031374 hydrobromide;10mg;NC;;;;biotechn;4675;170;17€/mg;;;44862;;
+Biomol;?;Glycogen 20mg/ml;2x0,25ml;NC;;;;sigma;08-0111;90;180€/µl;;;44732;;
+Biomol;?;ICG 001;10mg;NC;;;;biotechn;4505;250;25€/mg;;;44862;;
+Biomol;?;JW67;10mg;NC;;;;biotechn;4651;190;19€/mg;;;44862;;
+Microscopie;Fluromount;Fluoromount-G, with DAPI;20ml;2;labo placard microscopie;;NA47 Reactifs D'immunohistologie Et D'histochimie;ThermoFischer ;00-4959-52;95;4,75;1;https://www.thermofisher.com/order/catalog/product/00-4959-52?SID=srch-srp-00-4959-52;.;;
+Microscopie;Coloration;Oro ;250ml;2;labo placard microscopie;;NA47 Reactifs D'immunohistologie Et D'histochimie;sigma;1024190250;127;0,5;;;en cours ;;
+Microscopie;Coloration;Picro Sirius red Stain Kit;;1;labo placard microscopie;;NA47 Reactifs D'immunohistologie Et D'histochimie;Abcam;ab150681;246,82;1;0,5;https://www.abcam.com/picro-sirius-red-stain-kit-connective-tissue-stain-ab150681.html;.;;
+Microscopie;Coloration;Solution Acide acétique ( dans le kit de psr);;2;labo placard microscopie;;;;ab150681;246,82;1;1;;.;;
+Microscopie;Anticorps I;Apo -Transferrine humain;100 aliquots 1mg/ml;NC;;;;Sigma;T1147-100MG;166;16;;https://www.thermofisher.com/order/catalog/product/21331046;.;Produit de différentiation;
+Microscopie;Anticorps I;CL 316,243 hydrate de chez Sigma Aldrich;5mg;2;;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Sigma;C5976-5mg;295;59;1;https://www.sigmaaldrich.com/FR/fr/product/sigma/c5976;.;;
+Microscopie;Anticorps I;Glut 4;20µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);ozyme ;ABC-A7637-20;92;4,6;;; ;;
+Microscopie;Anticorps I;Prox 1 ;20µl;2; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);themofischer;11067-2-AP;demande échantillon;demande échantillon;;;EN cours;;
+Microscopie;Anticorps I;IFN2A humain de chez Sigma Aldrich;;1;;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Sigma;SRP4594-100ug;255;;;https://www.sigmaaldrich.com/FR/fr/product/sigma/srp4594;.;;
+Microscopie;Anticorps I;PDGF Receptor α (D1E1E) XP® Rabbit mAb #3174;;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Ozyme ;3174T;99;;;;.;;
+Microscopie;Anticorps I;anti fibronectin Mouse ;200µg/ml;0;Pas vu ;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);santa cruz;sc8422;350;1,75;;;.;;
+Microscopie;Anticorps I;anti human Lyve 1;100µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);abcam;ab219556;600;6;;;45000;;15 jours 
+Microscopie;Anticorps I;anti-cd31 HUMAN ;100µL;1;4°C;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;YEP;425$;4,25;;https://www.abcam.com/cd31-antibody-ab28364.html;.;;
+Microscopie;Anticorps I;Anti-CD34 antibody [QBEND-10];50µL;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;ab8536;489;9,78;;https://www.abcam.com/cd34-antibody-qbend-10-ab8536.html;.;;
+Microscopie;Anticorps I;anti-CD68 antibody ;100µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;ab213363;495;4,9;;https://www.abcam.com/cd68-antibody-epr20545-ab213363.html;.;;
+Microscopie;Anticorps I;Anti-Collagen IV antibody;100µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;ab6586;489;4,9;;https://www.abcam.com/collagen-iv-antibody-ab6586.html;.;;
+Microscopie;Anticorps I;Anti-Elastin antibody;250µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;ab21610;489;1,95;;https://www.abcam.com/elastin-antibody-ab21610.html;.;;
+Microscopie;Anticorps I;anti-ICAM1 antibody  MEM-111;100µg;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;ab2213;500;5;;https://www.abcam.com/icam1-antibody-mem-111-ab2213.html;.;;
+Microscopie;Anticorps I;Anti-Laminin antibody;125µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;ab11575;489;3,9;;https://www.abcam.com/laminin-antibody-ab11575.html;.;;
+Microscopie;Anticorps I;Collagen VI Monoclonal Antibody (COL-6) 100 ul ;100µL;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Merck ;MAB1944;516;;;Anti-Collagen Type VI Antibody, clone 3C4 | MAB1944 (merckmillipore.com);.;;
+Microscopie;Anticorps I;Collagen I Monoclonal Antibody (COL-1) 100 ul ;100µL;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Abcam;ab260043;510;5,1;;https://www.abcam.com/collagen-i-antibody-epr22894-89-ab260043.html;.;;
+Microscopie;Anticorps I;Human DPP4/CD26 antibody  polyclonal goat ;100µg;2; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Biotechne;AF1180;490;4,9;1;;.;;
+Microscopie;Anticorps I;Tyrosine Hydroxylase antibody RABBIT polyclonal;25µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Euromedex;GTX113016;150;;;;;;1 mois
+Microscopie;Anticorps I;CGRP antibody [4901] MOUSE Monoclonal;100µl;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Euromedex;GTX82726;605;;;;;;2 mois
+Microscopie;Anticorps I;Perilipin 1 antibody GOAT Polyclonal;100µg;1; -20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Euromedex;GTX89109 ;485;;;;;;3 mois
+Microscopie;Anticorps I;Hyaluronan Binding Protein HABP Biotin conjugated;50ug;1;-20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Amsbio;AMS.HKD-BC41;635;;;;;;
+Microscopie;Anticorps I;Anti-Collagen III antibody [EPR17673] ;;1;chambre froide;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;Abcam;AB184993;390;;;;;;
+Microscopie;Anticorps I;ICAM-2/CD102;100µg;1;-20 labo;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);ThermoFischer ;PA547320;457;;;;46009;;
+Microscopie;Anticorps II;Anti-rabbit IGG 488 50ul ;50µl;1; -20 labo;;NA46 : Anticorps secondaire;Sigma;SAB4600044;90;1,8;;https://www.sigmaaldrich.com/FR/fr/product/sigma/sab4600044;.;;
+Microscopie;Anticorps II;Donkey Anti-Goat IgG H&L (Alexa Fluor® 488);500µg;1;4°C;;NA46 : Anticorps secondaire;Abcam;ab150129;159;0,318;;https://www.abcam.com/donkey-goat-igg-hl-alexa-fluor-488-ab150129.html;.;;
+Microscopie;Anticorps II ;DAPI;10mg;1;;;NA46 : Anticorps secondaire;ThermoFischer ;D1306;200;20;1;https://www.thermofisher.com/order/catalog/product/D1306?SID=srch-srp-D1306;.;;
+Microscopie;Anticorps II ;Mouse Alexa fluor 568;25µl;2;4°C;;NA46 : Anticorps secondaire;;;;;;;;;
+Microscopie;Anticorps II ;AF 647 Rabbit ;25µl;1;4°C;;NA46 : Anticorps secondaire;;;;;;;;;
+Microscopie;Anticorps II ;Steptavidin AF633;1mg;1;-20 labo;;NA46 : Anticorps secondaire;ThermoFischer ;S21375 ;378;;;;;;
+Microscopie;Anticorps II ;Donkey anti-mouse 488;;1;4°C;;NA46 : Anticorps secondaire;;A-21202 ;375;375;;;;;
+Microscopie;Agarase;Agarase from pseudomonas atlantica Sigma;1000 unités;;4°C;;;A6306;Sigma;141;0,28/ml;1;https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306;.;;
+Microscopie;Agarase;;;; -20 labo;;;;;;;;;;;
+Microscopie;Anticorps TNF;Mouse TNFa antibody 100 microg;;1;;;NA46 : Anticorps secondaire;Bio-Techn;MAB4101;275;;;https://www.bio-techne.com/p/antibodies/mouse-tnf-alpha-antibody-mp6-xt22_mab4101;.;;
+Microscopie;Anticorps TNF;Recombinant Human TNFa;;1;;;NA46 : Anticorps secondaire;Bio-Techn;10291-TA-050;207;;;https://www.bio-techne.com/p/proteins-enzymes/recombinant-human-tnf-alpha-hek293-expressed-protein-cf_10291-ta;.;;
+Microscopie;consommable;capillaire /tube hematocrite  1,5 mm dia/ 75 mm long;100;4;labo placard microscopie;;;polylabo;;20;0,2;1;;.;;
+Microscopie;Fastwell;Grace Bio-Labs FastWells 9 mm diam. x 1.0 mm depth ;10 plaques;2;labo placard microscopie;;;Sigma;GBL664112-50EA;61;6,1;1;https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664112;.;;
+Microscopie;Fastwell;Grace Bio-Labs FastWells reagent barriers;;2;labo placard microscopie;;;Sigma;GBL664113-50EA;3,1;;1;https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664113;.;;
+Microscopie;Fastwell;Grace Bio-Labs wells, 12 (Round, 4.5mm diameter, 0.5mm depth) ;;2;labo placard microscopie;;;Sigma;GBL664506;6;;1;https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664506;.;;
+Microscopie;Fastwell;Grace Bio-Labswells, 24 (Round, 2mm diameter, 0.5mm depth) ;1000;2;labo placard microscopie;;;Sigma;GBL664508;30;0,03;1;https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664508;.;;
+Microscopie;Fil;Galls microfibre filtre 2,5 cm;;8;labo placard microscopie;;;Whatman;1822025;122,2;;1;;.;;
+Microscopie;Fixateur;oct componoun tissue;;5;Labo Bench;;;;;138;2;1;;.;;
+Microscopie;Fixateur;PAF- PIERCE 16% FORM.METHANOL 10X 10ml ;;2,5;labo placard microscopie;;;ThermoFischer ;28908;92;2;1;https://www.thermofisher.com/order/catalog/product/28908;;;
+Microscopie;Fluromount;Invitrogen™ eBioscience™ Fluoromount-G™, with DAPI;;NC;labo placard microscopie;;;Invitrogen;155996276;50,85;2;;;.;;
+Microscopie;Lames;Star-Frost slides 76 x 26 mm standard version Blue;sachet 2x1000 ;20;labo placard microscopie;;;Dutscher;100204B;15;;3;https://www.dutscher.com/article/100204B;.;;
+Microscopie;Anticorps;Rat igG1 isotype control ;;1;;;NA41 : Anticorps primaire non couple (hors anticorps de contrôle et anti-taq);Bio-Techn;MAB005;194;;;https://www.bio-techne.com/p/isotype-controls/rat-igg1-isotype-control_mab005;.;;
+Microscopie;Clearing;Sucrose;500g;1;Labo placard poudre;;NA32;Merck;S0389-500G;90;;;;;;
+Microscopie;Clearing;Urea;500g;1;Labo placard poudre;;NA32;Merck;U5378-500G;83;;;;;;
+Microscopie;Clearing;Ether benzyl DBE;25g;2;Armoire ventilée;;NA32;Merck;108014-25G;58,6;;;;;;
+Microscopie;Clearing;ethyl cinamate;100g;2,5;Armoire ventilée;;NA32;Merck;112372-100G;22,4;;;;;;
+Microscopie;Clearing;DCM;250mL;1;Armoire ventilée;;NA32;Merck;5895810250;96,6;;;;;;
+Qualité;KIT Qualité;XTT Cell Proliferation Kit II;2500;3;labo congel -25°C, Labo congel tiroir bas;2 bouteille stock;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;merck;11465015001;;0,2;0,5;https://www.sigmaaldrich.com/FR/fr/product/roche/11465015001#product-documentation;44995;;Tres variable attention
+Qualité;KIT Qualité bis;XTT assay kit prêt à l'emplois;96;0; -20°c en bas;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;abcam;ab232856;;1,666666667;;https://www.abcam.com/products/assay-kits/xtt-assay-kit-ab232856.html;45006;;
+Qualité;Bactério;bacterio diam 90 mm avec ou sans  ergot sterile;480;0,5;reserve;;NB14 Bacteriologie : Consommables En Plastique Specifiques;starstedt;2582714;;0,05;1;;ugap;;
+Qualité;Milieu;Milieu déshydraté gélose nutritive;500g;1;Paillasse grand labo RT;;NA74 : Milieu de bactériologie et additif;Dutscher;777328;;225,25;;;;;
+Qualité;Milieu;Gélose nutritive;500g;1,5;Paillasse grand labo RT;;NA74 : Milieu de bactériologie et additif;bioworld;30620055 ;;155;;https://www.bio-world.com/microbiological-media/nutrient-agar-p-30620055;44609;;
+Qualité;Milieu;Glucosée de sabouraud, Gélose;500g;1;Paillasse grand labo RT;;NA74 : Milieu de bactériologie et additif;Dutscher;413802,1210-ITW;;82,3;;;;;
+Qualité;Milieu;Sabouraud Dextrose Agar;500g;1,5;Paillasse grand labo RT;;NA74 : Milieu de bactériologie et additif;bioworld;30622001 ;;107;;https://www.bio-world.com/index.php?main_page=product_info&products_id=30622001;44609;;
+Qualité;Milieu;Bouillon Luria mofication miller 0,5g NaCl (LB);500g;;Paillasse grand labo RT;;NA74 : Milieu de bactériologie et additif;;777493;;65;;;;;
+Qualité;Kit qualité;Mycostrip;10 tests;6 reactions;labo congel -20°C;;NA.84;Invivogen;rep-mys-10;;11,5;;https://www.invivogen.com/mycostrip?gclid=Cj0KCQjwwYSwBhDcARIsAOyL0fidnFpoEfcfjw4vCPaobOQd6PuZwqOwrI7SbfyvBTcK2PofbGya_AUaAva0EALw_wcB;;;
+Qualité;Kit qualité;Mycostrip;50 tests;1;labo congel -20°C;;NA.84;Invivogen;rep-mys-50;;350;;https://www.invivogen.com/mycostrip?gclid=Cj0KCQjwwYSwBhDcARIsAOyL0fidnFpoEfcfjw4vCPaobOQd6PuZwqOwrI7SbfyvBTcK2PofbGya_AUaAva0EALw_wcB;;;
+Qualité;Kit qualité;kit mycoplasme Venor®GeM OneStep;50;1;labo congel -25°C;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;;11.8050;;7;0,5;https://minerva-biolabs.com/en/mycoplasma-detection-kits/venorgem-onestep-2#/173-package_size-25_reactions;44837;;
+Qualité;KIT viabilité;LDH-Glo Cytotoxicity Assay;100 tests;1;congel -80°C;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;Promega;J2380/1;;250;0,5;https://france.promega.com/products/cell-health-assays/cell-viability-and-cytotoxicity-assays/ldh-glo-cytotoxicity-assay/?catNum=J2380;;;
+Qualité;KIT viabilité;kit de Viablilite/cytotoxicite Molecular Probe Live/Dead;;1;;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;ThermoFischer ;L3224;;;x;https://www.thermofisher.com/order/catalog/product/fr/fr/L3224;;;
+Qualité;KIT viabilité;Live/Dead Fixable Staining Kit 488/515;;1;;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;Promocell;PK-CA707-32004;;;x;;;;
+Qualité;;;;;;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;;;;;;;;;
+Qualité;KIT prolifération;"cell proliferation kit III (EdU-594; FM)";;NC;;;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;Promocell;PK-CA724-594FM;;;x;;;;
+FACS;Anticorps;CD90 APC ;100 ul;NC;Frigo Bench;;?;BD pharmagen;559869;350;;;https://www.bdbiosciences.com/en-us/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/apc-mouse-anti-human-cd90.559869;;;
+FACS;Anticorps;CD105 Fluo ;150 ul;NC;Frigo Bench;;;;FAB10971F;;;;;;;
+FACS;Anticorps;CD140a PE;200ul;NC;Frigo Bench;;;BD pharmagen;556002;;;;https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd140a.556002;;;
+FACS;Anticorps;CD142 PE ;150 ul;1;Frigo Bench;;;Invitrogen/thermofischer;12-1429-42;270;;;https://www.thermofisher.com/antibody/product/CD142-Antibody-clone-HTF-1-Monoclonal/12-1429-42;45005;;1 mois
+FACS;Anticorps;CD26 FITC ;100 tests;NC;Frigo Bench;;;BiolEgend;302704;215;;;https://www.biolegend.com/en-us/products/fitc-anti-human-cd26-antibody-610;44890;;
+FACS;Anticorps;CD26FITC;50 tests;NC;Frigo Bench;;;BD biosciences;340426;300;;;https://www.bdbiosciences.com/en-fr/products/reagents/flow-cytometry-reagents/clinical-discovery-research/single-color-antibodies-ruo-gmp/fitc-mouse-anti-human-cd26.340426;;;
+FACS;Anticorps;CD26FITC;;NC;Frigo Bench;;;Interchim ;EZH110;;;;https://www.interchim.com/rapid_search.php;;;
+FACS;Anticorps;CD31 PE ;200 ul;NC;Frigo Bench;;;BD pharmagen;555446;;;;;;;
+FACS;Anticorps;CD34 APC ;;NC;Frigo Bench;;;BD pharmagen;44937;;;;;;;
+FACS;Anticorps;CD34 PE ;200ul;NC;Frigo Bench;;;BD pharmagen;555822;;;;https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd34.555822;;;
+FACS;Anticorps;CD45 PE ;200 ul;NC;Frigo Bench;;;BD pharmagen;555483;;;;https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd45.555483;;;
+FACS;Anticorps;CD54 APC ;100 ul;1;Frigo Bench;;;molecular probes/thermofischer ;A15714;230;;;;45005;;1 mois
+FACS;Anticorps;CD73 PE;200 ul;NC;Frigo Bench;;;MACS (Miltenyi);130-095-182;;;;;;;
+FACS;Anticorps;CD90 PE ;500 ul;NC;Frigo Bench;;;BD pharmagen;555596;;;;https://www.bdbiosciences.com/en-au/products/reagents/flow-cytometry-reagents/research-reagents/single-color-antibodies-ruo/pe-mouse-anti-human-cd90.555596;;;
+FACS;Anticorps;Fcblock 1 ;0,25mg;2;Frigo Bench;;;BD science;564220;200;;1;;45002;;1 mois
+FACS;Anticorps;FITC anti-huma CD26;100tests;NC;Frigo Bench;;;Ozyme ;BLE302704;170;;;;;;
+FACS;Anticorps;IgG1 APC ;;NC;Frigo Bench;;;;FAB10971F;;;;;;;
+FACS;Anticorps;IgG1 k PE;25 tst;NC;Frigo Bench;;;biotechne;FAB10971p;190;;;;;;
+FACS;Anticorps;IgG2A APC ;;NC;Frigo Bench;;;;FAB10971F;;;;;;;
+FACS;Anticorps;IgG2bK PE;;NC;Frigo Bench;;;;FAB10971F;;;;;;;
+FACS;Anticorps;MSCA1 APC ;200 ul;NC;Frigo Bench;;;MACS;130-093-589;;;;;;;
+FACS;Anticorps;CD90-FITC;2mL;1;Frigo Labo;;;Beckman;IM1839U;;;;;;;
+FACS;Anticorps;CD146 RPE;2mL;1;Frigo Labo;;;Beckman;A07483 ;;;;;;;
+FACS;Anticorps;CD45-PC5;100tests;1;Frigo Labo;;;Beckman;A07785;;;;;;;
+FACS;Anticorps;IgG1 mouse FITC;100 tests;1;Frigo Labo;;;Beckman;A07795;;;;;;;
+FACS;Anticorps;CD34-BV650;50ug;1;Frigo Labo;;;BD biosciences;743533;;;;;;;
+FACS;Anticorps;IgG1-BV650;;1;Frigo Labo;;;BD biosciences;563231;;;;;;;
+FACS;Sondes;NucBlue Live cell stain;6*2,5mL;1;Frigo Labo;;;Thermofisher;R37605;;;;;;;
+FACS;Sondes;Draq5;200uL;1;Frigo labo;;;Thermofisher;65-0880-96;;;;;;;
+Muse;;Guava instrument cleaning Fluid ( ICF) ;;NC;Frigo Bench;;;Merck;4200-0140;37,5;;;;;;
+Bureautique;;pile LR42;;;;;;amazon;;;;;;;;
+Bureautique;;Pile multicanaux;;;;;;amazon;;;;;;;;
+Bureautique;;pile plate;;;;;;amazon;;;;;;;;
+Bureautique;;pochette carton;;;;;;amazon;;;;;;;;
+Bureautique;;Minuteur 3 canaux ;;;;;;dominique Dutscher SAS;45302;17;;;;;;
+Bureautique;;Blouse jetable ENDO protectlab taille XL ;;;;;;dominique Dutscher SAS;942685;3,1;;;;;;
+Bureautique;;Pince à bouts plats, arrondis, acier inoxydable;;;;;;Millipore;XX6200006P;53;;;;;;
+Bureautique;;Cryoboîte blanche en carton ClearLine® - capacité : 100 cryotubes - recouverte d'un film étanche;;;;;;Dutscher ;010184CL;6;;;;;;
+Bureautique;;Portoir pour tubes coniques 15 ml SPL - 104,1 x 127,9 , 48,1 mm;;;;;;Dutscher ;330130;14,8;;;;;;
+Bureautique;;Portoir pour tubes coniques 50 ml SPL - 132,7 x 249,7 x 48,1 mm;;;;;;Dutscher ;330133;23,3;;;;;;
+Bureautique;;Portoir multifonctions tubes de culture;;;;;;Dutscher ;199018;7,9;;;;;;
+Bureautique;;Marqueur noir ultra fin;;;;;;Dutscher ;140604;4,6;;;;;;
+Bureautique;;Portoir Unirack PCR double face coloris bleu;;;;;;Dutscher ;39250;8,8;;;;;;
+Bureautique;;Boîte en ABS pour lame de microscopie - capacité 12 lames;;;;;;Dutscher ;390855;2,2;;;;;;
+Bureautique;;Economical box for 25 microscope slides (Blue);;;;;;Dutscher ;37516;9,7;;;;;;
+Bureautique;;Economical box for 100 microscope slides (White);;;;;;Dutscher ;37521;12,7;;;;;;
+Bureautique;;blouse l2;;;;;;fischer scientific;;;;;https://www.fishersci.fr/shop/products/tyvek-isoclean-ic-270b-ws-lab-coat-sterile-double-bagged-6/17879323?searchHijack=true&searchTerm=tyvek-isoclean-ic-270b-ws-lab-coat-sterile-double-bagged-6&searchType=Rapid&matchedCatNo=17879313;;;
+Cones pipettes;;Pipette tip, 10 µl, transparent, PCR Performance Tested, 1,000 piece(s)/bag;10000;;;;10µL - bulk;;70.3010;140;0,014;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010/;;;
+Cones pipettes;;Filter tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;10µL filtré;;70.3010.255;81,6;0,0425;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.255/;;;
+Cones pipettes;;Pipette tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;10µL - boite;;70.3010.205;68,16;0,0355;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.205/;;;
+Cones pipettes;;Filter tip, 20 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;20µL filtré;;70.3020.255;81,6;0,0425;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3020.255/;;;
+Cones pipettes;;Pipette tip, 200 µl, transparent, PCR Performance Tested, 1,000 piece(s)/bag;10000;;;;200µL - bulk;;70.3030;49;0,0049;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3030/;;;
+Cones pipettes;;Filter tip, 200 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;200µL filtré;;70.3031.255;85,44;0,0445;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3031.255/;;;
+Cones pipettes;;Pipette tip, 200 µl, transparent, PCR Performance Tested, 96 piece(s)/box;1920;;;;200µL - boite;;10.3030.200;66,24;0,0345;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3030.200/;;;
+Cones pipettes;;Pipette tip, 1,000 µl, transparent, PCR Performance Tested, 500 piece(s)/bag;5000;;;;1000µL - bulk;;70.3050;37,5;0,0075;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050/;;;
+Cones pipettes;;Filter tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;1000µL filtré;;70.3050.255;113,28;0,059;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.255/;;;
+Cones pipettes;;Pipette tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;1000µL - boite;;70.3050.205;80,64;0,042;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.205/;;;
+Indispensable;Bouchon;Bouchon BD Luer - Lok™ avec protection mâle/femelle;100;1,5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;394075B;13,1;0,166;0;https://www.dutscher.com/article/394075B;00/01/1900;;
+Indispensable;Seringue luer lock;Seringue BD 3P 20 ml Cone luer Lock ;120;2;Bureau + L2;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;bastide;100081;38;0,316666667;NC;https://www.bastideleconfortmedical.com/seringues-3-pieces-20-ml-bd-plastipak-cone-luer-lock-100081.html;;;
+Indispensable;Tulipe;REDUCTEUR SU 1.2MM;20;5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Aestetic group;FD0000000-LLF24;46;2,3; 2 boites;https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/527-raccord-d-emulsion-de-graisse-fll-o-12mm-x20.html;13/10/2022;1Boite pour 20 prélèvements;
+Indispensable;Tulipe;REDUCTEUR SU 1.4MM;20;5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Aestetic group;FD0000000-LLF14;46;2,3;2 boites;https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/526-raccord-d-emulsion-de-graisse-fll-o-14mm-x20.html;13/10/2022;1Boite pour 20 prélèvements;
+Indispensable;Tulipe;REDUCTEUR SU 2.4MM;20;5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Aestetic group;FD0000000-LLF12;46;2,3;2 boites;https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html;13/10/2022;1Boite pour 20 prélèvements;
+Indispensable;Plaque 6 ula;Plaque Corning 6 puits ULA ;24;5,5;bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;3471;339;0;1;https://www.dutscher.com/article/003471;00/01/1900;;
+Indispensable;ACL;ACL -eBioscience™ 10X RBC Lysis Buffer (Multi-species) 50 ml;50mL;2;L2 + L1 frigo;0;NA71 : Sérum et autre milieu pour culture cellulaire animale;ThermoFischer ;00-4300-54;62;0;1;https://www.thermofisher.com/order/catalog/product/00-4300-54?SID=srch-srp-00-4300-54;recu;;
+Indispensable;Antifongique;Amphotericin B solution;50mg;1;Chambre froide;0;NA76 Antibiotiques Pour Culture Cellulaire;Sigma;0,28;287;5,75;0;https://www.sigmaaldrich.com/FR/fr/substance/amphotericinbsolution924081397893;.;;
+Indispensable;Antibiotique;Gibco™ Gentamicine (50 mg/ml);20ml;2;salle de culture L1 & L2;0;NA76 Antibiotiques Pour Culture Cellulaire;thermofischer ;11520506;220;11;0;https://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506;reçu 05/23;;
+Indispensable;Antifongique;Invivogen FUNGIN 75 MG (10 MG/ML);75mg;1,5;Congel grand labo;0;NA76 Antibiotiques Pour Culture Cellulaire;invivogen;ant-fn-1;148;0;0;https://www.fishersci.com/shop/products/fungin-75-mg-10-mg-ml/NC9326704;00/01/1900;;
+Indispensable;Milieu EGM;Endothelial Cell Growth Medium 2;500ml;4;figo labo culture;Milieu + suppléments;NA71 : Sérum et autre milieu pour culture cellulaire animale;Promocell;C-22011;153,85;0;1;https://promocell.com/product/endothelial-cell-growth-medium-2/;22/03/2023;;15 jours
+Indispensable;Milieu EGM;SupplementMix / Endothelial   Cell Growth Medium 2;500ml;4;Congèl labo culture;0;NA71 : Sérum et autre milieu pour culture cellulaire animale;Promocell;  C-39216;50,85;2;1;https://promocell.com/product/endothelial-cell-growth-medium-2/;22/03/2023;;15 jours
+Indispensable;Antibiotique;pen/strep stock;100Ml;6;5;0;0;thermofischer;15140122;10;0,1;0;https://www.thermofisher.com/order/catalog/product/15140122?SKULINK;28/02/2023;;1mois
+Indispensable;BSA;BSA free fatty acid  25g;25g;3;port frigo labo en bas;0;0;merck;A6003-25G;450;18e/g;0;https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003;.15/03/23;2g/falcon= 12 Fla;15 jours
+Indispensable;Collagénase;Collagenase A from Clostridium histolycum (500mg) ;500mg;1;frigo salle culture;0;0;Sigma Merck;10103586001;305,76;0,64;0,5;https://www.sigmaaldrich.com/FR/fr/product/roche/collaro;21/03/2023;30 aliquot de 10;15 jours
+Indispensable;Milieu PBS;PBS;0;5;Frigo Labo;0;NA71 : Sérum et autre milieu pour culture cellulaire animale;thermofischer;14190-094;23,4;1,15;2;https://www.thermofisher.com/order/catalog/product/14190094;20/03/2023;1 bouteille/mois;rapide
+Indispensable;Pastette;Pipette stérile Pasteur 3 ml (a commander de preference);1000;2,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;390513;52;0;1;https://www.dutscher.com/article/390513;00/01/1900;;
+Indispensable;Extration ARN;Qiazol;200ml;1;Grand labo placard ;0;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;qiagen;79306;303;1,515;0,5;https://www.qiagen.com/fr-us/products/discovery-and-translational-research/lab-essentials/buffers-reagents/qiazol-lysis-reagent;;600µl/lyse;15 jours
+Indispensable;Extration ARN;Stainless steel beads 5mm;200;1,5;Grand labo placard ;0;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;qiagen;69989;151;0,755;1;https://www.qiagen.com/fr-us/products/instruments-and-automation/accessories/beads/?catno=69989;10/03/2023;;1 mois 
+Indispensable;KIT ARN;Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps;50;4,5;labo placard;0;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Ozyme ;ZR1011;187;3,74;0,5;https://yris.ozyme.fr/fr/company/ozyme/product/zymoclean-gel-rna-recovery-kit-w-zymo-spin-ic-columns-capped-50-preps-zr1011;14/11/2022;1/mois;
+Indispensable;RT;M-MLV RT (5);50 000 u : 250 reactions;0,75;0;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);promega;M1705;250;0;devis en cours;https://france.promega.com/products/pcr/rt-pcr/m-mlv-reverse-transcriptase/?catNum=M1705;00/01/1900;1 tous les 6 mois;
+Indispensable;RT;OneScript RT Mix for qPCR w/gDNAOut (OwiScript);100 reactions;2 (+ 2 arrivés décongelés);labo congel, tiroir rt;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);Ozyme ;OZYA012-100;204;2,01;0;https://yris.ozyme.fr/fr/company/ozyme/product/onescript-rt-mix-for-qpcr-w-gdnaout-ozya012?search-context-name=OZYA012;22/11/2022;;
+Indispensable;RT;SuperScript™ II Reverse Transcriptase;50 reactions;2 + 1 (mars 2025);labo congel, tiroir rt;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);ThermoFischer ; 18064014;376;7,52;0;https://www.thermofisher.com/order/catalog/product/18064014;00/01/1900;;
+Indispensable;qPCR;(sybr green) OneGreen fast qPCR premix (OwiGreen);5x5ml;7;congel -80°C;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);Ozyme ;OZYA008-1000;683;27,32;2;https://yris.ozyme.fr/fr/company/ozyme/product/onegreen-fast-qpcr-premix-ozya008;00/01/1900;;
+Indispensable;KIT Qualité;XTT Cell Proliferation Kit II;2500;3;labo congel -25°C;2 bouteille stock;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;merck;11465015001;0,2;0,5;Labo congel tiroir bas;https://www.sigmaaldrich.com/FR/fr/product/roche/11465015001#product-documentation;;;Tres variable attention
+Indispensable;Bactério;bacterio diam 90 mm avec ou sans  ergot sterile;480;0,5;reserve (?);0;NB14 Bacteriologie : Consommables En Plastique Specifiques;starstedt;2582714;0,05;1;Réserve;;;;
+Indispensable;Milieu;Gélose nutritive;500g;1,5;Paillasse grand labo RT;0;NA74 : Milieu de bactériologie et additif;bioworld;30620055 ;155;0;0;https://www.bio-world.com/microbiological-media/nutrient-agar-p-30620055;10/03/2023;;
+Indispensable;Milieu;Sabouraud Dextrose Agar;500g;1,5;Paillasse grand labo RT;0;NA74 : Milieu de bactériologie et additif;bioworld;30622001 ;107;0;0;https://www.bio-world.com/index.php?main_page=product_info&products_id=30622001;ugap;;
+Indispensable;Kit qualité;kit mycoplasme Venor®GeM OneStep;50;1;labo congel -25°C;0;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;biovalley;11.8050;7;0,5;Labo congel tiroir bas;https://minerva-biolabs.com/en/mycoplasma-detection-kits/venorgem-onestep-2#/173-package_size-25_reactions;17/02/2022;;
+Indispensable;Eppendorf;Microtube 0,5ml;5000;3;Réserve;0;NB11;starstedt;72,699;61;0,0122;0,5;;17/02/2022;;
+Indispensable;Eppendorf;Microtube 1,5 ml;5000;2;Réserve;0;NB11;starstedt;72,690,001;50;0,01;2;https://www.sarstedt.com/fr/produits/laboratoire/microtubes-a-vis-tubes-a-reaction/tubes-a-reaction/produit/72.706/;03/10/2022;;
+Indispensable;Eppendorf;Microtube 2ml;5000;2;Réserve;0;NB12;starstedt;72691;70;0,014;0,5;;;;
+Indispensable;Pointes;cones filtrés 1000µL;1920;1,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;2869323;113;0;0;;44966;;
+Indispensable;Pointes;cones filtrés 200µL;960/b;3,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;14220;155;0;2;https://www.dutscher.com/article/014220;44966;;
+Indispensable;Pointes;cones filtrés 20µL;5000;1;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;ThermoFischer ;11963466;555;0,111;2;https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-1/11963466;44966;;
+Indispensable;Pointes;cones  1000µL non filtrés;500*5000;0,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;2869314;45;0;0;https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12;;;rapide
+Indispensable;Pointes;cones 200µL non filtrés;1000;5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;703030;45;0;2;https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3030/;44966;;
+Indispensable;Pointes;cones 10µl non filtrés;480/b 1920/carton;0,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;703010200;45;0;2;https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3010.200/;;;
+Indispensable;Falcon 15;Falcon 15;500 (50/sac);3,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;62554502;53;0;1;https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.554.502/;;1 carton consommé par mois;
+Indispensable;Falcon 50;Falcon 50 ;300 (25/sac);5,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;62547254;32;0;1;                                  ;44966;1 carton consommé par mois;
+
 `;
 
 // Genera los seedItems y los copia al portapapeles.

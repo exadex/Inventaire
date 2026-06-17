@@ -2,6 +2,9 @@
   const STORAGE_CONFIG_KEY = "exadex_github_storage_config";
   const TOKEN_KEY = "exadex_github_token";
 
+  const CACHE_KEY = "exadex_shared_state_cache";
+  let latestSha = null;
+
   function readJson(value, fallback = null) {
     try {
       return value ? JSON.parse(value) : fallback;
@@ -39,8 +42,11 @@
     return String(path).split("/").map(encodeURIComponent).join("/");
   }
 
-  async function requestContents(config) {
-    const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${encodePath(config.path)}?ref=${encodeURIComponent(config.branch)}`;
+  async function requestContents(config, options = {}) {
+    const { fresh = true } = options;
+    const baseUrl = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${encodePath(config.path)}?ref=${encodeURIComponent(config.branch)}`;
+    const url = fresh ? `${baseUrl}&t=${Date.now()}` : baseUrl;
+
     const headers = {
       Accept: "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28"
@@ -50,9 +56,13 @@
       headers.Authorization = `Bearer ${config.token}`;
     }
 
-    const response = await fetch(url, { headers });
+    const response = await fetch(url, {
+      headers,
+      cache: "no-store"
+    });
 
     if (response.status === 404) {
+      latestSha = null;
       return { data: null, sha: null };
     }
 
@@ -62,22 +72,36 @@
 
     const payload = await response.json();
     const content = String(payload.content || "").replace(/\s/g, "");
+    latestSha = payload.sha || null;
 
     return {
       data: readJson(decodeBase64Utf8(content), null),
-      sha: payload.sha || null
+      sha: latestSha
     };
   }
 
-  async function loadSharedData() {
+  async function loadSharedData(options = {}) {
     const config = getConfig();
 
     if (!configured(config)) {
       return { data: null, sha: null, mode: "unconfigured" };
     }
 
-    const result = await requestContents(config);
-    return { ...result, mode: config.token ? "github-write" : "github-readonly" };
+    const result = await requestContents(config, options);
+
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({
+        data: result.data,
+        sha: result.sha,
+        loadedAt: new Date().toISOString()
+      })
+    );
+
+    return {
+      ...result,
+      mode: config.token ? "github-write" : "github-readonly"
+    };
   }
 
   async function saveSharedData(data, previousSha) {
@@ -91,8 +115,14 @@
       throw new Error("GitHub token is missing; shared data is read-only.");
     }
 
-    const current = previousSha ? { sha: previousSha } : await requestContents(config);
+    const current = previousSha
+      ? { sha: previousSha }
+      : latestSha
+        ? { sha: latestSha }
+        : await requestContents(config, { fresh: true });
+
     const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${encodePath(config.path)}`;
+
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -118,8 +148,19 @@
     }
 
     const payload = await response.json();
-    return payload.content?.sha || null;
-  }
+    latestSha = payload.content?.sha || null;
+
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({
+        data,
+        sha: latestSha,
+        loadedAt: new Date().toISOString()
+      })
+    );
+
+    return latestSha;
+}
 
   window.ExadexGithubStorage = {
     getConfig,

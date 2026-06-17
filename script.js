@@ -371,6 +371,28 @@ function createSharedState(rawState = null) {
   };
 }
 
+  async function refreshSharedStateFromGithub() {
+    try {
+      const result = await window.ExadexGithubStorage.loadSharedData({ fresh: true });
+      if (!result?.data) return;
+
+      applySharedState(result.data);
+      render();
+    } catch (error) {
+      console.error("Shared refresh failed:", error);
+    }
+  }
+
+  window.addEventListener("focus", refreshSharedStateFromGithub);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      refreshSharedStateFromGithub();
+    }
+  });
+
+  setInterval(refreshSharedStateFromGithub, 30000);
+
 function syncRuntimeStateFromShared() {
   sharedState.inventoryItems = migrateItems(sharedState.inventoryItems);
   sharedState.experiments = migrateExperiments(sharedState.experiments);

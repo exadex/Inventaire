@@ -2,6 +2,35 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1782139949544",
+      "name": "test3",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 5,
+      "unit": "mL",
+      "minStock": 1,
+      "locations": [
+        "Laboratoire"
+      ],
+      "location": "Laboratoire",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "",
+          "reference": "",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-06-22T14:52:29.544Z",
+      "createdAt": "22/06/2026 16:52",
+      "source": "web"
+    },
+    {
       "id": "web-1781697318265",
       "name": "Test2",
       "category": "Procédé ExAdEx L2",
@@ -11892,6 +11921,12 @@
   ],
   "history": [
     {
+      "date": "22/06/2026 16:52",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté test3 dans Procédé ExAdEx L2."
+    },
+    {
       "date": "17/06/2026 13:55",
       "user": "Caroline",
       "action": "Item ajouté",
@@ -12192,5 +12227,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-06-22T14:48:26.454Z"
+  "updatedAt": "2026-06-22T14:52:29.553Z"
 }

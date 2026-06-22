@@ -371,13 +371,45 @@ function createSharedState(rawState = null) {
   };
 }
 
+function applySharedState(sharedState) {
+  if (!sharedState || typeof sharedState !== "object") return;
+
+  webItems = Array.isArray(sharedState.webItems)
+    ? structuredClone(sharedState.webItems)
+    : Array.isArray(sharedState.inventoryItems)
+      ? structuredClone(sharedState.inventoryItems)
+      : [];
+
+  seedOverrides =
+    sharedState.seedOverrides && typeof sharedState.seedOverrides === "object"
+      ? structuredClone(sharedState.seedOverrides)
+      : {};
+
+  deletedSeedIds = Array.isArray(sharedState.deletedSeedIds)
+    ? [...sharedState.deletedSeedIds]
+    : [];
+
+  if (Array.isArray(sharedState.orders)) {
+    orders = structuredClone(sharedState.orders);
+  }
+
+  if (Array.isArray(sharedState.experiments)) {
+    experiments = structuredClone(sharedState.experiments);
+  }
+
+  if (Array.isArray(sharedState.history)) {
+    history = structuredClone(sharedState.history);
+  }
+
+  items = buildItems();
+  render();
+}
+
   async function refreshSharedStateFromGithub() {
     try {
-      const result = await window.ExadexGithubStorage.loadSharedData({ fresh: true });
-      if (!result?.data) return;
-
-      applySharedState(result.data);
-      render();
+      const sharedState = await loadSharedStateFromGithub();
+      if (!sharedState) return;
+      applySharedState(sharedState);
     } catch (error) {
       console.error("Shared refresh failed:", error);
     }

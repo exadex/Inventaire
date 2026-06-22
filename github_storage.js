@@ -80,11 +80,48 @@
     };
   }
 
+  async function requestPublicJson(config, options = {}) {
+    const { fresh = true } = options;
+    const path = config.path || "shared_data.json";
+    const baseUrl = encodePath(path);
+    const url = fresh ? `${baseUrl}?t=${Date.now()}` : baseUrl;
+
+    const response = await fetch(url, {
+      cache: "no-store"
+    });
+
+    if (response.status === 404) {
+      return { data: null, sha: null };
+    }
+
+    if (!response.ok) {
+      throw new Error(`Public shared data read failed: ${response.status}`);
+    }
+
+    return {
+      data: await response.json(),
+      sha: null
+    };
+  }
+
   async function loadSharedData(options = {}) {
     const config = getConfig();
 
     if (!configured(config)) {
-      return { data: null, sha: null, mode: "unconfigured" };
+      const result = await requestPublicJson(config, options);
+
+      if (result.data) {
+        localStorage.setItem(
+          CACHE_KEY,
+          JSON.stringify({
+            data: result.data,
+            sha: result.sha,
+            loadedAt: new Date().toISOString()
+          })
+        );
+      }
+
+      return { ...result, mode: "public-readonly" };
     }
 
     const result = await requestContents(config, options);

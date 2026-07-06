@@ -563,7 +563,7 @@
       "name": "SupplementMix / Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
       "quantity": 4,
-      "unit": "mL",
+      "unit": "unités",
       "minStock": 1,
       "location": "-20°C culture L1",
       "locations": [
@@ -585,7 +585,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "createdAtRaw": "2026-07-06T13:06:08.867Z",
+      "createdAt": "06/07/2026 15:06"
     },
     {
       "id": "itm-CSV-0020",
@@ -11870,6 +11872,12 @@
       "date": "06/07/2026 15:06",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié SupplementMix / Endothelial Cell Growth Medium 2."
+    },
+    {
+      "date": "06/07/2026 15:06",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Endothelial Cell Growth Medium 2."
     },
     {
@@ -12203,5 +12211,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-06T13:06:00.837Z"
+  "updatedAt": "2026-07-06T13:06:08.868Z"
 }

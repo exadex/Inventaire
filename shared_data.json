@@ -3,7 +3,7 @@
   "inventoryItems": [
     {
       "id": "web-1783345152215",
-      "name": "test prism",
+      "name": "test prism et moi",
       "category": "Procédé ExAdEx L2",
       "quantity": 51,
       "unit": "unités",
@@ -11873,6 +11873,12 @@
   ],
   "history": [
     {
+      "date": "06/07/2026 15:40",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié test prism et moi."
+    },
+    {
       "date": "06/07/2026 15:39",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -12239,5 +12245,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-06T13:39:53.179Z"
+  "updatedAt": "2026-07-06T13:40:04.028Z"
 }

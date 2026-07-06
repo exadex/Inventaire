@@ -2976,7 +2976,7 @@
       "name": "Liraglutide",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "mg",
+      "unit": "unités",
       "minStock": 0,
       "location": "-20°C culture L1",
       "locations": [
@@ -2998,7 +2998,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "createdAtRaw": "2026-07-06T13:07:09.980Z",
+      "createdAt": "06/07/2026 15:07"
     },
     {
       "id": "itm-web-1781623286246-wjqubj",
@@ -11871,6 +11873,12 @@
   ],
   "history": [
     {
+      "date": "06/07/2026 15:07",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Liraglutide."
+    },
+    {
       "date": "06/07/2026 15:06",
       "user": "Caroline",
       "action": "Item modifié",
@@ -12219,5 +12227,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-06T13:06:17.701Z"
+  "updatedAt": "2026-07-06T13:07:09.981Z"
 }

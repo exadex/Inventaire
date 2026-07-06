@@ -2,6 +2,36 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1783345152215",
+      "name": "test prism",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 51,
+      "unit": "unités",
+      "minStock": 20,
+      "locations": [
+        "Laboratoire",
+        "Chambre froide"
+      ],
+      "location": "Laboratoire",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "",
+          "reference": "",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-07-06T13:39:12.215Z",
+      "createdAt": "06/07/2026 15:39",
+      "source": "web"
+    },
+    {
       "id": "web-1783342982525",
       "name": "test 06/07",
       "category": "Procédé ExAdEx L2",
@@ -11873,6 +11903,12 @@
   ],
   "history": [
     {
+      "date": "06/07/2026 15:39",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté test prism dans Procédé ExAdEx L2."
+    },
+    {
       "date": "06/07/2026 15:07",
       "user": "Caroline",
       "action": "Item modifié",
@@ -12227,5 +12263,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-06T13:38:56.800Z"
+  "updatedAt": "2026-07-06T13:39:12.224Z"
 }

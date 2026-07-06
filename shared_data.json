@@ -3442,12 +3442,12 @@
       "name": "Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "mL",
+      "unit": "unités",
       "minStock": 1,
-      "location": "Frigo labo",
+      "location": "Laboratoire",
       "locations": [
-        "Frigo labo",
-        "Laboratoire"
+        "Laboratoire",
+        "Frigo labo"
       ],
       "tags": [
         "Milieu EGM"
@@ -3465,7 +3465,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "createdAtRaw": "2026-07-06T13:06:17.700Z",
+      "createdAt": "06/07/2026 15:06"
     },
     {
       "id": "itm-web-1781623286246-dbf8e5",
@@ -11872,6 +11874,12 @@
       "date": "06/07/2026 15:06",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix."
+    },
+    {
+      "date": "06/07/2026 15:06",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié SupplementMix / Endothelial Cell Growth Medium 2."
     },
     {
@@ -12211,5 +12219,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-06T13:06:08.868Z"
+  "updatedAt": "2026-07-06T13:06:17.701Z"
 }

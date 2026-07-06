@@ -32,36 +32,6 @@
       "source": "web"
     },
     {
-      "id": "web-1781696488785",
-      "name": "Test",
-      "category": "Muse",
-      "quantity": 2,
-      "unit": "mL",
-      "minStock": 1,
-      "locations": [
-        "Réserve",
-        "Laboratoire"
-      ],
-      "location": "Réserve",
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "createdAtRaw": "2026-06-17T11:41:28.785Z",
-      "createdAt": "17/06/2026 13:41",
-      "source": "web"
-    },
-    {
       "id": "itm-CSV-0001",
       "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
       "category": "Procédé ExAdEx L2",
@@ -11898,6 +11868,12 @@
       "date": "06/07/2026 15:05",
       "user": "Caroline",
       "action": "Item supprimé",
+      "detail": "Caroline a supprimé Test de l'inventaire."
+    },
+    {
+      "date": "06/07/2026 15:05",
+      "user": "Caroline",
+      "action": "Item supprimé",
       "detail": "Caroline a supprimé Test2 de l'inventaire."
     },
     {
@@ -12219,5 +12195,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-06T13:05:25.564Z"
+  "updatedAt": "2026-07-06T13:05:27.844Z"
 }

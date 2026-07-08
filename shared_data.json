@@ -2,14 +2,15 @@
   "version": 1,
   "inventoryItems": [
     {
-      "id": "web-1782139949544",
-      "name": "test3",
+      "id": "web-1783345152215",
+      "name": "test prism et moi",
       "category": "Procédé ExAdEx L2",
-      "quantity": 5,
-      "unit": "mL",
-      "minStock": 1,
+      "quantity": 51,
+      "unit": "unités",
+      "minStock": 20,
       "locations": [
-        "Laboratoire"
+        "Laboratoire",
+        "Chambre froide"
       ],
       "location": "Laboratoire",
       "tags": [],
@@ -26,65 +27,8 @@
         },
         "secondary": []
       },
-      "createdAtRaw": "2026-06-22T14:52:29.544Z",
-      "createdAt": "22/06/2026 16:52",
-      "source": "web"
-    },
-    {
-      "id": "web-1781697318265",
-      "name": "Test2",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 34,
-      "unit": "mL",
-      "minStock": 1,
-      "locations": [],
-      "location": "Bureau",
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "createdAtRaw": "2026-06-17T11:55:18.265Z",
-      "createdAt": "17/06/2026 13:55",
-      "source": "web"
-    },
-    {
-      "id": "web-1781696488785",
-      "name": "Test",
-      "category": "Muse",
-      "quantity": 2,
-      "unit": "mL",
-      "minStock": 1,
-      "locations": [
-        "Réserve",
-        "Laboratoire"
-      ],
-      "location": "Réserve",
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "createdAtRaw": "2026-06-17T11:41:28.785Z",
-      "createdAt": "17/06/2026 13:41",
+      "createdAtRaw": "2026-07-06T13:39:12.215Z",
+      "createdAt": "06/07/2026 15:39",
       "source": "web"
     },
     {
@@ -588,7 +532,7 @@
       "name": "Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
       "quantity": 4,
-      "unit": "mL",
+      "unit": "unités",
       "minStock": 1,
       "location": "Frigo culture L1",
       "locations": [
@@ -610,14 +554,16 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "createdAtRaw": "2026-07-06T13:06:00.836Z",
+      "createdAt": "06/07/2026 15:06"
     },
     {
       "id": "itm-CSV-0019",
       "name": "SupplementMix / Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
       "quantity": 4,
-      "unit": "mL",
+      "unit": "unités",
       "minStock": 1,
       "location": "-20°C culture L1",
       "locations": [
@@ -639,7 +585,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "createdAtRaw": "2026-07-06T13:06:08.867Z",
+      "createdAt": "06/07/2026 15:06"
     },
     {
       "id": "itm-CSV-0020",
@@ -3028,7 +2976,7 @@
       "name": "Liraglutide",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "mg",
+      "unit": "unités",
       "minStock": 0,
       "location": "-20°C culture L1",
       "locations": [
@@ -3050,7 +2998,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "createdAtRaw": "2026-07-06T13:07:09.980Z",
+      "createdAt": "06/07/2026 15:07"
     },
     {
       "id": "itm-web-1781623286246-wjqubj",
@@ -3494,12 +3444,12 @@
       "name": "Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "mL",
+      "unit": "unités",
       "minStock": 1,
-      "location": "Frigo labo",
+      "location": "Laboratoire",
       "locations": [
-        "Frigo labo",
-        "Laboratoire"
+        "Laboratoire",
+        "Frigo labo"
       ],
       "tags": [
         "Milieu EGM"
@@ -3517,7 +3467,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "createdAtRaw": "2026-07-06T13:06:17.700Z",
+      "createdAt": "06/07/2026 15:06"
     },
     {
       "id": "itm-web-1781623286246-dbf8e5",
@@ -11922,6 +11874,72 @@
   ],
   "history": [
     {
+      "date": "06/07/2026 15:40",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié test prism et moi."
+    },
+    {
+      "date": "06/07/2026 15:39",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé test 06/07 de l'inventaire."
+    },
+    {
+      "date": "06/07/2026 15:39",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté test prism dans Procédé ExAdEx L2."
+    },
+    {
+      "date": "06/07/2026 15:07",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Liraglutide."
+    },
+    {
+      "date": "06/07/2026 15:06",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix."
+    },
+    {
+      "date": "06/07/2026 15:06",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié SupplementMix / Endothelial Cell Growth Medium 2."
+    },
+    {
+      "date": "06/07/2026 15:06",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Endothelial Cell Growth Medium 2."
+    },
+    {
+      "date": "06/07/2026 15:05",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Test de l'inventaire."
+    },
+    {
+      "date": "06/07/2026 15:05",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Test2 de l'inventaire."
+    },
+    {
+      "date": "06/07/2026 15:05",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé test3 de l'inventaire."
+    },
+    {
+      "date": "06/07/2026 15:03",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté test 06/07 dans Procédé ExAdEx L2."
+    },
+    {
       "date": "22/06/2026 16:52",
       "user": "Caroline",
       "action": "Item ajouté",
@@ -12228,5 +12246,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-06-22T14:52:29.553Z"
+  "updatedAt": "2026-07-08T14:38:48.020Z"
 }

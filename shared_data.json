@@ -11871,8 +11871,37 @@
       "createdAt": "2026-05-15 10:04"
     }
   ],
-  "clientSamples": [],
+  "clientSamples": [
+    {
+      "id": "sample-client-1783523870111-t6xrik",
+      "type": "client_product",
+      "clientCode": "ASH001",
+      "location": "Culture L1",
+      "notes": "Conserver à RT puis à 4°C une fois ouvert. Garder à l'abris de la lumière",
+      "createdAtRaw": "2026-07-08T15:17:50.102Z",
+      "createdAt": "08/07/2026 17:17",
+      "name": "Collapeptyl",
+      "arrivalDate": "2026-07-07",
+      "quantity": 0.05,
+      "unit": "L",
+      "referenceNumber": "990106",
+      "lotNumber": "#0002768834",
+      "category": "",
+      "baseName": "Collapeptyl",
+      "creationDate": "",
+      "measureValue": 0.05,
+      "measureUnit": "L",
+      "replicaNumber": null,
+      "replicaCount": 1
+    }
+  ],
   "history": [
+    {
+      "date": "08/07/2026 17:17",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute Collapeptyl pour ASH001."
+    },
     {
       "date": "06/07/2026 15:40",
       "user": "Caroline",
@@ -12246,5 +12275,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-08T15:16:29.391Z"
+  "updatedAt": "2026-07-08T15:17:50.112Z"
 }

@@ -11797,7 +11797,6 @@
     }
   ],
   "experiments": [],
-  "clientSamples": [],
   "orders": [
     {
       "id": "ord-1781696250817",
@@ -12246,5 +12245,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-08T14:38:48.020Z"
+  "updatedAt": "2026-07-08T15:16:03.972Z"
 }

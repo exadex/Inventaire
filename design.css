@@ -847,6 +847,19 @@ textarea[readonly] {
   background: rgba(255,255,255,0.82);
 }
 .sample-table { width: 100%; border-collapse: collapse; min-width: 760px; }
+.client-sample-table tbody tr { cursor: pointer; }
+.client-sample-table tbody tr:hover { background: rgba(56, 104, 140, 0.07); }
+.table-subtext {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+  margin-top: 4px;
+}
+.empty-table-cell {
+  color: var(--muted);
+  text-align: center;
+}
 th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); }
 th { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 td { font-size: 14px; }

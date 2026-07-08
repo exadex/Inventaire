@@ -3,13 +3,12 @@
 // sharedState es la fuente editable: inventario, experimentos, pedidos e historial.
 // sharedState se cachea localmente, pero la fuente compartida es shared_data.json via GitHub.
 
-const seedSamples = [
-  ["PAT-AX41", "Abdominal", "2026-05-12", "Hypoxie 1% O2", "RNA-seq", "LN2 / Canister 2 / Box 17"],
-  ["PAT-NQ08", "Facial", "2026-05-03", "Temoin ex vivo 24h", "Histologie", "Freezer -80C / Box H-03"],
-  ["PAT-KL77", "Abdominal", "2026-04-28", "IL-6 10 ng/mL", "ELISA", "Freezer -80C / Box C-11"],
-  ["PAT-VM19", "Facial", "2026-04-19", "Insuline 100 nM", "qPCR", "LN2 / Canister 1 / Box 08"],
-  ["PAT-TB52", "Abdominal", "2026-04-15", "Differenciation J7", "Immunofluorescence", "Freezer -20C / Slides S-02"]
-];
+const clientSampleTypes = {
+  client_product: "Produit recu du client",
+  created_sample: "Echantillon cree"
+};
+
+const clientSampleCategories = ["Galette agarose", "Secretion", "ARN", "Tissu"];
 
 const seedBaseItems = migrateItems(seedItems).map(item => ({
   ...item,
@@ -37,6 +36,7 @@ let items = buildItems();
 let orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
 let experiments = migrateExperiments(sharedState.experiments);
 let history = Array.isArray(sharedState.history) ? sharedState.history : [];
+let clientSamples = migrateClientSamples(sharedState.clientSamples);
 
 hydrateSharedData();
 
@@ -47,7 +47,9 @@ let alertsExpanded = false;
 let selectedLocation = null;
 let selectedExperimentId = null;
 let selectedItemId = null;
+let selectedSampleId = null;
 let itemReturnContext = { view: "inventory", experimentId: null, location: null, scrollY: 0 };
+let sampleReturnContext = { view: "samples", location: null, scrollY: 0 };
 let viewReturnScrollY = { experiments: 0, locations: 0 };
 let selectedOrderId = null;
 let ordersMode = "board";
@@ -64,6 +66,11 @@ const sidebarUserName = document.querySelector("#sidebarUserName");
 const searchInput = document.querySelector("#searchInput");
 const controlBar = document.querySelector(".control-bar");
 const categoryFilter = document.querySelector("#categoryFilter");
+const sampleSearchInput = document.querySelector("#sampleSearchInput");
+const sampleTypeFilter = document.querySelector("#sampleTypeFilter");
+const sampleCategoryFilter = document.querySelector("#sampleCategoryFilter");
+const sampleDialog = document.querySelector("#sampleDialog");
+const sampleForm = document.querySelector("#sampleForm");
 const experimentSearchInput = document.querySelector("#experimentSearchInput");
 const experimentStatusFilter = document.querySelector("#experimentStatusFilter");
 const dialog = document.querySelector("#itemDialog");
@@ -104,6 +111,26 @@ const fields = [
 const stockFields = ["stockItemId", "stockItemName", "stockCurrentQuantity", "stockTitle", "stockAction", "stockAmount", "stockUnit", "stockNotes"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
+const sampleFields = [
+  "sampleId",
+  "sampleType",
+  "sampleClientCode",
+  "sampleProductName",
+  "sampleBaseName",
+  "sampleCategory",
+  "sampleArrivalDate",
+  "sampleCreationDate",
+  "sampleQuantity",
+  "sampleUnit",
+  "sampleMeasureLabel",
+  "sampleMeasureValue",
+  "sampleReplicaCount",
+  "sampleLocation",
+  "sampleReferenceNumber",
+  "sampleLotNumber",
+  "sampleNotes"
+].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+
 const experimentFields = [
   "experimentId",
   "experimentTemplate",
@@ -140,6 +167,7 @@ const orderFields = [
 
 renderCategoryOptions();
 renderLocationOptions();
+renderSampleOptions();
 renderTemplateOptions();
 
 // Dialog para confirmar la cantidad a anadir al inventario al recibir una orden
@@ -188,9 +216,18 @@ document.querySelector("#logoutBtn").addEventListener("click", () => {
   auth.classList.remove("hidden");
 });
 
-document.querySelector("#addItemBtn").addEventListener("click", () => openModal());
+document.querySelector("#addItemBtn").addEventListener("click", () => {
+  if (activeView === "samples") {
+    openSampleModal();
+    return;
+  }
+
+  openModal();
+});
 document.querySelector("#saveItemBtn").addEventListener("click", saveItem);
 document.querySelector("#deleteItemBtn").addEventListener("click", deleteItem);
+document.querySelector("#saveSampleBtn").addEventListener("click", saveSample);
+document.querySelector("#deleteSampleBtn").addEventListener("click", deleteSample);
 document.querySelector("#saveStockBtn").addEventListener("click", saveStockUpdate);
 document.querySelector("#addExperimentBtn").addEventListener("click", openExperimentModal);
 document.querySelector("#saveExperimentBtn").addEventListener("click", saveExperiment);
@@ -216,6 +253,11 @@ orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
 orderFields.orderInventorySearch.addEventListener("input", renderOrderItemOptions);
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
+sampleSearchInput.addEventListener("input", renderSamples);
+sampleTypeFilter.addEventListener("change", renderSamples);
+sampleCategoryFilter.addEventListener("change", renderSamples);
+sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
+sampleFields.sampleCategory.addEventListener("change", syncSampleMeasureLabel);
 experimentSearchInput.addEventListener("input", renderExperiments);
 experimentStatusFilter.addEventListener("change", renderExperiments);
 experimentDialog.addEventListener("close", () => {
@@ -270,6 +312,7 @@ document.querySelectorAll(".nav-item").forEach((button) => {
     activeView = button.dataset.view;
 
     selectedItemId = null;
+    selectedSampleId = null;
     selectedExperimentId = null;
     selectedLocation = null;
     itemReturnContext = { view: activeView, experimentId: null };
@@ -364,6 +407,7 @@ function createSharedState(rawState = null) {
     orders: Array.isArray(source.orders)
       ? source.orders
       : load("exadex_orders", []),
+    clientSamples: migrateClientSamples(source.clientSamples),
     history: Array.isArray(source.history)
       ? source.history
       : load("exadex_history", load("adipovault_history", [])),
@@ -371,8 +415,10 @@ function createSharedState(rawState = null) {
   };
 }
 
-function applySharedState(sharedState) {
-  if (!sharedState || typeof sharedState !== "object") return;
+function applySharedState(incomingState) {
+  if (!incomingState || typeof incomingState !== "object") return;
+
+  sharedState = createSharedState(incomingState);
 
   webItems = Array.isArray(sharedState.webItems)
     ? structuredClone(sharedState.webItems)
@@ -394,7 +440,11 @@ function applySharedState(sharedState) {
   }
 
   if (Array.isArray(sharedState.experiments)) {
-    experiments = structuredClone(sharedState.experiments);
+    experiments = migrateExperiments(sharedState.experiments);
+  }
+
+  if (Array.isArray(sharedState.clientSamples)) {
+    clientSamples = migrateClientSamples(sharedState.clientSamples);
   }
 
   if (Array.isArray(sharedState.history)) {
@@ -407,9 +457,15 @@ function applySharedState(sharedState) {
 
   async function refreshSharedStateFromGithub() {
     try {
-      const sharedState = await loadSharedStateFromGithub();
-      if (!sharedState) return;
-      applySharedState(sharedState);
+      const storage = window.ExadexGithubStorage;
+      if (!storage) return;
+
+      const result = await storage.loadSharedData();
+      if (!result?.data) return;
+
+      sharedDataMode = result.mode;
+      sharedDataSha = result.sha;
+      applySharedState(result.data);
     } catch (error) {
       console.error("Shared refresh failed:", error);
     }
@@ -429,11 +485,13 @@ function syncRuntimeStateFromShared() {
   sharedState.inventoryItems = migrateItems(sharedState.inventoryItems);
   sharedState.experiments = migrateExperiments(sharedState.experiments);
   sharedState.orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
+  sharedState.clientSamples = migrateClientSamples(sharedState.clientSamples);
   sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
 
   items = buildItems();
   orders = sharedState.orders;
   experiments = sharedState.experiments;
+  clientSamples = sharedState.clientSamples;
   history = sharedState.history;
 }
 
@@ -441,6 +499,7 @@ function syncSharedStateFromRuntime() {
   sharedState.inventoryItems = migrateItems(items);
   sharedState.experiments = migrateExperiments(experiments);
   sharedState.orders = Array.isArray(orders) ? orders : [];
+  sharedState.clientSamples = migrateClientSamples(clientSamples);
   sharedState.history = Array.isArray(history) ? history : [];
   sharedState.updatedAt = new Date().toISOString();
 }
@@ -590,6 +649,16 @@ function renderLocationOptions() {
   fields.location.innerHTML = inventoryLocations
     .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
     .join("");
+}
+
+function renderSampleOptions() {
+  sampleFields.sampleLocation.innerHTML = inventoryLocations
+    .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
+    .join("");
+
+  sampleCategoryFilter.innerHTML = `<option value="all">Toutes categories</option>${clientSampleCategories
+    .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
+    .join("")}`;
 }
 
 function renderTemplateOptions() {
@@ -1086,9 +1155,94 @@ function renderOrderDetail(order) {
 }
 
 function renderSamples() {
-  document.querySelector("#sampleRows").innerHTML = seedSamples.map(sample => `
-    <tr>${sample.map(value => `<td>${escapeHtml(value)}</td>`).join("")}</tr>
-  `).join("");
+  const query = normalizeSearch(sampleSearchInput.value || "");
+  const type = sampleTypeFilter.value || "all";
+  const category = sampleCategoryFilter.value || "all";
+
+  const filtered = clientSamples
+    .filter(sample => {
+      const haystack = normalizeSearch([
+        sample.name,
+        sample.baseName,
+        sample.clientCode
+      ].join(" "));
+
+      return (!query || haystack.includes(query)) &&
+        (type === "all" || sample.type === type) &&
+        (category === "all" || sample.category === category);
+    })
+    .sort((a, b) => getClientSampleTime(b) - getClientSampleTime(a));
+
+  const detail = selectedSampleId
+    ? clientSamples.find(sample => sample.id === selectedSampleId)
+    : null;
+
+  document.querySelector("#sampleDetail").innerHTML = detail
+    ? renderSampleDetail(detail)
+    : "";
+
+  document.querySelector("#samplesView .sample-table-wrap").classList.toggle("hidden", Boolean(detail));
+  document.querySelector("#sampleResultCount").textContent =
+    `${filtered.length} resultat${filtered.length > 1 ? "s" : ""}`;
+
+  document.querySelector("#sampleRows").innerHTML = filtered.length
+    ? filtered.map(sample => `
+      <tr class="clickable-row" onclick="openSampleDetail('${escapeHtml(sample.id)}', { view: 'samples' })">
+        <td>
+          <strong>${escapeHtml(sample.name)}</strong>
+          ${sample.category ? `<span class="table-subtext">${escapeHtml(sample.category)}</span>` : ""}
+        </td>
+        <td>${escapeHtml(sample.clientCode)}</td>
+        <td>${escapeHtml(formatClientSampleDate(sample))}</td>
+        <td>${escapeHtml(sample.location)}</td>
+        <td>${escapeHtml(formatClientSampleQuantity(sample))}</td>
+        <td>${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</td>
+      </tr>
+    `).join("")
+    : `<tr><td colspan="6" class="empty-table-cell">Aucun produit ou echantillon client pour le moment.</td></tr>`;
+}
+
+function renderSampleDetail(sample) {
+  return `
+    <section class="inventory-detail-panel">
+      <div class="detail-topline">
+        <button
+          class="room-exit-btn"
+          type="button"
+          onclick="returnFromSampleDetail()"
+          aria-label="Retour"
+          title="Retour"
+        >
+          Retour
+        </button>
+
+        <div class="detail-actions">
+          <button class="ghost-btn compact-btn" type="button" onclick="openSampleModal('${escapeHtml(sample.id)}')">
+            Modifier
+          </button>
+        </div>
+      </div>
+
+      <div class="experiment-detail-head">
+        <div>
+          <span class="badge ok">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
+          <h3>${escapeHtml(sample.name)}</h3>
+          <p>${escapeHtml(sample.clientCode)} - ${escapeHtml(sample.location)}</p>
+        </div>
+
+        <small>ID: ${escapeHtml(sample.id)}</small>
+      </div>
+
+      <div class="item-detail-stack">
+        ${renderDetailRow("Date", formatClientSampleDate(sample))}
+        ${renderDetailRow("Quantite / format", formatClientSampleQuantity(sample))}
+        ${renderDetailRow("Categorie", sample.category)}
+        ${renderDetailRow("Reference produit", sample.referenceNumber)}
+        ${renderDetailRow("Lot", sample.lotNumber)}
+        ${renderDetailRow("Notes", sample.notes)}
+      </div>
+    </section>
+  `;
 }
 
 function renderHistory() {
@@ -1113,11 +1267,18 @@ function renderLocations() {
 
     places.forEach(place => {
       if (!acc[place]) acc[place] = [];
-      acc[place].push(item);
+      acc[place].push({ kind: "inventory", record: item });
     });
 
     return acc;
   }, {});
+
+  clientSamples.forEach(sample => {
+    const place = sample.location;
+    if (!place) return;
+    if (!groups[place]) groups[place] = [];
+    groups[place].push({ kind: "clientSample", record: sample });
+  });
 
   const locationGrid = document.querySelector("#locationGrid");
 
@@ -1134,24 +1295,36 @@ function renderLocations() {
           </div>
         </div>
         <div class="room-item-list">
-          ${group.length ? group.map(item => `
+          ${group.length ? group.map(entry => {
+            const item = entry.record;
+            const isClientSample = entry.kind === "clientSample";
+            const detailAction = isClientSample ? "openSampleDetail" : "openItemDetail";
+            const meta = isClientSample
+              ? `${escapeHtml(clientSampleTypes[item.type] || item.type)} - ${escapeHtml(formatClientSampleQuantity(item))} - Client: ${escapeHtml(item.clientCode)}`
+              : `${escapeHtml(item.category)} - ${item.quantity} ${escapeHtml(item.unit)} - Tags: ${item.tags.map(tag => escapeHtml(tag)).join(", ") || "aucun"}`;
+
+            return `
             <article class="room-item">
             <div>
               <button
                 class="text-btn location-item-link"
                 type="button"
-                onclick="openItemDetail('${escapeHtml(item.id)}', { view: 'locations', location: '${escapeHtml(selectedLocation)}' })"
+                onclick="${detailAction}('${escapeHtml(item.id)}', { view: 'locations', location: '${escapeHtml(selectedLocation)}' })"
               >
                 ${escapeHtml(item.name)}
               </button>
-              <span>
-                ${escapeHtml(item.category)} · ${item.quantity} ${escapeHtml(item.unit)} ·
-                Tags: ${item.tags.map(tag => escapeHtml(tag)).join(", ") || "aucun"}
-              </span>
+              <span>${meta}</span>
             </div>
-              <button class="text-btn" type="button" data-item-id="${escapeHtml(item.id)}">Modifier</button>
+              <button
+                class="text-btn"
+                type="button"
+                ${isClientSample ? `data-sample-id="${escapeHtml(item.id)}"` : `data-item-id="${escapeHtml(item.id)}"`}
+              >
+                Modifier
+              </button>
             </article>
-          `).join("") : `<div class="empty-room">Aucun item dans cette salle pour le moment.</div>`}
+          `;
+          }).join("") : `<div class="empty-room">Aucun item dans cette salle pour le moment.</div>`}
         </div>
       </div>
     `;
@@ -1163,17 +1336,21 @@ function renderLocations() {
     locationGrid.querySelectorAll("[data-item-id]").forEach(button => {
       button.addEventListener("click", () => openModal(button.dataset.itemId));
     });
+    locationGrid.querySelectorAll("[data-sample-id]").forEach(button => {
+      button.addEventListener("click", () => openSampleModal(button.dataset.sampleId));
+    });
     return;
   }
 
   locationGrid.innerHTML = inventoryLocations.map(place => {
     const group = groups[place] || [];
+    const previewNames = group.slice(0, 3).map(entry => entry.record.name);
     return `
     <button class="location-card" type="button" data-location="${escapeHtml(place)}">
       <span class="location-icon">${locationIcons[place] || "📍"}</span>
       <strong>${escapeHtml(place)}</strong>
       <p>${group.length} reference${group.length > 1 ? "s" : ""}</p>
-      <div class="mini-list">${group.slice(0, 3).map(item => `<span>${escapeHtml(item.name)}</span>`).join("") || "<span>Salle vide</span>"}</div>
+      <div class="mini-list">${previewNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") || "<span>Salle vide</span>"}</div>
       <span class="enter-room"><span class="enter-room-icon">🚪</span> Entrer</span>
     </button>
   `;
@@ -1666,6 +1843,53 @@ function selectOrder(id) {
   renderOrders();
 }
 
+function openSampleDetail(id, context = {}) {
+  sampleReturnContext = {
+    view: context.view || activeView || "samples",
+    location: context.location ?? selectedLocation ?? null,
+    scrollY: getPageScrollY()
+  };
+
+  selectedSampleId = id;
+  activeView = "samples";
+
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.classList.toggle("active", item.dataset.view === "samples");
+  });
+
+  document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+  document.querySelector("#samplesView").classList.add("active");
+
+  controlBar.classList.add("hidden");
+  app.classList.remove("history-mode");
+
+  renderSamples();
+}
+
+function returnFromSampleDetail() {
+  selectedSampleId = null;
+  activeView = sampleReturnContext.view || "samples";
+
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.classList.toggle("active", item.dataset.view === activeView);
+  });
+
+  document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+  document.querySelector(`#${activeView}View`).classList.add("active");
+
+  controlBar.classList.toggle("hidden", activeView !== "inventory");
+  app.classList.toggle("history-mode", activeView === "history");
+
+  if (activeView === "locations") {
+    selectedLocation = sampleReturnContext.location;
+    renderLocations();
+  } else {
+    render();
+  }
+
+  restorePageScrollY(sampleReturnContext.scrollY);
+}
+
 function openItemFromExperiment(id) {
   selectedItemId = id;
   activeView = "inventory";
@@ -1743,6 +1967,182 @@ function returnFromItemDetail() {
 
   render();
   restorePageScrollY(itemReturnContext.scrollY);
+}
+
+function openSampleModal(id) {
+  const sample = clientSamples.find(entry => entry.id === id);
+
+  sampleForm.reset();
+  document.querySelector("#sampleModalTitle").textContent = sample
+    ? "Modifier produit / echantillon client"
+    : "Nouveau produit / echantillon client";
+  document.querySelector("#deleteSampleBtn").style.display = sample ? "inline-block" : "none";
+
+  sampleFields.sampleId.value = sample?.id || "";
+  sampleFields.sampleType.value = sample?.type || "client_product";
+  sampleFields.sampleClientCode.value = sample?.clientCode || "";
+  sampleFields.sampleProductName.value = sample?.type === "client_product" ? sample.name : "";
+  sampleFields.sampleBaseName.value = sample?.baseName || (sample?.type === "created_sample" ? sample.name : "");
+  sampleFields.sampleCategory.value = sample?.category || clientSampleCategories[0];
+  sampleFields.sampleArrivalDate.value = sample?.arrivalDate || "";
+  sampleFields.sampleCreationDate.value = sample?.creationDate || "";
+  sampleFields.sampleQuantity.value = sample?.type === "client_product" ? sample.quantity ?? "" : "";
+  sampleFields.sampleUnit.value = sample?.type === "client_product" ? sample.unit || "" : "";
+  sampleFields.sampleMeasureValue.value = sample?.measureValue ?? "";
+  sampleFields.sampleReplicaCount.value = "1";
+  sampleFields.sampleReplicaCount.disabled = Boolean(sample);
+  sampleFields.sampleLocation.value = sample?.location || inventoryLocations[0];
+  sampleFields.sampleReferenceNumber.value = sample?.referenceNumber || "";
+  sampleFields.sampleLotNumber.value = sample?.lotNumber || "";
+  sampleFields.sampleNotes.value = sample?.notes || "";
+
+  syncSampleFormVisibility();
+  sampleDialog.showModal();
+}
+
+function syncSampleFormVisibility() {
+  const type = sampleFields.sampleType.value;
+  const isCreated = type === "created_sample";
+
+  document.querySelectorAll(".sample-client-product-field").forEach(element => {
+    element.classList.toggle("hidden", isCreated);
+  });
+
+  document.querySelectorAll(".sample-created-field").forEach(element => {
+    element.classList.toggle("hidden", !isCreated);
+  });
+
+  sampleFields.sampleProductName.required = !isCreated;
+  sampleFields.sampleArrivalDate.required = !isCreated;
+  sampleFields.sampleQuantity.required = !isCreated;
+  sampleFields.sampleUnit.required = !isCreated;
+  sampleFields.sampleBaseName.required = isCreated;
+  sampleFields.sampleCategory.required = isCreated;
+  sampleFields.sampleCreationDate.required = isCreated;
+  sampleFields.sampleMeasureValue.required = isCreated;
+
+  syncSampleMeasureLabel();
+}
+
+function syncSampleMeasureLabel() {
+  const isSecretion = sampleFields.sampleCategory.value === "Secretion";
+  sampleFields.sampleMeasureLabel.innerHTML = `${isSecretion ? "Volume (mL)" : "Poids (mg)"} <span class="required-star">*</span>`;
+}
+
+function saveSample() {
+  syncSampleFormVisibility();
+  if (!sampleForm.reportValidity()) return;
+
+  const existingId = sampleFields.sampleId.value.trim();
+  const existingSample = existingId
+    ? clientSamples.find(entry => entry.id === existingId)
+    : null;
+
+  const type = sampleFields.sampleType.value;
+  const now = new Date();
+  const base = {
+    id: existingId || "",
+    type,
+    clientCode: sampleFields.sampleClientCode.value.trim(),
+    location: sampleFields.sampleLocation.value,
+    notes: sampleFields.sampleNotes.value.trim(),
+    createdAtRaw: existingSample?.createdAtRaw || now.toISOString(),
+    createdAt: existingSample?.createdAt || new Intl.DateTimeFormat("fr-FR", {
+      dateStyle: "short",
+      timeStyle: "short"
+    }).format(now)
+  };
+
+  if (type === "client_product") {
+    const sample = {
+      ...base,
+      id: existingId || createSafeItemId("sample-client"),
+      name: sampleFields.sampleProductName.value.trim(),
+      arrivalDate: sampleFields.sampleArrivalDate.value,
+      quantity: Number(sampleFields.sampleQuantity.value),
+      unit: sampleFields.sampleUnit.value.trim(),
+      referenceNumber: sampleFields.sampleReferenceNumber.value.trim(),
+      lotNumber: sampleFields.sampleLotNumber.value.trim(),
+      category: "",
+      baseName: ""
+    };
+
+    upsertClientSamples([sample], existingId);
+    addHistory(
+      existingId ? "Produit client modifie" : "Produit client ajoute",
+      `${currentName} a ${existingId ? "modifie" : "ajoute"} ${sample.name} pour ${sample.clientCode}.`
+    );
+  } else {
+    const baseName = sampleFields.sampleBaseName.value.trim();
+    const replicaCount = existingId ? 1 : Math.max(1, Number(sampleFields.sampleReplicaCount.value || 1));
+    const category = sampleFields.sampleCategory.value;
+    const measureUnit = category === "Secretion" ? "mL" : "mg";
+    const measureValue = Number(sampleFields.sampleMeasureValue.value);
+
+    const samplesToSave = Array.from({ length: replicaCount }, (_, index) => {
+      const replicaNumber = index + 1;
+      const name = replicaCount > 1 ? `${baseName} ${replicaNumber}` : baseName;
+
+      return {
+        ...base,
+        id: existingId || createSafeItemId("sample-created"),
+        name,
+        baseName,
+        replicaNumber: replicaCount > 1 ? replicaNumber : existingSample?.replicaNumber || null,
+        replicaCount: replicaCount > 1 ? replicaCount : existingSample?.replicaCount || 1,
+        category,
+        creationDate: sampleFields.sampleCreationDate.value,
+        measureValue,
+        measureUnit,
+        quantity: measureValue,
+        unit: measureUnit,
+        arrivalDate: "",
+        referenceNumber: "",
+        lotNumber: ""
+      };
+    });
+
+    upsertClientSamples(samplesToSave, existingId);
+    addHistory(
+      existingId ? "Echantillon client modifie" : "Echantillons clients ajoutes",
+      `${currentName} a ${existingId ? "modifie" : "ajoute"} ${replicaCount} echantillon${replicaCount > 1 ? "s" : ""} ${baseName} pour ${base.clientCode}.`
+    );
+  }
+
+  persist();
+  sampleDialog.close();
+  selectedSampleId = null;
+  render();
+}
+
+function upsertClientSamples(samplesToSave, existingId = "") {
+  if (existingId) {
+    const index = clientSamples.findIndex(entry => entry.id === existingId);
+    if (index >= 0) {
+      clientSamples[index] = samplesToSave[0];
+      return;
+    }
+  }
+
+  clientSamples = [...samplesToSave, ...clientSamples];
+}
+
+function deleteSample() {
+  const id = sampleFields.sampleId.value;
+  const sample = clientSamples.find(entry => entry.id === id);
+  if (!sample) return;
+
+  clientSamples = clientSamples.filter(entry => entry.id !== id);
+
+  addHistory("Produit client supprime", `${currentName} a supprime ${sample.name} des produits / echantillons clients.`);
+  persist();
+  sampleDialog.close();
+
+  if (selectedSampleId === id) {
+    selectedSampleId = null;
+  }
+
+  render();
 }
 
 function openModal(id, options = {}) {
@@ -3117,6 +3517,75 @@ function migrateExperiments(experimentList) {
     replicates: Math.max(1, Number(experiment?.replicates || 1)),
     items: Array.isArray(experiment?.items) ? experiment.items : []
   }));
+}
+
+function migrateClientSamples(sampleList) {
+  const safeList = Array.isArray(sampleList) ? sampleList : [];
+  const seenIds = new Set();
+
+  return safeList.map(sample => {
+    let id = typeof sample?.id === "string" ? sample.id.trim() : "";
+    if (!id || seenIds.has(id)) {
+      id = createSafeItemId("sample");
+    }
+    seenIds.add(id);
+
+    const type = sample?.type === "created_sample" ? "created_sample" : "client_product";
+    const category = clientSampleCategories.includes(sample?.category)
+      ? sample.category
+      : (type === "created_sample" ? clientSampleCategories[0] : "");
+    const measureUnit = type === "created_sample"
+      ? (category === "Secretion" ? "mL" : "mg")
+      : (sample?.unit || "");
+    const location = inventoryLocations.includes(sample?.location)
+      ? sample.location
+      : legacyLocationMap[sample?.location] || inventoryLocations[0];
+
+    return {
+      ...sample,
+      id,
+      type,
+      name: String(sample?.name || sample?.baseName || "").trim(),
+      baseName: String(sample?.baseName || sample?.name || "").trim(),
+      clientCode: String(sample?.clientCode || "").trim(),
+      category,
+      location,
+      arrivalDate: sample?.arrivalDate || "",
+      creationDate: sample?.creationDate || "",
+      quantity: sample?.quantity ?? sample?.measureValue ?? "",
+      unit: type === "created_sample" ? measureUnit : String(sample?.unit || "").trim(),
+      measureValue: sample?.measureValue ?? sample?.quantity ?? "",
+      measureUnit,
+      referenceNumber: String(sample?.referenceNumber || "").trim(),
+      lotNumber: String(sample?.lotNumber || "").trim(),
+      notes: String(sample?.notes || "").trim(),
+      replicaNumber: sample?.replicaNumber || null,
+      replicaCount: sample?.replicaCount || 1,
+      createdAtRaw: sample?.createdAtRaw || "",
+      createdAt: sample?.createdAt || ""
+    };
+  }).filter(sample => sample.name || sample.clientCode);
+}
+
+function getClientSampleTime(sample) {
+  const rawDate = sample?.creationDate || sample?.arrivalDate || sample?.createdAtRaw || "";
+  const parsed = new Date(rawDate).getTime();
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+function formatClientSampleDate(sample) {
+  return sample?.type === "created_sample"
+    ? sample.creationDate || ""
+    : sample.arrivalDate || "";
+}
+
+function formatClientSampleQuantity(sample) {
+  if (sample?.type === "created_sample") {
+    const label = sample.measureUnit === "mL" ? "Volume" : "Poids";
+    return `${label}: ${sample.measureValue} ${sample.measureUnit}`;
+  }
+
+  return `${sample.quantity} ${sample.unit}`.trim();
 }
 
 function findInventoryItem(line) {

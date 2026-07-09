@@ -11873,6 +11873,28 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1783582169770-07iez1",
+      "type": "client_product",
+      "clientCode": "MIB002",
+      "location": "Culture L1",
+      "notes": "Conserver à RT",
+      "createdAtRaw": "2026-07-09T07:29:29.769Z",
+      "createdAt": "09/07/2026 09:29",
+      "name": "Ingrédient #1",
+      "arrivalDate": "2026-07-08",
+      "quantity": 10,
+      "unit": "mL",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Ingrédient #1",
+      "creationDate": "",
+      "measureValue": 10,
+      "measureUnit": "mL",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1783581890117-lcywhd",
       "type": "client_product",
       "clientCode": "MIB002",
@@ -11918,6 +11940,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/07/2026 09:29",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute Ingrédient #1 pour MIB002."
+    },
     {
       "date": "09/07/2026 09:28",
       "user": "Caroline",
@@ -12321,5 +12349,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-09T07:28:12.931Z"
+  "updatedAt": "2026-07-09T07:29:29.770Z"
 }

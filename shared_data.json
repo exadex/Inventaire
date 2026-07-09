@@ -2,36 +2,6 @@
   "version": 1,
   "inventoryItems": [
     {
-      "id": "web-1783345152215",
-      "name": "test prism et moi",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 51,
-      "unit": "unités",
-      "minStock": 20,
-      "locations": [
-        "Laboratoire",
-        "Chambre froide"
-      ],
-      "location": "Laboratoire",
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "createdAtRaw": "2026-07-06T13:39:12.215Z",
-      "createdAt": "06/07/2026 15:39",
-      "source": "web"
-    },
-    {
       "id": "itm-CSV-0001",
       "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
       "category": "Procédé ExAdEx L2",
@@ -11797,7 +11767,6 @@
     }
   ],
   "experiments": [],
-  "clientSamples": [],
   "orders": [
     {
       "id": "ord-1781696250817",
@@ -11872,7 +11841,129 @@
       "createdAt": "2026-05-15 10:04"
     }
   ],
+  "clientSamples": [
+    {
+      "id": "sample-client-1783582169770-07iez1",
+      "type": "client_product",
+      "clientCode": "MIB002",
+      "location": "Culture L1",
+      "notes": "Conserver à RT",
+      "createdAtRaw": "2026-07-09T07:29:29.769Z",
+      "createdAt": "09/07/2026 09:29",
+      "name": "Ingrédient #1",
+      "arrivalDate": "2026-07-08",
+      "quantity": 10,
+      "unit": "mL",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Ingrédient #1",
+      "creationDate": "",
+      "measureValue": 10,
+      "measureUnit": "mL",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
+      "id": "sample-client-1783581890117-lcywhd",
+      "type": "client_product",
+      "clientCode": "MIB002",
+      "location": "Culture L1",
+      "notes": "Conserver à RT",
+      "createdAtRaw": "2026-07-09T07:24:50.117Z",
+      "createdAt": "09/07/2026 09:24",
+      "name": "Ingrédient #2",
+      "arrivalDate": "2026-07-08",
+      "quantity": 3,
+      "unit": "g",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Ingrédient #2",
+      "creationDate": "",
+      "measureValue": 3,
+      "measureUnit": "g",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
+      "id": "sample-client-1783523870111-t6xrik",
+      "type": "client_product",
+      "clientCode": "ASH001",
+      "location": "Culture L1",
+      "notes": "Conserver à RT puis à 4°C une fois ouvert. Garder à l'abris de la lumière",
+      "createdAtRaw": "2026-07-08T15:17:50.102Z",
+      "createdAt": "08/07/2026 17:17",
+      "name": "Test item",
+      "arrivalDate": "2026-07-07",
+      "quantity": 0.05,
+      "unit": "L",
+      "referenceNumber": "990106",
+      "lotNumber": "#0002768834",
+      "category": "",
+      "baseName": "Test item",
+      "creationDate": "",
+      "measureValue": 0.05,
+      "measureUnit": "L",
+      "replicaNumber": null,
+      "replicaCount": 1
+    }
+  ],
   "history": [
+    {
+      "date": "09/07/2026 09:31",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé test prism et moi de l'inventaire."
+    },
+    {
+      "date": "09/07/2026 09:30",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Test item pour ASH001."
+    },
+    {
+      "date": "09/07/2026 09:29",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Ingrédient #2 pour MIB002."
+    },
+    {
+      "date": "09/07/2026 09:29",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute Ingrédient #1 pour MIB002."
+    },
+    {
+      "date": "09/07/2026 09:28",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Ingrédient #2 pour MIB002."
+    },
+    {
+      "date": "09/07/2026 09:24",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute poudre pour MIB002."
+    },
+    {
+      "date": "09/07/2026 09:24",
+      "user": "Caroline",
+      "action": "Produit client supprime",
+      "detail": "Caroline a supprime poudre des produits / echantillons clients."
+    },
+    {
+      "date": "09/07/2026 09:23",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute poudre pour MIB002."
+    },
+    {
+      "date": "08/07/2026 17:17",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute Collapeptyl pour ASH001."
+    },
     {
       "date": "06/07/2026 15:40",
       "user": "Caroline",
@@ -12246,5 +12337,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-08T14:38:48.020Z"
+  "updatedAt": "2026-07-09T07:31:39.130Z"
 }

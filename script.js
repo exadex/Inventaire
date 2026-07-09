@@ -1,4 +1,4 @@
-// Estructura de datos:
+﻿// Estructura de datos:
 // seedBaseItems viene del repositorio y solo sirve como bootstrap/default.
 // sharedState es la fuente editable: inventario, experimentos, pedidos e historial.
 // sharedState se cachea localmente, pero la fuente compartida es shared_data.json via GitHub.
@@ -1213,8 +1213,9 @@ function renderSampleDetail(sample) {
           aria-label="Retour"
           title="Retour"
         >
-          Retour
+          ↩️
         </button>
+        
 
         <div class="detail-actions">
           <button class="ghost-btn compact-btn" type="button" onclick="openSampleModal('${escapeHtml(sample.id)}')">

@@ -2,36 +2,6 @@
   "version": 1,
   "inventoryItems": [
     {
-      "id": "web-1783345152215",
-      "name": "test prism et moi",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 51,
-      "unit": "unités",
-      "minStock": 20,
-      "locations": [
-        "Laboratoire",
-        "Chambre froide"
-      ],
-      "location": "Laboratoire",
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "createdAtRaw": "2026-07-06T13:39:12.215Z",
-      "createdAt": "06/07/2026 15:39",
-      "source": "web"
-    },
-    {
       "id": "itm-CSV-0001",
       "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
       "category": "Procédé ExAdEx L2",
@@ -11941,6 +11911,12 @@
   ],
   "history": [
     {
+      "date": "09/07/2026 09:31",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé test prism et moi de l'inventaire."
+    },
+    {
       "date": "09/07/2026 09:30",
       "user": "Caroline",
       "action": "Produit client modifie",
@@ -12361,5 +12337,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-09T07:30:53.538Z"
+  "updatedAt": "2026-07-09T07:31:39.130Z"
 }

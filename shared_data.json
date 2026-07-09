@@ -11877,17 +11877,17 @@
       "type": "client_product",
       "clientCode": "MIB002",
       "location": "Culture L1",
-      "notes": "",
+      "notes": "Conserver à RT\nPlant extract",
       "createdAtRaw": "2026-07-09T07:24:50.117Z",
       "createdAt": "09/07/2026 09:24",
-      "name": "poudre",
+      "name": "Ingrédient #2",
       "arrivalDate": "2026-07-08",
       "quantity": 3,
       "unit": "g",
-      "referenceNumber": "",
-      "lotNumber": "",
+      "referenceNumber": "S-1458 b",
+      "lotNumber": "3000-012",
       "category": "",
-      "baseName": "poudre",
+      "baseName": "Ingrédient #2",
       "creationDate": "",
       "measureValue": 3,
       "measureUnit": "g",
@@ -11918,6 +11918,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/07/2026 09:28",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Ingrédient #2 pour MIB002."
+    },
     {
       "date": "09/07/2026 09:24",
       "user": "Caroline",
@@ -12315,5 +12321,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-09T07:27:14.619Z"
+  "updatedAt": "2026-07-09T07:28:12.931Z"
 }

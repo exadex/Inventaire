@@ -11899,15 +11899,15 @@
       "type": "client_product",
       "clientCode": "MIB002",
       "location": "Culture L1",
-      "notes": "Conserver à RT\nPlant extract",
+      "notes": "Conserver à RT",
       "createdAtRaw": "2026-07-09T07:24:50.117Z",
       "createdAt": "09/07/2026 09:24",
       "name": "Ingrédient #2",
       "arrivalDate": "2026-07-08",
       "quantity": 3,
       "unit": "g",
-      "referenceNumber": "S-1458 b",
-      "lotNumber": "3000-012",
+      "referenceNumber": "",
+      "lotNumber": "",
       "category": "",
       "baseName": "Ingrédient #2",
       "creationDate": "",
@@ -11940,6 +11940,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/07/2026 09:29",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Ingrédient #2 pour MIB002."
+    },
     {
       "date": "09/07/2026 09:29",
       "user": "Caroline",
@@ -12349,5 +12355,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-09T07:29:29.770Z"
+  "updatedAt": "2026-07-09T07:29:41.410Z"
 }

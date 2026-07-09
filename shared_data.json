@@ -11924,14 +11924,14 @@
       "notes": "Conserver à RT puis à 4°C une fois ouvert. Garder à l'abris de la lumière",
       "createdAtRaw": "2026-07-08T15:17:50.102Z",
       "createdAt": "08/07/2026 17:17",
-      "name": "Collapeptyl",
+      "name": "Test item",
       "arrivalDate": "2026-07-07",
       "quantity": 0.05,
       "unit": "L",
       "referenceNumber": "990106",
       "lotNumber": "#0002768834",
       "category": "",
-      "baseName": "Collapeptyl",
+      "baseName": "Test item",
       "creationDate": "",
       "measureValue": 0.05,
       "measureUnit": "L",
@@ -11940,6 +11940,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/07/2026 09:30",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Test item pour ASH001."
+    },
     {
       "date": "09/07/2026 09:29",
       "user": "Caroline",
@@ -12355,5 +12361,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-09T07:29:41.410Z"
+  "updatedAt": "2026-07-09T07:30:53.538Z"
 }

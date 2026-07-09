@@ -11898,8 +11898,8 @@
       "arrivalDate": "2026-07-07",
       "quantity": 0.05,
       "unit": "L",
-      "referenceNumber": "990106",
-      "lotNumber": "#0002768834",
+      "referenceNumber": "",
+      "lotNumber": "",
       "category": "",
       "baseName": "Test item",
       "creationDate": "",
@@ -11910,6 +11910,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/07/2026 15:05",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Test item pour ASH001."
+    },
     {
       "date": "09/07/2026 09:31",
       "user": "Caroline",
@@ -12337,5 +12343,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-09T13:05:22.559Z"
+  "updatedAt": "2026-07-09T13:05:55.548Z"
 }

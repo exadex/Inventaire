@@ -11873,6 +11873,28 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1783581890117-lcywhd",
+      "type": "client_product",
+      "clientCode": "MIB002",
+      "location": "Culture L1",
+      "notes": "",
+      "createdAtRaw": "2026-07-09T07:24:50.117Z",
+      "createdAt": "09/07/2026 09:24",
+      "name": "poudre",
+      "arrivalDate": "2026-07-08",
+      "quantity": 3,
+      "unit": "g",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "poudre",
+      "creationDate": "",
+      "measureValue": 3,
+      "measureUnit": "g",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1783523870111-t6xrik",
       "type": "client_product",
       "clientCode": "ASH001",
@@ -11896,6 +11918,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/07/2026 09:24",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute poudre pour MIB002."
+    },
     {
       "date": "09/07/2026 09:24",
       "user": "Caroline",
@@ -12287,5 +12315,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-09T07:24:42.765Z"
+  "updatedAt": "2026-07-09T07:24:50.118Z"
 }

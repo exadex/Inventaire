@@ -11843,28 +11843,6 @@
   ],
   "clientSamples": [
     {
-      "id": "sample-created-1783602469506-j5ypoo",
-      "type": "created_sample",
-      "clientCode": "ASH001",
-      "location": "-20°C blanc labo",
-      "notes": "",
-      "createdAtRaw": "2026-07-09T13:07:49.506Z",
-      "createdAt": "09/07/2026 15:07",
-      "name": "P234 Vehicle (GLP1) J0 1",
-      "baseName": "P234 Vehicle (GLP1) J0",
-      "replicaNumber": 1,
-      "replicaCount": 5,
-      "category": "Secretion",
-      "creationDate": "2026-07-10",
-      "measureValue": 0.5,
-      "measureUnit": "mL",
-      "quantity": 0.5,
-      "unit": "mL",
-      "arrivalDate": "",
-      "referenceNumber": "",
-      "lotNumber": ""
-    },
-    {
       "id": "sample-client-1783582169770-07iez1",
       "type": "client_product",
       "clientCode": "MIB002",
@@ -11932,6 +11910,12 @@
     }
   ],
   "history": [
+    {
+      "date": "10/07/2026 09:46",
+      "user": "Caroline",
+      "action": "Produit client supprime",
+      "detail": "Caroline a supprime P234 Vehicle (GLP1) J0 1 des produits / echantillons clients."
+    },
     {
       "date": "09/07/2026 15:08",
       "user": "Caroline",
@@ -12395,5 +12379,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-10T07:46:21.957Z"
+  "updatedAt": "2026-07-10T07:46:30.692Z"
 }

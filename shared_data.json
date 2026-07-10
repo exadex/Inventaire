@@ -11891,25 +11891,31 @@
       "type": "client_product",
       "clientCode": "ASH001",
       "location": "Culture L1",
-      "notes": "Conserver à RT puis à 4°C une fois ouvert. Garder à l'abris de la lumière",
+      "notes": "Conserver à RT puis à 4°C une fois ouvert. Garder à l'abris de la lumière\nDeux vials de 0.05L chaque",
       "createdAtRaw": "2026-07-08T15:17:50.102Z",
       "createdAt": "08/07/2026 17:17",
       "name": "Test item",
       "arrivalDate": "2026-07-07",
-      "quantity": 0.05,
+      "quantity": 0.1,
       "unit": "L",
       "referenceNumber": "",
       "lotNumber": "",
       "category": "",
       "baseName": "Test item",
       "creationDate": "",
-      "measureValue": 0.05,
+      "measureValue": 0.1,
       "measureUnit": "L",
       "replicaNumber": null,
       "replicaCount": 1
     }
   ],
   "history": [
+    {
+      "date": "10/07/2026 09:47",
+      "user": "Caroline",
+      "action": "Produit client modifie",
+      "detail": "Caroline a modifie Test item pour ASH001."
+    },
     {
       "date": "10/07/2026 09:46",
       "user": "Caroline",
@@ -12379,5 +12385,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-10T07:46:30.692Z"
+  "updatedAt": "2026-07-10T07:47:00.501Z"
 }

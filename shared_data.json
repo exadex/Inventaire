@@ -502,7 +502,7 @@
       "name": "Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
       "quantity": 4,
-      "unit": "unités",
+      "unit": "mL",
       "minStock": 1,
       "location": "Frigo culture L1",
       "locations": [
@@ -524,16 +524,14 @@
         },
         "secondary": []
       },
-      "source": "seed",
-      "createdAtRaw": "2026-07-06T13:06:00.836Z",
-      "createdAt": "06/07/2026 15:06"
+      "source": "seed"
     },
     {
       "id": "itm-CSV-0019",
       "name": "SupplementMix / Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
       "quantity": 4,
-      "unit": "unités",
+      "unit": "mL",
       "minStock": 1,
       "location": "-20°C culture L1",
       "locations": [
@@ -555,9 +553,7 @@
         },
         "secondary": []
       },
-      "source": "seed",
-      "createdAtRaw": "2026-07-06T13:06:08.867Z",
-      "createdAt": "06/07/2026 15:06"
+      "source": "seed"
     },
     {
       "id": "itm-CSV-0020",
@@ -2188,7 +2184,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-b7twub",
+      "id": "itm-web-1783695961719-jo3bad",
       "name": "Agarose low gelling temperature Bioreagent Sigma 10G",
       "category": "Culture Cell",
       "quantity": 1510,
@@ -2217,7 +2213,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-91nswo",
+      "id": "itm-web-1783695961719-89n5k7",
       "name": "Agarose Bioreagent for molecular biology",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2246,7 +2242,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-oqit93",
+      "id": "itm-web-1783695961719-y16ry0",
       "name": "Agarase from pseudomonas atlantica Sigma",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2275,7 +2271,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-c42lnd",
+      "id": "itm-web-1783695961719-hzsgxq",
       "name": "boite ø 60",
       "category": "Culture Cell",
       "quantity": 0.5,
@@ -2304,7 +2300,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-nxl1lt",
+      "id": "itm-web-1783695961719-bldgqf",
       "name": "Boîte C.C 100 mm, standard",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2333,7 +2329,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-qpyl12",
+      "id": "itm-web-1783695961719-tc95ye",
       "name": "boite ø 150",
       "category": "Culture Cell",
       "quantity": 0,
@@ -2362,7 +2358,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-v3nekd",
+      "id": "itm-web-1783695961719-y7p4oy",
       "name": "boite ø 35",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2391,7 +2387,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-vxuyqi",
+      "id": "itm-web-1783695961719-gxgx73",
       "name": "BSA free fatty acid 25g",
       "category": "Culture Cell",
       "quantity": 3,
@@ -2420,7 +2416,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-twxyzh",
+      "id": "itm-web-1783695961719-1vi6do",
       "name": "Collagenase A from Clostridium histolycum (500mg)",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2449,7 +2445,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ywgne7",
+      "id": "itm-web-1783695961719-lxu6xn",
       "name": "Accumax solution",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2478,7 +2474,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0ueza7",
+      "id": "itm-web-1783695961719-xlz96o",
       "name": "Trypsine 0,5 + EDTA 1X",
       "category": "Culture Cell",
       "quantity": 5,
@@ -2507,7 +2503,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-cwj1y9",
+      "id": "itm-web-1783695961719-oorpe4",
       "name": "Collagénase A",
       "category": "Culture Cell",
       "quantity": 1.5,
@@ -2536,7 +2532,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-8kp9sv",
+      "id": "itm-web-1783695961719-qru69n",
       "name": "Rosiglitazone BRL",
       "category": "Culture Cell",
       "quantity": 0,
@@ -2565,7 +2561,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-g95tu0",
+      "id": "itm-web-1783695961719-21qylj",
       "name": "(T3) 3,3′,5-Triiodo-L-thyronine sodium Salt",
       "category": "Culture Cell",
       "quantity": 0,
@@ -2594,7 +2590,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0g1gig",
+      "id": "itm-web-1783695961719-8y34l7",
       "name": "Rosiglithazone BRL 49653",
       "category": "Culture Cell",
       "quantity": 0,
@@ -2623,7 +2619,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-3mxoac",
+      "id": "itm-web-1783695961719-fnxnkg",
       "name": "Dexamethasone (PM : 392.46)",
       "category": "Culture Cell",
       "quantity": 0,
@@ -2652,7 +2648,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-bwtf5m",
+      "id": "itm-web-1783695961719-uhpjvf",
       "name": "n-acetyl-L-cysteine",
       "category": "Culture Cell",
       "quantity": 0,
@@ -2681,7 +2677,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-wwcmja",
+      "id": "itm-web-1783695961719-dsjztm",
       "name": "Insuline, humain recombinant, zinc solution, 4mg/ml",
       "category": "Culture Cell",
       "quantity": 0,
@@ -2710,7 +2706,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-nfy06l",
+      "id": "itm-web-1783695961719-92pjgp",
       "name": "18-beta Glycyrrhetinic Acid (Enoxolone)",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2739,7 +2735,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-qhz290",
+      "id": "itm-web-1783695961719-37p6kr",
       "name": "Human TGFb1 recombinant protein peprotech",
       "category": "Culture Cell",
       "quantity": 1.5,
@@ -2768,7 +2764,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-qgbiso",
+      "id": "itm-web-1783695961719-wyx342",
       "name": "Triacsin C, acyl-CoA synthetase inhibitor",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2797,7 +2793,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-pe0nlk",
+      "id": "itm-web-1783695961719-ojzjf4",
       "name": "Sodium L ascorbate",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2826,7 +2822,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ohcx9z",
+      "id": "itm-web-1783695961719-d20abw",
       "name": "SB 10mM",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2855,7 +2851,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-9co0zj",
+      "id": "itm-web-1783695961719-igerkt",
       "name": "5 μM 429 platelet-derived growth factor-AB (PDGF-AB, R&D Systems 10ug)",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2884,7 +2880,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-51ka34",
+      "id": "itm-web-1783695961719-xjwyad",
       "name": "5 μM lysophosphatidic acid (1mg // 3854/1) R&D systems",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2913,7 +2909,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-r0y55u",
+      "id": "itm-web-1783695961719-jx79bw",
       "name": "Semaglutide",
       "category": "Culture Cell",
       "quantity": 1,
@@ -2942,11 +2938,11 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-duflpx",
+      "id": "itm-web-1783695961719-gl44l4",
       "name": "Liraglutide",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "unités",
+      "unit": "mg",
       "minStock": 0,
       "location": "-20°C culture L1",
       "locations": [
@@ -2968,12 +2964,10 @@
         },
         "secondary": []
       },
-      "source": "seed",
-      "createdAtRaw": "2026-07-06T13:07:09.980Z",
-      "createdAt": "06/07/2026 15:07"
+      "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-wjqubj",
+      "id": "itm-web-1783695961719-p8bojn",
       "name": "Tirzepatide",
       "category": "Culture Cell",
       "quantity": 1,
@@ -3002,7 +2996,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-3eza6v",
+      "id": "itm-web-1783695961719-o3dkkc",
       "name": "Human TNFa recombinant protein peprotech",
       "category": "Culture Cell",
       "quantity": 1,
@@ -3031,7 +3025,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-jnxugh",
+      "id": "itm-web-1783695961719-9fuo8a",
       "name": "Celecoxib",
       "category": "Culture Cell",
       "quantity": 1,
@@ -3060,7 +3054,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-kiiras",
+      "id": "itm-web-1783695961719-h0a0wy",
       "name": "Nintedanib",
       "category": "Culture Cell",
       "quantity": 2,
@@ -3089,7 +3083,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-09sriy",
+      "id": "itm-web-1783695961719-awmax7",
       "name": "DMEM sans glucose (pour glucose uptake)",
       "category": "Culture Cell",
       "quantity": 1,
@@ -3118,7 +3112,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-hkzfn2",
+      "id": "itm-web-1783695961719-gby1ho",
       "name": "DMEM sans glu",
       "category": "Culture Cell",
       "quantity": 0,
@@ -3147,7 +3141,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-h9w18f",
+      "id": "itm-web-1783695961719-67y1r7",
       "name": "DMEM glutamax 1g/L",
       "category": "Culture Cell",
       "quantity": 5,
@@ -3176,7 +3170,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-27u1aa",
+      "id": "itm-web-1783695961719-ta0cr9",
       "name": "DMEM glutamax 4,5g/l",
       "category": "Culture Cell",
       "quantity": 24,
@@ -3205,7 +3199,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-6ii6m2",
+      "id": "itm-web-1783695961719-cfmw6j",
       "name": "DMEM/F12 (1:1) W GLUT-I 500ML",
       "category": "Culture Cell",
       "quantity": 7,
@@ -3235,7 +3229,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-6zbpc1",
+      "id": "itm-web-1783695961719-00cv1g",
       "name": "SupplementMix: Contains all media supplements premixed in one vial",
       "category": "Culture Cell",
       "quantity": 11,
@@ -3264,7 +3258,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-tndlq9",
+      "id": "itm-web-1783695961719-saah1d",
       "name": "SupplementPack: Contains all media supplements as individual vials",
       "category": "Culture Cell",
       "quantity": 6,
@@ -3294,7 +3288,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-iabe20",
+      "id": "itm-web-1783695961719-04uqc8",
       "name": "Basal medium 2 (500ml)",
       "category": "Culture Cell",
       "quantity": 11,
@@ -3323,7 +3317,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-zmyioc",
+      "id": "itm-web-1783695961719-w9240p",
       "name": "PBS",
       "category": "Culture Cell",
       "quantity": 5,
@@ -3352,7 +3346,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-k5jmc1",
+      "id": "itm-web-1783695961719-lfu2x1",
       "name": "PBS poche cytiva Sangamo (a aliquoter en stérile dans bouteilles 250mL attention P/S)",
       "category": "Culture Cell",
       "quantity": 1,
@@ -3381,7 +3375,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-3x4v0n",
+      "id": "itm-web-1783695961719-vzwei3",
       "name": "Supplément GlutaMAX™",
       "category": "Culture Cell",
       "quantity": 0,
@@ -3410,16 +3404,16 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-f5vtlx",
+      "id": "itm-web-1783695961719-x94r7f",
       "name": "Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "unités",
+      "unit": "mL",
       "minStock": 1,
-      "location": "Laboratoire",
+      "location": "Frigo labo",
       "locations": [
-        "Laboratoire",
-        "Frigo labo"
+        "Frigo labo",
+        "Laboratoire"
       ],
       "tags": [
         "Milieu EGM"
@@ -3437,12 +3431,10 @@
         },
         "secondary": []
       },
-      "source": "seed",
-      "createdAtRaw": "2026-07-06T13:06:17.700Z",
-      "createdAt": "06/07/2026 15:06"
+      "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-dbf8e5",
+      "id": "itm-web-1783695961719-ryn3hc",
       "name": "3-Isobutyl-1-methylxanthine (IBMX)",
       "category": "Culture Cell",
       "quantity": 0,
@@ -3471,7 +3463,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-o0i3to",
+      "id": "itm-web-1783695961719-l3pvnd",
       "name": "RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES (pour lipolyse)",
       "category": "Culture Cell",
       "quantity": 1,
@@ -3500,7 +3492,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-7x7wnl",
+      "id": "itm-web-1783695961719-nrice5",
       "name": "Pipette stérile Pasteur 3 ml (a commander de preference)",
       "category": "Culture Cell",
       "quantity": 2.5,
@@ -3529,7 +3521,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ieolgl",
+      "id": "itm-web-1783695961719-uaolji",
       "name": "Pipette 3,5 ml non stérile",
       "category": "Culture Cell",
       "quantity": 3,
@@ -3558,7 +3550,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ymccg6",
+      "id": "itm-web-1783695961719-xr5wdy",
       "name": "Pipette Pasteur 3 ml ( ref de secours)",
       "category": "Culture Cell",
       "quantity": 1,
@@ -3587,7 +3579,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-x677w1",
+      "id": "itm-web-1783695961719-fhxyip",
       "name": "Pipette 1 ml",
       "category": "Culture Cell",
       "quantity": 0.25,
@@ -3616,7 +3608,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-8e4bdh",
+      "id": "itm-web-1783695961719-9j1rbo",
       "name": "Pipette 5 ml",
       "category": "Culture Cell",
       "quantity": 3,
@@ -3645,7 +3637,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-l0p3in",
+      "id": "itm-web-1783695961719-8yxb59",
       "name": "Pipette 10 ml",
       "category": "Culture Cell",
       "quantity": 3,
@@ -3674,7 +3666,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-46gjdl",
+      "id": "itm-web-1783695961719-udlf2e",
       "name": "Plaque 6 puits, standard, fond plat",
       "category": "Culture Cell",
       "quantity": 3,
@@ -3703,7 +3695,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-elzmj2",
+      "id": "itm-web-1783695961719-auwo5a",
       "name": "Plaque 12 Puits",
       "category": "Culture Cell",
       "quantity": 3,
@@ -3732,7 +3724,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-xymh3n",
+      "id": "itm-web-1783695961719-hf5f4f",
       "name": "Plaque 24W fond plat",
       "category": "Culture Cell",
       "quantity": 3.5,
@@ -3761,7 +3753,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-zqhpms",
+      "id": "itm-web-1783695961719-pqf89t",
       "name": "Plaque 48 puits fond plats standart",
       "category": "Culture Cell",
       "quantity": 3.5,
@@ -3790,7 +3782,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0qs8k3",
+      "id": "itm-web-1783695961719-esmefp",
       "name": "Plaque 96 puits Standard, fond plat",
       "category": "Culture Cell",
       "quantity": 3.5,
@@ -3819,7 +3811,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-j1e1ct",
+      "id": "itm-web-1783695961719-w4lg6y",
       "name": "Plaque 6 puits ULA",
       "category": "Culture Cell",
       "quantity": 5.5,
@@ -3848,7 +3840,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-5g53sf",
+      "id": "itm-web-1783695961719-o0zp57",
       "name": "plaque 6 puit ULA",
       "category": "Culture Cell",
       "quantity": 2,
@@ -3877,7 +3869,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-9tqe3g",
+      "id": "itm-web-1783695961719-ktjola",
       "name": "Plaque Corning 24 puits ULA",
       "category": "Culture Cell",
       "quantity": 1.5,
@@ -3906,7 +3898,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-sl24o8",
+      "id": "itm-web-1783695961719-a4xyx9",
       "name": "Plaque corning 96 puits ULA",
       "category": "Culture Cell",
       "quantity": 2,
@@ -3935,7 +3927,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-jvw0fg",
+      "id": "itm-web-1783695961719-jpzfbl",
       "name": "Microtube 0,5ml",
       "category": "Culture Cell",
       "quantity": 3,
@@ -3964,7 +3956,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-002l95",
+      "id": "itm-web-1783695961719-pssoj7",
       "name": "Microtube 1,5 ml",
       "category": "Culture Cell",
       "quantity": 2,
@@ -3993,7 +3985,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-yj28be",
+      "id": "itm-web-1783695961719-p37yki",
       "name": "Microtube 2ml",
       "category": "Culture Cell",
       "quantity": 2,
@@ -4022,7 +4014,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-vxnqb1",
+      "id": "itm-web-1783695961719-asjelo",
       "name": "Microtube 1,7mL low adhesion",
       "category": "Culture Cell",
       "quantity": 1,
@@ -4049,7 +4041,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-9tgr5m",
+      "id": "itm-web-1783695961719-degx85",
       "name": "contenant 120ml (bouteilles bouchon jaune)",
       "category": "Culture Cell",
       "quantity": 1.5,
@@ -4078,7 +4070,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-xoroey",
+      "id": "itm-web-1783695961719-ebd0ud",
       "name": "Cryotubes 1,8 ml",
       "category": "Culture Cell",
       "quantity": 3,
@@ -4107,7 +4099,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-fj0qa5",
+      "id": "itm-web-1783695961719-vp9ilc",
       "name": "Falcon facs 5ml",
       "category": "Culture Cell",
       "quantity": 0,
@@ -4136,7 +4128,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-cto87v",
+      "id": "itm-web-1783695961719-kfaarv",
       "name": "falcon fac 15 ml",
       "category": "Culture Cell",
       "quantity": 1,
@@ -4165,7 +4157,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-cviztc",
+      "id": "itm-web-1783695961719-0uuj76",
       "name": "Falcon 15",
       "category": "Culture Cell",
       "quantity": 3.5,
@@ -4194,7 +4186,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-h5bqv1",
+      "id": "itm-web-1783695961719-yelk71",
       "name": "Falcon 50",
       "category": "Culture Cell",
       "quantity": 5.5,
@@ -4223,7 +4215,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-92u0b4",
+      "id": "itm-web-1783695961719-l0qjmh",
       "name": "cones 1000µL non filtrés",
       "category": "Culture Cell",
       "quantity": 0,
@@ -4252,7 +4244,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-zi760s",
+      "id": "itm-web-1783695961719-d8kn99",
       "name": "cones 1000µL non filtrés",
       "category": "Culture Cell",
       "quantity": 1,
@@ -4281,7 +4273,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-41hssi",
+      "id": "itm-web-1783695961719-4jpid7",
       "name": "cones 200µL non filtrés",
       "category": "Culture Cell",
       "quantity": 5,
@@ -4310,7 +4302,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-yf5ohn",
+      "id": "itm-web-1783695961719-6xxnp7",
       "name": "cones 10µl non filtrés",
       "category": "Culture Cell",
       "quantity": 1,
@@ -4339,7 +4331,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-yuhjal",
+      "id": "itm-web-1783695961719-nozojo",
       "name": "cones filtrés 1000µL",
       "category": "Culture Cell",
       "quantity": 1.5,
@@ -5437,7 +5429,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-7v6sho",
+      "id": "itm-web-1783695961719-2kyjlz",
       "name": "Qiazol",
       "category": "Biomol",
       "quantity": 0,
@@ -5464,7 +5456,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-dxtdzp",
+      "id": "itm-web-1783695961719-q2uowo",
       "name": "Stainless steel beads 5mm",
       "category": "Biomol",
       "quantity": 0,
@@ -5491,7 +5483,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-f859si",
+      "id": "itm-web-1783695961719-gba6rf",
       "name": "Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps",
       "category": "Biomol",
       "quantity": 0,
@@ -5518,7 +5510,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-u14cjf",
+      "id": "itm-web-1783695961719-e59s1w",
       "name": "Direct Zol RNA MicroPrep",
       "category": "Biomol",
       "quantity": 0,
@@ -5545,7 +5537,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-iun3ui",
+      "id": "itm-web-1783695961719-7jn2t9",
       "name": "Wash Buffer",
       "category": "Biomol",
       "quantity": 0,
@@ -5572,7 +5564,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-8xo42u",
+      "id": "itm-web-1783695961719-k7w2j1",
       "name": "miRNeasy Kits",
       "category": "Biomol",
       "quantity": 0,
@@ -5600,7 +5592,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-dehoji",
+      "id": "itm-web-1783695961719-o9ts8d",
       "name": "Kit extraction ADN",
       "category": "Biomol",
       "quantity": 0,
@@ -5627,7 +5619,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-svselu",
+      "id": "itm-web-1783695961719-b50p7x",
       "name": "isopropanol",
       "category": "Biomol",
       "quantity": 0,
@@ -5654,7 +5646,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0jm3xw",
+      "id": "itm-web-1783695961719-xdb7ut",
       "name": "Glycogène",
       "category": "Biomol",
       "quantity": 0,
@@ -5681,7 +5673,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-xw9yko",
+      "id": "itm-web-1783695961719-cx5j2z",
       "name": "M-MLV RT (5)",
       "category": "Biomol",
       "quantity": 0,
@@ -5708,7 +5700,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-buor8c",
+      "id": "itm-web-1783695961719-rp2a2g",
       "name": "OneScript RT Mix for qPCR w/gDNAOut (OwiScript)",
       "category": "Biomol",
       "quantity": 0,
@@ -5736,7 +5728,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-g3rshd",
+      "id": "itm-web-1783695961719-98ky2e",
       "name": "SuperScript™ II Reverse Transcriptase",
       "category": "Biomol",
       "quantity": 0,
@@ -5764,7 +5756,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-j64nhu",
+      "id": "itm-web-1783695961719-h4bgvw",
       "name": "High capacity cDNA reverse transcription kit",
       "category": "Biomol",
       "quantity": 0,
@@ -5791,7 +5783,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ull69p",
+      "id": "itm-web-1783695961719-mtot6z",
       "name": "Smart ladder",
       "category": "Biomol",
       "quantity": 0,
@@ -5818,7 +5810,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-1peii3",
+      "id": "itm-web-1783695961719-ppn35b",
       "name": "Tampon TAE UltraPure™, 10X",
       "category": "Biomol",
       "quantity": 0,
@@ -5845,7 +5837,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-qrdlhj",
+      "id": "itm-web-1783695961719-h39k9c",
       "name": "GelRed® Nucleic Acid Gel Stain, 10, 000X in DMSO",
       "category": "Biomol",
       "quantity": 0,
@@ -5872,7 +5864,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-9f96l1",
+      "id": "itm-web-1783695961719-qnczj2",
       "name": "Tube PCR colone de 8 bouchon plat",
       "category": "Biomol",
       "quantity": 0,
@@ -5900,7 +5892,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-u8jjvr",
+      "id": "itm-web-1783695961719-s7tvrr",
       "name": "Sybersafe",
       "category": "Biomol",
       "quantity": 0,
@@ -5927,7 +5919,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-xqqn0d",
+      "id": "itm-web-1783695961719-e3cdbe",
       "name": "dNTP",
       "category": "Biomol",
       "quantity": 0,
@@ -5954,7 +5946,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-04e2gm",
+      "id": "itm-web-1783695961719-dnomci",
       "name": "Film PCR",
       "category": "Biomol",
       "quantity": 0,
@@ -5981,7 +5973,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-doph51",
+      "id": "itm-web-1783695961719-phfc17",
       "name": "Plaque optique 96 puits lecture rapide",
       "category": "Biomol",
       "quantity": 0,
@@ -6008,7 +6000,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-u2k1pn",
+      "id": "itm-web-1783695961719-9ws8wx",
       "name": "8 pCPT 2 o me CAMP Am",
       "category": "Biomol",
       "quantity": 0,
@@ -6035,7 +6027,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-2sze19",
+      "id": "itm-web-1783695961719-o6f542",
       "name": "TB Green qPCR Premix Ex Taq II (Tli RNaseH Plus) (5 x 5 ml)",
       "category": "Biomol",
       "quantity": 0,
@@ -6062,7 +6054,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-apolyk",
+      "id": "itm-web-1783695961719-whip0n",
       "name": "Film plaque qPCR",
       "category": "Biomol",
       "quantity": 0,
@@ -6089,7 +6081,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-czy8hu",
+      "id": "itm-web-1783695961719-4ddk0p",
       "name": "GoTaq® G2 DNA polymerase",
       "category": "Biomol",
       "quantity": 0,
@@ -6116,7 +6108,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-9r8s2h",
+      "id": "itm-web-1783695961719-5ekc36",
       "name": "Plaque 96 qPcr",
       "category": "Biomol",
       "quantity": 0,
@@ -6144,7 +6136,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-4tfcgz",
+      "id": "itm-web-1783695961719-08evwm",
       "name": "(sybr green) OneGreen fast qPCR premix (OwiGreen)",
       "category": "Biomol",
       "quantity": 0,
@@ -6171,7 +6163,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-h45sa8",
+      "id": "itm-web-1783695961719-v6buxv",
       "name": "MicroAmp™ Fast 96-Well Tray",
       "category": "Biomol",
       "quantity": 0,
@@ -6198,7 +6190,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ir71ih",
+      "id": "itm-web-1783695961719-hkdnho",
       "name": "Barrettes de 8 bouchons optiques MicroAmp™ (bouchons)",
       "category": "Biomol",
       "quantity": 0,
@@ -6225,7 +6217,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-1e2ckv",
+      "id": "itm-web-1783695961719-g8xku9",
       "name": "Multiply uStripPro 0,2mL barrettes 8 tubes (avec bouchons)",
       "category": "Biomol",
       "quantity": 0,
@@ -6252,7 +6244,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-6u1ue7",
+      "id": "itm-web-1783695961719-352z9q",
       "name": "Barrette de 8 tubes rapide MicroAmp™, 0,1 ml",
       "category": "Biomol",
       "quantity": 0,
@@ -6279,7 +6271,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-03k7mv",
+      "id": "itm-web-1783695961719-6o0v50",
       "name": "ETOH",
       "category": "Biomol",
       "quantity": 0,
@@ -6306,7 +6298,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-sgok7m",
+      "id": "itm-web-1783695961719-aiqx9h",
       "name": "Triton x-100",
       "category": "Biomol",
       "quantity": 0,
@@ -6333,7 +6325,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-4is0yd",
+      "id": "itm-web-1783695961719-stwvwl",
       "name": "Tween",
       "category": "Biomol",
       "quantity": 0,
@@ -6360,7 +6352,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-q207dq",
+      "id": "itm-web-1783695961719-jw63tv",
       "name": "Edu",
       "category": "Biomol",
       "quantity": 0,
@@ -6387,7 +6379,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-7wtale",
+      "id": "itm-web-1783695961719-gas8k3",
       "name": "Glucose uptake",
       "category": "Biomol",
       "quantity": 0,
@@ -6414,7 +6406,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-hpuoyu",
+      "id": "itm-web-1783695961719-x9mo0m",
       "name": "Glycerol Detection assay (lipolyse)",
       "category": "Biomol",
       "quantity": 0,
@@ -6441,7 +6433,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-a2v2lx",
+      "id": "itm-web-1783695961719-4o4380",
       "name": "duo set ELISA Ancillary Reagent Kit 2",
       "category": "Biomol",
       "quantity": 0,
@@ -6468,7 +6460,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-2ddrv2",
+      "id": "itm-web-1783695961719-pzpvsm",
       "name": "Human Adiponectine/Acrp30 DuoSet ELISA (5 plates)",
       "category": "Biomol",
       "quantity": 0,
@@ -6495,7 +6487,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-u99ofg",
+      "id": "itm-web-1783695961719-nmsitc",
       "name": "Human IL-6 DuoSet ELISA 5 plates",
       "category": "Biomol",
       "quantity": 0,
@@ -6522,7 +6514,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ugrtsq",
+      "id": "itm-web-1783695961719-vt3xsb",
       "name": "Human RSPO2 ELISA",
       "category": "Biomol",
       "quantity": 0,
@@ -6549,7 +6541,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ohvy21",
+      "id": "itm-web-1783695961719-z3nvom",
       "name": "human VEGF Duoset ELISA",
       "category": "Biomol",
       "quantity": 0,
@@ -6576,7 +6568,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-lkanvy",
+      "id": "itm-web-1783695961719-pjk89m",
       "name": "Human FGF-21",
       "category": "Biomol",
       "quantity": 0,
@@ -6603,7 +6595,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-3rh3v7",
+      "id": "itm-web-1783695961719-q74lzu",
       "name": "Human interleukin 6 (IL6)",
       "category": "Biomol",
       "quantity": 0,
@@ -6630,7 +6622,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-vujceg",
+      "id": "itm-web-1783695961719-dq1s09",
       "name": "Human Pro-Collagen I alpha 1 DuoSet ELISA",
       "category": "Biomol",
       "quantity": 0,
@@ -6657,7 +6649,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-v54aot",
+      "id": "itm-web-1783695961719-y7ykqd",
       "name": "Human Adiponectin (ADP)",
       "category": "Biomol",
       "quantity": 0,
@@ -6684,7 +6676,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-hfvg2l",
+      "id": "itm-web-1783695961719-i59sai",
       "name": "Human IL-1beta/IL-1F2 Duoset Elisa, 5 plates",
       "category": "Biomol",
       "quantity": 0,
@@ -6711,7 +6703,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-t9mj2q",
+      "id": "itm-web-1783695961719-2fuobc",
       "name": "Human TIMP1",
       "category": "Biomol",
       "quantity": 0,
@@ -6738,7 +6730,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ksl6vt",
+      "id": "itm-web-1783695961719-k6kgnc",
       "name": "Barrettes",
       "category": "Biomol",
       "quantity": 0,
@@ -6766,7 +6758,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ap61bv",
+      "id": "itm-web-1783695961719-5oqnzv",
       "name": "DuoSet ELISA Ancillary Reagent Kit 2",
       "category": "Biomol",
       "quantity": 0,
@@ -6793,7 +6785,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-h0zkrs",
+      "id": "itm-web-1783695961719-vphe4b",
       "name": "Human GDF-15 DuoSet ELISA, 15 Plate",
       "category": "Biomol",
       "quantity": 0,
@@ -6820,7 +6812,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-kph0du",
+      "id": "itm-web-1783695961719-l2gunh",
       "name": "ENZ CHECK GELATINASE/COL 1 kit",
       "category": "Biomol",
       "quantity": 0,
@@ -6847,7 +6839,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-nu63w5",
+      "id": "itm-web-1783695961719-vo6soi",
       "name": "FGF21 qPCR Primer Pairs, Human",
       "category": "Biomol",
       "quantity": 0,
@@ -6874,7 +6866,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-bi66ni",
+      "id": "itm-web-1783695961719-r7nm7x",
       "name": "ICAM-1 qPCR Primer Pairs, Human",
       "category": "Biomol",
       "quantity": 0,
@@ -6901,7 +6893,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-wpyn28",
+      "id": "itm-web-1783695961719-vj9eju",
       "name": "HUMAN DPP4 QPCR PRIMER PAIRS",
       "category": "Biomol",
       "quantity": 0,
@@ -6928,7 +6920,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-c1d6ew",
+      "id": "itm-web-1783695961719-lone1v",
       "name": "acetate foil transport type PCR",
       "category": "Biomol",
       "quantity": 0,
@@ -6955,7 +6947,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-hwybi2",
+      "id": "itm-web-1783695961719-0cnytj",
       "name": "Film adhésif AeraSeal™ stérile",
       "category": "Biomol",
       "quantity": 0,
@@ -6982,7 +6974,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-7qqdmf",
+      "id": "itm-web-1783695961719-74s0sa",
       "name": "Smart ladder SF",
       "category": "Biomol",
       "quantity": 0,
@@ -7009,7 +7001,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-eke2i6",
+      "id": "itm-web-1783695961719-9jckwa",
       "name": "eagle medium sans glu",
       "category": "Biomol",
       "quantity": 0,
@@ -7036,7 +7028,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-pw5kgq",
+      "id": "itm-web-1783695961719-1h7lzk",
       "name": "gelatine solution",
       "category": "Biomol",
       "quantity": 0,
@@ -7063,7 +7055,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-z6ikfk",
+      "id": "itm-web-1783695961719-v5qm1d",
       "name": "Insuline, humain recombinant, zinc solution, 4mg/ml",
       "category": "Biomol",
       "quantity": 0,
@@ -7090,7 +7082,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-awokek",
+      "id": "itm-web-1783695961719-7jphn0",
       "name": "Liberase TL res Grade",
       "category": "Biomol",
       "quantity": 0,
@@ -7117,7 +7109,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-8eqe4r",
+      "id": "itm-web-1783695961719-mz7q19",
       "name": "RNA ext reag tri reagent",
       "category": "Biomol",
       "quantity": 0,
@@ -7144,7 +7136,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-8gtrm2",
+      "id": "itm-web-1783695961719-510nyp",
       "name": "RQ1 Rnase-free DNAse",
       "category": "Biomol",
       "quantity": 0,
@@ -7171,7 +7163,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-v4bjbp",
+      "id": "itm-web-1783695961719-lzpzbe",
       "name": "CCT 031374 hydrobromide",
       "category": "Biomol",
       "quantity": 0,
@@ -7198,7 +7190,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-jk1p3c",
+      "id": "itm-web-1783695961719-rsq11t",
       "name": "Glycogen 20mg/ml",
       "category": "Biomol",
       "quantity": 0,
@@ -7225,7 +7217,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-hniv00",
+      "id": "itm-web-1783695961719-ts8rif",
       "name": "ICG 001",
       "category": "Biomol",
       "quantity": 0,
@@ -7252,7 +7244,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-x6nsgn",
+      "id": "itm-web-1783695961719-2tpfh3",
       "name": "JW67",
       "category": "Biomol",
       "quantity": 0,
@@ -7279,7 +7271,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-5ala7e",
+      "id": "itm-web-1783695961719-ev2fb4",
       "name": "Fluoromount-G, with DAPI",
       "category": "Microscopie",
       "quantity": 0,
@@ -7306,7 +7298,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-u6aqcr",
+      "id": "itm-web-1783695961719-hd1nnx",
       "name": "Oro",
       "category": "Microscopie",
       "quantity": 0,
@@ -7333,7 +7325,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0nykxq",
+      "id": "itm-web-1783695961719-s19rxt",
       "name": "Picro Sirius red Stain Kit",
       "category": "Microscopie",
       "quantity": 0,
@@ -7360,7 +7352,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-phdy9s",
+      "id": "itm-web-1783695961719-4xc3c4",
       "name": "Solution Acide acétique ( dans le kit de psr)",
       "category": "Microscopie",
       "quantity": 0,
@@ -7387,7 +7379,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-eo7vzr",
+      "id": "itm-web-1783695961719-gyf4la",
       "name": "Apo -Transferrine humain",
       "category": "Microscopie",
       "quantity": 0,
@@ -7414,7 +7406,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0juvih",
+      "id": "itm-web-1783695961719-hgpnsf",
       "name": "CL 316,243 hydrate de chez Sigma Aldrich",
       "category": "Microscopie",
       "quantity": 0,
@@ -7441,7 +7433,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-oy007y",
+      "id": "itm-web-1783695961719-q83poi",
       "name": "Glut 4",
       "category": "Microscopie",
       "quantity": 0,
@@ -7468,7 +7460,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-bqd5ne",
+      "id": "itm-web-1783695961719-u388yu",
       "name": "Prox 1",
       "category": "Microscopie",
       "quantity": 0,
@@ -7495,7 +7487,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-j4bqwq",
+      "id": "itm-web-1783695961719-w5t6gk",
       "name": "IFN2A humain de chez Sigma Aldrich",
       "category": "Microscopie",
       "quantity": 0,
@@ -7522,7 +7514,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-u93m1f",
+      "id": "itm-web-1783695961719-ziw5k3",
       "name": "PDGF Receptor α (D1E1E) XP® Rabbit mAb #3174",
       "category": "Microscopie",
       "quantity": 0,
@@ -7549,7 +7541,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-dls8w3",
+      "id": "itm-web-1783695961719-8tsxoc",
       "name": "anti fibronectin Mouse",
       "category": "Microscopie",
       "quantity": 0,
@@ -7576,7 +7568,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-uwb8c4",
+      "id": "itm-web-1783695961719-fhajvk",
       "name": "anti human Lyve 1",
       "category": "Microscopie",
       "quantity": 0,
@@ -7603,7 +7595,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-2hvf9i",
+      "id": "itm-web-1783695961719-gzqyck",
       "name": "anti-cd31 HUMAN",
       "category": "Microscopie",
       "quantity": 0,
@@ -7630,7 +7622,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-1b07bh",
+      "id": "itm-web-1783695961719-aakpff",
       "name": "Anti-CD34 antibody [QBEND-10]",
       "category": "Microscopie",
       "quantity": 0,
@@ -7657,7 +7649,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-kfwzdo",
+      "id": "itm-web-1783695961719-zjqmw4",
       "name": "anti-CD68 antibody",
       "category": "Microscopie",
       "quantity": 0,
@@ -7684,7 +7676,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-6mk5q7",
+      "id": "itm-web-1783695961719-fa4nzn",
       "name": "Anti-Collagen IV antibody",
       "category": "Microscopie",
       "quantity": 0,
@@ -7711,7 +7703,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-i2t7tx",
+      "id": "itm-web-1783695961719-ilf5iq",
       "name": "Anti-Elastin antibody",
       "category": "Microscopie",
       "quantity": 0,
@@ -7738,7 +7730,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-7t28gc",
+      "id": "itm-web-1783695961719-lvf9ho",
       "name": "anti-ICAM1 antibody MEM-111",
       "category": "Microscopie",
       "quantity": 0,
@@ -7765,7 +7757,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-skp9d7",
+      "id": "itm-web-1783695961719-dc3mby",
       "name": "Anti-Laminin antibody",
       "category": "Microscopie",
       "quantity": 0,
@@ -7792,7 +7784,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-2sexvh",
+      "id": "itm-web-1783695961719-tifozo",
       "name": "Collagen VI Monoclonal Antibody (COL-6) 100 ul",
       "category": "Microscopie",
       "quantity": 0,
@@ -7819,7 +7811,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-t1za93",
+      "id": "itm-web-1783695961719-lqg7ku",
       "name": "Collagen I Monoclonal Antibody (COL-1) 100 ul",
       "category": "Microscopie",
       "quantity": 0,
@@ -7846,7 +7838,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-w0396q",
+      "id": "itm-web-1783695961719-tj9901",
       "name": "Human DPP4/CD26 antibody polyclonal goat",
       "category": "Microscopie",
       "quantity": 0,
@@ -7873,7 +7865,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-7560vv",
+      "id": "itm-web-1783695961719-3wc5b1",
       "name": "Tyrosine Hydroxylase antibody RABBIT polyclonal",
       "category": "Microscopie",
       "quantity": 0,
@@ -7900,7 +7892,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-vae029",
+      "id": "itm-web-1783695961719-h27puh",
       "name": "CGRP antibody [4901] MOUSE Monoclonal",
       "category": "Microscopie",
       "quantity": 0,
@@ -7927,7 +7919,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-upxeq6",
+      "id": "itm-web-1783695961719-debjf5",
       "name": "Perilipin 1 antibody GOAT Polyclonal",
       "category": "Microscopie",
       "quantity": 0,
@@ -7954,7 +7946,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-wyp9tl",
+      "id": "itm-web-1783695961719-91rhv1",
       "name": "Hyaluronan Binding Protein HABP Biotin conjugated",
       "category": "Microscopie",
       "quantity": 0,
@@ -7981,7 +7973,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-8f4s15",
+      "id": "itm-web-1783695961719-ys5wpf",
       "name": "Anti-Collagen III antibody [EPR17673]",
       "category": "Microscopie",
       "quantity": 0,
@@ -8008,7 +8000,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-fi1sc6",
+      "id": "itm-web-1783695961719-k90mn5",
       "name": "ICAM-2/CD102",
       "category": "Microscopie",
       "quantity": 0,
@@ -8035,7 +8027,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-vsvhph",
+      "id": "itm-web-1783695961719-g3y8oo",
       "name": "Anti-rabbit IGG 488 50ul",
       "category": "Microscopie",
       "quantity": 0,
@@ -8062,7 +8054,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-7hbnqa",
+      "id": "itm-web-1783695961719-vs7l4h",
       "name": "Donkey Anti-Goat IgG H&L (Alexa Fluor® 488)",
       "category": "Microscopie",
       "quantity": 0,
@@ -8089,7 +8081,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-5csrv0",
+      "id": "itm-web-1783695961719-6cxvp4",
       "name": "DAPI",
       "category": "Microscopie",
       "quantity": 0,
@@ -8116,7 +8108,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-cqneju",
+      "id": "itm-web-1783695961719-y0kcp6",
       "name": "Mouse Alexa fluor 568",
       "category": "Microscopie",
       "quantity": 0,
@@ -8143,7 +8135,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-76wq1x",
+      "id": "itm-web-1783695961719-su5qih",
       "name": "AF 647 Rabbit",
       "category": "Microscopie",
       "quantity": 0,
@@ -8170,7 +8162,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-4zmgfk",
+      "id": "itm-web-1783695961719-x7sdbk",
       "name": "Steptavidin AF633",
       "category": "Microscopie",
       "quantity": 0,
@@ -8197,7 +8189,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0fkwyq",
+      "id": "itm-web-1783695961719-9tw9ip",
       "name": "Donkey anti-mouse 488",
       "category": "Microscopie",
       "quantity": 0,
@@ -8224,7 +8216,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-qo7tei",
+      "id": "itm-web-1783695961719-7ht5bd",
       "name": "Agarase from pseudomonas atlantica Sigma",
       "category": "Microscopie",
       "quantity": 0,
@@ -8251,7 +8243,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-rp2pqy",
+      "id": "itm-web-1783695961719-jffyh0",
       "name": "Mouse TNFa antibody 100 microg",
       "category": "Microscopie",
       "quantity": 0,
@@ -8278,7 +8270,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-uoox0v",
+      "id": "itm-web-1783695961719-n3dei5",
       "name": "Recombinant Human TNFa",
       "category": "Microscopie",
       "quantity": 0,
@@ -8305,7 +8297,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-ceybem",
+      "id": "itm-web-1783695961719-0d02lb",
       "name": "capillaire /tube hematocrite 1,5 mm dia/ 75 mm long",
       "category": "Microscopie",
       "quantity": 0,
@@ -8332,7 +8324,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-iht6rn",
+      "id": "itm-web-1783695961719-udypkm",
       "name": "Grace Bio-Labs FastWells 9 mm diam. x 1.0 mm depth",
       "category": "Microscopie",
       "quantity": 0,
@@ -8359,7 +8351,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-9j0472",
+      "id": "itm-web-1783695961719-ek5pm3",
       "name": "Grace Bio-Labs FastWells reagent barriers",
       "category": "Microscopie",
       "quantity": 0,
@@ -8386,7 +8378,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-0f2eh4",
+      "id": "itm-web-1783695961719-nsym5y",
       "name": "Grace Bio-Labs wells, 12 (Round, 4.5mm diameter, 0.5mm depth)",
       "category": "Microscopie",
       "quantity": 0,
@@ -8413,7 +8405,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-a448y3",
+      "id": "itm-web-1783695961719-xe0x52",
       "name": "Grace Bio-Labswells, 24 (Round, 2mm diameter, 0.5mm depth)",
       "category": "Microscopie",
       "quantity": 0,
@@ -8440,7 +8432,7 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1781623286246-1pcetr",
+      "id": "itm-web-1783695961719-lmxpuw",
       "name": "Galls microfibre filtre 2,5 cm",
       "category": "Microscopie",
       "quantity": 0,
@@ -11769,48 +11761,6 @@
   "experiments": [],
   "orders": [
     {
-      "id": "ord-1781696250817",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-CSV-0074",
-      "itemName": "Gants orange S",
-      "requestedQuantity": 10,
-      "receivedQuantity": 0,
-      "priority": "pas urgent",
-      "notes": "",
-      "requestedBy": "Caroline",
-      "requestedAt": "17/06/2026 13:37",
-      "requestedAtRaw": "2026-06-17T11:37:30.825Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
-      "id": "ord-1781623304201",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-web-1781623286246-7v6sho",
-      "itemName": "Qiazol",
-      "requestedQuantity": 3,
-      "receivedQuantity": 0,
-      "priority": "urgent",
-      "notes": "",
-      "requestedBy": "Caroline",
-      "requestedAt": "16/06/2026 17:21",
-      "requestedAtRaw": "2026-06-16T15:21:44.201Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
       "id": "ord-001",
       "itemName": "Kit ELISA Adiponectine",
       "quantity": "2 kits",
@@ -11841,285 +11791,8 @@
       "createdAt": "2026-05-15 10:04"
     }
   ],
-  "clientSamples": [
-    {
-      "id": "sample-client-1783582169770-07iez1",
-      "type": "client_product",
-      "clientCode": "MIB002",
-      "location": "Culture L1",
-      "notes": "Conserver à RT",
-      "createdAtRaw": "2026-07-09T07:29:29.769Z",
-      "createdAt": "09/07/2026 09:29",
-      "name": "Ingrédient #1",
-      "arrivalDate": "2026-07-08",
-      "quantity": 10,
-      "unit": "mL",
-      "referenceNumber": "",
-      "lotNumber": "",
-      "category": "",
-      "baseName": "Ingrédient #1",
-      "creationDate": "",
-      "measureValue": 10,
-      "measureUnit": "mL",
-      "replicaNumber": null,
-      "replicaCount": 1
-    },
-    {
-      "id": "sample-client-1783581890117-lcywhd",
-      "type": "client_product",
-      "clientCode": "MIB002",
-      "location": "Culture L1",
-      "notes": "Conserver à RT",
-      "createdAtRaw": "2026-07-09T07:24:50.117Z",
-      "createdAt": "09/07/2026 09:24",
-      "name": "Ingrédient #2",
-      "arrivalDate": "2026-07-08",
-      "quantity": 3,
-      "unit": "g",
-      "referenceNumber": "",
-      "lotNumber": "",
-      "category": "",
-      "baseName": "Ingrédient #2",
-      "creationDate": "",
-      "measureValue": 3,
-      "measureUnit": "g",
-      "replicaNumber": null,
-      "replicaCount": 1
-    },
-    {
-      "id": "sample-client-1783523870111-t6xrik",
-      "type": "client_product",
-      "clientCode": "ASH001",
-      "location": "Culture L1",
-      "notes": "Conserver à RT puis à 4°C une fois ouvert. Garder à l'abris de la lumière\nDeux vials de 0.05L chaque",
-      "createdAtRaw": "2026-07-08T15:17:50.102Z",
-      "createdAt": "08/07/2026 17:17",
-      "name": "Test item",
-      "arrivalDate": "2026-07-07",
-      "quantity": 0.1,
-      "unit": "L",
-      "referenceNumber": "",
-      "lotNumber": "",
-      "category": "",
-      "baseName": "Test item",
-      "creationDate": "",
-      "measureValue": 0.1,
-      "measureUnit": "L",
-      "replicaNumber": null,
-      "replicaCount": 1
-    }
-  ],
+  "clientSamples": [],
   "history": [
-    {
-      "date": "10/07/2026 09:48",
-      "user": "Caroline",
-      "action": "Commande rouverte",
-      "detail": "Caroline a renvoyé Qiazol vers \"À demander\"."
-    },
-    {
-      "date": "10/07/2026 09:48",
-      "user": "Caroline",
-      "action": "Commande effectuée",
-      "detail": "Caroline a marqué Qiazol comme commandé."
-    },
-    {
-      "date": "10/07/2026 09:47",
-      "user": "Caroline",
-      "action": "Produit client modifie",
-      "detail": "Caroline a modifie Test item pour ASH001."
-    },
-    {
-      "date": "10/07/2026 09:46",
-      "user": "Caroline",
-      "action": "Produit client supprime",
-      "detail": "Caroline a supprime P234 Vehicle (GLP1) J0 1 des produits / echantillons clients."
-    },
-    {
-      "date": "09/07/2026 15:08",
-      "user": "Caroline",
-      "action": "Produit client supprime",
-      "detail": "Caroline a supprime P234 Vehicle (GLP1) J0 2 des produits / echantillons clients."
-    },
-    {
-      "date": "09/07/2026 15:08",
-      "user": "Caroline",
-      "action": "Produit client supprime",
-      "detail": "Caroline a supprime P234 Vehicle (GLP1) J0 3 des produits / echantillons clients."
-    },
-    {
-      "date": "09/07/2026 15:08",
-      "user": "Caroline",
-      "action": "Produit client supprime",
-      "detail": "Caroline a supprime P234 Vehicle (GLP1) J0 4 des produits / echantillons clients."
-    },
-    {
-      "date": "09/07/2026 15:08",
-      "user": "Caroline",
-      "action": "Produit client supprime",
-      "detail": "Caroline a supprime P234 Vehicle (GLP1) J0 5 des produits / echantillons clients."
-    },
-    {
-      "date": "09/07/2026 15:07",
-      "user": "Caroline",
-      "action": "Echantillons clients ajoutes",
-      "detail": "Caroline a ajoute 5 echantillons P234 Vehicle (GLP1) J0 pour ASH001."
-    },
-    {
-      "date": "09/07/2026 15:05",
-      "user": "Caroline",
-      "action": "Produit client modifie",
-      "detail": "Caroline a modifie Test item pour ASH001."
-    },
-    {
-      "date": "09/07/2026 09:31",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé test prism et moi de l'inventaire."
-    },
-    {
-      "date": "09/07/2026 09:30",
-      "user": "Caroline",
-      "action": "Produit client modifie",
-      "detail": "Caroline a modifie Test item pour ASH001."
-    },
-    {
-      "date": "09/07/2026 09:29",
-      "user": "Caroline",
-      "action": "Produit client modifie",
-      "detail": "Caroline a modifie Ingrédient #2 pour MIB002."
-    },
-    {
-      "date": "09/07/2026 09:29",
-      "user": "Caroline",
-      "action": "Produit client ajoute",
-      "detail": "Caroline a ajoute Ingrédient #1 pour MIB002."
-    },
-    {
-      "date": "09/07/2026 09:28",
-      "user": "Caroline",
-      "action": "Produit client modifie",
-      "detail": "Caroline a modifie Ingrédient #2 pour MIB002."
-    },
-    {
-      "date": "09/07/2026 09:24",
-      "user": "Caroline",
-      "action": "Produit client ajoute",
-      "detail": "Caroline a ajoute poudre pour MIB002."
-    },
-    {
-      "date": "09/07/2026 09:24",
-      "user": "Caroline",
-      "action": "Produit client supprime",
-      "detail": "Caroline a supprime poudre des produits / echantillons clients."
-    },
-    {
-      "date": "09/07/2026 09:23",
-      "user": "Caroline",
-      "action": "Produit client ajoute",
-      "detail": "Caroline a ajoute poudre pour MIB002."
-    },
-    {
-      "date": "08/07/2026 17:17",
-      "user": "Caroline",
-      "action": "Produit client ajoute",
-      "detail": "Caroline a ajoute Collapeptyl pour ASH001."
-    },
-    {
-      "date": "06/07/2026 15:40",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié test prism et moi."
-    },
-    {
-      "date": "06/07/2026 15:39",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé test 06/07 de l'inventaire."
-    },
-    {
-      "date": "06/07/2026 15:39",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté test prism dans Procédé ExAdEx L2."
-    },
-    {
-      "date": "06/07/2026 15:07",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Liraglutide."
-    },
-    {
-      "date": "06/07/2026 15:06",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix."
-    },
-    {
-      "date": "06/07/2026 15:06",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié SupplementMix / Endothelial Cell Growth Medium 2."
-    },
-    {
-      "date": "06/07/2026 15:06",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Endothelial Cell Growth Medium 2."
-    },
-    {
-      "date": "06/07/2026 15:05",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Test de l'inventaire."
-    },
-    {
-      "date": "06/07/2026 15:05",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Test2 de l'inventaire."
-    },
-    {
-      "date": "06/07/2026 15:05",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé test3 de l'inventaire."
-    },
-    {
-      "date": "06/07/2026 15:03",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté test 06/07 dans Procédé ExAdEx L2."
-    },
-    {
-      "date": "22/06/2026 16:52",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté test3 dans Procédé ExAdEx L2."
-    },
-    {
-      "date": "17/06/2026 13:55",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Test2 dans Procédé ExAdEx L2."
-    },
-    {
-      "date": "17/06/2026 13:41",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Test dans Muse."
-    },
-    {
-      "date": "17/06/2026 13:37",
-      "user": "Caroline",
-      "action": "Demande créée",
-      "detail": "Caroline a créé une demande pour Gants orange S."
-    },
-    {
-      "date": "16/06/2026 17:21",
-      "user": "Caroline",
-      "action": "Demande créée",
-      "detail": "Caroline a créé une demande pour Qiazol."
-    },
     {
       "date": "04/06/2026 15:51",
       "user": "Caroline",
@@ -12397,5 +12070,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-10T07:48:05.940Z"
+  "updatedAt": "2026-07-10T15:06:07.577Z"
 }

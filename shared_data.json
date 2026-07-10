@@ -11791,7 +11791,7 @@
     },
     {
       "id": "ord-1781623304201",
-      "status": "requested",
+      "status": "ordered",
       "itemMode": "existing",
       "inventoryItemId": "itm-web-1781623286246-7v6sho",
       "itemName": "Qiazol",
@@ -11802,9 +11802,9 @@
       "requestedBy": "Caroline",
       "requestedAt": "16/06/2026 17:21",
       "requestedAtRaw": "2026-06-16T15:21:44.201Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
+      "orderedBy": "Caroline",
+      "orderedAt": "10/07/2026 09:48",
+      "orderedAtRaw": "2026-07-10T07:48:02.100Z",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -11910,6 +11910,12 @@
     }
   ],
   "history": [
+    {
+      "date": "10/07/2026 09:48",
+      "user": "Caroline",
+      "action": "Commande effectuée",
+      "detail": "Caroline a marqué Qiazol comme commandé."
+    },
     {
       "date": "10/07/2026 09:47",
       "user": "Caroline",
@@ -12385,5 +12391,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-10T07:47:00.501Z"
+  "updatedAt": "2026-07-10T07:48:02.101Z"
 }

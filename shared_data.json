@@ -11872,6 +11872,32 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1783950214076-ma4inn",
+      "type": "client_product",
+      "clientCode": "MIB002",
+      "rawClientCode": "MIB002",
+      "normalizedClientKey": "MIB2",
+      "clientId": "client-MIB2",
+      "canonicalClientCode": "MIB002",
+      "location": "Culture L1",
+      "notes": "Conserver à RT",
+      "createdAtRaw": "2026-07-13T13:43:34.075Z",
+      "createdAt": "13/07/2026 15:43",
+      "name": "Ingrédient #1",
+      "arrivalDate": "2026-07-08",
+      "quantity": 10,
+      "unit": "mL",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Ingrédient #1",
+      "creationDate": "",
+      "measureValue": 10,
+      "measureUnit": "mL",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1783950114371-9vaw87",
       "type": "client_product",
       "clientCode": "ASH001",
@@ -11934,9 +11960,25 @@
       "id": "client-ASH1",
       "createdAtRaw": "2026-07-13T13:38:57.192Z",
       "updatedAtRaw": "2026-07-13T13:38:57.192Z"
+    },
+    {
+      "id": "client-MIB2",
+      "normalizedKey": "MIB2",
+      "canonicalCode": "MIB002",
+      "rawCodes": [
+        "MIB002"
+      ],
+      "createdAtRaw": "2026-07-13T13:43:34.075Z",
+      "updatedAtRaw": "2026-07-13T13:43:34.075Z"
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 15:43",
+      "user": "Caroline",
+      "action": "Produit client ajouté",
+      "detail": "Caroline a ajouté Ingrédient #1 pour MIB002."
+    },
     {
       "date": "13/07/2026 15:41",
       "user": "Caroline",
@@ -12304,5 +12346,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T13:41:54.372Z"
+  "updatedAt": "2026-07-13T13:43:34.077Z"
 }

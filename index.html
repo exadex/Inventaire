@@ -103,6 +103,16 @@
             <select id="categoryFilter" class="select">
               <option value="all">Toutes catégories</option>
             </select>
+
+            <label class="inventory-sort-control">
+              <span>Tri</span>
+              <select id="inventorySortSelect" class="select">
+                <option value="recent" selected>Plus r&eacute;cents</option>
+                <option value="oldest">Plus anciens</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+              </select>
+            </label>
           </section>
 
           <div id="inventoryDetail"></div>
@@ -185,10 +195,40 @@
         </section>
 
         <section class="view" id="locationsView">
-          <div class="section-heading">
-            <h3>Carte des localisations</h3>
-            <span>Zones officielles du laboratoire</span>
+          <div class="client-studies-header">
+            <div>
+              <p class="eyebrow">ORGANISATION DU LABORATOIRE</p>
+              <div class="client-studies-title-row">
+                <h3>Localisations du laboratoire</h3>
+              </div>
+            </div>
           </div>
+
+          <section class="client-study-controls">
+            <label class="client-study-search">
+              <span>Rechercher</span>
+              <input
+                id="locationSearchInput"
+                type="search"
+                placeholder="Une localisation ou une r&eacute;f&eacute;rence..."
+              />
+              <small id="locationResultCount" class="client-study-result-count"></small>
+            </label>
+
+            <label class="client-study-sort-end">
+              <span>Tri</span>
+              <select id="locationSortSelect" class="select">
+                <option value="name">Nom A-Z</option>
+                <option value="most" selected>Plus de r&eacute;f&eacute;rences</option>
+                <option value="least">Moins de r&eacute;f&eacute;rences</option>
+              </select>
+            </label>
+          </section>
+
+          <div class="client-study-kpis client-study-kpis-compact" id="locationMetrics"></div>
+
+          <h3 class="client-study-section-title">Zones de stockage</h3>
+
           <div class="location-grid" id="locationGrid"></div>
         </section>
 

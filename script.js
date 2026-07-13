@@ -75,6 +75,7 @@ const sidebarUserName = document.querySelector("#sidebarUserName");
 const searchInput = document.querySelector("#searchInput");
 const controlBar = document.querySelector(".control-bar");
 const categoryFilter = document.querySelector("#categoryFilter");
+const inventorySortSelect = document.querySelector("#inventorySortSelect");
 const sampleSearchInput = document.querySelector("#sampleSearchInput");
 const sampleTypeFilter = document.querySelector("#sampleTypeFilter");
 const sampleCategoryFilter = document.querySelector("#sampleCategoryFilter");
@@ -100,6 +101,8 @@ const locationDropdown = document.querySelector("#locationDropdown");
 const locationTrigger = document.querySelector("#locationTrigger");
 const locationTriggerText = document.querySelector("#locationTriggerText");
 const locationMenu = document.querySelector("#locationMenu");
+const locationSearchInput = document.querySelector("#locationSearchInput");
+const locationSortSelect = document.querySelector("#locationSortSelect");
 
 const fields = [
   "itemId",
@@ -268,11 +271,14 @@ orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
 orderFields.orderInventorySearch.addEventListener("input", renderOrderItemOptions);
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
+inventorySortSelect?.addEventListener("change", renderInventory);
 sampleSearchInput?.addEventListener("input", resetSamplePagination);
 sampleTypeFilter?.addEventListener("change", resetSamplePagination);
 sampleCategoryFilter?.addEventListener("change", resetSamplePagination);
 sampleClientFilter?.addEventListener("change", resetSamplePagination);
 sampleSortSelect?.addEventListener("change", resetSamplePagination);
+locationSearchInput?.addEventListener("input", renderLocations);
+locationSortSelect?.addEventListener("change", renderLocations);
 sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
 sampleFields.sampleCategory.addEventListener("change", syncSampleMeasureLabel);
 sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
@@ -847,6 +853,7 @@ function renderSharedDataAlert() {
 function renderInventory() {
   const query = normalizeSearch(searchInput.value);
   const category = categoryFilter.value;
+  const sort = inventorySortSelect?.value || "recent";
 
   const filtered = items
     .filter(item => {
@@ -863,7 +870,7 @@ function renderInventory() {
         (statusFilter === "all" || itemStatus(item) === statusFilter) &&
         (category === "all" || item.category === category);
     })
-    .sort((a, b) => getItemAddedTime(b) - getItemAddedTime(a));
+    .sort((a, b) => compareInventoryItems(a, b, sort));
 
   document.querySelector("#resultCount").textContent =
     `${filtered.length} résultat${filtered.length > 1 ? "s" : ""}`;
@@ -932,6 +939,22 @@ function renderInventory() {
       </article>
     `;
   }).join("");
+}
+
+function compareInventoryItems(a, b, sort = "recent") {
+  if (sort === "oldest") {
+    return getItemAddedTime(a) - getItemAddedTime(b);
+  }
+
+  if (sort === "az") {
+    return String(a.name || "").localeCompare(String(b.name || ""), "fr", { sensitivity: "base" });
+  }
+
+  if (sort === "za") {
+    return String(b.name || "").localeCompare(String(a.name || ""), "fr", { sensitivity: "base" });
+  }
+
+  return getItemAddedTime(b) - getItemAddedTime(a);
 }
 
 function formatInventoryCardQuantity(quantity, unit) {
@@ -1900,6 +1923,7 @@ function warnMissingSampleViewRefs(refs) {
 function syncAppViewMode() {
   app.classList.toggle("history-mode", activeView === "history");
   app.classList.toggle("samples-mode", activeView === "samples");
+  app.classList.toggle("locations-mode", activeView === "locations");
   app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }
 
@@ -2375,25 +2399,11 @@ function renderHistory() {
 }
 
 function renderLocations() {
-  const groups = items.reduce((acc, item) => {
-    const places = getItemLocations(item);
-
-    places.forEach(place => {
-      if (!acc[place]) acc[place] = [];
-      acc[place].push({ kind: "inventory", record: item });
-    });
-
-    return acc;
-  }, {});
-
-  clientSamples.forEach(sample => {
-    const place = sample.location;
-    if (!place) return;
-    if (!groups[place]) groups[place] = [];
-    groups[place].push({ kind: "clientSample", record: sample });
-  });
-
+  const groups = buildLocationGroups();
   const locationGrid = document.querySelector("#locationGrid");
+  if (!locationGrid) return;
+
+  renderLocationMetrics(groups);
 
   if (selectedLocation) {
     const group = groups[selectedLocation] || [];
@@ -2404,7 +2414,7 @@ function renderLocations() {
           <div>
             <span class="room-icon">${locationIcons[selectedLocation] || "📍"}</span>
             <h4>${escapeHtml(selectedLocation)}</h4>
-            <p>${group.length} reference${group.length > 1 ? "s" : ""} dans cette salle</p>
+            <p>${escapeHtml(formatLocationCount(group.length, "référence"))} dans cette salle</p>
           </div>
         </div>
         <div class="room-item-list">
@@ -2455,19 +2465,58 @@ function renderLocations() {
     return;
   }
 
-  locationGrid.innerHTML = inventoryLocations.map(place => {
-    const group = groups[place] || [];
+  const query = normalizeSearch(locationSearchInput?.value || "");
+  const sort = locationSortSelect?.value || "name";
+  const locations = inventoryLocations
+    .map(place => ({
+      place,
+      group: groups[place] || []
+    }))
+    .filter(({ place, group }) => {
+      if (!query) return true;
+      const haystack = normalizeSearch([
+        place,
+        ...group.map(entry => entry.record?.name || "")
+      ].join(" "));
+      return haystack.includes(query);
+    })
+    .sort((a, b) => compareLocationGroups(a, b, sort));
+
+  const locationResultCount = document.querySelector("#locationResultCount");
+  if (locationResultCount) {
+    locationResultCount.textContent = formatLocationCount(locations.length, "zone");
+  }
+
+  locationGrid.innerHTML = locations.length ? locations.map(({ place, group }) => {
     const previewNames = group.slice(0, 3).map(entry => entry.record.name);
+    const remainingCount = Math.max(group.length - previewNames.length, 0);
+    const referenceLabel = formatLocationCount(group.length, "référence");
+
     return `
-    <button class="location-card" type="button" data-location="${escapeHtml(place)}">
-      <span class="location-icon">${locationIcons[place] || "📍"}</span>
-      <strong>${escapeHtml(place)}</strong>
-      <p>${group.length} reference${group.length > 1 ? "s" : ""}</p>
-      <div class="mini-list">${previewNames.map(name => `<span>${escapeHtml(name)}</span>`).join("") || "<span>Salle vide</span>"}</div>
-      <span class="enter-room"><span class="enter-room-icon">🚪</span> Entrer</span>
+    <button
+      class="location-card"
+      type="button"
+      data-location="${escapeHtml(place)}"
+      aria-label="Entrer dans ${escapeHtml(place)}, ${escapeHtml(referenceLabel)}"
+    >
+      <span class="location-icon" aria-hidden="true">${locationIcons[place] || "📍"}</span>
+      <span class="location-card-title">${escapeHtml(place)}</span>
+      <span class="location-card-count">${escapeHtml(referenceLabel)}</span>
+      <div class="mini-list">
+        ${
+          previewNames.length
+            ? `
+              ${previewNames.map(name => `<span>${escapeHtml(name)}</span>`).join("")}
+              ${remainingCount ? `<span class="location-more-count">+ ${formatLocationCount(remainingCount, "autre référence", "autres références")}</span>` : ""}
+            `
+            : `<span class="location-empty-preview">Aucune référence stockée</span>`
+        }
+      </div>
+      <span class="enter-room"><span class="enter-room-icon" aria-hidden="true">🚪</span> Entrer</span>
     </button>
   `;
-  }).join("");
+  }).join("") : `<div class="location-empty-state">Aucune zone ne correspond à votre recherche.</div>`;
+
   locationGrid.querySelectorAll("[data-location]").forEach(card => {
     card.addEventListener("click", () => {
       viewReturnScrollY.locations = getPageScrollY();
@@ -2475,6 +2524,76 @@ function renderLocations() {
       renderLocations();
     });
   });
+}
+
+function formatLocationCount(count, singular, plural = `${singular}s`) {
+  const safeCount = Number(count || 0);
+  return `${safeCount} ${safeCount === 1 ? singular : plural}`;
+}
+
+function buildLocationGroups() {
+  const groups = inventoryLocations.reduce((acc, place) => {
+    acc[place] = [];
+    return acc;
+  }, {});
+
+  items.forEach(item => {
+    getItemLocations(item).forEach(place => {
+      if (!groups[place]) groups[place] = [];
+      groups[place].push({ kind: "inventory", record: item });
+    });
+  });
+
+  clientSamples.forEach(sample => {
+    const place = sample.location;
+    if (!place) return;
+    if (!groups[place]) groups[place] = [];
+    groups[place].push({ kind: "clientSample", record: sample });
+  });
+
+  return groups;
+}
+
+function renderLocationMetrics(groups) {
+  const metricsContainer = document.querySelector("#locationMetrics");
+  if (!metricsContainer) return;
+
+  const zones = inventoryLocations.length;
+  const localizedReferences = inventoryLocations.reduce(
+    (total, place) => total + (groups[place]?.length || 0),
+    0
+  );
+  const busiest = inventoryLocations
+    .map(place => ({ place, count: groups[place]?.length || 0 }))
+    .sort((a, b) => b.count - a.count || a.place.localeCompare(b.place, "fr"))[0];
+
+  const metrics = [
+    ["📍", "Zones de stockage", zones],
+    ["📦", "Références localisées", localizedReferences],
+    ["🏷️", "Zone la plus remplie", busiest ? `${busiest.place} · ${busiest.count}` : ""]
+  ].filter(([, , value]) => value !== "");
+
+  metricsContainer.innerHTML = metrics.map(([icon, label, value]) => `
+    <article class="client-kpi-card">
+      <span class="client-kpi-icon" aria-hidden="true">${icon}</span>
+      <div>
+        <span>${escapeHtml(label)}</span>
+        <strong>${escapeHtml(value)}</strong>
+      </div>
+    </article>
+  `).join("");
+}
+
+function compareLocationGroups(a, b, sort = "name") {
+  if (sort === "most") {
+    return b.group.length - a.group.length || a.place.localeCompare(b.place, "fr");
+  }
+
+  if (sort === "least") {
+    return a.group.length - b.group.length || a.place.localeCompare(b.place, "fr");
+  }
+
+  return a.place.localeCompare(b.place, "fr");
 }
 
 function renderOrders() {

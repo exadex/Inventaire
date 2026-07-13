@@ -11872,32 +11872,6 @@
   ],
   "clientSamples": [
     {
-      "id": "sample-client-1783950272754-lsphp6",
-      "type": "client_product",
-      "clientCode": "MIB002",
-      "rawClientCode": "MIB002",
-      "normalizedClientKey": "MIB2",
-      "clientId": "client-MIB2",
-      "canonicalClientCode": "MIB002",
-      "location": "Culture L1",
-      "notes": "Conserver à RT",
-      "createdAtRaw": "2026-07-13T13:44:32.754Z",
-      "createdAt": "13/07/2026 15:44",
-      "name": "Ingrédient #2",
-      "arrivalDate": "2026-07-08",
-      "quantity": 3,
-      "unit": "g",
-      "referenceNumber": "",
-      "lotNumber": "",
-      "category": "",
-      "baseName": "Ingrédient #2",
-      "creationDate": "",
-      "measureValue": 3,
-      "measureUnit": "g",
-      "replicaNumber": null,
-      "replicaCount": 1
-    },
-    {
       "id": "sample-client-1783950236643-fro2wp",
       "type": "client_product",
       "clientCode": "MIB002",
@@ -12025,6 +11999,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 15:44",
+      "user": "Caroline",
+      "action": "Produit client supprimé",
+      "detail": "Caroline a supprimé Ingrédient #2 des études clients."
+    },
     {
       "date": "13/07/2026 15:44",
       "user": "Caroline",
@@ -12410,5 +12390,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T13:44:32.755Z"
+  "updatedAt": "2026-07-13T13:44:39.986Z"
 }

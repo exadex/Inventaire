@@ -11822,28 +11822,6 @@
   ],
   "clientSamples": [
     {
-      "id": "sample-created-1783928265642-h1gdet",
-      "type": "created_sample",
-      "clientCode": "ASH001 et MIB002",
-      "location": "-20°C blanc labo",
-      "notes": "",
-      "createdAtRaw": "2026-07-13T07:37:45.641Z",
-      "createdAt": "13/07/2026 09:37",
-      "name": "P234 sécrétion J0",
-      "baseName": "P234 sécrétion J0",
-      "replicaNumber": null,
-      "replicaCount": 1,
-      "category": "Secretion",
-      "creationDate": "2026-07-10",
-      "measureValue": 0.5,
-      "measureUnit": "mL",
-      "quantity": 0.5,
-      "unit": "mL",
-      "arrivalDate": "",
-      "referenceNumber": "",
-      "lotNumber": ""
-    },
-    {
       "id": "sample-client-1783696533492-b1p4of",
       "type": "client_product",
       "clientCode": "ASH001",
@@ -11867,6 +11845,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 09:37",
+      "user": "Caroline",
+      "action": "Produit client supprime",
+      "detail": "Caroline a supprime P234 sécrétion J0 des produits / echantillons clients."
+    },
     {
       "date": "13/07/2026 09:37",
       "user": "Caroline",
@@ -12162,5 +12146,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T07:37:45.642Z"
+  "updatedAt": "2026-07-13T07:37:51.745Z"
 }

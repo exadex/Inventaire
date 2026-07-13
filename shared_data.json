@@ -122,7 +122,7 @@
       "id": "itm-CSV-0003",
       "name": "REDUCTEUR SU 1.2MM",
       "category": "Procédé ExAdEx L2",
-      "quantity": 2,
+      "quantity": 6,
       "unit": "unités",
       "minStock": 2,
       "location": "Bureau",
@@ -12041,6 +12041,12 @@
       "date": "13/07/2026 16:35",
       "user": "Caroline",
       "action": "Stock mis à jour",
+      "detail": "Caroline a reçu 4 unités pour REDUCTEUR SU 1.2MM (). Stock: 2 -> 6 unités."
+    },
+    {
+      "date": "13/07/2026 16:35",
+      "user": "Caroline",
+      "action": "Stock mis à jour",
       "detail": "Caroline a pris 4 unités pour REDUCTEUR SU 1.2MM (). Stock: 6 -> 2 unités."
     },
     {
@@ -12452,5 +12458,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T14:35:23.301Z"
+  "updatedAt": "2026-07-13T14:35:36.061Z"
 }

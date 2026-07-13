@@ -11820,8 +11820,37 @@
       "createdAt": "2026-05-15 10:04"
     }
   ],
-  "clientSamples": [],
+  "clientSamples": [
+    {
+      "id": "sample-client-1783931976763-6n3uo8",
+      "type": "client_product",
+      "clientCode": "ASH001",
+      "location": "Culture L1",
+      "notes": "",
+      "createdAtRaw": "2026-07-13T08:39:36.763Z",
+      "createdAt": "13/07/2026 10:39",
+      "name": "Test item",
+      "arrivalDate": "2026-07-07",
+      "quantity": 0.05,
+      "unit": "L",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Test item",
+      "creationDate": "",
+      "measureValue": 0.05,
+      "measureUnit": "L",
+      "replicaNumber": null,
+      "replicaCount": 1
+    }
+  ],
   "history": [
+    {
+      "date": "13/07/2026 10:39",
+      "user": "Caroline",
+      "action": "Produit client ajoute",
+      "detail": "Caroline a ajoute Test item pour ASH001."
+    },
     {
       "date": "13/07/2026 10:38",
       "user": "Caroline",
@@ -12105,5 +12134,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T08:38:44.749Z"
+  "updatedAt": "2026-07-13T08:39:36.764Z"
 }

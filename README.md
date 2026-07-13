@@ -75,8 +75,8 @@ Les donnees modifiables ne sont plus traitees comme des donnees locales au navig
 
 - `seed_items.js`: inventaire initial/default, utilise uniquement pour initialiser `shared_data.json` quand celui-ci est vide.
 - `protocols.js`: templates de protocoles en lecture seule, toujours versionnes dans le depot.
-- `shared_data.json`: source de verite partagee pour `inventoryItems`, `experiments`, `orders` et `history`.
-- `localStorage`: cache local et migration des anciennes donnees MVP uniquement.
+- `shared_data.json`: source de verite partagee pour `inventoryItems`, `experiments`, `orders`, `clientSamples` et `history`.
+- `localStorage`: cache local et migration des anciennes donnees MVP uniquement; il ne doit jamais remplacer une lecture GitHub reussie.
 
 Le navigateur lit et ecrit `shared_data.json` avec l'API GitHub Contents via `github_storage.js`.
 
@@ -97,4 +97,6 @@ Le token doit avoir le droit Contents read/write sur ce depot. Sans token, l'app
 
 Migration:
 
-Au premier chargement, si `shared_data.json` est vide, l'application initialise l'inventaire depuis `seed_items.js` et tente aussi de reprendre les anciennes cles `localStorage` (`exadex_web_items`, `exadex_seed_overrides`, `exadex_deleted_seed_ids`, `exadex_orders`, `exadex_experiments`, `exadex_history`). Apres sauvegarde GitHub, `shared_data.json` devient la source commune pour tous les utilisateurs.
+Au premier chargement, si GitHub confirme que `shared_data.json` est vide ou absent, l'application initialise l'inventaire depuis `seed_items.js` et tente aussi de reprendre les anciennes cles `localStorage` (`exadex_web_items`, `exadex_seed_overrides`, `exadex_deleted_seed_ids`, `exadex_orders`, `exadex_experiments`, `exadex_client_samples`, `exadex_history`). Si des donnees distantes existent deja, elles sont prioritaires et les seeds/localStorage ne sont pas fusionnes automatiquement.
+
+Si le chargement GitHub echoue, l'application peut afficher le cache local pour consultation, mais elle bloque la sauvegarde distante tant qu'une lecture GitHub n'a pas reussi afin d'eviter d'ecraser des donnees partagees avec un cache obsolete.

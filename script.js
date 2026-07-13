@@ -1,7 +1,7 @@
 ﻿// Estructura de datos:
 // seedBaseItems viene del repositorio y solo sirve como bootstrap/default.
-// sharedState es la fuente editable: inventario, experimentos, pedidos e historial.
-// sharedState se cachea localmente, pero la fuente compartida es shared_data.json via GitHub.
+// sharedState contiene los datos vivos: inventario, experimentos, pedidos, muestras e historial.
+// GitHub shared_data.json es la fuente compartida; localStorage solo sirve como cache/fallback.
 
 const clientSampleTypes = {
   client_product: "Produit recu du client",
@@ -19,7 +19,10 @@ let sharedDataSha = null;
 let sharedDataMode = "loading";
 let sharedDataSaveTimer = null;
 let sharedDataLastError = "";
-let sharedState = createSharedState(load("exadex_shared_state_cache"));
+let sharedDataRemoteReady = false;
+let sharedDataHasUnsavedChanges = false;
+let sharedDataIsSaving = false;
+let sharedState = createSharedState(readCachedSharedState(), { includeBootstrap: false });
 
 
 // no mover esta funcion
@@ -38,7 +41,7 @@ let experiments = migrateExperiments(sharedState.experiments);
 let history = Array.isArray(sharedState.history) ? sharedState.history : [];
 let clientSamples = migrateClientSamples(sharedState.clientSamples);
 
-hydrateSharedData();
+const sharedDataReady = hydrateSharedData();
 
 let statusFilter = "all";
 let activeView = "inventory";
@@ -198,20 +201,22 @@ loginForm.addEventListener("submit", (event) => {
   authPanel?.classList.add("is-loading");
   loginLoader.classList.add("is-visible");
 
-  setTimeout(() => {
+  const loginDelay = new Promise(resolve => setTimeout(resolve, 3000));
+
+  Promise.allSettled([sharedDataReady, loginDelay]).then(() => {
     auth.classList.add("hidden");
     app.classList.remove("hidden");
-    persist();
+    cacheSharedState();
     render();
 
     loginLoader.classList.remove("is-visible");
     authPanel?.classList.remove("is-loading");
     submitBtn.disabled = false;
-  }, 3000);
+  });
 });
 
 document.querySelector("#logoutBtn").addEventListener("click", () => {
-  persist();
+  cacheSharedState();
   app.classList.add("hidden");
   auth.classList.remove("hidden");
 });
@@ -359,7 +364,17 @@ function load(key, fallback) {
   }
 }
 
-function createSharedState(rawState = null) {
+function readCachedSharedState() {
+  const cached = load("exadex_shared_state_cache", null);
+  if (!cached || typeof cached !== "object") return null;
+  return cached.data && typeof cached.data === "object" ? cached.data : cached;
+}
+
+function cacheSharedState() {
+  localStorage.setItem("exadex_shared_state_cache", JSON.stringify(sharedState));
+}
+
+function createBootstrapSharedState() {
   const legacyWebItems = migrateItems(
     load("exadex_web_items", load("adipovault_web_items", []))
   ).map(item => ({
@@ -391,95 +406,98 @@ function createSharedState(rawState = null) {
     ...legacyWebItems.filter(item => !seedIds.has(item.id))
   ];
 
+  return {
+    version: 1,
+    inventoryItems: migrateItems(migratedInventoryItems),
+    experiments: migrateExperiments(load("exadex_experiments", [])),
+    orders: Array.isArray(load("exadex_orders", [])) ? load("exadex_orders", []) : [],
+    clientSamples: migrateClientSamples(load("exadex_client_samples", [])),
+    history: Array.isArray(load("exadex_history", load("adipovault_history", [])))
+      ? load("exadex_history", load("adipovault_history", []))
+      : [],
+    updatedAt: new Date().toISOString()
+  };
+}
+
+function createSharedState(rawState = null, options = {}) {
+  const { includeBootstrap = false } = options;
   const source = rawState && typeof rawState === "object" ? rawState : {};
-  const hasSharedInventory =
-    Array.isArray(source.inventoryItems) &&
-    (source.inventoryItems.length > 0 || Boolean(source.updatedAt));
+  const bootstrap = includeBootstrap ? createBootstrapSharedState() : null;
 
   return {
     version: 1,
-    inventoryItems: migrateItems(hasSharedInventory ? source.inventoryItems : migratedInventoryItems),
-    experiments: migrateExperiments(
-      Array.isArray(source.experiments)
-        ? source.experiments
-        : load("exadex_experiments", [])
+    inventoryItems: migrateItems(
+      Array.isArray(source.inventoryItems)
+        ? source.inventoryItems
+        : bootstrap?.inventoryItems || []
     ),
+    experiments: migrateExperiments(Array.isArray(source.experiments) ? source.experiments : bootstrap?.experiments || []),
     orders: Array.isArray(source.orders)
       ? source.orders
-      : load("exadex_orders", []),
-    clientSamples: migrateClientSamples(source.clientSamples),
+      : bootstrap?.orders || [],
+    clientSamples: migrateClientSamples(
+      Array.isArray(source.clientSamples)
+        ? source.clientSamples
+        : bootstrap?.clientSamples || []
+    ),
     history: Array.isArray(source.history)
       ? source.history
-      : load("exadex_history", load("adipovault_history", [])),
-    updatedAt: source.updatedAt || ""
+      : bootstrap?.history || [],
+    updatedAt: source.updatedAt || bootstrap?.updatedAt || ""
   };
+}
+
+function hasSharedDataPayload(data) {
+  if (!data || typeof data !== "object") return false;
+
+  return [
+    data.inventoryItems,
+    data.orders,
+    data.experiments,
+    data.clientSamples,
+    data.history
+  ].some(value => Array.isArray(value)) || Boolean(data.updatedAt);
 }
 
 function applySharedState(incomingState) {
   if (!incomingState || typeof incomingState !== "object") return;
 
-  sharedState = createSharedState(incomingState);
-
-  webItems = Array.isArray(sharedState.webItems)
-    ? structuredClone(sharedState.webItems)
-    : Array.isArray(sharedState.inventoryItems)
-      ? structuredClone(sharedState.inventoryItems)
-      : [];
-
-  seedOverrides =
-    sharedState.seedOverrides && typeof sharedState.seedOverrides === "object"
-      ? structuredClone(sharedState.seedOverrides)
-      : {};
-
-  deletedSeedIds = Array.isArray(sharedState.deletedSeedIds)
-    ? [...sharedState.deletedSeedIds]
-    : [];
-
-  if (Array.isArray(sharedState.orders)) {
-    orders = structuredClone(sharedState.orders);
-  }
-
-  if (Array.isArray(sharedState.experiments)) {
-    experiments = migrateExperiments(sharedState.experiments);
-  }
-
-  if (Array.isArray(sharedState.clientSamples)) {
-    clientSamples = migrateClientSamples(sharedState.clientSamples);
-  }
-
-  if (Array.isArray(sharedState.history)) {
-    history = structuredClone(sharedState.history);
-  }
-
-  items = buildItems();
+  sharedState = createSharedState(incomingState, { includeBootstrap: false });
+  syncRuntimeStateFromShared();
+  cacheSharedState();
   render();
 }
 
-  async function refreshSharedStateFromGithub() {
-    try {
-      const storage = window.ExadexGithubStorage;
-      if (!storage) return;
+async function refreshSharedStateFromGithub() {
+  try {
+    const storage = window.ExadexGithubStorage;
+    if (!storage) return;
+    if (sharedDataIsSaving || sharedDataHasUnsavedChanges) return;
 
-      const result = await storage.loadSharedData();
-      if (!result?.data) return;
+    const result = await storage.loadSharedData();
+    if (!hasSharedDataPayload(result?.data)) return;
 
-      sharedDataMode = result.mode;
-      sharedDataSha = result.sha;
-      applySharedState(result.data);
-    } catch (error) {
-      console.error("Shared refresh failed:", error);
-    }
+    sharedDataMode = result.mode;
+    sharedDataSha = result.sha;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+  } catch (error) {
+    sharedDataLastError = error.message || String(error);
+    console.error("Shared refresh failed:", error);
+    renderAlerts();
   }
+}
 
-  window.addEventListener("focus", refreshSharedStateFromGithub);
+window.addEventListener("focus", refreshSharedStateFromGithub);
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      refreshSharedStateFromGithub();
-    }
-  });
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    refreshSharedStateFromGithub();
+  }
+});
 
-  setInterval(refreshSharedStateFromGithub, 30000);
+setInterval(refreshSharedStateFromGithub, 30000);
 
 function syncRuntimeStateFromShared() {
   sharedState.inventoryItems = migrateItems(sharedState.inventoryItems);
@@ -511,50 +529,77 @@ async function hydrateSharedData() {
     if (!storage) {
       sharedDataMode = "cache-only";
       syncRuntimeStateFromShared();
-      persist({ skipRemote: true });
+      cacheSharedState();
       return;
     }
 
     const result = await storage.loadSharedData();
     sharedDataMode = result.mode;
     sharedDataSha = result.sha;
+    sharedDataRemoteReady = true;
 
-    if (result.data) {
-      sharedState = createSharedState(result.data);
+    if (hasSharedDataPayload(result.data)) {
+      sharedState = createSharedState(result.data, { includeBootstrap: false });
       syncRuntimeStateFromShared();
-      persist({ skipRemote: true });
+      cacheSharedState();
+      sharedDataLastError = "";
 
       if (!app.classList.contains("hidden")) {
         render();
       }
     } else {
+      sharedState = createSharedState(null, { includeBootstrap: true });
       syncRuntimeStateFromShared();
-      persist({ skipRemote: result.mode !== "github-write" });
+      cacheSharedState();
+
+      if (result.mode === "github-write") {
+        scheduleSharedSave({ allowInitialSeed: true });
+      }
     }
   } catch (error) {
     sharedDataMode = "cache-fallback";
     sharedDataLastError = error.message || String(error);
+    sharedDataRemoteReady = false;
     console.warn("Shared storage unavailable; using local cache.", error);
     syncRuntimeStateFromShared();
-    persist({ skipRemote: true });
+    cacheSharedState();
+    renderAlerts();
   }
 }
 
-function scheduleSharedSave() {
+function scheduleSharedSave(options = {}) {
   window.clearTimeout(sharedDataSaveTimer);
   sharedDataSaveTimer = window.setTimeout(async () => {
     try {
       const storage = window.ExadexGithubStorage;
-      if (!storage) return;
+      if (!storage) {
+        throw new Error("GitHub storage helper is unavailable; changes are only cached locally.");
+      }
       const config = storage.getConfig();
-      if (!config.owner || !config.repo || !config.path || !config.token) return;
+      if (!config.owner || !config.repo || !config.path) {
+        throw new Error("GitHub storage is not configured; changes are only cached locally.");
+      }
+      if (!config.token) {
+        throw new Error("GitHub token is missing; shared data is read-only and changes were not saved remotely.");
+      }
+      if (!sharedDataRemoteReady && !options.allowInitialSeed) {
+        throw new Error("Remote shared data was not loaded, so saving is blocked to protect GitHub data.");
+      }
 
+      sharedDataIsSaving = true;
+      renderAlerts();
       sharedDataSha = await storage.saveSharedData(sharedState, sharedDataSha);
       sharedDataMode = "github-write";
       sharedDataLastError = "";
+      sharedDataHasUnsavedChanges = false;
+      sharedDataRemoteReady = true;
     } catch (error) {
       sharedDataLastError = error.message || String(error);
+      sharedDataHasUnsavedChanges = true;
       console.warn("Shared storage save failed.", error);
+    } finally {
+      sharedDataIsSaving = false;
+      renderAlerts();
     }
   }, 400);
 }
@@ -562,7 +607,8 @@ function scheduleSharedSave() {
 // guarda una copia cache local y publica el estado compartido en GitHub cuando esta configurado
 function persist(options = {}) {
   syncSharedStateFromRuntime();
-  localStorage.setItem("exadex_shared_state_cache", JSON.stringify(sharedState));
+  cacheSharedState();
+  sharedDataHasUnsavedChanges = true;
 
   if (!options.skipRemote) {
     scheduleSharedSave();
@@ -690,13 +736,20 @@ function renderAlerts() {
   const alertsContainer = document.querySelector("#alerts");
   const visibleAlerts = alertsExpanded ? critical : critical.slice(0, 3);
   const hiddenCount = Math.max(critical.length - 3, 0);
+  const sharedStatusAlert = renderSharedDataAlert();
 
-  if (!critical.length) {
+  if (!critical.length && !sharedStatusAlert) {
     alertsContainer.innerHTML = "";
     return;
   }
 
+  if (!critical.length) {
+    alertsContainer.innerHTML = sharedStatusAlert;
+    return;
+  }
+
   alertsContainer.innerHTML = `
+    ${sharedStatusAlert}
     <div class="alerts-header-row">
       <div class="alerts-header-text">
         <strong>Alertes critiques</strong>
@@ -725,6 +778,34 @@ function renderAlerts() {
       renderAlerts();
     });
   }
+}
+
+function renderSharedDataAlert() {
+  if (sharedDataLastError) {
+    return `
+      <div class="alert shared-data-alert">
+        Données partagées non sauvegardées sur GitHub : ${escapeHtml(sharedDataLastError)}
+      </div>
+    `;
+  }
+
+  if (sharedDataIsSaving) {
+    return `
+      <div class="alert shared-data-alert saving">
+        Synchronisation GitHub en cours...
+      </div>
+    `;
+  }
+
+  if (sharedDataHasUnsavedChanges && sharedDataMode !== "github-write") {
+    return `
+      <div class="alert shared-data-alert">
+        Modifications en cache local uniquement : la sauvegarde GitHub n'est pas active.
+      </div>
+    `;
+  }
+
+  return "";
 }
 
 function renderInventory() {

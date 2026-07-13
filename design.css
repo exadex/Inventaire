@@ -257,6 +257,18 @@ textarea[readonly] {
   font-weight: 760;
 }
 
+.shared-data-alert {
+  background: #fff7e6;
+  border-color: #ffd992;
+  color: #7a4a00;
+}
+
+.shared-data-alert.saving {
+  background: #edf7ff;
+  border-color: #b8dcff;
+  color: #174a73;
+}
+
 .alerts-header-row {
   display: flex;
   justify-content: space-between;

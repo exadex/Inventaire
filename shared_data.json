@@ -11870,34 +11870,7 @@
       "createdAt": "2026-05-15 10:04"
     }
   ],
-  "clientSamples": [
-    {
-      "id": "sample-created-1783941299433-87fz5i",
-      "type": "created_sample",
-      "clientCode": "ASH001",
-      "location": "-20°C blanc labo",
-      "notes": "",
-      "createdAtRaw": "2026-07-13T11:14:59.433Z",
-      "createdAt": "13/07/2026 13:14",
-      "name": "P234 sécrétion J0 High dose (+GLP1) 7",
-      "baseName": "P234 sécrétion J0 High dose (+GLP1)",
-      "replicaNumber": 7,
-      "replicaCount": 7,
-      "category": "Secretion",
-      "creationDate": "2026-07-10",
-      "measureValue": 0.5,
-      "measureUnit": "mL",
-      "quantity": 0.5,
-      "unit": "mL",
-      "arrivalDate": "",
-      "referenceNumber": "",
-      "lotNumber": "",
-      "rawClientCode": "ASH001",
-      "normalizedClientKey": "ASH1",
-      "clientId": "client-ASH1",
-      "canonicalClientCode": "ASH001"
-    }
-  ],
+  "clientSamples": [],
   "clients": [
     {
       "normalizedKey": "ASH1",
@@ -11911,6 +11884,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 15:39",
+      "user": "Caroline",
+      "action": "Produit client supprimé",
+      "detail": "Caroline a supprimé P234 sécrétion J0 High dose (+GLP1) 7 des études clients."
+    },
     {
       "date": "13/07/2026 15:39",
       "user": "Caroline",
@@ -12260,5 +12239,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T13:39:32.827Z"
+  "updatedAt": "2026-07-13T13:39:36.291Z"
 }

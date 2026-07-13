@@ -11931,7 +11931,7 @@
       "clientId": "client-ASH1",
       "canonicalClientCode": "ASH001",
       "location": "Frigo culture L1",
-      "notes": "Arrivé en double. Conserver à RT puis à 4°C une fois ouvert. Conserver à l'abri de la lumière",
+      "notes": "Arrivé en double. \nConserver à RT puis à 4°C une fois ouvert. \nConserver à l'abri de la lumière",
       "createdAtRaw": "2026-07-13T13:41:54.371Z",
       "createdAt": "13/07/2026 15:41",
       "name": "Test item bis",
@@ -12008,6 +12008,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 17:07",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié Test item bis pour ASH001."
+    },
     {
       "date": "13/07/2026 17:06",
       "user": "Caroline",
@@ -12435,5 +12441,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T15:06:27.727Z"
+  "updatedAt": "2026-07-13T15:07:49.111Z"
 }

@@ -1847,7 +1847,7 @@ function renderSamples() {
   renderClientStudyKpis(clientSamples);
   if (refs.resultCount) {
     refs.resultCount.textContent =
-      `${filtered.length} résultat${filtered.length > 1 ? "s" : ""} · ${displayUnits.length} ligne${displayUnits.length > 1 ? "s" : ""}`;
+      `${filtered.length} résultat${filtered.length > 1 ? "s" : ""}`;
   }
 
   if (refs.rows) {
@@ -1906,20 +1906,17 @@ function syncAppViewMode() {
 function renderSampleDetail(sample) {
   const clientRecord = getClientForSample(sample);
   const clientCode = getSampleCanonicalClientCode(sample);
+  const sampleSubtitle = sample.category || getClientSampleSubLabel(sample);
 
   return `
     <div class="client-detail-header">
-      <div class="detail-topline">
-        <button class="room-exit-btn" type="button" onclick="returnFromSampleDetail()" aria-label="Fermer" title="Fermer">↩️</button>
-        <button class="ghost-btn compact-btn" type="button" onclick="openSampleModal('${escapeHtml(sample.id)}')">Modifier</button>
-      </div>
       <div>
         <div class="client-detail-meta">
           <span class="client-type-badge ${escapeHtml(sample.type)}">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
           <span class="result-pill">Client : ${escapeHtml(clientCode)}</span>
         </div>
         <h3>${escapeHtml(sample.name)}</h3>
-        <p class="category">${escapeHtml(sample.category || getClientSampleSubLabel(sample))}</p>
+        <p class="category">${escapeHtml(sampleSubtitle)}</p>
       </div>
     </div>
 
@@ -1927,27 +1924,23 @@ function renderSampleDetail(sample) {
       <h4>Informations</h4>
       <div class="item-detail-stack">
         ${renderDetailRow("Client", clientCode)}
-        ${sample.rawClientCode && sample.rawClientCode !== clientCode ? renderDetailRow("Code saisi", sample.rawClientCode) : ""}
-        ${renderDetailRow("Date", formatClientSampleDate(sample))}
-        ${renderDetailRow("Quantité / format", formatClientSampleQuantity(sample))}
-        ${renderDetailRow("Categorie", sample.category)}
+        ${renderDetailRow("Date", formatDisplayDateFrench(formatClientSampleDate(sample)))}
+        ${renderDetailRow("Quantité / format", formatSampleDisplayQuantity(sample))}
         ${renderDetailRow("Localisation", sample.location)}
         ${renderDetailRow("Identifiant client", clientRecord?.id)}
       </div>
     </div>
 
-    <div class="client-detail-section">
-      <h4>Traçabilité</h4>
-      <div class="item-detail-stack">
-        ${renderDetailRow("Reference produit", sample.referenceNumber)}
-        ${renderDetailRow("Lot", sample.lotNumber)}
-        ${renderDetailRow("ID", sample.id)}
+    ${sample.notes ? `
+      <div class="client-detail-section">
+        <h4>Notes</h4>
+        <p>${escapeHtml(sample.notes)}</p>
       </div>
-    </div>
+    ` : ""}
 
-    <div class="client-detail-section">
-      <h4>Notes</h4>
-      <p>${escapeHtml(sample.notes || "Aucune note")}</p>
+    <div class="client-detail-bottom-actions">
+      <button class="ghost-btn compact-btn" type="button" onclick="openSampleModal('${escapeHtml(sample.id)}')">Modifier</button>
+      <button class="danger-btn compact-btn" type="button" onclick="deleteSampleFromDetail('${escapeHtml(sample.id)}')">Supprimer</button>
     </div>
   `;
 }
@@ -1973,10 +1966,10 @@ function renderClientStudyKpis(samples) {
   const usedLocations = new Set(samples.map(sample => sample.location).filter(Boolean)).size;
 
   const kpis = [
-    ["📦", "Total produits", productCount],
-    ["🧪", "Total échantillons", createdCount],
+    ["📦", "Produits", productCount],
+    ["🧪", "Échantillons", createdCount],
     ["🏷️", "Clients actifs", activeClients],
-    ["📍", "Localisations utilisées", usedLocations]
+    ["📍", "Localisations", usedLocations]
   ];
 
   kpiContainer.innerHTML = kpis.map(([icon, label, value]) => `
@@ -2153,8 +2146,8 @@ function renderClientSampleGroups(units) {
       <section class="client-group">
         <button class="client-group-header" type="button" onclick="toggleClientGroup('${escapeHtml(groupKey)}')">
           <span class="client-group-title">
-            <span class="client-group-chevron">${isCollapsed ? "+" : "−"}</span>
-            <strong>Client : ${escapeHtml(group.code)}</strong>
+            <span class="client-group-chevron">${isCollapsed ? "›" : "⌄"}</span>
+            <strong>${escapeHtml(group.code)}</strong>
           </span>
           <span>${group.sampleCount} élément${group.sampleCount > 1 ? "s" : ""}</span>
         </button>
@@ -2173,7 +2166,7 @@ function renderClientDisplayUnit(unit) {
 function renderReplicaFamilyRow(unit) {
   const isExpanded = expandedReplicaGroups.has(unit.key);
   const firstSample = unit.samples[0];
-  const formattedDate = formatClientSampleDate(firstSample) || "—";
+  const formattedDate = formatDisplayDateFrench(formatClientSampleDate(firstSample)) || "—";
   const locations = Array.from(new Set(unit.samples.map(sample => sample.location).filter(Boolean)));
   const formattedQuantity = formatReplicaFamilyQuantity(unit.samples);
 
@@ -2191,27 +2184,21 @@ function renderReplicaFamilyRow(unit) {
             <span class="client-type-badge ${escapeHtml(firstSample.type)}">${escapeHtml(clientSampleTypes[firstSample.type] || firstSample.type)}</span>
             <span class="client-replica-count">${unit.count} réplicat${unit.count > 1 ? "s" : ""}</span>
             <span class="client-sample-cell-muted">${isExpanded ? "Replier" : "Déplier"}</span>
+            <span
+              class="client-delete-group-action"
+              role="button"
+              tabindex="0"
+              onclick="event.stopPropagation(); deleteReplicaFamily('${escapeHtml(unit.key)}')"
+              onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); deleteReplicaFamily('${escapeHtml(unit.key)}'); }"
+            >
+              Supprimer les réplicats
+            </span>
           </div>
         </div>
 
-        <div class="client-sample-meta">
-          <span class="client-meta-item">
-            <span class="client-meta-label">Client</span>
-            <span class="client-meta-value">${escapeHtml(unit.clientCode)}</span>
-          </span>
-          <span class="client-meta-item">
-            <span class="client-meta-label">Date</span>
-            <span class="client-meta-value">${escapeHtml(formattedDate)}</span>
-          </span>
-          <span class="client-meta-item">
-            <span class="client-meta-label">Localisation</span>
-            <span class="client-meta-value">${escapeHtml(locations.join(", ") || "—")}</span>
-          </span>
-          <span class="client-meta-item">
-            <span class="client-meta-label">Quantité totale</span>
-            <span class="client-meta-value">${escapeHtml(formattedQuantity)}</span>
-          </span>
-        </div>
+        <span class="client-table-cell">${escapeHtml(locations.join(", ") || "—")}</span>
+        <span class="client-table-cell">${escapeHtml(formattedQuantity)}</span>
+        <span class="client-table-cell">${escapeHtml(formattedDate)}</span>
       </button>
 
       ${isExpanded ? `
@@ -2224,10 +2211,9 @@ function renderReplicaFamilyRow(unit) {
 }
 
 function renderClientSampleRow(sample, options = {}) {
-  const clientCode = getSampleCanonicalClientCode(sample);
   const isSelected = selectedSampleId === sample.id;
-  const formattedDate = formatClientSampleDate(sample) || "—";
-  const formattedQuantity = formatClientSampleQuantity(sample) || "—";
+  const formattedDate = formatDisplayDateFrench(formatClientSampleDate(sample)) || "—";
+  const formattedQuantity = formatSampleDisplayQuantity(sample) || "—";
 
   return `
     <button
@@ -2240,27 +2226,13 @@ function renderClientSampleRow(sample, options = {}) {
         <div class="client-sample-subline">
           <span class="client-type-badge ${escapeHtml(sample.type)}">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
           <span>${escapeHtml(getClientSampleSubLabel(sample))}</span>
+          ${isSelected ? `<span class="client-selected-pill"><span aria-hidden="true">✓</span> Sélectionné</span>` : ""}
         </div>
       </div>
 
-      <div class="client-sample-meta">
-        <span class="client-meta-item">
-          <span class="client-meta-label">Client</span>
-          <span class="client-meta-value">${escapeHtml(clientCode)}</span>
-        </span>
-        <span class="client-meta-item">
-          <span class="client-meta-label">Date</span>
-          <span class="client-meta-value">${escapeHtml(formattedDate)}</span>
-        </span>
-        <span class="client-meta-item">
-          <span class="client-meta-label">Localisation</span>
-          <span class="client-meta-value">${escapeHtml(sample.location || "—")}</span>
-        </span>
-        <span class="client-meta-item">
-          <span class="client-meta-label">Quantité</span>
-          <span class="client-meta-value">${escapeHtml(formattedQuantity)}</span>
-        </span>
-      </div>
+      <span class="client-table-cell">${escapeHtml(sample.location || "—")}</span>
+      <span class="client-table-cell">${escapeHtml(formattedQuantity)}</span>
+      <span class="client-table-cell">${escapeHtml(formattedDate)}</span>
     </button>
   `;
 }
@@ -2274,14 +2246,54 @@ function toggleReplicaGroup(groupKey) {
   renderSamples();
 }
 
+function deleteReplicaFamily(groupKey) {
+  const familySamples = clientSamples.filter(sample => getReplicaFamilyKey(sample) === groupKey);
+  if (!familySamples.length) return;
+
+  const confirmed = window.confirm(
+    `Êtes-vous sûre de vouloir supprimer ${familySamples.length} réplicat${familySamples.length > 1 ? "s" : ""} ?`
+  );
+  if (!confirmed) return;
+
+  const deletedIds = new Set(familySamples.map(sample => sample.id));
+  const baseName = getReplicaBaseName(familySamples[0]) || familySamples[0].name;
+  clientSamples = clientSamples.filter(sample => !deletedIds.has(sample.id));
+
+  addHistory(
+    "Échantillons clients supprimés",
+    `${currentName} a supprimé ${familySamples.length} réplicat${familySamples.length > 1 ? "s" : ""} ${baseName} des études clients.`
+  );
+
+  if (selectedSampleId && deletedIds.has(selectedSampleId)) {
+    selectedSampleId = null;
+  }
+
+  persist();
+  render();
+}
+
+function deleteSampleFromDetail(id) {
+  const sample = clientSamples.find(entry => entry.id === id);
+  if (!sample) return;
+
+  const confirmed = window.confirm(`Êtes-vous sûre de vouloir supprimer "${sample.name}" ?`);
+  if (!confirmed) return;
+
+  clientSamples = clientSamples.filter(entry => entry.id !== id);
+
+  addHistory("Produit client supprimé", `${currentName} a supprimé ${sample.name} des études clients.`);
+  selectedSampleId = null;
+  persist();
+  render();
+}
+
 function formatReplicaFamilyQuantity(samples) {
   const units = new Set(samples.map(sample => sample.measureUnit || sample.unit).filter(Boolean));
   if (units.size !== 1) return `${samples.length} réplicats`;
 
   const unit = Array.from(units)[0];
   const total = samples.reduce((sum, sample) => sum + Number(sample.measureValue ?? sample.quantity ?? 0), 0);
-  const label = unit === "mL" ? "Volume" : unit === "mg" ? "Poids" : "Total";
-  return `${label}: ${Number(total.toFixed(3))} ${unit}`;
+  return formatFrenchQuantity(total, unit);
 }
 
 function toggleClientGroup(groupKey) {
@@ -2945,6 +2957,11 @@ function selectOrder(id) {
 }
 
 function openSampleDetail(id, context = {}) {
+  if (selectedSampleId === id) {
+    returnFromSampleDetail();
+    return;
+  }
+
   sampleReturnContext = {
     view: context.view || activeView || "samples",
     location: context.location ?? selectedLocation ?? null,
@@ -3252,6 +3269,9 @@ function deleteSample() {
   const id = sampleFields.sampleId.value;
   const sample = clientSamples.find(entry => entry.id === id);
   if (!sample) return;
+
+  const confirmed = window.confirm(`Êtes-vous sûre de vouloir supprimer "${sample.name}" ?`);
+  if (!confirmed) return;
 
   clientSamples = clientSamples.filter(entry => entry.id !== id);
 
@@ -4936,6 +4956,44 @@ function formatClientSampleQuantity(sample) {
   }
 
   return `${sample.quantity} ${sample.unit}`.trim();
+}
+
+function formatSampleDisplayQuantity(sample) {
+  if (!sample) return "";
+
+  const value = sample.type === "created_sample"
+    ? sample.measureValue ?? sample.quantity
+    : sample.quantity;
+  const unit = sample.type === "created_sample"
+    ? sample.measureUnit || sample.unit
+    : sample.unit;
+
+  return formatFrenchQuantity(value, unit);
+}
+
+function formatFrenchQuantity(value, unit) {
+  const rawUnit = String(unit || "").trim();
+  if (value === undefined || value === null || value === "") return rawUnit;
+
+  const number = Number(value);
+  const formattedValue = Number.isFinite(number)
+    ? new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 3 }).format(number)
+    : String(value);
+
+  return `${formattedValue} ${rawUnit}`.trim();
+}
+
+function formatDisplayDateFrench(value) {
+  if (!value) return "";
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return String(value);
+
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }).format(parsed);
 }
 
 function findInventoryItem(line) {

@@ -116,20 +116,20 @@
               <p class="eyebrow">Produits et &eacute;chantillons</p>
               <div class="client-studies-title-row">
                 <h3>&Eacute;tudes clients</h3>
-                <span id="sampleResultCount" class="result-pill"></span>
               </div>
             </div>
-            <button class="primary-btn" type="button" id="addClientStudyBtn">Nouveau produit</button>
+            <button class="primary-btn" type="button" id="addClientStudyBtn">Ajouter un produit</button>
           </div>
 
           <section class="client-study-controls">
             <label class="client-study-search">
-              <span>Recherche</span>
+              <span>Rechercher</span>
               <input
                 id="sampleSearchInput"
                 type="search"
-                placeholder="Client, produit, &eacute;chantillon, code..."
+                placeholder="Client, produit, &eacute;chantillon, code&hellip;"
               />
+              <small id="sampleResultCount" class="client-study-result-count"></small>
             </label>
 
             <label>
@@ -171,8 +171,10 @@
           <div class="client-study-layout">
             <section class="client-study-list-panel">
               <div class="client-study-list-head">
-                <span>&Eacute;l&eacute;ment</span>
-                <span>Informations</span>
+                <span>Produit</span>
+                <span>Localisation</span>
+                <span>Quantit&eacute;</span>
+                <span>Date</span>
               </div>
               <div class="client-study-groups" id="sampleRows"></div>
               <div class="client-study-pagination" id="samplePagination"></div>

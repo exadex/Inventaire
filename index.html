@@ -44,7 +44,7 @@
         </div>
         <nav class="nav">
           <button class="nav-item active" data-view="inventory">Inventaire</button>
-          <button class="nav-item" data-view="samples">Produits / &Eacute;chantillons clients</button>
+          <button class="nav-item" data-view="samples">&Eacute;tudes clients</button>
           <button class="nav-item" data-view="locations">Localisations</button>
           <button class="nav-item" data-view="experiments">Expériences</button>
           <button class="nav-item" data-view="orders">&Agrave; commander</button>
@@ -111,48 +111,74 @@
         </section>
 
         <section class="view" id="samplesView">
-          <div class="section-heading">
-            <h3>Produits / &Eacute;chantillons clients</h3>
-            <span id="sampleResultCount"></span>
+          <div class="client-studies-header">
+            <div>
+              <p class="eyebrow">Produits et &eacute;chantillons</p>
+              <div class="client-studies-title-row">
+                <h3>&Eacute;tudes clients</h3>
+                <span id="sampleResultCount" class="result-pill"></span>
+              </div>
+            </div>
+            <button class="primary-btn" type="button" id="addClientStudyBtn">Nouveau produit</button>
           </div>
 
-          <section class="control-bar sample-controls">
-            <label class="search-box">
-              <span>Rech.</span>
+          <section class="client-study-controls">
+            <label class="client-study-search">
+              <span>Recherche</span>
               <input
                 id="sampleSearchInput"
                 type="search"
-                placeholder="Rechercher par client ou nom..."
+                placeholder="Client, produit, &eacute;chantillon, code..."
               />
             </label>
 
-            <select id="sampleTypeFilter" class="select">
-              <option value="all">Tous types</option>
-              <option value="client_product">Produit re&ccedil;u du client</option>
-              <option value="created_sample">&Eacute;chantillon cr&eacute;&eacute;</option>
-            </select>
+            <label>
+              <span>Type</span>
+              <select id="sampleTypeFilter" class="select">
+                <option value="all">Tous types</option>
+                <option value="client_product">Produit re&ccedil;u du client</option>
+                <option value="created_sample">&Eacute;chantillon cr&eacute;&eacute;</option>
+              </select>
+            </label>
 
-            <select id="sampleCategoryFilter" class="select">
-              <option value="all">Toutes cat&eacute;gories</option>
-            </select>
+            <label>
+              <span>Client</span>
+              <select id="sampleClientFilter" class="select">
+                <option value="all">Tous clients</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Cat&eacute;gorie</span>
+              <select id="sampleCategoryFilter" class="select">
+                <option value="all">Toutes cat&eacute;gories</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Tri</span>
+              <select id="sampleSortSelect" class="select">
+                <option value="recent">Plus r&eacute;cents</option>
+                <option value="oldest">Plus anciens</option>
+                <option value="client-az">Code client A-Z</option>
+                <option value="client-za">Code client Z-A</option>
+              </select>
+            </label>
           </section>
 
-          <div id="sampleDetail"></div>
+          <div class="client-study-kpis" id="clientStudyKpis"></div>
 
-          <div class="sample-table-wrap">
-            <table class="sample-table client-sample-table">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Client</th>
-                  <th>Date</th>
-                  <th>Localisation</th>
-                  <th>Quantit&eacute;</th>
-                  <th>Type</th>
-                </tr>
-              </thead>
-              <tbody id="sampleRows"></tbody>
-            </table>
+          <div class="client-study-layout">
+            <section class="client-study-list-panel">
+              <div class="client-study-list-head">
+                <span>&Eacute;l&eacute;ment</span>
+                <span>Informations</span>
+              </div>
+              <div class="client-study-groups" id="sampleRows"></div>
+              <div class="client-study-pagination" id="samplePagination"></div>
+            </section>
+
+            <aside id="sampleDetail" class="client-study-detail-panel"></aside>
           </div>
         </section>
 
@@ -353,6 +379,7 @@
           <label>
             <span>Client code <span class="required-star">*</span></span>
             <input id="sampleClientCode" required />
+            <small id="sampleClientCodeHint" class="client-code-hint"></small>
           </label>
 
           <label class="sample-client-product-field">

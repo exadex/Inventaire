@@ -4,8 +4,8 @@
 // GitHub shared_data.json es la fuente compartida; localStorage solo sirve como cache/fallback.
 
 const clientSampleTypes = {
-  client_product: "Produit recu du client",
-  created_sample: "Echantillon cree"
+  client_product: "Produit reçu du client",
+  created_sample: "Échantillon créé"
 };
 
 const clientSampleCategories = ["Galette agarose", "Secretion", "ARN", "Tissu"];
@@ -40,6 +40,7 @@ let orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
 let experiments = migrateExperiments(sharedState.experiments);
 let history = Array.isArray(sharedState.history) ? sharedState.history : [];
 let clientSamples = migrateClientSamples(sharedState.clientSamples);
+let clients = migrateClients(sharedState.clients, clientSamples);
 
 const sharedDataReady = hydrateSharedData();
 
@@ -57,6 +58,10 @@ let viewReturnScrollY = { experiments: 0, locations: 0 };
 let selectedOrderId = null;
 let ordersMode = "board";
 let pendingOrderInventoryLink = null;
+const collapsedClientGroups = new Set();
+const expandedReplicaGroups = new Set();
+const SAMPLE_PAGE_SIZE = 50;
+let sampleCurrentPage = 1;
 
 const auth = document.querySelector("#auth");
 const app = document.querySelector("#app");
@@ -72,6 +77,9 @@ const categoryFilter = document.querySelector("#categoryFilter");
 const sampleSearchInput = document.querySelector("#sampleSearchInput");
 const sampleTypeFilter = document.querySelector("#sampleTypeFilter");
 const sampleCategoryFilter = document.querySelector("#sampleCategoryFilter");
+const sampleClientFilter = document.querySelector("#sampleClientFilter");
+const sampleSortSelect = document.querySelector("#sampleSortSelect");
+const addClientStudyBtn = document.querySelector("#addClientStudyBtn");
 const sampleDialog = document.querySelector("#sampleDialog");
 const sampleForm = document.querySelector("#sampleForm");
 const experimentSearchInput = document.querySelector("#experimentSearchInput");
@@ -229,6 +237,7 @@ document.querySelector("#addItemBtn").addEventListener("click", () => {
 
   openModal();
 });
+addClientStudyBtn?.addEventListener("click", () => openSampleModal());
 document.querySelector("#saveItemBtn").addEventListener("click", saveItem);
 document.querySelector("#deleteItemBtn").addEventListener("click", deleteItem);
 document.querySelector("#saveSampleBtn").addEventListener("click", saveSample);
@@ -258,11 +267,14 @@ orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
 orderFields.orderInventorySearch.addEventListener("input", renderOrderItemOptions);
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
-sampleSearchInput.addEventListener("input", renderSamples);
-sampleTypeFilter.addEventListener("change", renderSamples);
-sampleCategoryFilter.addEventListener("change", renderSamples);
+sampleSearchInput.addEventListener("input", resetSamplePagination);
+sampleTypeFilter.addEventListener("change", resetSamplePagination);
+sampleCategoryFilter.addEventListener("change", resetSamplePagination);
+sampleClientFilter?.addEventListener("change", resetSamplePagination);
+sampleSortSelect?.addEventListener("change", resetSamplePagination);
 sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
 sampleFields.sampleCategory.addEventListener("change", syncSampleMeasureLabel);
+sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
 experimentSearchInput.addEventListener("input", renderExperiments);
 experimentStatusFilter.addEventListener("change", renderExperiments);
 experimentDialog.addEventListener("close", () => {
@@ -333,7 +345,8 @@ document.querySelectorAll(".nav-item").forEach((button) => {
     document.querySelector(`#${activeView}View`).classList.add("active");
 
     controlBar.classList.toggle("hidden", activeView !== "inventory");
-    app.classList.toggle("history-mode", activeView === "history");
+    syncAppViewMode();
+    renderAlerts();
 
     if (activeView === "inventory") {
       renderInventory();
@@ -412,6 +425,7 @@ function createBootstrapSharedState() {
     experiments: migrateExperiments(load("exadex_experiments", [])),
     orders: Array.isArray(load("exadex_orders", [])) ? load("exadex_orders", []) : [],
     clientSamples: migrateClientSamples(load("exadex_client_samples", [])),
+    clients: migrateClients([], migrateClientSamples(load("exadex_client_samples", []))),
     history: Array.isArray(load("exadex_history", load("adipovault_history", [])))
       ? load("exadex_history", load("adipovault_history", []))
       : [],
@@ -440,6 +454,10 @@ function createSharedState(rawState = null, options = {}) {
         ? source.clientSamples
         : bootstrap?.clientSamples || []
     ),
+    clients: migrateClients(
+      Array.isArray(source.clients) ? source.clients : bootstrap?.clients || [],
+      Array.isArray(source.clientSamples) ? source.clientSamples : bootstrap?.clientSamples || []
+    ),
     history: Array.isArray(source.history)
       ? source.history
       : bootstrap?.history || [],
@@ -455,6 +473,7 @@ function hasSharedDataPayload(data) {
     data.orders,
     data.experiments,
     data.clientSamples,
+    data.clients,
     data.history
   ].some(value => Array.isArray(value)) || Boolean(data.updatedAt);
 }
@@ -504,12 +523,15 @@ function syncRuntimeStateFromShared() {
   sharedState.experiments = migrateExperiments(sharedState.experiments);
   sharedState.orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
   sharedState.clientSamples = migrateClientSamples(sharedState.clientSamples);
+  sharedState.clients = migrateClients(sharedState.clients, sharedState.clientSamples);
+  sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
 
   items = buildItems();
   orders = sharedState.orders;
   experiments = sharedState.experiments;
   clientSamples = sharedState.clientSamples;
+  clients = sharedState.clients;
   history = sharedState.history;
 }
 
@@ -518,6 +540,8 @@ function syncSharedStateFromRuntime() {
   sharedState.experiments = migrateExperiments(experiments);
   sharedState.orders = Array.isArray(orders) ? orders : [];
   sharedState.clientSamples = migrateClientSamples(clientSamples);
+  sharedState.clients = migrateClients(clients, sharedState.clientSamples);
+  sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(history) ? history : [];
   sharedState.updatedAt = new Date().toISOString();
 }
@@ -705,6 +729,8 @@ function renderSampleOptions() {
   sampleCategoryFilter.innerHTML = `<option value="all">Toutes categories</option>${clientSampleCategories
     .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
     .join("")}`;
+
+  renderClientFilterOptions();
 }
 
 function renderTemplateOptions() {
@@ -737,6 +763,11 @@ function renderAlerts() {
   const visibleAlerts = alertsExpanded ? critical : critical.slice(0, 3);
   const hiddenCount = Math.max(critical.length - 3, 0);
   const sharedStatusAlert = renderSharedDataAlert();
+
+  if (activeView !== "inventory") {
+    alertsContainer.innerHTML = sharedStatusAlert;
+    return;
+  }
 
   if (!critical.length && !sharedStatusAlert) {
     alertsContainer.innerHTML = "";
@@ -1239,92 +1270,515 @@ function renderSamples() {
   const query = normalizeSearch(sampleSearchInput.value || "");
   const type = sampleTypeFilter.value || "all";
   const category = sampleCategoryFilter.value || "all";
+  const client = sampleClientFilter?.value || "all";
+  const sort = sampleSortSelect?.value || "recent";
+
+  clients = migrateClients(clients, clientSamples);
+  clientSamples = hydrateClientIdentityForSamples(migrateClientSamples(clientSamples), clients);
+  renderClientFilterOptions(client);
+  const selectedClient = client === "all"
+    ? null
+    : clients.find(entry => entry.id === client || entry.normalizedKey === client);
 
   const filtered = clientSamples
     .filter(sample => {
+      const clientRecord = getClientForSample(sample);
       const haystack = normalizeSearch([
         sample.name,
         sample.baseName,
-        sample.clientCode
+        sample.clientCode,
+        sample.rawClientCode,
+        sample.canonicalClientCode,
+        clientRecord?.canonicalCode,
+        sample.category,
+        sample.location,
+        sample.referenceNumber,
+        sample.lotNumber
       ].join(" "));
 
       return (!query || haystack.includes(query)) &&
         (type === "all" || sample.type === type) &&
-        (category === "all" || sample.category === category);
+        (category === "all" || sample.category === category) &&
+        (
+          client === "all" ||
+          sample.clientId === client ||
+          sample.normalizedClientKey === client ||
+          (selectedClient && sample.normalizedClientKey === selectedClient.normalizedKey)
+        );
     })
-    .sort((a, b) => getClientSampleTime(b) - getClientSampleTime(a));
+    .sort((a, b) => compareClientSamples(a, b, sort));
+  const displayUnits = buildClientSampleDisplayUnits(filtered);
+  const pageCount = Math.max(1, Math.ceil(displayUnits.length / SAMPLE_PAGE_SIZE));
+  sampleCurrentPage = Math.min(Math.max(sampleCurrentPage, 1), pageCount);
+  const pageStart = (sampleCurrentPage - 1) * SAMPLE_PAGE_SIZE;
+  const pagedUnits = displayUnits.slice(pageStart, pageStart + SAMPLE_PAGE_SIZE);
 
   const detail = selectedSampleId
     ? clientSamples.find(sample => sample.id === selectedSampleId)
     : null;
 
-  document.querySelector("#sampleDetail").innerHTML = detail
+  const sampleDetailPanel = document.querySelector("#sampleDetail");
+  sampleDetailPanel.classList.toggle("has-selection", Boolean(detail));
+  sampleDetailPanel.innerHTML = detail
     ? renderSampleDetail(detail)
-    : "";
+    : renderSampleEmptyState();
 
-  document.querySelector("#samplesView .sample-table-wrap").classList.toggle("hidden", Boolean(detail));
+  renderClientStudyKpis(clientSamples);
   document.querySelector("#sampleResultCount").textContent =
-    `${filtered.length} resultat${filtered.length > 1 ? "s" : ""}`;
+    `${filtered.length} résultat${filtered.length > 1 ? "s" : ""} · ${displayUnits.length} ligne${displayUnits.length > 1 ? "s" : ""}`;
 
   document.querySelector("#sampleRows").innerHTML = filtered.length
-    ? filtered.map(sample => `
-      <tr class="clickable-row" onclick="openSampleDetail('${escapeHtml(sample.id)}', { view: 'samples' })">
-        <td>
-          <strong>${escapeHtml(sample.name)}</strong>
-          ${sample.category ? `<span class="table-subtext">${escapeHtml(sample.category)}</span>` : ""}
-        </td>
-        <td>${escapeHtml(sample.clientCode)}</td>
-        <td>${escapeHtml(formatClientSampleDate(sample))}</td>
-        <td>${escapeHtml(sample.location)}</td>
-        <td>${escapeHtml(formatClientSampleQuantity(sample))}</td>
-        <td>${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</td>
-      </tr>
-    `).join("")
-    : `<tr><td colspan="6" class="empty-table-cell">Aucun produit ou echantillon client pour le moment.</td></tr>`;
+    ? renderClientSampleGroups(pagedUnits)
+    : `<div class="client-study-empty"><div><strong>Aucune étude client</strong><p>Aucun produit ou échantillon ne correspond aux filtres actifs.</p></div></div>`;
+
+  document.querySelector("#samplePagination").innerHTML = filtered.length
+    ? renderSamplePagination(pageCount, displayUnits.length)
+    : "";
+}
+
+function syncAppViewMode() {
+  app.classList.toggle("history-mode", activeView === "history");
+  app.classList.toggle("samples-mode", activeView === "samples");
 }
 
 function renderSampleDetail(sample) {
+  const clientRecord = getClientForSample(sample);
+  const clientCode = getSampleCanonicalClientCode(sample);
+
   return `
-    <section class="inventory-detail-panel">
+    <div class="client-detail-header">
       <div class="detail-topline">
-        <button
-          class="room-exit-btn"
-          type="button"
-          onclick="returnFromSampleDetail()"
-          aria-label="Retour"
-          title="Retour"
-        >
-          ↩️
-        </button>
-        
-
-        <div class="detail-actions">
-          <button class="ghost-btn compact-btn" type="button" onclick="openSampleModal('${escapeHtml(sample.id)}')">
-            Modifier
-          </button>
-        </div>
+        <button class="room-exit-btn" type="button" onclick="returnFromSampleDetail()" aria-label="Fermer" title="Fermer">↩️</button>
+        <button class="ghost-btn compact-btn" type="button" onclick="openSampleModal('${escapeHtml(sample.id)}')">Modifier</button>
       </div>
-
-      <div class="experiment-detail-head">
-        <div>
-          <span class="badge ok">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
-          <h3>${escapeHtml(sample.name)}</h3>
-          <p>${escapeHtml(sample.clientCode)} - ${escapeHtml(sample.location)}</p>
+      <div>
+        <div class="client-detail-meta">
+          <span class="client-type-badge ${escapeHtml(sample.type)}">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
+          <span class="result-pill">Client : ${escapeHtml(clientCode)}</span>
         </div>
-
-        <small>ID: ${escapeHtml(sample.id)}</small>
+        <h3>${escapeHtml(sample.name)}</h3>
+        <p class="category">${escapeHtml(sample.category || getClientSampleSubLabel(sample))}</p>
       </div>
+    </div>
 
+    <div class="client-detail-section">
+      <h4>Informations</h4>
       <div class="item-detail-stack">
+        ${renderDetailRow("Client", clientCode)}
+        ${sample.rawClientCode && sample.rawClientCode !== clientCode ? renderDetailRow("Code saisi", sample.rawClientCode) : ""}
         ${renderDetailRow("Date", formatClientSampleDate(sample))}
-        ${renderDetailRow("Quantite / format", formatClientSampleQuantity(sample))}
+        ${renderDetailRow("Quantité / format", formatClientSampleQuantity(sample))}
         ${renderDetailRow("Categorie", sample.category)}
+        ${renderDetailRow("Localisation", sample.location)}
+        ${renderDetailRow("Identifiant client", clientRecord?.id)}
+      </div>
+    </div>
+
+    <div class="client-detail-section">
+      <h4>Traçabilité</h4>
+      <div class="item-detail-stack">
         ${renderDetailRow("Reference produit", sample.referenceNumber)}
         ${renderDetailRow("Lot", sample.lotNumber)}
-        ${renderDetailRow("Notes", sample.notes)}
+        ${renderDetailRow("ID", sample.id)}
       </div>
-    </section>
+    </div>
+
+    <div class="client-detail-section">
+      <h4>Notes</h4>
+      <p>${escapeHtml(sample.notes || "Aucune note")}</p>
+    </div>
   `;
+}
+
+function renderSampleEmptyState() {
+  return `
+    <div class="client-study-empty">
+      <div>
+        <strong>Sélectionnez une ligne</strong>
+        <p>Le détail du produit ou de l'échantillon client apparaîtra ici.</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderClientStudyKpis(samples) {
+  const productCount = samples.filter(sample => sample.type === "client_product").length;
+  const createdCount = samples.filter(sample => sample.type === "created_sample").length;
+  const activeClients = new Set(samples.map(sample => sample.clientId || sample.normalizedClientKey).filter(Boolean)).size;
+  const usedLocations = new Set(samples.map(sample => sample.location).filter(Boolean)).size;
+
+  const kpis = [
+    ["📦", "Total produits", productCount],
+    ["🧪", "Total échantillons", createdCount],
+    ["🏷️", "Clients actifs", activeClients],
+    ["📍", "Localisations utilisées", usedLocations]
+  ];
+
+  document.querySelector("#clientStudyKpis").innerHTML = kpis.map(([icon, label, value]) => `
+    <article class="client-kpi-card">
+      <span class="client-kpi-icon">${icon}</span>
+      <div>
+        <span>${escapeHtml(label)}</span>
+        <strong>${escapeHtml(value)}</strong>
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderClientFilterOptions(selectedValue = sampleClientFilter?.value || "all") {
+  if (!sampleClientFilter) return;
+
+  const sortedClients = [...clients].sort((a, b) =>
+    String(a.canonicalCode || "").localeCompare(String(b.canonicalCode || ""), "fr")
+  );
+
+  sampleClientFilter.innerHTML = `
+    <option value="all">Tous clients</option>
+    ${sortedClients.map(client => `
+      <option value="${escapeHtml(client.id)}">${escapeHtml(client.canonicalCode)}</option>
+    `).join("")}
+  `;
+
+  sampleClientFilter.value = [...sampleClientFilter.options].some(option => option.value === selectedValue)
+    ? selectedValue
+    : "all";
+}
+
+function resetSamplePagination() {
+  sampleCurrentPage = 1;
+  renderSamples();
+}
+
+function setSamplePage(page) {
+  sampleCurrentPage = page;
+  renderSamples();
+  document.querySelector("#samplesView")?.scrollIntoView({ block: "start", behavior: "smooth" });
+}
+
+function buildClientSampleDisplayUnits(samples) {
+  const familyBuckets = new Map();
+  const familyKeysBySampleId = new Map();
+
+  samples.forEach(sample => {
+    const familyKey = getReplicaFamilyKey(sample);
+    if (!familyKey) return;
+
+    if (!familyBuckets.has(familyKey)) {
+      familyBuckets.set(familyKey, []);
+    }
+
+    familyBuckets.get(familyKey).push(sample);
+    familyKeysBySampleId.set(sample.id, familyKey);
+  });
+
+  const realReplicaFamilies = new Set(
+    Array.from(familyBuckets.entries())
+      .filter(([, entries]) => entries.length > 1)
+      .map(([familyKey]) => familyKey)
+  );
+  const emittedFamilies = new Set();
+  const units = [];
+
+  samples.forEach(sample => {
+    const familyKey = familyKeysBySampleId.get(sample.id);
+
+    if (!familyKey || !realReplicaFamilies.has(familyKey)) {
+      units.push(createSingleSampleUnit(sample));
+      return;
+    }
+
+    if (emittedFamilies.has(familyKey)) return;
+
+    const familySamples = [...familyBuckets.get(familyKey)]
+      .sort(compareReplicaSamples);
+    units.push(createReplicaFamilyUnit(familyKey, familySamples));
+    emittedFamilies.add(familyKey);
+  });
+
+  return units;
+}
+
+function createSingleSampleUnit(sample) {
+  const clientRecord = getClientForSample(sample);
+  const clientGroupKey = clientRecord?.id || sample.normalizedClientKey || "client-unknown";
+
+  return {
+    kind: "sample",
+    key: `sample-${sample.id}`,
+    clientGroupKey,
+    clientCode: getSampleCanonicalClientCode(sample),
+    sample,
+    count: 1
+  };
+}
+
+function createReplicaFamilyUnit(familyKey, samples) {
+  const firstSample = samples[0];
+  const clientRecord = getClientForSample(firstSample);
+  const clientGroupKey = clientRecord?.id || firstSample.normalizedClientKey || "client-unknown";
+
+  return {
+    kind: "replicaFamily",
+    key: familyKey,
+    clientGroupKey,
+    clientCode: getSampleCanonicalClientCode(firstSample),
+    baseName: getReplicaBaseName(firstSample),
+    samples,
+    count: samples.length
+  };
+}
+
+function getReplicaFamilyKey(sample) {
+  if (sample?.type !== "created_sample") return "";
+  const baseName = getReplicaBaseName(sample);
+  if (!baseName || baseName === sample.name && Number(sample.replicaCount || 1) <= 1 && !sample.replicaNumber) return "";
+
+  const clientKey = getClientForSample(sample)?.id || sample.normalizedClientKey || "client-unknown";
+  return [
+    "replica",
+    clientKey,
+    sample.type,
+    sample.category || "none",
+    sample.creationDate || "no-date",
+    sample.location || "no-location",
+    baseName
+  ].map(toSafeKeyPart).join("-");
+}
+
+function getReplicaBaseName(sample) {
+  const sampleName = String(sample?.name || "").trim();
+  const explicitBaseName = String(sample?.baseName || "").trim();
+  if (explicitBaseName && explicitBaseName !== sampleName) return explicitBaseName;
+
+  return (explicitBaseName || sampleName).replace(/\s+\d+$/, "").trim();
+}
+
+function compareReplicaSamples(a, b) {
+  const replicaA = Number(a.replicaNumber || 0);
+  const replicaB = Number(b.replicaNumber || 0);
+  if (replicaA || replicaB) return replicaA - replicaB;
+  return String(a.name || "").localeCompare(String(b.name || ""), "fr", { numeric: true });
+}
+
+function toSafeKeyPart(value) {
+  return normalizeSearch(value)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "x";
+}
+
+function renderClientSampleGroups(units) {
+  const groups = new Map();
+
+  units.forEach(unit => {
+    const groupKey = unit.clientGroupKey;
+    if (!groups.has(groupKey)) {
+      groups.set(groupKey, {
+        code: unit.clientCode,
+        units: [],
+        sampleCount: 0
+      });
+    }
+    groups.get(groupKey).units.push(unit);
+    groups.get(groupKey).sampleCount += unit.count;
+  });
+
+  return Array.from(groups.entries()).map(([groupKey, group]) => {
+    const isCollapsed = collapsedClientGroups.has(groupKey);
+    return `
+      <section class="client-group">
+        <button class="client-group-header" type="button" onclick="toggleClientGroup('${escapeHtml(groupKey)}')">
+          <span class="client-group-title">
+            <span class="client-group-chevron">${isCollapsed ? "+" : "−"}</span>
+            <strong>Client : ${escapeHtml(group.code)}</strong>
+          </span>
+          <span>${group.sampleCount} élément${group.sampleCount > 1 ? "s" : ""}</span>
+        </button>
+        ${isCollapsed ? "" : group.units.map(renderClientDisplayUnit).join("")}
+      </section>
+    `;
+  }).join("");
+}
+
+function renderClientDisplayUnit(unit) {
+  return unit.kind === "replicaFamily"
+    ? renderReplicaFamilyRow(unit)
+    : renderClientSampleRow(unit.sample);
+}
+
+function renderReplicaFamilyRow(unit) {
+  const isExpanded = expandedReplicaGroups.has(unit.key);
+  const firstSample = unit.samples[0];
+  const formattedDate = formatClientSampleDate(firstSample) || "—";
+  const locations = Array.from(new Set(unit.samples.map(sample => sample.location).filter(Boolean)));
+  const formattedQuantity = formatReplicaFamilyQuantity(unit.samples);
+
+  return `
+    <div class="replica-family-block">
+      <button
+        class="client-sample-row replica-family-row"
+        type="button"
+        aria-expanded="${isExpanded ? "true" : "false"}"
+        onclick="toggleReplicaGroup('${escapeHtml(unit.key)}')"
+      >
+        <div class="client-sample-main">
+          <strong>${escapeHtml(unit.baseName)}</strong>
+          <div class="client-sample-subline">
+            <span class="client-type-badge ${escapeHtml(firstSample.type)}">${escapeHtml(clientSampleTypes[firstSample.type] || firstSample.type)}</span>
+            <span class="client-replica-count">${unit.count} réplicat${unit.count > 1 ? "s" : ""}</span>
+            <span class="client-sample-cell-muted">${isExpanded ? "Replier" : "Déplier"}</span>
+          </div>
+        </div>
+
+        <div class="client-sample-meta">
+          <span class="client-meta-item">
+            <span class="client-meta-label">Client</span>
+            <span class="client-meta-value">${escapeHtml(unit.clientCode)}</span>
+          </span>
+          <span class="client-meta-item">
+            <span class="client-meta-label">Date</span>
+            <span class="client-meta-value">${escapeHtml(formattedDate)}</span>
+          </span>
+          <span class="client-meta-item">
+            <span class="client-meta-label">Localisation</span>
+            <span class="client-meta-value">${escapeHtml(locations.join(", ") || "—")}</span>
+          </span>
+          <span class="client-meta-item">
+            <span class="client-meta-label">Quantité totale</span>
+            <span class="client-meta-value">${escapeHtml(formattedQuantity)}</span>
+          </span>
+        </div>
+      </button>
+
+      ${isExpanded ? `
+        <div class="replica-child-list">
+          ${unit.samples.map(sample => renderClientSampleRow(sample, { isReplicaChild: true })).join("")}
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+function renderClientSampleRow(sample, options = {}) {
+  const clientCode = getSampleCanonicalClientCode(sample);
+  const isSelected = selectedSampleId === sample.id;
+  const formattedDate = formatClientSampleDate(sample) || "—";
+  const formattedQuantity = formatClientSampleQuantity(sample) || "—";
+
+  return `
+    <button
+      class="client-sample-row ${options.isReplicaChild ? "replica-child-row" : ""} ${isSelected ? "active" : ""}"
+      type="button"
+      onclick="openSampleDetail('${escapeHtml(sample.id)}', { view: 'samples' })"
+    >
+      <div class="client-sample-main">
+        <strong>${escapeHtml(sample.name)}</strong>
+        <div class="client-sample-subline">
+          <span class="client-type-badge ${escapeHtml(sample.type)}">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
+          <span>${escapeHtml(getClientSampleSubLabel(sample))}</span>
+        </div>
+      </div>
+
+      <div class="client-sample-meta">
+        <span class="client-meta-item">
+          <span class="client-meta-label">Client</span>
+          <span class="client-meta-value">${escapeHtml(clientCode)}</span>
+        </span>
+        <span class="client-meta-item">
+          <span class="client-meta-label">Date</span>
+          <span class="client-meta-value">${escapeHtml(formattedDate)}</span>
+        </span>
+        <span class="client-meta-item">
+          <span class="client-meta-label">Localisation</span>
+          <span class="client-meta-value">${escapeHtml(sample.location || "—")}</span>
+        </span>
+        <span class="client-meta-item">
+          <span class="client-meta-label">Quantité</span>
+          <span class="client-meta-value">${escapeHtml(formattedQuantity)}</span>
+        </span>
+      </div>
+    </button>
+  `;
+}
+
+function toggleReplicaGroup(groupKey) {
+  if (expandedReplicaGroups.has(groupKey)) {
+    expandedReplicaGroups.delete(groupKey);
+  } else {
+    expandedReplicaGroups.add(groupKey);
+  }
+  renderSamples();
+}
+
+function formatReplicaFamilyQuantity(samples) {
+  const units = new Set(samples.map(sample => sample.measureUnit || sample.unit).filter(Boolean));
+  if (units.size !== 1) return `${samples.length} réplicats`;
+
+  const unit = Array.from(units)[0];
+  const total = samples.reduce((sum, sample) => sum + Number(sample.measureValue ?? sample.quantity ?? 0), 0);
+  const label = unit === "mL" ? "Volume" : unit === "mg" ? "Poids" : "Total";
+  return `${label}: ${Number(total.toFixed(3))} ${unit}`;
+}
+
+function toggleClientGroup(groupKey) {
+  if (collapsedClientGroups.has(groupKey)) {
+    collapsedClientGroups.delete(groupKey);
+  } else {
+    collapsedClientGroups.add(groupKey);
+  }
+  renderSamples();
+}
+
+function renderSamplePagination(pageCount, totalRows) {
+  if (pageCount <= 1) {
+    return `<div class="pagination-summary">${totalRows} ligne${totalRows > 1 ? "s" : ""}</div>`;
+  }
+
+  const pages = getVisibleSamplePages(pageCount);
+
+  return `
+    <div class="pagination-summary">
+      Page ${sampleCurrentPage} sur ${pageCount} · ${totalRows} ligne${totalRows > 1 ? "s" : ""}
+    </div>
+    <div class="pagination-controls">
+      <button class="ghost-btn compact-btn" type="button" onclick="setSamplePage(${sampleCurrentPage - 1})" ${sampleCurrentPage === 1 ? "disabled" : ""}>Précédent</button>
+      ${pages.map(page => page === "ellipsis"
+        ? `<span class="pagination-ellipsis">…</span>`
+        : `<button class="pagination-page ${page === sampleCurrentPage ? "active" : ""}" type="button" onclick="setSamplePage(${page})">${page}</button>`
+      ).join("")}
+      <button class="ghost-btn compact-btn" type="button" onclick="setSamplePage(${sampleCurrentPage + 1})" ${sampleCurrentPage === pageCount ? "disabled" : ""}>Suivant</button>
+    </div>
+  `;
+}
+
+function getVisibleSamplePages(pageCount) {
+  const pages = new Set([1, pageCount]);
+  for (let page = sampleCurrentPage - 2; page <= sampleCurrentPage + 2; page += 1) {
+    if (page >= 1 && page <= pageCount) pages.add(page);
+  }
+
+  const sorted = Array.from(pages).sort((a, b) => a - b);
+  return sorted.flatMap((page, index) => {
+    if (index === 0) return [page];
+    return page - sorted[index - 1] > 1 ? ["ellipsis", page] : [page];
+  });
+}
+
+function compareClientSamples(a, b, sort) {
+  if (sort === "oldest") return getClientSampleTime(a) - getClientSampleTime(b);
+  if (sort === "client-az") {
+    return getSampleCanonicalClientCode(a).localeCompare(getSampleCanonicalClientCode(b), "fr") ||
+      getClientSampleTime(b) - getClientSampleTime(a);
+  }
+  if (sort === "client-za") {
+    return getSampleCanonicalClientCode(b).localeCompare(getSampleCanonicalClientCode(a), "fr") ||
+      getClientSampleTime(b) - getClientSampleTime(a);
+  }
+  return getClientSampleTime(b) - getClientSampleTime(a);
+}
+
+function getClientSampleSubLabel(sample) {
+  if (sample.type === "created_sample") return sample.category || "Échantillon créé";
+  return [sample.referenceNumber, sample.lotNumber].filter(Boolean).join(" · ") || "Produit reçu du client";
 }
 
 function renderHistory() {
@@ -1943,7 +2397,7 @@ function openSampleDetail(id, context = {}) {
   document.querySelector("#samplesView").classList.add("active");
 
   controlBar.classList.add("hidden");
-  app.classList.remove("history-mode");
+  syncAppViewMode();
 
   renderSamples();
 }
@@ -1960,7 +2414,7 @@ function returnFromSampleDetail() {
   document.querySelector(`#${activeView}View`).classList.add("active");
 
   controlBar.classList.toggle("hidden", activeView !== "inventory");
-  app.classList.toggle("history-mode", activeView === "history");
+  syncAppViewMode();
 
   if (activeView === "locations") {
     selectedLocation = sampleReturnContext.location;
@@ -1984,7 +2438,7 @@ function openItemFromExperiment(id) {
   document.querySelector("#inventoryView").classList.add("active");
 
   controlBar.classList.remove("hidden");
-  app.classList.remove("history-mode");
+  syncAppViewMode();
 
   renderInventory();
 }
@@ -2008,7 +2462,7 @@ function openItemDetail(id, context = {}) {
   document.querySelector("#inventoryView").classList.add("active");
 
   controlBar.classList.remove("hidden");
-  app.classList.remove("history-mode");
+  syncAppViewMode();
 
   renderInventory();
 }
@@ -2028,7 +2482,7 @@ function returnFromItemDetail() {
     document.querySelector("#experimentsView").classList.add("active");
 
     controlBar.classList.add("hidden");
-    app.classList.remove("history-mode");
+    syncAppViewMode();
 
     renderExperiments();
     restorePageScrollY(itemReturnContext.scrollY);
@@ -2045,7 +2499,7 @@ function returnFromItemDetail() {
   document.querySelector(`#${activeView}View`).classList.add("active");
 
   controlBar.classList.toggle("hidden", activeView !== "inventory");
-  app.classList.toggle("history-mode", activeView === "history");
+  syncAppViewMode();
 
   render();
   restorePageScrollY(itemReturnContext.scrollY);
@@ -2053,16 +2507,17 @@ function returnFromItemDetail() {
 
 function openSampleModal(id) {
   const sample = clientSamples.find(entry => entry.id === id);
+  const sampleClientCode = sample ? getSampleCanonicalClientCode(sample) : "";
 
   sampleForm.reset();
   document.querySelector("#sampleModalTitle").textContent = sample
-    ? "Modifier produit / echantillon client"
-    : "Nouveau produit / echantillon client";
+    ? "Modifier produit / échantillon client"
+    : "Nouveau produit / échantillon client";
   document.querySelector("#deleteSampleBtn").style.display = sample ? "inline-block" : "none";
 
   sampleFields.sampleId.value = sample?.id || "";
   sampleFields.sampleType.value = sample?.type || "client_product";
-  sampleFields.sampleClientCode.value = sample?.clientCode || "";
+  sampleFields.sampleClientCode.value = sample?.rawClientCode || sampleClientCode;
   sampleFields.sampleProductName.value = sample?.type === "client_product" ? sample.name : "";
   sampleFields.sampleBaseName.value = sample?.baseName || (sample?.type === "created_sample" ? sample.name : "");
   sampleFields.sampleCategory.value = sample?.category || clientSampleCategories[0];
@@ -2079,6 +2534,7 @@ function openSampleModal(id) {
   sampleFields.sampleNotes.value = sample?.notes || "";
 
   syncSampleFormVisibility();
+  updateClientCodeHint();
   sampleDialog.showModal();
 }
 
@@ -2122,10 +2578,20 @@ function saveSample() {
 
   const type = sampleFields.sampleType.value;
   const now = new Date();
+  const clientInfo = ensureClientForCode(sampleFields.sampleClientCode.value.trim());
+  if (!clientInfo.normalizedKey) {
+    window.alert("Merci d'entrer un code client valide.");
+    return;
+  }
+
   const base = {
     id: existingId || "",
     type,
-    clientCode: sampleFields.sampleClientCode.value.trim(),
+    clientCode: clientInfo.canonicalCode,
+    rawClientCode: clientInfo.rawCode,
+    normalizedClientKey: clientInfo.normalizedKey,
+    clientId: clientInfo.id,
+    canonicalClientCode: clientInfo.canonicalCode,
     location: sampleFields.sampleLocation.value,
     notes: sampleFields.sampleNotes.value.trim(),
     createdAtRaw: existingSample?.createdAtRaw || now.toISOString(),
@@ -2151,8 +2617,8 @@ function saveSample() {
 
     upsertClientSamples([sample], existingId);
     addHistory(
-      existingId ? "Produit client modifie" : "Produit client ajoute",
-      `${currentName} a ${existingId ? "modifie" : "ajoute"} ${sample.name} pour ${sample.clientCode}.`
+      existingId ? "Produit client modifié" : "Produit client ajouté",
+      `${currentName} a ${existingId ? "modifié" : "ajouté"} ${sample.name} pour ${sample.canonicalClientCode}.`
     );
   } else {
     const baseName = sampleFields.sampleBaseName.value.trim();
@@ -2186,8 +2652,8 @@ function saveSample() {
 
     upsertClientSamples(samplesToSave, existingId);
     addHistory(
-      existingId ? "Echantillon client modifie" : "Echantillons clients ajoutes",
-      `${currentName} a ${existingId ? "modifie" : "ajoute"} ${replicaCount} echantillon${replicaCount > 1 ? "s" : ""} ${baseName} pour ${base.clientCode}.`
+      existingId ? "Échantillon client modifié" : "Échantillons clients ajoutés",
+      `${currentName} a ${existingId ? "modifié" : "ajouté"} ${replicaCount} échantillon${replicaCount > 1 ? "s" : ""} ${baseName} pour ${base.canonicalClientCode}.`
     );
   }
 
@@ -2216,7 +2682,7 @@ function deleteSample() {
 
   clientSamples = clientSamples.filter(entry => entry.id !== id);
 
-  addHistory("Produit client supprime", `${currentName} a supprime ${sample.name} des produits / echantillons clients.`);
+  addHistory("Produit client supprimé", `${currentName} a supprimé ${sample.name} des études clients.`);
   persist();
   sampleDialog.close();
 
@@ -3601,6 +4067,220 @@ function migrateExperiments(experimentList) {
   }));
 }
 
+function normalizeClientCode(value) {
+  const raw = String(value || "").trim();
+  const compact = raw
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase()
+    .replace(/[\s._\-\/\\]+/g, "");
+
+  if (!compact) {
+    return {
+      raw,
+      normalizedKey: "",
+      canonicalCode: ""
+    };
+  }
+
+  const match = compact.match(/^([A-Z]+)(\d+)$/);
+  if (!match) {
+    return {
+      raw,
+      normalizedKey: compact,
+      canonicalCode: compact
+    };
+  }
+
+  const prefix = match[1];
+  const numericValue = String(Number.parseInt(match[2], 10));
+  const safeNumber = numericValue === "NaN" ? match[2].replace(/^0+/, "") || "0" : numericValue;
+
+  return {
+    raw,
+    normalizedKey: `${prefix}${safeNumber}`,
+    canonicalCode: `${prefix}${safeNumber.padStart(3, "0")}`
+  };
+}
+
+function createClientRecordFromCode(code, existing = {}) {
+  const normalized = normalizeClientCode(code || existing.canonicalCode || existing.rawCode);
+  const normalizedKey = existing.normalizedKey || normalized.normalizedKey;
+  const canonicalCode = existing.canonicalCode || normalized.canonicalCode || normalized.raw || "CLIENT";
+
+  return {
+    ...existing,
+    id: existing.id || `client-${normalizedKey || createSafeItemId("unknown-client")}`,
+    normalizedKey,
+    canonicalCode,
+    rawCodes: Array.from(new Set([
+      ...(Array.isArray(existing.rawCodes) ? existing.rawCodes : []),
+      existing.rawCode,
+      normalized.raw
+    ].filter(Boolean))),
+    createdAtRaw: existing.createdAtRaw || new Date().toISOString(),
+    updatedAtRaw: existing.updatedAtRaw || new Date().toISOString()
+  };
+}
+
+function migrateClients(clientList = [], sampleList = []) {
+  const merged = new Map();
+
+  (Array.isArray(clientList) ? clientList : []).forEach(client => {
+    const record = createClientRecordFromCode(client?.canonicalCode || client?.rawCode || client?.normalizedKey, client || {});
+    if (!record.normalizedKey) return;
+    merged.set(record.normalizedKey, record);
+  });
+
+  (Array.isArray(sampleList) ? sampleList : []).forEach(sample => {
+    const normalized = normalizeClientCode(
+      sample?.rawClientCode ||
+      sample?.canonicalClientCode ||
+      sample?.clientCode
+    );
+    if (!normalized.normalizedKey) return;
+
+    const existing = merged.get(normalized.normalizedKey);
+    const next = createClientRecordFromCode(normalized.raw || normalized.canonicalCode, {
+      ...(existing || {}),
+      normalizedKey: normalized.normalizedKey,
+      canonicalCode: existing?.canonicalCode || normalized.canonicalCode,
+      rawCodes: [
+        ...(existing?.rawCodes || []),
+        sample?.rawClientCode,
+        sample?.clientCode,
+        sample?.canonicalClientCode
+      ].filter(Boolean)
+    });
+    merged.set(normalized.normalizedKey, next);
+  });
+
+  return Array.from(merged.values()).sort((a, b) =>
+    String(a.canonicalCode || "").localeCompare(String(b.canonicalCode || ""), "fr")
+  );
+}
+
+function getClientByNormalizedKey(normalizedKey) {
+  if (!normalizedKey) return null;
+  return clients.find(client => client.normalizedKey === normalizedKey) || null;
+}
+
+function ensureClientForCode(code) {
+  const normalized = normalizeClientCode(code);
+  if (!normalized.normalizedKey) {
+    return {
+      id: "",
+      rawCode: normalized.raw,
+      normalizedKey: "",
+      canonicalCode: ""
+    };
+  }
+
+  const existing = getClientByNormalizedKey(normalized.normalizedKey);
+  if (existing) {
+    if (normalized.raw && !existing.rawCodes?.includes(normalized.raw)) {
+      existing.rawCodes = [...(existing.rawCodes || []), normalized.raw];
+      existing.updatedAtRaw = new Date().toISOString();
+    }
+
+    return {
+      id: existing.id,
+      rawCode: normalized.raw,
+      normalizedKey: existing.normalizedKey,
+      canonicalCode: existing.canonicalCode
+    };
+  }
+
+  const created = createClientRecordFromCode(normalized.raw || normalized.canonicalCode);
+  clients = [...clients, created].sort((a, b) =>
+    String(a.canonicalCode || "").localeCompare(String(b.canonicalCode || ""), "fr")
+  );
+
+  return {
+    id: created.id,
+    rawCode: normalized.raw,
+    normalizedKey: created.normalizedKey,
+    canonicalCode: created.canonicalCode
+  };
+}
+
+function getClientForSample(sample) {
+  if (!sample) return null;
+  return clients.find(client => client.id === sample.clientId) ||
+    getClientByNormalizedKey(sample.normalizedClientKey) ||
+    getClientByNormalizedKey(normalizeClientCode(sample.clientCode).normalizedKey) ||
+    null;
+}
+
+function hydrateClientIdentityForSamples(sampleList, clientList) {
+  const registry = Array.isArray(clientList) ? clientList : [];
+
+  return (Array.isArray(sampleList) ? sampleList : []).map(sample => {
+    const normalizedKey = sample.normalizedClientKey ||
+      normalizeClientCode(sample.rawClientCode || sample.clientCode).normalizedKey;
+    const client = registry.find(entry => entry.id === sample.clientId) ||
+      registry.find(entry => entry.normalizedKey === normalizedKey);
+
+    if (!client) return sample;
+
+    return {
+      ...sample,
+      clientId: client.id,
+      normalizedClientKey: client.normalizedKey,
+      canonicalClientCode: client.canonicalCode,
+      clientCode: client.canonicalCode
+    };
+  });
+}
+
+function getSampleCanonicalClientCode(sample) {
+  const client = getClientForSample(sample);
+  if (client?.canonicalCode) return client.canonicalCode;
+  return sample?.canonicalClientCode ||
+    normalizeClientCode(sample?.rawClientCode || sample?.clientCode).canonicalCode ||
+    sample?.clientCode ||
+    "Client inconnu";
+}
+
+function getSimilarClientSuggestion(rawCode) {
+  const normalized = normalizeClientCode(rawCode);
+  if (!normalized.normalizedKey) return "";
+  if (getClientByNormalizedKey(normalized.normalizedKey)) return "";
+
+  const normalizedPrefix = normalized.normalizedKey.match(/^([A-Z]+)/)?.[1] || "";
+  if (!normalizedPrefix) return "";
+
+  const similar = clients.find(client => {
+    const clientPrefix = String(client.normalizedKey || "").match(/^([A-Z]+)/)?.[1] || "";
+    if (clientPrefix !== normalizedPrefix) return false;
+    return client.normalizedKey !== normalized.normalizedKey;
+  });
+
+  return similar?.canonicalCode || "";
+}
+
+function updateClientCodeHint() {
+  const hint = document.querySelector("#sampleClientCodeHint");
+  if (!hint) return;
+
+  const normalized = normalizeClientCode(sampleFields.sampleClientCode.value);
+  if (!normalized.normalizedKey) {
+    hint.textContent = "";
+    return;
+  }
+
+  const existing = getClientByNormalizedKey(normalized.normalizedKey);
+  if (existing) {
+    hint.textContent = `Client reconnu : ${existing.canonicalCode}`;
+    return;
+  }
+
+  const suggestion = getSimilarClientSuggestion(sampleFields.sampleClientCode.value);
+  hint.textContent = suggestion
+    ? `Nouveau client. Code proche existant : ${suggestion}`
+    : `Nouveau client : ${normalized.canonicalCode}`;
+}
+
 function migrateClientSamples(sampleList) {
   const safeList = Array.isArray(sampleList) ? sampleList : [];
   const seenIds = new Set();
@@ -3622,6 +4302,17 @@ function migrateClientSamples(sampleList) {
     const location = inventoryLocations.includes(sample?.location)
       ? sample.location
       : legacyLocationMap[sample?.location] || inventoryLocations[0];
+    const rawClientCode = String(
+      sample?.rawClientCode ||
+      sample?.clientCode ||
+      sample?.canonicalClientCode ||
+      ""
+    ).trim();
+    const normalizedClient = normalizeClientCode(
+      sample?.canonicalClientCode ||
+      rawClientCode
+    );
+    const canonicalClientCode = sample?.canonicalClientCode || normalizedClient.canonicalCode || rawClientCode;
 
     return {
       ...sample,
@@ -3629,7 +4320,11 @@ function migrateClientSamples(sampleList) {
       type,
       name: String(sample?.name || sample?.baseName || "").trim(),
       baseName: String(sample?.baseName || sample?.name || "").trim(),
-      clientCode: String(sample?.clientCode || "").trim(),
+      clientCode: canonicalClientCode,
+      rawClientCode,
+      normalizedClientKey: sample?.normalizedClientKey || normalizedClient.normalizedKey,
+      clientId: sample?.clientId || (normalizedClient.normalizedKey ? `client-${normalizedClient.normalizedKey}` : ""),
+      canonicalClientCode,
       category,
       location,
       arrivalDate: sample?.arrivalDate || "",

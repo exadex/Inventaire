@@ -11872,6 +11872,32 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1783950365570-f20i8q",
+      "type": "client_product",
+      "clientCode": "APHM",
+      "rawClientCode": "APHM",
+      "normalizedClientKey": "APHM",
+      "clientId": "client-APHM",
+      "canonicalClientCode": "APHM",
+      "location": "Culture L1",
+      "notes": "Conserver à RT\nInjecter 200µL",
+      "createdAtRaw": "2026-07-13T13:46:05.570Z",
+      "createdAt": "13/07/2026 15:46",
+      "name": "Exosome test #1",
+      "arrivalDate": "2026-07-02",
+      "quantity": 2,
+      "unit": "mL",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Exosome test #1",
+      "creationDate": "",
+      "measureValue": 2,
+      "measureUnit": "mL",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1783950236643-fro2wp",
       "type": "client_product",
       "clientCode": "MIB002",
@@ -11978,6 +12004,16 @@
   ],
   "clients": [
     {
+      "id": "client-APHM",
+      "normalizedKey": "APHM",
+      "canonicalCode": "APHM",
+      "rawCodes": [
+        "APHM"
+      ],
+      "createdAtRaw": "2026-07-13T13:46:05.570Z",
+      "updatedAtRaw": "2026-07-13T13:46:05.570Z"
+    },
+    {
       "normalizedKey": "ASH1",
       "canonicalCode": "ASH001",
       "rawCodes": [
@@ -11999,6 +12035,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 15:46",
+      "user": "Caroline",
+      "action": "Produit client ajouté",
+      "detail": "Caroline a ajouté Exosome test #1 pour APHM."
+    },
     {
       "date": "13/07/2026 15:44",
       "user": "Caroline",
@@ -12390,5 +12432,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T13:44:39.986Z"
+  "updatedAt": "2026-07-13T13:46:05.571Z"
 }

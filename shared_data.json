@@ -11872,6 +11872,32 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1783950114371-9vaw87",
+      "type": "client_product",
+      "clientCode": "ASH001",
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001",
+      "location": "Frigo culture L1",
+      "notes": "Arrivé en double. Conserver à RT puis à 4°C une fois ouvert. Conserver à l'abri de la lumière",
+      "createdAtRaw": "2026-07-13T13:41:54.371Z",
+      "createdAt": "13/07/2026 15:41",
+      "name": "Test item bis",
+      "arrivalDate": "2026-07-10",
+      "quantity": 0.05,
+      "unit": "L",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Test item bis",
+      "creationDate": "",
+      "measureValue": 0.05,
+      "measureUnit": "L",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1783950067755-qnq4at",
       "type": "client_product",
       "clientCode": "ASH001",
@@ -11911,6 +11937,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 15:41",
+      "user": "Caroline",
+      "action": "Produit client ajouté",
+      "detail": "Caroline a ajouté Test item bis pour ASH001."
+    },
     {
       "date": "13/07/2026 15:41",
       "user": "Caroline",
@@ -12272,5 +12304,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T13:41:07.756Z"
+  "updatedAt": "2026-07-13T13:41:54.372Z"
 }

@@ -872,10 +872,13 @@ function renderInventory() {
     ? items.find((item) => item.id === selectedItemId)
     : null;
 
+  app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(detail));
+
   document.querySelector("#inventoryDetail").innerHTML = detail
     ? renderInventoryDetail(detail)
     : "";
 
+  controlBar.classList.toggle("hidden", activeView !== "inventory" || Boolean(detail));
   document.querySelector("#inventoryGrid").classList.toggle("hidden", Boolean(detail));
 
   document.querySelector("#inventoryGrid").innerHTML = filtered.map((item) => {
@@ -896,8 +899,8 @@ function renderInventory() {
         </div>
 
         <div class="stock-line">
-          <span>${item.quantity} ${escapeHtml(item.unit)}</span>
-          <span>Min ${item.minStock} ${escapeHtml(item.unit)}</span>
+          <span>${formatInventoryCardQuantity(item.quantity, item.unit)}</span>
+          <span>Min ${formatInventoryCardQuantity(item.minStock, item.unit)}</span>
         </div>
 
         ${item.tags?.length ? `
@@ -906,11 +909,10 @@ function renderInventory() {
           </div>
         ` : ""}
 
-        <small>${escapeHtml(formatLocations(item))}</small>
+        <small class="inventory-card-location">${escapeHtml(formatLocations(item))}</small>
 
-        <div class="card-actions">
-          <span></span>
-          <div class="card-button-stack">
+        <div class="card-actions inventory-card-actions">
+          <div class="card-button-stack inventory-card-button-group">
             <button
               class="text-btn"
               type="button"
@@ -923,7 +925,7 @@ function renderInventory() {
               type="button"
               onclick="event.stopPropagation(); openStockModal('${escapeHtml(item.id)}')"
             >
-              Stock update
+              Mettre à jour le stock
             </button>
           </div>
         </div>
@@ -932,137 +934,639 @@ function renderInventory() {
   }).join("");
 }
 
+function formatInventoryCardQuantity(quantity, unit) {
+  const displayUnit = formatInventoryDisplayUnit(quantity, unit);
+  return `${escapeHtml(quantity)} ${escapeHtml(displayUnit)}`.trim();
+}
+
+function formatInventoryDisplayUnit(quantity, unit) {
+  const rawUnit = String(unit || "").trim();
+  if (!rawUnit) return "";
+
+  const normalizedUnit = normalizeSearch(rawUnit);
+  const singular = Number(quantity) === 1;
+  const unitForms = {
+    unite: ["unité", "unités"],
+    unites: ["unité", "unités"],
+    unit: ["unité", "unités"],
+    units: ["unité", "unités"],
+    piece: ["pièce", "pièces"],
+    pieces: ["pièce", "pièces"],
+    plaque: ["plaque", "plaques"],
+    plaques: ["plaque", "plaques"],
+    tube: ["tube", "tubes"],
+    tubes: ["tube", "tubes"],
+    boite: ["boîte", "boîtes"],
+    boites: ["boîte", "boîtes"],
+    flacon: ["flacon", "flacons"],
+    flacons: ["flacon", "flacons"],
+    seringue: ["seringue", "seringues"],
+    seringues: ["seringue", "seringues"],
+    syringe: ["seringue", "seringues"],
+    syringes: ["seringue", "seringues"],
+    sachet: ["sachet", "sachets"],
+    sachets: ["sachet", "sachets"],
+    kit: ["kit", "kits"],
+    kits: ["kit", "kits"],
+    test: ["test", "tests"],
+    tests: ["test", "tests"]
+  };
+
+  const forms = unitForms[normalizedUnit];
+  if (!forms) return rawUnit;
+  return singular ? forms[0] : forms[1];
+}
+
 function renderInventoryDetail(item) {
   const status = itemStatus(item);
   const references = normalizeReferences(item.references);
-  const percent = Math.min(
-    100,
-    stockLevelPercent(item)
-  );
+  const locations = formatLocations(item);
 
   return `
     <section class="inventory-detail-panel">
-      <div class="detail-topline">
+      <div class="inventory-detail-return-row">
         <button
-          class="room-exit-btn"
+          class="ghost-btn inventory-back-btn"
           type="button"
           onclick="returnFromItemDetail()"
-          aria-label="Retour"
-          title="Retour"
+          aria-label="Retour à l'inventaire"
         >
-          ↩️
+          <span aria-hidden="true">←</span>
+          Retour à l'inventaire
         </button>
-
-        <div class="detail-actions">
-          <button class="ghost-btn compact-btn" type="button" onclick="openModal('${escapeHtml(item.id)}')">
-            Modifier
-          </button>
-          <button class="primary-btn compact-btn" type="button" onclick="openStockModal('${escapeHtml(item.id)}')">
-            Stock update
-          </button>
-        </div>
       </div>
 
-      <div class="experiment-detail-head">
-        <div>
+      <div class="inventory-detail-header">
+        <div class="inventory-detail-title">
           <span class="badge ${status}">${escapeHtml(statusLabel(status))}</span>
           <h3>${escapeHtml(item.name)}</h3>
-          <p>${escapeHtml(item.category)} - ${escapeHtml(formatLocations(item))}</p>
-        </div>
-
-        <small>ID: ${escapeHtml(item.id)}</small>
-      </div>
-
-      <div class="stock-summary">
-        <strong>${item.quantity} ${escapeHtml(item.unit)}</strong>
-        <span>Minimum: ${item.minStock} ${escapeHtml(item.unit)}</span>
-        <div class="bar">
-          <span class="${status}" style="width:${percent}%"></span>
-        </div>
-      </div>
-
-      ${item.tags?.length ? `
-        <div>
-          <h4>Tags</h4>
-          <div class="tags">
-            ${item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+          <div class="inventory-detail-meta">
+            <span>ID : ${escapeHtml(item.id)}</span>
+            <span>${escapeHtml(locations)}</span>
+            <span>${escapeHtml(item.category)}</span>
           </div>
         </div>
-      ` : ""}
 
-      ${item.protocol ? `
-        <div>
-          <h4>Protocole</h4>
-          <p>${escapeHtml(item.protocol)}</p>
+        <div class="detail-actions inventory-detail-actions">
+          <button class="ghost-btn compact-btn" type="button" onclick="openModal('${escapeHtml(item.id)}')">
+            Modifier la fiche
+          </button>
+          <button class="primary-btn compact-btn" type="button" onclick="openStockModal('${escapeHtml(item.id)}')">
+            Mettre à jour le stock
+          </button>
         </div>
-      ` : ""}
+      </div>
 
-      ${item.notes ? `
-        <div>
-          <h4>Notes</h4>
-          <p>${escapeHtml(item.notes)}</p>
-        </div>
-      ` : ""}
+      ${renderStockVisualCard(item)}
 
-      <div>
-        <h4>Références</h4>
-
-        ${
-          references.primary.supplier ||
-          references.primary.reference ||
-          references.primary.link ||
-          references.primary.notes ||
-          references.primary.price ||
-          references.primary.unitPrice ||
-          references.primary.leadTime
-            ? `
-              <div class="reference-block">
-                <strong>Référence principale</strong>
-
-                <div class="item-detail-stack">
-                  ${renderDetailRow("Fournisseur", references.primary.supplier)}
-                  ${renderDetailRow("Référence", references.primary.reference)}
-
-                  ${references.primary.link ? `
-                    <div class="item-detail-row">
-                      <span class="item-detail-label">Lien</span>
-                      <div class="item-detail-value">
-                        <a href="${escapeHtml(references.primary.link)}" target="_blank" rel="noopener noreferrer">
-                          ${escapeHtml(references.primary.link)}
-                        </a>
-                      </div>
-                    </div>
-                  ` : ""}
-
-                  ${renderDetailRow("Notes", references.primary.notes)}
-                  ${renderDetailRow("Prix", formatPriceEuro(references.primary.price))}
-                  ${renderDetailRow("Prix unitaire", formatPriceEuro(references.primary.unitPrice))}
-                  ${renderDetailRow("Délais de livraison", references.primary.leadTime)}
-                </div>
-              </div>
-            `
-            : "<p>Aucune référence principale.</p>"
-        }
-
-        ${
-          references.secondary.length
-            ? `
-              <div class="secondary-references">
-                ${references.secondary.map((reference, index) => `
-                  <div class="reference-block">
-                    <strong>Référence secondaire ${index + 1}</strong>
-                    <div class="item-detail-stack">
-                      ${renderDetailRow("Référence", reference.reference)}
-                      ${renderDetailRow("Notes", reference.notes)}
-                    </div>
-                  </div>
-                `).join("")}
-              </div>
-            `
-            : ""
-        }
+      <div class="inventory-detail-secondary-grid">
+        ${renderInventoryReferencesPanel(references)}
+        ${renderInventoryInfoPanel(item)}
       </div>
     </section>
+  `;
+}
+
+function renderInventoryInfoPanel(item) {
+  const sections = [
+    item.tags?.length ? `
+      <div class="inventory-info-group">
+        <h4>Tags</h4>
+        <div class="tags">
+          ${item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
+        </div>
+      </div>
+    ` : "",
+    item.protocol ? `
+      <div class="inventory-info-group">
+        <h4>Protocole</h4>
+        <p>${escapeHtml(item.protocol)}</p>
+      </div>
+    ` : "",
+    item.notes ? `
+      <div class="inventory-info-group">
+        <h4>Notes</h4>
+        <p>${escapeHtml(item.notes)}</p>
+      </div>
+    ` : ""
+  ].filter(Boolean);
+
+  if (!sections.length) return "";
+
+  return `
+    <section class="inventory-info-panel">
+      <div class="inventory-panel-heading">
+        <span class="inventory-panel-icon">i</span>
+        <h3>Informations</h3>
+      </div>
+      ${sections.join("")}
+    </section>
+  `;
+}
+
+function renderInventoryReferencesPanel(references) {
+  const primaryRows = [
+    renderReferenceRow("Fournisseur", references.primary.supplier),
+    renderReferenceRow("Référence", references.primary.reference, { copyable: true }),
+    renderReferenceLinkRow("Lien", references.primary.link),
+    renderReferenceRow("Notes", references.primary.notes),
+    renderReferenceRow("Prix", formatPriceEuro(references.primary.price)),
+    renderReferenceRow("Prix unitaire", formatPriceEuro(references.primary.unitPrice)),
+    renderReferenceRow("Délais de livraison", references.primary.leadTime)
+  ].filter(Boolean);
+
+  const secondaryBlocks = references.secondary
+    .map((reference, index) => {
+      const rows = [
+        renderReferenceRow("Référence", reference.reference, { copyable: true }),
+        renderReferenceRow("Notes", reference.notes)
+      ].filter(Boolean);
+
+      if (!rows.length) return "";
+
+      return `
+        <div class="reference-block secondary-reference-block">
+          <strong>Référence secondaire ${index + 1}</strong>
+          <div class="item-detail-stack">${rows.join("")}</div>
+        </div>
+      `;
+    })
+    .filter(Boolean);
+
+  if (!primaryRows.length && !secondaryBlocks.length) {
+    return `
+      <section class="inventory-info-panel">
+        <div class="inventory-panel-heading">
+          <span class="inventory-panel-icon">↗</span>
+          <h3>Références</h3>
+        </div>
+        <p>Aucune référence principale.</p>
+      </section>
+    `;
+  }
+
+  return `
+    <section class="inventory-info-panel inventory-reference-panel">
+      <div class="inventory-panel-heading">
+        <span class="inventory-panel-icon">↗</span>
+        <h3>Référence principale</h3>
+      </div>
+      ${
+        primaryRows.length
+          ? `<div class="item-detail-stack">${primaryRows.join("")}</div>`
+          : `<p>Aucune référence principale.</p>`
+      }
+      ${secondaryBlocks.length ? `<div class="secondary-references">${secondaryBlocks.join("")}</div>` : ""}
+    </section>
+  `;
+}
+
+function renderReferenceRow(label, value, options = {}) {
+  if (!value || !String(value).trim()) return "";
+
+  return `
+    <div class="item-detail-row reference-detail-row">
+      <span class="item-detail-label">${escapeHtml(label)}</span>
+      <div class="item-detail-value reference-detail-value">
+        <span>${escapeHtml(value)}</span>
+        ${options.copyable ? `
+          <button
+            class="copy-reference-btn"
+            type="button"
+            data-copy-value="${escapeHtml(value)}"
+            onclick="copyReferenceToClipboard(this)"
+            aria-label="Copier la référence"
+          >
+            Copier
+          </button>
+        ` : ""}
+      </div>
+    </div>
+  `;
+}
+
+function renderReferenceLinkRow(label, value) {
+  if (!value || !String(value).trim()) return "";
+
+  return `
+    <div class="item-detail-row reference-detail-row">
+      <span class="item-detail-label">${escapeHtml(label)}</span>
+      <div class="item-detail-value reference-detail-value">
+        <a class="external-reference-link" href="${escapeHtml(value)}" target="_blank" rel="noopener noreferrer">
+          ${escapeHtml(value)}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+function copyReferenceToClipboard(button) {
+  const value = button?.dataset?.copyValue || "";
+  if (!value) return;
+
+  const showCopied = () => {
+    const previousText = button.textContent;
+    button.textContent = "Copié";
+    button.classList.add("copied");
+    window.setTimeout(() => {
+      button.textContent = previousText;
+      button.classList.remove("copied");
+    }, 1400);
+  };
+
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(value).then(showCopied).catch(() => {
+      window.prompt("Copier la référence", value);
+    });
+    return;
+  }
+
+  window.prompt("Copier la référence", value);
+  showCopied();
+}
+
+// Stock visual priority: explicit product/type override > category mapping > unit mapping > generic fallback.
+const stockVisualProductRules = [
+  {
+    type: "syringe",
+    match: ({ text }) => /\b(seringue|syringe|luer|aiguille|needle)\b/.test(text)
+  },
+  {
+    type: "tubeRack",
+    match: ({ text }) => /\b(tube|tubes|vial|vials|cryotube|eppendorf|falcon)\b/.test(text)
+  },
+  {
+    type: "plate",
+    match: ({ text }) => /\b(plaque|plate|well|puits|boite de petri|boîte de petri|petri)\b/.test(text)
+  }
+];
+
+const stockVisualCategoryRules = [
+  {
+    type: "powder",
+    match: ({ categoryText, text }) =>
+      /\b(poudre|powder|solide|solid|granule|beads?|agarose)\b/.test(`${categoryText} ${text}`)
+  },
+  {
+    type: "liquid",
+    match: ({ categoryText, text }) =>
+      /\b(liquide|liquid|reactif|reagent|tampon|buffer|milieu|media|solution|serum)\b/.test(`${categoryText} ${text}`)
+  },
+  {
+    type: "unit",
+    match: ({ categoryText, text }) =>
+      /\b(consommable|consumable|plastique|plastic|materiel|matériel|embout|tip|gant|box|boite|boîte)\b/.test(`${categoryText} ${text}`)
+  }
+];
+
+const stockVisualUnitMap = {
+  ml: "liquid",
+  l: "liquid",
+  ul: "liquid",
+  "µl": "liquid",
+  g: "powder",
+  mg: "powder",
+  kg: "powder",
+  unite: "unit",
+  unites: "unit",
+  unit: "unit",
+  units: "unit",
+  piece: "unit",
+  pieces: "unit",
+  "pièce": "unit",
+  "pièces": "unit",
+  plaque: "plate",
+  plaques: "plate",
+  tube: "tubeRack",
+  tubes: "tubeRack",
+  boite: "unit",
+  boites: "unit",
+  "boîte": "unit",
+  "boîtes": "unit",
+  flacon: "liquid",
+  flacons: "liquid",
+  sachet: "unit",
+  sachets: "unit"
+};
+
+function getStockVisualType(item) {
+  const unit = normalizeStockUnit(item?.unit);
+  const categoryText = normalizeSearch(item?.category || "");
+  const text = normalizeSearch([
+    item?.name,
+    item?.category,
+    item?.unit,
+    ...(Array.isArray(item?.tags) ? item.tags : [])
+  ].join(" "));
+
+  const context = { item, unit, categoryText, text };
+  return stockVisualProductRules.find(rule => rule.match(context))?.type ||
+    stockVisualCategoryRules.find(rule => rule.match(context))?.type ||
+    stockVisualUnitMap[unit] ||
+    "generic";
+}
+
+function normalizeStockUnit(unit) {
+  return String(unit || "")
+    .trim()
+    .toLowerCase()
+    .replace("μ", "µ")
+    .replace(/^u(l)$/i, "ul")
+    .replace(/\s+/g, "");
+}
+
+function renderStockVisualCard(item) {
+  const status = itemStatus(item);
+  const visualType = getStockVisualType(item);
+  const quantity = Number(item.quantity || 0);
+  const minimum = Number(item.minStock || 0);
+  const hasMinimum = minimum > 0;
+  const visualPercent = hasMinimum
+    ? Math.min(100, Math.max(0, (quantity / Math.max(quantity, minimum * 2, 1)) * 100))
+    : (quantity > 0 ? 70 : 0);
+  const unitSingular = formatInventoryDisplayUnit(1, item.unit);
+  const currentUnit = formatInventoryDisplayUnit(quantity, item.unit);
+  const minimumUnit = formatInventoryDisplayUnit(minimum, item.unit);
+  const quantityValue = escapeHtml(formatCleanNumber(quantity));
+  const minimumValue = escapeHtml(formatCleanNumber(minimum));
+  const health = stockHealthText(status, hasMinimum);
+  const interpretation = stockInterpretationText(quantity, minimum, unitSingular, currentUnit);
+
+  return `
+    <div class="stock-visual-card ${hasMinimum ? status : "no-minimum"} stock-visual-${visualType}" style="--stock-fill:${visualPercent}%">
+      <div class="stock-visual-figure" aria-hidden="true">
+        ${renderStockVisualArt(visualType, visualPercent)}
+      </div>
+
+      <div class="stock-visual-facts">
+        ${renderStockMetricRow("Stock actuel", `${quantityValue} ${escapeHtml(currentUnit)}`, "cube")}
+        ${renderStockMetricRow("Minimum", hasMinimum ? `${minimumValue} ${escapeHtml(minimumUnit)}` : "Non défini", "sliders")}
+        <p class="stock-interpretation ${interpretation.state}">${escapeHtml(interpretation.text)}</p>
+      </div>
+
+      <div class="stock-health-panel">
+        <div class="stock-health-head">
+          <span class="stock-health-icon">${hasMinimum && status === "ok" ? "✓" : hasMinimum ? "!" : "i"}</span>
+          <div>
+            <strong>${escapeHtml(health.title)}</strong>
+            <span>${escapeHtml(health.description)}</span>
+          </div>
+        </div>
+
+        ${hasMinimum ? renderStockThresholdScale(quantity, minimum, currentUnit, status) : ""}
+      </div>
+    </div>
+  `;
+}
+
+function renderStockMetricRow(label, value, icon) {
+  return `
+    <div class="stock-metric-row">
+      <span class="stock-metric-icon stock-metric-${icon}"></span>
+      <span>${escapeHtml(label)}</span>
+      <strong>${value}</strong>
+    </div>
+  `;
+}
+
+function stockHealthText(status, hasMinimum = true) {
+  if (!hasMinimum) {
+    return {
+      title: "Seuil minimum non défini",
+      description: "Définissez un minimum pour activer le suivi des alertes."
+    };
+  }
+
+  if (status === "critical") {
+    return {
+      title: "Critique",
+      description: "Le stock est au niveau minimum ou en dessous."
+    };
+  }
+
+  if (status === "warning") {
+    return {
+      title: "Attention",
+      description: "Le stock approche du seuil minimum."
+    };
+  }
+
+  return {
+    title: "Stock sain",
+    description: "Le stock est au-dessus du minimum."
+  };
+}
+
+function stockInterpretationText(quantity, minimum, unitSingular, currentUnit) {
+  const safeQuantity = Math.max(0, Number(quantity || 0));
+  const safeMinimum = Number(minimum || 0);
+
+  if (safeMinimum <= 0) {
+    return {
+      state: "neutral",
+      text: `${formatCleanNumber(safeQuantity)} ${currentUnit} disponible${safeQuantity > 1 ? "s" : ""}`
+    };
+  }
+
+  const difference = Number((safeQuantity - safeMinimum).toFixed(3));
+  const absDifference = Math.abs(difference);
+  const diffUnit = formatInventoryDisplayUnit(absDifference, unitSingular);
+
+  if (difference > 0) {
+    return {
+      state: "ok",
+      text: `${formatCleanNumber(absDifference)} ${diffUnit} au-dessus du minimum`
+    };
+  }
+
+  if (difference < 0) {
+    return {
+      state: "critical",
+      text: `${formatCleanNumber(absDifference)} ${diffUnit} en dessous du minimum`
+    };
+  }
+
+  return {
+    state: "warning",
+    text: "Stock au niveau minimum"
+  };
+}
+
+function renderStockThresholdScale(quantity, minimum, unit, status) {
+  const maxValue = Math.max(quantity, minimum * 2, 1);
+  const currentPercent = Math.max(0, Math.min(100, (quantity / maxValue) * 100));
+  const minimumPercent = Math.max(0, Math.min(100, (minimum / maxValue) * 100));
+
+  return `
+    <div
+      class="stock-threshold-scale ${status}"
+      style="--stock-current:${currentPercent}%; --stock-minimum:${minimumPercent}%"
+      aria-label="Stock actuel ${escapeHtml(formatCleanNumber(quantity))}, minimum ${escapeHtml(formatCleanNumber(minimum))}"
+    >
+      <div class="stock-threshold-track">
+        <span class="stock-threshold-fill"></span>
+        <span class="stock-threshold-minimum"></span>
+        <span class="stock-threshold-current">${escapeHtml(formatCleanNumber(quantity))}</span>
+      </div>
+      <div class="stock-health-scale">
+        <span>0</span>
+        <span>${escapeHtml(formatCleanNumber(maxValue))} ${escapeHtml(unit)}</span>
+      </div>
+      <div class="stock-minimum-label">Minimum : ${escapeHtml(formatCleanNumber(minimum))}</div>
+    </div>
+  `;
+}
+
+function formatCleanNumber(value) {
+  const number = Number(value || 0);
+  if (!Number.isFinite(number)) return String(value || "");
+  return Number(number.toFixed(3)).toString();
+}
+
+function renderStockVisualArt(type, percent) {
+  if (type === "syringe") return renderSyringeStockVisual(percent);
+  if (type === "powder") return renderPowderStockVisual(percent);
+  if (type === "unit") return renderUnitStockVisual(percent);
+  if (type === "plate") return renderPlateStockVisual(percent);
+  if (type === "tubeRack") return renderTubeRackStockVisual(percent);
+  if (type === "liquid") return renderLiquidStockVisual(percent);
+  return renderGenericStockVisual(percent);
+}
+
+function renderLiquidStockVisual(percent) {
+  const fillHeight = Number((96 * percent / 100).toFixed(2));
+  const fillY = Number((126 - fillHeight).toFixed(2));
+
+  return `
+    <svg class="stock-svg" viewBox="0 0 180 150" role="img" aria-label="Contenant liquide">
+      <rect x="68" y="12" width="44" height="24" rx="8" class="stock-svg-cap" />
+      <path d="M62 38h56l10 22v66c0 10-8 18-18 18H70c-10 0-18-8-18-18V60l10-22Z" class="stock-svg-shell" />
+      <clipPath id="liquidClip"><path d="M62 42h56l7 18v64c0 8-7 15-15 15H70c-8 0-15-7-15-15V60l7-18Z" /></clipPath>
+      <g clip-path="url(#liquidClip)">
+        <rect x="54" y="${fillY}" width="72" height="${fillHeight}" class="stock-svg-fill" />
+        <path d="M54 ${fillY + 8}c18-8 34 7 52-1 8-3 14-4 20-1v12H54Z" class="stock-svg-shine" />
+      </g>
+      <path d="M70 56h40" class="stock-svg-line" />
+      <path d="M70 76h40" class="stock-svg-line" />
+      <path d="M70 96h40" class="stock-svg-line" />
+    </svg>
+  `;
+}
+
+function renderSyringeStockVisual(percent) {
+  const fillHeight = Number((64 * percent / 100).toFixed(2));
+  const fillY = Number((108 - fillHeight).toFixed(2));
+
+  return `
+    <svg class="stock-svg stock-svg-syringe" viewBox="0 0 170 180" role="img" aria-label="Seringue">
+      <path d="M78 18h14v18H78z" class="stock-svg-cap" />
+      <path d="M74 36h22v12H74z" class="stock-svg-shell" />
+      <path d="M64 48h42v82c0 10-8 18-18 18h-6c-10 0-18-8-18-18V48Z" class="stock-svg-shell" />
+      <clipPath id="syringeVerticalClip"><path d="M70 53h30v75c0 7-6 13-13 13h-4c-7 0-13-6-13-13V53Z" /></clipPath>
+      <g clip-path="url(#syringeVerticalClip)">
+        <rect x="70" y="${fillY}" width="30" height="${fillHeight}" class="stock-svg-fill" />
+        <path d="M70 ${fillY + 7}c8-5 14 4 22 0 4-2 6-2 8-1v10H70Z" class="stock-svg-shine" />
+      </g>
+      <path d="M73 62h24M73 74h14M73 86h24M73 98h14M73 110h24M73 122h14" class="stock-svg-line" />
+      <path d="M85 148v18" class="stock-svg-line strong" />
+      <path d="M58 166h54" class="stock-svg-line strong" />
+      <path d="M52 130h66" class="stock-svg-line strong" />
+      <ellipse cx="85" cy="170" rx="30" ry="5" class="stock-svg-shadow" />
+    </svg>
+  `;
+}
+
+function renderPowderStockVisual(percent) {
+  const fillHeight = Number((78 * percent / 100).toFixed(2));
+  const fillY = Number((122 - fillHeight).toFixed(2));
+
+  return `
+    <svg class="stock-svg" viewBox="0 0 180 150" role="img" aria-label="Pot de poudre">
+      <rect x="52" y="22" width="76" height="18" rx="8" class="stock-svg-cap" />
+      <path d="M58 42h64l8 18v62c0 10-8 18-18 18H68c-10 0-18-8-18-18V60l8-18Z" class="stock-svg-shell" />
+      <clipPath id="powderClip"><path d="M58 46h64l5 15v59c0 8-7 15-15 15H68c-8 0-15-7-15-15V61l5-15Z" /></clipPath>
+      <g clip-path="url(#powderClip)">
+        <rect x="52" y="${fillY}" width="76" height="${fillHeight}" class="stock-svg-fill" />
+        <circle cx="70" cy="118" r="3" class="stock-svg-dot" />
+        <circle cx="88" cy="106" r="2.5" class="stock-svg-dot" />
+        <circle cx="104" cy="124" r="3" class="stock-svg-dot" />
+        <circle cx="116" cy="112" r="2" class="stock-svg-dot" />
+      </g>
+    </svg>
+  `;
+}
+
+function renderUnitStockVisual(percent) {
+  const activeCount = Math.max(0, Math.ceil(percent / 10));
+  const cells = Array.from({ length: 10 }, (_, index) => {
+    const x = 44 + (index % 5) * 20;
+    const y = 48 + Math.floor(index / 5) * 24;
+    return `<rect x="${x}" y="${y}" width="14" height="14" rx="4" class="${index < activeCount ? "stock-svg-fill" : "stock-svg-empty"}" />`;
+  }).join("");
+
+  return `
+    <svg class="stock-svg" viewBox="0 0 180 130" role="img" aria-label="Boîte de consommables">
+      <path d="M34 38h112v60c0 8-6 14-14 14H48c-8 0-14-6-14-14V38Z" class="stock-svg-shell" />
+      <path d="M42 24h96l8 14H34l8-14Z" class="stock-svg-cap" />
+      ${cells}
+    </svg>
+  `;
+}
+
+function renderPlateStockVisual(percent) {
+  const activeCount = Math.max(0, Math.ceil(percent / 12.5));
+  const wells = Array.from({ length: 8 }, (_, index) => {
+    const x = 54 + (index % 4) * 22;
+    const y = 50 + Math.floor(index / 4) * 22;
+    return `<circle cx="${x}" cy="${y}" r="6" class="${index < activeCount ? "stock-svg-fill" : "stock-svg-empty"}" />`;
+  }).join("");
+
+  return `
+    <svg class="stock-svg" viewBox="0 0 180 130" role="img" aria-label="Plaque laboratoire">
+      <rect x="38" y="34" width="104" height="70" rx="14" class="stock-svg-shell" />
+      <path d="M48 24h84" class="stock-svg-line strong" />
+      <path d="M52 108h76" class="stock-svg-line" />
+      ${wells}
+    </svg>
+  `;
+}
+
+function renderTubeRackStockVisual(percent) {
+  const activeCount = Math.max(0, Math.ceil(percent / 20));
+  const tubes = Array.from({ length: 5 }, (_, index) => {
+    const x = 44 + index * 22;
+    const cls = index < activeCount ? "stock-svg-fill" : "stock-svg-empty";
+    return `
+      <g>
+        <path d="M${x} 34h14v50c0 8-7 14-7 14s-7-6-7-14V34Z" class="stock-svg-shell" />
+        <rect x="${x + 2}" y="${72 - (30 * (index < activeCount ? 1 : 0))}" width="10" height="${index < activeCount ? 30 : 0}" class="${cls}" />
+      </g>
+    `;
+  }).join("");
+
+  return `
+    <svg class="stock-svg" viewBox="0 0 180 130" role="img" aria-label="Rack de tubes">
+      ${tubes}
+      <path d="M34 84h112v24H34z" class="stock-svg-cap" />
+      <path d="M40 108h100" class="stock-svg-line strong" />
+    </svg>
+  `;
+}
+
+function renderGenericStockVisual(percent) {
+  const fillHeight = Number((62 * percent / 100).toFixed(2));
+  const fillY = Number((104 - fillHeight).toFixed(2));
+
+  return `
+    <svg class="stock-svg" viewBox="0 0 180 130" role="img" aria-label="Contenant générique">
+      <path d="M38 42h104v58c0 10-8 18-18 18H56c-10 0-18-8-18-18V42Z" class="stock-svg-shell" />
+      <path d="M48 24h84l10 18H38l10-18Z" class="stock-svg-cap" />
+      <clipPath id="genericClip"><path d="M44 48h92v50c0 8-6 14-14 14H58c-8 0-14-6-14-14V48Z" /></clipPath>
+      <g clip-path="url(#genericClip)">
+        <rect x="44" y="${fillY}" width="92" height="${fillHeight}" class="stock-svg-fill" />
+      </g>
+    </svg>
   `;
 }
 
@@ -1071,12 +1575,20 @@ function formatPriceEuro(value) {
   const raw = String(value || "").trim();
   if (!raw) return "";
 
-  if (raw.includes("€")) return raw;
+  const withoutEuro = raw.replace("€", "").trim();
+  const normalized = withoutEuro
+    .replace(/\s/g, "")
+    .replace(",", ".");
 
-  const numericOnly = /^\d+(?:[.,]\d+)?$/.test(raw);
+  const numericOnly = /^\d+(?:\.\d+)?$/.test(normalized);
   if (!numericOnly) return raw;
 
-  return `${raw} €`;
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(Number(normalized));
 }
 
 function renderOrderDetail(order) {
@@ -1388,6 +1900,7 @@ function warnMissingSampleViewRefs(refs) {
 function syncAppViewMode() {
   app.classList.toggle("history-mode", activeView === "history");
   app.classList.toggle("samples-mode", activeView === "samples");
+  app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }
 
 function renderSampleDetail(sample) {
@@ -2552,6 +3065,14 @@ function returnFromItemDetail() {
 
   controlBar.classList.toggle("hidden", activeView !== "inventory");
   syncAppViewMode();
+
+  if (activeView === "inventory") {
+    renderMetrics();
+    renderAlerts();
+    renderInventory();
+    restorePageScrollY(itemReturnContext.scrollY);
+    return;
+  }
 
   render();
   restorePageScrollY(itemReturnContext.scrollY);

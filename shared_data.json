@@ -2,6 +2,35 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1783932490579",
+      "name": "Final test chrome",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "plaques",
+      "minStock": 1,
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "",
+          "reference": "",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-07-13T08:48:10.579Z",
+      "createdAt": "13/07/2026 10:48",
+      "source": "web"
+    },
+    {
       "id": "web-1783931924747",
       "name": "Test4",
       "category": "Procédé ExAdEx L2",
@@ -11867,6 +11896,12 @@
   ],
   "history": [
     {
+      "date": "13/07/2026 10:48",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Final test chrome dans Procédé ExAdEx L2."
+    },
+    {
       "date": "13/07/2026 10:40",
       "user": "Caroline",
       "action": "Demande créée",
@@ -12161,5 +12196,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T08:40:23.860Z"
+  "updatedAt": "2026-07-13T08:48:10.580Z"
 }

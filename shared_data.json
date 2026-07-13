@@ -11891,7 +11891,11 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001"
     },
     {
       "id": "sample-created-1783941299433-6ac02v",
@@ -11913,7 +11917,11 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001"
     },
     {
       "id": "sample-created-1783941299433-h4fa1b",
@@ -11935,7 +11943,11 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001"
     },
     {
       "id": "sample-created-1783941299433-aixspc",
@@ -11957,7 +11969,11 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001"
     },
     {
       "id": "sample-created-1783941299433-xa1ivu",
@@ -11979,7 +11995,11 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001"
     },
     {
       "id": "sample-created-1783941299433-qihuds",
@@ -12001,7 +12021,11 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001"
     },
     {
       "id": "sample-created-1783941299433-87fz5i",
@@ -12023,32 +12047,32 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
-    },
-    {
-      "id": "sample-client-1783931976763-6n3uo8",
-      "type": "client_product",
-      "clientCode": "ASH001",
-      "location": "Culture L1",
-      "notes": "",
-      "createdAtRaw": "2026-07-13T08:39:36.763Z",
-      "createdAt": "13/07/2026 10:39",
-      "name": "Test item",
-      "arrivalDate": "2026-07-07",
-      "quantity": 0.05,
-      "unit": "L",
-      "referenceNumber": "",
       "lotNumber": "",
-      "category": "",
-      "baseName": "Test item",
-      "creationDate": "",
-      "measureValue": 0.05,
-      "measureUnit": "L",
-      "replicaNumber": null,
-      "replicaCount": 1
+      "rawClientCode": "ASH001",
+      "normalizedClientKey": "ASH1",
+      "clientId": "client-ASH1",
+      "canonicalClientCode": "ASH001"
+    }
+  ],
+  "clients": [
+    {
+      "normalizedKey": "ASH1",
+      "canonicalCode": "ASH001",
+      "rawCodes": [
+        "ASH001"
+      ],
+      "id": "client-ASH1",
+      "createdAtRaw": "2026-07-13T13:38:57.192Z",
+      "updatedAtRaw": "2026-07-13T13:38:57.192Z"
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 15:39",
+      "user": "Caroline",
+      "action": "Produit client supprimé",
+      "detail": "Caroline a supprimé Test item des études clients."
+    },
     {
       "date": "13/07/2026 13:14",
       "user": "Caroline",
@@ -12356,5 +12380,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T11:14:59.434Z"
+  "updatedAt": "2026-07-13T13:39:14.387Z"
 }

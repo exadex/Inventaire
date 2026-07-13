@@ -11790,6 +11790,27 @@
   "experiments": [],
   "orders": [
     {
+      "id": "ord-1783932023859",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0008",
+      "itemName": "Plaque Corning 6 puits ULA",
+      "requestedQuantity": 47,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Caroline",
+      "requestedAt": "13/07/2026 10:40",
+      "requestedAtRaw": "2026-07-13T08:40:23.859Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-001",
       "itemName": "Kit ELISA Adiponectine",
       "quantity": "2 kits",
@@ -11845,6 +11866,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/07/2026 10:40",
+      "user": "Caroline",
+      "action": "Demande créée",
+      "detail": "Caroline a créé une demande pour Plaque Corning 6 puits ULA."
+    },
     {
       "date": "13/07/2026 10:39",
       "user": "Caroline",
@@ -12134,5 +12161,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T08:39:36.764Z"
+  "updatedAt": "2026-07-13T08:40:23.860Z"
 }

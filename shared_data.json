@@ -2,6 +2,35 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1783927870432",
+      "name": "Test",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 5,
+      "unit": "unités",
+      "minStock": 1,
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "",
+          "reference": "",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-07-13T07:31:10.433Z",
+      "createdAt": "13/07/2026 09:31",
+      "source": "web"
+    },
+    {
       "id": "itm-CSV-0001",
       "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
       "category": "Procédé ExAdEx L2",
@@ -11817,6 +11846,12 @@
   ],
   "history": [
     {
+      "date": "13/07/2026 09:31",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Test dans Procédé ExAdEx L2."
+    },
+    {
       "date": "10/07/2026 17:15",
       "user": "Caroline",
       "action": "Produit client ajoute",
@@ -12099,5 +12134,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-13T07:29:53.418Z"
+  "updatedAt": "2026-07-13T07:31:10.441Z"
 }

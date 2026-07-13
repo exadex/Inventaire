@@ -62,6 +62,7 @@ const collapsedClientGroups = new Set();
 const expandedReplicaGroups = new Set();
 const SAMPLE_PAGE_SIZE = 50;
 let sampleCurrentPage = 1;
+let samplesDomWarningShown = false;
 
 const auth = document.querySelector("#auth");
 const app = document.querySelector("#app");
@@ -267,9 +268,9 @@ orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
 orderFields.orderInventorySearch.addEventListener("input", renderOrderItemOptions);
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
-sampleSearchInput.addEventListener("input", resetSamplePagination);
-sampleTypeFilter.addEventListener("change", resetSamplePagination);
-sampleCategoryFilter.addEventListener("change", resetSamplePagination);
+sampleSearchInput?.addEventListener("input", resetSamplePagination);
+sampleTypeFilter?.addEventListener("change", resetSamplePagination);
+sampleCategoryFilter?.addEventListener("change", resetSamplePagination);
 sampleClientFilter?.addEventListener("change", resetSamplePagination);
 sampleSortSelect?.addEventListener("change", resetSamplePagination);
 sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
@@ -342,9 +343,9 @@ document.querySelectorAll(".nav-item").forEach((button) => {
       view.classList.remove("active");
     });
 
-    document.querySelector(`#${activeView}View`).classList.add("active");
+    document.querySelector(`#${activeView}View`)?.classList.add("active");
 
-    controlBar.classList.toggle("hidden", activeView !== "inventory");
+    controlBar?.classList.toggle("hidden", activeView !== "inventory");
     syncAppViewMode();
     renderAlerts();
 
@@ -722,13 +723,17 @@ function renderLocationOptions() {
 }
 
 function renderSampleOptions() {
-  sampleFields.sampleLocation.innerHTML = inventoryLocations
-    .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
-    .join("");
+  if (sampleFields.sampleLocation) {
+    sampleFields.sampleLocation.innerHTML = inventoryLocations
+      .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
+      .join("");
+  }
 
-  sampleCategoryFilter.innerHTML = `<option value="all">Toutes categories</option>${clientSampleCategories
-    .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
-    .join("")}`;
+  if (sampleCategoryFilter) {
+    sampleCategoryFilter.innerHTML = `<option value="all">Toutes categories</option>${clientSampleCategories
+      .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
+      .join("")}`;
+  }
 
   renderClientFilterOptions();
 }
@@ -1267,9 +1272,12 @@ function renderOrderDetail(order) {
 }
 
 function renderSamples() {
-  const query = normalizeSearch(sampleSearchInput.value || "");
-  const type = sampleTypeFilter.value || "all";
-  const category = sampleCategoryFilter.value || "all";
+  const refs = getSampleViewRefs();
+  warnMissingSampleViewRefs(refs);
+
+  const query = normalizeSearch(sampleSearchInput?.value || "");
+  const type = sampleTypeFilter?.value || "all";
+  const category = sampleCategoryFilter?.value || "all";
   const client = sampleClientFilter?.value || "all";
   const sort = sampleSortSelect?.value || "recent";
 
@@ -1317,23 +1325,64 @@ function renderSamples() {
     ? clientSamples.find(sample => sample.id === selectedSampleId)
     : null;
 
-  const sampleDetailPanel = document.querySelector("#sampleDetail");
-  sampleDetailPanel.classList.toggle("has-selection", Boolean(detail));
-  sampleDetailPanel.innerHTML = detail
-    ? renderSampleDetail(detail)
-    : renderSampleEmptyState();
+  if (refs.detail) {
+    refs.detail.classList.toggle("has-selection", Boolean(detail));
+    refs.detail.innerHTML = detail
+      ? renderSampleDetail(detail)
+      : renderSampleEmptyState();
+  }
 
   renderClientStudyKpis(clientSamples);
-  document.querySelector("#sampleResultCount").textContent =
-    `${filtered.length} résultat${filtered.length > 1 ? "s" : ""} · ${displayUnits.length} ligne${displayUnits.length > 1 ? "s" : ""}`;
+  if (refs.resultCount) {
+    refs.resultCount.textContent =
+      `${filtered.length} résultat${filtered.length > 1 ? "s" : ""} · ${displayUnits.length} ligne${displayUnits.length > 1 ? "s" : ""}`;
+  }
 
-  document.querySelector("#sampleRows").innerHTML = filtered.length
-    ? renderClientSampleGroups(pagedUnits)
-    : `<div class="client-study-empty"><div><strong>Aucune étude client</strong><p>Aucun produit ou échantillon ne correspond aux filtres actifs.</p></div></div>`;
+  if (refs.rows) {
+    refs.rows.innerHTML = filtered.length
+      ? renderClientSampleGroups(pagedUnits)
+      : `<div class="client-study-empty"><div><strong>Aucune étude client</strong><p>Aucun produit ou échantillon ne correspond aux filtres actifs.</p></div></div>`;
+  }
 
-  document.querySelector("#samplePagination").innerHTML = filtered.length
-    ? renderSamplePagination(pageCount, displayUnits.length)
-    : "";
+  if (refs.pagination) {
+    refs.pagination.innerHTML = filtered.length
+      ? renderSamplePagination(pageCount, displayUnits.length)
+      : "";
+  }
+}
+
+function getSampleViewRefs() {
+  return {
+    view: document.querySelector("#samplesView"),
+    detail: document.querySelector("#sampleDetail"),
+    resultCount: document.querySelector("#sampleResultCount"),
+    rows: document.querySelector("#sampleRows"),
+    pagination: document.querySelector("#samplePagination"),
+    kpis: document.querySelector("#clientStudyKpis")
+  };
+}
+
+function warnMissingSampleViewRefs(refs) {
+  if (samplesDomWarningShown) return;
+
+  const missing = Object.entries(refs)
+    .filter(([, element]) => !element)
+    .map(([key]) => `#${{
+      view: "samplesView",
+      detail: "sampleDetail",
+      resultCount: "sampleResultCount",
+      rows: "sampleRows",
+      pagination: "samplePagination",
+      kpis: "clientStudyKpis"
+    }[key]}`);
+
+  if (!missing.length) return;
+
+  samplesDomWarningShown = true;
+  console.warn(
+    `Études clients: markup incomplet (${missing.join(", ")}). ` +
+    "Vérifier que index.html déployé sur GitHub correspond à script.js."
+  );
 }
 
 function syncAppViewMode() {
@@ -1402,6 +1451,9 @@ function renderSampleEmptyState() {
 }
 
 function renderClientStudyKpis(samples) {
+  const kpiContainer = document.querySelector("#clientStudyKpis");
+  if (!kpiContainer) return;
+
   const productCount = samples.filter(sample => sample.type === "client_product").length;
   const createdCount = samples.filter(sample => sample.type === "created_sample").length;
   const activeClients = new Set(samples.map(sample => sample.clientId || sample.normalizedClientKey).filter(Boolean)).size;
@@ -1414,7 +1466,7 @@ function renderClientStudyKpis(samples) {
     ["📍", "Localisations utilisées", usedLocations]
   ];
 
-  document.querySelector("#clientStudyKpis").innerHTML = kpis.map(([icon, label, value]) => `
+  kpiContainer.innerHTML = kpis.map(([icon, label, value]) => `
     <article class="client-kpi-card">
       <span class="client-kpi-icon">${icon}</span>
       <div>
@@ -2394,9 +2446,9 @@ function openSampleDetail(id, context = {}) {
   });
 
   document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
-  document.querySelector("#samplesView").classList.add("active");
+  document.querySelector("#samplesView")?.classList.add("active");
 
-  controlBar.classList.add("hidden");
+  controlBar?.classList.add("hidden");
   syncAppViewMode();
 
   renderSamples();
@@ -2411,9 +2463,9 @@ function returnFromSampleDetail() {
   });
 
   document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
-  document.querySelector(`#${activeView}View`).classList.add("active");
+  document.querySelector(`#${activeView}View`)?.classList.add("active");
 
-  controlBar.classList.toggle("hidden", activeView !== "inventory");
+  controlBar?.classList.toggle("hidden", activeView !== "inventory");
   syncAppViewMode();
 
   if (activeView === "locations") {

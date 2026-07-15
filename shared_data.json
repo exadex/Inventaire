@@ -11792,6 +11792,27 @@
   "experiments": [],
   "orders": [
     {
+      "id": "ord-1784115754678",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-xcczxu",
+      "itemName": "Qiazol",
+      "requestedQuantity": 5,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Caroline",
+      "requestedAt": "15/07/2026 13:42",
+      "requestedAtRaw": "2026-07-15T11:42:34.679Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1783932023859",
       "status": "requested",
       "itemMode": "existing",
@@ -11821,10 +11842,10 @@
       "notes": "Stock sous seuil minimum.",
       "requestedBy": "CB",
       "createdAt": "2026-05-19 09:12",
-      "status": "ordered",
-      "orderedAt": "15/07/2026 13:41",
-      "orderedAtRaw": "2026-07-15T11:41:29.983Z",
-      "orderedBy": "Caroline",
+      "status": "requested",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "orderedBy": "",
       "receivedQuantity": 0,
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -13169,6 +13190,18 @@
     {
       "date": "15/07/2026 13:42",
       "user": "Caroline",
+      "action": "Demande créée",
+      "detail": "Caroline a créé une demande pour Qiazol."
+    },
+    {
+      "date": "15/07/2026 13:42",
+      "user": "Caroline",
+      "action": "Commande rouverte",
+      "detail": "Caroline a renvoyé Collagenase type I vers \"À demander\"."
+    },
+    {
+      "date": "15/07/2026 13:42",
+      "user": "Caroline",
       "action": "Réception annulée",
       "detail": "Caroline a renvoyé Collagenase type I vers \"Commandé\"."
     },
@@ -13701,5 +13734,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:42:21.439Z"
+  "updatedAt": "2026-07-15T11:42:34.679Z"
 }

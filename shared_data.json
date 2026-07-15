@@ -11763,27 +11763,6 @@
   "experiments": [],
   "orders": [
     {
-      "id": "ord-1784115754678",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-web-1783931436295-xcczxu",
-      "itemName": "Qiazol",
-      "requestedQuantity": 5,
-      "receivedQuantity": 0,
-      "priority": "critique",
-      "notes": "",
-      "requestedBy": "Caroline",
-      "requestedAt": "15/07/2026 13:42",
-      "requestedAtRaw": "2026-07-15T11:42:34.679Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
       "id": "ord-1783932023859",
       "status": "requested",
       "itemMode": "existing",
@@ -13144,6 +13123,12 @@
       "date": "15/07/2026 16:06",
       "user": "Caroline",
       "action": "Demande supprimée",
+      "detail": "Caroline a supprimé la demande pour Qiazol."
+    },
+    {
+      "date": "15/07/2026 16:06",
+      "user": "Caroline",
+      "action": "Demande supprimée",
       "detail": "Caroline a supprimé la demande pour SupplementMix / Endothelial Cell Growth Medium 2."
     },
     {
@@ -13795,5 +13780,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T14:06:44.132Z"
+  "updatedAt": "2026-07-15T14:06:48.044Z"
 }

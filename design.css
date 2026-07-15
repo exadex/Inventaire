@@ -1214,6 +1214,19 @@ textarea[readonly] {
   min-width: 0;
   min-height: 40px;
 }
+#samplesView > .client-study-controls {
+  align-items: start;
+}
+#samplesView > .client-study-controls > label {
+  display: grid;
+  grid-template-rows: 18px 40px auto;
+  gap: 8px;
+  align-items: start;
+}
+#samplesView > .client-study-controls input,
+#samplesView > .client-study-controls select {
+  height: 40px;
+}
 .client-study-sort-end {
   grid-column: -2 / -1;
 }
@@ -1748,6 +1761,15 @@ td { font-size: 14px; }
   min-width: 0;
   height: 40px;
 }
+#samplesView > .client-study-controls input,
+#samplesView > .client-study-controls select,
+.orders-controls input,
+.orders-controls select,
+.history-controls input,
+.history-controls select {
+  padding-block: 8px;
+  line-height: 1.25;
+}
 .history-reset-field,
 .order-reset-field { min-width: max-content; }
 .history-reset-btn,
@@ -2170,6 +2192,10 @@ td { font-size: 14px; }
 .location-status-badge.warning { color: var(--amber); background: #ffedcf; }
 .location-status-badge.critical { color: #a52d2d; background: var(--red-soft); }
 .location-status-badge.undefined { color: var(--muted); background: #eeeeda; }
+.location-detail-table .badge--client-study {
+  background: #e8f0fc;
+  color: #315f83;
+}
 .location-table-tags {
   display: flex;
   flex-wrap: wrap;

@@ -3054,6 +3054,17 @@ function getLocationEntryStatus(entry) {
   return Number(entry.record.minStock || 0) <= 0 ? "undefined" : itemStatus(entry.record);
 }
 
+function getLocationDisplayedStatus(entry) {
+  if (entry.kind === "clientSample") {
+    return { label: "Étude client", className: "badge--client-study" };
+  }
+  const status = getLocationEntryStatus(entry);
+  return {
+    label: status === "undefined" ? "Seuil non défini" : statusLabel(status),
+    className: status
+  };
+}
+
 function renderLocationDetailTable(entries) {
   return `
     <div class="location-detail-table-wrap">
@@ -3081,6 +3092,7 @@ function renderLocationDetailRow(entry) {
   const isClientSample = entry.kind === "clientSample";
   const entryKey = `${entry.kind}:${record.id}`;
   const status = getLocationEntryStatus(entry);
+  const displayedStatus = getLocationDisplayedStatus(entry);
   const category = record.category || clientSampleTypes[record.type] || record.type || "";
   const currentStock = isClientSample
     ? escapeHtml(formatClientSampleQuantity(record))
@@ -3099,7 +3111,7 @@ function renderLocationDetailRow(entry) {
       </td>
       <td data-label="Stock actuel"><strong>${currentStock}</strong></td>
       <td data-label="Minimum">${minimum}</td>
-      <td data-label="Statut"><span class="location-status-badge ${status}">${status === "undefined" ? "Seuil non défini" : escapeHtml(statusLabel(status))}</span></td>
+      <td data-label="Statut"><span class="location-status-badge ${displayedStatus.className}">${escapeHtml(displayedStatus.label)}</span></td>
       <td data-label="Tags">
         <div class="location-table-tags">${tags.length ? tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("") : `<span class="location-no-tags">Aucun tag</span>`}</div>
       </td>

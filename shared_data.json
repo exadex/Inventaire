@@ -11813,16 +11813,6 @@
       "newItemData": null
     },
     {
-      "id": "ord-001",
-      "itemName": "Kit ELISA Adiponectine",
-      "quantity": "2 kits",
-      "priority": "critique",
-      "supplier": "R&D Systems",
-      "notes": "Necessaire pour serie secretion adipokines.",
-      "requestedBy": "ML",
-      "createdAt": "2026-05-18 17:35"
-    },
-    {
       "id": "ord-002",
       "itemName": "Collagenase type I",
       "quantity": "6 flacons",
@@ -13189,6 +13179,12 @@
     {
       "date": "15/07/2026 13:41",
       "user": "Caroline",
+      "action": "Demande supprimée",
+      "detail": "Caroline a supprimé la demande pour Kit ELISA Adiponectine."
+    },
+    {
+      "date": "15/07/2026 13:41",
+      "user": "Caroline",
       "action": "Commande reçue",
       "detail": "Caroline a marqué Collagenase type I comme arrivé."
     },
@@ -13697,5 +13693,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:41:40.920Z"
+  "updatedAt": "2026-07-15T11:41:59.047Z"
 }

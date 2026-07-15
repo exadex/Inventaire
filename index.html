@@ -14,7 +14,7 @@
   <body>
     <div id="auth" class="auth-shell">
       <section class="auth-panel">
-        <div class="brand-mark">EX</div>
+        <img src="images/favicon.svg" alt="" class="brand-mark" aria-hidden="true">
         <p class="eyebrow">SHAPING RESEARCH WITH REAL HUMAN DATA</p>
         <h1>Inventaire ExAdEx</h1>
         <p class="auth-copy">
@@ -334,11 +334,87 @@
         </section>
 
         <section class="view" id="historyView">
-          <div class="section-heading">
-            <h3>Historique des modifications</h3>
-            <span>Tra&ccedil;abilit&eacute; simple par nom utilisateur</span>
+          <div class="client-studies-header">
+            <div>
+              <p class="eyebrow">TRA&Ccedil;ABILIT&Eacute;</p>
+              <div class="client-studies-title-row">
+                <h3>Historique des modifications</h3>
+              </div>
+            </div>
           </div>
-          <div class="timeline" id="historyList"></div>
+
+          <section class="client-study-controls history-controls" aria-label="Filtres de l'historique">
+            <label class="client-study-search history-control-field" for="historySearchInput">
+              <span>Rechercher</span>
+              <input id="historySearchInput" type="search" placeholder="&Eacute;l&eacute;ment, client ou description&hellip;">
+              <strong class="client-study-result-count history-result-count" id="historyResultCount" aria-live="polite"></strong>
+            </label>
+            <label class="history-control-field" for="historyActionFilter">
+              <span>Type d'action</span>
+              <select class="select" id="historyActionFilter">
+                <option value="all">Toutes les actions</option>
+                <option value="addition">Ajouts</option>
+                <option value="modification">Modifications</option>
+                <option value="stock">Stock</option>
+                <option value="deletion">Suppressions</option>
+              </select>
+              <span class="history-control-secondary" aria-hidden="true"></span>
+            </label>
+            <label class="history-control-field" for="historyUserFilter">
+              <span>Utilisateur</span>
+              <select class="select" id="historyUserFilter"><option value="all">Tous les utilisateurs</option></select>
+              <span class="history-control-secondary" aria-hidden="true"></span>
+            </label>
+            <label class="history-control-field" for="historyPeriodFilter">
+              <span>P&eacute;riode</span>
+              <select class="select" id="historyPeriodFilter">
+                <option value="all">Toute la p&eacute;riode</option>
+                <option value="today">Aujourd'hui</option>
+                <option value="7">7 derniers jours</option>
+                <option value="30">30 derniers jours</option>
+                <option value="custom">P&eacute;riode personnalis&eacute;e</option>
+              </select>
+              <span class="history-control-secondary" aria-hidden="true"></span>
+            </label>
+            <div class="history-control-field history-reset-field">
+              <span class="history-control-label-placeholder" aria-hidden="true"></span>
+              <button class="ghost-btn compact-btn history-reset-btn" id="resetHistoryFiltersBtn" type="button">R&eacute;initialiser</button>
+              <span class="history-control-secondary" aria-hidden="true"></span>
+            </div>
+            <div class="history-custom-dates hidden" id="historyCustomDates">
+              <label for="historyDateStart">
+                <span>Date de d&eacute;but</span>
+                <input id="historyDateStart" type="date">
+              </label>
+              <label for="historyDateEnd">
+                <span>Date de fin</span>
+                <input id="historyDateEnd" type="date">
+              </label>
+            </div>
+          </section>
+
+          <div class="client-study-kpis history-kpis" id="historyMetrics"></div>
+
+          <section class="history-journal-panel">
+            <div class="timeline" id="historyList"></div>
+
+            <footer class="client-study-pagination history-pagination" id="historyPagination" aria-label="Pagination de l'historique">
+              <span id="historyPageRange"></span>
+              <label for="historyPageSize">
+                <select id="historyPageSize">
+                  <option value="25">25</option>
+                  <option value="50" selected>50</option>
+                  <option value="75">75</option>
+                  <option value="100">100</option>
+                </select>
+                <span>par page</span>
+              </label>
+              <div class="pagination-controls">
+                <button class="ghost-btn compact-btn" id="historyPreviousPage" type="button">Pr&eacute;c&eacute;dent</button>
+                <button class="ghost-btn compact-btn" id="historyNextPage" type="button">Suivant</button>
+              </div>
+            </footer>
+          </section>
         </section>
       </main>
     </div>

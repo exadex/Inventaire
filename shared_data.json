@@ -11829,16 +11829,6 @@
       "receivedAt": "15/07/2026 13:41",
       "receivedAtRaw": "2026-07-15T11:41:40.919Z",
       "receivedBy": "Caroline"
-    },
-    {
-      "id": "ord-003",
-      "itemName": "Cryotubes 2 mL steriles",
-      "quantity": "1 carton",
-      "priority": "no urgente",
-      "supplier": "Corning",
-      "notes": "Reassort pour cryostock.",
-      "requestedBy": "IR",
-      "createdAt": "2026-05-15 10:04"
     }
   ],
   "clientSamples": [
@@ -13177,6 +13167,12 @@
   ],
   "history": [
     {
+      "date": "15/07/2026 13:42",
+      "user": "Caroline",
+      "action": "Demande supprimée",
+      "detail": "Caroline a supprimé la demande pour Cryotubes 2 mL steriles."
+    },
+    {
       "date": "15/07/2026 13:41",
       "user": "Caroline",
       "action": "Demande supprimée",
@@ -13693,5 +13689,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:41:59.047Z"
+  "updatedAt": "2026-07-15T11:42:02.599Z"
 }

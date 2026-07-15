@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ExAdEx Inventaire</title>
+  <desc id="desc">Réseau moléculaire rouge et jaune sur fond vert foncé.</desc>
+
+  <rect width="512" height="512" rx="112" fill="#1c3027"/>
+  <rect x="10" y="10" width="492" height="492" rx="102" fill="none" stroke="#f6f2df" stroke-opacity=".16" stroke-width="12"/>
+
+  <g fill="none" stroke="#c92731" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M231 249 145 133"/>
+    <path d="M231 249 106 328"/>
+    <path d="M231 249 217 399"/>
+  </g>
+
+  <g fill="#c92731">
+    <circle cx="231" cy="249" r="61"/>
+    <circle cx="145" cy="133" r="47"/>
+    <circle cx="106" cy="328" r="45"/>
+    <circle cx="217" cy="399" r="48"/>
+  </g>
+
+  <g fill="#f6c51c">
+    <circle cx="354" cy="111" r="50"/>
+    <circle cx="399" cy="229" r="38"/>
+    <circle cx="361" cy="373" r="47"/>
+  </g>
+
+  <circle cx="428" cy="115" r="16" fill="#fff94f"/>
+</svg>

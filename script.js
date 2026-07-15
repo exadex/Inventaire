@@ -49,6 +49,13 @@ let activeView = "inventory";
 let currentName = "Caroline";
 let alertsExpanded = false;
 let selectedLocation = null;
+let locationDetailSearch = "";
+let locationDetailStatus = "all";
+let locationDetailFacet = "all";
+let locationDetailSort = "name-asc";
+let locationDetailPage = 1;
+let locationDetailPageSize = 50;
+let selectedLocationEntry = null;
 let selectedExperimentId = null;
 let selectedItemId = null;
 let selectedSampleId = null;
@@ -1924,6 +1931,7 @@ function syncAppViewMode() {
   app.classList.toggle("history-mode", activeView === "history");
   app.classList.toggle("samples-mode", activeView === "samples");
   app.classList.toggle("locations-mode", activeView === "locations");
+  app.classList.toggle("location-detail-mode", activeView === "locations" && Boolean(selectedLocation));
   app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }
 
@@ -2406,64 +2414,12 @@ function renderLocations() {
   renderLocationMetrics(groups);
 
   if (selectedLocation) {
-    const group = groups[selectedLocation] || [];
-    locationGrid.innerHTML = `
-      <div class="location-room">
-        <div class="location-room-header">
-          <button class="room-exit-btn" id="backToLocationsBtn" type="button" aria-label="Retour aux salles" title="Retour aux salles">↩️</button>
-          <div>
-            <span class="room-icon">${locationIcons[selectedLocation] || "📍"}</span>
-            <h4>${escapeHtml(selectedLocation)}</h4>
-            <p>${escapeHtml(formatLocationCount(group.length, "référence"))} dans cette salle</p>
-          </div>
-        </div>
-        <div class="room-item-list">
-          ${group.length ? group.map(entry => {
-            const item = entry.record;
-            const isClientSample = entry.kind === "clientSample";
-            const detailAction = isClientSample ? "openSampleDetail" : "openItemDetail";
-            const meta = isClientSample
-              ? `${escapeHtml(clientSampleTypes[item.type] || item.type)} - ${escapeHtml(formatClientSampleQuantity(item))} - Client: ${escapeHtml(item.clientCode)}`
-              : `${escapeHtml(item.category)} - ${item.quantity} ${escapeHtml(item.unit)} - Tags: ${item.tags.map(tag => escapeHtml(tag)).join(", ") || "aucun"}`;
-
-            return `
-            <article class="room-item">
-            <div>
-              <button
-                class="text-btn location-item-link"
-                type="button"
-                onclick="${detailAction}('${escapeHtml(item.id)}', { view: 'locations', location: '${escapeHtml(selectedLocation)}' })"
-              >
-                ${escapeHtml(item.name)}
-              </button>
-              <span>${meta}</span>
-            </div>
-              <button
-                class="text-btn"
-                type="button"
-                ${isClientSample ? `data-sample-id="${escapeHtml(item.id)}"` : `data-item-id="${escapeHtml(item.id)}"`}
-              >
-                Modifier
-              </button>
-            </article>
-          `;
-          }).join("") : `<div class="empty-room">Aucun item dans cette salle pour le moment.</div>`}
-        </div>
-      </div>
-    `;
-    document.querySelector("#backToLocationsBtn").addEventListener("click", () => {
-      selectedLocation = null;
-      renderLocations();
-      restorePageScrollY(viewReturnScrollY.locations);
-    });
-    locationGrid.querySelectorAll("[data-item-id]").forEach(button => {
-      button.addEventListener("click", () => openModal(button.dataset.itemId));
-    });
-    locationGrid.querySelectorAll("[data-sample-id]").forEach(button => {
-      button.addEventListener("click", () => openSampleModal(button.dataset.sampleId));
-    });
+    syncAppViewMode();
+    renderLocationDetail(locationGrid, groups[selectedLocation] || []);
     return;
   }
+
+  syncAppViewMode();
 
   const query = normalizeSearch(locationSearchInput?.value || "");
   const sort = locationSortSelect?.value || "name";
@@ -2521,9 +2477,307 @@ function renderLocations() {
     card.addEventListener("click", () => {
       viewReturnScrollY.locations = getPageScrollY();
       selectedLocation = card.dataset.location;
+      locationDetailSearch = "";
+      locationDetailStatus = "all";
+      locationDetailFacet = "all";
+      locationDetailSort = "name-asc";
+      locationDetailPage = 1;
+      selectedLocationEntry = null;
       renderLocations();
     });
   });
+}
+
+function renderLocationDetail(locationGrid, group) {
+  const facets = Array.from(new Set(group.flatMap(entry => {
+    const record = entry.record;
+    return [record.category || clientSampleTypes[record.type] || record.type, ...(record.tags || [])]
+      .filter(Boolean);
+  }))).sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+
+  if (locationDetailFacet !== "all" && !facets.includes(locationDetailFacet)) {
+    locationDetailFacet = "all";
+  }
+
+  const filtered = group
+    .filter(entry => locationDetailMatches(entry))
+    .sort(compareLocationDetailEntries);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / locationDetailPageSize));
+  locationDetailPage = Math.min(Math.max(1, locationDetailPage), totalPages);
+  const pageStart = (locationDetailPage - 1) * locationDetailPageSize;
+  const pageEntries = filtered.slice(pageStart, pageStart + locationDetailPageSize);
+  const rangeStart = filtered.length ? pageStart + 1 : 0;
+  const rangeEnd = Math.min(pageStart + locationDetailPageSize, filtered.length);
+
+  locationGrid.innerHTML = `
+    <section class="location-room inventory-detail-panel" aria-labelledby="locationRoomTitle">
+      <div class="inventory-detail-return-row">
+        <button class="ghost-btn inventory-back-btn" id="backToLocationsBtn" type="button" aria-label="Retour aux localisations">
+          <span aria-hidden="true">←</span>
+          Retour aux localisations
+        </button>
+      </div>
+
+      <header class="inventory-detail-header">
+        <div class="inventory-detail-title location-detail-title">
+          <span class="room-icon" aria-hidden="true">${locationIcons[selectedLocation] || "📍"}</span>
+          <div class="location-detail-title-text">
+            <h3 id="locationRoomTitle">${escapeHtml(selectedLocation)}</h3>
+            <div class="inventory-detail-meta">
+              <span>${escapeHtml(formatLocationCount(group.length, "référence"))} dans cette salle</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-actions inventory-detail-actions">
+          <button class="primary-btn compact-btn" type="button" data-add-location-item>Ajouter une référence</button>
+        </div>
+      </header>
+
+      ${group.length ? `
+        <section class="location-detail-controls" aria-label="Contrôles de la localisation">
+          <label class="location-detail-search" for="locationDetailSearch">
+            <span>Rechercher</span>
+            <input id="locationDetailSearch" type="search" value="${escapeHtml(locationDetailSearch)}" placeholder="Nom, référence ou tag…">
+          </label>
+          <label for="locationDetailStatus">
+            <span>Statut</span>
+            <select id="locationDetailStatus">
+              <option value="all" ${locationDetailStatus === "all" ? "selected" : ""}>Tous les statuts</option>
+              <option value="ok" ${locationDetailStatus === "ok" ? "selected" : ""}>En stock</option>
+              <option value="warning" ${locationDetailStatus === "warning" ? "selected" : ""}>Attention</option>
+              <option value="critical" ${locationDetailStatus === "critical" ? "selected" : ""}>Critique</option>
+            </select>
+          </label>
+          <label for="locationDetailFacet">
+            <span>Catégorie ou tag</span>
+            <select id="locationDetailFacet">
+              <option value="all">Toutes les catégories et tags</option>
+              ${facets.map(facet => `<option value="${escapeHtml(facet)}" ${locationDetailFacet === facet ? "selected" : ""}>${escapeHtml(facet)}</option>`).join("")}
+            </select>
+          </label>
+          <label for="locationDetailSort">
+            <span>Tri</span>
+            <select id="locationDetailSort">
+              <option value="name-asc" ${locationDetailSort === "name-asc" ? "selected" : ""}>Nom A–Z</option>
+              <option value="name-desc" ${locationDetailSort === "name-desc" ? "selected" : ""}>Nom Z–A</option>
+              <option value="stock-asc" ${locationDetailSort === "stock-asc" ? "selected" : ""}>Stock le plus faible</option>
+              <option value="stock-desc" ${locationDetailSort === "stock-desc" ? "selected" : ""}>Stock le plus élevé</option>
+            </select>
+          </label>
+          <strong class="location-detail-result-count" aria-live="polite">${escapeHtml(formatLocationCount(filtered.length, "résultat"))}</strong>
+        </section>
+
+        ${pageEntries.length ? renderLocationDetailTable(pageEntries) : `
+          <div class="location-detail-empty">
+            <strong>Aucune référence trouvée</strong>
+            <p>Modifiez votre recherche ou vos filtres.</p>
+            <button class="ghost-btn compact-btn" id="resetLocationDetailFilters" type="button">Réinitialiser les filtres</button>
+          </div>
+        `}
+
+        ${pageEntries.length ? `
+          <footer class="location-detail-pagination" aria-label="Pagination des références">
+            <label for="locationDetailPageSize">
+              <span>Références par page</span>
+              <select id="locationDetailPageSize">
+                ${[10, 25, 50, 75, 100].map(size => `<option value="${size}" ${locationDetailPageSize === size ? "selected" : ""}>${size}</option>`).join("")}
+              </select>
+            </label>
+            <span>${rangeStart}–${rangeEnd} sur ${filtered.length}</span>
+            <div class="location-pagination-actions">
+              <button class="ghost-btn compact-btn" id="locationDetailPrevious" type="button" ${locationDetailPage <= 1 ? "disabled" : ""}>Précédent</button>
+              <button class="ghost-btn compact-btn" id="locationDetailNext" type="button" ${locationDetailPage >= totalPages ? "disabled" : ""}>Suivant</button>
+            </div>
+          </footer>
+        ` : ""}
+      ` : `
+        <div class="location-detail-empty location-detail-empty-room">
+          <strong>Cette localisation est vide</strong>
+          <button class="primary-btn compact-btn" type="button" data-add-location-item>Ajouter une référence ici</button>
+        </div>
+      `}
+    </section>
+  `;
+
+  bindLocationDetailEvents(locationGrid);
+}
+
+function locationDetailMatches(entry) {
+  const record = entry.record;
+  const isClientSample = entry.kind === "clientSample";
+  const category = record.category || clientSampleTypes[record.type] || record.type || "";
+  const references = isClientSample ? record.clientCode : itemReferencesText(record.references);
+  const haystack = normalizeSearch([record.name, references, category, ...(record.tags || [])].join(" "));
+  const status = getLocationEntryStatus(entry);
+  const facetValues = [category, ...(record.tags || [])];
+
+  return (!locationDetailSearch || haystack.includes(normalizeSearch(locationDetailSearch))) &&
+    (locationDetailStatus === "all" || status === locationDetailStatus) &&
+    (locationDetailFacet === "all" || facetValues.includes(locationDetailFacet));
+}
+
+function compareLocationDetailEntries(a, b) {
+  const nameComparison = String(a.record.name || "").localeCompare(String(b.record.name || ""), "fr", { sensitivity: "base" });
+  if (locationDetailSort === "name-desc") return -nameComparison;
+  if (locationDetailSort === "stock-asc" || locationDetailSort === "stock-desc") {
+    const quantityA = Number(a.record.quantity ?? 0);
+    const quantityB = Number(b.record.quantity ?? 0);
+    const stockComparison = quantityA - quantityB;
+    return locationDetailSort === "stock-asc" ? stockComparison || nameComparison : -stockComparison || nameComparison;
+  }
+  return nameComparison;
+}
+
+function getLocationEntryStatus(entry) {
+  if (entry.kind === "clientSample") return "undefined";
+  return Number(entry.record.minStock || 0) <= 0 ? "undefined" : itemStatus(entry.record);
+}
+
+function renderLocationDetailTable(entries) {
+  return `
+    <div class="location-detail-table-wrap">
+      <table class="location-detail-table">
+        <thead>
+          <tr>
+            <th scope="col">Référence</th>
+            <th scope="col">Stock actuel</th>
+            <th scope="col">Minimum</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${entries.map(renderLocationDetailRow).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderLocationDetailRow(entry) {
+  const record = entry.record;
+  const isClientSample = entry.kind === "clientSample";
+  const entryKey = `${entry.kind}:${record.id}`;
+  const status = getLocationEntryStatus(entry);
+  const category = record.category || clientSampleTypes[record.type] || record.type || "";
+  const currentStock = isClientSample
+    ? escapeHtml(formatClientSampleQuantity(record))
+    : formatInventoryCardQuantity(record.quantity, record.unit);
+  const minimum = status === "undefined" ? "—" : formatInventoryCardQuantity(record.minStock, record.unit);
+  const tags = record.tags || [];
+
+  return `
+    <tr class="location-detail-row ${selectedLocationEntry === entryKey ? "is-selected" : ""}"
+      tabindex="0" data-entry-kind="${escapeHtml(entry.kind)}" data-entry-id="${escapeHtml(record.id)}">
+      <td data-label="Référence">
+        <button class="location-reference-button" type="button" data-open-entry>
+          <strong>${escapeHtml(record.name)}</strong>
+          ${category ? `<span>${escapeHtml(category)}</span>` : ""}
+        </button>
+      </td>
+      <td data-label="Stock actuel"><strong>${currentStock}</strong></td>
+      <td data-label="Minimum">${minimum}</td>
+      <td data-label="Statut"><span class="location-status-badge ${status}">${status === "undefined" ? "Seuil non défini" : escapeHtml(statusLabel(status))}</span></td>
+      <td data-label="Tags">
+        <div class="location-table-tags">${tags.length ? tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("") : `<span class="location-no-tags">Aucun tag</span>`}</div>
+      </td>
+      <td data-label="Actions">
+        <div class="location-row-actions">
+          ${isClientSample ? "" : `<button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">Mettre à jour le stock</button>`}
+          <button class="ghost-btn compact-btn" type="button" ${isClientSample ? `data-edit-sample="${escapeHtml(record.id)}"` : `data-edit-item="${escapeHtml(record.id)}"`}>Modifier</button>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
+function bindLocationDetailEvents(locationGrid) {
+  locationGrid.querySelector("#backToLocationsBtn")?.addEventListener("click", () => {
+    selectedLocation = null;
+    selectedLocationEntry = null;
+    syncAppViewMode();
+    renderLocations();
+    restorePageScrollY(viewReturnScrollY.locations);
+  });
+
+  const rerenderFromControl = (property, value, focusId = null) => {
+    if (property === "search") locationDetailSearch = value;
+    if (property === "status") locationDetailStatus = value;
+    if (property === "facet") locationDetailFacet = value;
+    if (property === "sort") locationDetailSort = value;
+    locationDetailPage = 1;
+    renderLocations();
+    if (focusId) {
+      const input = document.querySelector(`#${focusId}`);
+      input?.focus();
+      if (input?.setSelectionRange) input.setSelectionRange(input.value.length, input.value.length);
+    }
+  };
+
+  locationGrid.querySelector("#locationDetailSearch")?.addEventListener("input", event => rerenderFromControl("search", event.target.value, "locationDetailSearch"));
+  locationGrid.querySelector("#locationDetailStatus")?.addEventListener("change", event => rerenderFromControl("status", event.target.value));
+  locationGrid.querySelector("#locationDetailFacet")?.addEventListener("change", event => rerenderFromControl("facet", event.target.value));
+  locationGrid.querySelector("#locationDetailSort")?.addEventListener("change", event => rerenderFromControl("sort", event.target.value));
+  locationGrid.querySelector("#locationDetailPageSize")?.addEventListener("change", event => {
+    locationDetailPageSize = Number(event.target.value) || 50;
+    locationDetailPage = 1;
+    renderLocations();
+  });
+  locationGrid.querySelector("#locationDetailPrevious")?.addEventListener("click", () => {
+    locationDetailPage = Math.max(1, locationDetailPage - 1);
+    renderLocations();
+  });
+  locationGrid.querySelector("#locationDetailNext")?.addEventListener("click", () => {
+    locationDetailPage += 1;
+    renderLocations();
+  });
+  locationGrid.querySelector("#resetLocationDetailFilters")?.addEventListener("click", () => {
+    locationDetailSearch = "";
+    locationDetailStatus = "all";
+    locationDetailFacet = "all";
+    locationDetailPage = 1;
+    renderLocations();
+  });
+  locationGrid.querySelectorAll("[data-add-location-item]").forEach(button => button.addEventListener("click", () => {
+    openModal(null, { prefill: { locations: [selectedLocation] } });
+  }));
+
+  const openEntry = row => {
+    if (!row) return;
+    selectedLocationEntry = `${row.dataset.entryKind}:${row.dataset.entryId}`;
+    const context = { view: "locations", location: selectedLocation };
+    if (row.dataset.entryKind === "clientSample") openSampleDetail(row.dataset.entryId, context);
+    else openItemDetail(row.dataset.entryId, context);
+  };
+
+  locationGrid.querySelectorAll(".location-detail-row").forEach(row => {
+    row.addEventListener("click", event => {
+      if (event.target.closest("button")) return;
+      openEntry(row);
+    });
+    row.addEventListener("keydown", event => {
+      if ((event.key === "Enter" || event.key === " ") && !event.target.closest("button")) {
+        event.preventDefault();
+        openEntry(row);
+      }
+    });
+    row.querySelector("[data-open-entry]")?.addEventListener("click", () => openEntry(row));
+  });
+
+  locationGrid.querySelectorAll("[data-update-stock]").forEach(button => button.addEventListener("click", event => {
+    event.stopPropagation();
+    openStockModal(button.dataset.updateStock);
+  }));
+  locationGrid.querySelectorAll("[data-edit-item]").forEach(button => button.addEventListener("click", event => {
+    event.stopPropagation();
+    openModal(button.dataset.editItem);
+  }));
+  locationGrid.querySelectorAll("[data-edit-sample]").forEach(button => button.addEventListener("click", event => {
+    event.stopPropagation();
+    openSampleModal(button.dataset.editSample);
+  }));
 }
 
 function formatLocationCount(count, singular, plural = `${singular}s`) {

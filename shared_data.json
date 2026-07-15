@@ -11793,7 +11793,7 @@
   "orders": [
     {
       "id": "ord-1784115792086",
-      "status": "requested",
+      "status": "ordered",
       "itemMode": "existing",
       "inventoryItemId": "itm-CSV-0019",
       "itemName": "SupplementMix / Endothelial Cell Growth Medium 2",
@@ -11804,9 +11804,9 @@
       "requestedBy": "Caroline",
       "requestedAt": "15/07/2026 13:43",
       "requestedAtRaw": "2026-07-15T11:43:12.086Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
+      "orderedBy": "Caroline",
+      "orderedAt": "15/07/2026 13:43",
+      "orderedAtRaw": "2026-07-15T11:43:22.326Z",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -13193,6 +13193,12 @@
     {
       "date": "15/07/2026 13:43",
       "user": "Caroline",
+      "action": "Commande effectuée",
+      "detail": "Caroline a marqué SupplementMix / Endothelial Cell Growth Medium 2 comme commandé."
+    },
+    {
+      "date": "15/07/2026 13:43",
+      "user": "Caroline",
       "action": "Demande créée",
       "detail": "Caroline a créé une demande pour SupplementMix / Endothelial Cell Growth Medium 2."
     },
@@ -13761,5 +13767,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:43:12.087Z"
+  "updatedAt": "2026-07-15T11:43:22.327Z"
 }

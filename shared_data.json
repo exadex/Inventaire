@@ -11793,7 +11793,7 @@
   "orders": [
     {
       "id": "ord-1783932023859",
-      "status": "requested",
+      "status": "ordered",
       "itemMode": "existing",
       "inventoryItemId": "itm-CSV-0008",
       "itemName": "Plaque Corning 6 puits ULA",
@@ -11804,9 +11804,9 @@
       "requestedBy": "Caroline",
       "requestedAt": "13/07/2026 10:40",
       "requestedAtRaw": "2026-07-13T08:40:23.859Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
+      "orderedBy": "Caroline",
+      "orderedAt": "15/07/2026 13:15",
+      "orderedAtRaw": "2026-07-15T11:15:22.894Z",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -13179,6 +13179,12 @@
   ],
   "history": [
     {
+      "date": "15/07/2026 13:15",
+      "user": "Caroline",
+      "action": "Commande effectuée",
+      "detail": "Caroline a marqué Plaque Corning 6 puits ULA comme commandé."
+    },
+    {
       "date": "15/07/2026 10:49",
       "user": "Caroline",
       "action": "Échantillons clients ajoutés",
@@ -13659,5 +13665,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T08:49:17.937Z"
+  "updatedAt": "2026-07-15T11:15:22.894Z"
 }

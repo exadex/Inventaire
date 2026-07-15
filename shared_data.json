@@ -2,6 +2,37 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1784122331250",
+      "name": "REDUCTEUR SU 1.2MM",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 0,
+      "unit": "unités",
+      "minStock": 0,
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [
+        "Tulipe"
+      ],
+      "notes": "24",
+      "references": {
+        "primary": {
+          "supplier": "Benewmedical",
+          "reference": "CGTU DAT4L1.2MM",
+          "link": "",
+          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+          "price": "",
+          "unitPrice": "0.00",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-07-15T13:32:11.250Z",
+      "createdAt": "15/07/2026 15:32",
+      "source": "web"
+    },
+    {
       "id": "itm-CSV-0001",
       "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
       "category": "Procédé ExAdEx L2",
@@ -13131,6 +13162,12 @@
   ],
   "history": [
     {
+      "date": "15/07/2026 15:32",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté REDUCTEUR SU 1.2MM dans Procédé ExAdEx L2."
+    },
+    {
       "date": "15/07/2026 15:29",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -13731,5 +13768,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T13:29:42.779Z"
+  "updatedAt": "2026-07-15T13:32:11.251Z"
 }

@@ -11821,14 +11821,14 @@
       "notes": "Stock sous seuil minimum.",
       "requestedBy": "CB",
       "createdAt": "2026-05-19 09:12",
-      "status": "received",
+      "status": "ordered",
       "orderedAt": "15/07/2026 13:41",
       "orderedAtRaw": "2026-07-15T11:41:29.983Z",
       "orderedBy": "Caroline",
-      "receivedQuantity": 6,
-      "receivedAt": "15/07/2026 13:41",
-      "receivedAtRaw": "2026-07-15T11:41:40.919Z",
-      "receivedBy": "Caroline"
+      "receivedQuantity": 0,
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "receivedBy": ""
     }
   ],
   "clientSamples": [
@@ -13169,6 +13169,12 @@
     {
       "date": "15/07/2026 13:42",
       "user": "Caroline",
+      "action": "Réception annulée",
+      "detail": "Caroline a renvoyé Collagenase type I vers \"Commandé\"."
+    },
+    {
+      "date": "15/07/2026 13:42",
+      "user": "Caroline",
       "action": "Commande rouverte",
       "detail": "Caroline a renvoyé Plaque Corning 6 puits ULA vers \"À demander\"."
     },
@@ -13695,5 +13701,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:42:15.583Z"
+  "updatedAt": "2026-07-15T11:42:21.439Z"
 }

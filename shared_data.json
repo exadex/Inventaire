@@ -11830,7 +11830,11 @@
       "supplier": "Worthington",
       "notes": "Stock sous seuil minimum.",
       "requestedBy": "CB",
-      "createdAt": "2026-05-19 09:12"
+      "createdAt": "2026-05-19 09:12",
+      "status": "ordered",
+      "orderedAt": "15/07/2026 13:41",
+      "orderedAtRaw": "2026-07-15T11:41:29.983Z",
+      "orderedBy": "Caroline"
     },
     {
       "id": "ord-003",
@@ -13179,6 +13183,12 @@
   ],
   "history": [
     {
+      "date": "15/07/2026 13:41",
+      "user": "Caroline",
+      "action": "Commande effectuée",
+      "detail": "Caroline a marqué Collagenase type I comme commandé."
+    },
+    {
       "date": "15/07/2026 13:15",
       "user": "Caroline",
       "action": "Réception annulée",
@@ -13677,5 +13687,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:15:28.358Z"
+  "updatedAt": "2026-07-15T11:41:29.983Z"
 }

@@ -11831,10 +11831,14 @@
       "notes": "Stock sous seuil minimum.",
       "requestedBy": "CB",
       "createdAt": "2026-05-19 09:12",
-      "status": "ordered",
+      "status": "received",
       "orderedAt": "15/07/2026 13:41",
       "orderedAtRaw": "2026-07-15T11:41:29.983Z",
-      "orderedBy": "Caroline"
+      "orderedBy": "Caroline",
+      "receivedQuantity": 6,
+      "receivedAt": "15/07/2026 13:41",
+      "receivedAtRaw": "2026-07-15T11:41:40.919Z",
+      "receivedBy": "Caroline"
     },
     {
       "id": "ord-003",
@@ -13185,6 +13189,12 @@
     {
       "date": "15/07/2026 13:41",
       "user": "Caroline",
+      "action": "Commande reçue",
+      "detail": "Caroline a marqué Collagenase type I comme arrivé."
+    },
+    {
+      "date": "15/07/2026 13:41",
+      "user": "Caroline",
       "action": "Commande effectuée",
       "detail": "Caroline a marqué Collagenase type I comme commandé."
     },
@@ -13687,5 +13697,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:41:29.983Z"
+  "updatedAt": "2026-07-15T11:41:40.920Z"
 }

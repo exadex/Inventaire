@@ -61,37 +61,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-CSV-0003",
-      "name": "REDUCTEUR SU 1.2MM",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 6,
-      "unit": "unités",
-      "minStock": 2,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Tulipe"
-      ],
-      "notes": "20",
-      "references": {
-        "primary": {
-          "supplier": "Aestetic group",
-          "reference": "FD0000000-LLF24",
-          "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/527-raccord-d-emulsion-de-graisse-fll-o-12mm-x20.html",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "46",
-          "unitPrice": "2,3",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "createdAtRaw": "2026-07-13T14:35:01.717Z",
-      "createdAt": "13/07/2026 16:35"
-    },
-    {
       "id": "itm-CSV-0004",
       "name": "REDUCTEUR SU 1.4MM",
       "category": "Procédé ExAdEx L2",
@@ -13162,6 +13131,12 @@
   ],
   "history": [
     {
+      "date": "15/07/2026 15:29",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé REDUCTEUR SU 1.2MM de l'inventaire."
+    },
+    {
       "date": "15/07/2026 14:15",
       "user": "Caroline",
       "action": "Commande reçue",
@@ -13756,5 +13731,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T12:15:12.432Z"
+  "updatedAt": "2026-07-15T13:29:42.779Z"
 }

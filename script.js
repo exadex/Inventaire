@@ -67,12 +67,20 @@ let sampleReturnContext = { view: "samples", location: null, scrollY: 0 };
 let viewReturnScrollY = { experiments: 0, locations: 0 };
 let selectedOrderId = null;
 let ordersMode = "board";
+let orderHistorySearch = "";
+let orderHistoryStatus = "all";
+let orderHistoryRequester = "all";
+let orderHistoryPeriod = "all";
+let orderHistorySort = "newest";
+let orderHistoryPage = 1;
+let orderHistoryPageSize = 50;
 let pendingOrderInventoryLink = null;
 const collapsedClientGroups = new Set();
 const expandedReplicaGroups = new Set();
 const SAMPLE_PAGE_SIZE = 50;
 let sampleCurrentPage = 1;
 let samplesDomWarningShown = false;
+const QUANTITY_STEP = 1;
 
 const auth = document.querySelector("#auth");
 const app = document.querySelector("#app");
@@ -121,6 +129,10 @@ const historyDateStart = document.querySelector("#historyDateStart");
 const historyDateEnd = document.querySelector("#historyDateEnd");
 const historyCustomDates = document.querySelector("#historyCustomDates");
 const historyPageSizeSelect = document.querySelector("#historyPageSize");
+const orderBoardSearchInput = document.querySelector("#orderBoardSearchInput");
+const orderBoardPriorityFilter = document.querySelector("#orderBoardPriorityFilter");
+const orderBoardRequesterFilter = document.querySelector("#orderBoardRequesterFilter");
+const orderBoardSortSelect = document.querySelector("#orderBoardSortSelect");
 
 const fields = [
   "itemId",
@@ -320,6 +332,12 @@ document.querySelector("#historyNextPage")?.addEventListener("click", () => {
   historyCurrentPage += 1;
   renderHistory();
 });
+orderBoardSearchInput?.addEventListener("input", renderOrders);
+orderBoardPriorityFilter?.addEventListener("change", renderOrders);
+orderBoardRequesterFilter?.addEventListener("change", renderOrders);
+orderBoardSortSelect?.addEventListener("change", renderOrders);
+document.querySelector("#resetOrderBoardFiltersBtn")?.addEventListener("click", resetOrderBoardFilters);
+document.addEventListener("keydown", handleQuantityStepKeydown);
 sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
 sampleFields.sampleCategory.addEventListener("change", syncSampleMeasureLabel);
 sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
@@ -1056,7 +1074,7 @@ function renderInventoryDetail(item) {
           aria-label="Retour à l'inventaire"
         >
           <span aria-hidden="true">←</span>
-          Retour à l'inventaire
+          Retour
         </button>
       </div>
 
@@ -1655,7 +1673,7 @@ function formatPriceEuro(value) {
   }).format(Number(normalized));
 }
 
-function renderOrderDetail(order) {
+function renderOrderDetailLegacy(order) {
   const item =
     items.find((entry) => entry.id === order.inventoryItemId) ||
     items.find((entry) => entry.name === order.itemName) ||
@@ -1965,6 +1983,7 @@ function syncAppViewMode() {
   app.classList.toggle("history-mode", activeView === "history");
   app.classList.toggle("samples-mode", activeView === "samples");
   app.classList.toggle("locations-mode", activeView === "locations");
+  app.classList.toggle("orders-mode", activeView === "orders");
   app.classList.toggle("location-detail-mode", activeView === "locations" && Boolean(selectedLocation));
   app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }
@@ -2209,10 +2228,17 @@ function renderClientSampleGroups(units) {
   return Array.from(groups.entries()).map(([groupKey, group]) => {
     const isCollapsed = collapsedClientGroups.has(groupKey);
     return `
-      <section class="client-group">
-        <button class="client-group-header" type="button" onclick="toggleClientGroup('${escapeHtml(groupKey)}')">
+      <section class="client-group ${isCollapsed ? "is-collapsed" : ""}">
+        <button
+          class="client-group-header"
+          type="button"
+          aria-expanded="${isCollapsed ? "false" : "true"}"
+          aria-label="${isCollapsed ? "Déplier" : "Replier"} le client ${escapeHtml(group.code)}"
+          onclick="toggleClientGroup('${escapeHtml(groupKey)}')"
+        >
           <span class="client-group-title">
-            <span class="client-group-chevron">${isCollapsed ? "›" : "⌄"}</span>
+            <span class="client-group-chevron" aria-hidden="true">›</span>
+            <span class="client-group-label">Client</span>
             <strong>${escapeHtml(group.code)}</strong>
           </span>
           <span>${group.sampleCount} élément${group.sampleCount > 1 ? "s" : ""}</span>
@@ -2245,7 +2271,7 @@ function renderReplicaFamilyRow(unit) {
         onclick="toggleReplicaGroup('${escapeHtml(unit.key)}')"
       >
         <div class="client-sample-main">
-          <strong>${escapeHtml(unit.baseName)}</strong>
+          <strong title="${escapeHtml(unit.baseName)}">${escapeHtml(unit.baseName)}</strong>
           <div class="client-sample-subline">
             <span class="client-type-badge ${escapeHtml(firstSample.type)}">${escapeHtml(clientSampleTypes[firstSample.type] || firstSample.type)}</span>
             <span class="client-replica-count">${unit.count} réplicat${unit.count > 1 ? "s" : ""}</span>
@@ -2288,7 +2314,7 @@ function renderClientSampleRow(sample, options = {}) {
       onclick="openSampleDetail('${escapeHtml(sample.id)}', { view: 'samples' })"
     >
       <div class="client-sample-main">
-        <strong>${escapeHtml(sample.name)}</strong>
+        <strong title="${escapeHtml(sample.name)}">${escapeHtml(sample.name)}</strong>
         <div class="client-sample-subline">
           <span class="client-type-badge ${escapeHtml(sample.type)}">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
           <span>${escapeHtml(getClientSampleSubLabel(sample))}</span>
@@ -2908,7 +2934,7 @@ function renderLocationDetail(locationGrid, group) {
       <div class="inventory-detail-return-row">
         <button class="ghost-btn inventory-back-btn" id="backToLocationsBtn" type="button" aria-label="Retour aux localisations">
           <span aria-hidden="true">←</span>
-          Retour aux localisations
+          Retour
         </button>
       </div>
 
@@ -3244,7 +3270,145 @@ function compareLocationGroups(a, b, sort = "name") {
   return a.place.localeCompare(b.place, "fr");
 }
 
+function handleQuantityStepKeydown(event) {
+  const input = event.target.closest?.('input[type="number"][data-quantity-step="1"]');
+  if (!input || (event.key !== "ArrowUp" && event.key !== "ArrowDown")) return;
+
+  event.preventDefault();
+  const current = input.value === "" ? 0 : Number(input.value);
+  if (!Number.isFinite(current)) return;
+
+  const direction = event.key === "ArrowUp" ? 1 : -1;
+  const minimum = input.min === "" ? -Infinity : Number(input.min);
+  const next = Number((current + direction * QUANTITY_STEP).toFixed(12));
+  input.value = String(Number.isFinite(minimum) ? Math.max(minimum, next) : next);
+  input.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+function normalizeOrderStatus(status) {
+  const normalized = normalizeSearch(status || "");
+  if (["ordered", "commandee", "commande"].includes(normalized)) return "ordered";
+  if (["received", "arrived", "arrivee", "arrive"].includes(normalized)) return "received";
+  if (["archived", "cancelled", "canceled", "annulee", "annule"].includes(normalized)) return "archived";
+  return "requested";
+}
+
+function getOrdersByStatus(allOrders = orders) {
+  const source = Array.isArray(allOrders) ? allOrders : [];
+  return {
+    requested: source.filter(order => normalizeOrderStatus(order.status) === "requested"),
+    ordered: source.filter(order => normalizeOrderStatus(order.status) === "ordered"),
+    received: source.filter(order => normalizeOrderStatus(order.status) === "received"),
+    archived: source.filter(order => normalizeOrderStatus(order.status) === "archived")
+  };
+}
+
+function orderStatusLabel(status) {
+  return {
+    requested: "Nouvelle demande",
+    ordered: "Commandée",
+    received: "Arrivée",
+    archived: "Annulée"
+  }[normalizeOrderStatus(status)];
+}
+
+function renderOrderDetail(order) {
+  const item = order.inventoryItemId
+    ? items.find(entry => entry.id === order.inventoryItemId) || null
+    : null;
+  const status = normalizeOrderStatus(order.status);
+  const priority = getOrderPriorityPresentation(order.priority);
+  const avatar = getHistoryUserAvatar(order.requestedBy);
+  const unit = getOrderUnit(order);
+  const references = item ? normalizeReferences(item.references) : normalizeReferences({});
+  const headerActions = status === "requested"
+    ? `<button class="primary-btn compact-btn" type="button" onclick="moveOrderToOrdered('${escapeHtml(order.id)}')">Marquer comme commandée</button>`
+    : status === "ordered"
+      ? `<button class="primary-btn compact-btn" type="button" onclick="moveOrderToReceived('${escapeHtml(order.id)}')">Marquer comme arrivée</button>`
+      : status === "received" && !order.addedToInventory
+        ? `<button class="primary-btn compact-btn" type="button" onclick="openReceiveInventoryDialog('${escapeHtml(order.id)}')">Ajouter l’item à l’inventaire</button>`
+        : "";
+
+  return `
+    <section class="inventory-detail-panel order-detail-view">
+      <div class="inventory-detail-return-row">
+        <button class="ghost-btn inventory-back-btn" type="button" onclick="selectOrder(null)" aria-label="Retour aux demandes">
+          <span aria-hidden="true">←</span> Retour
+        </button>
+      </div>
+
+      <div class="inventory-detail-header order-detail-header">
+        <div class="inventory-detail-title">
+          <span class="order-priority-badge ${priority.className}">${escapeHtml(status === "requested" ? priority.label : orderStatusLabel(status))}</span>
+          <h3>${escapeHtml(order.itemName)}</h3>
+          <div class="inventory-detail-meta">
+            <span>${escapeHtml(orderStatusLabel(status))}</span>
+            <span>${escapeHtml(order.requestedBy || "Utilisateur inconnu")}</span>
+            <span>${escapeHtml(formatOrderBoardDate(order.requestedAtRaw || order.requestedAt || order.createdAt))}</span>
+          </div>
+        </div>
+        ${headerActions ? `<div class="detail-actions inventory-detail-actions">${headerActions}</div>` : ""}
+      </div>
+
+      ${renderOrderWorkflow(order)}
+
+      <div class="order-detail-grid">
+        <section class="inventory-info-panel">
+          <div class="inventory-panel-heading"><span class="inventory-panel-icon">i</span><h3>Informations de la demande</h3></div>
+          <div class="item-detail-stack">
+            ${renderDetailRow("Statut", orderStatusLabel(status))}
+            ${renderDetailRow("Priorité", priority.label)}
+            ${renderDetailRow("Quantité demandée", formatOrderBoardQuantity(order.requestedQuantity ?? order.quantity, unit, "demandée"))}
+            <div class="item-detail-row"><span class="item-detail-label">Demandeur</span><div class="item-detail-value order-detail-user"><span class="history-user-avatar ${avatar.type}" aria-hidden="true">${escapeHtml(avatar.value)}</span>${escapeHtml(order.requestedBy || "Utilisateur inconnu")}</div></div>
+            ${renderDetailRow("Date de création", formatOrderBoardDate(order.requestedAtRaw || order.requestedAt || order.createdAt))}
+            ${order.notes?.trim() ? renderDetailRow("Note", order.notes.trim()) : ""}
+          </div>
+        </section>
+
+        ${item ? `
+          <section class="inventory-info-panel order-linked-stock">
+            <div class="inventory-panel-heading"><span class="inventory-panel-icon">S</span><h3>Stock et item lié</h3></div>
+            <div class="item-detail-stack">
+              ${renderDetailRow("Stock actuel", formatInventoryCardQuantity(item.quantity, item.unit))}
+              ${Number(item.minStock) > 0 ? renderDetailRow("Minimum", formatInventoryCardQuantity(item.minStock, item.unit)) : ""}
+              ${renderDetailRow("Statut du stock", statusLabel(itemStatus(item)))}
+              ${renderDetailRow("Localisation", formatLocations(item))}
+              ${renderDetailRow("Catégorie", item.category)}
+            </div>
+            <div class="order-detail-panel-actions">
+              <button class="ghost-btn compact-btn" type="button" onclick="openItemDetail('${escapeHtml(item.id)}', { view: 'orders' })">Voir la fiche inventaire</button>
+            </div>
+          </section>
+        ` : `
+          <section class="inventory-info-panel order-linked-stock">
+            <div class="inventory-panel-heading"><span class="inventory-panel-icon">S</span><h3>Stock et item lié</h3></div>
+            <p>Aucun item lié à cette demande pour le moment.</p>
+          </section>
+        `}
+
+        ${item ? renderInventoryReferencesPanel(references) : ""}
+      </div>
+    </section>
+  `;
+}
+
+function renderOrderWorkflow(order) {
+  const status = normalizeOrderStatus(order.status);
+  const rank = { requested: 0, ordered: 1, received: 2 }[status] ?? 0;
+  const steps = [
+    ["Demandée", order.requestedAtRaw || order.requestedAt || order.createdAt],
+    ["Commandée", order.orderedAtRaw || order.orderedAt],
+    ["Arrivée", order.receivedAtRaw || order.receivedAt]
+  ];
+  return `<ol class="order-workflow" aria-label="Progression de la commande">${steps.map(([label, date], index) => `
+    <li class="${index < rank ? "complete" : index === rank ? "current" : "future"}">
+      <span class="order-workflow-marker" aria-hidden="true">${index + 1}</span>
+      <div><strong>${label}</strong>${date ? `<small>${escapeHtml(formatOrderBoardDate(date))}</small>` : ""}</div>
+    </li>`).join("")}</ol>`;
+}
+
 function renderOrders() {
+  const ordersView = document.querySelector("#ordersView");
   const orderDetail = document.querySelector("#orderDetail");
   const requestedList = document.querySelector("#requestedOrderList");
   const orderedList = document.querySelector("#orderedOrderList");
@@ -3263,133 +3427,257 @@ function renderOrders() {
     return;
   }
 
-  const headerActions = document.querySelector(".orders-actions, .view-actions, .section-actions");
-  if (headerActions && !headerActions.querySelector("#ordersHistoryBtn")) {
-    const historyBtn = document.createElement("button");
-    historyBtn.id = "ordersHistoryBtn";
-    historyBtn.type = "button";
-    historyBtn.className = "ghost-btn";
-    historyBtn.textContent = "Historique";
-    historyBtn.onclick = openOrdersHistory;
-    headerActions.prepend(historyBtn);
-  }
+  ordersView?.classList.toggle("orders-history-mode", ordersMode === "history");
+  if (ordersMode === "history") ordersView?.classList.remove("orders-detail-mode");
 
   if (ordersMode === "history") {
     renderOrdersHistory();
     return;
   }
 
-  const visibleOrders = orders.filter((order) => {
-    if (order.status === "received" && order.addedToInventory) return false;
-    if (order.status !== "received") return true;
-    if (!order.receivedAtRaw) return true;
+  const visibleOrders = [...orders];
 
-    const age = Date.now() - new Date(order.receivedAtRaw).getTime();
-    return age < 7 * 24 * 60 * 60 * 1000;
-  });
+  renderOrderBoardRequesterOptions(visibleOrders);
+  const filteredOrders = visibleOrders
+    .filter(order => orderMatchesBoardFilters(order))
+    .sort(compareOrderBoardEntries);
+  const groupedOrders = getOrdersByStatus(filteredOrders);
+  const requested = groupedOrders.requested;
+  const ordered = groupedOrders.ordered;
+  const received = groupedOrders.received;
 
-  const requested = visibleOrders
-    .filter((order) => order.status === "requested")
-    .sort((a, b) => priorityRank(a.priority) - priorityRank(b.priority));
-
-  const ordered = visibleOrders
-    .filter((order) => order.status === "ordered")
-    .sort((a, b) => priorityRank(a.priority) - priorityRank(b.priority));
-
-  const received = visibleOrders
-    .filter((order) => order.status === "received")
-    .sort((a, b) => priorityRank(a.priority) - priorityRank(b.priority));
-
-  if (requestedCount) requestedCount.textContent = ` (${requested.length})`;
-  if (orderedCount) orderedCount.textContent = ` (${ordered.length})`;
-  if (receivedCount) receivedCount.textContent = ` (${received.length})`;
+  if (requestedCount) requestedCount.textContent = String(requested.length);
+  if (orderedCount) orderedCount.textContent = String(ordered.length);
+  if (receivedCount) receivedCount.textContent = String(received.length);
+  const resultCount = document.querySelector("#orderBoardResultCount");
+  if (resultCount) resultCount.textContent = formatOrderRequestCount(filteredOrders.length);
+  renderOrderBoardMetrics(filteredOrders);
 
   const detail = selectedOrderId
     ? visibleOrders.find((order) => order.id === selectedOrderId) ||
       orders.find((order) => order.id === selectedOrderId)
     : null;
-
-  const renderOrderCard = (order) => `
-    <article
-      class="order-card order-status-${order.status} priority-${slugPriority(order.priority)} ${selectedOrderId === order.id ? "active" : ""}"
-      onclick="selectOrder('${escapeHtml(order.id)}')"
-    >
-      <div class="item-head">
-        <div>
-          <strong>${escapeHtml(order.itemName)}</strong>
-          <span class="order-quantity">
-            Quantité demandée : ${escapeHtml(String(order.requestedQuantity ?? order.quantity ?? "—"))}
-          </span>
-          ${order.supplier ? `<span class="category">${escapeHtml(order.supplier)}</span>` : ""}
-        </div>
-        <span class="priority-badge">${escapeHtml(priorityLabel(order.priority))}</span>
-      </div>
-
-      <p>${escapeHtml(order.notes || "Aucune note")}</p>
-
-      <div class="card-actions">
-        <small>
-          ${escapeHtml(order.status)} ·
-          ${escapeHtml(order.requestedBy || "")} ·
-          ${escapeHtml(formatOrderDate(order.requestedAt || order.createdAt))}
-        </small>
-
-        <div class="card-button-stack">
-          ${
-            order.status === "requested"
-              ? `
-                <button class="text-btn" type="button" onclick="event.stopPropagation(); moveOrderToOrdered('${escapeHtml(order.id)}')">Commandé</button>
-                <button class="text-btn" type="button" onclick="event.stopPropagation(); markOrderDone('${escapeHtml(order.id)}')">Effacer</button>
-              `
-              : ""
-          }
-
-          ${
-            order.status === "ordered"
-              ? `
-                <button class="text-btn" type="button" onclick="event.stopPropagation(); moveOrderBackToRequested('${escapeHtml(order.id)}')">← Retour</button>
-                <button class="text-btn" type="button" onclick="event.stopPropagation(); moveOrderToReceived('${escapeHtml(order.id)}')">Arrivé</button>
-              `
-              : ""
-          }
-
-          ${
-            order.status === "received"
-              ? `
-                <button class="text-btn" type="button" onclick="event.stopPropagation(); moveOrderBackToOrdered('${escapeHtml(order.id)}')">← Retour</button>
-                <button class="text-btn" type="button" onclick="event.stopPropagation(); openReceiveInventoryDialog('${escapeHtml(order.id)}')">Ajouter à l'inventaire</button>
-              `
-              : ""
-          }
-        </div>
-      </div>
-    </article>
-  `;
+  ordersView?.classList.toggle("orders-detail-mode", Boolean(detail));
 
   orderDetail.innerHTML = detail ? renderOrderDetail(detail) : "";
 
   if (ordersSections) {
     ordersSections.classList.toggle("hidden", Boolean(detail));
-  } else {
-    [requestedSection, orderedSection, receivedSection].forEach((section) => {
-      if (section) {
-        section.classList.toggle("hidden", Boolean(detail));
-      }
-    });
   }
+  [requestedSection, orderedSection, receivedSection].forEach((section) => {
+    section?.classList.toggle("hidden", Boolean(detail));
+  });
 
   if (detail) {
     return;
   }
 
   requestedList.innerHTML =
-    requested.map(renderOrderCard).join("") || `<div class="empty-room">Aucune demande.</div>`;
+    requested.map(renderOrderBoardCard).join("") || renderOrderLaneEmpty("requested");
 
   orderedList.innerHTML =
-    ordered.map(renderOrderCard).join("") || `<div class="empty-room">Aucune commande en cours.</div>`;
+    ordered.map(renderOrderBoardCard).join("") || renderOrderLaneEmpty("ordered");
 
   receivedList.innerHTML =
-    received.map(renderOrderCard).join("") || `<div class="empty-room">Aucune réception récente.</div>`;
+    received.map(renderOrderBoardCard).join("") || renderOrderLaneEmpty("received");
+}
+
+function renderOrderBoardRequesterOptions(visibleOrders) {
+  if (!orderBoardRequesterFilter) return;
+  const selected = orderBoardRequesterFilter.value || "all";
+  const users = Array.from(new Set(visibleOrders.map(order => order.requestedBy).filter(Boolean)))
+    .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+  orderBoardRequesterFilter.innerHTML = `<option value="all">Tous les demandeurs</option>${users
+    .map(user => `<option value="${escapeHtml(user)}">${escapeHtml(user)}</option>`).join("")}`;
+  orderBoardRequesterFilter.value = users.includes(selected) ? selected : "all";
+}
+
+function getOrderPriorityGroup(priority) {
+  const normalized = normalizeSearch(priority || "");
+  if (normalized === "critique") return "critical";
+  if (["tres urgent", "urgent", "muy urgente"].includes(normalized)) return "attention";
+  return "standard";
+}
+
+function getOrderPriorityPresentation(priority) {
+  const group = getOrderPriorityGroup(priority);
+  return {
+    critical: { label: "Critique", className: "critical" },
+    attention: { label: "Attention", className: "attention" },
+    standard: { label: "Standard", className: "standard" }
+  }[group];
+}
+
+function orderMatchesBoardFilters(order) {
+  const query = normalizeSearch(orderBoardSearchInput?.value || "");
+  const priority = orderBoardPriorityFilter?.value || "all";
+  const requester = orderBoardRequesterFilter?.value || "all";
+  const haystack = normalizeSearch([
+    order.itemName,
+    order.requestedBy,
+    order.orderedBy,
+    order.receivedBy,
+    order.notes,
+    order.supplier,
+    order.requestedQuantity,
+    order.receivedQuantity,
+    order.status,
+    order.status === "requested" ? "demande" : order.status === "ordered" ? "commandee" : "arrivee",
+    order.priority,
+    order.requestedAt,
+    order.orderedAt,
+    order.receivedAt
+  ].join(" "));
+  return (!query || haystack.includes(query)) &&
+    (priority === "all" || getOrderPriorityGroup(order.priority) === priority) &&
+    (requester === "all" || order.requestedBy === requester);
+}
+
+function compareOrderBoardEntries(a, b) {
+  const sort = orderBoardSortSelect?.value || "newest";
+  const timeA = getOrderBoardTime(a);
+  const timeB = getOrderBoardTime(b);
+  if (sort === "oldest") return timeA - timeB;
+  if (sort === "priority") return priorityRank(a.priority) - priorityRank(b.priority) || timeB - timeA;
+  if (sort === "name") return String(a.itemName || "").localeCompare(String(b.itemName || ""), "fr", { sensitivity: "base" });
+  return timeB - timeA;
+}
+
+function getOrderBoardTime(order) {
+  const raw = order.requestedAtRaw || order.orderedAtRaw || order.receivedAtRaw;
+  const parsed = raw ? new Date(raw) : parseHistoryDate(order.requestedAt || order.createdAt);
+  const time = parsed?.getTime();
+  return Number.isFinite(time) ? time : 0;
+}
+
+function formatOrderRequestCount(count) {
+  return `${count} ${count === 1 ? "demande" : "demandes"}`;
+}
+
+function renderOrderBoardMetrics(filteredOrders) {
+  const container = document.querySelector("#orderBoardMetrics");
+  if (!container) return;
+  const metrics = [
+    ["requested", "Demandes en attente", filteredOrders.filter(order => normalizeOrderStatus(order.status) === "requested").length],
+    ["ordered", "Commandées", filteredOrders.filter(order => normalizeOrderStatus(order.status) === "ordered").length],
+    ["received", "Arrivées", filteredOrders.filter(order => normalizeOrderStatus(order.status) === "received").length],
+    ["critical", "Demandes critiques", filteredOrders.filter(order => normalizeOrderStatus(order.status) === "requested" && getOrderPriorityGroup(order.priority) === "critical").length]
+  ];
+  container.innerHTML = metrics.map(([type, label, value]) => `
+    <article class="client-kpi-card order-kpi-card ${type}">
+      <span class="client-kpi-icon" aria-hidden="true">${renderOrderBoardIcon(type)}</span>
+      <div><span>${escapeHtml(label)}</span><strong>${value}</strong></div>
+    </article>
+  `).join("");
+}
+
+function renderOrderBoardIcon(type) {
+  const icons = {
+    requested: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
+    ordered: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 8 8-4 8 4-8 4-8-4Zm0 0v8l8 4 8-4V8M12 12v8"/></svg>`,
+    received: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h11v11H3zM14 10h4l3 4v3h-7zM6 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>`,
+    critical: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4 3 20h18L12 4Zm0 5v5m0 3h.01"/></svg>`,
+    empty: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 8 8-4 8 4-8 4-8-4Zm0 0v8l8 4 8-4V8"/></svg>`
+  };
+  return icons[type] || icons.empty;
+}
+
+function renderOrderBoardCard(order) {
+  const status = normalizeOrderStatus(order.status);
+  const priority = getOrderPriorityPresentation(order.priority);
+  const unit = getOrderUnit(order);
+  const quantity = status === "received"
+    ? (order.receivedQuantity || order.requestedQuantity || order.quantity)
+    : (order.requestedQuantity ?? order.quantity);
+  const requestedQuantity = formatOrderBoardQuantity(quantity, unit, status === "received" ? "reçue" : "demandée");
+  const dateValue = status === "received"
+    ? (order.receivedAtRaw || order.receivedAt)
+    : status === "ordered"
+      ? (order.orderedAtRaw || order.orderedAt)
+      : (order.requestedAtRaw || order.requestedAt || order.createdAt);
+  const userName = status === "received" ? (order.receivedBy || order.requestedBy) : order.requestedBy;
+  const displayAvatar = getHistoryUserAvatar(userName);
+
+  return `
+    <article class="order-board-card order-status-${status} priority-${priority.className} ${selectedOrderId === order.id ? "active" : ""}"
+      tabindex="0" onclick="selectOrder('${escapeHtml(order.id)}')"
+      onkeydown="if ((event.key === 'Enter' || event.key === ' ') && event.target === this) { event.preventDefault(); selectOrder('${escapeHtml(order.id)}'); }">
+      <div class="order-card-heading">
+        <span class="order-priority-badge ${priority.className}">${priority.label}</span>
+        ${status === "received" ? `<span class="order-status-badge received">Arrivée</span>` : ""}
+      </div>
+      <strong class="order-card-title" title="${escapeHtml(order.itemName)}">${escapeHtml(order.itemName)}</strong>
+      <span class="order-card-quantity">${escapeHtml(requestedQuantity)}</span>
+      <div class="order-card-note-space">
+        ${order.notes ? `<p class="order-card-note" title="${escapeHtml(order.notes)}">${escapeHtml(order.notes)}</p>` : ""}
+      </div>
+      <div class="order-card-person">
+        <span class="history-user-avatar ${displayAvatar.type}" aria-hidden="true">${escapeHtml(displayAvatar.value)}</span>
+        <span>${escapeHtml(userName || "Utilisateur inconnu")}</span>
+        <time>${escapeHtml(formatOrderBoardDate(dateValue))}</time>
+      </div>
+      <div class="order-board-actions">
+        ${renderOrderBoardActions(order)}
+      </div>
+    </article>
+  `;
+}
+
+function formatOrderBoardQuantity(quantity, unit, suffix) {
+  const numeric = Number(quantity);
+  const value = Number.isFinite(numeric) ? numeric : quantity ?? "—";
+  const displayUnit = formatInventoryDisplayUnit(value, unit);
+  return `${value}${displayUnit ? ` ${displayUnit}` : ""} ${suffix}`.trim();
+}
+
+function formatOrderBoardDate(value) {
+  const date = value instanceof Date ? value : parseHistoryDate(value) || new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value || "—");
+  return new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" }).format(date);
+}
+
+function renderOrderBoardActions(order) {
+  const status = normalizeOrderStatus(order.status);
+  if (status === "requested") {
+    return `
+      <button class="primary-btn compact-btn" type="button" onclick="event.stopPropagation(); moveOrderToOrdered('${escapeHtml(order.id)}')">Marquer comme commandée</button>
+      <button class="ghost-btn compact-btn" type="button" onclick="event.stopPropagation(); markOrderDone('${escapeHtml(order.id)}')">Supprimer</button>
+    `;
+  }
+  if (status === "ordered") {
+    return `
+      <button class="primary-btn compact-btn" type="button" onclick="event.stopPropagation(); moveOrderToReceived('${escapeHtml(order.id)}')">Marquer comme arrivée</button>
+      <button class="ghost-btn compact-btn" type="button" onclick="event.stopPropagation(); moveOrderBackToRequested('${escapeHtml(order.id)}')">Retour aux demandes</button>
+    `;
+  }
+  if (order.addedToInventory) return "";
+  return `
+    <button class="primary-btn compact-btn" type="button" onclick="event.stopPropagation(); openReceiveInventoryDialog('${escapeHtml(order.id)}')">Ajouter à l’inventaire</button>
+    <button class="ghost-btn compact-btn" type="button" onclick="event.stopPropagation(); moveOrderBackToOrdered('${escapeHtml(order.id)}')">Retour aux commandes</button>
+  `;
+}
+
+function renderOrderLaneEmpty(status) {
+  const content = {
+    requested: ["Aucune demande en attente", "Les nouvelles demandes apparaîtront ici."],
+    ordered: ["Aucune commande en cours", "Les demandes commandées apparaîtront ici."],
+    received: ["Aucune réception récente", "Les réceptions apparaîtront ici."]
+  }[status];
+  return `
+    <div class="order-lane-empty">
+      <span aria-hidden="true">${renderOrderBoardIcon("empty")}</span>
+      <strong>${content[0]}</strong>
+      <p>${content[1]}</p>
+    </div>
+  `;
+}
+
+function resetOrderBoardFilters() {
+  if (orderBoardSearchInput) orderBoardSearchInput.value = "";
+  if (orderBoardPriorityFilter) orderBoardPriorityFilter.value = "all";
+  if (orderBoardRequesterFilter) orderBoardRequesterFilter.value = "all";
+  if (orderBoardSortSelect) orderBoardSortSelect.value = "newest";
+  renderOrders();
 }
 
 function renderOrderItemOptions() {
@@ -4686,7 +4974,8 @@ function addExperimentItemRow(line = {}, options = {}) {
           class="experiment-item-quantity"
           type="number"
           min="0"
-          step="1"
+          step="any"
+          data-quantity-step="1"
           value="${escapeHtml(line.quantity ?? "")}"
           ${quantityEditable ? "" : "readonly"}
           required
@@ -4724,7 +5013,8 @@ function addExperimentItemRow(line = {}, options = {}) {
           class="experiment-item-quantity"
           type="number"
           min="0"
-          step="1"
+          step="any"
+          data-quantity-step="1"
           value="${escapeHtml(line.quantity ?? "")}"
           ${quantityEditable ? "" : "readonly"}
           required
@@ -5050,7 +5340,7 @@ function saveOrder() {
 
 function moveOrderToOrdered(id) {
   const order = orders.find(entry => entry.id === id);
-  if (!order || order.status !== "requested") return;
+  if (!order || normalizeOrderStatus(order.status) !== "requested") return;
 
   order.status = "ordered";
   order.orderedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
@@ -5068,7 +5358,7 @@ function moveOrderToReceived(id) {
   if (!order || order.status !== "ordered") return;
 
   order.status = "received";
-  order.receivedQuantity = Number(order.requestedQuantity || 0);
+  order.receivedQuantity = getOrderRequestedNumericQuantity(order);
   order.receivedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
   order.receivedAtRaw = new Date().toISOString();
   order.receivedBy = currentName;
@@ -5096,7 +5386,7 @@ function moveOrderBackToRequested(id) {
 
 function moveOrderBackToOrdered(id) {
   const order = orders.find(entry => entry.id === id);
-  if (!order || order.status !== "received") return;
+  if (!order || order.status !== "received" || order.addedToInventory) return;
 
   order.status = "ordered";
   order.receivedQuantity = 0;
@@ -5113,10 +5403,14 @@ function moveOrderBackToOrdered(id) {
 // Funcion para confirmar la cantidad recibida antes de agregarla al inventario, en lugar de asumir que es igual a la cantidad solicitada
 function openReceiveInventoryDialog(id) {
   const order = orders.find(entry => entry.id === id);
-  if (!order || order.status !== "received") return;
+  if (!order || normalizeOrderStatus(order.status) !== "received") return;
+  if (order.addedToInventory) {
+    window.alert("Cette réception a déjà été ajoutée à l’inventaire.");
+    return;
+  }
 
-  if (order.itemMode === "new" && !order.inventoryItemId) {
-    const quantity = Number(order.receivedQuantity || order.requestedQuantity || 0);
+  if (!order.inventoryItemId && (order.itemMode === "new" || !order.newItemData)) {
+    const quantity = Number(order.receivedQuantity) || getOrderRequestedNumericQuantity(order);
     pendingOrderInventoryLink = { orderId: order.id };
     openModal(null, {
       prefill: {
@@ -5133,7 +5427,7 @@ function openReceiveInventoryDialog(id) {
     : null;
 
   const unit = linkedItem?.unit || order.newItemData?.unit || "";
-  const requestedQuantity = Number(order.requestedQuantity || 0);
+  const requestedQuantity = getOrderRequestedNumericQuantity(order);
 
   receiveInventoryFields.receiveOrderId.value = order.id;
   receiveInventoryFields.receiveInventoryItemName.textContent = order.itemName;
@@ -5169,7 +5463,12 @@ function confirmReceiveInventory() {
 
   const id = receiveInventoryFields.receiveOrderId.value;
   const order = orders.find(entry => entry.id === id);
-  if (!order || order.status !== "received") return;
+  if (!order || normalizeOrderStatus(order.status) !== "received") return;
+  if (order.addedToInventory) {
+    receiveInventoryDialog.close();
+    window.alert("Cette réception a déjà été ajoutée à l’inventaire.");
+    return;
+  }
 
   const confirmedQuantity = Number(receiveInventoryFields.receiveQuantity.value);
   const unit = receiveInventoryFields.receiveUnit.value || "";
@@ -5228,7 +5527,17 @@ function confirmReceiveInventory() {
 function openOrdersHistory() {
   selectedOrderId = null;
   ordersMode = "history";
+  orderHistoryPage = 1;
   renderOrders();
+}
+
+function getOrderRequestedNumericQuantity(order) {
+  const raw = order?.requestedQuantity ?? order?.quantity ?? 0;
+  const direct = Number(raw);
+  if (Number.isFinite(direct)) return direct;
+  const match = String(raw).replace(",", ".").match(/-?\d+(?:\.\d+)?/);
+  const parsed = match ? Number(match[0]) : 0;
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
 function closeOrdersHistory() {
@@ -5238,6 +5547,15 @@ function closeOrdersHistory() {
 
 function formatOrderHistoryDate(value) {
   return value ? escapeHtml(value) : "—";
+}
+
+function formatOrderHistoryDateOnly(value) {
+  if (!value) return "—";
+  const parsed = parseHistoryDate(value);
+  if (parsed && !Number.isNaN(parsed.getTime())) {
+    return escapeHtml(new Intl.DateTimeFormat("fr-FR").format(parsed));
+  }
+  return escapeHtml(String(value).replace(/\s+\d{1,2}:\d{2}(?::\d{2})?$/, ""));
 }
 
 function getOrderUnit(order) {
@@ -5258,7 +5576,7 @@ function formatOrderHistoryQuantity(order) {
   return `Quantité demandée : ${order.requestedQuantity ?? "—"} ${unit}`.trim();
 }
 
-function renderOrdersHistory() {
+function renderOrdersHistoryLegacy() {
   const orderDetail = document.querySelector("#orderDetail");
   const requestedList = document.querySelector("#requestedOrderList");
   const orderedList = document.querySelector("#orderedOrderList");
@@ -5339,9 +5657,129 @@ function renderOrdersHistory() {
   `;
 }
 
+function renderOrdersHistory() {
+  const container = document.querySelector("#orderDetail");
+  if (!container) return;
+  const source = [...orders].filter(order => ["ordered", "received", "archived"].includes(normalizeOrderStatus(order.status)));
+  const hasArchived = source.some(order => normalizeOrderStatus(order.status) === "archived");
+  const requesters = Array.from(new Set(source.map(order => order.requestedBy).filter(Boolean)))
+    .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+  const filtered = source.filter(orderMatchesHistoryFilters).sort(compareOrderHistoryEntries);
+  const pageCount = Math.max(1, Math.ceil(filtered.length / orderHistoryPageSize));
+  orderHistoryPage = Math.min(Math.max(orderHistoryPage, 1), pageCount);
+  const start = (orderHistoryPage - 1) * orderHistoryPageSize;
+  const pageEntries = filtered.slice(start, start + orderHistoryPageSize);
+  const received = filtered.filter(order => normalizeOrderStatus(order.status) === "received").length;
+  const requesterCount = new Set(filtered.map(order => order.requestedBy).filter(Boolean)).size;
+
+  container.innerHTML = `
+    <section class="order-history-view">
+      <div class="inventory-detail-return-row">
+        <button class="ghost-btn inventory-back-btn" type="button" onclick="closeOrdersHistory()" aria-label="Retour aux demandes"><span aria-hidden="true">←</span> Retour</button>
+      </div>
+      <header class="client-studies-header order-history-page-header">
+        <div><p class="eyebrow">ACHATS ET APPROVISIONNEMENT</p><div class="client-studies-title-row"><h3>Historique des commandes</h3></div><p class="order-history-subtitle">Consultez les commandes terminées et les réceptions enregistrées.</p></div>
+      </header>
+
+      <section class="client-study-controls order-history-controls" aria-label="Filtres de l’historique des commandes">
+        <label class="client-study-search order-control-field"><span>Rechercher</span><input type="search" value="${escapeHtml(orderHistorySearch)}" placeholder="Produit, demandeur ou référence…" oninput="setOrderHistoryFilter('search', this.value)"><strong class="client-study-result-count">${formatOrderHistoryCount(filtered.length)}</strong></label>
+        <label class="order-control-field"><span>Statut</span><select class="select" onchange="setOrderHistoryFilter('status', this.value)">${renderOrderHistoryOptions([["all","Tous les statuts"],["ordered","Commandées"],["received","Arrivées"], ...(hasArchived ? [["archived","Annulées"]] : [])], orderHistoryStatus)}</select><span></span></label>
+        <label class="order-control-field"><span>Demandeur</span><select class="select" onchange="setOrderHistoryFilter('requester', this.value)">${renderOrderHistoryOptions([["all","Tous les demandeurs"], ...requesters.map(name => [name, name])], orderHistoryRequester)}</select><span></span></label>
+        <label class="order-control-field"><span>Période</span><select class="select" onchange="setOrderHistoryFilter('period', this.value)">${renderOrderHistoryOptions([["all","Toute la période"],["30","30 derniers jours"],["90","3 derniers mois"],["year","Cette année"]], orderHistoryPeriod)}</select><span></span></label>
+        <label class="order-control-field"><span>Tri</span><select class="select" onchange="setOrderHistoryFilter('sort', this.value)">${renderOrderHistoryOptions([["newest","Plus récentes"],["oldest","Plus anciennes"],["name","Nom A–Z"]], orderHistorySort)}</select><span></span></label>
+      </section>
+
+      <div class="client-study-kpis order-history-kpis">
+        ${renderOrderHistoryMetric("ordered", "Commandes enregistrées", filtered.length)}
+        ${renderOrderHistoryMetric("received", "Réceptions terminées", received)}
+        ${renderOrderHistoryMetric("requested", "Demandeurs", requesterCount)}
+      </div>
+
+      <section class="order-history-panel">
+        ${pageEntries.length ? renderOrderHistoryTable(pageEntries) : `<div class="order-history-empty"><strong>Aucune commande passée</strong><p>Les commandes et réceptions terminées apparaîtront ici.</p></div>`}
+        ${renderOrderHistoryPagination(filtered.length, start, pageEntries.length)}
+      </section>
+    </section>`;
+}
+
+function renderOrderHistoryOptions(options, selected) {
+  return options.map(([value, label]) => `<option value="${escapeHtml(value)}" ${value === selected ? "selected" : ""}>${escapeHtml(label)}</option>`).join("");
+}
+
+function formatOrderHistoryCount(count) { return `${count} ${count === 1 ? "commande" : "commandes"}`; }
+
+function setOrderHistoryFilter(key, value) {
+  if (key === "search") orderHistorySearch = value;
+  if (key === "status") orderHistoryStatus = value;
+  if (key === "requester") orderHistoryRequester = value;
+  if (key === "period") orderHistoryPeriod = value;
+  if (key === "sort") orderHistorySort = value;
+  orderHistoryPage = 1;
+  renderOrdersHistory();
+  if (key === "search") {
+    const input = document.querySelector(".order-history-controls input[type='search']");
+    input?.focus();
+    input?.setSelectionRange(input.value.length, input.value.length);
+  }
+}
+
+function orderMatchesHistoryFilters(order) {
+  const query = normalizeSearch(orderHistorySearch);
+  const status = normalizeOrderStatus(order.status);
+  const reference = normalizeReferences((items.find(item => item.id === order.inventoryItemId) || {}).references).primary.reference;
+  const haystack = normalizeSearch([order.itemName, order.requestedBy, order.orderedBy, order.receivedBy, reference, order.notes, orderStatusLabel(status)].join(" "));
+  if (query && !haystack.includes(query)) return false;
+  if (orderHistoryStatus !== "all" && status !== orderHistoryStatus) return false;
+  if (orderHistoryRequester !== "all" && order.requestedBy !== orderHistoryRequester) return false;
+  if (orderHistoryPeriod === "all") return true;
+  const date = getOrderHistoryDate(order);
+  if (!date) return false;
+  if (orderHistoryPeriod === "year") return date.getFullYear() === new Date().getFullYear();
+  const days = Number(orderHistoryPeriod);
+  return Date.now() - date.getTime() <= days * 86400000;
+}
+
+function getOrderHistoryDate(order) {
+  const raw = order.receivedAtRaw || order.orderedAtRaw || order.requestedAtRaw || order.receivedAt || order.orderedAt || order.requestedAt;
+  const parsed = parseHistoryDate(raw);
+  return parsed && !Number.isNaN(parsed.getTime()) ? parsed : null;
+}
+
+function compareOrderHistoryEntries(a, b) {
+  if (orderHistorySort === "name") return String(a.itemName || "").localeCompare(String(b.itemName || ""), "fr", { sensitivity: "base" });
+  const aTime = getOrderHistoryDate(a)?.getTime() || 0;
+  const bTime = getOrderHistoryDate(b)?.getTime() || 0;
+  return orderHistorySort === "oldest" ? aTime - bTime : bTime - aTime;
+}
+
+function renderOrderHistoryMetric(type, label, value) {
+  return `<article class="client-kpi-card order-kpi-card ${type}"><span class="client-kpi-icon" aria-hidden="true">${renderOrderBoardIcon(type)}</span><div><span>${escapeHtml(label)}</span><strong>${value}</strong></div></article>`;
+}
+
+function renderOrderHistoryTable(entries) {
+  return `<div class="order-history-table"><div class="order-history-table-head"><div>Produit</div><div>Quantité</div><div>Demandeur</div><div>Commandée</div><div>Arrivée</div><div>Statut</div><div>Action</div></div>${entries.map(order => {
+    const status = normalizeOrderStatus(order.status);
+    const avatar = getHistoryUserAvatar(order.requestedBy);
+    return `<div class="order-history-table-row"><div class="order-history-product"><strong>${escapeHtml(order.itemName)}</strong></div><div>${escapeHtml(formatOrderBoardQuantity(order.receivedQuantity || order.requestedQuantity, getOrderUnit(order), ""))}</div><div class="order-history-requester"><span class="history-user-avatar ${avatar.type}" aria-hidden="true">${escapeHtml(avatar.value)}</span>${escapeHtml(order.requestedBy || "—")}</div><div>${formatOrderHistoryDateOnly(order.orderedAt)}</div><div>${formatOrderHistoryDateOnly(order.receivedAt)}</div><div><span class="order-history-status ${status}">${escapeHtml(orderStatusLabel(status))}</span></div><div><button class="ghost-btn compact-btn" type="button" onclick="openOrderFromHistory('${escapeHtml(order.id)}')">Ouvrir</button></div></div>`;
+  }).join("")}</div>`;
+}
+
+function renderOrderHistoryPagination(total, start, shown) {
+  const first = total ? start + 1 : 0;
+  const last = total ? start + shown : 0;
+  return `<div class="order-history-pagination"><span>${first}–${last} sur ${total}</span><label><span class="sr-only">Commandes par page</span><select class="select" onchange="setOrderHistoryPageSize(this.value)">${[25,50,75,100].map(size => `<option value="${size}" ${size === orderHistoryPageSize ? "selected" : ""}>${size}</option>`).join("")}</select></label><button class="ghost-btn compact-btn" type="button" onclick="changeOrderHistoryPage(-1)" ${orderHistoryPage <= 1 ? "disabled" : ""}>Précédent</button><button class="primary-btn compact-btn" type="button" onclick="changeOrderHistoryPage(1)" ${last >= total ? "disabled" : ""}>Suivant</button></div>`;
+}
+
+function setOrderHistoryPageSize(value) { orderHistoryPageSize = Number(value) || 50; orderHistoryPage = 1; renderOrdersHistory(); }
+function changeOrderHistoryPage(delta) { orderHistoryPage += delta; renderOrdersHistory(); }
+function openOrderFromHistory(id) { ordersMode = "board"; selectedOrderId = id; renderOrders(); }
+
 function markOrderDone(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order) return;
+
+  const confirmed = window.confirm(`Supprimer la demande pour « ${order.itemName} » ?`);
+  if (!confirmed) return;
 
   orders = orders.filter(entry => entry.id !== id);
 

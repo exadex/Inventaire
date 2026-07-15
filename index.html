@@ -294,39 +294,77 @@
         </section>
 
         <section class="view" id="ordersView">
-          <div class="section-heading">
-            <h3>À commander</h3>
-            <span>Demandes triées par statut</span>
+          <div class="client-studies-header orders-page-header">
+            <div>
+              <p class="eyebrow">ACHATS ET APPROVISIONNEMENT</p>
+              <div class="client-studies-title-row"><h3>À commander</h3></div>
+            </div>
+            <div class="orders-header-actions">
+              <button id="ordersHistoryBtn" class="ghost-btn" type="button" onclick="openOrdersHistory()">Historique</button>
+              <button id="addOrderBtn" class="primary-btn" type="button">Nouvelle demande</button>
+            </div>
           </div>
 
-          <div class="order-toolbar">
-            <button id="ordersHistoryBtn" class="ghost-btn" type="button" onclick="openOrdersHistory()">Historique</button>
-            <button id="addOrderBtn" class="primary-btn" type="button">Nouvelle demande</button>
-          </div>
+          <section class="client-study-controls orders-controls" aria-label="Filtres des commandes">
+            <label class="client-study-search order-control-field" for="orderBoardSearchInput">
+              <span>Rechercher</span>
+              <input id="orderBoardSearchInput" type="search" placeholder="Produit, demandeur ou note…">
+              <strong class="client-study-result-count" id="orderBoardResultCount" aria-live="polite"></strong>
+            </label>
+            <label class="order-control-field" for="orderBoardPriorityFilter">
+              <span>Priorité</span>
+              <select class="select" id="orderBoardPriorityFilter">
+                <option value="all">Toutes les priorités</option>
+                <option value="critical">Critique</option>
+                <option value="attention">Attention</option>
+                <option value="standard">Standard</option>
+              </select>
+              <span class="order-control-secondary" aria-hidden="true"></span>
+            </label>
+            <label class="order-control-field" for="orderBoardRequesterFilter">
+              <span>Demandeur</span>
+              <select class="select" id="orderBoardRequesterFilter"><option value="all">Tous les demandeurs</option></select>
+              <span class="order-control-secondary" aria-hidden="true"></span>
+            </label>
+            <label class="order-control-field" for="orderBoardSortSelect">
+              <span>Tri</span>
+              <select class="select" id="orderBoardSortSelect">
+                <option value="newest">Plus récentes</option>
+                <option value="oldest">Plus anciennes</option>
+                <option value="priority">Priorité</option>
+                <option value="name">Nom A–Z</option>
+              </select>
+              <span class="order-control-secondary" aria-hidden="true"></span>
+            </label>
+            <div class="order-control-field order-reset-field">
+              <span class="order-control-label-placeholder" aria-hidden="true"></span>
+              <button class="ghost-btn compact-btn order-reset-btn" id="resetOrderBoardFiltersBtn" type="button">Réinitialiser</button>
+              <span class="order-control-secondary" aria-hidden="true"></span>
+            </div>
+          </section>
+
+          <div class="client-study-kpis orders-kpis" id="orderBoardMetrics"></div>
 
           <div id="orderDetail"></div>
 
-          <div class="order-flow">
-            <section class="order-step">
+          <div class="order-flow orders-board" id="ordersSections">
+            <section class="order-step order-lane requested-lane">
               <div class="order-column-head">
-                <h4>Liste des demandes
-                <span id="requestedCount"></span></h4>
+                <h4>Demandes <span id="requestedCount"></span></h4>
               </div>
               <div class="order-list" id="requestedOrderList"></div>
             </section>
 
-            <section id="orderedOrderSection" class="order-step">
+            <section id="orderedOrderSection" class="order-step order-lane ordered-lane">
               <div class="order-column-head">
-                <h4>Commandé
-                <span id="orderedCount"></span></h4>
+                <h4>Commandées <span id="orderedCount"></span></h4>
               </div>
               <div class="order-list" id="orderedOrderList"></div>
             </section>
 
-            <section id="receivedOrderSection" class="order-step">
+            <section id="receivedOrderSection" class="order-step order-lane received-lane">
               <div class="order-column-head">
-                <h4>Arrivé
-                <span id="receivedCount"></span></h4>
+                <h4>Arrivées <span id="receivedCount"></span></h4>
               </div>
               <div class="order-list" id="receivedOrderList"></div>
             </section>
@@ -429,9 +467,9 @@
           <div class="form-grid">
             <label><span>Nom <span class="required-star">*</span></span><input id="name" required /></label>
             <label><span>Catégorie <span class="required-star">*</span></span><select id="category" required></select></label>
-            <label><span>Quantité <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="0.1" required /></label>
+            <label><span>Quantité <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="any" data-quantity-step="1" required /></label>
             <label><span>Unité <span class="required-star">*</span></span><input id="unit" required /></label>
-            <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="0.1" required /></label>
+            <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="any" data-quantity-step="1" required /></label>
             <label class="location-field">
               <span>Localisation <span class="required-star">*</span></span>
 
@@ -542,7 +580,7 @@
 
           <label class="sample-client-product-field">
             <span>Quantit&eacute; <span class="required-star">*</span></span>
-            <input id="sampleQuantity" type="number" min="0" step="0.001" />
+            <input id="sampleQuantity" type="number" min="0" step="any" data-quantity-step="1" />
           </label>
 
           <label class="sample-client-product-field">
@@ -626,7 +664,7 @@
 
           <label>
             <span>Quantité</span>
-            <input id="stockAmount" type="number" min="0" step="0.001" required />
+            <input id="stockAmount" type="number" min="0" step="any" data-quantity-step="1" required />
           </label>
 
           <label>
@@ -795,7 +833,7 @@
 
           <label>
             <span>Quantité demandée <span class="required-star">*</span></span>
-            <input id="orderQuantity" required placeholder="ex. 2 kits, 500 mL" />
+            <input id="orderQuantity" type="number" min="0" step="any" data-quantity-step="1" required placeholder="ex. 2" />
           </label>
 
           <label>
@@ -843,7 +881,7 @@
         <div class="form-grid">
           <label>
             Quantité à ajouter
-            <input id="receiveQuantity" type="number" min="0" step="0.001" required />
+            <input id="receiveQuantity" type="number" min="0" step="any" data-quantity-step="1" required />
           </label>
 
           <label>

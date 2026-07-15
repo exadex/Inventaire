@@ -11832,24 +11832,6 @@
       "receivedAt": "",
       "receivedAtRaw": "",
       "newItemData": null
-    },
-    {
-      "id": "ord-002",
-      "itemName": "Collagenase type I",
-      "quantity": "6 flacons",
-      "priority": "muy urgente",
-      "supplier": "Worthington",
-      "notes": "Stock sous seuil minimum.",
-      "requestedBy": "CB",
-      "createdAt": "2026-05-19 09:12",
-      "status": "requested",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "orderedBy": "",
-      "receivedQuantity": 0,
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "receivedBy": ""
     }
   ],
   "clientSamples": [
@@ -13190,6 +13172,12 @@
     {
       "date": "15/07/2026 13:42",
       "user": "Caroline",
+      "action": "Demande supprimée",
+      "detail": "Caroline a supprimé la demande pour Collagenase type I."
+    },
+    {
+      "date": "15/07/2026 13:42",
+      "user": "Caroline",
       "action": "Commande rouverte",
       "detail": "Caroline a renvoyé Qiazol vers \"À demander\"."
     },
@@ -13746,5 +13734,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T11:42:47.687Z"
+  "updatedAt": "2026-07-15T11:42:51.831Z"
 }

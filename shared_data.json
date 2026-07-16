@@ -4025,7 +4025,7 @@
       "category": "Culture Cell",
       "quantity": 2,
       "unit": "Carton",
-      "minStock": 0.5,
+      "minStock": 1,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -13532,6 +13532,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 16:52",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Microtube 2ml."
+    },
+    {
       "date": "16/07/2026 16:51",
       "user": "Elina",
       "action": "Item modifié",
@@ -14378,5 +14384,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T14:51:38.609Z"
+  "updatedAt": "2026-07-16T14:52:32.544Z"
 }

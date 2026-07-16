@@ -176,7 +176,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:13:08.583Z",
+      "createdAt": "16/07/2026 14:13"
     },
     {
       "id": "itm-CSV-0007",
@@ -13478,6 +13481,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 14:13",
+      "user": "Vincent",
+      "action": "Item modifié",
+      "detail": "Vincent a modifié biocoating flask ula."
+    },
+    {
       "date": "16/07/2026 13:38",
       "user": "Caroline",
       "action": "Demande supprimée",
@@ -14210,5 +14219,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T11:38:34.561Z"
+  "updatedAt": "2026-07-16T12:13:08.585Z"
 }

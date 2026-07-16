@@ -4024,7 +4024,7 @@
       "name": "Microtube 2ml",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "tubes",
+      "unit": "Carton",
       "minStock": 0.5,
       "location": "Réserve",
       "locations": [
@@ -4033,11 +4033,11 @@
       "tags": [
         "Eppendorf"
       ],
-      "notes": "Conditionnement : 5000",
+      "notes": "Conditionnement : 5000 tubes/cartons - 10 sachets/cartons - 500 tubes/sachets\n\nAu 16/07/2026 1 ouvert - 8sachets restants",
       "references": {
         "primary": {
           "supplier": "starstedt",
-          "reference": "72 691",
+          "reference": "72.691",
           "link": "",
           "notes": "NB12",
           "price": "70",
@@ -4046,7 +4046,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "routine",
+      "createdAtRaw": "2026-07-16T14:51:38.607Z",
+      "createdAt": "16/07/2026 16:51"
     },
     {
       "id": "itm-web-1783931436295-c47v8h",
@@ -13529,6 +13532,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 16:51",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Microtube 2ml."
+    },
+    {
       "date": "16/07/2026 15:09",
       "user": "Vincent",
       "action": "Item modifié",
@@ -14369,5 +14378,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T13:09:30.933Z"
+  "updatedAt": "2026-07-16T14:51:38.609Z"
 }

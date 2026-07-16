@@ -1065,7 +1065,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T13:07:38.059Z",
+      "createdAt": "16/07/2026 15:07"
     },
     {
       "id": "itm-CSV-0037",
@@ -13511,6 +13514,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 15:07",
+      "user": "Vincent",
+      "action": "Item modifié",
+      "detail": "Vincent a modifié T 75cm²FLACON DE CULTURE ULA COL INCLINÉ u BOUCHON VENTILÉ STÉRILE. x6 x4."
+    },
+    {
       "date": "16/07/2026 14:24",
       "user": "Vincent",
       "action": "Item modifié",
@@ -14315,5 +14324,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:24:43.382Z"
+  "updatedAt": "2026-07-16T13:07:38.060Z"
 }

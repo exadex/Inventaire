@@ -4952,7 +4952,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:19:31.512Z",
+      "createdAt": "16/07/2026 14:19"
     },
     {
       "id": "itm-CSV-0096",
@@ -13493,6 +13496,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 14:19",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié 3dGRO Organoid Freeze medium."
+    },
+    {
       "date": "16/07/2026 14:18",
       "user": "Vincent",
       "action": "Item modifié",
@@ -14255,5 +14264,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:18:14.113Z"
+  "updatedAt": "2026-07-16T12:19:31.513Z"
 }

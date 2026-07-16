@@ -4233,8 +4233,8 @@
       "id": "itm-web-1783931436295-cwj79e",
       "name": "Falcon 50",
       "category": "Culture Cell",
-      "quantity": 5.5,
-      "unit": "unités",
+      "quantity": 2,
+      "unit": "Cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -4243,11 +4243,11 @@
       "tags": [
         "Falcon 50"
       ],
-      "notes": "300 (25/sac)",
+      "notes": "Conditionnement : 300 tubes/cartons - 12 sachets/carton - 25 tubes/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 10 sachets",
       "references": {
         "primary": {
           "supplier": "starstedt",
-          "reference": "62547254",
+          "reference": "62.547.254",
           "link": "https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.547.254/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "32",
@@ -4256,7 +4256,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "routine",
+      "createdAtRaw": "2026-07-16T15:00:18.310Z",
+      "createdAt": "16/07/2026 17:00"
     },
     {
       "id": "itm-web-1783931436295-bvqchf",
@@ -13535,6 +13538,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 17:00",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Falcon 50."
+    },
+    {
       "date": "16/07/2026 16:56",
       "user": "Elina",
       "action": "Item modifié",
@@ -14399,5 +14408,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T14:56:42.512Z"
+  "updatedAt": "2026-07-16T15:00:18.312Z"
 }

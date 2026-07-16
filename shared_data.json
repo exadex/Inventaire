@@ -4283,7 +4283,7 @@
       "tags": [
         "Falcon 50"
       ],
-      "notes": "Conditionnement : 300 tubes/cartons - 12 sachets/carton - 25 tubes/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 10 sachets",
+      "notes": "Conditionnement : 300 tubes/cartons - 12 sachets/carton - 25 tubes/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 10 sachets - 1 fermé",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -13581,6 +13581,12 @@
       "date": "16/07/2026 17:14",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Falcon 50."
+    },
+    {
+      "date": "16/07/2026 17:14",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Microtube 1,5 ml."
     },
     {
@@ -14508,5 +14514,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:14:34.630Z"
+  "updatedAt": "2026-07-16T15:14:48.766Z"
 }

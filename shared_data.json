@@ -3679,7 +3679,7 @@
       "name": "Pipette 5 ml",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "mL",
+      "unit": "Cartons",
       "minStock": 0.5,
       "location": "Réserve",
       "locations": [
@@ -3688,7 +3688,7 @@
       "tags": [
         "Pipette"
       ],
-      "notes": "",
+      "notes": "Conditionnement : 500 pipettes/cartons - 10 sachets/carton - 50 pipettes/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 8 sachets - 2 fermés",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -3701,7 +3701,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "routine",
+      "createdAtRaw": "2026-07-16T15:17:03.860Z",
+      "createdAt": "16/07/2026 17:17"
     },
     {
       "id": "itm-web-1783931436295-yln0s3",
@@ -13578,6 +13581,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 17:17",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Pipette 5 ml."
+    },
+    {
       "date": "16/07/2026 17:14",
       "user": "Elina",
       "action": "Item modifié",
@@ -14514,5 +14523,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:14:48.766Z"
+  "updatedAt": "2026-07-16T15:17:03.862Z"
 }

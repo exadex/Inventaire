@@ -11760,234 +11760,7 @@
       "source": "seed"
     }
   ],
-  "experiments": [
-    {
-      "id": "exp-1784195070582",
-      "name": "Extraction d'ARN - 16/07/2026",
-      "templateId": "tpl-rna-extraction",
-      "templateName": "Extraction d'ARN",
-      "conditions": 1,
-      "replicates": 1,
-      "status": "completed",
-      "notes": "",
-      "rtqpcrConfig": null,
-      "createdBy": "Caroline",
-      "updatedAt": "16/07/2026 11:44",
-      "templateNotes": "Extraction d'ARN. Les quantités sont calculées automatiquement selon le nombre total de conditions. Le tissu est donné à 50 mg par condition comme repère et peut être ajusté. L'éthanol 75% est indicatif.",
-      "items": [
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Tissue *",
-          "quantity": 50,
-          "unit": "mg",
-          "notes": "Repère uniquement. 50 mg par condition par défaut; ajuster selon le poids réel du tissu.",
-          "perConditionQuantity": 50,
-          "quantityEditable": true,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 50,
-          "quantityMax": 50
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Qiazol",
-          "quantity": 600,
-          "unit": "uL",
-          "notes": "",
-          "perConditionQuantity": 600,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 600,
-          "quantityMax": 600
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Billes",
-          "quantity": 1,
-          "unit": "bille",
-          "notes": "",
-          "perConditionQuantity": 1,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 1,
-          "quantityMax": 1
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Eppendorf 2mL",
-          "quantity": 2,
-          "unit": "tube",
-          "notes": "",
-          "perConditionQuantity": 2,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 2,
-          "quantityMax": 2
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Chloroforme",
-          "quantity": 350,
-          "unit": "uL",
-          "notes": "",
-          "perConditionQuantity": 350,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 350,
-          "quantityMax": 350
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Eppendorf 1,5mL",
-          "quantity": 3,
-          "unit": "tube",
-          "notes": "",
-          "perConditionQuantity": 3,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 3,
-          "quantityMax": 3
-        },
-        {
-          "isManual": true,
-          "itemId": "itm-web-1783931436295-ccchbz",
-          "name": "Isopropanol",
-          "quantity": 150,
-          "unit": "uL",
-          "notes": "",
-          "perConditionQuantity": 150,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 150,
-          "quantityMax": 150
-        },
-        {
-          "isManual": true,
-          "itemId": "itm-web-1783931436295-993nfc",
-          "name": "Glycogène",
-          "quantity": 1,
-          "unit": "uL",
-          "notes": "",
-          "perConditionQuantity": 1,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 1,
-          "quantityMax": 1
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Ethanol 75% *",
-          "quantity": 200,
-          "unit": "uL",
-          "notes": "Quantité indicative. 200 uL par condition comme repère; en utiliser davantage si nécessaire.",
-          "perConditionQuantity": 200,
-          "quantityEditable": true,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 200,
-          "quantityMax": 200
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "H2O",
-          "quantity": 116,
-          "unit": "uL",
-          "notes": "",
-          "perConditionQuantity": 116,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 116,
-          "quantityMax": 116
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "RAD buffer",
-          "quantity": 300,
-          "unit": "uL",
-          "notes": "",
-          "perConditionQuantity": 300,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 300,
-          "quantityMax": 300
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Colonne Zymo-Spin IC",
-          "quantity": 1,
-          "unit": "colonne",
-          "notes": "",
-          "perConditionQuantity": 1,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 1,
-          "quantityMax": 1
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Tube flowthough Zyme-Spin IC",
-          "quantity": 1,
-          "unit": "tube",
-          "notes": "",
-          "perConditionQuantity": 1,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 1,
-          "quantityMax": 1
-        },
-        {
-          "isManual": true,
-          "itemId": "",
-          "name": "Prep Buffer",
-          "quantity": 400,
-          "unit": "uL",
-          "notes": "",
-          "perConditionQuantity": 400,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 400,
-          "quantityMax": 400
-        },
-        {
-          "isManual": true,
-          "itemId": "itm-web-1783931436295-hv1ucl",
-          "name": "Wash buffer",
-          "quantity": 1.1,
-          "unit": "mL",
-          "notes": "",
-          "perConditionQuantity": 1.1,
-          "quantityEditable": false,
-          "manualLinkOnly": true,
-          "quantityDisplay": "",
-          "quantityMin": 1.1,
-          "quantityMax": 1.1
-        }
-      ]
-    }
-  ],
+  "experiments": [],
   "orders": [
     {
       "id": "ord-1784195338172",
@@ -13727,6 +13500,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 13:38",
+      "user": "Caroline",
+      "action": "Experience supprimee",
+      "detail": "Caroline a supprime Extraction d'ARN - 16/07/2026."
+    },
+    {
       "date": "16/07/2026 11:49",
       "user": "Caroline",
       "action": "Commande reçue",
@@ -14435,5 +14214,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T09:49:39.405Z"
+  "updatedAt": "2026-07-16T11:38:24.105Z"
 }

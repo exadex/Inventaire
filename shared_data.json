@@ -4039,7 +4039,7 @@
       "tags": [
         "Eppendorf"
       ],
-      "notes": "Conditionnement : 5000 tubes/cartons - 10 sachets/cartons - 500 tubes/sachets\n\nAu 16/07/2026 : 1 ouvert reste 4 sachets",
+      "notes": "Conditionnement : 5000 tubes/cartons - 10 sachets/cartons - 500 tubes/sachets\n\nAu 16/07/2026 : 1 ouvert reste 4 sachets - 1 fermé",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -13581,6 +13581,12 @@
       "date": "16/07/2026 17:14",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Microtube 1,5 ml."
+    },
+    {
+      "date": "16/07/2026 17:14",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Microtube 2ml."
     },
     {
@@ -14502,5 +14508,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:14:22.182Z"
+  "updatedAt": "2026-07-16T15:14:34.630Z"
 }

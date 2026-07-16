@@ -11761,29 +11761,7 @@
     }
   ],
   "experiments": [],
-  "orders": [
-    {
-      "id": "ord-1784195338172",
-      "status": "ordered",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-CSV-0028",
-      "itemName": "Blouse jetable ENDO protectlab taille XL",
-      "requestedQuantity": 1,
-      "receivedQuantity": 0,
-      "priority": "pas urgent",
-      "notes": "",
-      "requestedBy": "Caroline",
-      "requestedAt": "16/07/2026 11:48",
-      "requestedAtRaw": "2026-07-16T09:48:58.173Z",
-      "orderedBy": "Caroline",
-      "orderedAt": "16/07/2026 11:49",
-      "orderedAtRaw": "2026-07-16T09:49:29.797Z",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    }
-  ],
+  "orders": [],
   "clientSamples": [
     {
       "id": "sample-created-1784105357936-y5mu0n",
@@ -13502,6 +13480,18 @@
     {
       "date": "16/07/2026 13:38",
       "user": "Caroline",
+      "action": "Demande supprimée",
+      "detail": "Caroline a supprimé la demande pour Blouse jetable ENDO protectlab taille XL."
+    },
+    {
+      "date": "16/07/2026 13:38",
+      "user": "Caroline",
+      "action": "Commande rouverte",
+      "detail": "Caroline a renvoyé Blouse jetable ENDO protectlab taille XL vers \"À demander\"."
+    },
+    {
+      "date": "16/07/2026 13:38",
+      "user": "Caroline",
       "action": "Réception annulée",
       "detail": "Caroline a renvoyé Blouse jetable ENDO protectlab taille XL vers \"Commandé\"."
     },
@@ -14220,5 +14210,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T11:38:30.905Z"
+  "updatedAt": "2026-07-16T11:38:34.561Z"
 }

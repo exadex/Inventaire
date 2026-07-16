@@ -3995,8 +3995,8 @@
       "name": "Microtube 1,5 ml",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "mL",
-      "minStock": 2,
+      "unit": "Cartons",
+      "minStock": 1,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -4004,11 +4004,11 @@
       "tags": [
         "Eppendorf"
       ],
-      "notes": "Conditionnement : 5000",
+      "notes": "Conditionnement : 5000 tubes/cartons - 10 sachets/cartons - 500 tubes/sachets\n\nAu 16/07/2026 : 1 ouvert reste 4 sachets",
       "references": {
         "primary": {
           "supplier": "starstedt",
-          "reference": "72,690,001",
+          "reference": "72.690.001",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/microtubes-a-vis-tubes-a-reaction/tubes-a-reaction/produit/72.706/",
           "notes": "NB11",
           "price": "50",
@@ -4017,7 +4017,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "routine",
+      "createdAtRaw": "2026-07-16T14:56:42.511Z",
+      "createdAt": "16/07/2026 16:56"
     },
     {
       "id": "itm-web-1783931436295-9a6sx8",
@@ -13532,6 +13535,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 16:56",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Microtube 1,5 ml."
+    },
+    {
       "date": "16/07/2026 16:53",
       "user": "Elina",
       "action": "Item modifié",
@@ -14390,5 +14399,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T14:53:36.064Z"
+  "updatedAt": "2026-07-16T14:56:42.512Z"
 }

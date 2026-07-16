@@ -4145,7 +4145,7 @@
       "category": "Culture Cell",
       "quantity": 0.5,
       "unit": "unités",
-      "minStock": 0.01,
+      "minStock": 0,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -13561,6 +13561,12 @@
       "detail": "Elina a modifié Falcon facs 5ml."
     },
     {
+      "date": "16/07/2026 17:06",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Falcon facs 5ml."
+    },
+    {
       "date": "16/07/2026 17:05",
       "user": "Elina",
       "action": "Item modifié",
@@ -14443,5 +14449,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:06:44.758Z"
+  "updatedAt": "2026-07-16T15:06:51.247Z"
 }

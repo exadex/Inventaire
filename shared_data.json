@@ -11768,7 +11768,7 @@
       "templateName": "Extraction d'ARN",
       "conditions": 1,
       "replicates": 1,
-      "status": "draft",
+      "status": "completed",
       "notes": "",
       "rtqpcrConfig": null,
       "createdBy": "Caroline",
@@ -13707,6 +13707,12 @@
     {
       "date": "16/07/2026 11:44",
       "user": "Caroline",
+      "action": "Experience modifiée",
+      "detail": "Caroline a modifié Extraction d'ARN - 16/07/2026."
+    },
+    {
+      "date": "16/07/2026 11:44",
+      "user": "Caroline",
       "action": "Experience créée",
       "detail": "Caroline a créé Extraction d'ARN - 16/07/2026 depuis Extraction d'ARN."
     },
@@ -14377,5 +14383,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T09:44:30.583Z"
+  "updatedAt": "2026-07-16T09:44:43.175Z"
 }

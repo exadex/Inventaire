@@ -4153,18 +4153,23 @@
       "tags": [
         "Tube FACS"
       ],
-      "notes": "Conditionnement : 500",
+      "notes": "Conditionnement : 500 tubes/cartons - 5 sous-cartons/carton - 100 tubes/sous-carton\n\nAu 16/07/2026 : 1 ouvert - dont 3 sous-cartons neufs et 1 sous-carton entamé",
       "references": {
         "primary": {
           "supplier": "starstedt",
-          "reference": "62526028",
+          "reference": "62.476.028",
           "link": "",
-          "notes": "72",
+          "notes": "La ref a l'air de ne plus exister",
           "price": "72",
           "unitPrice": "0",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "62526028",
+            "notes": "starstedt"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "backup",
@@ -13538,6 +13543,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 17:05",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Falcon facs 5ml."
+    },
+    {
       "date": "16/07/2026 17:00",
       "user": "Elina",
       "action": "Item modifié",
@@ -14408,5 +14419,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:00:18.312Z"
+  "updatedAt": "2026-07-16T15:05:32.327Z"
 }

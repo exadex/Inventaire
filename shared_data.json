@@ -3651,7 +3651,7 @@
       "category": "Culture Cell",
       "quantity": 0,
       "unit": "Carton",
-      "minStock": 0.5,
+      "minStock": 0,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -13590,6 +13590,12 @@
       "detail": "Elina a modifié Pipette 1 ml."
     },
     {
+      "date": "16/07/2026 17:18",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Pipette 1 ml."
+    },
+    {
       "date": "16/07/2026 17:17",
       "user": "Elina",
       "action": "Item modifié",
@@ -14532,5 +14538,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:18:03.038Z"
+  "updatedAt": "2026-07-16T15:18:11.782Z"
 }

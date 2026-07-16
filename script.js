@@ -845,12 +845,13 @@ function renderTemplateOptions() {
 }
 
 function renderMetrics() {
-  const counts = items.reduce((acc, item) => {
+  const activeItems = items.filter(isActiveInventoryItem);
+  const counts = activeItems.reduce((acc, item) => {
     acc[itemStatus(item)] += 1;
     return acc;
   }, { ok: 0, warning: 0, critical: 0 });
   document.querySelector("#metrics").innerHTML = [
-    ["Total references", items.length, ""],
+    ["Total references", activeItems.length, ""],
     ["Stock OK", counts.ok, "ok"],
     ["Attention", counts.warning, "warning"],
     ["Rupture / critique", counts.critical, "critical"]
@@ -863,7 +864,10 @@ function renderMetrics() {
 }
 
 function renderAlerts() {
-  const critical = items.filter(item => itemStatus(item) === "critical");
+  const critical = items.filter(item =>
+    isActiveInventoryItem(item) &&
+    itemStatus(item) === "critical"
+  );
   const alertsContainer = document.querySelector("#alerts");
   const visibleAlerts = alertsExpanded ? critical : critical.slice(0, 3);
   const hiddenCount = Math.max(critical.length - 3, 0);
@@ -1070,6 +1074,19 @@ function normalizeUsageProfile(value) {
   return ["normal", "routine", "backup"].includes(value) ? value : "normal";
 }
 
+function getItemUsageProfile(item) {
+  return normalizeUsageProfile(item?.usageProfile);
+}
+
+function isActiveInventoryItem(item) {
+  const profile = getItemUsageProfile(item);
+  return profile === "normal" || profile === "routine";
+}
+
+function isBackupInventoryItem(item) {
+  return getItemUsageProfile(item) === "backup";
+}
+
 function getUsageProfileCounts(itemList = items) {
   const counts = {
     active: 0,
@@ -1079,10 +1096,10 @@ function getUsageProfileCounts(itemList = items) {
   };
 
   (Array.isArray(itemList) ? itemList : []).forEach(item => {
-    const profile = normalizeUsageProfile(item?.usageProfile);
+    const profile = getItemUsageProfile(item);
     counts[profile] += 1;
   });
-  counts.active = counts.normal + counts.routine;
+  counts.active = (Array.isArray(itemList) ? itemList : []).filter(isActiveInventoryItem).length;
   return counts;
 }
 
@@ -1107,32 +1124,31 @@ function renderUsageProfileFilterOptions() {
 }
 
 function usageProfileMatchesFilter(item, filterValue) {
-  const profile = normalizeUsageProfile(item?.usageProfile);
-  if (filterValue === "routine") return profile === "routine";
-  if (filterValue === "backup") return profile === "backup";
-  return profile === "normal" || profile === "routine";
+  if (filterValue === "routine") return getItemUsageProfile(item) === "routine";
+  if (filterValue === "backup") return isBackupInventoryItem(item);
+  return isActiveInventoryItem(item);
 }
 
 function compareInventoryItemsWithUsage(a, b, sort, filterValue) {
   if (filterValue === "active") {
     const rank = { routine: 0, normal: 1, backup: 2 };
     const profileDifference =
-      rank[normalizeUsageProfile(a?.usageProfile)] -
-      rank[normalizeUsageProfile(b?.usageProfile)];
+      rank[getItemUsageProfile(a)] -
+      rank[getItemUsageProfile(b)];
     if (profileDifference) return profileDifference;
   }
   return compareInventoryItems(a, b, sort);
 }
 
 function renderRoutineStar(item) {
-  const profile = normalizeUsageProfile(item?.usageProfile);
+  const profile = getItemUsageProfile(item);
   return profile === "routine"
     ? `<span class="routine-star" title="Item de routine prioritaire" aria-label="Item de routine prioritaire"><span aria-hidden="true">★</span></span>`
     : "";
 }
 
 function renderUsageProfileTag(item) {
-  const profile = normalizeUsageProfile(item?.usageProfile);
+  const profile = getItemUsageProfile(item);
   if (profile === "routine") return `<span class="usage-profile-tag routine">Routine</span>`;
   if (profile === "backup") return `<span class="usage-profile-tag backup">Back-up</span>`;
   return "";

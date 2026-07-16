@@ -208,7 +208,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:14:07.359Z",
+      "createdAt": "16/07/2026 14:14"
     },
     {
       "id": "itm-CSV-0008",
@@ -13481,6 +13484,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 14:14",
+      "user": "Vincent",
+      "action": "Item modifié",
+      "detail": "Vincent a modifié T25 Flask non traitée future ULA."
+    },
+    {
       "date": "16/07/2026 14:13",
       "user": "Vincent",
       "action": "Item modifié",
@@ -14219,5 +14228,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:13:08.585Z"
+  "updatedAt": "2026-07-16T12:14:07.361Z"
 }

@@ -3649,8 +3649,8 @@
       "id": "itm-web-1783931436295-9h1ov8",
       "name": "Pipette 1 ml",
       "category": "Culture Cell",
-      "quantity": 0.25,
-      "unit": "mL",
+      "quantity": 0,
+      "unit": "Carton",
       "minStock": 0.5,
       "location": "Réserve",
       "locations": [
@@ -3672,7 +3672,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-16T15:18:03.036Z",
+      "createdAt": "16/07/2026 17:18"
     },
     {
       "id": "itm-web-1783931436295-7pfrox",
@@ -13581,6 +13584,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 17:18",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Pipette 1 ml."
+    },
+    {
       "date": "16/07/2026 17:17",
       "user": "Elina",
       "action": "Item modifié",
@@ -14523,5 +14532,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:17:03.862Z"
+  "updatedAt": "2026-07-16T15:18:03.038Z"
 }

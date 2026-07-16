@@ -855,7 +855,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:14:51.503Z",
+      "createdAt": "16/07/2026 14:14"
     },
     {
       "id": "itm-CSV-0030",
@@ -13490,6 +13493,12 @@
       "date": "16/07/2026 14:14",
       "user": "Vincent",
       "action": "Item modifié",
+      "detail": "Vincent a modifié CELL CULTURE FLASK, 250 ML, 75 CM², PS, CLEAR, CELLSTAR®, CELL-REPELLENT SURFACE, WHITE FILTER SCREW CAP."
+    },
+    {
+      "date": "16/07/2026 14:14",
+      "user": "Vincent",
+      "action": "Item modifié",
       "detail": "Vincent a modifié bouchon seringue violet Enfit 20 ml *300."
     },
     {
@@ -14237,5 +14246,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:14:39.746Z"
+  "updatedAt": "2026-07-16T12:14:51.504Z"
 }

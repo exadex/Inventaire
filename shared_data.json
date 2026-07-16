@@ -4743,7 +4743,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T13:08:36.892Z",
+      "createdAt": "16/07/2026 15:08"
     },
     {
       "id": "itm-CSV-0088",
@@ -13523,6 +13526,12 @@
       "date": "16/07/2026 15:08",
       "user": "Vincent",
       "action": "Item modifié",
+      "detail": "Vincent a modifié T25."
+    },
+    {
+      "date": "16/07/2026 15:08",
+      "user": "Vincent",
+      "action": "Item modifié",
       "detail": "Vincent a modifié Falcon facs 5ml."
     },
     {
@@ -14342,5 +14351,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T13:08:28.853Z"
+  "updatedAt": "2026-07-16T13:08:36.893Z"
 }

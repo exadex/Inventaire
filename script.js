@@ -45,6 +45,7 @@ let clients = migrateClients(sharedState.clients, clientSamples);
 const sharedDataReady = hydrateSharedData();
 
 let statusFilter = "all";
+let inventoryUsageFilterValue = "active";
 let activeView = "inventory";
 let currentName = "Caroline";
 let alertsExpanded = false;
@@ -96,6 +97,7 @@ const searchInput = document.querySelector("#searchInput");
 const controlBar = document.querySelector(".control-bar");
 const categoryFilter = document.querySelector("#categoryFilter");
 const inventorySortSelect = document.querySelector("#inventorySortSelect");
+const inventoryUsageFilter = document.querySelector("#inventoryUsageFilter");
 const sampleSearchInput = document.querySelector("#sampleSearchInput");
 const sampleTypeFilter = document.querySelector("#sampleTypeFilter");
 const sampleCategoryFilter = document.querySelector("#sampleCategoryFilter");
@@ -154,6 +156,7 @@ const fields = [
   "quantity",
   "unit",
   "minStock",
+  "usageProfile",
   "location",
   "tags",
   "notes",
@@ -319,6 +322,12 @@ document.addEventListener("click", handleOrderComboboxOutsideClick);
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
 inventorySortSelect?.addEventListener("change", renderInventory);
+inventoryUsageFilter?.addEventListener("change", () => {
+  inventoryUsageFilterValue = inventoryUsageFilter.value;
+  renderInventory();
+});
+document.querySelector("#usageProfileRoutine")?.addEventListener("click", () => toggleUsageProfile("routine"));
+document.querySelector("#usageProfileBackup")?.addEventListener("click", () => toggleUsageProfile("backup"));
 sampleSearchInput?.addEventListener("input", resetSamplePagination);
 sampleTypeFilter?.addEventListener("change", resetSamplePagination);
 sampleCategoryFilter?.addEventListener("change", resetSamplePagination);
@@ -959,6 +968,7 @@ function renderSharedDataAlert() {
 }
 
 function renderInventory() {
+  renderUsageProfileFilterOptions();
   const query = normalizeSearch(searchInput.value);
   const category = categoryFilter.value;
   const sort = inventorySortSelect?.value || "recent";
@@ -976,9 +986,10 @@ function renderInventory() {
 
       return (!query || haystack.includes(query)) &&
         (statusFilter === "all" || itemStatus(item) === statusFilter) &&
+        usageProfileMatchesFilter(item, inventoryUsageFilterValue) &&
         (category === "all" || item.category === category);
     })
-    .sort((a, b) => compareInventoryItems(a, b, sort));
+    .sort((a, b) => compareInventoryItemsWithUsage(a, b, sort, inventoryUsageFilterValue));
 
   document.querySelector("#resultCount").textContent =
     `${filtered.length} résultat${filtered.length > 1 ? "s" : ""}`;
@@ -1003,8 +1014,14 @@ function renderInventory() {
     return `
       <article class="item-card item-preview-card" onclick="openItemDetail('${escapeHtml(item.id)}', { view: 'inventory' })">
         <div class="item-head">
-          <strong>${escapeHtml(item.name)}</strong>
-          <span class="badge ${status}">${escapeHtml(statusLabel(status))}</span>
+          <div class="inventory-card-title">
+            ${renderRoutineStar(item)}
+            <strong>${escapeHtml(item.name)}</strong>
+          </div>
+          <div class="inventory-card-badges">
+            <span class="badge ${status}">${escapeHtml(statusLabel(status))}</span>
+            ${renderUsageProfileTag(item)}
+          </div>
         </div>
 
         <span class="category">${escapeHtml(item.category)}</span>
@@ -1047,6 +1064,78 @@ function renderInventory() {
       </article>
     `;
   }).join("");
+}
+
+function normalizeUsageProfile(value) {
+  return ["normal", "routine", "backup"].includes(value) ? value : "normal";
+}
+
+function getUsageProfileCounts(itemList = items) {
+  const counts = {
+    active: 0,
+    normal: 0,
+    routine: 0,
+    backup: 0
+  };
+
+  (Array.isArray(itemList) ? itemList : []).forEach(item => {
+    const profile = normalizeUsageProfile(item?.usageProfile);
+    counts[profile] += 1;
+  });
+  counts.active = counts.normal + counts.routine;
+  return counts;
+}
+
+function renderUsageProfileFilterOptions() {
+  if (!inventoryUsageFilter) return;
+  const counts = getUsageProfileCounts(items);
+  const selectedValue = ["active", "routine", "backup"].includes(inventoryUsageFilterValue)
+    ? inventoryUsageFilterValue
+    : "active";
+  inventoryUsageFilter.innerHTML = `
+    <option value="active">Tous (${counts.active})</option>
+    <option value="routine">Routine (${counts.routine})</option>
+    <option value="backup">Back-up (${counts.backup})</option>
+  `;
+  inventoryUsageFilter.value = selectedValue;
+  const accessibleLabels = {
+    active: `Afficher : Tous, ${counts.active} items actifs`,
+    routine: `Afficher : Routine, ${counts.routine} items`,
+    backup: `Afficher : Back-up, ${counts.backup} items`
+  };
+  inventoryUsageFilter.setAttribute("aria-label", accessibleLabels[selectedValue]);
+}
+
+function usageProfileMatchesFilter(item, filterValue) {
+  const profile = normalizeUsageProfile(item?.usageProfile);
+  if (filterValue === "routine") return profile === "routine";
+  if (filterValue === "backup") return profile === "backup";
+  return profile === "normal" || profile === "routine";
+}
+
+function compareInventoryItemsWithUsage(a, b, sort, filterValue) {
+  if (filterValue === "active") {
+    const rank = { routine: 0, normal: 1, backup: 2 };
+    const profileDifference =
+      rank[normalizeUsageProfile(a?.usageProfile)] -
+      rank[normalizeUsageProfile(b?.usageProfile)];
+    if (profileDifference) return profileDifference;
+  }
+  return compareInventoryItems(a, b, sort);
+}
+
+function renderRoutineStar(item) {
+  const profile = normalizeUsageProfile(item?.usageProfile);
+  return profile === "routine"
+    ? `<span class="routine-star" title="Item de routine prioritaire" aria-label="Item de routine prioritaire"><span aria-hidden="true">★</span></span>`
+    : "";
+}
+
+function renderUsageProfileTag(item) {
+  const profile = normalizeUsageProfile(item?.usageProfile);
+  if (profile === "routine") return `<span class="usage-profile-tag routine">Routine</span>`;
+  if (profile === "backup") return `<span class="usage-profile-tag backup">Back-up</span>`;
+  return "";
 }
 
 function compareInventoryItems(a, b, sort = "recent") {
@@ -1129,8 +1218,14 @@ function renderInventoryDetail(item) {
 
       <div class="inventory-detail-header">
         <div class="inventory-detail-title">
-          <span class="badge ${status}">${escapeHtml(statusLabel(status))}</span>
-          <h3>${escapeHtml(item.name)}</h3>
+          <div class="inventory-detail-badges">
+            <span class="badge ${status}">${escapeHtml(statusLabel(status))}</span>
+            ${renderUsageProfileTag(item)}
+          </div>
+          <div class="inventory-detail-name-row">
+            ${renderRoutineStar(item)}
+            <h3>${escapeHtml(item.name)}</h3>
+          </div>
           <div class="inventory-detail-meta">
             <span>ID : ${escapeHtml(item.id)}</span>
             <span>${escapeHtml(locations)}</span>
@@ -3263,7 +3358,10 @@ function renderLocationDetailRow(entry) {
       tabindex="0" data-entry-kind="${escapeHtml(entry.kind)}" data-entry-id="${escapeHtml(record.id)}">
       <td data-label="Référence">
         <button class="location-reference-button" type="button" data-open-entry>
-          <strong>${escapeHtml(record.name)}</strong>
+          <span class="location-reference-title">
+            ${isClientSample ? "" : renderRoutineStar(record)}
+            <strong>${escapeHtml(record.name)}</strong>
+          </span>
           ${category ? `<span>${escapeHtml(category)}</span>` : ""}
         </button>
       </td>
@@ -4749,6 +4847,7 @@ function openModal(id, options = {}) {
   fields.quantity.value = item?.quantity ?? prefill.quantity ?? "";
   fields.unit.value = item?.unit || prefill.unit || "";
   fields.minStock.value = item?.minStock ?? prefill.minStock ?? "";
+  setUsageProfile(item?.usageProfile || "normal");
   setSelectedLocations(item ? getItemLocations(item) : (prefill.locations || []));
   fields.tags.value = item?.tags?.join(", ") || prefill.tags?.join(", ") || "";
   fields.notes.value = item?.notes || prefill.notes || "";
@@ -4780,6 +4879,7 @@ function saveItem() {
     quantity: Number(fields.quantity.value),
     unit: fields.unit.value.trim(),
     minStock: Number(fields.minStock.value),
+    usageProfile: normalizeUsageProfile(fields.usageProfile.value),
     locations: selectedLocations,
     location: selectedLocations[0] || "",
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
@@ -4815,6 +4915,26 @@ function saveItem() {
   persist();
   dialog.close();
   render();
+}
+
+function toggleUsageProfile(profile) {
+  const normalized = normalizeUsageProfile(profile);
+  const current = normalizeUsageProfile(fields.usageProfile.value);
+  setUsageProfile(current === normalized ? "normal" : normalized);
+}
+
+function setUsageProfile(profile) {
+  const normalized = normalizeUsageProfile(profile);
+  fields.usageProfile.value = normalized;
+  [
+    ["#usageProfileRoutine", "routine"],
+    ["#usageProfileBackup", "backup"]
+  ].forEach(([selector, value]) => {
+    const button = document.querySelector(selector);
+    const isActive = normalized === value;
+    button?.setAttribute("aria-pressed", String(isActive));
+    button?.classList.toggle("is-selected", isActive);
+  });
 }
 
 function openStockModal(id) {

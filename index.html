@@ -110,9 +110,14 @@
               <button class="chip" data-status="critical" type="button">Critique</button>
             </div>
 
-            <select id="categoryFilter" class="select">
-              <option value="all">Toutes catégories</option>
-            </select>
+            <label class="inventory-sort-control inventory-usage-filter">
+              <span>Afficher</span>
+              <select id="inventoryUsageFilter" class="select">
+                <option value="active" selected>Tous</option>
+                <option value="routine">Routine</option>
+                <option value="backup">Back-up</option>
+              </select>
+            </label>
 
             <label class="inventory-sort-control">
               <span>Tri</span>
@@ -123,6 +128,10 @@
                 <option value="za">Z-A</option>
               </select>
             </label>
+
+            <select id="categoryFilter" class="select" aria-label="Catégorie">
+              <option value="all">Toutes catégories</option>
+            </select>
           </section>
 
           <div id="inventoryDetail"></div>
@@ -486,6 +495,23 @@
             </label>
             <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
           </div>
+        <section class="usage-profile-field" aria-labelledby="usageProfileLegend">
+          <span id="usageProfileLegend" class="usage-profile-legend">Profil d’usage</span>
+          <input id="usageProfile" type="hidden" value="normal" />
+          <div class="usage-profile-options">
+            <button id="usageProfileRoutine" class="usage-profile-option routine" type="button" aria-pressed="false">
+              <span class="usage-profile-option-icon" aria-hidden="true">★</span>
+              <span><strong>Routine</strong><small>Item prioritaire utilisé régulièrement.</small></span>
+              <span class="usage-profile-check" aria-hidden="true">✓</span>
+            </button>
+            <button id="usageProfileBackup" class="usage-profile-option backup" type="button" aria-pressed="false">
+              <span class="usage-profile-option-icon backup-box-symbol" aria-hidden="true"></span>
+              <span><strong>Back-up</strong><small>Item conservé en réserve.</small></span>
+              <span class="usage-profile-check" aria-hidden="true">✓</span>
+            </button>
+          </div>
+          <small class="usage-profile-help">Aucune sélection = item Normal</small>
+        </section>
         <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>
         <section class="reference-section">
           <div class="reference-heading">

@@ -11760,7 +11760,234 @@
       "source": "seed"
     }
   ],
-  "experiments": [],
+  "experiments": [
+    {
+      "id": "exp-1784195070582",
+      "name": "Extraction d'ARN - 16/07/2026",
+      "templateId": "tpl-rna-extraction",
+      "templateName": "Extraction d'ARN",
+      "conditions": 1,
+      "replicates": 1,
+      "status": "draft",
+      "notes": "",
+      "rtqpcrConfig": null,
+      "createdBy": "Caroline",
+      "updatedAt": "16/07/2026 11:44",
+      "templateNotes": "Extraction d'ARN. Les quantités sont calculées automatiquement selon le nombre total de conditions. Le tissu est donné à 50 mg par condition comme repère et peut être ajusté. L'éthanol 75% est indicatif.",
+      "items": [
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Tissue *",
+          "quantity": 50,
+          "unit": "mg",
+          "notes": "Repère uniquement. 50 mg par condition par défaut; ajuster selon le poids réel du tissu.",
+          "perConditionQuantity": 50,
+          "quantityEditable": true,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 50,
+          "quantityMax": 50
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Qiazol",
+          "quantity": 600,
+          "unit": "uL",
+          "notes": "",
+          "perConditionQuantity": 600,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 600,
+          "quantityMax": 600
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Billes",
+          "quantity": 1,
+          "unit": "bille",
+          "notes": "",
+          "perConditionQuantity": 1,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Eppendorf 2mL",
+          "quantity": 2,
+          "unit": "tube",
+          "notes": "",
+          "perConditionQuantity": 2,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 2,
+          "quantityMax": 2
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Chloroforme",
+          "quantity": 350,
+          "unit": "uL",
+          "notes": "",
+          "perConditionQuantity": 350,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 350,
+          "quantityMax": 350
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Eppendorf 1,5mL",
+          "quantity": 3,
+          "unit": "tube",
+          "notes": "",
+          "perConditionQuantity": 3,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 3,
+          "quantityMax": 3
+        },
+        {
+          "isManual": true,
+          "itemId": "itm-web-1783931436295-ccchbz",
+          "name": "Isopropanol",
+          "quantity": 150,
+          "unit": "uL",
+          "notes": "",
+          "perConditionQuantity": 150,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 150,
+          "quantityMax": 150
+        },
+        {
+          "isManual": true,
+          "itemId": "itm-web-1783931436295-993nfc",
+          "name": "Glycogène",
+          "quantity": 1,
+          "unit": "uL",
+          "notes": "",
+          "perConditionQuantity": 1,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Ethanol 75% *",
+          "quantity": 200,
+          "unit": "uL",
+          "notes": "Quantité indicative. 200 uL par condition comme repère; en utiliser davantage si nécessaire.",
+          "perConditionQuantity": 200,
+          "quantityEditable": true,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 200,
+          "quantityMax": 200
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "H2O",
+          "quantity": 116,
+          "unit": "uL",
+          "notes": "",
+          "perConditionQuantity": 116,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 116,
+          "quantityMax": 116
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "RAD buffer",
+          "quantity": 300,
+          "unit": "uL",
+          "notes": "",
+          "perConditionQuantity": 300,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 300,
+          "quantityMax": 300
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Colonne Zymo-Spin IC",
+          "quantity": 1,
+          "unit": "colonne",
+          "notes": "",
+          "perConditionQuantity": 1,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Tube flowthough Zyme-Spin IC",
+          "quantity": 1,
+          "unit": "tube",
+          "notes": "",
+          "perConditionQuantity": 1,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 1,
+          "quantityMax": 1
+        },
+        {
+          "isManual": true,
+          "itemId": "",
+          "name": "Prep Buffer",
+          "quantity": 400,
+          "unit": "uL",
+          "notes": "",
+          "perConditionQuantity": 400,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 400,
+          "quantityMax": 400
+        },
+        {
+          "isManual": true,
+          "itemId": "itm-web-1783931436295-hv1ucl",
+          "name": "Wash buffer",
+          "quantity": 1.1,
+          "unit": "mL",
+          "notes": "",
+          "perConditionQuantity": 1.1,
+          "quantityEditable": false,
+          "manualLinkOnly": true,
+          "quantityDisplay": "",
+          "quantityMin": 1.1,
+          "quantityMax": 1.1
+        }
+      ]
+    }
+  ],
   "orders": [],
   "clientSamples": [
     {
@@ -11787,7 +12014,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105357936-y5mu0n"
     },
     {
       "id": "sample-created-1784105357936-hgf3qi",
@@ -11813,7 +12048,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105357936-hgf3qi"
     },
     {
       "id": "sample-created-1784105357936-wkds13",
@@ -11839,7 +12082,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105357936-wkds13"
     },
     {
       "id": "sample-created-1784105357936-otbt8i",
@@ -11865,7 +12116,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105357936-otbt8i"
     },
     {
       "id": "sample-created-1784105357936-uodwq5",
@@ -11891,7 +12150,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105357936-uodwq5"
     },
     {
       "id": "sample-created-1784105335232-p09kdp",
@@ -11917,7 +12184,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105335232-p09kdp"
     },
     {
       "id": "sample-created-1784105335232-pp69rg",
@@ -11943,7 +12218,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105335232-pp69rg"
     },
     {
       "id": "sample-created-1784105335232-ugm6ts",
@@ -11969,7 +12252,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105335232-ugm6ts"
     },
     {
       "id": "sample-created-1784105335232-x9t91h",
@@ -11995,7 +12286,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105335232-x9t91h"
     },
     {
       "id": "sample-created-1784105335232-kwgzly",
@@ -12021,7 +12320,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105335232-kwgzly"
     },
     {
       "id": "sample-created-1784105335232-n5wrqw",
@@ -12047,7 +12354,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105335232-n5wrqw"
     },
     {
       "id": "sample-created-1784105304265-pxdsud",
@@ -12073,7 +12388,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de ASH001"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105304265-pxdsud"
     },
     {
       "id": "sample-created-1784105304265-jsfy2m",
@@ -12099,7 +12422,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de ASH001"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105304265-jsfy2m"
     },
     {
       "id": "sample-created-1784105304265-ukqzzl",
@@ -12125,7 +12456,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de ASH001"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105304265-ukqzzl"
     },
     {
       "id": "sample-created-1784105304265-u7krjs",
@@ -12151,7 +12490,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de ASH001"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105304265-u7krjs"
     },
     {
       "id": "sample-created-1784105304265-4jtnsd",
@@ -12177,7 +12524,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de ASH001"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105304265-4jtnsd"
     },
     {
       "id": "sample-created-1784105304265-52orti",
@@ -12203,7 +12558,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de ASH001"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105304265-52orti"
     },
     {
       "id": "sample-created-1784105304265-0ysqgf",
@@ -12229,7 +12592,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de ASH001"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105304265-0ysqgf"
     },
     {
       "id": "sample-created-1784105072456-24xr8z",
@@ -12255,7 +12626,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Sans GLP1"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105072456-24xr8z"
     },
     {
       "id": "sample-created-1784105072456-enk3wq",
@@ -12281,7 +12660,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Sans GLP1"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105072456-enk3wq"
     },
     {
       "id": "sample-created-1784105072456-fdvxgs",
@@ -12307,7 +12694,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Sans GLP1"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105072456-fdvxgs"
     },
     {
       "id": "sample-created-1784105072456-kob742",
@@ -12333,7 +12728,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Sans GLP1"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105072456-kob742"
     },
     {
       "id": "sample-created-1784105072456-ynzb9r",
@@ -12359,7 +12762,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Sans GLP1"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105072456-ynzb9r"
     },
     {
       "id": "sample-created-1784105072456-ajzf9i",
@@ -12385,7 +12796,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Sans GLP1"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784105072456-ajzf9i"
     },
     {
       "id": "sample-created-1784104932352-0tu0wb",
@@ -12411,7 +12830,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104932352-0tu0wb"
     },
     {
       "id": "sample-created-1784104932352-jj4bl3",
@@ -12437,7 +12864,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104932352-jj4bl3"
     },
     {
       "id": "sample-created-1784104932352-3jsep1",
@@ -12463,7 +12898,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104932352-3jsep1"
     },
     {
       "id": "sample-created-1784104932352-gfi9l8",
@@ -12489,7 +12932,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104932352-gfi9l8"
     },
     {
       "id": "sample-created-1784104932352-i8z01q",
@@ -12515,7 +12966,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104932352-i8z01q"
     },
     {
       "id": "sample-created-1784104932352-zbcbrs",
@@ -12541,7 +13000,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104932352-zbcbrs"
     },
     {
       "id": "sample-created-1784104932352-z754pu",
@@ -12567,7 +13034,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104932352-z754pu"
     },
     {
       "id": "sample-created-1784104837903-ifrzie",
@@ -12593,7 +13068,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104837903-ifrzie"
     },
     {
       "id": "sample-created-1784104837903-2o21en",
@@ -12619,7 +13102,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104837903-2o21en"
     },
     {
       "id": "sample-created-1784104837903-a11pwb",
@@ -12645,7 +13136,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104837903-a11pwb"
     },
     {
       "id": "sample-created-1784104837903-1mol74",
@@ -12671,7 +13170,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104837903-1mol74"
     },
     {
       "id": "sample-created-1784104837903-hkdken",
@@ -12697,7 +13204,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104837903-hkdken"
     },
     {
       "id": "sample-created-1784104837903-qc50ng",
@@ -12723,7 +13238,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104837903-qc50ng"
     },
     {
       "id": "sample-created-1784104837903-b3veox",
@@ -12749,7 +13272,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104837903-b3veox"
     },
     {
       "id": "sample-created-1784104807567-lrga23",
@@ -12775,7 +13306,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104807567-lrga23"
     },
     {
       "id": "sample-created-1784104807567-jtmcla",
@@ -12801,7 +13340,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104807567-jtmcla"
     },
     {
       "id": "sample-created-1784104807567-gqtkv5",
@@ -12827,7 +13374,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104807567-gqtkv5"
     },
     {
       "id": "sample-created-1784104807567-92uvi2",
@@ -12853,7 +13408,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104807567-92uvi2"
     },
     {
       "id": "sample-created-1784104807567-az2u71",
@@ -12879,7 +13442,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104807567-az2u71"
     },
     {
       "id": "sample-created-1784104807567-nu0dxz",
@@ -12905,7 +13476,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104807567-nu0dxz"
     },
     {
       "id": "sample-created-1784104807567-f5qel7",
@@ -12931,7 +13510,15 @@
       "unit": "mL",
       "arrivalDate": "",
       "referenceNumber": "",
-      "lotNumber": ""
+      "lotNumber": "",
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      },
+      "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
+      "replicaId": "sample-created-1784104807567-f5qel7"
     },
     {
       "id": "sample-client-1783950365570-f20i8q",
@@ -12957,7 +13544,11 @@
       "measureValue": 2,
       "measureUnit": "mL",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1783950365570-f20i8q"
     },
     {
       "id": "sample-client-1783950236643-fro2wp",
@@ -12983,7 +13574,11 @@
       "measureValue": 3,
       "measureUnit": "g",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1783950236643-fro2wp"
     },
     {
       "id": "sample-client-1783950214076-ma4inn",
@@ -13009,7 +13604,11 @@
       "measureValue": 10,
       "measureUnit": "mL",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1783950214076-ma4inn"
     },
     {
       "id": "sample-client-1783950114371-9vaw87",
@@ -13035,7 +13634,11 @@
       "measureValue": 0.05,
       "measureUnit": "L",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1783950114371-9vaw87"
     },
     {
       "id": "sample-client-1783950067755-qnq4at",
@@ -13061,7 +13664,11 @@
       "measureValue": 0.05,
       "measureUnit": "L",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1783950067755-qnq4at"
     }
   ],
   "clients": [
@@ -13097,6 +13704,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/07/2026 11:44",
+      "user": "Caroline",
+      "action": "Experience créée",
+      "detail": "Caroline a créé Extraction d'ARN - 16/07/2026 depuis Extraction d'ARN."
+    },
     {
       "date": "15/07/2026 16:07",
       "user": "Caroline",
@@ -13764,5 +14377,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-15T14:07:20.539Z"
+  "updatedAt": "2026-07-16T09:44:30.583Z"
 }

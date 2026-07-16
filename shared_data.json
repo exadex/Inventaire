@@ -11988,7 +11988,29 @@
       ]
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": "ord-1784195338172",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0028",
+      "itemName": "Blouse jetable ENDO protectlab taille XL",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Caroline",
+      "requestedAt": "16/07/2026 11:48",
+      "requestedAtRaw": "2026-07-16T09:48:58.173Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    }
+  ],
   "clientSamples": [
     {
       "id": "sample-created-1784105357936-y5mu0n",
@@ -13705,6 +13727,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 11:48",
+      "user": "Caroline",
+      "action": "Demande créée",
+      "detail": "Caroline a créé une demande pour Blouse jetable ENDO protectlab taille XL."
+    },
+    {
       "date": "16/07/2026 11:44",
       "user": "Caroline",
       "action": "Experience modifiée",
@@ -14383,5 +14411,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T09:44:43.175Z"
+  "updatedAt": "2026-07-16T09:48:58.174Z"
 }

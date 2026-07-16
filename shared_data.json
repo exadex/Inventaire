@@ -1210,7 +1210,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:24:28.764Z",
+      "createdAt": "16/07/2026 14:24"
     },
     {
       "id": "itm-CSV-0042",
@@ -13508,6 +13511,12 @@
       "date": "16/07/2026 14:24",
       "user": "Vincent",
       "action": "Item modifié",
+      "detail": "Vincent a modifié Robinet 3 voies luer lock."
+    },
+    {
+      "date": "16/07/2026 14:24",
+      "user": "Vincent",
+      "action": "Item modifié",
       "detail": "Vincent a modifié T25cm FLACON DE CULTURE ULA RECTANGLE COL INCLINE BOUCHON VENTILE STERILE x5x5."
     },
     {
@@ -14297,5 +14306,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:24:18.479Z"
+  "updatedAt": "2026-07-16T12:24:28.766Z"
 }

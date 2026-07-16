@@ -2,6 +2,38 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1784214685893",
+      "name": "Petri dish, 92 x 16 mm",
+      "category": "Culture Cell",
+      "quantity": 0.5,
+      "unit": "Carton",
+      "minStock": 0,
+      "usageProfile": "backup",
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [
+        "Bactério"
+      ],
+      "notes": "Transparent, with ventilation cams\nConditionnement : 880 boites/cartons - 44 sachets/carton - 20 boites/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 9 sachets",
+      "references": {
+        "primary": {
+          "supplier": "starstedt",
+          "reference": "82.1473.001",
+          "link": "https://www.sarstedt.com/en/FRA/c/life-science/microbiology/petri-dishes/p/petri-dishes-round/82.1473.001",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-07-16T15:11:25.894Z",
+      "createdAt": "16/07/2026 17:11",
+      "source": "web"
+    },
+    {
       "id": "web-1784122331250",
       "name": "REDUCTEUR SU 1.2MM",
       "category": "Procédé ExAdEx L2",
@@ -13543,6 +13575,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 17:11",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté Petri dish, 92 x 16 mm dans Culture Cell."
+    },
+    {
       "date": "16/07/2026 17:06",
       "user": "Elina",
       "action": "Item modifié",
@@ -14449,5 +14487,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:06:51.247Z"
+  "updatedAt": "2026-07-16T15:11:25.895Z"
 }

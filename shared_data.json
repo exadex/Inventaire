@@ -13502,6 +13502,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 14:23",
+      "user": "Vincent",
+      "action": "Item modifié",
+      "detail": "Vincent a modifié T25 Flask non traitée future ULA."
+    },
+    {
       "date": "16/07/2026 14:22",
       "user": "Caroline",
       "action": "Item modifié",
@@ -14282,5 +14288,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:22:28.537Z"
+  "updatedAt": "2026-07-16T12:23:32.671Z"
 }

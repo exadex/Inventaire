@@ -5045,7 +5045,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:22:28.537Z",
+      "createdAt": "16/07/2026 14:22"
     },
     {
       "id": "itm-CSV-0099",
@@ -13500,6 +13503,12 @@
   "history": [
     {
       "date": "16/07/2026 14:22",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Formoterol fumarate dihydrate."
+    },
+    {
+      "date": "16/07/2026 14:22",
       "user": "Vincent",
       "action": "Item modifié",
       "detail": "Vincent a modifié Agarase from pseudomonas atlantica Sigma."
@@ -14273,5 +14282,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:22:01.375Z"
+  "updatedAt": "2026-07-16T12:22:28.537Z"
 }

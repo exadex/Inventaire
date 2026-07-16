@@ -1441,7 +1441,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:18:14.111Z",
+      "createdAt": "16/07/2026 14:18"
     },
     {
       "id": "itm-CSV-0050",
@@ -13490,6 +13493,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 14:18",
+      "user": "Vincent",
+      "action": "Item modifié",
+      "detail": "Vincent a modifié Seringue Enfit 20 ml Luer lock."
+    },
+    {
       "date": "16/07/2026 14:14",
       "user": "Vincent",
       "action": "Item modifié",
@@ -14246,5 +14255,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:14:51.504Z"
+  "updatedAt": "2026-07-16T12:18:14.113Z"
 }

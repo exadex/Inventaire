@@ -1032,7 +1032,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:24:18.477Z",
+      "createdAt": "16/07/2026 14:24"
     },
     {
       "id": "itm-CSV-0036",
@@ -13502,6 +13505,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 14:24",
+      "user": "Vincent",
+      "action": "Item modifié",
+      "detail": "Vincent a modifié T25cm FLACON DE CULTURE ULA RECTANGLE COL INCLINE BOUCHON VENTILE STERILE x5x5."
+    },
+    {
       "date": "16/07/2026 14:23",
       "user": "Vincent",
       "action": "Item modifié",
@@ -14288,5 +14297,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:23:32.671Z"
+  "updatedAt": "2026-07-16T12:24:18.479Z"
 }

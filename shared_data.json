@@ -2285,7 +2285,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "backup",
+      "createdAtRaw": "2026-07-16T12:22:01.373Z",
+      "createdAt": "16/07/2026 14:22"
     },
     {
       "id": "itm-web-1783931436294-qxduy0",
@@ -13496,6 +13499,12 @@
   ],
   "history": [
     {
+      "date": "16/07/2026 14:22",
+      "user": "Vincent",
+      "action": "Item modifié",
+      "detail": "Vincent a modifié Agarase from pseudomonas atlantica Sigma."
+    },
+    {
       "date": "16/07/2026 14:19",
       "user": "Caroline",
       "action": "Item modifié",
@@ -14264,5 +14273,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T12:19:31.513Z"
+  "updatedAt": "2026-07-16T12:22:01.375Z"
 }

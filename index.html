@@ -534,7 +534,7 @@
         <input type="hidden" id="sampleId" />
 
         <div class="form-grid">
-          <label>
+          <label class="form-field">
             <span>Type <span class="required-star">*</span></span>
             <select id="sampleType" required>
               <option value="client_product">Produit re&ccedil;u du client</option>
@@ -542,8 +542,8 @@
             </select>
           </label>
 
-          <label>
-            <span>Client code <span class="required-star">*</span></span>
+          <label class="form-field">
+            <span>Code client <span class="required-star">*</span></span>
             <input id="sampleClientCode" required />
             <small id="sampleClientCodeHint" class="client-code-hint"></small>
           </label>
@@ -808,7 +808,7 @@
         </div>
 
         <div class="form-grid">
-          <label>
+          <label class="form-field">
             <span>Type de demande <span class="required-star">*</span></span>
             <select id="orderItemMode" required>
               <option value="existing">Item existant</option>
@@ -817,10 +817,23 @@
           </label>
 
           <div id="existingItemFields" class="order-mode-fields">
-            <label class="order-item-picker">
+            <label class="form-field order-item-picker" for="orderInventorySearch">
               <span>Item <span class="required-star">*</span></span>
-              <input id="orderInventorySearch" type="search" placeholder="Rechercher par nom, categorie, localisation..." />
-              <select id="orderInventoryItem"></select>
+              <div class="order-combobox" id="orderInventoryCombobox">
+                <input
+                  id="orderInventorySearch"
+                  type="search"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-controls="orderInventoryOptions"
+                  aria-expanded="false"
+                  autocomplete="off"
+                  placeholder="Rechercher par nom, catégorie, localisation..."
+                />
+                <button id="clearOrderInventoryItem" class="order-combobox-clear hidden" type="button" aria-label="Effacer l’item sélectionné">&times;</button>
+                <div id="orderInventoryOptions" class="order-combobox-options hidden" role="listbox"></div>
+                <input id="orderInventoryItem" type="hidden" />
+              </div>
             </label>
           </div>
 
@@ -857,6 +870,31 @@
         <div class="modal-actions">
           <button class="ghost-btn" type="button" id="cancelOrderBtn">Annuler</button>
           <button class="primary-btn" id="saveOrderBtn" type="button">Ajouter à la liste</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog
+      id="confirmDeleteDialog"
+      class="modal confirmation-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="confirmDeleteTitle"
+      aria-describedby="confirmDeleteMessage"
+    >
+      <form id="confirmDeleteForm">
+        <div class="modal-header">
+          <div class="confirmation-modal-heading">
+            <span class="confirmation-modal-icon" aria-hidden="true">!</span>
+            <h3 id="confirmDeleteTitle">Confirmer la suppression</h3>
+          </div>
+          <button id="closeConfirmDeleteBtn" class="icon-btn" type="button" aria-label="Fermer">&times;</button>
+        </div>
+        <p id="confirmDeleteMessage">Êtes-vous sûr de vouloir supprimer cet item ? Cette action est irréversible.</p>
+        <p id="confirmDeleteError" class="confirmation-modal-error hidden" role="alert"></p>
+        <div class="modal-actions">
+          <button id="cancelConfirmDeleteBtn" class="ghost-btn" type="button">Annuler</button>
+          <button id="confirmDeleteBtn" class="danger-btn" type="button">Supprimer</button>
         </div>
       </form>
     </dialog>

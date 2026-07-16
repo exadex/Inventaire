@@ -62,6 +62,8 @@ const expandedHistoryEntries = new Set();
 let selectedExperimentId = null;
 let selectedItemId = null;
 let selectedSampleId = null;
+let selectedSampleGroupId = null;
+let sampleEditContext = { scope: "new", groupId: null, sampleId: null };
 let itemReturnContext = { view: "inventory", experimentId: null, location: null, scrollY: 0 };
 let sampleReturnContext = { view: "samples", location: null, scrollY: 0 };
 let viewReturnScrollY = { experiments: 0, locations: 0 };
@@ -113,6 +115,17 @@ const experimentForm = document.querySelector("#experimentForm");
 const experimentItemsList = document.querySelector("#experimentItemsList");
 const orderDialog = document.querySelector("#orderDialog");
 const orderForm = document.querySelector("#orderForm");
+const confirmDeleteDialog = document.querySelector("#confirmDeleteDialog");
+const confirmDeleteForm = document.querySelector("#confirmDeleteForm");
+const confirmDeleteTitle = document.querySelector("#confirmDeleteTitle");
+const confirmDeleteMessage = document.querySelector("#confirmDeleteMessage");
+const confirmDeleteError = document.querySelector("#confirmDeleteError");
+const confirmDeleteBtn = document.querySelector("#confirmDeleteBtn");
+const cancelConfirmDeleteBtn = document.querySelector("#cancelConfirmDeleteBtn");
+const closeConfirmDeleteBtn = document.querySelector("#closeConfirmDeleteBtn");
+let deleteConfirmationAction = null;
+let deleteConfirmationTrigger = null;
+let deleteConfirmationPending = false;
 const secondaryReferencesList = document.querySelector("#secondaryReferencesList");
 const addSecondaryReferenceBtn = document.querySelector("#addSecondaryReferenceBtn");
 const locationDropdown = document.querySelector("#locationDropdown");
@@ -273,16 +286,16 @@ document.querySelector("#addItemBtn").addEventListener("click", () => {
 });
 addClientStudyBtn?.addEventListener("click", () => openSampleModal());
 document.querySelector("#saveItemBtn").addEventListener("click", saveItem);
-document.querySelector("#deleteItemBtn").addEventListener("click", deleteItem);
+document.querySelector("#deleteItemBtn").addEventListener("click", requestItemDeletion);
 document.querySelector("#saveSampleBtn").addEventListener("click", saveSample);
-document.querySelector("#deleteSampleBtn").addEventListener("click", deleteSample);
+document.querySelector("#deleteSampleBtn").addEventListener("click", requestSampleDeletionFromModal);
 document.querySelector("#saveStockBtn").addEventListener("click", saveStockUpdate);
 document.querySelector("#addExperimentBtn").addEventListener("click", openExperimentModal);
 document.querySelector("#saveExperimentBtn").addEventListener("click", saveExperiment);
 
 const deleteExperimentBtn = document.querySelector("#deleteExperimentBtn");
 if (deleteExperimentBtn) {
-  deleteExperimentBtn.addEventListener("click", deleteExperiment);
+  deleteExperimentBtn.addEventListener("click", requestExperimentDeletion);
 }
 
 dialog.addEventListener("close", () => {
@@ -298,7 +311,11 @@ document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
 document.querySelector("#closeOrderDialogBtn").addEventListener("click", () => orderDialog.close());
 document.querySelector("#cancelOrderBtn").addEventListener("click", () => orderDialog.close());
 orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
-orderFields.orderInventorySearch.addEventListener("input", renderOrderItemOptions);
+orderFields.orderInventorySearch.addEventListener("input", handleOrderComboboxInput);
+orderFields.orderInventorySearch.addEventListener("keydown", handleOrderComboboxKeydown);
+orderFields.orderInventorySearch.addEventListener("focus", () => renderOrderItemOptions({ open: true }));
+document.querySelector("#clearOrderInventoryItem")?.addEventListener("click", clearOrderInventorySelection);
+document.addEventListener("click", handleOrderComboboxOutsideClick);
 searchInput.addEventListener("input", renderInventory);
 categoryFilter.addEventListener("change", renderInventory);
 inventorySortSelect?.addEventListener("change", renderInventory);
@@ -338,6 +355,15 @@ orderBoardRequesterFilter?.addEventListener("change", renderOrders);
 orderBoardSortSelect?.addEventListener("change", renderOrders);
 document.querySelector("#resetOrderBoardFiltersBtn")?.addEventListener("click", resetOrderBoardFilters);
 document.addEventListener("keydown", handleQuantityStepKeydown);
+cancelConfirmDeleteBtn?.addEventListener("click", closeDeleteConfirmation);
+closeConfirmDeleteBtn?.addEventListener("click", closeDeleteConfirmation);
+confirmDeleteBtn?.addEventListener("click", confirmDeleteAction);
+confirmDeleteForm?.addEventListener("submit", event => event.preventDefault());
+confirmDeleteDialog?.addEventListener("cancel", event => {
+  event.preventDefault();
+  if (!deleteConfirmationPending) closeDeleteConfirmation();
+});
+confirmDeleteDialog?.addEventListener("close", restoreDeleteConfirmationFocus);
 sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
 sampleFields.sampleCategory.addEventListener("change", syncSampleMeasureLabel);
 sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
@@ -865,7 +891,13 @@ function renderAlerts() {
 
     <div class="alerts-list">
       ${visibleAlerts.map(item => `
-        <div class="alert">
+        <div
+          class="alert critical-item-alert"
+          role="button"
+          tabindex="0"
+          data-critical-item-id="${escapeHtml(item.id)}"
+          aria-label="Ouvrir la fiche de ${escapeHtml(item.name)}"
+        >
           ⚠ ${escapeHtml(item.name)} - Rupture / critique : ${item.quantity} ${escapeHtml(item.unit)} restants / min. ${item.minStock} ${escapeHtml(item.unit)}
         </div>
       `).join("")}
@@ -879,6 +911,23 @@ function renderAlerts() {
       renderAlerts();
     });
   }
+
+  alertsContainer.querySelectorAll("[data-critical-item-id]").forEach(alert => {
+    const openAlertItem = () => {
+      const id = alert.dataset.criticalItemId;
+      if (!items.some(item => item.id === id)) {
+        renderAlerts();
+        return;
+      }
+      openItemDetail(id, { view: "inventory" });
+    };
+    alert.addEventListener("click", openAlertItem);
+    alert.addEventListener("keydown", event => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openAlertItem();
+    });
+  });
 }
 
 function renderSharedDataAlert() {
@@ -1918,11 +1967,16 @@ function renderSamples() {
   const detail = selectedSampleId
     ? clientSamples.find(sample => sample.id === selectedSampleId)
     : null;
+  const selectedGroup = selectedSampleGroupId
+    ? getReplicaGroupSamples(selectedSampleGroupId)
+    : [];
 
   if (refs.detail) {
-    refs.detail.classList.toggle("has-selection", Boolean(detail));
-    refs.detail.innerHTML = detail
-      ? renderSampleDetail(detail)
+    refs.detail.classList.toggle("has-selection", Boolean(detail || selectedGroup.length));
+    refs.detail.innerHTML = selectedGroup.length
+      ? renderReplicaGroupDetail(selectedSampleGroupId, selectedGroup)
+      : detail
+      ? renderSampleDetail(getEffectiveClientSample(detail))
       : renderSampleEmptyState();
   }
 
@@ -2016,9 +2070,16 @@ function renderSampleDetail(sample) {
       </div>
     </div>
 
+    ${sample.generalNotes ? `
+      <div class="client-detail-section">
+        <h4>Notes générales du groupe</h4>
+        <p>${escapeHtml(sample.generalNotes)}</p>
+      </div>
+    ` : ""}
+
     ${sample.notes ? `
       <div class="client-detail-section">
-        <h4>Notes</h4>
+        <h4>${sample.replicaNumber ? "Notes spécifiques du réplicat" : "Notes"}</h4>
         <p>${escapeHtml(sample.notes)}</p>
       </div>
     ` : ""}
@@ -2173,6 +2234,7 @@ function createReplicaFamilyUnit(familyKey, samples) {
 
 function getReplicaFamilyKey(sample) {
   if (sample?.type !== "created_sample") return "";
+  if (sample.groupId) return sample.groupId;
   const baseName = getReplicaBaseName(sample);
   if (!baseName || baseName === sample.name && Number(sample.replicaCount || 1) <= 1 && !sample.replicaNumber) return "";
 
@@ -2257,7 +2319,8 @@ function renderClientDisplayUnit(unit) {
 
 function renderReplicaFamilyRow(unit) {
   const isExpanded = expandedReplicaGroups.has(unit.key);
-  const firstSample = unit.samples[0];
+  const firstSample = getEffectiveClientSample(unit.samples[0]);
+  const isSelected = selectedSampleGroupId === unit.key;
   const formattedDate = formatDisplayDateFrench(formatClientSampleDate(firstSample)) || "—";
   const locations = Array.from(new Set(unit.samples.map(sample => sample.location).filter(Boolean)));
   const formattedQuantity = formatReplicaFamilyQuantity(unit.samples);
@@ -2265,17 +2328,23 @@ function renderReplicaFamilyRow(unit) {
   return `
     <div class="replica-family-block">
       <button
-        class="client-sample-row replica-family-row"
+        class="client-sample-row replica-family-row ${isSelected ? "active" : ""}"
         type="button"
         aria-expanded="${isExpanded ? "true" : "false"}"
-        onclick="toggleReplicaGroup('${escapeHtml(unit.key)}')"
+        onclick="selectReplicaGroup('${escapeHtml(unit.key)}')"
       >
         <div class="client-sample-main">
           <strong title="${escapeHtml(unit.baseName)}">${escapeHtml(unit.baseName)}</strong>
           <div class="client-sample-subline">
             <span class="client-type-badge ${escapeHtml(firstSample.type)}">${escapeHtml(clientSampleTypes[firstSample.type] || firstSample.type)}</span>
             <span class="client-replica-count">${unit.count} réplicat${unit.count > 1 ? "s" : ""}</span>
-            <span class="client-sample-cell-muted">${isExpanded ? "Replier" : "Déplier"}</span>
+            <span
+              class="client-sample-cell-muted replica-toggle-action"
+              role="button"
+              tabindex="0"
+              onclick="event.stopPropagation(); toggleReplicaGroup('${escapeHtml(unit.key)}')"
+              onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); toggleReplicaGroup('${escapeHtml(unit.key)}'); }"
+            >${isExpanded ? "Replier" : "Déplier"}</span>
             <span
               class="client-delete-group-action"
               role="button"
@@ -2303,6 +2372,7 @@ function renderReplicaFamilyRow(unit) {
 }
 
 function renderClientSampleRow(sample, options = {}) {
+  sample = getEffectiveClientSample(sample);
   const isSelected = selectedSampleId === sample.id;
   const formattedDate = formatDisplayDateFrench(formatClientSampleDate(sample)) || "—";
   const formattedQuantity = formatSampleDisplayQuantity(sample) || "—";
@@ -2338,14 +2408,88 @@ function toggleReplicaGroup(groupKey) {
   renderSamples();
 }
 
+function openDeleteConfirmation(options = {}) {
+  if (!confirmDeleteDialog || confirmDeleteDialog.open || deleteConfirmationPending) return;
+
+  deleteConfirmationTrigger = options.trigger instanceof HTMLElement
+    ? options.trigger
+    : document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+  deleteConfirmationAction = typeof options.onConfirm === "function"
+    ? options.onConfirm
+    : null;
+
+  confirmDeleteTitle.textContent = options.title || "Confirmer la suppression";
+  confirmDeleteMessage.textContent = options.message || "Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible.";
+  confirmDeleteBtn.textContent = options.confirmText || "Supprimer";
+  confirmDeleteError.textContent = "";
+  confirmDeleteError.classList.add("hidden");
+  setDeleteConfirmationPending(false);
+
+  confirmDeleteDialog.classList.remove("is-closing");
+  confirmDeleteDialog.classList.add("is-opening");
+  confirmDeleteDialog.showModal();
+  window.setTimeout(() => confirmDeleteDialog.classList.remove("is-opening"), 160);
+  cancelConfirmDeleteBtn.focus();
+}
+
+function setDeleteConfirmationPending(isPending) {
+  deleteConfirmationPending = isPending;
+  confirmDeleteBtn.disabled = isPending;
+  cancelConfirmDeleteBtn.disabled = isPending;
+  closeConfirmDeleteBtn.disabled = isPending;
+  confirmDeleteBtn.setAttribute("aria-busy", String(isPending));
+}
+
+async function confirmDeleteAction() {
+  if (deleteConfirmationPending || !deleteConfirmationAction) return;
+  setDeleteConfirmationPending(true);
+  confirmDeleteError.textContent = "";
+  confirmDeleteError.classList.add("hidden");
+
+  try {
+    await deleteConfirmationAction();
+    closeDeleteConfirmation({ force: true });
+  } catch (error) {
+    confirmDeleteError.textContent = error?.message || "La suppression n’a pas pu être effectuée. Veuillez réessayer.";
+    confirmDeleteError.classList.remove("hidden");
+    setDeleteConfirmationPending(false);
+    confirmDeleteBtn.focus();
+  }
+}
+
+function closeDeleteConfirmation(options = {}) {
+  if (!confirmDeleteDialog?.open || deleteConfirmationPending && !options.force) return;
+  confirmDeleteDialog.classList.remove("is-opening");
+  confirmDeleteDialog.classList.add("is-closing");
+  window.setTimeout(() => {
+    if (confirmDeleteDialog.open) confirmDeleteDialog.close();
+    confirmDeleteDialog.classList.remove("is-closing");
+  }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 120);
+}
+
+function restoreDeleteConfirmationFocus() {
+  setDeleteConfirmationPending(false);
+  deleteConfirmationAction = null;
+  const trigger = deleteConfirmationTrigger;
+  deleteConfirmationTrigger = null;
+  if (trigger?.isConnected) trigger.focus();
+}
+
 function deleteReplicaFamily(groupKey) {
   const familySamples = clientSamples.filter(sample => getReplicaFamilyKey(sample) === groupKey);
   if (!familySamples.length) return;
 
-  const confirmed = window.confirm(
-    `Êtes-vous sûre de vouloir supprimer ${familySamples.length} réplicat${familySamples.length > 1 ? "s" : ""} ?`
-  );
-  if (!confirmed) return;
+  openDeleteConfirmation({
+    message: `Êtes-vous sûr de vouloir supprimer ce groupe et ses ${familySamples.length} réplicat${familySamples.length > 1 ? "s" : ""} ? Cette action est irréversible.`,
+    onConfirm: () => performReplicaFamilyDeletion(groupKey)
+  });
+}
+
+function performReplicaFamilyDeletion(groupKey) {
+  const familySamples = clientSamples.filter(sample => getReplicaFamilyKey(sample) === groupKey);
+  if (!familySamples.length) throw new Error("Ce groupe de réplicats n’existe plus.");
 
   const deletedIds = new Set(familySamples.map(sample => sample.id));
   const baseName = getReplicaBaseName(familySamples[0]) || familySamples[0].name;
@@ -2359,6 +2503,9 @@ function deleteReplicaFamily(groupKey) {
   if (selectedSampleId && deletedIds.has(selectedSampleId)) {
     selectedSampleId = null;
   }
+  if (selectedSampleGroupId === groupKey) {
+    selectedSampleGroupId = null;
+  }
 
   persist();
   render();
@@ -2368,14 +2515,25 @@ function deleteSampleFromDetail(id) {
   const sample = clientSamples.find(entry => entry.id === id);
   if (!sample) return;
 
-  const confirmed = window.confirm(`Êtes-vous sûre de vouloir supprimer "${sample.name}" ?`);
-  if (!confirmed) return;
+  const message = sample.replicaNumber
+    ? `Êtes-vous sûr de vouloir supprimer uniquement le réplicat ${sample.replicaNumber} ? Cette action est irréversible.`
+    : `Êtes-vous sûr de vouloir supprimer “${sample.name}” de cette étude client ? Cette action est irréversible.`;
+  openDeleteConfirmation({
+    message,
+    onConfirm: () => performSampleDeletion(id, { closeModal: false })
+  });
+}
+
+function performSampleDeletion(id, options = {}) {
+  const sample = clientSamples.find(entry => entry.id === id);
+  if (!sample) throw new Error("Ce produit ou échantillon n’existe plus.");
 
   clientSamples = clientSamples.filter(entry => entry.id !== id);
 
   addHistory("Produit client supprimé", `${currentName} a supprimé ${sample.name} des études clients.`);
   selectedSampleId = null;
   persist();
+  if (options.closeModal) sampleDialog.close();
   render();
 }
 
@@ -3101,7 +3259,7 @@ function renderLocationDetailRow(entry) {
   const tags = record.tags || [];
 
   return `
-    <tr class="location-detail-row ${selectedLocationEntry === entryKey ? "is-selected" : ""}"
+    <tr class="location-detail-row ${isClientSample ? "is-client-study" : ""} ${selectedLocationEntry === entryKey ? "is-selected" : ""}"
       tabindex="0" data-entry-kind="${escapeHtml(entry.kind)}" data-entry-id="${escapeHtml(record.id)}">
       <td data-label="Référence">
         <button class="location-reference-button" type="button" data-open-entry>
@@ -3179,9 +3337,12 @@ function bindLocationDetailEvents(locationGrid) {
   const openEntry = row => {
     if (!row) return;
     selectedLocationEntry = `${row.dataset.entryKind}:${row.dataset.entryId}`;
+    if (row.dataset.entryKind === "clientSample") {
+      renderLocations();
+      return;
+    }
     const context = { view: "locations", location: selectedLocation };
-    if (row.dataset.entryKind === "clientSample") openSampleDetail(row.dataset.entryId, context);
-    else openItemDetail(row.dataset.entryId, context);
+    openItemDetail(row.dataset.entryId, context);
   };
 
   locationGrid.querySelectorAll(".location-detail-row").forEach(row => {
@@ -3195,7 +3356,10 @@ function bindLocationDetailEvents(locationGrid) {
         openEntry(row);
       }
     });
-    row.querySelector("[data-open-entry]")?.addEventListener("click", () => openEntry(row));
+    row.querySelector("[data-open-entry]")?.addEventListener("click", event => {
+      event.stopPropagation();
+      openEntry(row);
+    });
   });
 
   locationGrid.querySelectorAll("[data-update-stock]").forEach(button => button.addEventListener("click", event => {
@@ -3692,7 +3856,9 @@ function resetOrderBoardFilters() {
   renderOrders();
 }
 
-function renderOrderItemOptions() {
+function renderOrderItemOptions(options = {}) {
+  const list = document.querySelector("#orderInventoryOptions");
+  if (!list) return;
   const query = normalizeSearch(orderFields.orderInventorySearch?.value || "");
   const filtered = items.filter(item => {
     const haystack = normalizeSearch([
@@ -3705,9 +3871,160 @@ function renderOrderItemOptions() {
     return !query || haystack.includes(query);
   });
 
-  orderFields.orderInventoryItem.innerHTML = filtered
-    .map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`)
-    .join("") || `<option value="">Aucun item trouvé</option>`;
+  list.innerHTML = filtered.length
+    ? filtered.map((item, index) => `
+        <button
+          type="button"
+          role="option"
+          id="order-item-option-${index}"
+          class="order-combobox-option"
+          data-order-item-id="${escapeHtml(item.id)}"
+          aria-selected="${orderFields.orderInventoryItem.value === item.id ? "true" : "false"}"
+        >
+          <strong>${escapeHtml(item.name)}</strong>
+          <span>${escapeHtml([item.category, formatLocations(item)].filter(Boolean).join(" · "))}</span>
+        </button>
+      `).join("")
+    : `<p class="order-combobox-empty">Aucun item trouvé</p>`;
+
+  list.querySelectorAll("[data-order-item-id]").forEach(option => {
+    option.addEventListener("click", () => selectOrderInventoryItem(option.dataset.orderItemId));
+    option.addEventListener("keydown", event => {
+      const optionButtons = [...list.querySelectorAll("[data-order-item-id]")];
+      const index = optionButtons.indexOf(option);
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        const next = event.key === "ArrowDown"
+          ? Math.min(index + 1, optionButtons.length - 1)
+          : Math.max(index - 1, 0);
+        optionButtons[next]?.focus();
+      } else if (event.key === "Escape") {
+        event.preventDefault();
+        closeOrderInventoryOptions();
+        orderFields.orderInventorySearch.focus();
+      }
+    });
+  });
+
+  if (options.open) {
+    list.classList.remove("hidden");
+    orderFields.orderInventorySearch.setAttribute("aria-expanded", "true");
+  }
+}
+
+function renderReplicaGroupDetail(groupId, samples) {
+  const sample = getEffectiveClientSample(samples[0]);
+  return `
+    <div class="client-detail-header">
+      <div>
+        <div class="client-detail-meta">
+          <span class="client-type-badge created_sample">${escapeHtml(clientSampleTypes.created_sample)}</span>
+          <span class="result-pill">${samples.length} réplicats</span>
+        </div>
+        <h3>${escapeHtml(getReplicaBaseName(sample))}</h3>
+        <p class="category">${escapeHtml(sample.category || "")}</p>
+      </div>
+    </div>
+    <div class="client-detail-section">
+      <h4>Informations générales</h4>
+      <div class="item-detail-stack">
+        ${renderDetailRow("Client", getSampleCanonicalClientCode(sample))}
+        ${renderDetailRow("Date", formatDisplayDateFrench(sample.creationDate))}
+        ${renderDetailRow("Quantité / format", formatSampleDisplayQuantity(sample))}
+        ${renderDetailRow("Localisation", sample.location)}
+      </div>
+    </div>
+    ${sample.generalNotes ? `<div class="client-detail-section"><h4>Notes générales</h4><p>${escapeHtml(sample.generalNotes)}</p></div>` : ""}
+    <div class="client-detail-bottom-actions">
+      <button class="ghost-btn compact-btn" type="button" onclick="openSampleModal(null, { groupId: '${escapeHtml(groupId)}' })">Modifier</button>
+    </div>
+  `;
+}
+
+function selectReplicaGroup(groupId) {
+  selectedSampleGroupId = groupId;
+  selectedSampleId = null;
+  renderSamples();
+}
+
+function getReplicaGroupSamples(groupId) {
+  return clientSamples
+    .filter(sample => sample.type === "created_sample" && getReplicaFamilyKey(sample) === groupId)
+    .sort(compareReplicaSamples);
+}
+
+function getEffectiveClientSample(sample) {
+  if (!sample || sample.type !== "created_sample") return sample;
+  const general = sample.generalData || {};
+  const specific = sample.specificData || {};
+  return {
+    ...sample,
+    ...general,
+    ...specific,
+    id: sample.id,
+    groupId: sample.groupId,
+    replicaId: sample.replicaId || sample.id,
+    notes: specific.notes || "",
+    generalNotes: general.notes || ""
+  };
+}
+
+function selectOrderInventoryItem(id) {
+  const item = items.find(entry => entry.id === id);
+  if (!item) return;
+  orderFields.orderInventoryItem.value = item.id;
+  orderFields.orderInventorySearch.value = item.name;
+  orderFields.orderInventorySearch.setCustomValidity("");
+  document.querySelector("#clearOrderInventoryItem")?.classList.remove("hidden");
+  closeOrderInventoryOptions();
+}
+
+function clearOrderInventorySelection() {
+  orderFields.orderInventoryItem.value = "";
+  orderFields.orderInventorySearch.value = "";
+  document.querySelector("#clearOrderInventoryItem")?.classList.add("hidden");
+  renderOrderItemOptions({ open: true });
+  orderFields.orderInventorySearch.focus();
+}
+
+function handleOrderComboboxInput() {
+  orderFields.orderInventoryItem.value = "";
+  document.querySelector("#clearOrderInventoryItem")?.classList.add("hidden");
+  orderFields.orderInventorySearch.setCustomValidity("");
+  renderOrderItemOptions({ open: true });
+}
+
+function handleOrderComboboxKeydown(event) {
+  const list = document.querySelector("#orderInventoryOptions");
+  const options = [...(list?.querySelectorAll("[data-order-item-id]") || [])];
+  const activeIndex = options.indexOf(document.activeElement);
+  if (event.key === "Escape") {
+    closeOrderInventoryOptions();
+    return;
+  }
+  if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    event.preventDefault();
+    if (list?.classList.contains("hidden")) renderOrderItemOptions({ open: true });
+    const nextIndex = event.key === "ArrowDown"
+      ? Math.min(activeIndex + 1, options.length - 1)
+      : Math.max(activeIndex < 0 ? options.length - 1 : activeIndex - 1, 0);
+    options[nextIndex]?.focus();
+    return;
+  }
+  if (event.key === "Enter" && options.length === 1) {
+    event.preventDefault();
+    selectOrderInventoryItem(options[0].dataset.orderItemId);
+  }
+}
+
+function closeOrderInventoryOptions() {
+  document.querySelector("#orderInventoryOptions")?.classList.add("hidden");
+  orderFields.orderInventorySearch.setAttribute("aria-expanded", "false");
+}
+
+function handleOrderComboboxOutsideClick(event) {
+  const combobox = document.querySelector("#orderInventoryCombobox");
+  if (combobox && !combobox.contains(event.target)) closeOrderInventoryOptions();
 }
 
 // funcion para la fecha que aparece en las tarjetas de ordenes, para mostrarla en formato DD/MM/YY o devolver "—" si no hay fecha o si el formato no se reconoce
@@ -3740,7 +4057,7 @@ function toggleOrderModeFields() {
   const isExisting = orderFields.orderItemMode.value === "existing";
   existingBlock.classList.toggle("hidden", !isExisting);
   newBlock.classList.toggle("hidden", isExisting);
-  orderFields.orderInventoryItem.required = isExisting;
+  orderFields.orderInventorySearch.required = isExisting;
   orderFields.orderNewName.required = !isExisting;
 }
 
@@ -4036,6 +4353,7 @@ function openSampleDetail(id, context = {}) {
   };
 
   selectedSampleId = id;
+  selectedSampleGroupId = null;
   activeView = "samples";
 
   document.querySelectorAll(".nav-item").forEach((item) => {
@@ -4162,17 +4480,30 @@ function returnFromItemDetail() {
   restorePageScrollY(itemReturnContext.scrollY);
 }
 
-function openSampleModal(id) {
-  const sample = clientSamples.find(entry => entry.id === id);
+function openSampleModal(id, options = {}) {
+  const groupSamples = options.groupId ? getReplicaGroupSamples(options.groupId) : [];
+  const storedSample = id ? clientSamples.find(entry => entry.id === id) : null;
+  const sample = getEffectiveClientSample(storedSample || groupSamples[0]);
   const sampleClientCode = sample ? getSampleCanonicalClientCode(sample) : "";
+  sampleEditContext = groupSamples.length
+    ? { scope: "group", groupId: options.groupId, sampleId: null }
+    : storedSample?.replicaNumber
+      ? { scope: "replica", groupId: storedSample.groupId || getReplicaFamilyKey(storedSample), sampleId: storedSample.id }
+      : storedSample
+        ? { scope: "single", groupId: null, sampleId: storedSample.id }
+        : { scope: "new", groupId: null, sampleId: null };
 
   sampleForm.reset();
-  document.querySelector("#sampleModalTitle").textContent = sample
-    ? "Modifier produit / échantillon client"
-    : "Nouveau produit / échantillon client";
-  document.querySelector("#deleteSampleBtn").style.display = sample ? "inline-block" : "none";
+  document.querySelector("#sampleModalTitle").textContent = groupSamples.length
+    ? `Modifier le groupe et ses ${groupSamples.length} réplicats`
+    : storedSample?.replicaNumber
+      ? `Modifier uniquement le réplicat ${storedSample.replicaNumber}`
+      : sample
+        ? "Modifier produit / échantillon client"
+        : "Nouveau produit / échantillon client";
+  document.querySelector("#deleteSampleBtn").style.display = storedSample ? "inline-block" : "none";
 
-  sampleFields.sampleId.value = sample?.id || "";
+  sampleFields.sampleId.value = storedSample?.id || "";
   sampleFields.sampleType.value = sample?.type || "client_product";
   sampleFields.sampleClientCode.value = sample?.rawClientCode || sampleClientCode;
   sampleFields.sampleProductName.value = sample?.type === "client_product" ? sample.name : "";
@@ -4188,7 +4519,9 @@ function openSampleModal(id) {
   sampleFields.sampleLocation.value = sample?.location || inventoryLocations[0];
   sampleFields.sampleReferenceNumber.value = sample?.referenceNumber || "";
   sampleFields.sampleLotNumber.value = sample?.lotNumber || "";
-  sampleFields.sampleNotes.value = sample?.notes || "";
+  sampleFields.sampleNotes.value = sampleEditContext.scope === "group"
+    ? sample?.generalNotes || sample?.generalData?.notes || ""
+    : sample?.notes || "";
 
   syncSampleFormVisibility();
   updateClientCodeHint();
@@ -4279,44 +4612,102 @@ function saveSample() {
     );
   } else {
     const baseName = sampleFields.sampleBaseName.value.trim();
-    const replicaCount = existingId ? 1 : Math.max(1, Number(sampleFields.sampleReplicaCount.value || 1));
+    const replicaCount = sampleEditContext.scope === "new"
+      ? Math.max(1, Number(sampleFields.sampleReplicaCount.value || 1))
+      : sampleEditContext.scope === "group"
+        ? getReplicaGroupSamples(sampleEditContext.groupId).length
+        : 1;
     const category = sampleFields.sampleCategory.value;
     const measureUnit = category === "Secretion" ? "mL" : "mg";
     const measureValue = Number(sampleFields.sampleMeasureValue.value);
+    const editableData = {
+      type,
+      clientCode: base.clientCode,
+      rawClientCode: base.rawClientCode,
+      normalizedClientKey: base.normalizedClientKey,
+      clientId: base.clientId,
+      canonicalClientCode: base.canonicalClientCode,
+      location: base.location,
+      baseName,
+      category,
+      creationDate: sampleFields.sampleCreationDate.value,
+      measureValue,
+      measureUnit,
+      quantity: measureValue,
+      unit: measureUnit,
+      arrivalDate: "",
+      referenceNumber: "",
+      lotNumber: ""
+    };
 
-    const samplesToSave = Array.from({ length: replicaCount }, (_, index) => {
+    if (sampleEditContext.scope === "group") {
+      const groupSamples = getReplicaGroupSamples(sampleEditContext.groupId);
+      clientSamples = clientSamples.map(sample => {
+        if (!groupSamples.some(entry => entry.id === sample.id)) return sample;
+        const generalData = { ...editableData, notes: sampleFields.sampleNotes.value.trim() };
+        const effective = { ...sample, ...generalData, ...(sample.specificData || {}) };
+        return {
+          ...effective,
+          id: sample.id,
+          replicaId: sample.replicaId || sample.id,
+          groupId: sampleEditContext.groupId,
+          replicaNumber: sample.replicaNumber,
+          replicaCount: groupSamples.length,
+          name: `${effective.baseName || baseName} ${sample.replicaNumber}`,
+          generalData,
+          specificData: sample.specificData || {}
+        };
+      });
+    } else if (sampleEditContext.scope === "replica" && existingSample) {
+      const specificData = { ...editableData, notes: sampleFields.sampleNotes.value.trim() };
+      const index = clientSamples.findIndex(entry => entry.id === existingSample.id);
+      clientSamples[index] = {
+        ...existingSample,
+        ...(existingSample.generalData || {}),
+        ...specificData,
+        id: existingSample.id,
+        replicaId: existingSample.replicaId || existingSample.id,
+        groupId: existingSample.groupId || sampleEditContext.groupId,
+        replicaNumber: existingSample.replicaNumber,
+        replicaCount: existingSample.replicaCount,
+        name: `${baseName} ${existingSample.replicaNumber}`,
+        generalData: existingSample.generalData || {},
+        specificData
+      };
+    } else {
+      const groupId = replicaCount > 1 ? createSafeItemId("sample-group") : "";
+      const generalData = { ...editableData, notes: sampleFields.sampleNotes.value.trim() };
+      const samplesToSave = Array.from({ length: replicaCount }, (_, index) => {
       const replicaNumber = index + 1;
       const name = replicaCount > 1 ? `${baseName} ${replicaNumber}` : baseName;
+      const id = existingId || createSafeItemId("sample-created");
 
       return {
         ...base,
-        id: existingId || createSafeItemId("sample-created"),
+        ...generalData,
+        id,
+        replicaId: id,
+        groupId,
         name,
-        baseName,
         replicaNumber: replicaCount > 1 ? replicaNumber : existingSample?.replicaNumber || null,
         replicaCount: replicaCount > 1 ? replicaCount : existingSample?.replicaCount || 1,
-        category,
-        creationDate: sampleFields.sampleCreationDate.value,
-        measureValue,
-        measureUnit,
-        quantity: measureValue,
-        unit: measureUnit,
-        arrivalDate: "",
-        referenceNumber: "",
-        lotNumber: ""
+        generalData: replicaCount > 1 ? generalData : {},
+        specificData: {}
       };
-    });
+      });
 
-    upsertClientSamples(samplesToSave, existingId);
+      upsertClientSamples(samplesToSave, existingId);
+    }
     addHistory(
       existingId ? "Échantillon client modifié" : "Échantillons clients ajoutés",
-      `${currentName} a ${existingId ? "modifié" : "ajouté"} ${replicaCount} échantillon${replicaCount > 1 ? "s" : ""} ${baseName} pour ${base.canonicalClientCode}.`
+      `${currentName} a ${sampleEditContext.scope === "new" ? "ajouté" : "modifié"} ${replicaCount} échantillon${replicaCount > 1 ? "s" : ""} ${baseName} pour ${base.canonicalClientCode}.`
     );
   }
 
   persist();
   sampleDialog.close();
   selectedSampleId = null;
+  selectedSampleGroupId = null;
   render();
 }
 
@@ -4332,25 +4723,18 @@ function upsertClientSamples(samplesToSave, existingId = "") {
   clientSamples = [...samplesToSave, ...clientSamples];
 }
 
-function deleteSample() {
+function requestSampleDeletionFromModal() {
   const id = sampleFields.sampleId.value;
   const sample = clientSamples.find(entry => entry.id === id);
   if (!sample) return;
 
-  const confirmed = window.confirm(`Êtes-vous sûre de vouloir supprimer "${sample.name}" ?`);
-  if (!confirmed) return;
-
-  clientSamples = clientSamples.filter(entry => entry.id !== id);
-
-  addHistory("Produit client supprimé", `${currentName} a supprimé ${sample.name} des études clients.`);
-  persist();
-  sampleDialog.close();
-
-  if (selectedSampleId === id) {
-    selectedSampleId = null;
-  }
-
-  render();
+  const message = sample.replicaNumber
+    ? `Êtes-vous sûr de vouloir supprimer uniquement le réplicat ${sample.replicaNumber} ? Cette action est irréversible.`
+    : `Êtes-vous sûr de vouloir supprimer “${sample.name}” de cette étude client ? Cette action est irréversible.`;
+  openDeleteConfirmation({
+    message,
+    onConfirm: () => performSampleDeletion(id, { closeModal: true })
+  });
 }
 
 function openModal(id, options = {}) {
@@ -4453,10 +4837,19 @@ function isSeedItemId(id) {
   return seedBaseItems.some(item => item.id === id);
 }
 
-function deleteItem() {
+function requestItemDeletion() {
   const id = fields.itemId.value;
   const item = items.find(entry => entry.id === id);
   if (!item) return;
+  openDeleteConfirmation({
+    message: `Êtes-vous sûr de vouloir supprimer l’item “${item.name}” ? Cette action est irréversible.`,
+    onConfirm: () => deleteItem(id)
+  });
+}
+
+function deleteItem(id) {
+  const item = items.find(entry => entry.id === id);
+  if (!item) throw new Error("Cet item n’existe plus.");
 
   items = items.filter(entry => entry.id !== id);
 
@@ -5209,14 +5602,20 @@ function saveExperiment() {
   renderHistory();
 }
 
-function deleteExperiment() {
+function requestExperimentDeletion() {
   const id = experimentFields.experimentId.value;
   const experiment = experiments.find(entry => entry.id === id);
   if (!experiment) return;
 
-  const confirmed = window.confirm(`Supprimer l'expérience "${experiment.name}" ?`);
-  if (!confirmed) return;
+  openDeleteConfirmation({
+    message: `Êtes-vous sûr de vouloir supprimer l’expérience “${experiment.name}” ? Cette action est irréversible.`,
+    onConfirm: () => deleteExperiment(id)
+  });
+}
 
+function deleteExperiment(id) {
+  const experiment = experiments.find(entry => entry.id === id);
+  if (!experiment) throw new Error("Cette expérience n’existe plus.");
   experiments = experiments.filter(entry => entry.id !== id);
 
   addHistory(
@@ -5274,9 +5673,11 @@ function consumeExperimentStock(id) {
 
 function openOrderModal() {
   orderForm.reset();
+  orderFields.orderInventoryItem.value = "";
   orderFields.orderInventorySearch.value = "";
   orderFields.orderNewName.value = "";
   renderOrderItemOptions();
+  document.querySelector("#clearOrderInventoryItem")?.classList.add("hidden");
   orderFields.orderItemMode.value = "existing";
   orderFields.orderPriority.value = "critique";
   toggleOrderModeFields();
@@ -5284,6 +5685,11 @@ function openOrderModal() {
 }
 
 function saveOrder() {
+  if (orderFields.orderItemMode.value === "existing" && !orderFields.orderInventoryItem.value) {
+    orderFields.orderInventorySearch.setCustomValidity("Veuillez sélectionner un item dans la liste.");
+  } else {
+    orderFields.orderInventorySearch.setCustomValidity("");
+  }
   if (!orderForm.reportValidity()) return;
 
   const itemMode = orderFields.orderItemMode.value;
@@ -5790,9 +6196,21 @@ function markOrderDone(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order) return;
 
-  const confirmed = window.confirm(`Supprimer la demande pour « ${order.itemName} » ?`);
-  if (!confirmed) return;
+  const status = normalizeOrderStatus(order.status);
+  const elementLabel = status === "received"
+    ? "l’arrivée"
+    : status === "ordered"
+      ? "la commande"
+      : "la demande";
+  openDeleteConfirmation({
+    message: `Êtes-vous sûr de vouloir supprimer ${elementLabel} “${order.itemName}” ? Cette action est irréversible.`,
+    onConfirm: () => deleteOrder(id)
+  });
+}
 
+function deleteOrder(id) {
+  const order = orders.find(entry => entry.id === id);
+  if (!order) throw new Error("Cette demande de commande n’existe plus.");
   orders = orders.filter(entry => entry.id !== id);
 
   addHistory(
@@ -6123,6 +6541,30 @@ function migrateClientSamples(sampleList) {
       rawClientCode
     );
     const canonicalClientCode = sample?.canonicalClientCode || normalizedClient.canonicalCode || rawClientCode;
+    const hasReplicaFamily = type === "created_sample" &&
+      (Number(sample?.replicaCount || 1) > 1 || Number(sample?.replicaNumber || 0) > 0);
+    const legacyGroupId = hasReplicaFamily
+      ? [
+          "sample-group-legacy",
+          normalizedClient.normalizedKey || "client",
+          sample?.baseName || String(sample?.name || "").replace(/\s+\d+$/, ""),
+          sample?.creationDate || "date",
+          sample?.category || "category",
+          sample?.location || "location"
+        ].map(toSafeKeyPart).join("-")
+      : "";
+    const generalData = type === "created_sample"
+      ? {
+          ...(sample?.generalData || {}),
+          notes: String(sample?.generalData?.notes ?? (hasReplicaFamily ? sample?.notes : "") ?? "").trim()
+        }
+      : {};
+    const specificData = type === "created_sample"
+      ? {
+          ...(sample?.specificData || {}),
+          notes: String(sample?.specificData?.notes ?? (hasReplicaFamily ? "" : sample?.notes) ?? "").trim()
+        }
+      : {};
 
     return {
       ...sample,
@@ -6146,6 +6588,10 @@ function migrateClientSamples(sampleList) {
       referenceNumber: String(sample?.referenceNumber || "").trim(),
       lotNumber: String(sample?.lotNumber || "").trim(),
       notes: String(sample?.notes || "").trim(),
+      generalData,
+      specificData,
+      groupId: sample?.groupId || legacyGroupId,
+      replicaId: sample?.replicaId || id,
       replicaNumber: sample?.replicaNumber || null,
       replicaCount: sample?.replicaCount || 1,
       createdAtRaw: sample?.createdAtRaw || "",

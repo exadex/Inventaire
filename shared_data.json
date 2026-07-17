@@ -4492,7 +4492,7 @@
       "id": "itm-web-1783931436295-cwj79e",
       "name": "Falcon 50",
       "category": "Culture Cell",
-      "quantity": 2,
+      "quantity": 1.833333,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -4585,7 +4585,7 @@
             "id": "container-mrp21m9y-1325205844-2936280207",
             "label": "carton ouvert nº2",
             "location": "Réserve",
-            "remaining": 300,
+            "remaining": 250,
             "capacity": 300,
             "status": "open",
             "openedAt": "2026-07-17T14:50:22.342Z",
@@ -4595,9 +4595,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:50:22.342Z",
+            "updatedAt": "2026-07-17T14:50:33.601Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       },
@@ -14423,6 +14423,13 @@
     {
       "date": "17/07/2026 16:50",
       "action": "Stock mis à jour",
+      "detail": "Caroline · recounted · Falcon 50",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-cwj79e"
+    },
+    {
+      "date": "17/07/2026 16:50",
+      "action": "Stock mis à jour",
       "detail": "Caroline · container_opened · Falcon 50",
       "user": "Caroline",
       "itemId": "itm-web-1783931436295-cwj79e"
@@ -16122,7 +16129,65 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp21uyp-282462612-153434849",
+      "operationId": "operation-mrp21uj7-3801874616-2757462521",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "timestamp": "2026-07-17T14:50:33.601Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp21m9y-1325205844-2936280207",
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp21m9y-1325205844-2936280207",
+        "label": "carton ouvert nº2",
+        "location": "Réserve",
+        "remaining": 300,
+        "capacity": 300,
+        "status": "open",
+        "openedAt": "2026-07-17T14:50:22.342Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:50:22.342Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "container-mrp21m9y-1325205844-2936280207",
+        "label": "carton ouvert nº2",
+        "location": "Réserve",
+        "remaining": 250,
+        "capacity": 300,
+        "status": "open",
+        "openedAt": "2026-07-17T14:50:22.342Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:50:33.601Z",
+        "updatedBy": "caroline",
+        "version": 2
+      },
+      "quantity": 10,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:50:22.342Z"
+  "updatedAt": "2026-07-17T14:50:33.601Z"
 }

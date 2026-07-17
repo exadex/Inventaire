@@ -11230,33 +11230,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-CSV-0211",
-      "name": "Pipette stérile Pasteur 3 ml (a commander de preference)",
-      "category": "Indispensable",
-      "quantity": 0,
-      "unit": "mL",
-      "minStock": 0,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.dutscher.com/article/390513",
-          "notes": "52",
-          "price": "52",
-          "unitPrice": "0",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-CSV-0212",
       "name": "Qiazol",
       "category": "Indispensable",
@@ -13598,6 +13571,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:05",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Pipette stérile Pasteur 3 ml (a commander de preference) de l'inventaire."
+    },
+    {
       "date": "17/07/2026 10:04",
       "user": "Elina",
       "action": "Item modifié",
@@ -14570,5 +14549,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:04:47.574Z"
+  "updatedAt": "2026-07-17T08:05:47.665Z"
 }

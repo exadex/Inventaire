@@ -3731,7 +3731,7 @@
       "name": "Pipette 5 ml",
       "category": "Culture Cell",
       "quantity": 2.3,
-      "unit": "Cartons",
+      "unit": "cartons",
       "minStock": 0.5,
       "location": "Réserve",
       "locations": [
@@ -14334,6 +14334,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:47",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette 5 ml."
+    },
+    {
       "date": "17/07/2026 16:45",
       "user": "Caroline",
       "action": "Item modifié",
@@ -15743,5 +15749,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:45:44.139Z"
+  "updatedAt": "2026-07-17T14:47:10.635Z"
 }

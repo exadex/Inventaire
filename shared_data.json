@@ -4533,8 +4533,8 @@
       "id": "itm-web-1783931436295-1dofvn",
       "name": "Falcon facs 5ml",
       "category": "Culture Cell",
-      "quantity": 0.5,
-      "unit": "unités",
+      "quantity": 1.2,
+      "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -4564,7 +4564,75 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T13:08:28.852Z",
-      "createdAt": "16/07/2026 15:08"
+      "createdAt": "16/07/2026 15:08",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "custom-sous-carton",
+            "singular": "sous-carton",
+            "plural": "sous-cartons",
+            "kind": "discrete",
+            "contains": 5
+          },
+          {
+            "id": "level-3",
+            "key": "tube",
+            "singular": "tube",
+            "plural": "tubes",
+            "kind": "discrete",
+            "contains": 100
+          }
+        ],
+        "trackingUnitKey": "custom-sous-carton",
+        "trackingUnit": "sous-cartons",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-07-17T15:10:19.507Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mrp2ra0j-1981727022-2225938014",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 100,
+            "capacity": 500,
+            "status": "open",
+            "openedAt": "2026-07-17T15:10:19.507Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T15:10:19.507Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-xpwlf5",
@@ -14557,6 +14625,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 17:10",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Falcon facs 5ml."
+    },
+    {
       "date": "17/07/2026 16:55",
       "user": "Caroline",
       "action": "Item modifié",
@@ -16573,7 +16647,49 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp2ra0l-1334513901-104514497",
+      "operationId": "migration-mrp2ra0l-3113946268-912747270",
+      "itemId": "itm-web-1783931436295-1dofvn",
+      "timestamp": "2026-07-17T15:10:19.509Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-1dofvn",
+      "before": {
+        "mode": "simple",
+        "quantity": 0.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 1.2,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-07-17T15:10:19.507Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mrp2ra0j-1981727022-2225938014",
+            "location": "Réserve",
+            "remaining": 100
+          }
+        ]
+      },
+      "quantity": 3.5,
+      "unit": "sous-cartons",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-17T14:55:19.715Z"
+  "updatedAt": "2026-07-17T15:10:19.510Z"
 }

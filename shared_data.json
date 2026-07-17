@@ -48,7 +48,7 @@
       "tags": [
         "Bactério"
       ],
-      "notes": "Transparent, with ventilation cams\nConditionnement : 880 boites/cartons - 44 sachets/carton - 20 boites/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 9 sachets",
+      "notes": "Transparent, with ventilation cams",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -14704,6 +14704,12 @@
       "detail": "Caroline a modifié Petri dish, 92 x 16 mm."
     },
     {
+      "date": "17/07/2026 17:13",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Petri dish, 92 x 16 mm."
+    },
+    {
       "date": "17/07/2026 17:11",
       "user": "Caroline",
       "action": "Item modifié",
@@ -16990,5 +16996,5 @@
       "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-17T15:13:10.989Z"
+  "updatedAt": "2026-07-17T15:13:30.402Z"
 }

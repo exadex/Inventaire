@@ -3826,7 +3826,7 @@
       "id": "itm-web-1783931436295-ookfph",
       "name": "Plaque 12 Puits",
       "category": "Culture Cell",
-      "quantity": 2,
+      "quantity": 2.5,
       "unit": "Carton",
       "minStock": 1,
       "location": "Laboratoire",
@@ -3836,7 +3836,7 @@
       "tags": [
         "Plaque 12"
       ],
-      "notes": "Conditionnement : 50 plaques/cartons \n\nAu 16/07/2026 : 1 ouvert - reste 30 - 1 fermé",
+      "notes": "Conditionnement : 50 plaques/cartons \n\nAu 16/07/2026 : 1 ouvert - reste 30 - 1 fermé\n+ 1 carton hybride avec la ref secondaire ~70 plaques",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -3847,7 +3847,12 @@
           "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "353043",
+            "notes": ""
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -13629,6 +13634,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 14:07",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 12 Puits."
+    },
+    {
       "date": "17/07/2026 14:05",
       "user": "Elina",
       "action": "Item modifié",
@@ -14667,5 +14678,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T12:05:45.351Z"
+  "updatedAt": "2026-07-17T12:07:39.069Z"
 }

@@ -3575,7 +3575,7 @@
       "category": "Culture Cell",
       "quantity": 0.5,
       "unit": "Sac",
-      "minStock": 1,
+      "minStock": 0.5,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -13574,6 +13574,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:07",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Pipette stérile Pasteur 3 ml (a commander de preference)."
+    },
+    {
       "date": "17/07/2026 10:06",
       "user": "Elina",
       "action": "Item modifié",
@@ -14558,5 +14564,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:06:53.555Z"
+  "updatedAt": "2026-07-17T08:07:09.675Z"
 }

@@ -4248,7 +4248,7 @@
       "id": "itm-web-1783931436295-wncvj7",
       "name": "Microtube 1,5 ml",
       "category": "Culture Cell",
-      "quantity": 2,
+      "quantity": 1.4,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -4322,7 +4322,7 @@
             "id": "container-mrp23eel-2257530651-1161088923",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 5000,
+            "remaining": 2000,
             "capacity": 5000,
             "status": "open",
             "openedAt": "2026-07-17T14:51:45.453Z",
@@ -4332,9 +4332,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:51:45.453Z",
+            "updatedAt": "2026-07-17T14:51:54.500Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       },
@@ -14491,6 +14491,13 @@
     {
       "date": "17/07/2026 16:51",
       "action": "Stock mis à jour",
+      "detail": "Caroline · recounted · Microtube 1,5 ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-wncvj7"
+    },
+    {
+      "date": "17/07/2026 16:51",
+      "action": "Stock mis à jour",
       "detail": "Caroline · container_opened · Microtube 1,5 ml",
       "user": "Caroline",
       "itemId": "itm-web-1783931436295-wncvj7"
@@ -16309,7 +16316,65 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp23ldw-786642500-18545465",
+      "operationId": "operation-mrp23l0q-807182168-527355515",
+      "itemId": "itm-web-1783931436295-wncvj7",
+      "timestamp": "2026-07-17T14:51:54.500Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp23eel-2257530651-1161088923",
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp23eel-2257530651-1161088923",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 5000,
+        "capacity": 5000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:51:45.453Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:51:45.453Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "container-mrp23eel-2257530651-1161088923",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 2000,
+        "capacity": 5000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:51:45.453Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:51:54.500Z",
+        "updatedBy": "caroline",
+        "version": 2
+      },
+      "quantity": 4,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:51:45.453Z"
+  "updatedAt": "2026-07-17T14:51:54.500Z"
 }

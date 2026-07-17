@@ -4599,14 +4599,7 @@
         "trackingUnit": "sous-cartons",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
-          {
-            "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-07-17T15:10:19.507Z",
-            "updatedBy": "caroline"
-          }
-        ],
+        "closedByLocation": [],
         "openContainers": [
           {
             "id": "container-mrp2ra0j-1981727022-2225938014",
@@ -4626,6 +4619,24 @@
             "updatedBy": "caroline",
             "version": 2,
             "finishedAt": "2026-07-17T15:10:47.380Z"
+          },
+          {
+            "id": "container-mrp2s45h-3972346573-4065194562",
+            "label": "carton ouvert nº2",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 500,
+            "status": "open",
+            "openedAt": "2026-07-17T15:10:58.565Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T15:10:58.565Z",
+            "updatedBy": "caroline",
+            "version": 1
           }
         ]
       },
@@ -14628,6 +14639,13 @@
     {
       "date": "17/07/2026 17:10",
       "action": "Stock mis à jour",
+      "detail": "Caroline · container_opened · Falcon facs 5ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-1dofvn"
+    },
+    {
+      "date": "17/07/2026 17:10",
+      "action": "Stock mis à jour",
       "detail": "Caroline · container_finished · Falcon facs 5ml",
       "user": "Caroline",
       "itemId": "itm-web-1783931436295-1dofvn"
@@ -16756,7 +16774,48 @@
       "toLocation": "",
       "comment": "maj inventaire",
       "correctionReason": "maj inventaire"
+    },
+    {
+      "id": "movement-mrp2s45h-207038086-3247125278",
+      "operationId": "operation-mrp2s3u2-1570499665-3599073966",
+      "itemId": "itm-web-1783931436295-1dofvn",
+      "timestamp": "2026-07-17T15:10:58.565Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "container_opened",
+      "entityType": "container",
+      "entityId": "container-mrp2s45h-3972346573-4065194562",
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "container-mrp2s45h-3972346573-4065194562",
+        "label": "carton ouvert nº2",
+        "location": "Réserve",
+        "remaining": 500,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T15:10:58.565Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T15:10:58.565Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T15:10:47.380Z"
+  "updatedAt": "2026-07-17T15:10:58.565Z"
 }

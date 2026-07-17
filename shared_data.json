@@ -4493,7 +4493,7 @@
       "name": "Falcon 50",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "Cartons",
+      "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -4518,7 +4518,56 @@
       "source": "seed",
       "usageProfile": "routine",
       "createdAtRaw": "2026-07-16T15:00:18.310Z",
-      "createdAt": "16/07/2026 17:00"
+      "createdAt": "16/07/2026 17:00",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 12
+          },
+          {
+            "id": "level-3",
+            "key": "tube",
+            "singular": "tube",
+            "plural": "tubes",
+            "kind": "discrete",
+            "contains": 25
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 2,
+            "updatedAt": "2026-07-17T14:48:12.729Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-bvqchf",
@@ -14334,6 +14383,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:48",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Falcon 50."
+    },
+    {
       "date": "17/07/2026 16:47",
       "user": "Caroline",
       "action": "Item modifié",
@@ -15755,5 +15810,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:47:31.747Z"
+  "updatedAt": "2026-07-17T14:48:12.731Z"
 }

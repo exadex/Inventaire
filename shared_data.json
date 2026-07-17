@@ -5356,17 +5356,17 @@
       "id": "itm-CSV-0106",
       "name": "Plaque companion 24 puits 6,3µm",
       "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "plaques",
+      "quantity": 0.5,
+      "unit": "Carton",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Réserve",
       "locations": [
-        "Laboratoire"
+        "Réserve"
       ],
       "tags": [
         "plaque 24 insert"
       ],
-      "notes": "",
+      "notes": "Conditionnement : 50 plaque/cartons\n\nAu 16/07/2026 : 1 ouvert - reste 17 plaques",
       "references": {
         "primary": {
           "supplier": "Dutscher",
@@ -5379,7 +5379,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T08:13:25.368Z",
+      "createdAt": "17/07/2026 10:13"
     },
     {
       "id": "itm-CSV-0107",
@@ -13574,6 +13577,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:13",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque companion 24 puits 6,3µm."
+    },
+    {
       "date": "17/07/2026 10:07",
       "user": "Elina",
       "action": "Item modifié",
@@ -14564,5 +14573,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:07:09.675Z"
+  "updatedAt": "2026-07-17T08:13:25.369Z"
 }

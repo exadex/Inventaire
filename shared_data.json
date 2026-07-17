@@ -3831,7 +3831,7 @@
       "name": "Pipette 10 ml",
       "category": "Culture Cell",
       "quantity": 2.8,
-      "unit": "Cartons",
+      "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -14337,6 +14337,12 @@
       "date": "17/07/2026 16:47",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette 10 ml."
+    },
+    {
+      "date": "17/07/2026 16:47",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Pipette 5 ml."
     },
     {
@@ -15749,5 +15755,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:47:10.635Z"
+  "updatedAt": "2026-07-17T14:47:31.747Z"
 }

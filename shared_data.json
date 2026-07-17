@@ -3795,7 +3795,7 @@
       "name": "Plaque 6 puits, standard, fond plat",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "plaques",
+      "unit": "Carton",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -3804,7 +3804,7 @@
       "tags": [
         "Plaque 6"
       ],
-      "notes": "Conditionnement : 500",
+      "notes": "Conditionnement : 50 plaques/cartons\n\nAu 16/07/2026 : 1 ouvert - reste 27 sachets - 2 fermés",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -3817,7 +3817,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T12:02:49.973Z",
+      "createdAt": "17/07/2026 14:02"
     },
     {
       "id": "itm-web-1783931436295-ookfph",
@@ -13623,6 +13626,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 14:02",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 6 puits, standard, fond plat."
+    },
+    {
       "date": "17/07/2026 14:01",
       "user": "Elina",
       "action": "Item modifié",
@@ -14649,5 +14658,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T12:01:00.047Z"
+  "updatedAt": "2026-07-17T12:02:49.975Z"
 }

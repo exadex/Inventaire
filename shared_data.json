@@ -3896,7 +3896,7 @@
       "name": "Plaque 48 puits fond plats standart",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "plaques",
+      "unit": "Carton",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -13634,6 +13634,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 14:35",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 48 puits fond plats standart."
+    },
+    {
       "date": "17/07/2026 14:07",
       "user": "Elina",
       "action": "Item modifié",
@@ -14678,5 +14684,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T12:07:39.069Z"
+  "updatedAt": "2026-07-17T12:35:27.858Z"
 }

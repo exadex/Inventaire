@@ -3756,7 +3756,56 @@
       "source": "seed",
       "usageProfile": "routine",
       "createdAtRaw": "2026-07-16T15:17:03.860Z",
-      "createdAt": "16/07/2026 17:17"
+      "createdAt": "16/07/2026 17:17",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
+          },
+          {
+            "id": "level-3",
+            "key": "custom-pipette",
+            "singular": "pipette",
+            "plural": "pipettes",
+            "kind": "discrete",
+            "contains": 50
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-07-17T14:41:40.818Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-yln0s3",
@@ -14198,6 +14247,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:41",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette 5 ml."
+    },
+    {
       "date": "17/07/2026 14:46",
       "user": "Elina",
       "action": "Échantillons clients ajoutés",
@@ -15290,5 +15345,6 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T12:46:54.505Z"
+  "stockMovements": [],
+  "updatedAt": "2026-07-17T14:41:40.820Z"
 }

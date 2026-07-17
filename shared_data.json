@@ -4533,7 +4533,7 @@
       "id": "itm-web-1783931436295-1dofvn",
       "name": "Falcon facs 5ml",
       "category": "Culture Cell",
-      "quantity": 1,
+      "quantity": 0.6,
       "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -4624,7 +4624,7 @@
             "id": "container-mrp2s45h-3972346573-4065194562",
             "label": "carton ouvert nº2",
             "location": "Réserve",
-            "remaining": 500,
+            "remaining": 300,
             "capacity": 500,
             "status": "open",
             "openedAt": "2026-07-17T15:10:58.565Z",
@@ -4634,9 +4634,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T15:10:58.565Z",
+            "updatedAt": "2026-07-17T15:11:16.906Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       },
@@ -14637,6 +14637,13 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 17:11",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · recounted · Falcon facs 5ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-1dofvn"
+    },
+    {
       "date": "17/07/2026 17:10",
       "action": "Stock mis à jour",
       "detail": "Caroline · container_opened · Falcon facs 5ml",
@@ -16815,7 +16822,65 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp2siay-1084080802-628558025",
+      "operationId": "operation-mrp2shve-3466691401-2265669823",
+      "itemId": "itm-web-1783931436295-1dofvn",
+      "timestamp": "2026-07-17T15:11:16.906Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp2s45h-3972346573-4065194562",
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp2s45h-3972346573-4065194562",
+        "label": "carton ouvert nº2",
+        "location": "Réserve",
+        "remaining": 500,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T15:10:58.565Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T15:10:58.565Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "container-mrp2s45h-3972346573-4065194562",
+        "label": "carton ouvert nº2",
+        "location": "Réserve",
+        "remaining": 300,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T15:10:58.565Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T15:11:16.906Z",
+        "updatedBy": "caroline",
+        "version": 2
+      },
+      "quantity": 3,
+      "unit": "sous-cartons",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "1 entamé\n3 neufs",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T15:10:58.565Z"
+  "updatedAt": "2026-07-17T15:11:16.906Z"
 }

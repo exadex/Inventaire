@@ -4249,7 +4249,7 @@
       "name": "Microtube 1,5 ml",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "Cartons",
+      "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -4274,7 +4274,56 @@
       "source": "seed",
       "usageProfile": "routine",
       "createdAtRaw": "2026-07-16T14:56:42.511Z",
-      "createdAt": "16/07/2026 16:56"
+      "createdAt": "16/07/2026 16:56",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
+          },
+          {
+            "id": "level-3",
+            "key": "tube",
+            "singular": "tube",
+            "plural": "tubes",
+            "kind": "discrete",
+            "contains": 500
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 2,
+            "updatedAt": "2026-07-17T14:51:40.242Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-9a6sx8",
@@ -14421,6 +14470,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:51",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Microtube 1,5 ml."
+    },
+    {
       "date": "17/07/2026 16:50",
       "action": "Stock mis à jour",
       "detail": "Caroline · recounted · Falcon 50",
@@ -16189,5 +16244,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:50:33.601Z"
+  "updatedAt": "2026-07-17T14:51:40.243Z"
 }

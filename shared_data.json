@@ -2425,9 +2425,9 @@
       "id": "itm-web-1783931436294-9lpsq8",
       "name": "boite ø 35",
       "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 0.5,
+      "quantity": 0.5,
+      "unit": "Carton",
+      "minStock": 0,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -2435,11 +2435,11 @@
       "tags": [
         "Boite culture 2D"
       ],
-      "notes": "Conditionnement : 50",
+      "notes": "Conditionnement : 500 boites/cartons - 50 sachets/carton - 10 boites/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 45 sachets",
       "references": {
         "primary": {
           "supplier": "starstedt",
-          "reference": "833900",
+          "reference": "83.3900",
           "link": "https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3900/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "73",
@@ -2448,7 +2448,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T07:57:50.012Z",
+      "createdAt": "17/07/2026 09:57"
     },
     {
       "id": "itm-web-1783931436294-8xgtpz",
@@ -13584,6 +13587,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 09:57",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié boite ø 35."
+    },
+    {
       "date": "16/07/2026 17:18",
       "user": "Elina",
       "action": "Item modifié",
@@ -14538,5 +14547,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-16T15:18:11.782Z"
+  "updatedAt": "2026-07-17T07:57:50.013Z"
 }

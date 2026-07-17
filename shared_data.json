@@ -3921,7 +3921,7 @@
       "id": "itm-web-1783931436295-bcmh1a",
       "name": "Plaque 96 puits Standard, fond plat",
       "category": "Culture Cell",
-      "quantity": 3.5,
+      "quantity": 3,
       "unit": "plaques",
       "minStock": 1,
       "location": "Réserve",
@@ -3931,7 +3931,7 @@
       "tags": [
         "Plaque 96"
       ],
-      "notes": "Conditionnement : 100",
+      "notes": "Conditionnement : 100 plaques/cartons - 20 sachets/carton - 5 plaques/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 16 sachets - 2 fermés",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -3944,7 +3944,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T11:59:51.126Z",
+      "createdAt": "17/07/2026 13:59"
     },
     {
       "id": "itm-web-1783931436295-nfh67s",
@@ -13620,6 +13623,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 13:59",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 96 puits Standard, fond plat."
+    },
+    {
       "date": "17/07/2026 10:28",
       "user": "Elina",
       "action": "Item modifié",
@@ -14634,5 +14643,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:28:12.187Z"
+  "updatedAt": "2026-07-17T11:59:51.128Z"
 }

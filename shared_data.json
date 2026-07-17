@@ -3894,12 +3894,31 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 3,
+            "quantity": 2,
             "updatedAt": "2026-07-17T14:45:04.441Z",
             "updatedBy": "Caroline"
           }
         ],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "container-mrp1v0yq-3343416398-2940505528",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 500,
+            "status": "open",
+            "openedAt": "2026-07-17T14:45:14.786Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T14:45:14.786Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -14316,6 +14335,13 @@
   "history": [
     {
       "date": "17/07/2026 16:45",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · container_opened · Pipette 10 ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-yln0s3"
+    },
+    {
+      "date": "17/07/2026 16:45",
       "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Pipette 10 ml."
@@ -15603,7 +15629,48 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp1v0yq-1923948931-2427024091",
+      "operationId": "operation-mrp1v0ka-1458936897-712801074",
+      "itemId": "itm-web-1783931436295-yln0s3",
+      "timestamp": "2026-07-17T14:45:14.786Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "container_opened",
+      "entityType": "container",
+      "entityId": "container-mrp1v0yq-3343416398-2940505528",
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "container-mrp1v0yq-3343416398-2940505528",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 500,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T14:45:14.786Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:45:14.786Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:45:04.442Z"
+  "updatedAt": "2026-07-17T14:45:14.786Z"
 }

@@ -4412,12 +4412,31 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 2,
+            "quantity": 1,
             "updatedAt": "2026-07-17T14:54:57.737Z",
             "updatedBy": "Caroline"
           }
         ],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "container-mrp27m27-4052964793-574651051",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 50000,
+            "capacity": 50000,
+            "status": "open",
+            "openedAt": "2026-07-17T14:55:01.998Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T14:55:01.998Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -14538,6 +14557,13 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:55",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · container_opened · Microtube 2ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-9a6sx8"
+    },
+    {
       "date": "17/07/2026 16:54",
       "user": "Caroline",
       "action": "Item modifié",
@@ -16435,7 +16461,48 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp27m27-3074975996-3480362217",
+      "operationId": "operation-mrp27lln-1432971038-338244766",
+      "itemId": "itm-web-1783931436295-9a6sx8",
+      "timestamp": "2026-07-17T14:55:01.999Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "container_opened",
+      "entityType": "container",
+      "entityId": "container-mrp27m27-4052964793-574651051",
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "container-mrp27m27-4052964793-574651051",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 50000,
+        "capacity": 50000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:55:01.998Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:55:01.998Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:54:57.738Z"
+  "updatedAt": "2026-07-17T14:55:01.999Z"
 }

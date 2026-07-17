@@ -3859,7 +3859,7 @@
       "tags": [
         "Pasterette"
       ],
-      "notes": "",
+      "notes": "Il reste environ la moitié d'un sac (16/07/2026)",
       "references": {
         "primary": {
           "supplier": "Dutscher",
@@ -14940,6 +14940,12 @@
       "detail": "Caroline a modifié Pipette stérile Pasteur 3 ml (a commander de preference)."
     },
     {
+      "date": "17/07/2026 17:21",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette stérile Pasteur 3 ml (a commander de preference)."
+    },
+    {
       "date": "17/07/2026 17:18",
       "user": "Caroline",
       "action": "Item modifié",
@@ -17408,5 +17414,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T15:21:24.957Z"
+  "updatedAt": "2026-07-17T15:21:54.874Z"
 }

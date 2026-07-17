@@ -3820,8 +3820,8 @@
       "id": "itm-web-1783931436295-xj2mx3",
       "name": "Plaque 24W fond plat",
       "category": "Culture Cell",
-      "quantity": 3.5,
-      "unit": "plaques",
+      "quantity": 1.5,
+      "unit": "Carton",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -3830,7 +3830,7 @@
       "tags": [
         "Plaque 24"
       ],
-      "notes": "Conditionnement : 50",
+      "notes": "Conditionnement : 50 plaques/cartons\n\nAu 16/07/2026 : 1 ouvert - reste 17 - 1 fermé",
       "references": {
         "primary": {
           "supplier": "Sarstedt",
@@ -3843,7 +3843,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T08:15:32.008Z",
+      "createdAt": "17/07/2026 10:15"
     },
     {
       "id": "itm-web-1783931436295-tm3qnv",
@@ -13577,6 +13580,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:15",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 24W fond plat."
+    },
+    {
       "date": "17/07/2026 10:13",
       "user": "Elina",
       "action": "Item modifié",
@@ -14573,5 +14582,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:13:25.369Z"
+  "updatedAt": "2026-07-17T08:15:32.009Z"
 }

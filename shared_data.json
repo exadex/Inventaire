@@ -3922,7 +3922,7 @@
       "name": "Plaque 96 puits Standard, fond plat",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "plaques",
+      "unit": "Carton",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -13623,6 +13623,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 14:01",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 96 puits Standard, fond plat."
+    },
+    {
       "date": "17/07/2026 13:59",
       "user": "Elina",
       "action": "Item modifié",
@@ -14643,5 +14649,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T11:59:51.128Z"
+  "updatedAt": "2026-07-17T12:01:00.047Z"
 }

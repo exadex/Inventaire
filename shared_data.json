@@ -2441,7 +2441,7 @@
       "tags": [
         "Bactério"
       ],
-      "notes": "Conditionnement : 560 boites/cartons - 28 sachets/carton - 20 boites/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 25 sachets",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -14765,6 +14765,12 @@
       "detail": "Caroline a modifié boite ø 60."
     },
     {
+      "date": "17/07/2026 17:15",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié boite ø 60."
+    },
+    {
       "date": "17/07/2026 17:13",
       "user": "Caroline",
       "action": "Item modifié",
@@ -17098,5 +17104,5 @@
       "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-17T15:15:47.078Z"
+  "updatedAt": "2026-07-17T15:15:56.283Z"
 }

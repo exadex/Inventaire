@@ -545,7 +545,7 @@
               <label>Fournisseur<input id="primarySupplier" /></label>
               <label>Référence<input id="primaryReference" /></label>
               <label>Lien<input id="primaryLink" type="url" /></label>
-              <label>Notes<input id="primaryReferenceNotes" /></label>
+              <label>Notes<textarea id="primaryReferenceNotes" rows="2"></textarea></label>
               <label>Prix<input id="primaryPrice" /></label>
               <label>Prix unitaire<input id="primaryUnitPrice" /></label>
               <label>Délais de livraison<input id="primaryLeadTime" /></label>
@@ -599,7 +599,7 @@
         </section>
         <div id="migrationReasonField" class="migration-reason-field hidden">
           <label>Raison de la correction<select id="migrationReason"><option value="Correction après comptage" selected>Correction après comptage</option><option value="Erreur dans l’ancien stock">Erreur dans l’ancien stock</option><option value="Perte ou casse constatée">Perte ou casse constatée</option><option value="Produit retrouvé">Produit retrouvé</option><option value="Autre">Autre</option></select></label>
-          <label id="migrationOtherReasonField" class="hidden">Précisez la raison<input id="migrationOtherReason" type="text"></label>
+          <label id="migrationOtherReasonField" class="hidden">Précisez la raison<textarea id="migrationOtherReason" rows="2"></textarea></label>
         </div>
         <p id="stockMigrationError" class="confirmation-modal-error hidden" role="alert"></p>
         <div class="modal-actions"><button id="cancelStockMigrationBtn" class="ghost-btn" type="button">Annuler</button><button class="primary-btn" type="submit">Enregistrer cette répartition</button></div>

@@ -56,8 +56,7 @@ const inventoryCategories = [
   "Muse",
   "Bureautique",
   "Code Famille",
-  "Cones pipettes",
-  "Indispensable"
+  "Cones pipettes"
 ];
 
 const legacyCategoryMap = {
@@ -66,7 +65,7 @@ const legacyCategoryMap = {
   Anticorps: "Biomol",
   Primers: "Biomol",
   Composes: "Culture Cell",
-  Consommables: "Indispensable",
+  Consommables: "Code Famille",
   Kits: "Biomol"
 };
 

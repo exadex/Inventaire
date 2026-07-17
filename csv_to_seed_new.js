@@ -92,8 +92,7 @@ const inventoryCategories = [
   "Muse",
   "Bureautique",
   "Code Famille",
-  "Cones pipettes",
-  "Indispensable"
+  "Cones pipettes"
 ];
 
 // Localizaciones oficiales de la app.
@@ -124,7 +123,7 @@ const legacyCategoryMap = {
   Anticorps: "Biomol",
   Primers: "Biomol",
   Composes: "Culture Cell",
-  Consommables: "Indispensable",
+  Consommables: "Code Famille",
   Kits: "Biomol"
 };
 
@@ -312,7 +311,7 @@ function buildNotesFromCsv(row) {
 function normalizeCsvCategory(value) {
   const raw = normalizeSpaces(value);
 
-  if (!raw) return "Indispensable";
+  if (!raw) return "Code Famille";
   if (inventoryCategories.includes(raw)) return raw;
   if (legacyCategoryMap[raw]) return legacyCategoryMap[raw];
 
@@ -324,7 +323,7 @@ function normalizeCsvCategory(value) {
   if (lower.includes("pipette")) return "Cones pipettes";
   if (lower.includes("bureau")) return "Bureautique";
 
-  return "Indispensable";
+  return "Code Famille";
 }
 
 // Quita acentos para comparar textos sucios más fácilmente.
@@ -886,46 +885,6 @@ Cones pipettes;;Pipette tip, 200 µl, transparent, PCR Performance Tested, 96 pi
 Cones pipettes;;Pipette tip, 1,000 µl, transparent, PCR Performance Tested, 500 piece(s)/bag;5000;;;;1000µL - bulk;;70.3050;37,5;0,0075;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050/;;;
 Cones pipettes;;Filter tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;1000µL filtré;;70.3050.255;113,28;0,059;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.255/;;;
 Cones pipettes;;Pipette tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box;1920;;;;1000µL - boite;;70.3050.205;80,64;0,042;;https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.205/;;;
-Indispensable;Bouchon;Bouchon BD Luer - Lok™ avec protection mâle/femelle;100;1,5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;394075B;13,1;0,166;0;https://www.dutscher.com/article/394075B;00/01/1900;;
-Indispensable;Seringue luer lock;Seringue BD 3P 20 ml Cone luer Lock ;120;2;Bureau + L2;;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;bastide;100081;38;0,316666667;NC;https://www.bastideleconfortmedical.com/seringues-3-pieces-20-ml-bd-plastipak-cone-luer-lock-100081.html;;;
-Indispensable;Tulipe;REDUCTEUR SU 1.2MM;20;5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Aestetic group;FD0000000-LLF24;46;2,3; 2 boites;https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/527-raccord-d-emulsion-de-graisse-fll-o-12mm-x20.html;13/10/2022;1Boite pour 20 prélèvements;
-Indispensable;Tulipe;REDUCTEUR SU 1.4MM;20;5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Aestetic group;FD0000000-LLF14;46;2,3;2 boites;https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/526-raccord-d-emulsion-de-graisse-fll-o-14mm-x20.html;13/10/2022;1Boite pour 20 prélèvements;
-Indispensable;Tulipe;REDUCTEUR SU 2.4MM;20;5;Bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Aestetic group;FD0000000-LLF12;46;2,3;2 boites;https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html;13/10/2022;1Boite pour 20 prélèvements;
-Indispensable;Plaque 6 ula;Plaque Corning 6 puits ULA ;24;5,5;bureau;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;3471;339;0;1;https://www.dutscher.com/article/003471;00/01/1900;;
-Indispensable;ACL;ACL -eBioscience™ 10X RBC Lysis Buffer (Multi-species) 50 ml;50mL;2;L2 + L1 frigo;0;NA71 : Sérum et autre milieu pour culture cellulaire animale;ThermoFischer ;00-4300-54;62;0;1;https://www.thermofisher.com/order/catalog/product/00-4300-54?SID=srch-srp-00-4300-54;recu;;
-Indispensable;Antifongique;Amphotericin B solution;50mg;1;Chambre froide;0;NA76 Antibiotiques Pour Culture Cellulaire;Sigma;0,28;287;5,75;0;https://www.sigmaaldrich.com/FR/fr/substance/amphotericinbsolution924081397893;.;;
-Indispensable;Antibiotique;Gibco™ Gentamicine (50 mg/ml);20ml;2;salle de culture L1 & L2;0;NA76 Antibiotiques Pour Culture Cellulaire;thermofischer ;11520506;220;11;0;https://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506;reçu 05/23;;
-Indispensable;Antifongique;Invivogen FUNGIN 75 MG (10 MG/ML);75mg;1,5;Congel grand labo;0;NA76 Antibiotiques Pour Culture Cellulaire;invivogen;ant-fn-1;148;0;0;https://www.fishersci.com/shop/products/fungin-75-mg-10-mg-ml/NC9326704;00/01/1900;;
-Indispensable;Milieu EGM;Endothelial Cell Growth Medium 2;500ml;4;figo labo culture;Milieu + suppléments;NA71 : Sérum et autre milieu pour culture cellulaire animale;Promocell;C-22011;153,85;0;1;https://promocell.com/product/endothelial-cell-growth-medium-2/;22/03/2023;;15 jours
-Indispensable;Milieu EGM;SupplementMix / Endothelial   Cell Growth Medium 2;500ml;4;Congèl labo culture;0;NA71 : Sérum et autre milieu pour culture cellulaire animale;Promocell;  C-39216;50,85;2;1;https://promocell.com/product/endothelial-cell-growth-medium-2/;22/03/2023;;15 jours
-Indispensable;Antibiotique;pen/strep stock;100Ml;6;5;0;0;thermofischer;15140122;10;0,1;0;https://www.thermofisher.com/order/catalog/product/15140122?SKULINK;28/02/2023;;1mois
-Indispensable;BSA;BSA free fatty acid  25g;25g;3;port frigo labo en bas;0;0;merck;A6003-25G;450;18e/g;0;https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003;.15/03/23;2g/falcon= 12 Fla;15 jours
-Indispensable;Collagénase;Collagenase A from Clostridium histolycum (500mg) ;500mg;1;frigo salle culture;0;0;Sigma Merck;10103586001;305,76;0,64;0,5;https://www.sigmaaldrich.com/FR/fr/product/roche/collaro;21/03/2023;30 aliquot de 10;15 jours
-Indispensable;Milieu PBS;PBS;0;5;Frigo Labo;0;NA71 : Sérum et autre milieu pour culture cellulaire animale;thermofischer;14190-094;23,4;1,15;2;https://www.thermofisher.com/order/catalog/product/14190094;20/03/2023;1 bouteille/mois;rapide
-Indispensable;Pastette;Pipette stérile Pasteur 3 ml (a commander de preference);1000;2,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;390513;52;0;1;https://www.dutscher.com/article/390513;00/01/1900;;
-Indispensable;Extration ARN;Qiazol;200ml;1;Grand labo placard ;0;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;qiagen;79306;303;1,515;0,5;https://www.qiagen.com/fr-us/products/discovery-and-translational-research/lab-essentials/buffers-reagents/qiazol-lysis-reagent;;600µl/lyse;15 jours
-Indispensable;Extration ARN;Stainless steel beads 5mm;200;1,5;Grand labo placard ;0;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;qiagen;69989;151;0,755;1;https://www.qiagen.com/fr-us/products/instruments-and-automation/accessories/beads/?catno=69989;10/03/2023;;1 mois 
-Indispensable;KIT ARN;Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps;50;4,5;labo placard;0;NA52 : Réactif et kit pour isolement et purification Acide Nucléique;Ozyme ;ZR1011;187;3,74;0,5;https://yris.ozyme.fr/fr/company/ozyme/product/zymoclean-gel-rna-recovery-kit-w-zymo-spin-ic-columns-capped-50-preps-zr1011;14/11/2022;1/mois;
-Indispensable;RT;M-MLV RT (5);50 000 u : 250 reactions;0,75;0;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);promega;M1705;250;0;devis en cours;https://france.promega.com/products/pcr/rt-pcr/m-mlv-reverse-transcriptase/?catNum=M1705;00/01/1900;1 tous les 6 mois;
-Indispensable;RT;OneScript RT Mix for qPCR w/gDNAOut (OwiScript);100 reactions;2 (+ 2 arrivés décongelés);labo congel, tiroir rt;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);Ozyme ;OZYA012-100;204;2,01;0;https://yris.ozyme.fr/fr/company/ozyme/product/onescript-rt-mix-for-qpcr-w-gdnaout-ozya012?search-context-name=OZYA012;22/11/2022;;
-Indispensable;RT;SuperScript™ II Reverse Transcriptase;50 reactions;2 + 1 (mars 2025);labo congel, tiroir rt;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);ThermoFischer ; 18064014;376;7,52;0;https://www.thermofisher.com/order/catalog/product/18064014;00/01/1900;;
-Indispensable;qPCR;(sybr green) OneGreen fast qPCR premix (OwiGreen);5x5ml;7;congel -80°C;0;NA55 Enzymes Et Kits De Synthese Des Acides Nucleiques (pcr);Ozyme ;OZYA008-1000;683;27,32;2;https://yris.ozyme.fr/fr/company/ozyme/product/onegreen-fast-qpcr-premix-ozya008;00/01/1900;;
-Indispensable;KIT Qualité;XTT Cell Proliferation Kit II;2500;3;labo congel -25°C;2 bouteille stock;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;merck;11465015001;0,2;0,5;Labo congel tiroir bas;https://www.sigmaaldrich.com/FR/fr/product/roche/11465015001#product-documentation;;;Tres variable attention
-Indispensable;Bactério;bacterio diam 90 mm avec ou sans  ergot sterile;480;0,5;reserve (?);0;NB14 Bacteriologie : Consommables En Plastique Specifiques;starstedt;2582714;0,05;1;Réserve;;;;
-Indispensable;Milieu;Gélose nutritive;500g;1,5;Paillasse grand labo RT;0;NA74 : Milieu de bactériologie et additif;bioworld;30620055 ;155;0;0;https://www.bio-world.com/microbiological-media/nutrient-agar-p-30620055;10/03/2023;;
-Indispensable;Milieu;Sabouraud Dextrose Agar;500g;1,5;Paillasse grand labo RT;0;NA74 : Milieu de bactériologie et additif;bioworld;30622001 ;107;0;0;https://www.bio-world.com/index.php?main_page=product_info&products_id=30622001;ugap;;
-Indispensable;Kit qualité;kit mycoplasme Venor®GeM OneStep;50;1;labo congel -25°C;0;NA84 Biologie Cellulaire: Kits De Dosage, D'essai Fonctionnel - Kits Biochimiques;biovalley;11.8050;7;0,5;Labo congel tiroir bas;https://minerva-biolabs.com/en/mycoplasma-detection-kits/venorgem-onestep-2#/173-package_size-25_reactions;17/02/2022;;
-Indispensable;Eppendorf;Microtube 0,5ml;5000;3;Réserve;0;NB11;starstedt;72,699;61;0,0122;0,5;;17/02/2022;;
-Indispensable;Eppendorf;Microtube 1,5 ml;5000;2;Réserve;0;NB11;starstedt;72,690,001;50;0,01;2;https://www.sarstedt.com/fr/produits/laboratoire/microtubes-a-vis-tubes-a-reaction/tubes-a-reaction/produit/72.706/;03/10/2022;;
-Indispensable;Eppendorf;Microtube 2ml;5000;2;Réserve;0;NB12;starstedt;72691;70;0,014;0,5;;;;
-Indispensable;Pointes;cones filtrés 1000µL;1920;1,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;2869323;113;0;0;;44966;;
-Indispensable;Pointes;cones filtrés 200µL;960/b;3,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;Dutscher;14220;155;0;2;https://www.dutscher.com/article/014220;44966;;
-Indispensable;Pointes;cones filtrés 20µL;5000;1;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;ThermoFischer ;11963466;555;0,111;2;https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-1/11963466;44966;;
-Indispensable;Pointes;cones  1000µL non filtrés;500*5000;0,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;2869314;45;0;0;https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12;;;rapide
-Indispensable;Pointes;cones 200µL non filtrés;1000;5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;703030;45;0;2;https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3030/;44966;;
-Indispensable;Pointes;cones 10µl non filtrés;480/b 1920/carton;0,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;703010200;45;0;2;https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3010.200/;;;
-Indispensable;Falcon 15;Falcon 15;500 (50/sac);3,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;62554502;53;0;1;https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.554.502/;;1 carton consommé par mois;
-Indispensable;Falcon 50;Falcon 50 ;300 (25/sac);5,5;Réserve;0;NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques;starstedt;62547254;32;0;1;                                  ;44966;1 carton consommé par mois;
 
 `;
 

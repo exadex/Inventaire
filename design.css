@@ -3042,7 +3042,12 @@ td { font-size: 14px; }
   top: 17px;
   height: 5px;
   border-radius: 999px;
-  background: rgba(220, 223, 213, 0.9);
+  background: linear-gradient(
+    to right,
+    #f2c7c2 0 var(--stock-minimum),
+    #f3d9a4 var(--stock-minimum) var(--stock-healthy),
+    #c9e4d3 var(--stock-healthy) 100%
+  );
 }
 .stock-threshold-fill {
   position: absolute;
@@ -3083,6 +3088,11 @@ td { font-size: 14px; }
   color: var(--ink);
   font-size: 13px;
   font-weight: 850;
+}
+.multiline-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 .stock-svg {
   width: min(138px, 100%);

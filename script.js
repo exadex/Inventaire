@@ -774,42 +774,36 @@ function updateUserIdentity() {
 }
 
 const STOCK_WARNING_MULTIPLIER = 1.5;
+const ZERO_MINIMUM_HEALTHY_THRESHOLD = 0.5;
+const STOCK_STATUS_EPSILON = 1e-9;
+
+function parseStockMinimum(value) {
+  if (value === null || value === undefined || (typeof value === "string" && value.trim() === "")) return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
+function getStockStatus(item) {
+  const available = window.StockTracking ? StockTracking.available(item) : Number(item?.quantity);
+  const currentStock = Number.isFinite(available) ? available : 0;
+  const minimum = parseStockMinimum(item?.minStock);
+  if (minimum === null) return { status: "undefined", currentStock, minimum: null, healthyThreshold: null, differenceFromMinimum: null, ratio: null };
+  const healthyThreshold = minimum === 0 ? ZERO_MINIMUM_HEALTHY_THRESHOLD : minimum * STOCK_WARNING_MULTIPLIER;
+  const tolerance = STOCK_STATUS_EPSILON * Math.max(1, Math.abs(currentStock), Math.abs(minimum), Math.abs(healthyThreshold));
+  const status = currentStock <= minimum ? "critical" : currentStock + tolerance >= healthyThreshold ? "ok" : "warning";
+  return { status, currentStock, minimum, healthyThreshold, differenceFromMinimum: currentStock - minimum, ratio: healthyThreshold > 0 ? currentStock / healthyThreshold : null };
+}
 
 function itemStatus(item) {
-  const quantity = window.StockTracking ? StockTracking.available(item) : Number(item.quantity || 0);
-  const minStock = Number(item.minStock || 0);
-
-  if (window.StockTracking && StockTracking.normalizeTracking(item).mode === "containers") {
-    if (quantity <= 0 && minStock > 0) return "critical";
-    if (quantity < minStock) return "warning";
-    return "ok";
-  }
-
-  if (minStock <= 0) return quantity < 0 ? "critical" : "ok";
-  if (quantity <= minStock) return "critical";
-  if (quantity <= minStock * STOCK_WARNING_MULTIPLIER) return "warning";
-  return "ok";
+  return getStockStatus(item).status;
 }
 
 function stockLevelPercent(item) {
-  const quantity = window.StockTracking ? StockTracking.available(item) : Number(item.quantity || 0);
-  const minStock = Number(item.minStock || 0);
-
-  if (window.StockTracking && StockTracking.normalizeTracking(item).mode === "containers") {
-    if (minStock <= 0) return quantity < 0 ? 0 : 100;
-    return Math.max(0, Math.min(100, Math.round((quantity / minStock) * 100)));
-  }
-
-  if (minStock <= 0) return quantity < 0 ? 0 : 100;
-
-  return Math.max(
-    0,
-    Math.min(100, Math.round((quantity / (minStock * STOCK_WARNING_MULTIPLIER)) * 100))
-  );
+  const result=getStockStatus(item);if(result.status==="undefined")return 0;return Math.max(0,Math.min(100,Math.round((result.currentStock/result.healthyThreshold)*100)));
 }
 
 function statusLabel(status) {
-  return { ok: "En stock", warning: "Attention", critical: "Critique" }[status];
+  return { ok: "Stock sain", warning: "Attention", critical: "Critique", undefined: "Seuil non défini" }[status] || "Seuil non défini";
 }
 
 function statusLabelExperiment(status) {
@@ -885,7 +879,7 @@ function renderMetrics() {
   const counts = activeItems.reduce((acc, item) => {
     acc[itemStatus(item)] += 1;
     return acc;
-  }, { ok: 0, warning: 0, critical: 0 });
+  }, { ok: 0, warning: 0, critical: 0, undefined: 0 });
   document.querySelector("#metrics").innerHTML = [
     ["Total references", activeItems.length, ""],
     ["Stock OK", counts.ok, "ok"],
@@ -947,7 +941,7 @@ function renderAlerts() {
           data-critical-item-id="${escapeHtml(item.id)}"
           aria-label="Ouvrir la fiche de ${escapeHtml(item.name)}"
         >
-          ⚠ ${escapeHtml(item.name)} - Rupture / critique : ${item.quantity} ${escapeHtml(item.unit)} restants / min. ${item.minStock} ${escapeHtml(item.unit)}
+          ⚠ ${escapeHtml(item.name)} - Rupture / critique : ${StockTracking.format(getStockStatus(item).currentStock)} ${escapeHtml(item.unit)} restants / min. ${getStockStatus(item).minimum} ${escapeHtml(item.unit)}
         </div>
       `).join("")}
     </div>
@@ -1330,7 +1324,7 @@ function renderInventoryInfoPanel(item) {
     item.notes ? `
       <div class="inventory-info-group">
         <h4>Notes</h4>
-        <p>${escapeHtml(item.notes)}</p>
+        <p class="multiline-text">${escapeHtml(item.notes)}</p>
       </div>
     ` : ""
   ].filter(Boolean);
@@ -1407,11 +1401,12 @@ function renderInventoryReferencesPanel(references) {
 
 function renderReferenceRow(label, value, options = {}) {
   if (!value || !String(value).trim()) return "";
+  const isMultiline = /note|comment|description/i.test(String(label));
 
   return `
     <div class="item-detail-row reference-detail-row">
       <span class="item-detail-label">${escapeHtml(label)}</span>
-      <div class="item-detail-value reference-detail-value">
+      <div class="item-detail-value reference-detail-value${isMultiline ? " multiline-text" : ""}">
         <span>${escapeHtml(value)}</span>
         ${options.copyable ? `
           <button
@@ -1561,21 +1556,21 @@ function normalizeStockUnit(unit) {
 }
 
 function renderStockVisualCard(item) {
-  const status = itemStatus(item);
+  const stockStatus = getStockStatus(item);
+  const { status, currentStock: quantity, minimum, healthyThreshold } = stockStatus;
   const visualType = getStockVisualType(item);
-  const quantity = Number(item.quantity || 0);
-  const minimum = Number(item.minStock || 0);
-  const hasMinimum = minimum > 0;
+  const hasMinimum = minimum !== null;
   const visualPercent = hasMinimum
-    ? Math.min(100, Math.max(0, (quantity / Math.max(quantity, minimum * 2, 1)) * 100))
+    ? Math.min(100, Math.max(0, (quantity / Math.max(quantity, healthyThreshold, 1)) * 100))
     : (quantity > 0 ? 70 : 0);
-  const unitSingular = formatInventoryDisplayUnit(1, item.unit);
-  const currentUnit = formatInventoryDisplayUnit(quantity, item.unit);
-  const minimumUnit = formatInventoryDisplayUnit(minimum, item.unit);
+  const normalizedUnit = StockTracking.normalizeUnitLabel(item.unit);
+  const unitSingular = normalizedUnit.singular;
+  const currentUnit = StockTracking.plural(quantity, normalizedUnit.singular, normalizedUnit.plural);
+  const minimumUnit = StockTracking.plural(minimum ?? 0, normalizedUnit.singular, normalizedUnit.plural);
   const quantityValue = escapeHtml(formatCleanNumber(quantity));
   const minimumValue = escapeHtml(formatCleanNumber(minimum));
   const health = stockHealthText(status, hasMinimum);
-  const interpretation = stockInterpretationText(quantity, minimum, unitSingular, currentUnit);
+  const interpretation = stockInterpretationText(stockStatus, unitSingular, currentUnit);
 
   return `
     <div class="stock-visual-card ${hasMinimum ? status : "no-minimum"} stock-visual-${visualType}" style="--stock-fill:${visualPercent}%">
@@ -1598,7 +1593,7 @@ function renderStockVisualCard(item) {
           </div>
         </div>
 
-        ${hasMinimum ? renderStockThresholdScale(quantity, minimum, currentUnit, status) : ""}
+        ${hasMinimum ? renderStockThresholdScale(stockStatus, currentUnit) : ""}
       </div>
     </div>
   `;
@@ -1632,7 +1627,7 @@ function stockHealthText(status, hasMinimum = true) {
   if (status === "warning") {
     return {
       title: "Attention",
-      description: "Le stock approche du seuil minimum."
+      description: "Le stock est proche du seuil minimum."
     };
   }
 
@@ -1642,20 +1637,17 @@ function stockHealthText(status, hasMinimum = true) {
   };
 }
 
-function stockInterpretationText(quantity, minimum, unitSingular, currentUnit) {
-  const safeQuantity = Math.max(0, Number(quantity || 0));
-  const safeMinimum = Number(minimum || 0);
-
-  if (safeMinimum <= 0) {
+function stockInterpretationText(stockStatus, unitSingular, currentUnit) {
+  const { currentStock, minimum, differenceFromMinimum } = stockStatus;
+  if (minimum === null) {
     return {
       state: "neutral",
-      text: `${formatCleanNumber(safeQuantity)} ${currentUnit} disponible${safeQuantity > 1 ? "s" : ""}`
+      text: `${formatCleanNumber(currentStock)} ${currentUnit} disponible${currentStock > 1 ? "s" : ""}`
     };
   }
-
-  const difference = Number((safeQuantity - safeMinimum).toFixed(3));
+  const difference = differenceFromMinimum;
   const absDifference = Math.abs(difference);
-  const diffUnit = formatInventoryDisplayUnit(absDifference, unitSingular);
+  const diffUnit = unitSingular;
 
   if (difference > 0) {
     return {
@@ -1677,15 +1669,17 @@ function stockInterpretationText(quantity, minimum, unitSingular, currentUnit) {
   };
 }
 
-function renderStockThresholdScale(quantity, minimum, unit, status) {
-  const maxValue = Math.max(quantity, minimum * 2, 1);
+function renderStockThresholdScale(stockStatus, unit) {
+  const { currentStock: quantity, minimum, healthyThreshold, status } = stockStatus;
+  const maxValue = Math.max(quantity, healthyThreshold * 1.25, 1);
   const currentPercent = Math.max(0, Math.min(100, (quantity / maxValue) * 100));
   const minimumPercent = Math.max(0, Math.min(100, (minimum / maxValue) * 100));
+  const healthyPercent = Math.max(0, Math.min(100, (healthyThreshold / maxValue) * 100));
 
   return `
     <div
       class="stock-threshold-scale ${status}"
-      style="--stock-current:${currentPercent}%; --stock-minimum:${minimumPercent}%"
+      style="--stock-current:${currentPercent}%; --stock-minimum:${minimumPercent}%; --stock-healthy:${healthyPercent}%"
       aria-label="Stock actuel ${escapeHtml(formatCleanNumber(quantity))}, minimum ${escapeHtml(formatCleanNumber(minimum))}"
     >
       <div class="stock-threshold-track">
@@ -1698,6 +1692,7 @@ function renderStockThresholdScale(quantity, minimum, unit, status) {
         <span>${escapeHtml(formatCleanNumber(maxValue))} ${escapeHtml(unit)}</span>
       </div>
       <div class="stock-minimum-label">Minimum : ${escapeHtml(formatCleanNumber(minimum))}</div>
+      <div class="stock-minimum-label">Stock sain à partir de : ${escapeHtml(formatCleanNumber(healthyThreshold))} ${escapeHtml(unit)}</div>
     </div>
   `;
 }
@@ -1705,7 +1700,7 @@ function renderStockThresholdScale(quantity, minimum, unit, status) {
 function formatCleanNumber(value) {
   const number = Number(value || 0);
   if (!Number.isFinite(number)) return String(value || "");
-  return Number(number.toFixed(3)).toString();
+  return new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 3 }).format(number);
 }
 
 function renderStockVisualArt(type, percent) {
@@ -2001,7 +1996,7 @@ function renderOrderDetailLegacy(order) {
       ${item.notes ? `
         <div>
           <h4>Notes</h4>
-          <p>${escapeHtml(item.notes)}</p>
+          <p class="multiline-text">${escapeHtml(item.notes)}</p>
         </div>
       ` : ""}
 
@@ -2233,7 +2228,7 @@ function renderSampleDetail(sample) {
     ${sample.notes ? `
       <div class="client-detail-section">
         <h4>${sample.replicaNumber ? "Notes spécifiques du réplicat" : "Notes"}</h4>
-        <p>${escapeHtml(sample.notes)}</p>
+        <p class="multiline-text">${escapeHtml(sample.notes)}</p>
       </div>
     ` : ""}
 
@@ -3381,7 +3376,7 @@ function compareLocationDetailEntries(a, b) {
 
 function getLocationEntryStatus(entry) {
   if (entry.kind === "clientSample") return "undefined";
-  return Number(entry.record.minStock || 0) <= 0 ? "undefined" : itemStatus(entry.record);
+  return getStockStatus(entry.record).status;
 }
 
 function getLocationDisplayedStatus(entry) {
@@ -3723,7 +3718,7 @@ function renderOrderDetail(order) {
             <div class="inventory-panel-heading"><span class="inventory-panel-icon">S</span><h3>Stock et item lié</h3></div>
             <div class="item-detail-stack">
               ${renderDetailRow("Stock actuel", formatInventoryCardQuantity(item.quantity, item.unit))}
-              ${Number(item.minStock) > 0 ? renderDetailRow("Minimum", formatInventoryCardQuantity(item.minStock, item.unit)) : ""}
+              ${getStockStatus(item).minimum !== null ? renderDetailRow("Minimum", formatInventoryCardQuantity(getStockStatus(item).minimum, item.unit)) : ""}
               ${renderDetailRow("Statut du stock", statusLabel(itemStatus(item)))}
               ${renderDetailRow("Localisation", formatLocations(item))}
               ${renderDetailRow("Catégorie", item.category)}
@@ -3962,7 +3957,7 @@ function renderOrderBoardCard(order) {
       <strong class="order-card-title" title="${escapeHtml(order.itemName)}">${escapeHtml(order.itemName)}</strong>
       <span class="order-card-quantity">${escapeHtml(requestedQuantity)}</span>
       <div class="order-card-note-space">
-        ${order.notes ? `<p class="order-card-note" title="${escapeHtml(order.notes)}">${escapeHtml(order.notes)}</p>` : ""}
+        ${order.notes ? `<p class="order-card-note multiline-text" title="${escapeHtml(order.notes)}">${escapeHtml(order.notes)}</p>` : ""}
       </div>
       <div class="order-card-person">
         <span class="history-user-avatar ${displayAvatar.type}" aria-hidden="true">${escapeHtml(displayAvatar.value)}</span>
@@ -4300,7 +4295,7 @@ function renderExperimentCard(experiment) {
         </span>
       </div>
 
-      <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
+      <p class="multiline-text">${escapeHtml(experiment.notes || "Aucune note")}</p>
 
       <div class="card-actions">
         <small>${escapeHtml(experiment.createdBy)} - ${escapeHtml(experiment.updatedAt)}</small>
@@ -4399,11 +4394,11 @@ function renderExperimentDetail(experiment) {
       <div class="experiment-notes-grid">
         <div>
           <h4>Template Notes</h4>
-          <p>${escapeHtml(templateNotes || "Aucune note de template")}</p>
+          <p class="multiline-text">${escapeHtml(templateNotes || "Aucune note de template")}</p>
         </div>
         <div>
           <h4>Experience Notes</h4>
-          <p>${escapeHtml(experiment.notes || "Aucune note")}</p>
+          <p class="multiline-text">${escapeHtml(experiment.notes || "Aucune note")}</p>
         </div>
       </div>
       <div class="sample-table-wrap">
@@ -4426,12 +4421,17 @@ function renderExperimentDetail(experiment) {
 // funcion para ocultar filas vacias o con datos no relevantes en el detalle del item
 function renderDetailRow(label, value) {
   if (!value || !String(value).trim()) return "";
+  const isMultiline = /note|comment|description|justification|motif|raison/i.test(String(label));
   return `
     <div class="item-detail-row">
       <span class="item-detail-label">${escapeHtml(label)}</span>
-      <div class="item-detail-value">${escapeHtml(value)}</div>
+      <div class="item-detail-value${isMultiline ? " multiline-text" : ""}">${escapeHtml(value)}</div>
     </div>
   `;
+}
+
+function normalizeMultilineText(value) {
+  return String(value ?? "").replace(/\r\n?/g, "\n");
 }
 
 function getSelectedLocations() {
@@ -4760,7 +4760,7 @@ function saveSample() {
     clientId: clientInfo.id,
     canonicalClientCode: clientInfo.canonicalCode,
     location: sampleFields.sampleLocation.value,
-    notes: sampleFields.sampleNotes.value.trim(),
+    notes: normalizeMultilineText(sampleFields.sampleNotes.value),
     createdAtRaw: existingSample?.createdAtRaw || now.toISOString(),
     createdAt: existingSample?.createdAt || new Intl.DateTimeFormat("fr-FR", {
       dateStyle: "short",
@@ -4821,7 +4821,7 @@ function saveSample() {
       const groupSamples = getReplicaGroupSamples(sampleEditContext.groupId);
       clientSamples = clientSamples.map(sample => {
         if (!groupSamples.some(entry => entry.id === sample.id)) return sample;
-        const generalData = { ...editableData, notes: sampleFields.sampleNotes.value.trim() };
+        const generalData = { ...editableData, notes: normalizeMultilineText(sampleFields.sampleNotes.value) };
         const effective = { ...sample, ...generalData, ...(sample.specificData || {}) };
         return {
           ...effective,
@@ -4836,7 +4836,7 @@ function saveSample() {
         };
       });
     } else if (sampleEditContext.scope === "replica" && existingSample) {
-      const specificData = { ...editableData, notes: sampleFields.sampleNotes.value.trim() };
+      const specificData = { ...editableData, notes: normalizeMultilineText(sampleFields.sampleNotes.value) };
       const index = clientSamples.findIndex(entry => entry.id === existingSample.id);
       clientSamples[index] = {
         ...existingSample,
@@ -4853,7 +4853,7 @@ function saveSample() {
       };
     } else {
       const groupId = replicaCount > 1 ? createSafeItemId("sample-group") : "";
-      const generalData = { ...editableData, notes: sampleFields.sampleNotes.value.trim() };
+      const generalData = { ...editableData, notes: normalizeMultilineText(sampleFields.sampleNotes.value) };
       const samplesToSave = Array.from({ length: replicaCount }, (_, index) => {
       const replicaNumber = index + 1;
       const name = replicaCount > 1 ? `${baseName} ${replicaNumber}` : baseName;
@@ -4961,12 +4961,12 @@ function saveItem() {
     category: fields.category.value.trim(),
     quantity: actionManagedStock ? Number(existingItem.quantity) : Number(fields.quantity.value),
     unit: fields.unit.value.trim(),
-    minStock: Number(fields.minStock.value),
+    minStock: parseStockMinimum(fields.minStock.value),
     usageProfile: normalizeUsageProfile(fields.usageProfile.value),
     locations: selectedLocations,
     location: selectedLocations[0] || "",
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
-    notes: fields.notes.value.trim(),
+    notes: normalizeMultilineText(fields.notes.value),
     references: getItemReferences(),
     createdAtRaw: existingItem?.createdAtRaw || new Date().toISOString(),
     createdAt: existingItem?.createdAt || new Intl.DateTimeFormat("fr-FR", {
@@ -5277,7 +5277,7 @@ function confirmStockMigration(event) {
     if (!Number.isInteger(draft.closedCount) || draft.closedCount < 0) throw new Error("Le nombre de contenants fermés doit être un entier positif.");
     draft.opened.forEach(row => { StockTracking.validateUnitQuantity(row.remaining, unit); if (row.remaining > draft.capacity) throw new Error(`Le contenu du contenant ouvert nº${row.index + 1} doit être compris entre 0 et ${draft.capacity} ${unit.plural}.`); });
     const selectedReason = document.querySelector("#migrationReason").value;
-    const otherReason = document.querySelector("#migrationOtherReason").value.trim();
+    const otherReason = normalizeMultilineText(document.querySelector("#migrationOtherReason").value);
     const reason = Math.abs(draft.difference) <= 1e-8 ? "" : selectedReason === "Autre" ? otherReason : selectedReason;
     if (Math.abs(draft.difference) > 1e-8 && !reason) throw new Error("Précisez la raison de la correction.");
     const now = new Date().toISOString(), actor = { userId: currentName.toLowerCase().replace(/\W+/g, "-"), userName: currentName, userEmoji: userIcons[currentName] || "", userInitials: userIcons[currentName] ? "" : getHistoryUserInitials(currentName) };
@@ -5343,7 +5343,8 @@ function renderAdvancedStockDetail(item) {
   const distributionModule = showDistribution ? `<details open><summary>Répartition du stock</summary><div class="advanced-stock-block stock-distribution"><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock fermé</strong><span>${closedCount} ${escapeHtml(StockTracking.plural(closedCount, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${closed || "<p class=\"stock-distribution-empty\">Aucun contenant fermé.</p>"}</div></section><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock ouvert</strong><span>${openContainers.length} ${escapeHtml(StockTracking.plural(openContainers.length, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${opened || "<p class=\"stock-distribution-empty\">Aucun contenant ouvert.</p>"}</div></section></div></details>` : "";
   const preparationsModule = showPreparations ? `<details open><summary>Préparations et aliquotes</summary><div class="advanced-stock-block">${preparations || `<div class="stock-distribution-empty"><p>Aucune préparation active.</p><button class="ghost-btn compact-btn" type="button" onclick="openStockManager('${escapeHtml(item.id)}',{action:'aliquots_prepared'})">Préparer des aliquotes</button></div>`}</div></details>` : "";
   const journalModule = showJournal ? `<details><summary>Journal des mouvements</summary><div class="advanced-stock-block movement-list">${movements.length ? movements.map(renderStockMovementSafely).join("") : "<p>Aucun mouvement enregistré.</p>"}</div></details>` : "";
-  const overview = showDistribution ? `<div class="advanced-stock-kpis"><strong>${escapeHtml(StockTracking.summary(item))}</strong><span>Équivalent total : ${StockTracking.format(StockTracking.available(item))} ${escapeHtml(tracking.packagingLevels[0].plural)}</span><span>Minimum : ${StockTracking.format(item.minStock)} · ${escapeHtml(statusLabel(itemStatus(item)))}</span></div>` : "";
+  const stockStatus = getStockStatus(item);
+  const overview = showDistribution ? `<div class="advanced-stock-kpis"><strong>${escapeHtml(StockTracking.summary(item))}</strong><span>Équivalent total : ${StockTracking.format(stockStatus.currentStock)} ${escapeHtml(tracking.packagingLevels[0].plural)}</span><span>Minimum : ${stockStatus.minimum === null ? "Non défini" : StockTracking.format(stockStatus.minimum)} · ${escapeHtml(statusLabel(stockStatus.status))}</span></div>` : "";
   return `<section class="advanced-stock-overview">${overview}${distributionModule}${preparationsModule}${journalModule}</section>`;
 }
 
@@ -5389,7 +5390,7 @@ function renderStockMovementSafely(entry) {
 
 function renderStockMovement(entry = {}) {
   const labels = { received:"Réception", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Comptage", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Comptage", preparation_finished:"Préparation terminée", corrected:"Correction", configuration_changed:"Configuration" };
-  return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")} · ${escapeHtml(entry.userName || "Utilisateur")}</strong><small>${escapeHtml(formatDateTimeFrench(getStockMovementDate(entry)))}</small><p>${formatStockMovementDescription(entry)}</p></div></article>`;
+  return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")} · ${escapeHtml(entry.userName || "Utilisateur")}</strong><small>${escapeHtml(formatDateTimeFrench(getStockMovementDate(entry)))}</small><p class="multiline-text">${formatStockMovementDescription(entry)}</p></div></article>`;
 }
 
 function formatStockMovementDescription(entry) {
@@ -5556,7 +5557,7 @@ function renderOpenAliquotActionFields(item, action) {
   if (action === "aliquot_opened") return unopened.length ? `${stockSelect("smEntity", "Préparation", unopened.map(prep => [prep.id, formatPreparationOption(prep)]))}<div id="smAliquotLocationField"></div><label>Localisation de l’aliquote ouverte<select id="smTo" required></select></label>` : `<div class="stock-source-empty"><strong>Le volume individuel de cette préparation n’est pas défini ou aucune aliquote n’est disponible.</strong></div>`;
   const options = opened.map(({ prep, open }) => [open.id, `${open.label} · ${StockTracking.format(open.remainingVolume)} ${open.volumeUnit} restants · ${open.location || "—"} · ${prep.label}`]);
   if (action === "open_aliquot_moved") return stockSelect("smEntity", "Aliquote ouverte", options) + stockSelect("smTo", "Nouvelle localisation", inventoryLocations.map(place => [place, place]));
-  return stockSelect("smEntity", "Aliquote ouverte", options) + `<label>Raison<select id="smDiscardReason" required><option>Reliquat non conservable</option><option>Contamination</option><option>Fin d’expérience</option><option>Erreur de préparation</option><option>Autre</option></select></label><label id="smDiscardOtherField" class="hidden">Précisez la raison<input id="smDiscardOther" disabled></label>`;
+  return stockSelect("smEntity", "Aliquote ouverte", options) + `<label>Raison<select id="smDiscardReason" required><option>Reliquat non conservable</option><option>Contamination</option><option>Fin d’expérience</option><option>Erreur de préparation</option><option>Autre</option></select></label><label id="smDiscardOtherField" class="hidden">Précisez la raison<textarea id="smDiscardOther" rows="2" disabled></textarea></label>`;
 }
 
 function syncAliquotOpeningLocations(modal, item) {
@@ -5597,7 +5598,7 @@ async function submitStockManager(event) {
   if (button.disabled) return;
   if (modal.querySelector("#stockManagerAction")?.value === "aliquots_prepared" && !validateAliquotDistribution(modal)) return;
   if (!event.currentTarget.reportValidity()) return;
-  const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), action = value("stockManagerAction"), operationId = StockTracking.id("operation"), operation = { operationId, type: action, entityId:value("smEntity"), entityType: action.startsWith("aliquot") || action.startsWith("preparation") ? "preparation" : "container", quantity:numeric("smQuantity"), fromLocation:value("smFrom"), toLocation:value("smTo"), comment:value("stockManagerComment"), correctionReason:["container_finished","preparation_finished"].includes(action)?value("stockManagerComment"):"" };
+  const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), action = value("stockManagerAction"), operationId = StockTracking.id("operation"), comment = normalizeMultilineText(value("stockManagerComment")), operation = { operationId, type: action, entityId:value("smEntity"), entityType: action.startsWith("aliquot") || action.startsWith("preparation") ? "preparation" : "container", quantity:numeric("smQuantity"), fromLocation:value("smFrom"), toLocation:value("smTo"), comment, correctionReason:["container_finished","preparation_finished"].includes(action)?comment:"" };
   if (action === "moved") { operation.entityType=value("smEntityType"); if (operation.entityType === "container") { const item=items.find(row=>row.id===value("stockManagerItemId")); const candidate=StockTracking.normalizeTracking(item).openContainers.find(row=>row.location===operation.fromLocation&&row.status==="open"); if(!candidate) { errorBox.textContent="Aucun contenant ouvert dans cette localisation."; errorBox.classList.remove("hidden"); return; } operation.entityId=candidate.id; operation.quantity=1; } }
   if (action === "aliquots_prepared") Object.assign(operation, buildAliquotPreparationOperation(modal, items.find(row => row.id === value("stockManagerItemId"))));
   const sourceItem = items.find(row => row.id === value("stockManagerItemId")), sourceAliquots = StockTracking.normalizeAliquots(sourceItem || {});
@@ -5608,7 +5609,7 @@ async function submitStockManager(event) {
     else { const pair=getActiveOpenAliquots(sourceAliquots).find(({open})=>open.id===value("smEntity")); Object.assign(operation,{type:"open_aliquot_consumed",entityId:value("smEntity"),entityType:"open_aliquot",expectedVersion:pair?.open.version}); }
   }
   if (action === "aliquot_opened") { const prep=sourceAliquots.preparations.find(row=>row.id===value("smEntity")); operation.expectedVersion=prep?.version; operation.entityType="preparation"; }
-  if (["open_aliquot_moved","open_aliquot_discarded"].includes(action)) { const pair=getActiveOpenAliquots(sourceAliquots).find(({open})=>open.id===value("smEntity")); operation.expectedVersion=pair?.open.version; operation.entityType="open_aliquot"; if(action==="open_aliquot_discarded"){const reason=value("smDiscardReason"),other=value("smDiscardOther").trim();operation.correctionReason=reason==="Autre"?other:reason;} }
+  if (["open_aliquot_moved","open_aliquot_discarded"].includes(action)) { const pair=getActiveOpenAliquots(sourceAliquots).find(({open})=>open.id===value("smEntity")); operation.expectedVersion=pair?.open.version; operation.entityType="open_aliquot"; if(action==="open_aliquot_discarded"){const reason=value("smDiscardReason"),other=normalizeMultilineText(value("smDiscardOther"));operation.correctionReason=reason==="Autre"?other:reason;} }
   button.disabled=true; errorBox.classList.add("hidden");
   const execute = async () => { try { await executeAtomicStockOperation(value("stockManagerItemId"), operation); modal.close(); render(); } catch (error) { errorBox.textContent=error.message || String(error); errorBox.classList.remove("hidden"); } finally { button.disabled=false; } };
   if (action === "open_aliquot_discarded") { const pair=getActiveOpenAliquots(sourceAliquots).find(({open})=>open.id===operation.entityId); button.disabled=false; openDeleteConfirmation({title:"Jeter le reliquat",message:`${StockTracking.format(pair?.open.remainingVolume || 0)} ${pair?.open.volumeUnit || ""} seront définitivement retirés du stock disponible.`,confirmText:"Jeter le reliquat",trigger:button,onConfirm:execute}); return; }
@@ -5716,7 +5717,7 @@ function createStoredItem(itemData) {
       ? (itemData.locations[0] || "")
       : (itemData.location || ""),
     tags: Array.isArray(itemData.tags) ? itemData.tags : [],
-    notes: itemData.notes?.trim() || "",
+    notes: normalizeMultilineText(itemData.notes),
     references: normalizeReferences(itemData.references),
     createdAtRaw: now.toISOString(),
     createdAt: new Intl.DateTimeFormat("fr-FR", {
@@ -5751,7 +5752,7 @@ function saveStockUpdate() {
   }
 
   const title = stockFields.stockTitle.value.trim();
-  const note = stockFields.stockNotes.value.trim();
+  const note = normalizeMultilineText(stockFields.stockNotes.value);
   const previousQuantity = Number(item.quantity);
   const updatedItem = patchStoredItem(id, {
     quantity: Number(nextQuantity.toFixed(3))
@@ -6350,7 +6351,7 @@ function saveExperiment() {
     replicates: Number(experimentFields.experimentReplicates.value || 1),
 
     status: experimentFields.experimentStatus.value,
-    notes: experimentFields.experimentNotes.value.trim(),
+    notes: normalizeMultilineText(experimentFields.experimentNotes.value),
 
     rtqpcrConfig: isRtQpcrTemplate()
       ? {
@@ -6374,7 +6375,7 @@ function saveExperiment() {
       timeStyle: "short"
     }).format(new Date()),
 
-    templateNotes: experimentFields.experimentTemplateNotes.value,
+    templateNotes: normalizeMultilineText(experimentFields.experimentTemplateNotes.value),
     items: getMergedExperimentLines(getExperimentRows())
   };
 
@@ -6504,7 +6505,7 @@ function saveOrder() {
       requestedQuantity: Number(orderFields.orderQuantity.value),
       receivedQuantity: 0,
       priority: orderFields.orderPriority.value,
-      notes: orderFields.orderNotes.value.trim(),
+      notes: normalizeMultilineText(orderFields.orderNotes.value),
       requestedBy: currentName,
       requestedAt: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
       requestedAtRaw: new Date().toISOString(),
@@ -6529,7 +6530,7 @@ function saveOrder() {
       requestedQuantity: Number(orderFields.orderQuantity.value),
       receivedQuantity: 0,
       priority: orderFields.orderPriority.value,
-      notes: orderFields.orderNotes.value.trim(),
+      notes: normalizeMultilineText(orderFields.orderNotes.value),
       requestedBy: currentName,
       requestedAt: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
       requestedAtRaw: new Date().toISOString(),
@@ -7351,13 +7352,13 @@ function migrateClientSamples(sampleList) {
     const generalData = type === "created_sample"
       ? {
           ...(sample?.generalData || {}),
-          notes: String(sample?.generalData?.notes ?? (hasReplicaFamily ? sample?.notes : "") ?? "").trim()
+          notes: normalizeMultilineText(sample?.generalData?.notes ?? (hasReplicaFamily ? sample?.notes : ""))
         }
       : {};
     const specificData = type === "created_sample"
       ? {
           ...(sample?.specificData || {}),
-          notes: String(sample?.specificData?.notes ?? (hasReplicaFamily ? "" : sample?.notes) ?? "").trim()
+          notes: normalizeMultilineText(sample?.specificData?.notes ?? (hasReplicaFamily ? "" : sample?.notes))
         }
       : {};
 
@@ -7382,7 +7383,7 @@ function migrateClientSamples(sampleList) {
       measureUnit,
       referenceNumber: String(sample?.referenceNumber || "").trim(),
       lotNumber: String(sample?.lotNumber || "").trim(),
-      notes: String(sample?.notes || "").trim(),
+      notes: normalizeMultilineText(sample?.notes),
       generalData,
       specificData,
       groupId: sample?.groupId || legacyGroupId,
@@ -7527,7 +7528,7 @@ function addSecondaryReferenceRow(reference = {}) {
   const referenceNumber = secondaryReferencesList.children.length + 1;
   row.innerHTML = `
     <label>R&eacute;f&eacute;rence secondaire ${referenceNumber}<input class="secondary-reference" value="${escapeHtml(reference.reference || "")}" /></label>
-    <label>Notes<input class="secondary-reference-notes" value="${escapeHtml(reference.notes || "")}" /></label>
+    <label>Notes<textarea class="secondary-reference-notes" rows="2">${escapeHtml(reference.notes || "")}</textarea></label>
     <button class="ghost-btn" type="button">Retirer</button>
   `;
   row.querySelector("button").addEventListener("click", () => {
@@ -7552,7 +7553,7 @@ function getItemReferences() {
   const secondary = [...secondaryReferencesList.querySelectorAll(".secondary-reference-row")]
     .map((row) => ({
       reference: row.querySelector(".secondary-reference").value.trim(),
-      notes: row.querySelector(".secondary-reference-notes").value.trim()
+      notes: normalizeMultilineText(row.querySelector(".secondary-reference-notes").value)
     }))
     .filter((reference) => reference.reference || reference.notes);
 
@@ -7561,7 +7562,7 @@ function getItemReferences() {
       supplier: fields.primarySupplier.value.trim(),
       reference: fields.primaryReference.value.trim(),
       link: fields.primaryLink.value.trim(),
-      notes: fields.primaryReferenceNotes.value.trim(),
+      notes: normalizeMultilineText(fields.primaryReferenceNotes.value),
       price: fields.primaryPrice.value.trim(),
       unitPrice: fields.primaryUnitPrice.value.trim(),
       leadTime: fields.primaryLeadTime.value.trim()

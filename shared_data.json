@@ -4258,7 +4258,7 @@
       "tags": [
         "Eppendorf"
       ],
-      "notes": "Conditionnement : 5000 tubes/cartons - 10 sachets/cartons - 500 tubes/sachets\n\nAu 16/07/2026 : 1 ouvert reste 4 sachets - 1 fermé",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -14489,6 +14489,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:52",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Microtube 1,5 ml."
+    },
+    {
       "date": "17/07/2026 16:51",
       "action": "Stock mis à jour",
       "detail": "Caroline · recounted · Microtube 1,5 ml",
@@ -16376,5 +16382,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:51:54.500Z"
+  "updatedAt": "2026-07-17T14:52:12.011Z"
 }

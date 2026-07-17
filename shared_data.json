@@ -4312,12 +4312,31 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 2,
+            "quantity": 1,
             "updatedAt": "2026-07-17T14:51:40.242Z",
             "updatedBy": "Caroline"
           }
         ],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "container-mrp23eel-2257530651-1161088923",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 5000,
+            "capacity": 5000,
+            "status": "open",
+            "openedAt": "2026-07-17T14:51:45.453Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T14:51:45.453Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -14471,6 +14490,13 @@
   "history": [
     {
       "date": "17/07/2026 16:51",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · container_opened · Microtube 1,5 ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-wncvj7"
+    },
+    {
+      "date": "17/07/2026 16:51",
       "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Microtube 1,5 ml."
@@ -16242,7 +16268,48 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp23eel-3283998302-1695170809",
+      "operationId": "operation-mrp23dre-2795365034-3353747519",
+      "itemId": "itm-web-1783931436295-wncvj7",
+      "timestamp": "2026-07-17T14:51:45.453Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "container_opened",
+      "entityType": "container",
+      "entityId": "container-mrp23eel-2257530651-1161088923",
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "container-mrp23eel-2257530651-1161088923",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 5000,
+        "capacity": 5000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:51:45.453Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:51:45.453Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:51:40.243Z"
+  "updatedAt": "2026-07-17T14:51:45.453Z"
 }

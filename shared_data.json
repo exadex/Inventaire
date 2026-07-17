@@ -3840,7 +3840,7 @@
       "tags": [
         "Pipette"
       ],
-      "notes": "Conditionnement : 500 pipettes/cartons - 10 sachets/carton - 50 pipettes/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 8 sachets - 2 fermés",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -14335,6 +14335,12 @@
   "history": [
     {
       "date": "17/07/2026 16:45",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette 10 ml."
+    },
+    {
+      "date": "17/07/2026 16:45",
       "action": "Stock mis à jour",
       "detail": "Caroline · recounted · Pipette 10 ml",
       "user": "Caroline",
@@ -15737,5 +15743,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:45:28.628Z"
+  "updatedAt": "2026-07-17T14:45:44.139Z"
 }

@@ -37,8 +37,8 @@
       "id": "web-1784214685893",
       "name": "Petri dish, 92 x 16 mm",
       "category": "Culture Cell",
-      "quantity": 0.5,
-      "unit": "Carton",
+      "quantity": 0.204545,
+      "unit": "cartons",
       "minStock": 0,
       "usageProfile": "backup",
       "locations": [
@@ -63,7 +63,68 @@
       },
       "createdAtRaw": "2026-07-16T15:11:25.894Z",
       "createdAt": "16/07/2026 17:11",
-      "source": "web"
+      "source": "web",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 44
+          },
+          {
+            "id": "level-3",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 20
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp2uybu-1879888762-418547402",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 180,
+            "capacity": 880,
+            "status": "open",
+            "openedAt": "2026-07-17T15:13:10.986Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T15:13:10.986Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "web-1784122331250",
@@ -14637,6 +14698,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 17:13",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Petri dish, 92 x 16 mm."
+    },
+    {
       "date": "17/07/2026 17:11",
       "user": "Caroline",
       "action": "Item modifié",
@@ -16886,7 +16953,42 @@
       "toLocation": "",
       "comment": "1 entamé\n3 neufs",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp2uybw-2646914830-2774647394",
+      "operationId": "migration-mrp2uybw-1571248027-870578929",
+      "itemId": "web-1784214685893",
+      "timestamp": "2026-07-17T15:13:10.988Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "web-1784214685893",
+      "before": {
+        "mode": "simple",
+        "quantity": 0.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 0.20454545454545456,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp2uybu-1879888762-418547402",
+            "location": "Réserve",
+            "remaining": 180
+          }
+        ]
+      },
+      "quantity": -12.999999999999998,
+      "unit": "sachets",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-17T15:11:53.891Z"
+  "updatedAt": "2026-07-17T15:13:10.989Z"
 }

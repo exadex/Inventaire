@@ -4349,7 +4349,7 @@
       "name": "Microtube 2ml",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "Cartons",
+      "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -4374,7 +4374,56 @@
       "source": "seed",
       "usageProfile": "routine",
       "createdAtRaw": "2026-07-16T14:51:38.607Z",
-      "createdAt": "16/07/2026 16:51"
+      "createdAt": "16/07/2026 16:51",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
+          },
+          {
+            "id": "level-3",
+            "key": "tube",
+            "singular": "tube",
+            "plural": "tubes",
+            "kind": "discrete",
+            "contains": 5000
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 2,
+            "updatedAt": "2026-07-17T14:54:57.737Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-c47v8h",
@@ -14489,6 +14538,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:54",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Microtube 2ml."
+    },
+    {
       "date": "17/07/2026 16:52",
       "user": "Caroline",
       "action": "Item modifié",
@@ -16382,5 +16437,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:52:12.011Z"
+  "updatedAt": "2026-07-17T14:54:57.738Z"
 }

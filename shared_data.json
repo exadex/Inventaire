@@ -2539,7 +2539,7 @@
       "tags": [
         "Boite culture 2D"
       ],
-      "notes": "Conditionnement : 300 boites/cartons - 30 sachets/carton - 10 boites/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 29 sachets",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -14826,6 +14826,12 @@
       "detail": "Caroline a modifié Boîte C.C 100 mm, standard."
     },
     {
+      "date": "17/07/2026 17:17",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Boîte C.C 100 mm, standard."
+    },
+    {
       "date": "17/07/2026 17:15",
       "user": "Caroline",
       "action": "Item modifié",
@@ -17206,5 +17212,5 @@
       "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-17T15:17:15.206Z"
+  "updatedAt": "2026-07-17T15:17:26.539Z"
 }

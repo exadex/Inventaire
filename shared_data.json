@@ -3730,7 +3730,7 @@
       "id": "itm-web-1783931436295-7pfrox",
       "name": "Pipette 5 ml",
       "category": "Culture Cell",
-      "quantity": 3,
+      "quantity": 2.8,
       "unit": "Cartons",
       "minStock": 0.5,
       "location": "Réserve",
@@ -3804,7 +3804,7 @@
             "id": "container-mrp1qoh0-2934017318-887767080",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 500,
+            "remaining": 400,
             "capacity": 500,
             "status": "open",
             "openedAt": "2026-07-17T14:41:51.972Z",
@@ -3814,9 +3814,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:41:51.972Z",
+            "updatedAt": "2026-07-17T14:42:07.869Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       },
@@ -14266,6 +14266,13 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:42",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · consumed · Pipette 5 ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-7pfrox"
+    },
+    {
       "date": "17/07/2026 16:41",
       "action": "Stock mis à jour",
       "detail": "Caroline · container_opened · Pipette 5 ml",
@@ -15412,7 +15419,65 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp1r0ql-3759409062-1326760753",
+      "operationId": "operation-mrp1r096-1352564271-1523483782",
+      "itemId": "itm-web-1783931436295-7pfrox",
+      "timestamp": "2026-07-17T14:42:07.869Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "consumed",
+      "entityType": "container",
+      "entityId": "container-mrp1qoh0-2934017318-887767080",
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp1qoh0-2934017318-887767080",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 500,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T14:41:51.972Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:41:51.972Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "container-mrp1qoh0-2934017318-887767080",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 400,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T14:41:51.972Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:42:07.869Z",
+        "updatedBy": "caroline",
+        "version": 2
+      },
+      "quantity": 2,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:41:51.972Z"
+  "updatedAt": "2026-07-17T14:42:07.869Z"
 }

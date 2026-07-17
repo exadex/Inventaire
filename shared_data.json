@@ -2529,8 +2529,8 @@
       "id": "itm-web-1783931436294-6j33l2",
       "name": "Boîte C.C 100 mm, standard",
       "category": "Culture Cell",
-      "quantity": 0.5,
-      "unit": "Carton",
+      "quantity": 0.966667,
+      "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -2555,7 +2555,68 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T08:04:47.573Z",
-      "createdAt": "17/07/2026 10:04"
+      "createdAt": "17/07/2026 10:04",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 30
+          },
+          {
+            "id": "level-3",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 10
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp306rn-4033899303-4120031035",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 290,
+            "capacity": 300,
+            "status": "open",
+            "openedAt": "2026-07-17T15:17:15.203Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T15:17:15.203Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-d6kovv",
@@ -14759,6 +14820,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 17:17",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Boîte C.C 100 mm, standard."
+    },
+    {
       "date": "17/07/2026 17:15",
       "user": "Caroline",
       "action": "Item modifié",
@@ -17102,7 +17169,42 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mrp306rp-242049370-2896085159",
+      "operationId": "migration-mrp306rp-4150782324-2742314246",
+      "itemId": "itm-web-1783931436294-6j33l2",
+      "timestamp": "2026-07-17T15:17:15.205Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436294-6j33l2",
+      "before": {
+        "mode": "simple",
+        "quantity": 0.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 0.9666666666666667,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp306rn-4033899303-4120031035",
+            "location": "Réserve",
+            "remaining": 290
+          }
+        ]
+      },
+      "quantity": 14,
+      "unit": "sachets",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-17T15:15:56.283Z"
+  "updatedAt": "2026-07-17T15:17:15.206Z"
 }

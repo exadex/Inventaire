@@ -2431,8 +2431,8 @@
       "id": "itm-web-1783931436294-qxduy0",
       "name": "boite ø 60",
       "category": "Culture Cell",
-      "quantity": 0.5,
-      "unit": "Carton",
+      "quantity": 0.892857,
+      "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -2462,7 +2462,68 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T08:01:30.963Z",
-      "createdAt": "17/07/2026 10:01"
+      "createdAt": "17/07/2026 10:01",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 28
+          },
+          {
+            "id": "level-3",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 20
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp2yarn-2137398917-50219244",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 560,
+            "status": "open",
+            "openedAt": "2026-07-17T15:15:47.075Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T15:15:47.075Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-6j33l2",
@@ -14698,6 +14759,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 17:15",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié boite ø 60."
+    },
+    {
       "date": "17/07/2026 17:13",
       "user": "Caroline",
       "action": "Item modifié",
@@ -16994,7 +17061,42 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mrp2yaro-2526141671-2638197246",
+      "operationId": "migration-mrp2yarp-3584386363-3018189717",
+      "itemId": "itm-web-1783931436294-qxduy0",
+      "timestamp": "2026-07-17T15:15:47.076Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436294-qxduy0",
+      "before": {
+        "mode": "simple",
+        "quantity": 0.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 0.8928571428571429,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp2yarn-2137398917-50219244",
+            "location": "Réserve",
+            "remaining": 500
+          }
+        ]
+      },
+      "quantity": 11.000000000000002,
+      "unit": "sachets",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-17T15:13:30.402Z"
+  "updatedAt": "2026-07-17T15:15:47.078Z"
 }

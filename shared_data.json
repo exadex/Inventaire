@@ -4348,7 +4348,7 @@
       "id": "itm-web-1783931436295-9a6sx8",
       "name": "Microtube 2ml",
       "category": "Culture Cell",
-      "quantity": 2,
+      "quantity": 1.8,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -4422,7 +4422,7 @@
             "id": "container-mrp27m27-4052964793-574651051",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 50000,
+            "remaining": 40000,
             "capacity": 50000,
             "status": "open",
             "openedAt": "2026-07-17T14:55:01.998Z",
@@ -4432,9 +4432,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:55:01.998Z",
+            "updatedAt": "2026-07-17T14:55:09.681Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       },
@@ -14559,6 +14559,13 @@
     {
       "date": "17/07/2026 16:55",
       "action": "Stock mis à jour",
+      "detail": "Caroline · recounted · Microtube 2ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-9a6sx8"
+    },
+    {
+      "date": "17/07/2026 16:55",
+      "action": "Stock mis à jour",
       "detail": "Caroline · container_opened · Microtube 2ml",
       "user": "Caroline",
       "itemId": "itm-web-1783931436295-9a6sx8"
@@ -16502,7 +16509,65 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp27rzl-2269824387-1302617143",
+      "operationId": "operation-mrp27rh6-2620108994-3159478595",
+      "itemId": "itm-web-1783931436295-9a6sx8",
+      "timestamp": "2026-07-17T14:55:09.681Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp27m27-4052964793-574651051",
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp27m27-4052964793-574651051",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 50000,
+        "capacity": 50000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:55:01.998Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:55:01.998Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "container-mrp27m27-4052964793-574651051",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 40000,
+        "capacity": 50000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:55:01.998Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:55:09.681Z",
+        "updatedBy": "caroline",
+        "version": 2
+      },
+      "quantity": 8,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:55:01.999Z"
+  "updatedAt": "2026-07-17T14:55:09.681Z"
 }

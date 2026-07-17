@@ -2339,16 +2339,16 @@
       "name": "boite ø 60",
       "category": "Culture Cell",
       "quantity": 0.5,
-      "unit": "unités",
-      "minStock": 0.5,
+      "unit": "Carton",
+      "minStock": 0,
       "location": "Réserve",
       "locations": [
         "Réserve"
       ],
       "tags": [
-        "Boite culture 2D"
+        "Bactério"
       ],
-      "notes": "Conditionnement : 500",
+      "notes": "Conditionnement : 560 boites/cartons - 28 sachets/carton - 20 boites/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 25 sachets",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -2359,9 +2359,17 @@
           "unitPrice": "0,15",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "628102",
+            "notes": ""
+          }
+        ]
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T08:01:30.963Z",
+      "createdAt": "17/07/2026 10:01"
     },
     {
       "id": "itm-web-1783931436294-6j33l2",
@@ -13587,6 +13595,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:01",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié boite ø 60."
+    },
+    {
       "date": "17/07/2026 09:57",
       "user": "Elina",
       "action": "Item modifié",
@@ -14547,5 +14561,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T07:57:50.013Z"
+  "updatedAt": "2026-07-17T08:01:30.965Z"
 }

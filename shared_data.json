@@ -3884,7 +3884,7 @@
       "id": "itm-web-1783931436295-tm3qnv",
       "name": "Plaque 48 puits fond plats standart",
       "category": "Culture Cell",
-      "quantity": 3.5,
+      "quantity": 2,
       "unit": "plaques",
       "minStock": 1,
       "location": "Réserve",
@@ -3894,7 +3894,7 @@
       "tags": [
         "Plaque 48"
       ],
-      "notes": "Conditionnement : 1000",
+      "notes": "Conditionnement : 50 plaques/cartons",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -3905,9 +3905,17 @@
           "unitPrice": "0,0552",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "353078",
+            "notes": ""
+          }
+        ]
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T08:28:12.186Z",
+      "createdAt": "17/07/2026 10:28"
     },
     {
       "id": "itm-web-1783931436295-bcmh1a",
@@ -13612,6 +13620,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:28",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 48 puits fond plats standart."
+    },
+    {
       "date": "17/07/2026 10:26",
       "user": "Elina",
       "action": "Item ajouté",
@@ -14620,5 +14634,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:26:13.490Z"
+  "updatedAt": "2026-07-17T08:28:12.187Z"
 }

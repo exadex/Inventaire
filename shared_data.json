@@ -3573,17 +3573,17 @@
       "id": "itm-web-1783931436295-ytshf4",
       "name": "Pipette stérile Pasteur 3 ml (a commander de preference)",
       "category": "Culture Cell",
-      "quantity": 2.5,
-      "unit": "mL",
+      "quantity": 0.5,
+      "unit": "Sac",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
         "Réserve"
       ],
       "tags": [
-        "Pastette"
+        "Pasterette"
       ],
-      "notes": "Conditionnement : 1000",
+      "notes": "Conditionnement : 1000\n\nAu 16/07/2026 : 1 ouvert - reste la moitié",
       "references": {
         "primary": {
           "supplier": "Dutscher",
@@ -3596,7 +3596,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T08:06:53.553Z",
+      "createdAt": "17/07/2026 10:06"
     },
     {
       "id": "itm-web-1783931436295-qump8w",
@@ -13571,6 +13574,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:06",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Pipette stérile Pasteur 3 ml (a commander de preference)."
+    },
+    {
       "date": "17/07/2026 10:05",
       "user": "Elina",
       "action": "Item supprimé",
@@ -14549,5 +14558,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:05:47.665Z"
+  "updatedAt": "2026-07-17T08:06:53.555Z"
 }

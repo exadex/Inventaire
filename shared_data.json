@@ -4081,7 +4081,7 @@
       "name": "Microtube 0,5ml",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "tubes",
+      "unit": "Carton",
       "minStock": 0.5,
       "location": "Réserve",
       "locations": [
@@ -4103,7 +4103,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T12:37:02.504Z",
+      "createdAt": "17/07/2026 14:37"
     },
     {
       "id": "itm-web-1783931436295-wncvj7",
@@ -13634,6 +13637,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 14:37",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Microtube 0,5ml."
+    },
+    {
       "date": "17/07/2026 14:35",
       "user": "Elina",
       "action": "Item modifié",
@@ -14684,5 +14693,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T12:35:27.858Z"
+  "updatedAt": "2026-07-17T12:37:02.506Z"
 }

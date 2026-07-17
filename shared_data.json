@@ -4522,7 +4522,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "containers",
-        "traceabilityMode": "detailed",
+        "traceabilityMode": "periodic",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -14403,6 +14403,12 @@
   "history": [
     {
       "date": "17/07/2026 16:48",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Falcon 50."
+    },
+    {
+      "date": "17/07/2026 16:48",
       "action": "Stock mis à jour",
       "detail": "Caroline · recounted · Falcon 50",
       "user": "Caroline",
@@ -15942,5 +15948,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:48:30.054Z"
+  "updatedAt": "2026-07-17T14:48:45.516Z"
 }

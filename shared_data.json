@@ -3794,12 +3794,31 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 3,
+            "quantity": 2,
             "updatedAt": "2026-07-17T14:41:40.818Z",
             "updatedBy": "Caroline"
           }
         ],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "container-mrp1qoh0-2934017318-887767080",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 500,
+            "status": "open",
+            "openedAt": "2026-07-17T14:41:51.972Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T14:41:51.972Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -14248,6 +14267,13 @@
   "history": [
     {
       "date": "17/07/2026 16:41",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · container_opened · Pipette 5 ml",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-7pfrox"
+    },
+    {
+      "date": "17/07/2026 16:41",
       "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Pipette 5 ml."
@@ -15345,6 +15371,48 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "stockMovements": [],
-  "updatedAt": "2026-07-17T14:41:40.820Z"
+  "stockMovements": [
+    {
+      "id": "movement-mrp1qoh0-3483046833-3864089890",
+      "operationId": "operation-mrp1qnya-2978028739-3178811974",
+      "itemId": "itm-web-1783931436295-7pfrox",
+      "timestamp": "2026-07-17T14:41:51.972Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "container_opened",
+      "entityType": "container",
+      "entityId": "container-mrp1qoh0-2934017318-887767080",
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "container-mrp1qoh0-2934017318-887767080",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 500,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T14:41:51.972Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:41:51.972Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
+    }
+  ],
+  "updatedAt": "2026-07-17T14:41:51.972Z"
 }

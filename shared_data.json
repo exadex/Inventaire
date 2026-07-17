@@ -4556,12 +4556,31 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 2,
+            "quantity": 1,
             "updatedAt": "2026-07-17T14:48:12.729Z",
             "updatedBy": "Caroline"
           }
         ],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "container-mrp1yyad-553659059-1368022765",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 300,
+            "capacity": 300,
+            "status": "open",
+            "openedAt": "2026-07-17T14:48:17.941Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T14:48:17.941Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -14384,6 +14403,13 @@
   "history": [
     {
       "date": "17/07/2026 16:48",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · container_opened · Falcon 50",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-cwj79e"
+    },
+    {
+      "date": "17/07/2026 16:48",
       "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Falcon 50."
@@ -15808,7 +15834,48 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrp1yyad-1162743190-1083541797",
+      "operationId": "operation-mrp1yxt6-1544377170-710428592",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "timestamp": "2026-07-17T14:48:17.941Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "container_opened",
+      "entityType": "container",
+      "entityId": "container-mrp1yyad-553659059-1368022765",
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "container-mrp1yyad-553659059-1368022765",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 300,
+        "capacity": 300,
+        "status": "open",
+        "openedAt": "2026-07-17T14:48:17.941Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:48:17.941Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:48:12.731Z"
+  "updatedAt": "2026-07-17T14:48:17.941Z"
 }

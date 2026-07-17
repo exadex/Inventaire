@@ -2,6 +2,38 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1784276773489",
+      "name": "Plaques 48 puits",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "Carton",
+      "minStock": 0,
+      "usageProfile": "backup",
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [
+        "Plaques"
+      ],
+      "notes": "Conditionnement : 300 plaques/cartons",
+      "references": {
+        "primary": {
+          "supplier": "",
+          "reference": "150687",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-07-17T08:26:13.489Z",
+      "createdAt": "17/07/2026 10:26",
+      "source": "web"
+    },
+    {
       "id": "web-1784214685893",
       "name": "Petri dish, 92 x 16 mm",
       "category": "Culture Cell",
@@ -13580,6 +13612,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:26",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté Plaques 48 puits dans Procédé ExAdEx L2."
+    },
+    {
       "date": "17/07/2026 10:15",
       "user": "Elina",
       "action": "Item modifié",
@@ -14582,5 +14620,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:15:32.009Z"
+  "updatedAt": "2026-07-17T08:26:13.490Z"
 }

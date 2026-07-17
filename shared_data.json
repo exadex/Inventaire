@@ -2375,9 +2375,9 @@
       "id": "itm-web-1783931436294-6j33l2",
       "name": "Boîte C.C 100 mm, standard",
       "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 0.5,
+      "quantity": 0.5,
+      "unit": "Carton",
+      "minStock": 0,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -2385,7 +2385,7 @@
       "tags": [
         "Boite culture 2D"
       ],
-      "notes": "Conditionnement : 300",
+      "notes": "Conditionnement : 300 boites/cartons - 30 sachets/carton - 10 boites/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 29 sachets",
       "references": {
         "primary": {
           "supplier": "starstedt",
@@ -2398,7 +2398,10 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-17T08:04:47.573Z",
+      "createdAt": "17/07/2026 10:04"
     },
     {
       "id": "itm-web-1783931436294-d6kovv",
@@ -13595,6 +13598,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 10:04",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Boîte C.C 100 mm, standard."
+    },
+    {
       "date": "17/07/2026 10:01",
       "user": "Elina",
       "action": "Item modifié",
@@ -14561,5 +14570,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T08:01:30.965Z"
+  "updatedAt": "2026-07-17T08:04:47.574Z"
 }

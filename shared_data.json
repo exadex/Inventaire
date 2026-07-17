@@ -3859,7 +3859,7 @@
       "tags": [
         "Pasterette"
       ],
-      "notes": "Conditionnement : 1000\n\nAu 16/07/2026 : 1 ouvert - reste la moitié",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "Dutscher",
@@ -3875,7 +3875,60 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T08:06:53.553Z",
-      "createdAt": "17/07/2026 10:06"
+      "createdAt": "17/07/2026 10:06",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "custom-sac",
+            "singular": "sac",
+            "plural": "sacs",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "custom-pipette",
+            "singular": "pipette",
+            "plural": "pipettes",
+            "kind": "discrete",
+            "contains": 1000
+          }
+        ],
+        "trackingUnitKey": "custom-pipette",
+        "trackingUnit": "pipettes",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp35jh7-3207295670-3353019737",
+            "label": "sac ouvert nº1",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 1000,
+            "status": "open",
+            "openedAt": "2026-07-17T15:21:24.955Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-17T15:21:24.955Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-qump8w",
@@ -14881,6 +14934,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 17:21",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette stérile Pasteur 3 ml (a commander de preference)."
+    },
+    {
       "date": "17/07/2026 17:18",
       "user": "Caroline",
       "action": "Item modifié",
@@ -17312,7 +17371,42 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mrp35jh8-457302354-1035556074",
+      "operationId": "migration-mrp35jh8-1648327980-1563830760",
+      "itemId": "itm-web-1783931436295-ytshf4",
+      "timestamp": "2026-07-17T15:21:24.956Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "configuration_changed",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-ytshf4",
+      "before": {
+        "mode": "simple",
+        "quantity": 0.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 0.5,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrp35jh7-3207295670-3353019737",
+            "location": "Réserve",
+            "remaining": 500
+          }
+        ]
+      },
+      "quantity": 0,
+      "unit": "sacs",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T15:18:44.518Z"
+  "updatedAt": "2026-07-17T15:21:24.957Z"
 }

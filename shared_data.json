@@ -3856,7 +3856,56 @@
       "source": "seed",
       "usageProfile": "routine",
       "createdAtRaw": "2026-07-16T15:13:52.469Z",
-      "createdAt": "16/07/2026 17:13"
+      "createdAt": "16/07/2026 17:13",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
+          },
+          {
+            "id": "level-3",
+            "key": "custom-pipette",
+            "singular": "pipette",
+            "plural": "pipettes",
+            "kind": "discrete",
+            "contains": 50
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-07-17T14:45:04.441Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-cgioxi",
@@ -14266,6 +14315,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:45",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette 10 ml."
+    },
+    {
       "date": "17/07/2026 16:44",
       "action": "Stock mis à jour",
       "detail": "Caroline · recounted · Pipette 5 ml",
@@ -15550,5 +15605,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:44:02.684Z"
+  "updatedAt": "2026-07-17T14:45:04.442Z"
 }

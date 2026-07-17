@@ -512,6 +512,27 @@
           </div>
           <small class="usage-profile-help">Aucune sélection = item Normal</small>
         </section>
+        <details class="stock-tracking-config">
+          <summary>Suivi du stock</summary>
+          <div class="stock-tracking-config-body">
+            <input id="stockTrackingMode" type="hidden" value="simple">
+            <input id="traceabilityMode" type="hidden" value="periodic">
+            <div class="tracking-option-stack">
+              <label class="tracking-option-card"><input id="detailedPackagingEnabled" type="checkbox"><span><strong>Suivi détaillé du conditionnement</strong><small>Ajoute une répartition détaillée des contenants fermés et ouverts, de leur contenu et de leur localisation.</small><em>Module ajouté dans la fiche : Répartition du stock</em></span></label>
+              <div id="packagingConfig" class="packaging-config hidden">
+                <div class="packaging-heading"><strong>Conditionnement (1 à 3 niveaux)</strong><button id="addPackagingLevelBtn" class="ghost-btn compact-btn" type="button">Ajouter un niveau de contenu</button></div>
+                <div id="packagingLevels"></div>
+                <label id="trackingUnitField" class="hidden"><span>Unité de comptage des contenants ouverts</span><select id="trackingUnitKey"></select><small>Choisissez l’unité réellement utilisée lors des comptages.</small><small id="trackingUnitError" class="field-validation-message hidden" aria-live="polite"></small></label>
+                <p id="packagingPreview" class="packaging-preview"></p>
+              </div>
+              <label class="tracking-option-card"><input id="detailedTraceabilityEnabled" type="checkbox"><span><strong>Traçabilité de chaque mouvement</strong><small>Chaque utilisation doit être enregistrée avec la quantité, l’utilisateur et la date.</small><em>Module ajouté dans la fiche : Journal des mouvements</em></span></label>
+              <div id="traceabilityExplanation" class="tracking-option-explanation hidden"><span>Caroline a utilisé 2 aliquotes le 17 juillet 2026 à 10:42.</span><span>Julien a utilisé 0,1 mg de produit pour l’expérience X.</span></div>
+              <label class="tracking-option-card"><input id="aliquotTrackingEnabled" type="checkbox"><span><strong>Préparations et aliquotes</strong><small>Permet de préparer, localiser, ouvrir, déplacer et consommer des aliquotes rattachées à cet item.</small><em>Module ajouté dans la fiche : Préparations et aliquotes</em></span></label>
+              <p id="aliquotTrackingExplanation" class="tracking-option-explanation hidden"></p>
+              <p id="trackingOptionError" class="field-validation-message hidden" role="alert"></p>
+            </div>
+          </div>
+        </details>
         <label class="full-label">Notes<textarea id="notes" rows="3"></textarea></label>
         <section class="reference-section">
           <div class="reference-heading">
@@ -547,6 +568,41 @@
           <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
           <button class="primary-btn" id="saveItemBtn" type="button">Enregistrer</button>
         </div>
+      </form>
+    </dialog>
+
+    <dialog id="stockMigrationDialog" class="modal stock-migration-modal" aria-labelledby="stockMigrationTitle">
+      <form id="stockMigrationForm">
+        <div class="modal-header">
+          <div><h3 id="stockMigrationTitle">Indiquer les contenants ouverts et fermés</h3><small id="stockMigrationItemName"></small></div>
+          <button id="closeStockMigrationBtn" class="icon-btn" type="button" aria-label="Fermer">&times;</button>
+        </div>
+        <div class="migration-old-stock"><span>Stock disponible actuellement</span><strong id="stockMigrationOldValue"></strong></div>
+        <section class="migration-section">
+          <h4 id="migrationClosedTitle"></h4>
+          <div class="migration-closed-fields">
+            <label><span id="migrationClosedCountLabel"></span><input id="migrationClosedCount" type="number" min="0" step="1" required></label>
+            <label>Localisation<select id="migrationClosedLocation" required></select></label>
+          </div>
+        </section>
+        <section class="migration-section">
+          <div class="migration-open-heading"><h4 id="migrationOpenTitle"></h4><label><span id="migrationOpenCountLabel"></span><input id="migrationOpenCount" type="number" min="0" step="1" data-quantity-step="1" value="1" required></label></div>
+          <div id="migrationOpenContainers" class="migration-open-list"></div>
+        </section>
+        <section class="migration-comparison" aria-live="polite">
+          <strong class="migration-comparison-title">Stock réellement décrit</strong>
+          <p id="migrationPhysicalSummary"></p>
+          <div><span>Équivalent total</span><strong id="migrationComparisonNew"></strong></div>
+          <div><span>Ancien stock enregistré</span><strong id="migrationComparisonOld"></strong></div>
+          <div><span>Correction constatée</span><strong id="migrationComparisonDifference"></strong></div>
+          <small id="migrationComparisonSecondary"></small>
+        </section>
+        <div id="migrationReasonField" class="migration-reason-field hidden">
+          <label>Raison de la correction<select id="migrationReason"><option value="Correction après comptage" selected>Correction après comptage</option><option value="Erreur dans l’ancien stock">Erreur dans l’ancien stock</option><option value="Perte ou casse constatée">Perte ou casse constatée</option><option value="Produit retrouvé">Produit retrouvé</option><option value="Autre">Autre</option></select></label>
+          <label id="migrationOtherReasonField" class="hidden">Précisez la raison<input id="migrationOtherReason" type="text"></label>
+        </div>
+        <p id="stockMigrationError" class="confirmation-modal-error hidden" role="alert"></p>
+        <div class="modal-actions"><button id="cancelStockMigrationBtn" class="ghost-btn" type="button">Annuler</button><button class="primary-btn" type="submit">Enregistrer cette répartition</button></div>
       </form>
     </dialog>
 
@@ -985,6 +1041,7 @@
     <script src="seed_items.js"></script>
     <script src="protocols.js"></script>
     <script src="github_storage.js"></script>
+    <script src="stock_tracking.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -39,6 +39,7 @@ let items = buildItems();
 let orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
 let experiments = migrateExperiments(sharedState.experiments);
 let history = Array.isArray(sharedState.history) ? sharedState.history : [];
+let stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
 let clientSamples = migrateClientSamples(sharedState.clientSamples);
 let clients = migrateClients(sharedState.clients, clientSamples);
 
@@ -69,6 +70,7 @@ let itemReturnContext = { view: "inventory", experimentId: null, location: null,
 let sampleReturnContext = { view: "samples", location: null, scrollY: 0 };
 let viewReturnScrollY = { experiments: 0, locations: 0 };
 let selectedOrderId = null;
+let pendingStockMigration = null;
 let ordersMode = "board";
 let orderHistorySearch = "";
 let orderHistoryStatus = "all";
@@ -112,6 +114,8 @@ const dialog = document.querySelector("#itemDialog");
 const form = document.querySelector("#itemForm");
 const stockDialog = document.querySelector("#stockDialog");
 const stockForm = document.querySelector("#stockForm");
+const stockMigrationDialog = document.querySelector("#stockMigrationDialog");
+const stockMigrationForm = document.querySelector("#stockMigrationForm");
 const experimentDialog = document.querySelector("#experimentDialog");
 const experimentForm = document.querySelector("#experimentForm");
 const experimentItemsList = document.querySelector("#experimentItemsList");
@@ -170,6 +174,8 @@ const fields = [
 ].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 const stockFields = ["stockItemId", "stockItemName", "stockCurrentQuantity", "stockTitle", "stockAction", "stockAmount", "stockUnit", "stockNotes"]
+  .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+const trackingFields = ["stockTrackingMode", "traceabilityMode", "detailedPackagingEnabled", "detailedTraceabilityEnabled", "traceabilityExplanation", "aliquotTrackingEnabled", "aliquotTrackingExplanation", "trackingOptionError", "packagingConfig", "packagingLevels", "trackingUnitField", "trackingUnitKey", "packagingPreview"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 const sampleFields = [
@@ -293,6 +299,20 @@ document.querySelector("#deleteItemBtn").addEventListener("click", requestItemDe
 document.querySelector("#saveSampleBtn").addEventListener("click", saveSample);
 document.querySelector("#deleteSampleBtn").addEventListener("click", requestSampleDeletionFromModal);
 document.querySelector("#saveStockBtn").addEventListener("click", saveStockUpdate);
+document.querySelector("#migrationOpenCount")?.addEventListener("input", renderMigrationOpenRows);
+stockMigrationForm?.addEventListener("input", updateStockMigrationComparison);
+document.querySelector("#migrationReason")?.addEventListener("change", syncMigrationReasonFields);
+stockMigrationForm?.addEventListener("submit", confirmStockMigration);
+document.querySelector("#closeStockMigrationBtn")?.addEventListener("click", closeStockMigration);
+document.querySelector("#cancelStockMigrationBtn")?.addEventListener("click", closeStockMigration);
+stockMigrationDialog?.addEventListener("cancel", event => { event.preventDefault(); closeStockMigration(); });
+trackingFields.detailedPackagingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("packaging"));
+trackingFields.detailedTraceabilityEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("traceability"));
+trackingFields.aliquotTrackingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("aliquots"));
+document.querySelector("#addPackagingLevelBtn")?.addEventListener("click", () => { if (trackingFields.packagingLevels.children.length < 3) { trackingFields.packagingLevels.insertAdjacentHTML("beforeend", renderPackagingLevelRow({}, trackingFields.packagingLevels.children.length)); updatePackagingPreview(); } });
+trackingFields.packagingLevels?.addEventListener("input", updatePackagingPreview);
+trackingFields.trackingUnitKey?.addEventListener("change", updatePackagingPreview);
+trackingFields.packagingLevels?.addEventListener("click", event => { if (event.target.closest("[data-remove-packaging]")) { event.target.closest(".packaging-level-row")?.remove(); updatePackagingPreview(); } });
 document.querySelector("#addExperimentBtn").addEventListener("click", openExperimentModal);
 document.querySelector("#saveExperimentBtn").addEventListener("click", saveExperiment);
 
@@ -562,6 +582,7 @@ function createSharedState(rawState = null, options = {}) {
     history: Array.isArray(source.history)
       ? source.history
       : bootstrap?.history || [],
+    stockMovements: Array.isArray(source.stockMovements) ? source.stockMovements : [],
     updatedAt: source.updatedAt || bootstrap?.updatedAt || ""
   };
 }
@@ -576,6 +597,7 @@ function hasSharedDataPayload(data) {
     data.clientSamples,
     data.clients,
     data.history
+    ,data.stockMovements
   ].some(value => Array.isArray(value)) || Boolean(data.updatedAt);
 }
 
@@ -627,6 +649,7 @@ function syncRuntimeStateFromShared() {
   sharedState.clients = migrateClients(sharedState.clients, sharedState.clientSamples);
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
+  sharedState.stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
 
   items = buildItems();
   orders = sharedState.orders;
@@ -634,6 +657,7 @@ function syncRuntimeStateFromShared() {
   clientSamples = sharedState.clientSamples;
   clients = sharedState.clients;
   history = sharedState.history;
+  stockMovements = sharedState.stockMovements;
 }
 
 function syncSharedStateFromRuntime() {
@@ -644,6 +668,7 @@ function syncSharedStateFromRuntime() {
   sharedState.clients = migrateClients(clients, sharedState.clientSamples);
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(history) ? history : [];
+  sharedState.stockMovements = Array.isArray(stockMovements) ? stockMovements : [];
   sharedState.updatedAt = new Date().toISOString();
 }
 
@@ -751,8 +776,14 @@ function updateUserIdentity() {
 const STOCK_WARNING_MULTIPLIER = 1.5;
 
 function itemStatus(item) {
-  const quantity = Number(item.quantity || 0);
+  const quantity = window.StockTracking ? StockTracking.available(item) : Number(item.quantity || 0);
   const minStock = Number(item.minStock || 0);
+
+  if (window.StockTracking && StockTracking.normalizeTracking(item).mode === "containers") {
+    if (quantity <= 0 && minStock > 0) return "critical";
+    if (quantity < minStock) return "warning";
+    return "ok";
+  }
 
   if (minStock <= 0) return quantity < 0 ? "critical" : "ok";
   if (quantity <= minStock) return "critical";
@@ -761,8 +792,13 @@ function itemStatus(item) {
 }
 
 function stockLevelPercent(item) {
-  const quantity = Number(item.quantity || 0);
+  const quantity = window.StockTracking ? StockTracking.available(item) : Number(item.quantity || 0);
   const minStock = Number(item.minStock || 0);
+
+  if (window.StockTracking && StockTracking.normalizeTracking(item).mode === "containers") {
+    if (minStock <= 0) return quantity < 0 ? 0 : 100;
+    return Math.max(0, Math.min(100, Math.round((quantity / minStock) * 100)));
+  }
 
   if (minStock <= 0) return quantity < 0 ? 0 : 100;
 
@@ -1014,6 +1050,8 @@ function renderInventory() {
   document.querySelector("#inventoryGrid").innerHTML = filtered.map((item) => {
     const status = itemStatus(item);
     const percent = stockLevelPercent(item);
+    const advancedSummary = StockTracking.summary(item);
+    const availableQuantity = StockTracking.available(item);
 
     return `
       <article class="item-card item-preview-card" onclick="openItemDetail('${escapeHtml(item.id)}', { view: 'inventory' })">
@@ -1035,9 +1073,11 @@ function renderInventory() {
         </div>
 
         <div class="stock-line">
-          <span>${formatInventoryCardQuantity(item.quantity, item.unit)}</span>
+          <span>${formatInventoryCardQuantity(availableQuantity, item.unit)}</span>
           <span>Min ${formatInventoryCardQuantity(item.minStock, item.unit)}</span>
         </div>
+
+        ${advancedSummary ? `<small class="advanced-stock-summary">${escapeHtml(advancedSummary)}</small>` : ""}
 
         ${item.tags?.length ? `
           <div class="tags">
@@ -1059,7 +1099,7 @@ function renderInventory() {
             <button
               class="text-btn"
               type="button"
-              onclick="event.stopPropagation(); openStockModal('${escapeHtml(item.id)}')"
+              onclick="event.stopPropagation(); ${usesAdvancedStockManager(item) ? `openStockManager('${escapeHtml(item.id)}')` : `openStockModal('${escapeHtml(item.id)}')`}"
             >
               Mettre à jour le stock
             </button>
@@ -1253,13 +1293,15 @@ function renderInventoryDetail(item) {
           <button class="ghost-btn compact-btn" type="button" onclick="openModal('${escapeHtml(item.id)}')">
             Modifier la fiche
           </button>
-          <button class="primary-btn compact-btn" type="button" onclick="openStockModal('${escapeHtml(item.id)}')">
-            Mettre à jour le stock
+          <button class="primary-btn compact-btn" type="button" onclick="${usesAdvancedStockManager(item) ? `openStockManager('${escapeHtml(item.id)}')` : `openStockModal('${escapeHtml(item.id)}')`}">
+            ${usesAdvancedStockManager(item) ? "Gérer le stock" : "Mettre à jour le stock"}
           </button>
         </div>
       </div>
 
       ${renderStockVisualCard(item)}
+
+      ${renderAdvancedStockDetail(item)}
 
       <div class="inventory-detail-secondary-grid">
         ${renderInventoryReferencesPanel(references)}
@@ -1906,8 +1948,8 @@ function renderOrderDetailLegacy(order) {
           <button class="ghost-btn compact-btn" type="button" onclick="openModal('${escapeHtml(item.id)}')">
             Modifier
           </button>
-          <button class="primary-btn compact-btn" type="button" onclick="openStockModal('${escapeHtml(item.id)}')">
-            Stock update
+          <button class="primary-btn compact-btn" type="button" onclick="${usesAdvancedStockManager(item) ? `openStockManager('${escapeHtml(item.id)}')` : `openStockModal('${escapeHtml(item.id)}')`}">
+            ${usesAdvancedStockManager(item) ? "Gérer le stock" : "Mettre à jour le stock"}
           </button>
         </div>
       </div>
@@ -2791,6 +2833,25 @@ function parseHistoryDate(value) {
   return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
+function formatDateTimeFrench(value, fallback = "Date inconnue") {
+  let date = null;
+  if (value instanceof Date) date = new Date(value.getTime());
+  else if (typeof value === "number" && Number.isFinite(value)) date = new Date(value);
+  else if (value !== null && value !== undefined && String(value).trim()) date = parseHistoryDate(value);
+  if (!date || Number.isNaN(date.getTime())) return fallback;
+  try {
+    return new Intl.DateTimeFormat("fr-FR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    }).format(date).replace(/\s(?:à|,)?\s(?=\d{2}:\d{2}$)/, " · ");
+  } catch {
+    return fallback;
+  }
+}
+
 function getHistoryActionType(action) {
   const normalized = normalizeSearch(action || "");
   if (normalized.includes("supprim")) return "deletion";
@@ -3365,7 +3426,7 @@ function renderLocationDetailRow(entry) {
   const category = record.category || clientSampleTypes[record.type] || record.type || "";
   const currentStock = isClientSample
     ? escapeHtml(formatClientSampleQuantity(record))
-    : formatInventoryCardQuantity(record.quantity, record.unit);
+    : (StockTracking.normalizeTracking(record).mode === "containers" ? escapeHtml(StockTracking.summary(record, selectedLocation)) : formatInventoryCardQuantity(record.quantity, record.unit));
   const minimum = status === "undefined" ? "—" : formatInventoryCardQuantity(record.minStock, record.unit);
   const tags = record.tags || [];
 
@@ -3389,7 +3450,7 @@ function renderLocationDetailRow(entry) {
       </td>
       <td data-label="Actions">
         <div class="location-row-actions">
-          ${isClientSample ? "" : `<button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">Mettre à jour le stock</button>`}
+          ${isClientSample ? "" : `<button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">${usesAdvancedStockManager(record) ? "Gérer le stock" : "Mettre à jour le stock"}</button>`}
           <button class="ghost-btn compact-btn" type="button" ${isClientSample ? `data-edit-sample="${escapeHtml(record.id)}"` : `data-edit-item="${escapeHtml(record.id)}"`}>Modifier</button>
         </div>
       </td>
@@ -3478,7 +3539,9 @@ function bindLocationDetailEvents(locationGrid) {
 
   locationGrid.querySelectorAll("[data-update-stock]").forEach(button => button.addEventListener("click", event => {
     event.stopPropagation();
-    openStockModal(button.dataset.updateStock);
+    const item = items.find(row => row.id === button.dataset.updateStock);
+    if (usesAdvancedStockManager(item)) openStockManager(button.dataset.updateStock);
+    else openStockModal(button.dataset.updateStock);
   }));
   locationGrid.querySelectorAll("[data-edit-item]").forEach(button => button.addEventListener("click", event => {
     event.stopPropagation();
@@ -4875,10 +4938,13 @@ function openModal(id, options = {}) {
   fields.primaryUnitPrice.value = references.primary.unitPrice || "";
   fields.primaryLeadTime.value = references.primary.leadTime || "";
   renderSecondaryReferences(references.secondary);
+  hydrateTrackingForm(item);
   dialog.showModal();
 }
 
 function saveItem() {
+  syncTrackingConfigVisibility();
+  if (!validateTrackingUnitSelection()) return;
   if (!form.reportValidity()) return;
 
   const selectedLocations = getSelectedLocations();
@@ -4887,12 +4953,13 @@ function saveItem() {
   const existingItem = existingId
     ? items.find(entry => entry.id === existingId)
     : null;
+  const actionManagedStock = Boolean(existingItem && (trackingFields.detailedPackagingEnabled.checked || trackingFields.detailedTraceabilityEnabled.checked || trackingFields.aliquotTrackingEnabled.checked));
 
   const item = {
     id: existingId || `web-${Date.now()}`,
     name: fields.name.value.trim(),
     category: fields.category.value.trim(),
-    quantity: Number(fields.quantity.value),
+    quantity: actionManagedStock ? Number(existingItem.quantity) : Number(fields.quantity.value),
     unit: fields.unit.value.trim(),
     minStock: Number(fields.minStock.value),
     usageProfile: normalizeUsageProfile(fields.usageProfile.value),
@@ -4907,6 +4974,20 @@ function saveItem() {
       timeStyle: "short"
     }).format(new Date())
   };
+  let trackingConfig;
+  try {
+    trackingConfig = readTrackingForm(existingItem || item);
+  } catch (error) {
+    if (error.code === "MIGRATION_PENDING") return;
+    trackingFields.packagingPreview.textContent = error.message || String(error);
+    trackingFields.packagingPreview.classList.add("confirmation-modal-error");
+    (/aliquote|préparation/i.test(error.message || "") ? trackingFields.aliquotTrackingEnabled : trackingFields.detailedPackagingEnabled).focus();
+    return;
+  }
+  trackingFields.packagingPreview.classList.remove("confirmation-modal-error");
+  item.stockTracking = trackingConfig.stockTracking;
+  item.aliquotTracking = trackingConfig.aliquotTracking;
+  if (trackingConfig.migrationEvent) item.quantity = StockTracking.available(item);
 
   const isSeedItem = seedBaseItems.some(entry => entry.id === item.id);
   const itemIndex = items.findIndex(entry => entry.id === item.id);
@@ -4923,6 +5004,8 @@ function saveItem() {
     addHistory("Item ajouté", `${currentName} a ajouté ${item.name} dans ${item.category}.`);
   }
 
+  if (trackingConfig.migrationEvent) stockMovements.push(trackingConfig.migrationEvent);
+
   if (pendingOrderInventoryLink && !existingId) {
     linkCreatedItemToOrder(pendingOrderInventoryLink.orderId, item);
     pendingOrderInventoryLink = null;
@@ -4932,6 +5015,283 @@ function saveItem() {
   dialog.close();
   render();
 }
+
+function renderPackagingLevelRow(level = {}, index = 0) {
+  const unit = level.singular || "";
+  return `<section class="packaging-level-row" data-level-index="${index}">
+    <div class="packaging-level-heading"><strong>${index === 0 ? "Contenant principal fermé" : "Contenu"}</strong><span aria-hidden="true">—</span><small>${index === 0 ? "Il s’agit du contenant que vous recevez et stockez fermé." : "Définissez ce que contient le niveau précédent."}</small></div>
+    <div class="packaging-level-fields">
+      <label>Unité<input data-packaging-unit required placeholder="${index === 0 ? "carton" : index === 1 ? "sachet" : "tube"}" value="${escapeHtml(unit)}"></label>
+      ${index ? `<label data-contains-label>Quantité contenue<input data-packaging-contains type="number" min="1" step="1" required value="${Number(level.contains || 1)}"></label>` : `<span class="packaging-empty-field" aria-hidden="true"></span>`}
+      <button class="icon-btn" type="button" data-remove-packaging aria-label="Supprimer ce niveau" ${index === 0 ? "disabled" : ""}>×</button>
+    </div>
+  </section>`;
+}
+
+function hydrateTrackingForm(item) {
+  const tracking = StockTracking.normalizeTracking(item || {});
+  const aliquots = StockTracking.normalizeAliquots(item || {});
+  trackingFields.stockTrackingMode.value = tracking.mode;
+  trackingFields.traceabilityMode.value = tracking.traceabilityMode;
+  trackingFields.detailedPackagingEnabled.checked = tracking.mode === "containers";
+  trackingFields.detailedTraceabilityEnabled.checked = tracking.traceabilityMode === "detailed";
+  trackingFields.aliquotTrackingEnabled.checked = aliquots.enabled;
+  fields.quantity.readOnly = Boolean(item && (tracking.mode === "containers" || tracking.traceabilityMode === "detailed" || aliquots.enabled));
+  fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Gérer le stock » pour modifier cette quantité de manière tracée." : "";
+  trackingFields.packagingLevels.innerHTML = tracking.packagingLevels.map(renderPackagingLevelRow).join("");
+  syncTrackingConfigVisibility(); updateTrackingUnitOptions(tracking.trackingUnitKey); updatePackagingPreview();
+}
+
+function syncTrackingOptionCheckboxes(changedOption = "") {
+  const existingItem = items.find(entry => entry.id === fields.itemId.value.trim());
+  const previousTracking = StockTracking.normalizeTracking(existingItem || {}), previousAliquots = StockTracking.normalizeAliquots(existingItem || {});
+  let message = "";
+  if (changedOption === "packaging" && !trackingFields.detailedPackagingEnabled.checked && previousTracking.mode === "containers" && (StockTracking.totalClosed(previousTracking) > 0 || previousTracking.openContainers.some(row => row.status === "open"))) {
+    trackingFields.detailedPackagingEnabled.checked = true;
+    message = "Le suivi détaillé ne peut pas être désactivé tant que les contenants actifs n’ont pas été consolidés proprement.";
+  }
+  const hasAliquotHistory = existingItem && stockMovements.some(event => event.itemId === existingItem.id && String(event.type || "").includes("aliquot"));
+  if (changedOption === "aliquots" && !trackingFields.aliquotTrackingEnabled.checked && (previousAliquots.preparations.length > 0 || hasAliquotHistory)) {
+    trackingFields.aliquotTrackingEnabled.checked = true;
+    message = "Cette option ne peut pas être désactivée tant que des préparations, des aliquotes actives ou un historique associé existent.";
+  }
+  trackingFields.stockTrackingMode.value = trackingFields.detailedPackagingEnabled.checked ? "containers" : "simple";
+  trackingFields.traceabilityMode.value = trackingFields.detailedTraceabilityEnabled.checked ? "detailed" : "periodic";
+  trackingFields.traceabilityExplanation.classList.toggle("hidden", !trackingFields.detailedTraceabilityEnabled.checked);
+  trackingFields.aliquotTrackingExplanation.classList.toggle("hidden", !trackingFields.aliquotTrackingEnabled.checked);
+  trackingFields.aliquotTrackingExplanation.textContent = trackingFields.detailedPackagingEnabled.checked ? "Vous pourrez sélectionner le contenant utilisé pour chaque préparation." : "Les préparations utiliseront directement le stock global de l’item.";
+  trackingFields.trackingOptionError.textContent = message;
+  trackingFields.trackingOptionError.classList.toggle("hidden", !message);
+  if (existingItem) { fields.quantity.readOnly = trackingFields.detailedPackagingEnabled.checked || trackingFields.detailedTraceabilityEnabled.checked || trackingFields.aliquotTrackingEnabled.checked; fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Gérer le stock » pour modifier cette quantité de manière tracée." : ""; }
+  syncTrackingConfigVisibility();
+}
+
+function syncTrackingConfigVisibility() {
+  trackingFields.stockTrackingMode.value = trackingFields.detailedPackagingEnabled?.checked ? "containers" : "simple";
+  trackingFields.traceabilityMode.value = trackingFields.detailedTraceabilityEnabled?.checked ? "detailed" : "periodic";
+  const advancedMode = trackingFields.stockTrackingMode?.value === "containers";
+  trackingFields.packagingConfig?.classList.toggle("hidden", !advancedMode);
+  trackingFields.packagingConfig?.querySelectorAll("input, select").forEach(control => {
+    control.disabled = !advancedMode;
+  });
+  const hasInteriorLevel = Boolean(trackingFields.packagingLevels?.querySelectorAll(".packaging-level-row").length > 1);
+  trackingFields.trackingUnitField?.classList.toggle("hidden", !advancedMode || !hasInteriorLevel);
+  trackingFields.traceabilityExplanation?.classList.toggle("hidden", !trackingFields.detailedTraceabilityEnabled?.checked);
+  if (trackingFields.aliquotTrackingExplanation) {
+    trackingFields.aliquotTrackingExplanation.classList.toggle("hidden", !trackingFields.aliquotTrackingEnabled?.checked);
+    trackingFields.aliquotTrackingExplanation.textContent = advancedMode ? "Vous pourrez sélectionner le contenant utilisé pour chaque préparation." : "Les préparations utiliseront directement le stock global de l’item.";
+  }
+  syncTrackingUnitValidationState();
+}
+
+function getTrackingUnitValidationState() {
+  const advancedMode = trackingFields.stockTrackingMode?.value === "containers";
+  const rows = Array.from(trackingFields.packagingLevels?.querySelectorAll(".packaging-level-row") || []);
+  const validInteriorLevels = rows.length >= 2 && rows.slice(1).every(row => {
+    const unit = row.querySelector("[data-packaging-unit]")?.value.trim();
+    const contains = Number(row.querySelector("[data-packaging-contains]")?.value);
+    return Boolean(unit) && Number.isFinite(contains) && contains > 0;
+  });
+  return { advancedMode, validInteriorLevels, applicable: advancedMode && validInteriorLevels };
+}
+
+function syncTrackingUnitValidationState() {
+  const select = trackingFields.trackingUnitKey;
+  if (!select) return;
+  const { applicable } = getTrackingUnitValidationState();
+  select.disabled = !applicable;
+  select.required = applicable;
+  if (applicable) select.setAttribute("name", "trackingUnitKey");
+  else select.removeAttribute("name");
+  if (!applicable || select.value) {
+    select.setCustomValidity("");
+    document.querySelector("#trackingUnitError")?.classList.add("hidden");
+  }
+}
+
+function validateTrackingUnitSelection() {
+  const select = trackingFields.trackingUnitKey;
+  const { applicable } = getTrackingUnitValidationState();
+  if (!select || !applicable || select.value) return true;
+  const message = "Sélectionnez l’unité utilisée pour compter le contenu des contenants ouverts.";
+  select.setCustomValidity(message);
+  const details = trackingFields.packagingConfig?.closest("details");
+  if (details) details.open = true;
+  trackingFields.trackingUnitField?.classList.remove("hidden");
+  const error = document.querySelector("#trackingUnitError");
+  if (error) { error.textContent = message; error.classList.remove("hidden"); }
+  select.scrollIntoView({ behavior: "smooth", block: "center" });
+  select.reportValidity();
+  select.focus({ preventScroll: true });
+  return false;
+}
+
+function getPackagingLevelsFromForm() {
+  return Array.from(trackingFields.packagingLevels.querySelectorAll(".packaging-level-row")).map((row, index) => ({ id: `level-${index + 1}`, ...StockTracking.normalizeUnitLabel(row.querySelector("[data-packaging-unit]").value), contains: index ? Number(row.querySelector("[data-packaging-contains]").value) : 1 }));
+}
+
+function updatePackagingPreview() {
+  const rows = Array.from(trackingFields.packagingLevels.querySelectorAll(".packaging-level-row"));
+  const levels = getPackagingLevelsFromForm();
+  rows.forEach((row, index) => { const level = levels[index], previous = levels[index - 1]; row.querySelector(".packaging-level-heading strong").textContent = index === 0 ? "Contenant principal fermé" : `Contenu du ${previous?.singular || "contenant"}`; const label = row.querySelector("[data-contains-label]"); if (label) label.childNodes[0].textContent = `Combien de ${level.plural} contient un ${previous?.singular || "contenant"} ?`; });
+  updateTrackingUnitOptions(trackingFields.trackingUnitKey?.value);
+  const complete = levels.length >= 2 && rows.every((row, index) => row.querySelector("[data-packaging-unit]").value.trim() && (!index || Number(row.querySelector("[data-packaging-contains]").value) > 0));
+  if (!complete || !trackingFields.trackingUnitKey.value) { trackingFields.packagingPreview.textContent = "Complétez les informations ci-dessus pour voir un exemple."; return; }
+  const preview = StockTracking.packagingPreview(levels, trackingFields.trackingUnitKey.value);
+  trackingFields.packagingPreview.innerHTML = `<strong>${escapeHtml(preview.equation)}</strong><span>${escapeHtml(preview.sentence)}</span>`;
+}
+
+function updateTrackingUnitOptions(selectedKey = "") {
+  const levels = getPackagingLevelsFromForm(), inner = levels.slice(1);
+  const advancedMode = trackingFields.stockTrackingMode?.value === "containers";
+  trackingFields.trackingUnitField.classList.toggle("hidden", !advancedMode || !inner.length);
+  const current = selectedKey || trackingFields.trackingUnitKey.value;
+  trackingFields.trackingUnitKey.innerHTML = `<option value="">Sélectionner une unité</option>${inner.map(level => `<option value="${escapeHtml(level.key)}">${escapeHtml(level.plural)}</option>`).join("")}`;
+  if (inner.some(level => level.key === current)) trackingFields.trackingUnitKey.value = current;
+  syncTrackingUnitValidationState();
+}
+
+function readTrackingForm(existingItem) {
+  const previous = StockTracking.normalizeTracking(existingItem || {}), mode = trackingFields.stockTrackingMode.value;
+  const previousAliquots = StockTracking.normalizeAliquots(existingItem || {}), activeContainers = previous.openContainers.some(row => row.status === "open") || StockTracking.totalClosed(previous) > 0;
+  if (previous.mode === "containers" && mode === "simple" && activeContainers) throw new Error("Le suivi avancé ne peut pas être désactivé tant que des contenants sont actifs.");
+  if (!trackingFields.aliquotTrackingEnabled.checked && (previousAliquots.preparations.length > 0 || stockMovements.some(event => event.itemId === existingItem?.id && String(event.type || "").includes("aliquot")))) throw new Error("Cette option ne peut pas être désactivée tant que des préparations ou un historique d’aliquotes existent.");
+  const activeEntities = activeContainers || previousAliquots.preparations.some(row => row.status === "active");
+  const levels = getPackagingLevelsFromForm();
+  if (mode === "containers" && levels.length < 2) throw new Error("Ajoutez au moins un niveau de contenu pour suivre un contenant ouvert.");
+  if (!levels.length || levels.some(level => !level.singular || !level.plural || level.contains <= 0)) throw new Error("La configuration du conditionnement est incomplète.");
+  const selectedTrackingUnit = levels.find(level => level.key === trackingFields.trackingUnitKey.value);
+  if (mode === "containers" && !selectedTrackingUnit) throw new Error("Sélectionnez l’unité de comptage des contenants ouverts.");
+  const structuralChanged = JSON.stringify(previous.packagingLevels.map(({ singular, plural, contains }) => ({ singular, plural, contains }))) !== JSON.stringify(levels.map(({ singular, plural, contains }) => ({ singular, plural, contains })));
+  if (previous.mode === "containers" && structuralChanged && activeEntities) throw new Error("Le conditionnement ne peut pas être modifié tant que des sous-entités sont actives.");
+  const now = new Date().toISOString();
+  let closedByLocation = previous.closedByLocation, openContainers = previous.openContainers;
+  if (previous.mode === "simple" && mode === "containers" && !closedByLocation.length && !openContainers.length) {
+    const quantity = Number(existingItem?.quantity || fields.quantity.value || 0);
+    if (!Number.isInteger(quantity)) {
+      const migration = pendingStockMigration?.confirmed && pendingStockMigration.itemId === existingItem.id ? pendingStockMigration : null;
+      if (!migration) {
+        openStockMigrationAssistant(existingItem, levels);
+        const pendingError = new Error("Migration en attente");
+        pendingError.code = "MIGRATION_PENDING";
+        throw pendingError;
+      }
+      closedByLocation = migration.closedByLocation;
+      openContainers = migration.openContainers;
+      const migrationEvent = createStockMigrationEvent(existingItem, migration);
+      pendingStockMigration = null;
+      return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit.key, trackingUnit: selectedTrackingUnit.plural, quantityStep: 1, precision: selectedTrackingUnit.kind === "continuous" ? 6 : 0, closedByLocation, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked }, migrationEvent };
+    }
+    const locations = getSelectedLocations();
+    if (locations.length !== 1 && quantity > 0) throw new Error("Pour la migration initiale, sélectionnez une seule localisation. Vous pourrez ensuite déplacer les contenants de façon tracée.");
+    closedByLocation = quantity ? [{ location: locations[0], quantity, updatedAt: now, updatedBy: currentName }] : [];
+  }
+  return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit?.key || previous.trackingUnitKey, trackingUnit: selectedTrackingUnit?.plural || previous.trackingUnit, quantityStep: 1, precision: selectedTrackingUnit?.kind === "continuous" ? 6 : 0, closedByLocation, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked } };
+}
+
+function openStockMigrationAssistant(item, levels) {
+  const oldQuantity = Number(item.quantity || 0);
+  const trackingUnitKey = trackingFields.trackingUnitKey.value;
+  const draftTracking = StockTracking.normalizeTracking({ stockTracking: { mode: "containers", packagingLevels: levels, trackingUnitKey } });
+  pendingStockMigration = { itemId: item.id, oldQuantity, levels, trackingUnitKey, draftTracking, trackingUnit: StockTracking.trackingLevel(draftTracking), trackingCapacity: StockTracking.trackingCapacity(draftTracking), baseFactor: StockTracking.trackingFactor(draftTracking), baseCapacity: StockTracking.capacity(draftTracking), confirmed: false };
+  stockMigrationForm.reset();
+  const outer = levels[0], feminine = isLikelyFeminineUnit(outer.singular), closedAdjective = feminine ? "fermées" : "fermés", openAdjective = feminine ? "ouvertes" : "ouverts";
+  document.querySelector("#stockMigrationItemName").textContent = item.name;
+  document.querySelector("#migrationClosedTitle").textContent = `${capitalizeFrenchLabel(outer.plural)} ${closedAdjective}`;
+  document.querySelector("#migrationClosedCountLabel").textContent = `Nombre de ${outer.plural} ${closedAdjective}`;
+  document.querySelector("#migrationOpenTitle").textContent = `${capitalizeFrenchLabel(outer.plural)} ${openAdjective}`;
+  document.querySelector("#migrationOpenCountLabel").textContent = `Nombre de ${outer.plural} ${openAdjective}`;
+  document.querySelector("#stockMigrationOldValue").textContent = `${StockTracking.format(oldQuantity)} ${levels[0].plural}`;
+  document.querySelector("#migrationClosedCount").value = Math.floor(oldQuantity);
+  document.querySelector("#migrationOpenCount").value = oldQuantity > Math.floor(oldQuantity) ? 1 : 0;
+  document.querySelector("#migrationReason").value = "Correction après comptage";
+  document.querySelector("#migrationOtherReason").value = "";
+  syncMigrationReasonFields();
+  const locationOptions = inventoryLocations.map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`).join("");
+  document.querySelector("#migrationClosedLocation").innerHTML = locationOptions;
+  document.querySelector("#migrationClosedLocation").value = getSelectedLocations()[0] || item.location || inventoryLocations[0];
+  renderMigrationOpenRows();
+  updateStockMigrationComparison();
+  stockMigrationDialog.showModal();
+}
+
+function renderMigrationOpenRows() {
+  if (!pendingStockMigration) return;
+  const list = document.querySelector("#migrationOpenContainers");
+  const previous = Array.from(list.querySelectorAll(".migration-open-row")).map(row => ({ remaining: row.querySelector("[data-migration-remaining]")?.value || "", location: row.querySelector("[data-migration-location]")?.value || "" }));
+  const count = Math.min(50, Math.max(0, Math.trunc(Number(document.querySelector("#migrationOpenCount").value) || 0)));
+  const capacity = pendingStockMigration.trackingCapacity, unit = pendingStockMigration.trackingUnit, outer = pendingStockMigration.levels[0];
+  const theoretical = count === 1 ? (pendingStockMigration.oldQuantity - Math.floor(pendingStockMigration.oldQuantity)) * capacity : NaN;
+  const defaultRemaining = Number.isFinite(theoretical) && (unit.kind === "continuous" || Number.isInteger(theoretical)) ? StockTracking.format(theoretical, 6).replace(/\s/g, "").replace(",", ".") : "";
+  list.innerHTML = Array.from({ length: count }, (_, index) => `<div class="migration-open-row"><strong>${escapeHtml(capitalizeFrenchLabel(outer.singular))} nº${index + 1}</strong><div class="migration-open-fields"><label>Contenu restant — ${escapeHtml(unit.plural)}<input data-migration-remaining type="number" inputmode="decimal" min="0" max="${capacity}" step="${unit.kind === "continuous" ? "any" : "1"}" data-quantity-step="1" required value="${escapeHtml(previous[index]?.remaining || (index === 0 ? defaultRemaining : ""))}"><small data-migration-remaining-help></small></label><label>Localisation<select data-migration-location required>${inventoryLocations.map(location => `<option value="${escapeHtml(location)}" ${location === (previous[index]?.location || getSelectedLocations()[0]) ? "selected" : ""}>${escapeHtml(location)}</option>`).join("")}</select></label></div></div>`).join("");
+  updateStockMigrationComparison();
+}
+
+function capitalizeFrenchLabel(value) {
+  const label = String(value || "");
+  return label ? `${label.charAt(0).toLocaleUpperCase("fr-FR")}${label.slice(1)}` : label;
+}
+
+function isLikelyFeminineUnit(value) {
+  return /(ille|[îi]te|ote|que|ité|oule|otte|ette|ance|ence|tion|souris)$/i.test(String(value || ""));
+}
+
+function getStockMigrationDraft() {
+  if (!pendingStockMigration) return null;
+  const capacity = pendingStockMigration.trackingCapacity;
+  const closedCount = Math.trunc(Number(document.querySelector("#migrationClosedCount").value) || 0);
+  const closedLocation = document.querySelector("#migrationClosedLocation").value;
+  const opened = Array.from(document.querySelectorAll("#migrationOpenContainers .migration-open-row")).map((row, index) => ({ index, remaining: StockTracking.parseLocalizedNumber(row.querySelector("[data-migration-remaining]").value), location: row.querySelector("[data-migration-location]").value }));
+  const comparison = StockTracking.migrationComparison(pendingStockMigration.oldQuantity, closedCount, opened.map(row => row.remaining), pendingStockMigration.draftTracking);
+  return { capacity, closedCount, closedLocation, opened, newEquivalent: comparison.newEquivalent, difference: comparison.difference, differenceTrackingUnits: comparison.differenceTrackingUnits };
+}
+
+function updateStockMigrationComparison() {
+  if (!pendingStockMigration) return;
+  const draft = getStockMigrationDraft();
+  const presentation = StockTracking.migrationPresentation(pendingStockMigration.oldQuantity, draft.closedCount, draft.opened.map(row => row.remaining), pendingStockMigration.draftTracking);
+  document.querySelectorAll("[data-migration-remaining-help]").forEach((help, index) => { help.textContent = presentation.helpTexts[index] || ""; });
+  document.querySelector("#migrationComparisonOld").textContent = presentation.oldText;
+  document.querySelector("#migrationPhysicalSummary").textContent = presentation.physicalSummary;
+  document.querySelector("#migrationComparisonNew").textContent = presentation.equivalentText;
+  document.querySelector("#migrationComparisonDifference").textContent = presentation.correctionText;
+  document.querySelector("#migrationComparisonSecondary").textContent = presentation.secondaryText;
+  const hasDifference = presentation.complete && Math.abs(presentation.difference) > 1e-8;
+  document.querySelector("#migrationReasonField").classList.toggle("hidden", !hasDifference);
+  syncMigrationReasonFields();
+}
+
+function syncMigrationReasonFields() {
+  const reason = document.querySelector("#migrationReason")?.value || "";
+  const visible = !document.querySelector("#migrationReasonField")?.classList.contains("hidden") && reason === "Autre";
+  document.querySelector("#migrationOtherReasonField")?.classList.toggle("hidden", !visible);
+  if (document.querySelector("#migrationOtherReason")) document.querySelector("#migrationOtherReason").required = visible;
+}
+
+function confirmStockMigration(event) {
+  event.preventDefault();
+  const errorBox = document.querySelector("#stockMigrationError"); errorBox.classList.add("hidden");
+  if (!stockMigrationForm.reportValidity() || !pendingStockMigration) return;
+  try {
+    const draft = getStockMigrationDraft(), unit = pendingStockMigration.trackingUnit;
+    if (!Number.isInteger(draft.closedCount) || draft.closedCount < 0) throw new Error("Le nombre de contenants fermés doit être un entier positif.");
+    draft.opened.forEach(row => { StockTracking.validateUnitQuantity(row.remaining, unit); if (row.remaining > draft.capacity) throw new Error(`Le contenu du contenant ouvert nº${row.index + 1} doit être compris entre 0 et ${draft.capacity} ${unit.plural}.`); });
+    const selectedReason = document.querySelector("#migrationReason").value;
+    const otherReason = document.querySelector("#migrationOtherReason").value.trim();
+    const reason = Math.abs(draft.difference) <= 1e-8 ? "" : selectedReason === "Autre" ? otherReason : selectedReason;
+    if (Math.abs(draft.difference) > 1e-8 && !reason) throw new Error("Précisez la raison de la correction.");
+    const now = new Date().toISOString(), actor = { userId: currentName.toLowerCase().replace(/\W+/g, "-"), userName: currentName, userEmoji: userIcons[currentName] || "", userInitials: userIcons[currentName] ? "" : getHistoryUserInitials(currentName) };
+    pendingStockMigration = { ...pendingStockMigration, confirmed: true, newEquivalent: draft.newEquivalent, difference: draft.difference, differenceTrackingUnits: draft.differenceTrackingUnits, reason, closedByLocation: draft.closedCount ? [{ location: draft.closedLocation, quantity: draft.closedCount, updatedAt: now, updatedBy: actor.userId }] : [], openContainers: draft.opened.map((row, index) => ({ id: StockTracking.id("container"), label: `${pendingStockMigration.levels[0].singular} ouvert nº${index + 1}`, location: row.location, remaining: StockTracking.round ? StockTracking.round(row.remaining * pendingStockMigration.baseFactor) : Number((row.remaining * pendingStockMigration.baseFactor).toFixed(6)), capacity: pendingStockMigration.baseCapacity, status: "open", openedAt: now, openedBy: actor, updatedAt: now, updatedBy: actor.userId, version: 1 })) };
+    stockMigrationDialog.close(); saveItem();
+  } catch (error) { errorBox.textContent = error.message || String(error); errorBox.classList.remove("hidden"); }
+}
+
+function createStockMigrationEvent(item, migration) {
+  const now = new Date().toISOString(), emoji = userIcons[currentName] || "";
+  return { id: StockTracking.id("movement"), operationId: StockTracking.id("migration"), itemId: item.id, timestamp: now, userId: currentName.toLowerCase().replace(/\W+/g, "-"), userName: currentName, userEmoji: emoji, userInitials: emoji ? "" : getHistoryUserInitials(currentName), type: Math.abs(migration.difference) > 1e-8 ? "corrected" : "configuration_changed", entityType: "item", entityId: item.id, before: { mode: "simple", quantity: migration.oldQuantity }, after: { mode: "containers", equivalentQuantity: migration.newEquivalent, closedByLocation: migration.closedByLocation, openContainers: migration.openContainers.map(row => ({ id: row.id, location: row.location, remaining: row.remaining })) }, quantity: Math.abs(migration.difference) > 1e-8 ? migration.differenceTrackingUnits : 0, unit: Math.abs(migration.difference) > 1e-8 ? migration.trackingUnit.plural : migration.levels[0].plural, fromLocation: "", toLocation: "", comment: "Migration validée du suivi simple vers le suivi par contenants.", correctionReason: migration.reason || "" };
+}
+
+function closeStockMigration() { pendingStockMigration = null; stockMigrationDialog?.close(); }
 
 function toggleUsageProfile(profile) {
   const normalized = normalizeUsageProfile(profile);
@@ -4967,6 +5327,305 @@ function openStockModal(id) {
   stockFields.stockUnit.value = item.unit;
   stockFields.stockNotes.value = "";
   stockDialog.showModal();
+}
+
+function renderAdvancedStockDetail(item) {
+  const tracking = StockTracking.normalizeTracking(item), aliquots = StockTracking.normalizeAliquots(item);
+  const showDistribution = tracking.mode === "containers", showPreparations = aliquots.enabled, showJournal = tracking.traceabilityMode === "detailed";
+  if (!showDistribution && !showPreparations && !showJournal) return "";
+  const outerUnit = tracking.packagingLevels[0], closedCount = tracking.closedByLocation.reduce((sum, row) => sum + row.quantity, 0);
+  const closed = tracking.closedByLocation.map(row => `<article class="stock-distribution-card stock-distribution-card--closed"><div class="stock-distribution-card-head"><div><strong class="stock-distribution-primary">${row.quantity} ${escapeHtml(StockTracking.plural(row.quantity, outerUnit.singular, outerUnit.plural))} fermé${row.quantity > 1 ? "s" : ""}</strong><span class="stock-distribution-location"><span aria-hidden="true">⌖</span>${escapeHtml(row.location || "—")}</span></div><span class="stock-distribution-badge stock-distribution-badge--closed">Fermé</span></div></article>`).join("");
+  const openUnit = StockTracking.trackingLevel(tracking);
+  const openContainers = tracking.openContainers.filter(row => row.status === "open");
+  const opened = openContainers.map(row => { const remaining = StockTracking.fromBaseQuantity(row.remaining, tracking), capacity = StockTracking.fromBaseQuantity(row.capacity, tracking), title = formatOpenContainerDisplayTitle(row.label, outerUnit.singular), identity = getOpenedContainerIdentity(row.openedBy), openedDate = formatDateTimeFrench(row.openedAt).replace(" · ", " à "); return `<article class="stock-distribution-card stock-distribution-card--open" id="stock-${escapeHtml(row.id)}"><div class="stock-distribution-open-head"><div class="stock-distribution-title-group"><strong>${escapeHtml(title)}</strong><span class="stock-distribution-badge stock-distribution-badge--open">Ouvert</span></div><span class="stock-distribution-location"><span aria-hidden="true">⌖</span>${escapeHtml(row.location || "—")}</span></div><div class="stock-distribution-quantity-row"><strong>${StockTracking.format(remaining)} ${escapeHtml(StockTracking.plural(remaining, openUnit.singular, openUnit.plural))} restants</strong><span>${StockTracking.format(remaining)} sur ${StockTracking.format(capacity)}</span></div><progress max="${capacity}" value="${remaining}"></progress><div class="stock-distribution-meta"><span>Ouvert par</span><span class="history-user-avatar ${identity.type}" aria-hidden="true">${escapeHtml(identity.value)}</span><strong>${escapeHtml(identity.name)}</strong><span aria-hidden="true">·</span><time>${escapeHtml(openedDate)}</time></div></article>`; }).join("");
+  const preparations = aliquots.preparations.filter(row => row.status === "active").map(prep => renderPreparationStockCard(item, prep)).join("");
+  const movements = stockMovements.filter(row => row?.itemId === item.id).slice().sort((a,b) => stockMovementTime(b) - stockMovementTime(a)).slice(0,10);
+  const distributionModule = showDistribution ? `<details open><summary>Répartition du stock</summary><div class="advanced-stock-block stock-distribution"><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock fermé</strong><span>${closedCount} ${escapeHtml(StockTracking.plural(closedCount, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${closed || "<p class=\"stock-distribution-empty\">Aucun contenant fermé.</p>"}</div></section><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock ouvert</strong><span>${openContainers.length} ${escapeHtml(StockTracking.plural(openContainers.length, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${opened || "<p class=\"stock-distribution-empty\">Aucun contenant ouvert.</p>"}</div></section></div></details>` : "";
+  const preparationsModule = showPreparations ? `<details open><summary>Préparations et aliquotes</summary><div class="advanced-stock-block">${preparations || `<div class="stock-distribution-empty"><p>Aucune préparation active.</p><button class="ghost-btn compact-btn" type="button" onclick="openStockManager('${escapeHtml(item.id)}',{action:'aliquots_prepared'})">Préparer des aliquotes</button></div>`}</div></details>` : "";
+  const journalModule = showJournal ? `<details><summary>Journal des mouvements</summary><div class="advanced-stock-block movement-list">${movements.length ? movements.map(renderStockMovementSafely).join("") : "<p>Aucun mouvement enregistré.</p>"}</div></details>` : "";
+  const overview = showDistribution ? `<div class="advanced-stock-kpis"><strong>${escapeHtml(StockTracking.summary(item))}</strong><span>Équivalent total : ${StockTracking.format(StockTracking.available(item))} ${escapeHtml(tracking.packagingLevels[0].plural)}</span><span>Minimum : ${StockTracking.format(item.minStock)} · ${escapeHtml(statusLabel(itemStatus(item)))}</span></div>` : "";
+  return `<section class="advanced-stock-overview">${overview}${distributionModule}${preparationsModule}${journalModule}</section>`;
+}
+
+function formatOpenContainerDisplayTitle(label, fallbackUnit) {
+  const raw = String(label || "").trim().replace(/\s+ouvert(?:e)?(?=\s+n[º°o])/i, "");
+  const safe = raw || `${fallbackUnit || "Contenant"} nº—`;
+  return `${safe.charAt(0).toLocaleUpperCase("fr-FR")}${safe.slice(1)}`;
+}
+
+function getOpenedContainerIdentity(openedBy) {
+  const name = String(openedBy?.userName || openedBy?.name || "—");
+  if (openedBy?.userEmoji || openedBy?.emoji) return { name, type: "emoji", value: openedBy.userEmoji || openedBy.emoji };
+  if (openedBy?.userInitials || openedBy?.initials) return { name, type: "", value: openedBy.userInitials || openedBy.initials };
+  const avatar = getHistoryUserAvatar(name);
+  return { name, type: avatar.type, value: avatar.value };
+}
+
+function renderPreparationStockCard(item, prep) {
+  const unopened = StockTracking.remainingAliquots(prep), opened = (prep.openAliquots || []).filter(row => row.status === "open"), identity = getOpenedContainerIdentity(prep.preparedBy), preparedDate = formatDateTimeFrench(prep.preparedAt).replace(" · ", " à ");
+  const openCards = opened.map(open => { const openIdentity = getOpenedContainerIdentity(open.openedBy), date = formatDateTimeFrench(open.openedAt).replace(" · ", " à "), max = open.initialVolume || 1; return `<article class="open-aliquot-card"><div class="stock-distribution-open-head"><div class="stock-distribution-title-group"><strong>${escapeHtml(open.label)}</strong><span class="stock-distribution-badge stock-distribution-badge--open">Ouverte</span></div><span class="stock-distribution-location"><span aria-hidden="true">⌖</span>${escapeHtml(open.location || "—")}</span></div><div class="stock-distribution-quantity-row"><strong>${StockTracking.format(open.remainingVolume)} ${escapeHtml(open.volumeUnit)} restants</strong><span>sur ${StockTracking.format(open.initialVolume)} ${escapeHtml(open.volumeUnit)}</span></div><progress max="${max}" value="${open.remainingVolume}"></progress><div class="stock-distribution-meta"><span>Ouverte par</span><span class="history-user-avatar ${openIdentity.type}">${escapeHtml(openIdentity.value)}</span><strong>${escapeHtml(openIdentity.name)}</strong><span>·</span><time>${escapeHtml(date)}</time></div><button class="ghost-btn compact-btn" type="button" onclick="openStockManager('${escapeHtml(item.id)}',{action:'aliquots_consumed',entityId:'${escapeHtml(open.id)}'})">Gérer</button></article>`; }).join("");
+  return `<article class="tracked-entity-card preparation-stock-card"><div><strong>${escapeHtml(prep.label)}</strong><span>${unopened} aliquote${unopened > 1 ? "s" : ""} non ouverte${unopened > 1 ? "s" : ""} · ${opened.length} aliquote${opened.length > 1 ? "s" : ""} ouverte${opened.length > 1 ? "s" : ""}</span></div><small>Préparée par ${escapeHtml(identity.value)} ${escapeHtml(identity.name)} · ${escapeHtml(preparedDate)}</small><small>${escapeHtml(prep.volume ? `${StockTracking.format(prep.volume)} ${prep.volumeUnit}` : "Volume individuel non défini")} ${escapeHtml(prep.concentration ? `· ${StockTracking.format(prep.concentration)} ${prep.concentrationUnit}` : "")}</small><ul>${prep.locations.map(row => `<li>${escapeHtml(row.location)} — ${row.quantity} non ouverte${row.quantity > 1 ? "s" : ""}</li>`).join("")}</ul>${openCards ? `<div class="open-aliquot-list">${openCards}</div>` : ""}</article>`;
+}
+
+function getStockMovementDate(entry) {
+  return entry?.timestamp ?? entry?.createdAt ?? entry?.date ?? null;
+}
+
+function stockMovementTime(entry) {
+  const value = getStockMovementDate(entry);
+  const date = value instanceof Date ? value : typeof value === "number" ? new Date(value) : parseHistoryDate(value);
+  const time = date?.getTime();
+  return Number.isFinite(time) ? time : 0;
+}
+
+function renderStockMovementSafely(entry) {
+  try {
+    return renderStockMovement(entry && typeof entry === "object" ? entry : {});
+  } catch (error) {
+    console.warn("Mouvement de stock malformé ignoré dans le rendu.", error);
+    return `<article class="movement-entry"><span class="history-user-avatar">?</span><div><strong>Mouvement de stock</strong><small>Date inconnue</small><p>Détails indisponibles.</p></div></article>`;
+  }
+}
+
+function renderStockMovement(entry = {}) {
+  const labels = { received:"Réception", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Comptage", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Comptage", preparation_finished:"Préparation terminée", corrected:"Correction", configuration_changed:"Configuration" };
+  return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")} · ${escapeHtml(entry.userName || "Utilisateur")}</strong><small>${escapeHtml(formatDateTimeFrench(getStockMovementDate(entry)))}</small><p>${formatStockMovementDescription(entry)}</p></div></article>`;
+}
+
+function formatStockMovementDescription(entry) {
+  if (entry.type === "aliquots_consumed") { const before=StockTracking.remainingAliquots(entry.before || {locations:[]}),after=StockTracking.remainingAliquots(entry.after || {locations:[]}); return `${StockTracking.format(entry.quantity)} aliquote${entry.quantity>1?"s":""} utilisée${entry.quantity>1?"s":""}. ${before} → ${after} aliquotes.${entry.comment?` ${escapeHtml(entry.comment)}`:""}`; }
+  if (entry.type === "open_aliquot_consumed") return `${StockTracking.format(entry.quantity)} ${escapeHtml(entry.unit)} utilisés. ${StockTracking.format(entry.before?.remainingVolume)} → ${StockTracking.format(entry.after?.remainingVolume)} ${escapeHtml(entry.unit)}.${entry.comment?` ${escapeHtml(entry.comment)}`:""}`;
+  if (entry.type === "aliquot_opened") return `${escapeHtml(entry.after?.label || "Aliquote")} ouverte à ${escapeHtml(entry.after?.location || entry.toLocation || "—")} · ${StockTracking.format(entry.after?.remainingVolume)} ${escapeHtml(entry.after?.volumeUnit || "")}.`;
+  if (entry.type === "open_aliquot_moved") return `${escapeHtml(entry.before?.label || "Aliquote")} déplacée de ${escapeHtml(entry.fromLocation || "—")} vers ${escapeHtml(entry.toLocation || "—")}.`;
+  if (entry.type === "open_aliquot_discarded") return `${StockTracking.format(entry.quantity)} ${escapeHtml(entry.unit)} jetés. Motif : ${escapeHtml(entry.correctionReason || "—")}.`;
+  return `${entry.quantity ? `${StockTracking.format(entry.quantity)} ${escapeHtml(entry.unit || "")}. ` : ""}${entry.fromLocation ? `${escapeHtml(entry.fromLocation)} → ` : ""}${escapeHtml(entry.toLocation || "")}${entry.comment ? ` · ${escapeHtml(entry.comment)}` : ""}`;
+}
+
+function ensureStockManagerDialog() {
+  let modal = document.querySelector("#stockManagerDialog"); if (modal) return modal;
+  document.body.insertAdjacentHTML("beforeend", `<dialog id="stockManagerDialog" class="modal stock-manager-modal"><form id="stockManagerForm"><div class="modal-header"><div><h3>Gérer le stock</h3><small id="stockManagerItemName"></small></div><button class="icon-btn" type="button" data-close-stock-manager>×</button></div><input id="stockManagerItemId" type="hidden"><label>Action<select id="stockManagerAction"></select></label><p id="stockManagerAvailabilityNote" class="tracking-option-explanation hidden"></p><div id="stockManagerFields" class="form-grid"></div><label class="full-label">Commentaire ou expérience (facultatif)<textarea id="stockManagerComment" rows="2"></textarea></label><p id="stockManagerError" class="confirmation-modal-error hidden" role="alert"></p><div class="modal-actions"><button class="ghost-btn" type="button" data-close-stock-manager>Annuler</button><button id="executeStockManagerBtn" class="primary-btn" type="submit">Enregistrer</button></div></form></dialog>`);
+  modal = document.querySelector("#stockManagerDialog");
+  modal.querySelectorAll("[data-close-stock-manager]").forEach(btn => btn.addEventListener("click", () => modal.close()));
+  modal.querySelector("#stockManagerAction").addEventListener("change", renderStockManagerFields);
+  modal.querySelector("form").addEventListener("submit", submitStockManager);
+  return modal;
+}
+
+function usesAdvancedStockManager(item) {
+  const tracking = StockTracking.normalizeTracking(item || {});
+  return tracking.mode === "containers" || tracking.traceabilityMode === "detailed" || StockTracking.normalizeAliquots(item || {}).enabled;
+}
+
+function getStockManagerActionState(item) {
+  const tracking=StockTracking.normalizeTracking(item),aliquots=StockTracking.normalizeAliquots(item),actions=[];
+  if(tracking.mode==="containers")actions.push(["received","Réceptionner des contenants"],["container_opened","Ouvrir un contenant"],["consumed","Gérer les contenants ouverts — Utiliser"],["recounted","Faire un comptage"],["moved","Déplacer"],["container_finished","Terminer"]);else actions.push(["received","Réceptionner"],["consumed","Utiliser"]);
+  const activePreparations=aliquots.preparations.filter(row=>row.status==="active"),hasUnopened=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0),hasOpenable=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0&&row.volume>0&&row.volumeUnit),hasOpen=activePreparations.some(row=>row.openAliquots.some(open=>open.status==="open"&&open.remainingVolume>0));
+  if(aliquots.enabled)actions.push(["aliquots_prepared","Préparer des aliquotes",false],["aliquots_consumed","Utiliser des aliquotes",!hasUnopened&&!hasOpen],["aliquot_opened","Ouvrir une aliquote",!hasOpenable]);
+  if(hasOpen)actions.push(["open_aliquot_moved","Déplacer une aliquote ouverte",false],["open_aliquot_discarded","Terminer / jeter le reliquat",false]);
+  if(activePreparations.length)actions.push(["aliquots_moved","Déplacer des aliquotes",false],["preparation_recounted","Recompter des aliquotes",false],["preparation_finished","Terminer une préparation",false]);
+  return {tracking,aliquots,actions,activePreparations,hasUnopened,hasOpenable,hasOpen};
+}
+
+function openStockManager(itemId, options = {}) {
+  const item = items.find(row => row.id === itemId); if (!item) return;
+  const modal=ensureStockManagerDialog(),{tracking,aliquots,actions,hasUnopened,hasOpen}=getStockManagerActionState(item);
+  modal.querySelector("#stockManagerItemId").value = itemId; modal.querySelector("#stockManagerItemName").textContent = item.name; modal.querySelector("#stockManagerAction").innerHTML = actions.map(([value,label,disabled]) => `<option value="${value}" ${disabled ? "disabled" : ""}>${label}</option>`).join(""); if (options.action && actions.some(([value,,disabled]) => value === options.action && !disabled)) modal.querySelector("#stockManagerAction").value = options.action; modal.dataset.entityId = options.entityId || ""; modal.querySelector("#stockManagerComment").value = ""; modal.querySelector("#stockManagerError").classList.add("hidden"); const note=modal.querySelector("#stockManagerAvailabilityNote"); note.textContent=!hasUnopened&&!hasOpen&&aliquots.enabled?"Aucune aliquote disponible. Préparez d’abord des aliquotes.":tracking.traceabilityMode === "detailed"?"Chaque utilisation doit être enregistrée individuellement.":""; note.classList.toggle("hidden",!note.textContent); renderStockManagerFields(); modal.showModal();
+}
+
+function stockSelect(id, label, values, extra="") { return `<label><span>${label}</span><select id="${id}" required>${values.map(([value,text]) => `<option value="${escapeHtml(value)}">${escapeHtml(text)}</option>`).join("")}</select>${extra}</label>`; }
+function stockNumber(id,label,step="1",max="") { return `<label><span>${label}</span><input id="${id}" type="number" min="0" step="${step}" data-quantity-step="1" ${max !== "" ? `max="${max}"` : ""} required></label>`; }
+
+function getAliquotPreparationSources(item) {
+  const tracking = StockTracking.normalizeTracking(item);
+  if (tracking.mode === "simple") {
+    const quantity = StockTracking.simpleRawAvailable(item);
+    return { mode: "simple", quantity, unit: StockTracking.normalizeUnitLabel(item.unit), location: getItemLocations(item)[0] || item.location || "—", groups: quantity > 0 ? [{ type: "simple", label: "Stock disponible", sources: [{ id: "global", quantity, location: getItemLocations(item)[0] || item.location || "—" }] }] : [] };
+  }
+  const openUnit = StockTracking.trackingLevel(tracking), outer = tracking.packagingLevels[0];
+  const open = tracking.openContainers.filter(row => row.status === "open" && row.remaining > 0).map(row => { const quantity = StockTracking.fromBaseQuantity(row.remaining, tracking); return { id: row.id, quantity, location: row.location || "—", label: `${formatOpenContainerDisplayTitle(row.label, outer.singular)} · ${StockTracking.format(quantity)} ${StockTracking.plural(quantity, openUnit.singular, openUnit.plural)} · ${row.location || "—"}` }; });
+  const closed = tracking.closedByLocation.filter(row => row.quantity > 0 && row.location).map(row => ({ id: row.location, quantity: row.quantity, location: row.location, label: `${row.location} · ${row.quantity} ${StockTracking.plural(row.quantity, outer.singular, outer.plural)} fermés` }));
+  return { mode: "containers", unit: openUnit, groups: [...(open.length ? [{ type: "container", label: "Contenant ouvert", sources: open }] : []), ...(closed.length ? [{ type: "closed", label: "Contenant fermé", sources: closed }] : [])] };
+}
+
+function renderAliquotPreparationFields(item, locations) {
+  const sourceState = getAliquotPreparationSources(item), unit = sourceState.unit, inputStep = unit.kind === "continuous" ? "any" : "1";
+  if (!sourceState.groups.length) return `<div class="stock-source-empty"><strong>Aucun stock disponible pour préparer des aliquotes.</strong><button class="ghost-btn compact-btn" type="button" data-empty-stock-action>${sourceState.mode === "containers" ? "Réceptionner du stock" : "Réceptionner du stock"}</button></div>`;
+  const sourceControls = sourceState.mode === "simple"
+    ? `<div class="stock-source-summary"><span>Source utilisée</span><strong>Stock disponible</strong><small>${StockTracking.format(sourceState.quantity)} ${escapeHtml(unit.plural)} · ${escapeHtml(sourceState.location)}</small></div><input id="smSourceType" type="hidden" value="simple"><input id="smSourceId" type="hidden" value="global">`
+    : `${stockSelect("smSourceType", "Source", sourceState.groups.map(group => [group.type, group.label]))}<div id="smSourceEntityField"></div>`;
+  const initialMax = sourceState.mode === "simple" ? sourceState.quantity : "";
+  const secondLocation = stockSelect("smTo2", "Localisation supplémentaire", [["","—"],...locations]).replace(" required>", " disabled>");
+  const secondQuantity = stockNumber("smLocationQuantity2", "Aliquotes dans cette localisation").replace(" required>", " disabled>");
+  return `${sourceControls}${stockNumber("smSourceQuantity", `Quantité source utilisée — ${unit.plural}`, inputStep, initialMax)}${stockNumber("smCreated", "Nombre d’aliquotes")}${stockNumber("smVolume", "Volume final", "any")}<label>Unité de volume<input id="smVolumeUnit" value="µL" required></label>${stockNumber("smConcentration", "Concentration finale", "any")}<label>Unité de concentration<input id="smConcentrationUnit" value="mM" required></label><div class="aliquot-location-row">${stockSelect("smTo", "Localisation", locations)}${stockNumber("smLocationQuantity", "Nombre d’aliquotes dans cette localisation")}</div><button id="addAliquotLocationBtn" class="ghost-btn compact-btn aliquot-location-add" type="button">+ Ajouter une localisation</button><div id="additionalAliquotLocationRow" class="aliquot-location-row aliquot-location-row--additional hidden">${secondLocation}${secondQuantity}<button id="removeAliquotLocationBtn" class="icon-btn" type="button" aria-label="Retirer la localisation supplémentaire">×</button></div>`;
+}
+
+function setAdditionalAliquotLocationVisible(modal, visible, values = {}) {
+  const row = modal.querySelector("#additionalAliquotLocationRow"), addButton = modal.querySelector("#addAliquotLocationBtn"), location = modal.querySelector("#smTo2"), quantity = modal.querySelector("#smLocationQuantity2");
+  if (!row || !location || !quantity) return;
+  row.classList.toggle("hidden", !visible);
+  addButton?.classList.toggle("hidden", visible);
+  location.disabled = !visible;
+  quantity.disabled = !visible;
+  location.required = visible;
+  quantity.required = visible;
+  quantity.min = visible ? "1" : "0";
+  if (visible) {
+    location.value = values.location || "";
+    quantity.value = values.quantity ?? "";
+  } else {
+    location.value = "";
+    quantity.value = "";
+    location.setCustomValidity("");
+    quantity.setCustomValidity("");
+  }
+}
+
+function validateAliquotDistribution(modal) {
+  const errorBox = modal.querySelector("#stockManagerError"), total = StockTracking.parseLocalizedNumber(modal.querySelector("#smCreated")?.value), firstLocation = modal.querySelector("#smTo"), firstQuantity = modal.querySelector("#smLocationQuantity"), secondLocation = modal.querySelector("#smTo2"), secondQuantity = modal.querySelector("#smLocationQuantity2"), secondVisible = Boolean(secondLocation && !secondLocation.disabled);
+  [firstLocation, firstQuantity, secondLocation, secondQuantity].forEach(control => control?.setCustomValidity(""));
+  if (!Number.isFinite(total) || total <= 0 || !firstLocation?.value || !Number.isFinite(StockTracking.parseLocalizedNumber(firstQuantity?.value))) return true;
+  if (secondVisible && secondLocation.value === firstLocation.value) {
+    const message = "Sélectionnez deux localisations différentes.";
+    secondLocation.setCustomValidity(message); errorBox.textContent = message; errorBox.classList.remove("hidden"); secondLocation.focus(); return false;
+  }
+  const first = StockTracking.parseLocalizedNumber(firstQuantity.value), second = secondVisible ? StockTracking.parseLocalizedNumber(secondQuantity.value) : 0;
+  if (secondVisible && (!secondLocation.value || !Number.isFinite(second) || second <= 0)) return true;
+  const difference = total - first - second;
+  if (Math.abs(difference) > 1e-8) {
+    const message = difference > 0 ? `Répartissez les ${StockTracking.format(total)} aliquotes entre les localisations sélectionnées. Il reste ${StockTracking.format(difference)} aliquote${difference > 1 ? "s" : ""} à attribuer.` : `La répartition dépasse de ${StockTracking.format(Math.abs(difference))} aliquote${Math.abs(difference) > 1 ? "s" : ""} le nombre préparé.`;
+    firstQuantity.setCustomValidity(message); errorBox.textContent = message; errorBox.classList.remove("hidden"); firstQuantity.focus(); return false;
+  }
+  errorBox.classList.add("hidden");
+  return true;
+}
+
+function buildAliquotPreparationOperation(modal, sourceItem) {
+  const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), sourceType = value("smSourceType"), sourceId = value("smSourceId"), sourceTracking = StockTracking.normalizeTracking(sourceItem || {}), normalizedSourceQuantity = numeric("smSourceQuantity");
+  return { sourceType, sourceId, fromLocation: sourceType === "closed" ? sourceId : value("smFrom"), sourceQuantity: normalizedSourceQuantity, representedSourceQuantity: normalizedSourceQuantity, createdCount: numeric("smCreated"), volume: numeric("smVolume"), volumeUnit: value("smVolumeUnit"), concentration: numeric("smConcentration"), concentrationUnit: value("smConcentrationUnit"), sourceUnit: sourceTracking.mode === "simple" ? (sourceItem?.unit || "") : StockTracking.trackingLevel(sourceTracking).plural, preparedAt: new Date().toISOString().slice(0, 10), locations: [{ location: value("smTo"), quantity: numeric("smLocationQuantity") }, { location: value("smTo2"), quantity: numeric("smLocationQuantity2") }].filter(row => row.location && row.quantity) };
+}
+
+function syncAliquotSourceEntity(modal, item) {
+  const host = modal.querySelector("#smSourceEntityField"), type = modal.querySelector("#smSourceType")?.value;
+  if (!host || !type) return;
+  const sourceState = getAliquotPreparationSources(item), group = sourceState.groups.find(entry => entry.type === type);
+  host.innerHTML = group?.sources.length ? stockSelect("smSourceId", type === "container" ? "Contenant source" : "Stock fermé source", group.sources.map(source => [source.id, source.label])) : "";
+  const syncLimit = () => {
+    const selected = group?.sources.find(source => source.id === modal.querySelector("#smSourceId")?.value), quantity = modal.querySelector("#smSourceQuantity");
+    if (!quantity) return;
+    const capacity = type === "closed" ? StockTracking.trackingCapacity(StockTracking.normalizeTracking(item)) : selected?.quantity;
+    quantity.max = Number.isFinite(capacity) ? capacity : "";
+    quantity.value = type === "closed" && Number.isFinite(capacity) ? capacity : "";
+    quantity.readOnly = type === "closed";
+  };
+  modal.querySelector("#smSourceId")?.addEventListener("change", syncLimit);
+  syncLimit();
+}
+
+function formatPreparationOption(prep) {
+  const parsedDate = prep.preparedAt ? new Date(`${prep.preparedAt}T12:00:00`) : null, date = parsedDate && Number.isFinite(parsedDate.getTime()) ? new Intl.DateTimeFormat("fr-FR").format(parsedDate) : "Date inconnue";
+  const available = StockTracking.remainingAliquots(prep);
+  return `Préparation du ${date} · ${available} disponible${available > 1 ? "s" : ""}${prep.volume ? ` · ${StockTracking.format(prep.volume)} ${prep.volumeUnit}` : ""}${prep.concentration ? ` · ${StockTracking.format(prep.concentration)} ${prep.concentrationUnit}` : ""}`;
+}
+
+function getActiveOpenAliquots(aliquots) { return aliquots.preparations.flatMap(prep => prep.openAliquots.filter(open => open.status === "open" && open.remainingVolume > 0).map(open => ({ prep, open }))); }
+
+function renderAliquotUseFields(item) {
+  const aliquots = StockTracking.normalizeAliquots(item), unopened = aliquots.preparations.filter(prep => prep.status === "active" && StockTracking.remainingAliquots(prep) > 0), partial = unopened.filter(prep => prep.volume > 0 && prep.volumeUnit), opened = getActiveOpenAliquots(aliquots), modes = [];
+  if (unopened.length) modes.push(["whole", "Aliquotes entières"]);
+  if (partial.length) modes.push(["open_new", "Utiliser partiellement une nouvelle aliquote"]);
+  if (opened.length) modes.push(["open_existing", "Utiliser une aliquote déjà ouverte"]);
+  if (!modes.length) return `<div class="stock-source-empty"><strong>Aucune aliquote disponible. Préparez d’abord des aliquotes.</strong></div>`;
+  const legacyNote = unopened.length && !partial.length ? `<p class="tracking-option-explanation">Le volume individuel de cette préparation n’est pas défini. Seule la consommation d’aliquotes entières est disponible.</p>` : "";
+  return `${stockSelect("smAliquotUseMode", "Mode d’utilisation", modes)}${legacyNote}<div id="smAliquotUseFields" class="form-grid nested-stock-fields"></div>`;
+}
+
+function syncAliquotUseFields(modal, item) {
+  const host = modal.querySelector("#smAliquotUseFields"), mode = modal.querySelector("#smAliquotUseMode")?.value, aliquots = StockTracking.normalizeAliquots(item); if (!host || !mode) return;
+  const unopened = aliquots.preparations.filter(prep => prep.status === "active" && StockTracking.remainingAliquots(prep) > 0), partial = unopened.filter(prep => prep.volume > 0 && prep.volumeUnit), opened = getActiveOpenAliquots(aliquots);
+  if (mode === "whole") host.innerHTML = stockSelect("smEntity", "Préparation concernée", unopened.map(prep => [prep.id, formatPreparationOption(prep)])) + `<div id="smAliquotLocationField"></div>` + stockNumber("smQuantity", "Nombre d’aliquotes utilisées");
+  else if (mode === "open_new") host.innerHTML = stockSelect("smEntity", "Préparation", partial.map(prep => [prep.id, formatPreparationOption(prep)])) + `<div id="smAliquotLocationField"></div>` + stockNumber("smQuantity", `Volume utilisé`, "any");
+  else host.innerHTML = stockSelect("smEntity", "Aliquote ouverte", opened.map(({ prep, open }) => [open.id, `${open.label} · ${StockTracking.format(open.remainingVolume)} ${open.volumeUnit} restants · ${open.location || "—"} · ${prep.label}`])) + stockNumber("smQuantity", "Volume utilisé", "any");
+  const preferred = modal.dataset.entityId; if (preferred && Array.from(host.querySelector("#smEntity")?.options || []).some(option => option.value === preferred)) host.querySelector("#smEntity").value = preferred;
+  const syncLocation = () => { const prep = aliquots.preparations.find(row => row.id === host.querySelector("#smEntity")?.value), locationHost = host.querySelector("#smAliquotLocationField"); if (!locationHost || !prep) return; locationHost.innerHTML = stockSelect("smFrom", "Localisation source", prep.locations.filter(row => row.quantity > 0).map(row => [row.location, `${row.location} · ${row.quantity} disponible${row.quantity > 1 ? "s" : ""}`])); const quantity = host.querySelector("#smQuantity"); if (quantity && mode === "open_new") { quantity.max = prep.volume; quantity.closest("label")?.querySelector("span")?.replaceChildren(`Volume utilisé — ${prep.volumeUnit}`); } };
+  const syncOpenLimit = () => { if(mode!=="open_existing")return;const pair=opened.find(({open})=>open.id===host.querySelector("#smEntity")?.value),quantity=host.querySelector("#smQuantity");if(pair&&quantity){quantity.max=pair.open.remainingVolume;quantity.closest("label")?.querySelector("span")?.replaceChildren(`Volume utilisé — ${pair.open.volumeUnit}`);} };
+  host.querySelector("#smEntity")?.addEventListener("change", mode === "open_existing" ? syncOpenLimit : syncLocation); syncLocation(); syncOpenLimit();
+}
+
+function renderOpenAliquotActionFields(item, action) {
+  const aliquots = StockTracking.normalizeAliquots(item), unopened = aliquots.preparations.filter(prep => prep.status === "active" && StockTracking.remainingAliquots(prep) > 0 && prep.volume > 0 && prep.volumeUnit), opened = getActiveOpenAliquots(aliquots);
+  if (action === "aliquot_opened") return unopened.length ? `${stockSelect("smEntity", "Préparation", unopened.map(prep => [prep.id, formatPreparationOption(prep)]))}<div id="smAliquotLocationField"></div><label>Localisation de l’aliquote ouverte<select id="smTo" required></select></label>` : `<div class="stock-source-empty"><strong>Le volume individuel de cette préparation n’est pas défini ou aucune aliquote n’est disponible.</strong></div>`;
+  const options = opened.map(({ prep, open }) => [open.id, `${open.label} · ${StockTracking.format(open.remainingVolume)} ${open.volumeUnit} restants · ${open.location || "—"} · ${prep.label}`]);
+  if (action === "open_aliquot_moved") return stockSelect("smEntity", "Aliquote ouverte", options) + stockSelect("smTo", "Nouvelle localisation", inventoryLocations.map(place => [place, place]));
+  return stockSelect("smEntity", "Aliquote ouverte", options) + `<label>Raison<select id="smDiscardReason" required><option>Reliquat non conservable</option><option>Contamination</option><option>Fin d’expérience</option><option>Erreur de préparation</option><option>Autre</option></select></label><label id="smDiscardOtherField" class="hidden">Précisez la raison<input id="smDiscardOther" disabled></label>`;
+}
+
+function syncAliquotOpeningLocations(modal, item) {
+  const aliquots = StockTracking.normalizeAliquots(item), prep = aliquots.preparations.find(row => row.id === modal.querySelector("#smEntity")?.value), host = modal.querySelector("#smAliquotLocationField"); if (!prep || !host) return;
+  host.innerHTML = stockSelect("smFrom", "Localisation source", prep.locations.filter(row => row.quantity > 0).map(row => [row.location, `${row.location} · ${row.quantity} disponible${row.quantity > 1 ? "s" : ""}`]));
+  const destination = modal.querySelector("#smTo"); if (destination) { const syncDestination=()=>{const source=host.querySelector("#smFrom")?.value||"",places=Array.from(new Set([source,...inventoryLocations].filter(Boolean)));destination.innerHTML=places.map(place => `<option value="${escapeHtml(place)}">${escapeHtml(place)}</option>`).join("");destination.value=source;};host.querySelector("#smFrom")?.addEventListener("change",syncDestination);syncDestination(); }
+}
+function renderStockManagerFields() {
+  const modal = document.querySelector("#stockManagerDialog"), item = items.find(row => row.id === modal.querySelector("#stockManagerItemId").value); if (!item) return;
+  const action = modal.querySelector("#stockManagerAction").value, tracking = StockTracking.normalizeTracking(item), openUnit = StockTracking.trackingLevel(tracking), inputStep = openUnit.kind === "continuous" ? "any" : "1", aliquots = StockTracking.normalizeAliquots(item), locations = inventoryLocations.map(place => [place,place]), containers = tracking.openContainers.filter(row => row.status === "open").map(row => { const remaining=StockTracking.fromBaseQuantity(row.remaining,tracking); return [row.id,`${row.label} · ${row.location} · ${StockTracking.format(remaining)} ${StockTracking.plural(remaining,openUnit.singular,openUnit.plural)}`]; }), preps = aliquots.preparations.filter(row => row.status === "active").map(row => [row.id,`${row.label} · ${StockTracking.remainingAliquots(row)} restantes`]); let html="";
+  if (action === "received") html = tracking.mode === "simple" ? stockNumber("smQuantity",`Quantité reçue — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1") : stockSelect("smTo","Localisation",locations)+stockNumber("smQuantity","Nombre de contenants fermés");
+  else if (action === "container_opened") html = stockSelect("smFrom","Localisation du contenant fermé",tracking.closedByLocation.filter(row=>row.quantity).map(row=>[row.location,`${row.location} (${row.quantity})`]));
+  else if (action === "consumed" && tracking.mode === "simple") html = stockNumber("smQuantity",`Quantité utilisée — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1",StockTracking.simpleRawAvailable(item));
+  else if (["consumed","recounted","container_finished"].includes(action)) html = stockSelect("smEntity","Contenant",containers)+(action!=="container_finished"?stockNumber("smQuantity",`${action==="recounted"?"Quantité observée":"Quantité utilisée"} — ${openUnit.plural}`,inputStep):"");
+  else if (action === "moved") html = stockSelect("smEntityType","Type",[["closed","Contenant fermé"],["container","Contenant ouvert"]])+stockSelect("smFrom","Origine",locations)+stockSelect("smTo","Destination",locations)+stockNumber("smQuantity","Quantité (1 pour un contenant ouvert)");
+  else if (action === "aliquots_prepared") html = renderAliquotPreparationFields(item, locations);
+  else if (action === "aliquots_consumed") html = renderAliquotUseFields(item);
+  else if (["aliquot_opened","open_aliquot_moved","open_aliquot_discarded"].includes(action)) html = renderOpenAliquotActionFields(item, action);
+  else if (["aliquots_moved","preparation_recounted","preparation_finished"].includes(action)) html = stockSelect("smEntity","Préparation",preps)+stockSelect("smFrom","Localisation",locations)+(action==="aliquots_moved"?stockSelect("smTo","Destination",locations):"")+(action!=="preparation_finished"?stockNumber("smQuantity",action==="preparation_recounted"?"Quantité observée":"Nombre d’aliquotes"):"");
+  modal.querySelector("#stockManagerFields").innerHTML = html;
+  const executeButton = modal.querySelector("#executeStockManagerBtn"), noSource = action === "aliquots_prepared" && !getAliquotPreparationSources(item).groups.length;
+  executeButton.disabled = noSource;
+  if (action === "aliquots_prepared" && !noSource) {
+    syncAliquotSourceEntity(modal, item);
+    modal.querySelector("#smSourceType")?.addEventListener("change", () => syncAliquotSourceEntity(modal, item));
+    setAdditionalAliquotLocationVisible(modal, false);
+    modal.querySelector("#addAliquotLocationBtn")?.addEventListener("click", () => setAdditionalAliquotLocationVisible(modal, true));
+    modal.querySelector("#removeAliquotLocationBtn")?.addEventListener("click", () => setAdditionalAliquotLocationVisible(modal, false));
+  }
+  if (action === "aliquots_consumed") { const preferred=modal.dataset.entityId, opened=getActiveOpenAliquots(aliquots); if (preferred && opened.some(({open})=>open.id===preferred)) modal.querySelector("#smAliquotUseMode").value="open_existing"; syncAliquotUseFields(modal,item); modal.querySelector("#smAliquotUseMode")?.addEventListener("change",()=>syncAliquotUseFields(modal,item)); }
+  if (action === "aliquot_opened") { syncAliquotOpeningLocations(modal,item); modal.querySelector("#smEntity")?.addEventListener("change",()=>syncAliquotOpeningLocations(modal,item)); }
+  if (action === "open_aliquot_discarded") modal.querySelector("#smDiscardReason")?.addEventListener("change", event => { const other=modal.querySelector("#smDiscardOtherField"), input=modal.querySelector("#smDiscardOther"), visible=event.target.value==="Autre"; other.classList.toggle("hidden",!visible); input.disabled=!visible; input.required=visible; if(!visible)input.value=""; });
+  modal.querySelector("[data-empty-stock-action]")?.addEventListener("click", () => { modal.close(); if (StockTracking.normalizeTracking(item).mode === "simple") openStockModal(item.id); else { openStockManager(item.id); const nextModal = document.querySelector("#stockManagerDialog"); nextModal.querySelector("#stockManagerAction").value = "received"; renderStockManagerFields(); } });
+}
+
+async function submitStockManager(event) {
+  event.preventDefault(); const modal = event.currentTarget.closest("dialog"), button = modal.querySelector("#executeStockManagerBtn"), errorBox = modal.querySelector("#stockManagerError");
+  if (button.disabled) return;
+  if (modal.querySelector("#stockManagerAction")?.value === "aliquots_prepared" && !validateAliquotDistribution(modal)) return;
+  if (!event.currentTarget.reportValidity()) return;
+  const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), action = value("stockManagerAction"), operationId = StockTracking.id("operation"), operation = { operationId, type: action, entityId:value("smEntity"), entityType: action.startsWith("aliquot") || action.startsWith("preparation") ? "preparation" : "container", quantity:numeric("smQuantity"), fromLocation:value("smFrom"), toLocation:value("smTo"), comment:value("stockManagerComment"), correctionReason:["container_finished","preparation_finished"].includes(action)?value("stockManagerComment"):"" };
+  if (action === "moved") { operation.entityType=value("smEntityType"); if (operation.entityType === "container") { const item=items.find(row=>row.id===value("stockManagerItemId")); const candidate=StockTracking.normalizeTracking(item).openContainers.find(row=>row.location===operation.fromLocation&&row.status==="open"); if(!candidate) { errorBox.textContent="Aucun contenant ouvert dans cette localisation."; errorBox.classList.remove("hidden"); return; } operation.entityId=candidate.id; operation.quantity=1; } }
+  if (action === "aliquots_prepared") Object.assign(operation, buildAliquotPreparationOperation(modal, items.find(row => row.id === value("stockManagerItemId"))));
+  const sourceItem = items.find(row => row.id === value("stockManagerItemId")), sourceAliquots = StockTracking.normalizeAliquots(sourceItem || {});
+  if (action === "aliquots_consumed") {
+    const mode=value("smAliquotUseMode");
+    if (mode === "whole") { const prep=sourceAliquots.preparations.find(row=>row.id===value("smEntity")); Object.assign(operation,{type:"aliquots_consumed",entityId:value("smEntity"),entityType:"preparation",expectedVersion:prep?.version}); }
+    else if (mode === "open_new") { const prep=sourceAliquots.preparations.find(row=>row.id===value("smEntity")); Object.assign(operation,{type:"open_aliquot_consumed",entityId:value("smEntity"),entityType:"preparation",openNew:true,expectedVersion:prep?.version}); }
+    else { const pair=getActiveOpenAliquots(sourceAliquots).find(({open})=>open.id===value("smEntity")); Object.assign(operation,{type:"open_aliquot_consumed",entityId:value("smEntity"),entityType:"open_aliquot",expectedVersion:pair?.open.version}); }
+  }
+  if (action === "aliquot_opened") { const prep=sourceAliquots.preparations.find(row=>row.id===value("smEntity")); operation.expectedVersion=prep?.version; operation.entityType="preparation"; }
+  if (["open_aliquot_moved","open_aliquot_discarded"].includes(action)) { const pair=getActiveOpenAliquots(sourceAliquots).find(({open})=>open.id===value("smEntity")); operation.expectedVersion=pair?.open.version; operation.entityType="open_aliquot"; if(action==="open_aliquot_discarded"){const reason=value("smDiscardReason"),other=value("smDiscardOther").trim();operation.correctionReason=reason==="Autre"?other:reason;} }
+  button.disabled=true; errorBox.classList.add("hidden");
+  const execute = async () => { try { await executeAtomicStockOperation(value("stockManagerItemId"), operation); modal.close(); render(); } catch (error) { errorBox.textContent=error.message || String(error); errorBox.classList.remove("hidden"); } finally { button.disabled=false; } };
+  if (action === "open_aliquot_discarded") { const pair=getActiveOpenAliquots(sourceAliquots).find(({open})=>open.id===operation.entityId); button.disabled=false; openDeleteConfirmation({title:"Jeter le reliquat",message:`${StockTracking.format(pair?.open.remainingVolume || 0)} ${pair?.open.volumeUnit || ""} seront définitivement retirés du stock disponible.`,confirmText:"Jeter le reliquat",trigger:button,onConfirm:execute}); return; }
+  await execute();
+}
+
+async function executeAtomicStockOperation(itemId, operation) {
+  const storage=window.ExadexGithubStorage, config=storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) throw new Error("La sauvegarde GitHub en écriture est requise pour une opération de stock avancée.");
+  sharedDataIsSaving=true; renderAlerts();
+  try {
+    const result=await storage.mutateSharedData(operation.operationId, latest => {
+      const state=createSharedState(latest,{includeBootstrap:false}), index=state.inventoryItems.findIndex(row=>row.id===itemId); if(index<0) throw new Error("Cet item n’existe plus.");
+      const applied=StockTracking.apply(state.inventoryItems[index],{...operation},{name:currentName,emoji:userIcons[currentName]||""}), events=applied.events || [applied.event]; state.inventoryItems[index]=applied.item; state.stockMovements=Array.isArray(state.stockMovements)?state.stockMovements:[]; state.stockMovements.push(...events); state.history=Array.isArray(state.history)?state.history:[]; state.history.unshift({date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date(applied.event.timestamp)),action:"Stock mis à jour",detail:`${applied.event.userName} · ${applied.event.type} · ${applied.item.name}`,user:applied.event.userName,itemId}); state.updatedAt=applied.event.timestamp; return state;
+    });
+    sharedDataSha=result.sha; sharedDataMode="github-write"; sharedDataHasUnsavedChanges=false; sharedDataRemoteReady=true; sharedDataLastError=""; applySharedState(result.data);
+  } finally { sharedDataIsSaving=false; renderAlerts(); }
 }
 
 function isSeedItemId(id) {

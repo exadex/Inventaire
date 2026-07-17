@@ -199,10 +199,34 @@
     return latestSha;
 }
 
+  async function mutateSharedData(operationId, mutator, options = {}) {
+    const maxAttempts = Math.max(1, Math.min(5, Number(options.maxAttempts || 3)));
+    if (!operationId || typeof mutator !== "function") throw new Error("Invalid shared mutation.");
+    let lastError = null;
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      const latest = await loadSharedData({ fresh: true });
+      const data = latest.data || {};
+      const movements = Array.isArray(data.stockMovements) ? data.stockMovements : [];
+      if (movements.some(entry => entry.operationId === operationId)) {
+        return { data, sha: latest.sha, duplicate: true };
+      }
+      const next = await mutator(JSON.parse(JSON.stringify(data)));
+      try {
+        const sha = await saveSharedData(next, latest.sha);
+        return { data: next, sha, duplicate: false };
+      } catch (error) {
+        lastError = error;
+        if (!/conflict|409/i.test(error.message || "") || attempt === maxAttempts) throw error;
+      }
+    }
+    throw lastError || new Error("La mutation partagée a échoué.");
+  }
+
   window.ExadexGithubStorage = {
     getConfig,
     loadSharedData,
     saveSharedData,
+    mutateSharedData,
     STORAGE_CONFIG_KEY,
     TOKEN_KEY
   };

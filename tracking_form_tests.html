@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>Tests validation du suivi</title>
+<body>
+<pre id="result">Tests en cours…</pre>
+<iframe id="appFrame" title="Formulaire testé" style="width:1px;height:1px;border:0"></iframe>
+<script>
+const result = document.querySelector("#result");
+const failures = [];
+const lines = [];
+function assert(condition, message) { if (!condition) throw new Error(message); }
+function test(name, fn) { try { fn(); lines.push(`✓ ${name}`); } catch (error) { failures.push(name); lines.push(`✗ ${name} — ${error.message}`); } }
+const frame = document.querySelector("#appFrame");
+frame.addEventListener("load", () => {
+  const app = frame.contentWindow;
+  const doc = frame.contentDocument;
+  const mode = doc.querySelector("#stockTrackingMode");
+  const packagingCheckbox = doc.querySelector("#detailedPackagingEnabled");
+  const traceabilityCheckbox = doc.querySelector("#detailedTraceabilityEnabled");
+  const aliquots = doc.querySelector("#aliquotTrackingEnabled");
+  const select = doc.querySelector("#trackingUnitKey");
+  const details = doc.querySelector(".stock-tracking-config");
+  const item = {
+    unit: "cartons",
+    stockTracking: {
+      mode: "containers",
+      packagingLevels: [
+        { id: "outer", key: "carton", singular: "carton", plural: "cartons", contains: 1 },
+        { id: "inner", key: "sachet", singular: "sachet", plural: "sachets", contains: 12 }
+      ],
+      trackingUnitKey: "sachet"
+    },
+    aliquotTracking: { enabled: false, preparations: [] }
+  };
+  const originalItem = JSON.stringify(item);
+
+  mode.value = "simple";
+  packagingCheckbox.checked = false;
+  traceabilityCheckbox.checked = false;
+  aliquots.checked = false;
+  app.syncTrackingConfigVisibility();
+  test("suivi simple sans aliquotes", () => assert(select.disabled && !select.required && !select.name, "sélecteur encore applicable"));
+
+  aliquots.checked = true;
+  app.syncTrackingConfigVisibility();
+  test("suivi simple avec aliquotes", () => assert(select.disabled && !select.required && !select.name, "les aliquotes rendent le sélecteur obligatoire"));
+
+  app.hydrateTrackingForm(item);
+  test("ouverture sans modification des données",()=>assert(JSON.stringify(item)===originalItem,"item muté à l’ouverture"));
+  test("suivi avancé avec unité conservée", () => assert(packagingCheckbox.checked && !select.disabled && select.required && select.name === "trackingUnitKey" && select.value === "sachet", "sélection sachet perdue"));
+  test("quantité directe verrouillée en mode tracé",()=>assert(doc.querySelector("#quantity").readOnly,"quantité encore modifiable silencieusement"));
+  test("checkbox vers propriétés historiques", () => { packagingCheckbox.checked=false;traceabilityCheckbox.checked=true;aliquots.checked=true;app.syncTrackingOptionCheckboxes();assert(mode.value==="simple"&&doc.querySelector("#traceabilityMode").value==="detailed"&&aliquots.checked,"mapping incorrect"); });
+  test("six combinaisons supplémentaires",()=>{[[false,false,false,"simple","periodic"],[true,false,false,"containers","periodic"],[false,true,false,"simple","detailed"],[false,false,true,"simple","periodic"],[true,false,true,"containers","periodic"],[true,true,true,"containers","detailed"]].forEach(([pack,trace,aliquot,expectedMode,expectedTrace])=>{packagingCheckbox.checked=pack;traceabilityCheckbox.checked=trace;aliquots.checked=aliquot;app.syncTrackingOptionCheckboxes();assert(mode.value===expectedMode&&doc.querySelector("#traceabilityMode").value===expectedTrace,"combinaison incorrecte")})});
+
+  packagingCheckbox.checked = true;
+  aliquots.checked = true;
+  app.syncTrackingConfigVisibility();
+  test("activation des aliquotes conserve l’unité", () => assert(select.value === "sachet" && select.required, "configuration modifiée"));
+  aliquots.checked = false;
+  app.syncTrackingConfigVisibility();
+  test("désactivation des aliquotes conserve l’unité", () => assert(select.value === "sachet", "configuration perdue"));
+
+  select.value = "";
+  details.open = false;
+  test("unité manquante guidée sans contrôle invisible", () => {
+    const itemDialog = doc.querySelector("#itemDialog");
+    if (!itemDialog.open) itemDialog.showModal();
+    frame.contentWindow.focus();
+    assert(app.validateTrackingUnitSelection() === false, "validation acceptée");
+    assert(details.open && !doc.querySelector("#trackingUnitField").classList.contains("hidden"), "section non ouverte");
+    assert(doc.activeElement === select, "champ non focalisé");
+    assert(select.validationMessage.includes("Sélectionnez"), "message absent");
+  });
+
+  select.value = "sachet";
+  app.syncTrackingUnitValidationState();
+  details.open = false;
+  test("accordéon replié avec configuration valide", () => assert(app.validateTrackingUnitSelection() && select.value === "sachet", "configuration invalidée"));
+
+  result.dataset.failed = String(failures.length);
+  result.textContent = lines.join("\n");
+});
+frame.src = "index.html";
+</script>
+</html>

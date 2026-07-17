@@ -11934,7 +11934,7 @@
       "notes": "",
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
-      "baseName": "P234_MIB002_Veh",
+      "baseName": "P234_MIB002_J7 Veh",
       "category": "Secretion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
@@ -11946,7 +11946,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1784292033065-sj4s3n",
       "groupId": "sample-group-1784292033065-rghst5",
-      "name": "P234_MIB002_Veh 1",
+      "name": "P234_MIB002_J7 Veh 1",
       "replicaNumber": 1,
       "replicaCount": 4,
       "generalData": {
@@ -11957,7 +11957,7 @@
         "clientId": "client-MIB2",
         "canonicalClientCode": "MIB002",
         "location": "-20°C blanc labo",
-        "baseName": "P234_MIB002_Veh",
+        "baseName": "P234_MIB002_J7 Veh",
         "category": "Secretion",
         "creationDate": "2026-07-17",
         "measureValue": 0.5,
@@ -11985,7 +11985,7 @@
       "notes": "",
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
-      "baseName": "P234_MIB002_Veh",
+      "baseName": "P234_MIB002_J7 Veh",
       "category": "Secretion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
@@ -11997,7 +11997,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1784292033065-j0pxir",
       "groupId": "sample-group-1784292033065-rghst5",
-      "name": "P234_MIB002_Veh 2",
+      "name": "P234_MIB002_J7 Veh 2",
       "replicaNumber": 2,
       "replicaCount": 4,
       "generalData": {
@@ -12008,7 +12008,7 @@
         "clientId": "client-MIB2",
         "canonicalClientCode": "MIB002",
         "location": "-20°C blanc labo",
-        "baseName": "P234_MIB002_Veh",
+        "baseName": "P234_MIB002_J7 Veh",
         "category": "Secretion",
         "creationDate": "2026-07-17",
         "measureValue": 0.5,
@@ -12036,7 +12036,7 @@
       "notes": "",
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
-      "baseName": "P234_MIB002_Veh",
+      "baseName": "P234_MIB002_J7 Veh",
       "category": "Secretion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
@@ -12048,7 +12048,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1784292033065-awpce9",
       "groupId": "sample-group-1784292033065-rghst5",
-      "name": "P234_MIB002_Veh 3",
+      "name": "P234_MIB002_J7 Veh 3",
       "replicaNumber": 3,
       "replicaCount": 4,
       "generalData": {
@@ -12059,7 +12059,7 @@
         "clientId": "client-MIB2",
         "canonicalClientCode": "MIB002",
         "location": "-20°C blanc labo",
-        "baseName": "P234_MIB002_Veh",
+        "baseName": "P234_MIB002_J7 Veh",
         "category": "Secretion",
         "creationDate": "2026-07-17",
         "measureValue": 0.5,
@@ -12087,7 +12087,7 @@
       "notes": "",
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
-      "baseName": "P234_MIB002_Veh",
+      "baseName": "P234_MIB002_J7 Veh",
       "category": "Secretion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
@@ -12099,7 +12099,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1784292033065-onje51",
       "groupId": "sample-group-1784292033065-rghst5",
-      "name": "P234_MIB002_Veh 4",
+      "name": "P234_MIB002_J7 Veh 4",
       "replicaNumber": 4,
       "replicaCount": 4,
       "generalData": {
@@ -12110,7 +12110,7 @@
         "clientId": "client-MIB2",
         "canonicalClientCode": "MIB002",
         "location": "-20°C blanc labo",
-        "baseName": "P234_MIB002_Veh",
+        "baseName": "P234_MIB002_J7 Veh",
         "category": "Secretion",
         "creationDate": "2026-07-17",
         "measureValue": 0.5,
@@ -13841,6 +13841,12 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 14:41",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a modifié 4 échantillons P234_MIB002_J7 Veh pour MIB002."
+    },
+    {
       "date": "17/07/2026 14:40",
       "user": "Elina",
       "action": "Échantillons clients ajoutés",
@@ -14903,5 +14909,5 @@
       "detail": "Anti-Perilipin A: dilution de travail confirmee."
     }
   ],
-  "updatedAt": "2026-07-17T12:40:33.066Z"
+  "updatedAt": "2026-07-17T12:41:55.081Z"
 }

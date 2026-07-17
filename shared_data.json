@@ -4492,7 +4492,7 @@
       "id": "itm-web-1783931436295-cwj79e",
       "name": "Falcon 50",
       "category": "Culture Cell",
-      "quantity": 1,
+      "quantity": 2,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -4556,7 +4556,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1,
+            "quantity": 2,
             "updatedAt": "2026-07-17T14:48:12.729Z",
             "updatedBy": "Caroline"
           }
@@ -14403,6 +14403,13 @@
   ],
   "history": [
     {
+      "date": "17/07/2026 16:50",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · received · Falcon 50",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-cwj79e"
+    },
+    {
       "date": "17/07/2026 16:49",
       "action": "Stock mis à jour",
       "detail": "Caroline · container_finished · Falcon 50",
@@ -16025,7 +16032,31 @@
       "toLocation": "",
       "comment": "maj stock",
       "correctionReason": "maj stock"
+    },
+    {
+      "id": "movement-mrp21hq9-4077926929-2280978927",
+      "operationId": "operation-mrp21hbu-1885920148-3878098062",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "timestamp": "2026-07-17T14:50:16.449Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "",
+      "preparationId": "",
+      "before": 1,
+      "after": 2,
+      "quantity": 1,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-17T14:49:58.132Z"
+  "updatedAt": "2026-07-17T14:50:16.449Z"
 }

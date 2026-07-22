@@ -6152,7 +6152,7 @@
       "id": "itm-CSV-0106",
       "name": "Plaque companion 24 puits 6,3µm",
       "category": "Culture Cell",
-      "quantity": 0.5,
+      "quantity": 0.34,
       "unit": "Carton",
       "minStock": 0,
       "location": "Réserve",
@@ -6178,7 +6178,68 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T08:13:25.368Z",
-      "createdAt": "17/07/2026 10:13"
+      "createdAt": "17/07/2026 10:13",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 50
+          },
+          {
+            "id": "level-3",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrvwga1s-4033889391-2351231607",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 17,
+            "capacity": 50,
+            "status": "open",
+            "openedAt": "2026-07-22T09:48:11.872Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-22T09:48:11.872Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0107",
@@ -13923,6 +13984,12 @@
   ],
   "history": [
     {
+      "date": "22/07/2026 11:48",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque companion 24 puits 6,3µm."
+    },
+    {
       "date": "22/07/2026 09:35",
       "user": "Caroline",
       "action": "Demande créée",
@@ -16425,7 +16492,42 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mrvwga1u-2455128534-629912989",
+      "operationId": "migration-mrvwga1u-763538723-4093779308",
+      "itemId": "itm-CSV-0106",
+      "timestamp": "2026-07-22T09:48:11.874Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-CSV-0106",
+      "before": {
+        "mode": "simple",
+        "quantity": 0.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 0.34,
+        "closedByLocation": [],
+        "openContainers": [
+          {
+            "id": "container-mrvwga1s-4033889391-2351231607",
+            "location": "Réserve",
+            "remaining": 17
+          }
+        ]
+      },
+      "quantity": -7.999999999999999,
+      "unit": "sachets",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-22T07:35:03.174Z"
+  "updatedAt": "2026-07-22T09:48:11.876Z"
 }

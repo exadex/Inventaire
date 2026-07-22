@@ -11600,6 +11600,29 @@
   "experiments": [],
   "orders": [
     {
+      "id": "ord-1784705647246",
+      "status": "requested",
+      "itemMode": "new",
+      "inventoryItemId": null,
+      "itemName": "96-well Magnetic Plate Separator",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "urgent",
+      "notes": "https://www.bio-techne.com/p/luminex-instrument/96-well-magnetic-plate-separator_lu-mag-01",
+      "requestedBy": "Caroline",
+      "requestedAt": "22/07/2026 09:34",
+      "requestedAtRaw": "2026-07-22T07:34:07.246Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": {
+        "name": "96-well Magnetic Plate Separator"
+      }
+    },
+    {
       "id": "ord-1784705628709",
       "status": "requested",
       "itemMode": "new",
@@ -13899,6 +13922,12 @@
     }
   ],
   "history": [
+    {
+      "date": "22/07/2026 09:34",
+      "user": "Caroline",
+      "action": "Demande créée",
+      "detail": "Caroline a créé une demande pour 96-well Magnetic Plate Separator."
+    },
     {
       "date": "22/07/2026 09:33",
       "user": "Caroline",
@@ -16386,5 +16415,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-22T07:33:48.711Z"
+  "updatedAt": "2026-07-22T07:34:07.247Z"
 }

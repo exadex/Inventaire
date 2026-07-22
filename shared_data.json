@@ -6162,7 +6162,7 @@
       "tags": [
         "plaque 24 insert"
       ],
-      "notes": "Conditionnement : 50 plaque/cartons\n\nAu 16/07/2026 : 1 ouvert - reste 17 plaques",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "Dutscher",
@@ -13990,6 +13990,12 @@
       "detail": "Caroline a modifié Plaque companion 24 puits 6,3µm."
     },
     {
+      "date": "22/07/2026 11:48",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque companion 24 puits 6,3µm."
+    },
+    {
       "date": "22/07/2026 09:35",
       "user": "Caroline",
       "action": "Demande créée",
@@ -16529,5 +16535,5 @@
       "correctionReason": "Correction après comptage"
     }
   ],
-  "updatedAt": "2026-07-22T09:48:11.876Z"
+  "updatedAt": "2026-07-22T09:48:30.800Z"
 }

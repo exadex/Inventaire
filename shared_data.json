@@ -14829,6 +14829,45 @@
       "updatedAtRaw": "2026-07-13T13:43:34.075Z"
     }
   ],
+  "supplierContacts": [
+    {
+      "id": "contact-abcam",
+      "company": "Abcam",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "orders@abcam.com",
+      "salesAndQuotes": "",
+      "phone": "08 01 84 05 42",
+      "notes": "",
+      "aliases": []
+    },
+    {
+      "id": "contact-bd-biosciences",
+      "company": "BD Biosciences",
+      "salesRepresentative": "Loras Damien",
+      "afterSalesService": "",
+      "customerService": "serviceclientbdf@europe.bd.com",
+      "salesAndQuotes": "devis@bd.com",
+      "phone": "06 31 75 07 07",
+      "notes": "",
+      "aliases": [
+        "BD",
+        "Becton Dickinson",
+        "BD France"
+      ]
+    },
+    {
+      "id": "contact-bexen-medical",
+      "company": "Bexen Medical",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "info@bexenmedical.com",
+      "salesAndQuotes": "brangerieau@bexenmedical.com",
+      "phone": "",
+      "notes": "",
+      "aliases": []
+    }
+  ],
   "history": [
     {
       "date": "27/07/2026 15:10",

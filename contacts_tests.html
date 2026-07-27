@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Tests Contacts</title></head>
+<body>
+  <p id="result">Tests en cours…</p>
+  <iframe id="appFrame" src="index.html" style="width:1200px;height:900px"></iframe>
+  <script>
+    const result=document.querySelector("#result"),frame=document.querySelector("#appFrame");
+    frame.addEventListener("load",()=>setTimeout(async()=>{
+      try{
+        const w=frame.contentWindow,d=w.document,api=w.ExadexContacts;
+        let passed=0;const check=(value,message)=>{if(!value)throw new Error(message);passed++;};
+        const nav=[...d.querySelectorAll(".nav-item")].map(x=>x.dataset.view);
+        check(nav.indexOf("contacts")===nav.indexOf("orders")+1&&nav.indexOf("agents")===nav.indexOf("contacts")+1,"ordre navigation");
+        const contacts=api.getAll();
+        check(contacts.some(x=>x.company==="Abcam"&&x.customerService==="orders@abcam.com"&&x.phone==="08 01 84 05 42"),"Abcam initial");
+        check(contacts.some(x=>x.company==="BD Biosciences"&&x.salesRepresentative==="Loras Damien"&&x.salesAndQuotes==="devis@bd.com"),"BD initial");
+        check(contacts.some(x=>x.company==="Bexen Medical"&&x.customerService==="info@bexenmedical.com"),"Bexen initial");
+        check(api.migrateSupplierContacts([...contacts,{company:"ABCAM"}]).filter(x=>x.company.toLowerCase()==="abcam").length===1,"initialisation sans doublon");
+        check(api.normalizeCompanyName("  BD Biosciences  ")===api.normalizeCompanyName("bd biosciences"),"normalisation fiable");
+        check(api.findForItem({references:{primary:{supplier:"ABCAM"}}})?.company==="Abcam","association textuelle");
+        check(!api.findForItem({references:{primary:{supplier:"Abca"}}}),"pas de rapprochement approximatif");
+        const supplierInput=d.querySelector("#primarySupplier");supplierInput.value="ABCAM";supplierInput.dispatchEvent(new w.Event("input"));
+        check(d.querySelector("#primarySupplierContactId").value==="contact-abcam","sélection fournisseur stocke ID stable");
+        supplierInput.value="Fournisseur libre";supplierInput.dispatchEvent(new w.Event("input"));
+        check(!d.querySelector("#primarySupplierContactId").value,"fournisseur libre reste non lié");
+        d.querySelector('[data-view="contacts"]').click();
+        check(d.querySelectorAll(".contact-card").length>=3,"liste rendue");
+        const search=d.querySelector("#contactsSearch");search.value="Loras";search.dispatchEvent(new w.Event("input"));
+        check(d.querySelectorAll(".contact-card").length===1&&d.querySelector(".contact-card").textContent.includes("BD Biosciences"),"recherche commercial");
+        d.querySelector(".contact-card").click();
+        check(d.querySelector('a[href^="mailto:"]')&&d.querySelector('a[href^="tel:"]'),"e-mail et téléphone cliquables");
+        check(d.querySelector("[data-copy-contact]"),"copie disponible");
+        d.querySelector("[data-back-contacts]").click();d.querySelector("[data-add-contact]").click();
+        const form=d.querySelector("#contactForm");d.querySelector("#contactCompany").value="   ";
+        form.requestSubmit();
+        check(d.querySelector("#contactDuplicateWarning").textContent.includes("obligatoire")&&api.getAll().length===contacts.length,"société obligatoire");
+        d.querySelector("#contactCompany").value="abcam";form.requestSubmit();
+        check(!d.querySelector("#contactDuplicateWarning").classList.contains("hidden"),"doublon évident averti");
+        check(api.getAll().length===contacts.length,"doublon non créé au premier envoi");
+        d.querySelector("#contactCompany").value="Société Test Contacts";d.querySelector("#contactCustomerService").value="test@example.org";form.requestSubmit();
+        const created=api.getAll().find(x=>x.company==="Société Test Contacts");
+        check(created&&created.customerService==="test@example.org","création persistée dans l’état partagé");
+        check(JSON.parse(w.localStorage.getItem("exadex_shared_state_cache")).supplierContacts.some(x=>x.id===created.id),"contact présent dans le cache partagé");
+        check(d.querySelector("#contactsRoot").textContent.includes("Société Test Contacts"),"fiche créée ouverte");
+        d.querySelector("[data-edit-contact]").click();d.querySelector("#contactCompany").value="Société Test Renommée";d.querySelector("#contactForm").requestSubmit();
+        const renamed=api.getAll().find(x=>x.id===created.id);
+        check(renamed?.company==="Société Test Renommée"&&renamed.aliases.includes("Société Test Contacts"),"renommage conserve ID et ancien nom en alias");
+        const itemCountBefore=api.getAssociatedItems(created.id).length;
+        d.querySelector("[data-delete-contact]").click();
+        check(d.querySelector("#confirmDeleteDialog").open&&d.querySelector("#confirmDeleteMessage").textContent.includes("items ne seront pas supprimés"),"modal partagé et protection items");
+        d.querySelector("#confirmDeleteBtn").click();
+        check(!api.getAll().some(x=>x.id===created.id),"suppression du contact");
+        check(api.getAssociatedItems(created.id).length===0&&itemCountBefore===0,"aucun item supprimé");
+        result.textContent=`${passed} tests Contacts réussis.`;
+      }catch(error){result.textContent=`ÉCHEC: ${error.message}`;}
+    },1800));
+  </script>
+</body>
+</html>

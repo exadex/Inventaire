@@ -58,6 +58,8 @@
           <button class="nav-item" data-view="locations">Localisations</button>
           <button class="nav-item" data-view="experiments">Expériences</button>
           <button class="nav-item" data-view="orders">&Agrave; commander</button>
+          <button class="nav-item" data-view="contacts">Contacts</button>
+          <button class="nav-item" data-view="agents"><span aria-hidden="true">✦</span> Agents</button>
           <button class="nav-item" data-view="history">Historique</button>
         </nav>
         <div class="team-card">
@@ -463,6 +465,14 @@
             </footer>
           </section>
         </section>
+
+        <section class="view contacts-view" id="contactsView" aria-labelledby="contactsTitle">
+          <div id="contactsRoot"></div>
+        </section>
+
+        <section class="view agents-view" id="agentsView" aria-labelledby="agentsTitle">
+          <div id="agentsRoot"></div>
+        </section>
       </main>
     </div>
 
@@ -542,7 +552,7 @@
           <div class="reference-block">
             <strong>Référence principale</strong>
             <div class="reference-grid">
-              <label>Fournisseur<input id="primarySupplier" /></label>
+              <label>Fournisseur<input id="primarySupplier" list="supplierContactsList" autocomplete="off" /><input id="primarySupplierContactId" type="hidden" /><datalist id="supplierContactsList"></datalist></label>
               <label>Référence<input id="primaryReference" /></label>
               <label>Lien<input id="primaryLink" type="url" /></label>
               <label>Notes<textarea id="primaryReferenceNotes" rows="2"></textarea></label>
@@ -567,6 +577,31 @@
           <button id="deleteItemBtn" class="danger-btn" type="button">Supprimer</button>
           <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
           <button class="primary-btn" id="saveItemBtn" type="button">Enregistrer</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="contactDialog" class="modal contact-modal">
+      <form id="contactForm">
+        <div class="modal-header">
+          <div><h3 id="contactDialogTitle">Ajouter un contact</h3><p>La société est le seul champ obligatoire.</p></div>
+          <button id="closeContactDialogBtn" class="icon-btn" type="button" aria-label="Fermer">&times;</button>
+        </div>
+        <input id="contactId" type="hidden">
+        <div class="form-grid">
+          <label><span>Société <span class="required-star">*</span></span><input id="contactCompany" required></label>
+          <label>Nom du commercial<input id="contactSalesRepresentative"></label>
+          <label>SAV<input id="contactAfterSalesService"></label>
+          <label>Service client<input id="contactCustomerService"></label>
+          <label>Commercial / devis<input id="contactSalesAndQuotes"></label>
+          <label>Téléphone<input id="contactPhone"></label>
+          <label class="full-label">Alias<input id="contactAliases" placeholder="BD, Becton Dickinson, BD France"></label>
+          <label class="full-label">Notes<textarea id="contactNotes" rows="4"></textarea></label>
+        </div>
+        <p id="contactDuplicateWarning" class="field-validation-message hidden" role="alert"></p>
+        <div class="modal-actions">
+          <button id="cancelContactBtn" class="ghost-btn" type="button">Annuler</button>
+          <button class="primary-btn" type="submit">Enregistrer</button>
         </div>
       </form>
     </dialog>
@@ -1042,6 +1077,9 @@
     <script src="protocols.js"></script>
     <script src="github_storage.js"></script>
     <script src="stock_tracking.js"></script>
+    <script src="agents_core.js"></script>
+    <script src="agents_storage.js"></script>
+    <script src="agents_ui.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

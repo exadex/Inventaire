@@ -1,0 +1,23 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Tests suppression audits</title></head>
+<body><div id="agentsRoot"></div><p id="result">En cours…</p><script src="agents_core.js"></script><script src="agents_storage.js"></script><script>
+localStorage.clear();sessionStorage.clear();let confirmation=null,writes=0;
+const mk=id=>({id,createdAt:new Date().toISOString(),rulesVersion:2,itemCount:2,totalAlertCount:id==="bad"?500:2,alerts:Array.from({length:id==="bad"?500:2},(_,i)=>({id:id+i,type:"Doublon potentiel",severity:"warning",itemIds:["a","b"],state:"pending"})),summary:{critical:0,warnings:2,info:0,duplicates:2}});
+const physical={id:"physical",name:"Brouillon",status:"Brouillon",proposals:[],lines:[],decisions:[]};
+ExadexAgentsStorage.saveWorkspace({audits:[mk("bad"),mk("keep")],sessions:[physical]},localStorage);
+Object.defineProperties(window,{items:{get:()=>[]},orders:{get:()=>[]},inventoryLocations:{get:()=>[]},inventoryCategories:{get:()=>[]},currentName:{get:()=>"Test"}});
+window.openDeleteConfirmation=options=>{confirmation=options};window.ExadexGithubStorage={mutateSharedData(){writes++}};
+</script><script src="agents_ui.js"></script><script>
+const check=(v,m)=>{if(!v)throw new Error(m)};ExadexAgentsUI.renderAgents();
+document.querySelector('[data-delete-audit="bad"]').click();check(Boolean(confirmation),"modal appelé");
+check(/500 alerte/.test(confirmation.message)&&/non examinée/.test(confirmation.message),"confirmation détaillée");
+check(localStorage.getItem(ExadexAgentsStorage.KEYS.auditPrefix+"bad")!==null,"annulation conserve le rapport");
+confirmation.onConfirm();check(localStorage.getItem(ExadexAgentsStorage.KEYS.auditPrefix+"bad")===null,"clé supprimée");
+check(localStorage.getItem(ExadexAgentsStorage.KEYS.auditPrefix+"keep")!==null,"autre audit conservé");
+check(localStorage.getItem(ExadexAgentsStorage.KEYS.sessionPrefix+"physical")!==null,"session conservée");
+check(writes===0,"aucune écriture métier");
+check(document.body.textContent.includes("a été supprimé"),"message succès visible");
+document.querySelector('[data-open-audit="keep"]').click();sessionStorage.setItem("exadex_agents_active_comparison",JSON.stringify({auditId:"keep",alertId:"x"}));ExadexAgentsUI.deleteAuditReports(["keep"]);
+check(document.body.textContent.includes("Agents"),"rapport ouvert supprimé retourne aux Agents");
+check(sessionStorage.getItem("exadex_agents_active_comparison")===null,"référence temporaire supprimée");
+document.querySelector("#result").textContent="10 tests suppression UI réussis.";
+</script></body></html>

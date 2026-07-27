@@ -1,0 +1,11 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Audit représentatif</title></head>
+<body><p id="result">En cours…</p><script src="stock_tracking.js"></script><script src="agents_core.js"></script><script>
+fetch("shared_data.json").then(r=>r.json()).then(data=>{
+ const input={items:data.inventoryItems||[],orders:data.orders||[],stockTrackingApi:StockTracking};
+ const report=ExadexAgentsCore.audit(input,{scope:"duplicates"});
+ const counts=Object.fromEntries(["full","duplicates","stock","references"].map(scope=>[scope,ExadexAgentsCore.audit(input,{scope}).alerts.length]));
+ const bands={faible:0,moyenne:0,élevée:0,"très élevée":0},examples={};
+ report.alerts.forEach(a=>{const label=String(a.confidence||"").toLowerCase();bands[label]=(bands[label]||0)+1;if(!examples[label])examples[label]={score:a.duplicateScore,ids:a.itemIds,positive:a.scoreDetails?.positive,differences:a.scoreDetails?.differences,raw:a.scoreDetails?.rawScore,capped:a.scoreDetails?.capped};});
+ document.querySelector("#result").textContent=`items=${report.itemCount};counts=${JSON.stringify(counts)};duplicates=${report.summary.duplicates};distribution=${JSON.stringify(bands)};examples=${JSON.stringify(examples)}`;
+}).catch(error=>document.querySelector("#result").textContent="ERROR:"+error.message);
+</script></body></html>

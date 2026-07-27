@@ -1,0 +1,25 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="design.css"><title>Tests comparaison</title></head>
+<body><div id="agentsRoot"></div><p id="comparisonResult">En cours…</p>
+<script src="agents_core.js"></script><script src="agents_storage.js"></script>
+<script>
+localStorage.clear();let writes=0,opened="";
+const testItems=[
+ {id:"A",name:"Falcon 50ml",references:{primary:{reference:"352070",supplier:"BD"}},category:"Consommables",unit:"boîtes",quantity:2,minimum:0,location:"Réserve",notes:""},
+ {id:"B",name:"Tubes Falcon 50 mL",references:{primary:{reference:"352070",supplier:"BD"}},category:"Consommables",unit:"boîtes",quantity:3,minimum:null,location:"Frigo"}
+];
+Object.defineProperties(window,{items:{get:()=>JSON.parse(JSON.stringify(testItems))},orders:{get:()=>[]},inventoryLocations:{get:()=>["Réserve","Frigo"]},inventoryCategories:{get:()=>["Consommables"]},currentName:{get:()=>"Test"}});
+window.openItemDetail=id=>{opened=id};window.ExadexGithubStorage={mutateSharedData(){writes++;throw new Error("interdit");}};
+const report=ExadexAgentsCore.audit({items:testItems},{scope:"duplicates"});ExadexAgentsStorage.saveWorkspace({audits:[report],sessions:[]},localStorage);
+</script><script src="agents_ui.js"></script><script>
+const checks=[];const check=(v,n)=>{if(!v)throw new Error(n);checks.push(n)};
+ExadexAgentsUI.renderAgents();document.querySelector("[data-open-audit]").click();document.querySelector("[data-examine]").click();
+check(document.querySelectorAll(".audit-comparison > section").length===2,"deux items");
+check(!document.querySelector(".comparison-header .score-explanation"),"calcul détaillé absent de la comparaison");
+check(document.querySelector(".comparison-summary").textContent.includes("Score de doublon"),"résumé du score conservé");
+check(document.body.textContent.includes("Différent"),"différences signalées");
+check(document.body.textContent.includes("Non renseigné"),"absences signalées");
+document.querySelector("[data-open-full]").click();check(opened==="A","fiche complète ouverte");
+ExadexAgentsUI.renderAgents();check(document.querySelectorAll(".audit-comparison > section").length===2,"comparaison restaurée");
+check(writes===0,"aucune écriture métier");
+document.querySelector("#comparisonResult").textContent=`${checks.length} tests comparaison réussis;columns=${getComputedStyle(document.querySelector(".audit-comparison")).gridTemplateColumns}`;
+</script></body></html>

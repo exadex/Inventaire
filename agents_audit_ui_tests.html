@@ -1,0 +1,63 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="design.css"><title>Tests résultats audit</title></head>
+<body><div id="agentsRoot"></div><p id="result">En cours…</p>
+<script src="agents_core.js"></script><script src="agents_storage.js"></script><script>
+localStorage.clear();sessionStorage.clear();let confirmation=null,deletionRequest=null,businessWrites=0;
+let testItems=Array.from({length:16},(_,i)=>({id:"i"+i,name:"Produit "+i,quantity:i,unit:"u",category:"C"}));
+const scores=[21,39,40,64,65,84,85,100];
+const alerts=scores.map((score,i)=>({id:"a"+score,type:"Doublon potentiel",severity:"warning",confidence:ExadexAgentsCore.confidenceFromScore(score),duplicateScore:score,confidenceScore:score,itemIds:["i"+(i*2),"i"+(i*2+1)],reasons:["Nom fortement similaire : +30"],scoreDetails:{positive:["Nom fortement similaire : +30"],differences:[],terms:[30],rawScore:score,boundedScore:score,capped:false},state:"pending"}));
+alerts[0].scoreDetails.differences=["Références différentes : REF-A ≠ REF-B : −10"];
+const report={id:"audit-ui",rulesVersion:3,scoreEngine:"duplicate-score-v3",createdAt:new Date().toISOString(),itemCount:16,totalAlertCount:8,alerts,summary:{critical:0,warnings:8,info:0,duplicates:8}};
+ExadexAgentsStorage.saveWorkspace({audits:[report],sessions:[]},localStorage);
+Object.defineProperties(window,{items:{get:()=>JSON.parse(JSON.stringify(testItems))},orders:{get:()=>[]},inventoryLocations:{get:()=>[]},inventoryCategories:{get:()=>["C"]},currentName:{get:()=>"Test"}});
+window.openDeleteConfirmation=options=>{confirmation=options};
+window.openItemDetail=()=>{};
+window.requestItemDeletionById=(id,options)=>{deletionRequest={id,options}};
+window.ExadexGithubStorage={mutateSharedData(){businessWrites++}};
+</script><script src="agents_ui.js"></script><script>
+let passed=0;const check=(v,m)=>{if(!v)throw new Error(m);passed++};
+ExadexAgentsUI.renderAgents();check(document.querySelector(".audit-type-badge").textContent==="Type non renseigné","badge neutre pour ancien audit");document.querySelector("[data-open-audit]").click();
+check(["full","duplicates","stock","references"].map(ExadexAgentsUI.auditTypeLabel).join("|")==="Audit complet|Doublons uniquement|Stocks et seuils|Références","libellés des quatre types");
+check(ExadexAgentsUI.auditTypeLabel("")==="Type non renseigné","ancien audit sans type neutre");
+const cards=()=>[...document.querySelectorAll(".audit-alert")];
+const byScore=s=>document.querySelector(`[data-confidence-score="${s}"]`);
+check(byScore(21).classList.contains("score-yellow"),"21 jaune");
+check(byScore(39).classList.contains("score-yellow"),"39 jaune");
+check(byScore(40).classList.contains("score-orange"),"40 orange");
+check(byScore(64).classList.contains("score-orange"),"64 orange");
+check(byScore(65).classList.contains("score-red"),"65 rouge");
+check(byScore(84).classList.contains("score-red"),"84 rouge");
+check(byScore(85).classList.contains("score-dark-red"),"85 rouge foncé");
+check(byScore(100).classList.contains("score-dark-red"),"100 rouge foncé");
+check(cards().map(x=>Number(x.dataset.confidenceScore)).join(",")==="100,85,84,65,64,40,39,21","tri décroissant");
+check(!document.querySelector(".agent-report-controls"),"barre de recherche et tri supprimée");
+check(byScore(21).textContent.includes("Références différentes : REF-A ≠ REF-B")&&!byScore(21).textContent.includes("−10"),"pénalité masquée visuellement");
+check(!byScore(100).querySelector(".score-explanation"),"détail du calcul masqué");
+check(byScore(100).querySelector(".audit-item-names strong"),"noms visibles");
+check(!byScore(100).textContent.includes("AVERTISSEMENT")&&!byScore(100).textContent.includes("Recommandation")&&!byScore(100).textContent.includes("Valeurs observées"),"carte simplifiée");
+const before=Number(document.querySelector("#auditRemainingCount").textContent);byScore(100).querySelector("[data-review]").click();
+check(document.querySelector('[data-confidence-score="100"]').classList.contains("reviewed"),"bordure verte examinée");
+check(Number(cards().at(-1).dataset.confidenceScore)===100,"examinée en bas");
+check(Number(document.querySelector("#auditRemainingCount").textContent)===before-1,"compteur décrémenté");
+document.querySelector('[data-confidence-score="100"] [data-review]').click();
+check(Number(document.querySelector("#auditRemainingCount").textContent)===before-1,"pas de double décrément");
+check(ExadexAgentsUI._load().audits[0].alerts.find(a=>a.id==="a100").state==="reviewed","état persisté");
+document.querySelector('[data-confidence-score="100"] [data-clear-alert]').click();
+check(Boolean(confirmation)&&confirmation.confirmText==="Effacer l’alerte","confirmation effacement");
+const activeBefore=Number(document.querySelector("#auditRemainingCount").textContent);confirmation.onConfirm();
+check(!document.querySelector('[data-confidence-score="100"]'),"alerte effacée");
+check(Number(document.querySelector("#auditRemainingCount").textContent)===activeBefore,"examinée effacée sans double décrément");
+document.querySelector('[data-confidence-score="85"] [data-examine]').click();
+check(document.querySelectorAll("[data-delete-item]").length===2,"deux boutons supprimer item");
+document.querySelector("[data-delete-item]").click();check(deletionRequest&&deletionRequest.id,"workflow existant appelé");
+check(testItems.length===16,"annulation sans modification");
+const deletedId=deletionRequest.id;testItems=testItems.filter(i=>i.id!==deletedId);deletionRequest.options.onDeleted({id:deletedId,name:"Produit"});
+check(!ExadexAgentsUI._load().audits[0].alerts.some(a=>a.itemIds.includes(deletedId)),"alertes obsolètes retirées");
+check(businessWrites===0,"actions locales sans écriture métier");
+document.querySelector('[data-agent-action="audit"]').click();
+check(!document.querySelector('[name="severity"]'),"filtre gravité supprimé");
+check([...document.querySelector('[name="scope"]').options].map(x=>x.value).join(",")==="full,duplicates,stock,references","quatre périmètres seulement");
+check(document.querySelector(".audit-explanation").textContent.includes("doublons potentiels, stocks et seuils, et références principales"),"explication audit complet visible");
+document.querySelector('[name="scope"]').value="stock";document.querySelector('[name="scope"]').dispatchEvent(new Event("change"));
+check(document.querySelector(".audit-explanation").textContent.includes("Une quantité de 0 ou un seuil de 0"),"explication mise à jour immédiatement");
+document.querySelector("#result").textContent=`${passed} tests résultats audit réussis.`;
+</script></body></html>

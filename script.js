@@ -9,6 +9,11 @@ const clientSampleTypes = {
 };
 
 const clientSampleCategories = ["Galette agarose", "Secretion", "ARN", "Tissu"];
+const INITIAL_SUPPLIER_CONTACTS = [
+  { id:"contact-abcam", company:"Abcam", salesRepresentative:"", afterSalesService:"", customerService:"orders@abcam.com", salesAndQuotes:"", phone:"08 01 84 05 42", notes:"", aliases:[] },
+  { id:"contact-bd-biosciences", company:"BD Biosciences", salesRepresentative:"Loras Damien", afterSalesService:"", customerService:"serviceclientbdf@europe.bd.com", salesAndQuotes:"devis@bd.com", phone:"06 31 75 07 07", notes:"", aliases:["BD","Becton Dickinson","BD France"] },
+  { id:"contact-bexen-medical", company:"Bexen Medical", salesRepresentative:"", afterSalesService:"", customerService:"info@bexenmedical.com", salesAndQuotes:"brangerieau@bexenmedical.com", phone:"", notes:"", aliases:[] }
+];
 
 const seedBaseItems = migrateItems(seedItems).map(item => ({
   ...item,
@@ -42,6 +47,7 @@ let history = Array.isArray(sharedState.history) ? sharedState.history : [];
 let stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
 let clientSamples = migrateClientSamples(sharedState.clientSamples);
 let clients = migrateClients(sharedState.clients, clientSamples);
+let supplierContacts = migrateSupplierContacts(sharedState.supplierContacts);
 
 const sharedDataReady = hydrateSharedData();
 
@@ -70,6 +76,8 @@ let itemReturnContext = { view: "inventory", experimentId: null, location: null,
 let sampleReturnContext = { view: "samples", location: null, scrollY: 0 };
 let viewReturnScrollY = { experiments: 0, locations: 0 };
 let selectedOrderId = null;
+let selectedContactId = null;
+let contactsSearchValue = "";
 let pendingStockMigration = null;
 let ordersMode = "board";
 let orderHistorySearch = "";
@@ -165,6 +173,7 @@ const fields = [
   "tags",
   "notes",
   "primarySupplier",
+  "primarySupplierContactId",
   "primaryReference",
   "primaryLink",
   "primaryReferenceNotes",
@@ -453,6 +462,7 @@ document.querySelectorAll(".nav-item").forEach((button) => {
     selectedSampleId = null;
     selectedExperimentId = null;
     selectedLocation = null;
+    selectedContactId = null;
     itemReturnContext = { view: activeView, experimentId: null };
 
     document.querySelectorAll(".nav-item").forEach((item) => {
@@ -481,6 +491,10 @@ document.querySelectorAll(".nav-item").forEach((button) => {
       renderHistory();
     } else if (activeView === "samples") {
       renderSamples();
+    } else if (activeView === "contacts") {
+      renderContacts();
+    } else if (activeView === "agents") {
+      renderAgents();
     }
   });
 });
@@ -489,6 +503,13 @@ document.querySelectorAll(".nav-item").forEach((button) => {
 document.querySelector("#confirmReceiveInventoryBtn").addEventListener("click", confirmReceiveInventory);
 document.querySelector("#closeReceiveInventoryDialogBtn").addEventListener("click", () => receiveInventoryDialog.close());
 document.querySelector("#cancelReceiveInventoryBtn").addEventListener("click", () => receiveInventoryDialog.close());
+document.querySelector("#contactForm")?.addEventListener("submit", saveContact);
+document.querySelector("#closeContactDialogBtn")?.addEventListener("click",()=>document.querySelector("#contactDialog").close());
+document.querySelector("#cancelContactBtn")?.addEventListener("click",()=>document.querySelector("#contactDialog").close());
+fields.primarySupplier?.addEventListener("input",()=>{
+  const key=normalizeCompanyName(fields.primarySupplier.value),contact=supplierContacts.find(row=>contactNames(row).includes(key));
+  fields.primarySupplierContactId.value=contact?.id||"";
+});
 
 function load(key, fallback) {
   try {
@@ -547,6 +568,7 @@ function createBootstrapSharedState() {
     orders: Array.isArray(load("exadex_orders", [])) ? load("exadex_orders", []) : [],
     clientSamples: migrateClientSamples(load("exadex_client_samples", [])),
     clients: migrateClients([], migrateClientSamples(load("exadex_client_samples", []))),
+    supplierContacts: migrateSupplierContacts([], { includeDefaults: true }),
     history: Array.isArray(load("exadex_history", load("adipovault_history", [])))
       ? load("exadex_history", load("adipovault_history", []))
       : [],
@@ -579,6 +601,7 @@ function createSharedState(rawState = null, options = {}) {
       Array.isArray(source.clients) ? source.clients : bootstrap?.clients || [],
       Array.isArray(source.clientSamples) ? source.clientSamples : bootstrap?.clientSamples || []
     ),
+    supplierContacts: migrateSupplierContacts(Array.isArray(source.supplierContacts) ? source.supplierContacts : bootstrap?.supplierContacts || [], { includeDefaults: !Array.isArray(source.supplierContacts) && !bootstrap }),
     history: Array.isArray(source.history)
       ? source.history
       : bootstrap?.history || [],
@@ -596,6 +619,7 @@ function hasSharedDataPayload(data) {
     data.experiments,
     data.clientSamples,
     data.clients,
+    data.supplierContacts,
     data.history
     ,data.stockMovements
   ].some(value => Array.isArray(value)) || Boolean(data.updatedAt);
@@ -609,6 +633,15 @@ function applySharedState(incomingState) {
   cacheSharedState();
   render();
 }
+
+// Expose un contexte en lecture seule aux agents sans leur transmettre de fonction de sauvegarde.
+Object.defineProperties(window, {
+  items: { configurable: true, get: () => JSON.parse(JSON.stringify(items)) },
+  orders: { configurable: true, get: () => JSON.parse(JSON.stringify(orders)) },
+  inventoryLocations: { configurable: true, get: () => [...inventoryLocations] },
+  inventoryCategories: { configurable: true, get: () => [...inventoryCategories] },
+  currentName: { configurable: true, get: () => currentName }
+});
 
 async function refreshSharedStateFromGithub() {
   try {
@@ -647,6 +680,7 @@ function syncRuntimeStateFromShared() {
   sharedState.orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
   sharedState.clientSamples = migrateClientSamples(sharedState.clientSamples);
   sharedState.clients = migrateClients(sharedState.clients, sharedState.clientSamples);
+  sharedState.supplierContacts = migrateSupplierContacts(sharedState.supplierContacts);
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
   sharedState.stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
@@ -656,6 +690,7 @@ function syncRuntimeStateFromShared() {
   experiments = sharedState.experiments;
   clientSamples = sharedState.clientSamples;
   clients = sharedState.clients;
+  supplierContacts = sharedState.supplierContacts;
   history = sharedState.history;
   stockMovements = sharedState.stockMovements;
 }
@@ -666,6 +701,7 @@ function syncSharedStateFromRuntime() {
   sharedState.orders = Array.isArray(orders) ? orders : [];
   sharedState.clientSamples = migrateClientSamples(clientSamples);
   sharedState.clients = migrateClients(clients, sharedState.clientSamples);
+  sharedState.supplierContacts = migrateSupplierContacts(supplierContacts);
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(history) ? history : [];
   sharedState.stockMovements = Array.isArray(stockMovements) ? stockMovements : [];
@@ -689,10 +725,12 @@ async function hydrateSharedData() {
     sharedDataRemoteReady = true;
 
     if (hasSharedDataPayload(result.data)) {
+      const contactsBefore=Array.isArray(result.data.supplierContacts)?result.data.supplierContacts:[],needsContactsMigration=INITIAL_SUPPLIER_CONTACTS.some(seed=>!contactsBefore.some(contact=>normalizeCompanyName(contact?.company)===normalizeCompanyName(seed.company)));
       sharedState = createSharedState(result.data, { includeBootstrap: false });
       syncRuntimeStateFromShared();
       cacheSharedState();
       sharedDataLastError = "";
+      if(needsContactsMigration&&result.mode==="github-write")scheduleSharedSave();
 
       if (!app.classList.contains("hidden")) {
         render();
@@ -820,6 +858,7 @@ function render() {
   renderLocations();
   renderOrders();
   renderExperiments();
+  renderContacts();
 }
 
 function getPageScrollY() {
@@ -1298,7 +1337,7 @@ function renderInventoryDetail(item) {
       ${renderAdvancedStockDetail(item)}
 
       <div class="inventory-detail-secondary-grid">
-        ${renderInventoryReferencesPanel(references)}
+        ${renderInventoryReferencesPanel(references, item)}
         ${renderInventoryInfoPanel(item)}
       </div>
     </section>
@@ -1342,9 +1381,9 @@ function renderInventoryInfoPanel(item) {
   `;
 }
 
-function renderInventoryReferencesPanel(references) {
+function renderInventoryReferencesPanel(references, item = null) {
   const primaryRows = [
-    renderReferenceRow("Fournisseur", references.primary.supplier),
+    renderSupplierReferenceRow(references.primary.supplier, item),
     renderReferenceRow("Référence", references.primary.reference, { copyable: true }),
     renderReferenceLinkRow("Lien", references.primary.link),
     renderReferenceRow("Notes", references.primary.notes),
@@ -1397,6 +1436,13 @@ function renderInventoryReferencesPanel(references) {
       ${secondaryBlocks.length ? `<div class="secondary-references">${secondaryBlocks.join("")}</div>` : ""}
     </section>
   `;
+}
+
+function renderSupplierReferenceRow(value, item = null) {
+  if (!value || !String(value).trim()) return "";
+  const contact = findSupplierContactForItem(item || { references: { primary: { supplier: value } } });
+  if (!contact) return renderReferenceRow("Fournisseur", value);
+  return `<div class="item-detail-row reference-detail-row"><span class="item-detail-label">Fournisseur</span><div class="item-detail-value reference-detail-value"><button class="supplier-contact-link" type="button" onclick="openSupplierContact('${escapeHtml(contact.id)}')">${escapeHtml(contact.company)} <span aria-hidden="true">↗</span></button></div></div>`;
 }
 
 function renderReferenceRow(label, value, options = {}) {
@@ -2016,7 +2062,7 @@ function renderOrderDetailLegacy(order) {
                 <strong>Référence principale</strong>
 
                 <div class="item-detail-stack">
-                  ${renderDetailRow("Fournisseur", references.primary.supplier)}
+                  ${renderSupplierReferenceRow(references.primary.supplier, item)}
                   ${renderDetailRow("Référence", references.primary.reference)}
 
                   ${references.primary.link ? `
@@ -2186,6 +2232,7 @@ function syncAppViewMode() {
   app.classList.toggle("samples-mode", activeView === "samples");
   app.classList.toggle("locations-mode", activeView === "locations");
   app.classList.toggle("orders-mode", activeView === "orders");
+  app.classList.toggle("contacts-mode", activeView === "contacts");
   app.classList.toggle("location-detail-mode", activeView === "locations" && Boolean(selectedLocation));
   app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }
@@ -3734,7 +3781,7 @@ function renderOrderDetail(order) {
           </section>
         `}
 
-        ${item ? renderInventoryReferencesPanel(references) : ""}
+        ${item ? renderInventoryReferencesPanel(references, item) : ""}
       </div>
     </section>
   `;
@@ -4931,6 +4978,8 @@ function openModal(id, options = {}) {
   fields.tags.value = item?.tags?.join(", ") || prefill.tags?.join(", ") || "";
   fields.notes.value = item?.notes || prefill.notes || "";
   fields.primarySupplier.value = references.primary.supplier || "";
+  fields.primarySupplierContactId.value = findSupplierContactForItem(item)?.id || "";
+  hydrateSupplierContactOptions();
   fields.primaryReference.value = references.primary.reference || "";
   fields.primaryLink.value = references.primary.link || "";
   fields.primaryReferenceNotes.value = references.primary.notes || "";
@@ -4968,6 +5017,7 @@ function saveItem() {
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
     notes: normalizeMultilineText(fields.notes.value),
     references: getItemReferences(),
+    supplierContactId: fields.primarySupplierContactId.value || undefined,
     createdAtRaw: existingItem?.createdAtRaw || new Date().toISOString(),
     createdAt: existingItem?.createdAt || new Intl.DateTimeFormat("fr-FR", {
       dateStyle: "short",
@@ -5635,11 +5685,21 @@ function isSeedItemId(id) {
 
 function requestItemDeletion() {
   const id = fields.itemId.value;
+  requestItemDeletionById(id);
+}
+
+function requestItemDeletionById(id, options = {}) {
   const item = items.find(entry => entry.id === id);
-  if (!item) return;
+  if (!item) throw new Error("Cet item n’existe plus.");
   openDeleteConfirmation({
-    message: `Êtes-vous sûr de vouloir supprimer l’item “${item.name}” ? Cette action est irréversible.`,
-    onConfirm: () => deleteItem(id)
+    title: `Supprimer définitivement l’item “${item.name}” ?`,
+    message: `Cette suppression utilise le workflow de l’inventaire et peut concerner son stock, ses contenants, ses aliquotes, ses commandes ou autres dépendances associées. Cette action est irréversible.`,
+    confirmText: "Supprimer l’item",
+    trigger: options.trigger,
+    onConfirm: () => {
+      deleteItem(id);
+      if (typeof options.onDeleted === "function") options.onDeleted(item);
+    }
   });
 }
 
@@ -7018,6 +7078,113 @@ function deleteOrder(id) {
   renderOrders();
   renderHistory();
 }
+
+function normalizeCompanyName(value) {
+  return String(value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ");
+}
+
+function migrateSupplierContacts(list, options = {}) {
+  const source=Array.isArray(list)?list:[],seenIds=new Set(),seenNames=new Set(),normalized=[];
+  source.forEach((contact,index)=>{
+    const company=String(contact?.company||contact?.society||"").trim();if(!company)return;
+    let id=String(contact.id||"").trim()||`contact-${Date.now()}-${index}`;while(seenIds.has(id))id=`${id}-${index+1}`;
+    const key=normalizeCompanyName(company);if(seenNames.has(key))return;seenIds.add(id);seenNames.add(key);
+    normalized.push({id,company,salesRepresentative:String(contact.salesRepresentative||"").trim(),afterSalesService:String(contact.afterSalesService||"").trim(),customerService:String(contact.customerService||"").trim(),salesAndQuotes:String(contact.salesAndQuotes||"").trim(),phone:String(contact.phone||"").trim(),notes:normalizeMultilineText(contact.notes||""),aliases:[...new Set((Array.isArray(contact.aliases)?contact.aliases:[]).map(value=>String(value).trim()).filter(Boolean))]});
+  });
+  if(options.includeDefaults)INITIAL_SUPPLIER_CONTACTS.forEach(seed=>{if(!seenNames.has(normalizeCompanyName(seed.company))){normalized.push({...seed,aliases:[...seed.aliases]});seenNames.add(normalizeCompanyName(seed.company));}});
+  return normalized.sort((a,b)=>a.company.localeCompare(b.company,"fr",{sensitivity:"base"}));
+}
+
+function contactNames(contact){return[contact.company,...(contact.aliases||[])].map(normalizeCompanyName).filter(Boolean);}
+function getItemSupplier(item){return String(item?.references?.primary?.supplier||item?.supplier||item?.fournisseur||"").trim();}
+function findSupplierContactForItem(item){
+  if(item?.supplierContactId){const explicit=supplierContacts.find(contact=>contact.id===item.supplierContactId);if(explicit)return explicit;}
+  const supplierKey=normalizeCompanyName(getItemSupplier(item));if(!supplierKey)return null;
+  return supplierContacts.find(contact=>contactNames(contact).includes(supplierKey))||null;
+}
+function getContactItems(contact){return items.filter(item=>item.supplierContactId===contact.id||contactNames(contact).includes(normalizeCompanyName(getItemSupplier(item))));}
+function contactPrimaryAddress(contact){return contact.customerService||contact.salesAndQuotes||contact.afterSalesService||"";}
+function contactEmails(value){return String(value||"").match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi)||[];}
+function contactValueRow(label,value,type="text"){
+  if(!value||!String(value).trim())return"";
+  const emails=contactEmails(value);
+  let content=escapeHtml(value);
+  if(emails.length)content=content.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,email=>`<a href="mailto:${email}">${email}</a>`);
+  else if(type==="phone")content=`<a href="tel:${escapeHtml(String(value).replace(/[^\d+]/g,""))}">${escapeHtml(value)}</a>`;
+  return`<div class="contact-detail-row"><span>${escapeHtml(label)}</span><div><strong>${content}</strong><button class="ghost-btn compact-btn" type="button" data-copy-contact="${escapeHtml(value)}">Copier</button></div></div>`;
+}
+
+function renderContacts(){
+  const root=document.querySelector("#contactsRoot");if(!root)return;
+  const query=normalizeCompanyName(contactsSearchValue);
+  if(selectedContactId){const contact=supplierContacts.find(row=>row.id===selectedContactId);if(contact)return renderContactDetail(root,contact);selectedContactId=null;}
+  const rows=supplierContacts.filter(contact=>!query||normalizeCompanyName([contact.company,contact.salesRepresentative,contact.customerService,contact.salesAndQuotes,contact.afterSalesService,contact.phone].join(" ")).includes(query)).sort((a,b)=>a.company.localeCompare(b.company,"fr",{sensitivity:"base"}));
+  root.innerHTML=`<header class="contacts-header"><div><p class="eyebrow">Carnet fournisseurs</p><h2 id="contactsTitle">Contacts</h2></div><button class="primary-btn" type="button" data-add-contact>Ajouter un contact</button></header><section class="contacts-toolbar"><label><span class="sr-only">Rechercher un contact</span><input type="search" id="contactsSearch" placeholder="Rechercher une société, un commercial, un e-mail ou un téléphone" value="${escapeHtml(contactsSearchValue)}"></label><strong>${supplierContacts.length} société(s)</strong></section><div class="contacts-list">${rows.map(contact=>{const address=contactPrimaryAddress(contact);return`<button class="contact-card" type="button" data-contact-id="${escapeHtml(contact.id)}"><div><h3>${escapeHtml(contact.company)}</h3>${contact.salesRepresentative?`<p>${escapeHtml(contact.salesRepresentative)}</p>`:""}</div><div>${address?`<span>${escapeHtml(address)}</span>`:""}${contact.phone?`<span>${escapeHtml(contact.phone)}</span>`:""}</div></button>`;}).join("")||`<div class="agent-empty">Aucune société ne correspond à cette recherche.</div>`}</div>`;
+  root.querySelector("[data-add-contact]").onclick=()=>openContactModal();
+  root.querySelector("#contactsSearch").oninput=event=>{contactsSearchValue=event.target.value;renderContacts();const input=document.querySelector("#contactsSearch");input?.focus();input?.setSelectionRange(contactsSearchValue.length,contactsSearchValue.length);};
+  root.querySelectorAll("[data-contact-id]").forEach(button=>button.onclick=()=>{selectedContactId=button.dataset.contactId;renderContacts();});
+}
+
+function renderContactDetail(root,contact){
+  const associated=getContactItems(contact);
+  root.innerHTML=`<button class="agent-back ghost-btn" type="button" data-back-contacts>← Retour aux contacts</button><header class="contacts-header"><div><p class="eyebrow">Fiche société</p><h2>${escapeHtml(contact.company)}</h2><p>${associated.length} produit(s) associé(s)</p></div><div class="contact-header-actions"><button class="ghost-btn" type="button" data-edit-contact>Modifier</button><button class="danger-outline-btn" type="button" data-delete-contact>Supprimer</button></div></header><div class="contact-detail-grid"><section class="inventory-info-panel"><div class="inventory-panel-heading"><span class="inventory-panel-icon">S</span><h3>Société et commercial</h3></div>${contactValueRow("Société",contact.company)}${contactValueRow("Commercial",contact.salesRepresentative)||"<p>Aucun commercial renseigné.</p>"}</section><section class="inventory-info-panel"><div class="inventory-panel-heading"><span class="inventory-panel-icon">@</span><h3>Commandes et devis</h3></div>${contactValueRow("Service client",contact.customerService)}${contactValueRow("Commercial / devis",contact.salesAndQuotes)}${!contact.customerService&&!contact.salesAndQuotes?"<p>Aucun contact renseigné.</p>":""}</section><section class="inventory-info-panel"><div class="inventory-panel-heading"><span class="inventory-panel-icon">A</span><h3>Service client et SAV</h3></div>${contactValueRow("SAV",contact.afterSalesService)||"<p>Aucun contact SAV renseigné.</p>"}</section><section class="inventory-info-panel"><div class="inventory-panel-heading"><span class="inventory-panel-icon">☎</span><h3>Téléphone et informations complémentaires</h3></div>${contactValueRow("Téléphone",contact.phone,"phone")}${contact.notes?`<div class="contact-notes"><span>Notes</span><p class="multiline-text">${escapeHtml(contact.notes)}</p></div>`:""}${!contact.phone&&!contact.notes?"<p>Aucune information complémentaire.</p>":""}</section></div><section class="contact-products"><div class="section-heading"><h3>Produits associés</h3><span>${associated.length}</span></div>${associated.map(item=>`<button type="button" data-contact-item="${escapeHtml(item.id)}"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.references?.primary?.reference||"Sans référence principale")}</span></button>`).join("")||"<p>Aucun produit associé.</p>"}</section>`;
+  root.querySelector("[data-back-contacts]").onclick=()=>{selectedContactId=null;renderContacts();};
+  root.querySelector("[data-edit-contact]").onclick=()=>openContactModal(contact.id);
+  root.querySelector("[data-delete-contact]").onclick=event=>requestContactDeletion(contact.id,event.currentTarget);
+  root.querySelectorAll("[data-copy-contact]").forEach(button=>button.onclick=()=>copyContactValue(button.dataset.copyContact,button));
+  root.querySelectorAll("[data-contact-item]").forEach(button=>button.onclick=()=>openItemDetail(button.dataset.contactItem,{view:"contacts"}));
+}
+
+function openSupplierContact(id){
+  if(!supplierContacts.some(contact=>contact.id===id))return;
+  selectedContactId=id;activeView="contacts";document.querySelectorAll(".nav-item").forEach(item=>item.classList.toggle("active",item.dataset.view==="contacts"));document.querySelectorAll(".view").forEach(view=>view.classList.remove("active"));document.querySelector("#contactsView")?.classList.add("active");controlBar?.classList.add("hidden");syncAppViewMode();renderContacts();
+}
+
+async function copyContactValue(value,button){
+  try{await navigator.clipboard.writeText(value);const old=button.textContent;button.textContent="Copié";setTimeout(()=>button.textContent=old,1200);}catch{button.title="Copie impossible dans ce navigateur.";}
+}
+
+function openContactModal(id=""){
+  const contact=id?supplierContacts.find(row=>row.id===id):null,dialog=document.querySelector("#contactDialog"),form=document.querySelector("#contactForm");
+  form.reset();form.dataset.duplicateConfirmed="";document.querySelector("#contactDuplicateWarning").classList.add("hidden");document.querySelector("#contactDialogTitle").textContent=contact?"Modifier le contact":"Ajouter un contact";document.querySelector("#contactId").value=contact?.id||"";document.querySelector("#contactCompany").value=contact?.company||"";document.querySelector("#contactSalesRepresentative").value=contact?.salesRepresentative||"";document.querySelector("#contactAfterSalesService").value=contact?.afterSalesService||"";document.querySelector("#contactCustomerService").value=contact?.customerService||"";document.querySelector("#contactSalesAndQuotes").value=contact?.salesAndQuotes||"";document.querySelector("#contactPhone").value=contact?.phone||"";document.querySelector("#contactAliases").value=(contact?.aliases||[]).join(", ");document.querySelector("#contactNotes").value=contact?.notes||"";dialog.showModal();
+}
+
+function similarCompanyContact(company,excludeId=""){
+  const key=normalizeCompanyName(company);
+  const distance=(a,b)=>{const row=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let previous=row[0];row[0]=i;for(let j=1;j<=b.length;j++){const saved=row[j];row[j]=Math.min(row[j]+1,row[j-1]+1,previous+(a[i-1]===b[j-1]?0:1));previous=saved;}}return row[b.length];};
+  return supplierContacts.find(contact=>contact.id!==excludeId&&contactNames(contact).some(name=>name===key||(Math.min(name.length,key.length)>=6&&distance(name,key)<=1)));
+}
+
+function saveContact(event){
+  event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;
+  const id=document.querySelector("#contactId").value,company=document.querySelector("#contactCompany").value.trim(),warning=document.querySelector("#contactDuplicateWarning");
+  if(!company){warning.textContent="La société est obligatoire.";warning.classList.remove("hidden");document.querySelector("#contactCompany").focus();return;}
+  const duplicate=similarCompanyContact(company,id);
+  if(duplicate&&form.dataset.duplicateConfirmed!==normalizeCompanyName(company)){warning.textContent=`Une fiche « ${duplicate.company} » existe déjà. Vérifiez-la avant de confirmer une seconde fois.`;warning.classList.remove("hidden");form.dataset.duplicateConfirmed=normalizeCompanyName(company);return;}
+  const previous=id?supplierContacts.find(contact=>contact.id===id):null,aliases=document.querySelector("#contactAliases").value.split(",").map(value=>value.trim()).filter(Boolean);
+  if(previous&&normalizeCompanyName(previous.company)!==normalizeCompanyName(company)&&!aliases.some(alias=>normalizeCompanyName(alias)===normalizeCompanyName(previous.company)))aliases.push(previous.company);
+  const contact={id:previous?.id||`contact-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,company,salesRepresentative:document.querySelector("#contactSalesRepresentative").value.trim(),afterSalesService:document.querySelector("#contactAfterSalesService").value.trim(),customerService:document.querySelector("#contactCustomerService").value.trim(),salesAndQuotes:document.querySelector("#contactSalesAndQuotes").value.trim(),phone:document.querySelector("#contactPhone").value.trim(),notes:normalizeMultilineText(document.querySelector("#contactNotes").value),aliases:[...new Set(aliases)]};
+  if(previous)supplierContacts=supplierContacts.map(row=>row.id===contact.id?contact:row);else supplierContacts.push(contact);
+  supplierContacts=migrateSupplierContacts(supplierContacts);addHistory(previous?"Contact modifié":"Contact ajouté",`${currentName} a ${previous?"modifié":"ajouté"} le contact ${contact.company}.`);persist();document.querySelector("#contactDialog").close();selectedContactId=contact.id;renderContacts();renderHistory();hydrateSupplierContactOptions();
+}
+
+function requestContactDeletion(id,trigger){
+  const contact=supplierContacts.find(row=>row.id===id);if(!contact)return;const count=getContactItems(contact).length;
+  openDeleteConfirmation({title:`Supprimer définitivement le contact « ${contact.company} » ?`,message:`${count?`${count} item(s) sont associés à cette société. `:""}Les items ne seront pas supprimés et conserveront leur fournisseur sous forme de texte, mais le lien vers cette fiche disparaîtra.`,confirmText:"Supprimer le contact",trigger,onConfirm:()=>{supplierContacts=supplierContacts.filter(row=>row.id!==id);addHistory("Contact supprimé",`${currentName} a supprimé le contact ${contact.company}.`);persist();selectedContactId=null;hydrateSupplierContactOptions();renderContacts();renderHistory();}});
+}
+
+function hydrateSupplierContactOptions(){
+  const list=document.querySelector("#supplierContactsList");if(!list)return;list.innerHTML=supplierContacts.map(contact=>`<option value="${escapeHtml(contact.company)}"></option>`).join("");
+}
+
+window.ExadexContacts={
+  normalizeCompanyName,
+  migrateSupplierContacts,
+  findForItem:item=>findSupplierContactForItem(item),
+  getAll:()=>JSON.parse(JSON.stringify(supplierContacts)),
+  getAssociatedItems:id=>{const contact=supplierContacts.find(row=>row.id===id);return contact?JSON.parse(JSON.stringify(getContactItems(contact))):[];},
+  open:openSupplierContact
+};
 
 function addHistory(action, detail) {
   history.unshift({

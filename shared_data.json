@@ -14028,6 +14028,12 @@
   ],
   "history": [
     {
+      "date": "27/07/2026 11:28",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "27/07/2026 11:26",
       "user": "Elina",
       "action": "Item modifié",
@@ -16650,5 +16656,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-27T09:26:58.687Z"
+  "updatedAt": "2026-07-27T09:28:05.701Z"
 }

@@ -690,12 +690,31 @@
         "closedByLocation": [
           {
             "location": "Frigo culture L1",
-            "quantity": 4,
+            "quantity": 3,
             "updatedAt": "2026-07-27T09:26:58.686Z",
             "updatedBy": "Elina"
           }
         ],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "container-ms30yc3f-2568918001-2538998356",
+            "label": "bouteille ouvert nº1",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "status": "open",
+            "openedAt": "2026-07-27T09:28:36.027Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-07-27T09:28:36.027Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -14029,6 +14048,13 @@
   "history": [
     {
       "date": "27/07/2026 11:28",
+      "action": "Stock mis à jour",
+      "detail": "Elina · container_opened · Endothelial Cell Growth Medium 2",
+      "user": "Elina",
+      "itemId": "itm-CSV-0018"
+    },
+    {
+      "date": "27/07/2026 11:28",
       "user": "Elina",
       "action": "Item modifié",
       "detail": "Elina a modifié Endothelial Cell Growth Medium 2."
@@ -16654,7 +16680,48 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-ms30yc3f-614954728-2719941074",
+      "operationId": "operation-ms30ybng-459010218-3695215116",
+      "itemId": "itm-CSV-0018",
+      "timestamp": "2026-07-27T09:28:36.027Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "container_opened",
+      "entityType": "container",
+      "entityId": "container-ms30yc3f-2568918001-2538998356",
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "container-ms30yc3f-2568918001-2538998356",
+        "label": "bouteille ouvert nº1",
+        "location": "Frigo culture L1",
+        "remaining": 500,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-27T09:28:36.027Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-27T09:28:36.027Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Frigo culture L1",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-27T09:28:05.701Z"
+  "updatedAt": "2026-07-27T09:28:36.027Z"
 }

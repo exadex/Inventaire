@@ -14879,6 +14879,17 @@
       "aliases": []
     },
     {
+      "id": "contact-1785226139475-ahe8qb",
+      "company": "Biovalley",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "info@biovalley.fr",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "",
+      "aliases": []
+    },
+    {
       "id": "contact-1785225250289-lwwcas",
       "company": "Merck",
       "salesRepresentative": "",
@@ -14891,6 +14902,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 10:08",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Biovalley."
+    },
     {
       "date": "28/07/2026 10:05",
       "user": "Caroline",
@@ -17801,5 +17818,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T08:05:20.435Z"
+  "updatedAt": "2026-07-28T08:08:59.476Z"
 }

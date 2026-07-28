@@ -15020,6 +15020,17 @@
       "aliases": []
     },
     {
+      "id": "contact-1785239611213-9k274h",
+      "company": "Ozyme",
+      "salesRepresentative": "",
+      "afterSalesService": "commande@ozyme.fr",
+      "customerService": "",
+      "salesAndQuotes": "devis@ozyme.fr",
+      "phone": "01 34 60 15 16",
+      "notes": "devis à faire en ligne\nContacter Simon Roubille par Linkedin ",
+      "aliases": []
+    },
+    {
       "id": "contact-1785238690509-eg8ax0",
       "company": "Promega",
       "salesRepresentative": "",
@@ -15131,6 +15142,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:53",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Ozyme."
+    },
     {
       "date": "28/07/2026 13:52",
       "user": "Caroline",
@@ -18191,5 +18208,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:52:08.910Z"
+  "updatedAt": "2026-07-28T11:53:31.215Z"
 }

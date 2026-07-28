@@ -6337,7 +6337,7 @@
       "notes": "Conditionnement : 25",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Sarsdest",
           "reference": "83.3910.002",
           "link": "https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3910.002/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6350,7 +6350,34 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T13:08:36.892Z",
-      "createdAt": "16/07/2026 15:08"
+      "createdAt": "16/07/2026 15:08",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0088",
@@ -15912,6 +15939,12 @@
       "date": "28/07/2026 15:01",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié T25."
+    },
+    {
+      "date": "28/07/2026 15:01",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié cliptip 300 ext low retention."
     },
     {
@@ -19154,5 +19187,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:01:36.558Z"
+  "updatedAt": "2026-07-28T13:01:45.510Z"
 }

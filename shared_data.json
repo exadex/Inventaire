@@ -2089,7 +2089,7 @@
       "notes": "25",
       "references": {
         "primary": {
-          "supplier": "ThermoFischer",
+          "supplier": "Thermo Fischer",
           "reference": "15349067",
           "link": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -2099,7 +2099,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-07-28T12:59:46.828Z",
+      "createdAt": "28/07/2026 14:59",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0052",
@@ -15642,6 +15672,12 @@
       "date": "28/07/2026 14:59",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Seringue luer lock 50 mL."
+    },
+    {
+      "date": "28/07/2026 14:59",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Seringue BD 3P 20 ml Cone luer Lock."
     },
     {
@@ -18830,5 +18866,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:59:32.069Z"
+  "updatedAt": "2026-07-28T12:59:46.830Z"
 }

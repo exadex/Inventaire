@@ -3722,7 +3722,7 @@
       "notes": "Conditionnement : 100mg",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "D4902",
           "link": "https://www.sigmaaldrich.com/FR/fr/substance/dexamethasone3924650022?gclid=CjwKCAjw2K6lBhBXEiwA5RjtCdSCdJwZu2sP4yeAnOsKIbfaI-7aJ4e-wlrgmkCRX6qXiMlsfM0iXRoCKjgQAvD_BwE&gclsrc=aw.ds",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -3732,7 +3732,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-07-28T13:07:23.828Z",
+      "createdAt": "28/07/2026 15:07",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mg",
+            "singular": "mg",
+            "plural": "mg",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mg",
+        "trackingUnit": "mg",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-vseygc",
@@ -16590,6 +16620,12 @@
       "date": "28/07/2026 15:07",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Dexamethasone (PM : 392.46)."
+    },
+    {
+      "date": "28/07/2026 15:07",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié boite ø 60."
     },
     {
@@ -19988,5 +20024,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:07:14.878Z"
+  "updatedAt": "2026-07-28T13:07:23.830Z"
 }

@@ -3218,7 +3218,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "83.3900",
           "link": "https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3900/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -3292,7 +3292,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-web-1783931436294-8xgtpz",
@@ -16318,6 +16319,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 15:05",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié boite ø 35."
+    },
+    {
       "date": "28/07/2026 15:04",
       "user": "Caroline",
       "action": "Item modifié",
@@ -19653,5 +19660,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:04:49.846Z"
+  "updatedAt": "2026-07-28T13:05:12.166Z"
 }

@@ -3054,7 +3054,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "833901",
           "link": "https://www.sarstedt.com/en/products/laboratory/cell-tissue-culture/cultivation/product/83.3901/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -3133,7 +3133,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-web-1783931436294-6j33l2",
@@ -16589,6 +16590,12 @@
       "date": "28/07/2026 15:07",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié boite ø 60."
+    },
+    {
+      "date": "28/07/2026 15:07",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié DMEM sans glu."
     },
     {
@@ -19981,5 +19988,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:07:04.454Z"
+  "updatedAt": "2026-07-28T13:07:14.878Z"
 }

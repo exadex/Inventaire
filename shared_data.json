@@ -6805,7 +6805,7 @@
       "notes": "Conditionnement : 500 ml",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "N6908",
           "link": "",
           "notes": "121",
@@ -6815,7 +6815,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-07-28T13:02:55.468Z",
+      "createdAt": "28/07/2026 15:02",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0098",
@@ -16083,6 +16113,12 @@
       "date": "28/07/2026 15:02",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié F10HAM."
+    },
+    {
+      "date": "28/07/2026 15:02",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Azide 0,1M solution."
     },
     {
@@ -19361,5 +19397,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:02:46.614Z"
+  "updatedAt": "2026-07-28T13:02:55.470Z"
 }

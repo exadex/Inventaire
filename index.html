@@ -4,17 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Inventaire ExAdEx</title>
-    <link rel="icon" href="images/favicon.ico?v=2" sizes="any">
-    <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
-    <link rel="icon" href="images/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
-    <link rel="icon" href="images/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2" sizes="180x180">
-    <link rel="stylesheet" href="design.css" />
+    <link rel="icon" href="assets/images/favicon.ico?v=2" sizes="any">
+    <link rel="icon" href="assets/images/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="assets/images/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/images/favicon-16x16.png?v=2" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png?v=2" sizes="180x180">
+    <link rel="stylesheet" href="assets/css/design.css" />
   </head>
   <body>
     <div id="auth" class="auth-shell">
       <section class="auth-panel">
-        <img src="images/favicon.svg" alt="" class="brand-mark" aria-hidden="true">
+        <img src="assets/images/favicon.svg" alt="" class="brand-mark" aria-hidden="true">
         <p class="eyebrow">SHAPING RESEARCH WITH REAL HUMAN DATA</p>
         <h1>Inventaire ExAdEx</h1>
         <p class="auth-copy">
@@ -42,7 +42,7 @@
       <aside class="sidebar">
         <div class="brand">
           <img
-            src="images/favicon.svg"
+            src="assets/images/favicon.svg"
             alt=""
             class="sidebar-brand-logo"
             aria-hidden="true"
@@ -598,6 +598,14 @@
           <label class="full-label">Alias<input id="contactAliases" placeholder="BD, Becton Dickinson, BD France"></label>
           <label class="full-label">Notes<textarea id="contactNotes" rows="4"></textarea></label>
         </div>
+        <section class="contact-coordinates-editor" aria-labelledby="contactCoordinatesTitle">
+          <div>
+            <h4 id="contactCoordinatesTitle">Coordonnées supplémentaires</h4>
+            <p>Ajoutez plusieurs e-mails, téléphones ou informations libres sans modifier les champs historiques ci-dessus.</p>
+          </div>
+          <div id="contactCoordinatesList"></div>
+          <button class="ghost-btn compact-btn" id="addContactCoordinateBtn" type="button">+ Ajouter une coordonnée</button>
+        </section>
         <p id="contactDuplicateWarning" class="field-validation-message hidden" role="alert"></p>
         <div class="modal-actions">
           <button id="cancelContactBtn" class="ghost-btn" type="button">Annuler</button>
@@ -1057,7 +1065,7 @@
         <div class="login-loader-orbit">
           <span class="orbit-ring ring-1"></span>
           <span class="orbit-ring ring-2"></span>
-          <img src="images/favicon.svg" alt="" class="orbit-core" aria-hidden="true">
+          <img src="assets/images/favicon.svg" alt="" class="orbit-core" aria-hidden="true">
         </div>
 
         <p class="login-loader-kicker">ExAdEx Inventaire</p>
@@ -1072,14 +1080,14 @@
       </div>
     </div>
 
-    <script src="const.js"></script>
-    <script src="seed_items.js"></script>
-    <script src="protocols.js"></script>
-    <script src="github_storage.js"></script>
-    <script src="stock_tracking.js"></script>
-    <script src="agents_core.js"></script>
-    <script src="agents_storage.js"></script>
-    <script src="agents_ui.js"></script>
-    <script src="script.js"></script>
+    <script src="js/app/const.js"></script>
+    <script src="js/app/seed_items.js"></script>
+    <script src="js/app/protocols.js"></script>
+    <script src="js/storage/github_storage.js"></script>
+    <script src="js/stock/stock_tracking.js"></script>
+    <script src="js/agents/agents_core.js"></script>
+    <script src="js/agents/agents_storage.js"></script>
+    <script src="js/agents/agents_ui.js"></script>
+    <script src="js/app/script.js"></script>
   </body>
 </html>

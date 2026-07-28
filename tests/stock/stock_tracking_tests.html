@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><meta charset="utf-8"><title>Tests StockTracking</title><body><pre id="result">Tests en cours…</pre><script src="stock_tracking.js"></script><script>
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Tests StockTracking</title><body><pre id="result">Tests en cours…</pre><script src="../../js/stock/stock_tracking.js"></script><script>
 const results=[]; const test=(name,fn)=>{try{fn();results.push(`✓ ${name}`)}catch(error){results.push(`✗ ${name}: ${error.message}`)}}; const assert=(condition,message)=>{if(!condition)throw new Error(message)};
 const base={id:"test",name:"Test",quantity:3,minStock:2,unit:"cartons",stockTracking:{mode:"containers",traceabilityMode:"detailed",packagingLevels:[{singular:"carton",plural:"cartons",contains:1},{singular:"sachet",plural:"sachets",contains:10},{singular:"flacon",plural:"flacons",contains:50}],quantityStep:1,precision:0,closedByLocation:[{location:"Réserve",quantity:3}],openContainers:[]},aliquotTracking:{enabled:true,preparations:[]}};
 const op=(type,extra={})=>({operationId:StockTracking.id("op"),type,...extra}); let state=base;

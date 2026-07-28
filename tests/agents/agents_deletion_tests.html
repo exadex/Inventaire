@@ -1,12 +1,12 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Tests suppression audits</title></head>
-<body><div id="agentsRoot"></div><p id="result">En cours…</p><script src="agents_core.js"></script><script src="agents_storage.js"></script><script>
+<body><div id="agentsRoot"></div><p id="result">En cours…</p><script src="../../js/agents/agents_core.js"></script><script src="../../js/agents/agents_storage.js"></script><script>
 localStorage.clear();sessionStorage.clear();let confirmation=null,writes=0;
 const mk=id=>({id,createdAt:new Date().toISOString(),rulesVersion:2,itemCount:2,totalAlertCount:id==="bad"?500:2,alerts:Array.from({length:id==="bad"?500:2},(_,i)=>({id:id+i,type:"Doublon potentiel",severity:"warning",itemIds:["a","b"],state:"pending"})),summary:{critical:0,warnings:2,info:0,duplicates:2}});
 const physical={id:"physical",name:"Brouillon",status:"Brouillon",proposals:[],lines:[],decisions:[]};
 ExadexAgentsStorage.saveWorkspace({audits:[mk("bad"),mk("keep")],sessions:[physical]},localStorage);
 Object.defineProperties(window,{items:{get:()=>[]},orders:{get:()=>[]},inventoryLocations:{get:()=>[]},inventoryCategories:{get:()=>[]},currentName:{get:()=>"Test"}});
 window.openDeleteConfirmation=options=>{confirmation=options};window.ExadexGithubStorage={mutateSharedData(){writes++}};
-</script><script src="agents_ui.js"></script><script>
+</script><script src="../../js/agents/agents_ui.js"></script><script>
 const check=(v,m)=>{if(!v)throw new Error(m)};ExadexAgentsUI.renderAgents();
 document.querySelector('[data-delete-audit="bad"]').click();check(Boolean(confirmation),"modal appelé");
 check(/500 alerte/.test(confirmation.message)&&/non examinée/.test(confirmation.message),"confirmation détaillée");

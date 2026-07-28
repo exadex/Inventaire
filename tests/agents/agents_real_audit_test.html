@@ -1,6 +1,6 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Audit représentatif</title></head>
-<body><p id="result">En cours…</p><script src="stock_tracking.js"></script><script src="agents_core.js"></script><script>
-fetch("shared_data.json").then(r=>r.json()).then(data=>{
+<body><p id="result">En cours…</p><script src="../../js/stock/stock_tracking.js"></script><script src="../../js/agents/agents_core.js"></script><script>
+fetch("../../shared_data.json").then(r=>r.json()).then(data=>{
  const input={items:data.inventoryItems||[],orders:data.orders||[],stockTrackingApi:StockTracking};
  const report=ExadexAgentsCore.audit(input,{scope:"duplicates"});
  const counts=Object.fromEntries(["full","duplicates","stock","references"].map(scope=>[scope,ExadexAgentsCore.audit(input,{scope}).alerts.length]));

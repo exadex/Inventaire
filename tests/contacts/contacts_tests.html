@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><title>Tests Contacts</title></head>
 <body>
   <p id="result">Tests en cours…</p>
-  <iframe id="appFrame" src="index.html" style="width:1200px;height:900px"></iframe>
+  <iframe id="appFrame" src="../../index.html" style="width:1200px;height:900px"></iframe>
   <script>
     const result=document.querySelector("#result"),frame=document.querySelector("#appFrame");
     frame.addEventListener("load",()=>setTimeout(async()=>{
@@ -26,10 +26,20 @@
         check(!d.querySelector("#primarySupplierContactId").value,"fournisseur libre reste non lié");
         d.querySelector('[data-view="contacts"]').click();
         check(d.querySelectorAll(".contact-card").length>=3,"liste rendue");
+        const previewCards=[...d.querySelectorAll(".contact-card")],bCards=previewCards.filter(card=>card.querySelector("h3")?.textContent.startsWith("B"));
+        check(bCards.length>=2&&bCards.every(card=>[...card.classList].find(name=>name.startsWith("contact-accent-"))===[...bCards[0].classList].find(name=>name.startsWith("contact-accent-"))),"accent stable par lettre");
+        check(!d.querySelector(".contact-card .contact-icon-action")&&!d.querySelector(".contact-card [data-copy-contact]")&&!d.querySelector('.contact-card a[href^="mailto:"]'),"aucune action dans les prévisualisations");
+        check(previewCards.every(card=>[...card.querySelectorAll(".contact-card-info > span:first-child")].filter(icon=>icon.textContent==="✉").length<=1&&[...card.querySelectorAll(".contact-card-info > span:first-child")].filter(icon=>icon.textContent==="☎").length<=1),"maximum un e-mail et un téléphone");
+        const activeColor=getComputedStyle(d.querySelector(".contacts-alphabet .active")).backgroundColor.match(/\d+/g).map(Number);
+        check(activeColor[0]+activeColor[1]+activeColor[2]>600,"sélection alphabétique claire");
+        const firstAvailable=d.querySelector('.contacts-alphabet button[data-contact-letter]:not([data-contact-letter=""]):not(:disabled)');firstAvailable.click();
+        const letterColor=getComputedStyle(d.querySelector(".contacts-alphabet .active")).backgroundColor.match(/\d+/g).map(Number);
+        check(letterColor[0]+letterColor[1]+letterColor[2]>600,"lettre active sans fond noir");
+        d.querySelector('.contacts-alphabet button[data-contact-letter=""]').click();
         const search=d.querySelector("#contactsSearch");search.value="Loras";search.dispatchEvent(new w.Event("input"));
         check(d.querySelectorAll(".contact-card").length===1&&d.querySelector(".contact-card").textContent.includes("BD Biosciences"),"recherche commercial");
         d.querySelector(".contact-card").click();
-        check(d.querySelector('a[href^="mailto:"]')&&d.querySelector('a[href^="tel:"]'),"e-mail et téléphone cliquables");
+        check(d.querySelector('a[href^="mailto:"]')&&!d.querySelector('a[href^="tel:"]'),"e-mail cliquable et téléphone non cliquable");
         check(d.querySelector("[data-copy-contact]"),"copie disponible");
         d.querySelector("[data-back-contacts]").click();d.querySelector("[data-add-contact]").click();
         const form=d.querySelector("#contactForm");d.querySelector("#contactCompany").value="   ";

@@ -1,6 +1,6 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="design.css"><title>Tests résultats audit</title></head>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../assets/css/design.css"><title>Tests résultats audit</title></head>
 <body><div id="agentsRoot"></div><p id="result">En cours…</p>
-<script src="agents_core.js"></script><script src="agents_storage.js"></script><script>
+<script src="../../js/agents/agents_core.js"></script><script src="../../js/agents/agents_storage.js"></script><script>
 localStorage.clear();sessionStorage.clear();let confirmation=null,deletionRequest=null,businessWrites=0;
 let testItems=Array.from({length:16},(_,i)=>({id:"i"+i,name:"Produit "+i,quantity:i,unit:"u",category:"C"}));
 const scores=[21,39,40,64,65,84,85,100];
@@ -13,7 +13,7 @@ window.openDeleteConfirmation=options=>{confirmation=options};
 window.openItemDetail=()=>{};
 window.requestItemDeletionById=(id,options)=>{deletionRequest={id,options}};
 window.ExadexGithubStorage={mutateSharedData(){businessWrites++}};
-</script><script src="agents_ui.js"></script><script>
+</script><script src="../../js/agents/agents_ui.js"></script><script>
 let passed=0;const check=(v,m)=>{if(!v)throw new Error(m);passed++};
 ExadexAgentsUI.renderAgents();check(document.querySelector(".audit-type-badge").textContent==="Type non renseigné","badge neutre pour ancien audit");document.querySelector("[data-open-audit]").click();
 check(["full","duplicates","stock","references"].map(ExadexAgentsUI.auditTypeLabel).join("|")==="Audit complet|Doublons uniquement|Stocks et seuils|Références","libellés des quatre types");
@@ -56,7 +56,9 @@ check(businessWrites===0,"actions locales sans écriture métier");
 document.querySelector('[data-agent-action="audit"]').click();
 check(!document.querySelector('[name="severity"]'),"filtre gravité supprimé");
 check([...document.querySelector('[name="scope"]').options].map(x=>x.value).join(",")==="full,duplicates,stock,references","quatre périmètres seulement");
-check(document.querySelector(".audit-explanation").textContent.includes("doublons potentiels, stocks et seuils, et références principales"),"explication audit complet visible");
+check(document.querySelector(".audit-explanation").textContent.includes("références non enregistrées dans la fiche du fournisseur correspondant dans Contacts"),"explication audit complet visible");
+document.querySelector('[name="scope"]').value="references";document.querySelector('[name="scope"]').dispatchEvent(new Event("change"));
+check(document.querySelector(".audit-explanation").textContent.includes("références manquantes")&&document.querySelector(".audit-explanation").textContent.includes("doublons possédant des références différentes")&&document.querySelector(".audit-explanation").textContent.includes("ne sont pas enregistrées"),"définition des trois contrôles visible");
 document.querySelector('[name="scope"]').value="stock";document.querySelector('[name="scope"]').dispatchEvent(new Event("change"));
 check(document.querySelector(".audit-explanation").textContent.includes("Une quantité de 0 ou un seuil de 0"),"explication mise à jour immédiatement");
 document.querySelector("#result").textContent=`${passed} tests résultats audit réussis.`;

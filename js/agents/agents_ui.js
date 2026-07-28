@@ -28,6 +28,7 @@
   const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
   const fmt = value => value ? new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date(value)) : "—";
   const auditTypeLabel=value=>({full:"Audit complet",duplicates:"Doublons uniquement",stock:"Stocks et seuils",references:"Références"})[value]||"Type non renseigné";
+  const currentAuditItems=()=>typeof items!=="undefined"?items:(window.items||[]);
   function renderAgents() {
     const root = document.querySelector("#agentsRoot"); if (!root) return;
     if (screen === "audit-config") return renderAuditConfig(root);
@@ -52,10 +53,10 @@
   function formatBytes(bytes){return bytes<1024?`${bytes} o`:bytes<1048576?`${(bytes/1024).toFixed(1)} Ko`:`${(bytes/1048576).toFixed(2)} Mo`;}
   function renderAuditConfig(root) {
     const explanations={
-      full:"Cet audit analyse l’ensemble de l’inventaire en exécutant tous les contrôles actuellement disponibles : doublons potentiels, stocks et seuils, et références principales. Les résultats sont ensuite regroupés par catégorie afin de distinguer clairement chaque type d’anomalie.",
+      full:"Cet audit analyse l’ensemble de l’inventaire en exécutant tous les contrôles actuellement disponibles : doublons potentiels, stocks et seuils, références manquantes, doublons possédant des références différentes et références non enregistrées dans la fiche du fournisseur correspondant dans Contacts. Les résultats sont ensuite regroupés par catégorie afin de distinguer clairement chaque type d’anomalie.",
       duplicates:"Cet audit recherche les fiches susceptibles de correspondre au même produit. La comparaison tient notamment compte du nom, de la référence, du fournisseur, de la catégorie, du conditionnement et des caractéristiques du produit. Les résultats sont des doublons potentiels à vérifier, et non des suppressions automatiques.",
       stock:"Cet audit recherche les fiches dont la quantité de stock ou le seuil n’est pas renseigné, ainsi que les valeurs invalides et les incohérences entre le stock global et le détail des contenants. Une quantité de 0 ou un seuil de 0 est parfaitement valide et ne sera pas considéré comme un problème. Un stock inférieur au seuil n’est pas non plus une incohérence : il relève des alertes habituelles de stock.",
-      references:"Cet audit recherche les produits sans référence principale et les doublons potentiels qui possèdent des références principales différentes. Il ne contrôle pas les fournisseurs, les catégories ni les autres champs de la fiche."
+      references:"Vérifie les références manquantes, les doublons possédant des références différentes et les références qui ne sont pas enregistrées dans la fiche du fournisseur correspondant dans Contacts."
     };
     root.innerHTML = `<button class="agent-back ghost-btn" data-agent-action="home">← Agents</button><header class="agents-header"><div><p class="eyebrow">Strictement en lecture seule</p><h2>Nouvel audit</h2><p>Aucune fonction d’écriture n’est accessible à l’Auditeur.</p></div></header>
       <form id="auditConfigForm" class="agent-panel"><div class="agent-form-grid"><label>Type d’audit<select name="scope" class="select"><option value="full">Audit complet</option><option value="duplicates">Doublons uniquement</option><option value="stock">Stocks et seuils</option><option value="references">Références</option></select></label>
@@ -64,7 +65,7 @@
     const form=root.querySelector("#auditConfigForm"),scopeSelect=form.elements.scope,explanation=form.querySelector(".audit-explanation p");
     scopeSelect.onchange=()=>{explanation.textContent=explanations[scopeSelect.value]||"";};
     form.addEventListener("submit", event => { event.preventDefault(); const options = Object.fromEntries(new FormData(event.currentTarget)); delete options.severity; root.innerHTML = `<div class="agent-loading" role="status"><span></span><strong>Analyse en cours…</strong></div>`; setTimeout(() => {
-      const report = ExadexAgentsCore.audit({ items: window.items || [], orders: window.orders || [], locations: window.inventoryLocations || [], categories: window.inventoryCategories || [], stockTrackingApi:window.StockTracking }, options);
+      const report = ExadexAgentsCore.audit({ items: currentAuditItems(), orders: window.orders || [], locations: window.inventoryLocations || [], categories: window.inventoryCategories || [], contacts:window.ExadexContacts?.getAll?.()||[], stockTrackingApi:window.StockTracking }, options);
       state.audits.unshift(report); const saved=save(); activeAuditId = report.id; screen = "audit-report"; renderAgents(); if(!saved.ok)renderStorageMessage();
     }, 20); });
   }
@@ -110,14 +111,16 @@
     renderAgents();
   }
   function renderAuditAlerts(audit) {
-    const box = document.querySelector("#auditAlerts"),currentItems=window.items||[];
+    const box = document.querySelector("#auditAlerts"),currentItems=currentAuditItems();
     const sorted=rows=>rows.map((alert,index)=>({...alert,_index:index})).sort((a,b)=>(a.state==="reviewed")-(b.state==="reviewed")||confidenceScore(b)-confidenceScore(a)||String(a.itemIds?.[0]||"").localeCompare(String(b.itemIds?.[0]||""))||a._index-b._index);
     const cards=rows=>sorted(rows).map(a=>renderAuditAlertCard(a,currentItems)).join("")||`<div class="agent-empty">Aucune anomalie détectée</div>`;
+    const referenceCriterion=alert=>alert.referenceCriterion||(/différentes/i.test(alert.type)?"different-duplicates":/non enregistrée/i.test(alert.type)?"unregistered-contact":"missing");
+    const referenceGroups=rows=>[["different-duplicates","Doublons avec des références différentes"],["missing","Références manquantes"],["unregistered-contact","Références non enregistrées dans les Contacts"]].map(([key,label])=>{const matches=rows.filter(alert=>referenceCriterion(alert)===key);return`<section class="audit-scope-group"><header><h3>${label}</h3><span>${matches.length} résultat(s)</span></header><div>${cards(matches)}</div></section>`;}).join("");
     if(audit.scope==="full"){
       const groups=[["duplicates","Doublons potentiels"],["stock","Stocks et seuils"],["references","Références"]];
       const legacyScope=alert=>alert.auditScope||(/doublon/i.test(alert.type)?"duplicates":/stock|seuil|contenant/i.test(alert.type)?"stock":"references");
-      box.innerHTML=groups.map(([key,label])=>{const rows=audit.alerts.filter(a=>legacyScope(a)===key);return`<section class="audit-scope-group"><header><h3>${label}</h3><span>${rows.length} résultat(s)</span></header><div>${cards(rows)}</div></section>`;}).join("");
-    }else box.innerHTML=cards(audit.alerts);
+      box.innerHTML=groups.map(([key,label])=>{const rows=audit.alerts.filter(a=>legacyScope(a)===key);return`<section class="audit-scope-group"><header><h3>${label}</h3><span>${rows.length} résultat(s)</span></header><div>${key==="references"?referenceGroups(rows):cards(rows)}</div></section>`;}).join("");
+    }else box.innerHTML=audit.scope==="references"?referenceGroups(audit.alerts):cards(audit.alerts);
     box.querySelectorAll("[data-clear-alert]").forEach(btn=>btn.onclick=()=>requestClearAlert(audit,btn.dataset.clearAlert,btn));
     box.querySelectorAll("[data-review]").forEach(btn => btn.onclick = () => { const finding=audit.alerts.find(x => x.id === btn.dataset.review);if(finding.state!=="reviewed"){finding.state="reviewed";save();}renderAuditAlerts(audit);updateAuditCounters(audit); });
     box.querySelectorAll("[data-examine]").forEach(btn => btn.onclick = () => { const a = audit.alerts.find(x => x.id === btn.dataset.examine); if(a?.itemIds?.length===2){activeAlertId=a.id;screen="audit-compare";sessionStorage.setItem("exadex_agents_active_comparison",JSON.stringify({auditId:audit.id,alertId:a.id}));renderAgents();}else if(a?.itemIds?.[0]&&typeof window.openItemDetail==="function")window.openItemDetail(a.itemIds[0],{view:"agents"}); });
@@ -148,7 +151,7 @@
   function updateAuditCounters(audit){const counts=auditCounts(audit),remaining=document.querySelector("#auditRemainingCount"),reviewed=document.querySelector("#auditReviewedCount");if(remaining)remaining.textContent=counts.active;if(reviewed)reviewed.textContent=counts.reviewed;}
   function requestClearAlert(audit,id,trigger){const finding=audit.alerts.find(a=>a.id===id);if(!finding)return;openDeleteConfirmation({title:"Effacer cette alerte ?",message:"Cette alerte sera supprimée du rapport local. Aucun item ni aucune donnée de l’inventaire ne sera modifié.",confirmText:"Effacer l’alerte",trigger,onConfirm:()=>{audit.alerts=audit.alerts.filter(a=>a.id!==id);const saved=save();if(!saved.ok)throw new Error("L’alerte n’a pas pu être effacée.");if(screen==="audit-compare"){activeAlertId=null;sessionStorage.removeItem("exadex_agents_active_comparison");screen="audit-report";renderAgents();}else{renderAuditAlerts(audit);updateAuditCounters(audit);}}});}
   function renderAuditComparison(root){
-    const audit=state.audits.find(x=>x.id===activeAuditId),finding=audit?.alerts.find(x=>x.id===activeAlertId),currentItems=window.items||[];
+    const audit=state.audits.find(x=>x.id===activeAuditId),finding=audit?.alerts.find(x=>x.id===activeAlertId),currentItems=currentAuditItems();
     const pair=(finding?.itemIds||[]).map(id=>currentItems.find(item=>item.id===id));
     if(!finding||pair.length!==2||pair.some(x=>!x)){screen="audit-report";return renderAgents();}
     const fields=comparisonFields(pair[0],pair[1]);

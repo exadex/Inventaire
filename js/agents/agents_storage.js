@@ -34,7 +34,7 @@
       if(!dedup.has(key)) dedup.set(key,value);
     });
     const all=[...dedup.values()], kept=all.sort((a,b)=>(severityRank[a.severity]??9)-(severityRank[b.severity]??9)).slice(0,MAX_ALERTS);
-    return { id:report.id, auditType:report.auditType||"", rulesVersion:report.rulesVersion||1, scoreEngine:report.scoreEngine||"", scope:report.scope||"full", createdAt:report.createdAt, durationMs:report.durationMs||0, itemCount:report.itemCount||0, totalAlertCount:report.totalAlertCount??all.length, persistedAlertCount:kept.length, truncated:all.length>kept.length, alerts:kept, summary:report.summary||summary(all), scopeSummary:report.scopeSummary||null };
+    return { id:report.id, auditType:report.auditType||"", rulesVersion:report.rulesVersion||1, scoreEngine:report.scoreEngine||"", scope:report.scope||"full", createdAt:report.createdAt, durationMs:report.durationMs||0, itemCount:report.itemCount||0, totalAlertCount:report.totalAlertCount??all.length, persistedAlertCount:kept.length, truncated:all.length>kept.length, alerts:kept, summary:report.summary||summary(all), scopeSummary:report.scopeSummary||null, referenceSummary:report.referenceSummary||null };
   }
   function summary(rows){return{critical:rows.filter(x=>x.severity==="critical").length,warnings:rows.filter(x=>x.severity==="warning").length,info:rows.filter(x=>x.severity==="info").length,duplicates:rows.filter(x=>/doublon|référence partagée/i.test(x.type)).length};}
   function compactProposal(p) {

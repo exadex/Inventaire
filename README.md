@@ -33,8 +33,8 @@ Structure déjà présente dans ce MVP:
 
 ```txt
 index.html          Interface applicative ExAdEx Inventaire
-design.css          Design system et responsive
-script.js           Données mockées, filtres, CRUD, historique
+assets/css/design.css Design system et responsive
+js/app/script.js      Données mockées, filtres, CRUD, historique
 database/schema.sql Schéma SQL cible SQLite/PostgreSQL
 Dockerfile          Image statique nginx
 docker-compose.yml  Lancement conteneur local
@@ -73,12 +73,12 @@ Puis ouvrir `http://localhost:8080`.
 
 Les donnees modifiables ne sont plus traitees comme des donnees locales au navigateur:
 
-- `seed_items.js`: inventaire initial/default, utilise uniquement pour initialiser `shared_data.json` quand celui-ci est vide.
-- `protocols.js`: templates de protocoles en lecture seule, toujours versionnes dans le depot.
+- `js/app/seed_items.js`: inventaire initial/default, utilise uniquement pour initialiser `shared_data.json` quand celui-ci est vide.
+- `js/app/protocols.js`: templates de protocoles en lecture seule, toujours versionnes dans le depot.
 - `shared_data.json`: source de verite partagee pour `inventoryItems`, `experiments`, `orders`, `clientSamples` et `history`.
 - `localStorage`: cache local et migration des anciennes donnees MVP uniquement; il ne doit jamais remplacer une lecture GitHub reussie.
 
-Le navigateur lit et ecrit `shared_data.json` avec l'API GitHub Contents via `github_storage.js`.
+Le navigateur lit et ecrit `shared_data.json` avec l'API GitHub Contents via `js/storage/github_storage.js`.
 
 Configuration runtime:
 
@@ -97,6 +97,6 @@ Le token doit avoir le droit Contents read/write sur ce depot. Sans token, l'app
 
 Migration:
 
-Au premier chargement, si GitHub confirme que `shared_data.json` est vide ou absent, l'application initialise l'inventaire depuis `seed_items.js` et tente aussi de reprendre les anciennes cles `localStorage` (`exadex_web_items`, `exadex_seed_overrides`, `exadex_deleted_seed_ids`, `exadex_orders`, `exadex_experiments`, `exadex_client_samples`, `exadex_history`). Si des donnees distantes existent deja, elles sont prioritaires et les seeds/localStorage ne sont pas fusionnes automatiquement.
+Au premier chargement, si GitHub confirme que `shared_data.json` est vide ou absent, l'application initialise l'inventaire depuis `js/app/seed_items.js` et tente aussi de reprendre les anciennes cles `localStorage` (`exadex_web_items`, `exadex_seed_overrides`, `exadex_deleted_seed_ids`, `exadex_orders`, `exadex_experiments`, `exadex_client_samples`, `exadex_history`). Si des donnees distantes existent deja, elles sont prioritaires et les seeds/localStorage ne sont pas fusionnes automatiquement.
 
 Si le chargement GitHub echoue, l'application peut afficher le cache local pour consultation, mais elle bloque la sauvegarde distante tant qu'une lecture GitHub n'a pas reussi afin d'eviter d'ecraser des donnees partagees avec un cache obsolete.

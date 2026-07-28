@@ -1,6 +1,6 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="design.css"><title>Tests comparaison</title></head>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../assets/css/design.css"><title>Tests comparaison</title></head>
 <body><div id="agentsRoot"></div><p id="comparisonResult">En cours…</p>
-<script src="agents_core.js"></script><script src="agents_storage.js"></script>
+<script src="../../js/agents/agents_core.js"></script><script src="../../js/agents/agents_storage.js"></script>
 <script>
 localStorage.clear();let writes=0,opened="";
 const testItems=[
@@ -10,7 +10,7 @@ const testItems=[
 Object.defineProperties(window,{items:{get:()=>JSON.parse(JSON.stringify(testItems))},orders:{get:()=>[]},inventoryLocations:{get:()=>["Réserve","Frigo"]},inventoryCategories:{get:()=>["Consommables"]},currentName:{get:()=>"Test"}});
 window.openItemDetail=id=>{opened=id};window.ExadexGithubStorage={mutateSharedData(){writes++;throw new Error("interdit");}};
 const report=ExadexAgentsCore.audit({items:testItems},{scope:"duplicates"});ExadexAgentsStorage.saveWorkspace({audits:[report],sessions:[]},localStorage);
-</script><script src="agents_ui.js"></script><script>
+</script><script src="../../js/agents/agents_ui.js"></script><script>
 const checks=[];const check=(v,n)=>{if(!v)throw new Error(n);checks.push(n)};
 ExadexAgentsUI.renderAgents();document.querySelector("[data-open-audit]").click();document.querySelector("[data-examine]").click();
 check(document.querySelectorAll(".audit-comparison > section").length===2,"deux items");

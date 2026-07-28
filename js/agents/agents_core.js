@@ -33,6 +33,37 @@
   const isAbsent = value => value === null || value === undefined || (typeof value === "string" && !value.trim());
   const primaryReferenceValue = item => item?.references?.primary?.reference ?? item?.reference ?? item?.supplierReference;
   const meaningfulPrimaryReference = item => normalizeMeaningfulReference(primaryReferenceValue(item));
+  const normalizeContactReference = value => {
+    if(value === null || value === undefined || typeof value === "object")return null;
+    const result=String(value).trim().toLowerCase().replace(/\s+/g," ");
+    return result||null;
+  };
+  const supplierValue = item => String(item?.references?.primary?.supplier ?? item?.supplier ?? item?.fournisseur ?? "").trim();
+  const contactNames = contact => [contact?.company,contact?.society,...(Array.isArray(contact?.aliases)?contact.aliases:[])].map(normalize).filter(Boolean);
+  function findContactForItem(item,contacts){
+    if(item?.supplierContactId){
+      const explicit=contacts.find(contact=>String(contact?.id)===String(item.supplierContactId));
+      if(explicit)return explicit;
+    }
+    const name=normalize(supplierValue(item));
+    return name?contacts.find(contact=>contactNames(contact).includes(name))||null:null;
+  }
+  function referenceValues(source){
+    if(source === null || source === undefined)return[];
+    if(typeof source!=="object")return[source];
+    if(Array.isArray(source))return source.flatMap(referenceValues);
+    const direct=["reference","supplierReference","value","code"].filter(key=>Object.prototype.hasOwnProperty.call(source,key)).flatMap(key=>referenceValues(source[key]));
+    if(direct.length)return direct;
+    return ["primary","secondary","references","items","values"].filter(key=>Object.prototype.hasOwnProperty.call(source,key)).flatMap(key=>referenceValues(source[key]));
+  }
+  const itemContactReferences = item => referenceValues(item?.references).concat([item?.reference,item?.supplierReference]).map(normalizeContactReference).filter(Boolean);
+  function contactReferences(contact,items,contacts){
+    const explicitKeys=["references","reference","supplierReference","productReferences"].filter(key=>Object.prototype.hasOwnProperty.call(contact||{},key));
+    const values=explicitKeys.length
+      ? explicitKeys.flatMap(key=>referenceValues(contact[key]))
+      : items.filter(item=>findContactForItem(item,contacts)?.id===contact?.id).flatMap(itemContactReferences);
+    return new Set(values.map(normalizeContactReference).filter(Boolean));
+  }
   const locations = item => [...new Set([item?.location, ...(Array.isArray(item?.locations) ? item.locations : [])].filter(Boolean))];
   const snapshot = item => JSON.stringify({
     id: item?.id, quantity: item?.quantity, location: item?.location, locations: item?.locations,
@@ -106,7 +137,7 @@
     return { id: uid("alert"), type, severity, confidence, itemIds, explanation, observed, recommendation, state: "pending", ...details };
   }
   function audit(input, options = {}) {
-    const started = Date.now(), items = clone(input?.items || []), orders = clone(input?.orders || []);
+    const started = Date.now(), items = clone(input?.items || []), orders = clone(input?.orders || []), contactsProvided=Array.isArray(input?.contacts),contacts=clone(input?.contacts || []);
     const validLocations = new Set(input?.locations || []), validCategories = new Set(input?.categories || []);
     const scope = options.scope || "full", out = [], indexed = items.map(item => ({ item, norm: normalize(item.name), key: tokenKey(item.name), refs: refs(item), supplier: supplier(item) }));
     const byRef = new Map();
@@ -125,7 +156,7 @@
       if(scope==="full"||scope==="duplicates")out.push(...duplicatePairs);
       if(scope==="references")duplicatePairs.forEach(value=>{
         const [left,right]=value.itemIds.map(id=>items.find(item=>item.id===id)),refA=meaningfulPrimaryReference(left),refB=meaningfulPrimaryReference(right);
-        if(refA&&refB&&refA!==refB)out.push({...value,id:uid("alert"),type:"Doublon potentiel avec références différentes",explanation:`Doublon potentiel avec références différentes : ${primaryReferenceValue(left)} ≠ ${primaryReferenceValue(right)}`,observed:`${primaryReferenceValue(left)} ≠ ${primaryReferenceValue(right)}`,auditScope:"references"});
+        if(refA&&refB&&refA!==refB)out.push({...value,id:uid("alert"),type:"Doublon potentiel avec références différentes",explanation:`Doublon potentiel avec références différentes : ${primaryReferenceValue(left)} ≠ ${primaryReferenceValue(right)}`,observed:`${primaryReferenceValue(left)} ≠ ${primaryReferenceValue(right)}`,auditScope:"references",referenceCriterion:"different-duplicates"});
       });
     }
     indexed.forEach(({ item }) => {
@@ -164,11 +195,25 @@
         if(issues.length)out.push(alert("Stocks et seuils","warning",[item.id],issues.join(" · "),issues.join(" ; "),"Examiner la fiche.", "",{reasons:issues,auditScope:"stock"}));
       }
       if (["full", "references"].includes(scope)) {
-        if(isAbsent(primaryReferenceValue(item)))out.push(alert("Référence principale non renseignée","warning",[item.id],"Référence principale non renseignée","vide","Renseigner la référence principale.","",{auditScope:"references"}));
+        const currentReference=primaryReferenceValue(item);
+        if(isAbsent(currentReference))out.push(alert("Référence principale non renseignée","warning",[item.id],"Référence principale non renseignée","vide","Renseigner la référence principale.","",{auditScope:"references",referenceCriterion:"missing"}));
+        else if(contactsProvided){
+          const contact=findContactForItem(item,contacts),currentNormalized=normalizeContactReference(currentReference),supplierName=supplierValue(item);
+          if(!contact){
+            const reason=supplierName
+              ? `Aucun Contact correspondant au fournisseur ${supplierName} n’a été trouvé. La référence ${String(currentReference).trim()} ne peut pas être vérifiée dans Contacts.`
+              : `Aucun fournisseur n’est renseigné pour cet Agent. La référence ${String(currentReference).trim()} ne peut pas être vérifiée dans Contacts.`;
+            out.push(alert("Référence non enregistrée dans les Contacts","warning",[item.id],reason,String(currentReference).trim(),"Enregistrer la référence dans la fiche Contact du fournisseur.","",{auditScope:"references",referenceCriterion:"unregistered-contact",reasons:[reason],reference:String(currentReference).trim(),supplier:supplierName,contactId:"",contactCompany:""}));
+          }else if(!contactReferences(contact,items,contacts).has(currentNormalized)){
+            const company=String(contact.company||contact.society||supplierName).trim(),reason=`La référence ${String(currentReference).trim()} de cet Agent n’est pas enregistrée dans la fiche Contact de ${company}.`;
+            out.push(alert("Référence non enregistrée dans les Contacts","warning",[item.id],reason,String(currentReference).trim(),"Enregistrer la référence dans la fiche Contact du fournisseur.","",{auditScope:"references",referenceCriterion:"unregistered-contact",reasons:[reason],reference:String(currentReference).trim(),supplier:supplierName,contactId:contact.id||"",contactCompany:company}));
+          }
+        }
       }
     });
     const summary=summarize(out),scopeSummary={duplicates:out.filter(row=>row.auditScope==="duplicates").length,stock:out.filter(row=>row.auditScope==="stock").length,references:out.filter(row=>row.auditScope==="references").length};
-    return { id: uid("audit"), auditType:scope, rulesVersion: SCORE_ENGINE_VERSION, scoreEngine:"duplicate-score-v3", scope, createdAt: new Date().toISOString(), durationMs: Date.now() - started, itemCount: items.length, alerts: out, summary, scopeSummary };
+    const referenceRows=out.filter(row=>row.auditScope==="references"),referenceSummary={differentDuplicates:referenceRows.filter(row=>row.referenceCriterion==="different-duplicates").length,missing:referenceRows.filter(row=>row.referenceCriterion==="missing"||row.type==="Référence principale non renseignée").length,unregisteredInContacts:referenceRows.filter(row=>row.referenceCriterion==="unregistered-contact").length,total:referenceRows.length,uniqueItemCount:new Set(referenceRows.flatMap(row=>row.itemIds||[])).size};
+    return { id: uid("audit"), auditType:scope, rulesVersion: SCORE_ENGINE_VERSION, scoreEngine:"duplicate-score-v3", scope, createdAt: new Date().toISOString(), durationMs: Date.now() - started, itemCount: items.length, alerts: out, summary, scopeSummary,referenceSummary };
   }
   function passesFilters(item, options) {
     if (options.category && options.category !== "all" && item.category !== options.category) return false;
@@ -257,5 +302,5 @@
     if(action==="physical_aliquots_recount")return{...common,preparations:(item?.aliquotTracking?.preparations||[]).map(x=>({id:x.id,version:x.version,locations:x.locations,openAliquots:(x.openAliquots||[]).map(a=>({id:a.id,version:a.version,remainingVolume:a.remainingVolume,status:a.status}))}))};
     return common;
   }
-  return { SCORE_ENGINE_VERSION,normalize,normalizeMeaningfulReference,similarity,extractSpecifications,compareSpecifications,scoreDuplicatePair,confidenceFromScore,audit,matchItem,parseFreeText,createSession,buildProposals,detectConflict,snapshot,clone,summarize };
+  return { SCORE_ENGINE_VERSION,normalize,normalizeMeaningfulReference,normalizeContactReference,findContactForItem,similarity,extractSpecifications,compareSpecifications,scoreDuplicatePair,confidenceFromScore,audit,matchItem,parseFreeText,createSession,buildProposals,detectConflict,snapshot,clone,summarize };
 });

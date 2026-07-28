@@ -7010,7 +7010,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "71196-100 ml",
           "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/71196",
           "notes": "253",
@@ -7020,7 +7020,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-07-28T13:03:18.533Z",
+      "createdAt": "28/07/2026 15:03",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0103",
@@ -16140,6 +16170,12 @@
       "date": "28/07/2026 15:03",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Sodium Acetate Solution."
+    },
+    {
+      "date": "28/07/2026 15:03",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Formoterol fumarate dihydrate."
     },
     {
@@ -19430,5 +19466,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:03:03.686Z"
+  "updatedAt": "2026-07-28T13:03:18.534Z"
 }

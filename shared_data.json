@@ -15095,9 +15095,26 @@
       "phone": "",
       "notes": "",
       "aliases": []
+    },
+    {
+      "id": "contact-1785239326837-r987ag",
+      "company": "Terumo",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "service.client@terumo-europe.com",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "",
+      "aliases": []
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:48",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Terumo."
+    },
     {
       "date": "28/07/2026 13:48",
       "user": "Caroline",
@@ -18140,5 +18157,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:48:28.503Z"
+  "updatedAt": "2026-07-28T11:48:46.838Z"
 }

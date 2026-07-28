@@ -267,7 +267,7 @@
       "references": {
         "primary": {
           "supplier": "Aesthetic Group",
-          "reference": "FD0000000-LLF12",
+          "reference": "FD0000000-LLF24",
           "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "46",
@@ -16772,6 +16772,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 17:19",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 2.4MM."
+    },
+    {
       "date": "28/07/2026 17:13",
       "user": "Elina",
       "action": "Item modifié",
@@ -20240,5 +20246,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-28T15:13:59.495Z"
+  "updatedAt": "2026-07-28T15:19:02.703Z"
 }

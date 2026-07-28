@@ -5982,7 +5982,7 @@
       "notes": "Conditionnement : 1920",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "3020255",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5992,7 +5992,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-07-28T13:01:11.293Z",
+      "createdAt": "28/07/2026 15:01",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0080",
@@ -15795,6 +15825,12 @@
       "detail": "Caroline a modifié cones filtrés 20uL."
     },
     {
+      "date": "28/07/2026 15:01",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié cones filtrés 20uL."
+    },
+    {
       "date": "28/07/2026 15:00",
       "user": "Caroline",
       "action": "Item modifié",
@@ -19010,5 +19046,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:01:02.622Z"
+  "updatedAt": "2026-07-28T13:01:11.294Z"
 }

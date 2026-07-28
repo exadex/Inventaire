@@ -6041,7 +6041,7 @@
       "notes": "Conditionnement : 5000",
       "references": {
         "primary": {
-          "supplier": "ThermoFischer",
+          "supplier": "Thermo Fischer",
           "reference": "11963466",
           "link": "https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-1/11963466",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6051,7 +6051,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-07-28T13:01:19.924Z",
+      "createdAt": "28/07/2026 15:01",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0081",
@@ -15822,6 +15852,12 @@
       "date": "28/07/2026 15:01",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié cones filtrés 20µL."
+    },
+    {
+      "date": "28/07/2026 15:01",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié cones filtrés 20uL."
     },
     {
@@ -19046,5 +19082,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:01:11.294Z"
+  "updatedAt": "2026-07-28T13:01:19.925Z"
 }

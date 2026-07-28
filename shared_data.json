@@ -14910,6 +14910,17 @@
       ]
     },
     {
+      "id": "contact-1785239841677-qka3ff",
+      "company": "Beckman",
+      "salesRepresentative": "Adrien Raynaud",
+      "afterSalesService": "",
+      "customerService": "",
+      "salesAndQuotes": "araynaud@beckman.com",
+      "phone": "+33 7 86 92 98 60",
+      "notes": "Mail au commercial",
+      "aliases": []
+    },
+    {
       "id": "contact-bexen-medical",
       "company": "Bexen Medical",
       "salesRepresentative": "",
@@ -15197,6 +15208,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:57",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Beckman."
+    },
     {
       "date": "28/07/2026 13:56",
       "user": "Caroline",
@@ -18293,5 +18310,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:56:49.951Z"
+  "updatedAt": "2026-07-28T11:57:21.679Z"
 }

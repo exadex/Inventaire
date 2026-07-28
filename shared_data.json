@@ -4622,10 +4622,10 @@
       "quantity": 7,
       "unit": "mL",
       "minStock": 0,
-      "location": "Frigo labo",
+      "location": "Chambre froide",
       "locations": [
-        "Frigo labo",
-        "Chambre froide"
+        "Chambre froide",
+        "Frigo labo"
       ],
       "tags": [
         "Milieu DMEM"
@@ -4633,7 +4633,7 @@
       "notes": "DMEM/F12 (1:1) W GLUT-I 500ML",
       "references": {
         "primary": {
-          "supplier": "thermofischer",
+          "supplier": "Thermo Fischer",
           "reference": "31331028",
           "link": "https://www.thermofisher.com/order/catalog/product/31331093?SID=srch-hj-31331093",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -4643,7 +4643,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-07-28T13:08:30.908Z",
+      "createdAt": "28/07/2026 15:08",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-4whslp",
@@ -16770,6 +16800,12 @@
       "date": "28/07/2026 15:08",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM/F12 (1:1) W GLUT-I 500ML."
+    },
+    {
+      "date": "28/07/2026 15:08",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié n-acetyl-L-cysteine."
     },
     {
@@ -20204,5 +20240,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:08:21.166Z"
+  "updatedAt": "2026-07-28T13:08:30.910Z"
 }

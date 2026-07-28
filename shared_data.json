@@ -6396,7 +6396,7 @@
       "notes": "Conditionnement : 300",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "2582557",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6406,7 +6406,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-07-28T13:02:00.916Z",
+      "createdAt": "28/07/2026 15:02",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0089",
@@ -15936,6 +15966,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 15:02",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié T25."
+    },
+    {
       "date": "28/07/2026 15:01",
       "user": "Caroline",
       "action": "Item modifié",
@@ -19187,5 +19223,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:01:45.510Z"
+  "updatedAt": "2026-07-28T13:02:00.918Z"
 }

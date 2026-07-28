@@ -3633,7 +3633,7 @@
       "notes": "Conditionnement : 100ml",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "T6397",
           "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/i7018",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -3643,7 +3643,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-07-28T13:06:56.253Z",
+      "createdAt": "28/07/2026 15:06",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-t9aqbd",
@@ -16529,6 +16559,12 @@
       "date": "28/07/2026 15:06",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié (T3) 3,3′,5-Triiodo-L-thyronine sodium Salt."
+    },
+    {
+      "date": "28/07/2026 15:06",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié 5 μM lysophosphatidic acid (1mg // 3854/1) R&D systems."
     },
     {
@@ -19909,5 +19945,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:06:46.446Z"
+  "updatedAt": "2026-07-28T13:06:56.254Z"
 }

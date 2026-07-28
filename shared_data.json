@@ -14945,6 +14945,17 @@
       "aliases": []
     },
     {
+      "id": "contact-1785226538842-zxbobh",
+      "company": "Materiel Medical",
+      "salesRepresentative": "Kevin MAYR (HEXAMED)",
+      "afterSalesService": "",
+      "customerService": "serviceclients@materielmedical.fr",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "",
+      "aliases": []
+    },
+    {
       "id": "contact-1785225250289-lwwcas",
       "company": "Merck",
       "salesRepresentative": "",
@@ -14957,6 +14968,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 10:15",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Materiel Medical."
+    },
     {
       "date": "28/07/2026 10:15",
       "user": "Caroline",
@@ -17903,5 +17920,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T08:15:12.477Z"
+  "updatedAt": "2026-07-28T08:15:38.844Z"
 }

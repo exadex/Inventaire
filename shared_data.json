@@ -11743,6 +11743,27 @@
   "experiments": [],
   "orders": [
     {
+      "id": "ord-1785233264472",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0018",
+      "itemName": "Endothelial Cell Growth Medium 2",
+      "requestedQuantity": 5,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "28/07/2026 12:07",
+      "requestedAtRaw": "2026-07-28T10:07:44.473Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1784705703173",
       "status": "requested",
       "itemMode": "new",
@@ -14969,6 +14990,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 12:07",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "28/07/2026 10:15",
       "user": "Caroline",
       "action": "Contact ajouté",
@@ -17920,5 +17947,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T08:15:38.844Z"
+  "updatedAt": "2026-07-28T10:07:44.474Z"
 }

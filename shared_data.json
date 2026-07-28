@@ -15007,9 +15007,26 @@
       "phone": "01 85 16 94 34",
       "notes": "Faire le devis en ligne et le transférer en commande en ligne",
       "aliases": []
+    },
+    {
+      "id": "contact-1785236448869-8v19zw",
+      "company": "Minerva Biolabs",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "order@minerva-biolabs.com",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "",
+      "aliases": []
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:00",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Minerva Biolabs."
+    },
     {
       "date": "28/07/2026 12:59",
       "user": "Caroline",
@@ -17998,5 +18015,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T10:59:08.268Z"
+  "updatedAt": "2026-07-28T11:00:48.870Z"
 }

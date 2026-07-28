@@ -15084,9 +15084,26 @@
       "phone": "",
       "notes": "",
       "aliases": []
+    },
+    {
+      "id": "contact-1785239308501-p22zd9",
+      "company": "Stemcell",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "orders.eu@stemcell.com",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "",
+      "aliases": []
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:48",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Stemcell."
+    },
     {
       "date": "28/07/2026 13:45",
       "user": "Caroline",
@@ -18123,5 +18140,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:45:53.981Z"
+  "updatedAt": "2026-07-28T11:48:28.503Z"
 }

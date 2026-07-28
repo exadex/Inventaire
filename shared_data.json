@@ -1021,7 +1021,7 @@
       "notes": "50",
       "references": {
         "primary": {
-          "supplier": "termofischer",
+          "supplier": "Thermo Fischer",
           "reference": "BD 408531",
           "link": "https://www.fishersci.com/shop/products/bd-luer-lok-caps/1482331",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -1031,7 +1031,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-07-28T12:58:00.364Z",
+      "createdAt": "28/07/2026 14:58",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0021",
@@ -15492,6 +15522,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 14:58",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié BD luer lock caps."
+    },
+    {
       "date": "28/07/2026 14:57",
       "user": "Caroline",
       "action": "Item modifié",
@@ -18653,5 +18689,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:57:50.926Z"
+  "updatedAt": "2026-07-28T12:58:00.365Z"
 }

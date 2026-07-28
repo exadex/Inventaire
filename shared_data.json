@@ -14901,6 +14901,17 @@
       "aliases": []
     },
     {
+      "id": "contact-1785226334962-ge2f7k",
+      "company": "Distrimed",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "contact@distrimed.com",
+      "salesAndQuotes": "contact@distrimed.com  ou devis sur site",
+      "phone": "",
+      "notes": "",
+      "aliases": []
+    },
+    {
       "id": "contact-1785225250289-lwwcas",
       "company": "Merck",
       "salesRepresentative": "",
@@ -14913,6 +14924,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 10:12",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Distrimed."
+    },
     {
       "date": "28/07/2026 10:09",
       "user": "Caroline",
@@ -17835,5 +17852,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T08:09:40.643Z"
+  "updatedAt": "2026-07-28T08:12:14.963Z"
 }

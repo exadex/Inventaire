@@ -499,7 +499,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "ThermoFischer",
+          "supplier": "Thermo Fischer",
           "reference": "00-4300-54",
           "link": "https://www.thermofisher.com/order/catalog/product/00-4300-54?SID=srch-srp-00-4300-54",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -509,7 +509,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-07-28T12:56:21.653Z",
+      "createdAt": "28/07/2026 14:56",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0010",
@@ -15375,6 +15405,12 @@
       "date": "28/07/2026 14:56",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié ACL -eBioscience™ 10X RBC Lysis Buffer (Multi-species) 50 ml."
+    },
+    {
+      "date": "28/07/2026 14:56",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié T25 Flask non traitée future ULA."
     },
     {
@@ -18509,5 +18545,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:56:02.678Z"
+  "updatedAt": "2026-07-28T12:56:21.654Z"
 }

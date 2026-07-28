@@ -6864,7 +6864,7 @@
       "notes": "Conditionnement : 100mg",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "F9552-10 mg",
           "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/f9552",
           "notes": "67,7",
@@ -6877,7 +6877,34 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T12:22:28.537Z",
-      "createdAt": "16/07/2026 14:22"
+      "createdAt": "16/07/2026 14:22",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mg",
+            "singular": "mg",
+            "plural": "mg",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mg",
+        "trackingUnit": "mg",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0099",
@@ -16110,6 +16137,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 15:03",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Formoterol fumarate dihydrate."
+    },
+    {
       "date": "28/07/2026 15:02",
       "user": "Caroline",
       "action": "Item modifié",
@@ -19397,5 +19430,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:02:55.470Z"
+  "updatedAt": "2026-07-28T13:03:03.686Z"
 }

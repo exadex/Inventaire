@@ -15009,6 +15009,17 @@
       "aliases": []
     },
     {
+      "id": "contact-1785239733413-t2exfl",
+      "company": "Invivogen",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "devis à faire en ligne\n",
+      "aliases": []
+    },
+    {
       "id": "contact-1785226538842-zxbobh",
       "company": "Materiel Medical",
       "salesRepresentative": "Kevin MAYR (HEXAMED)",
@@ -15175,6 +15186,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:55",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Invivogen."
+    },
     {
       "date": "28/07/2026 13:54",
       "user": "Caroline",
@@ -18259,5 +18276,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:54:55.815Z"
+  "updatedAt": "2026-07-28T11:55:33.414Z"
 }

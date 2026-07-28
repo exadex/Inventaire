@@ -4044,7 +4044,7 @@
       "notes": "Conditionnement : 10ug",
       "references": {
         "primary": {
-          "supplier": "RD system",
+          "supplier": "R&D systems",
           "reference": "222-AB-010",
           "link": "",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -4054,7 +4054,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239056045-dnjj9a",
+      "createdAtRaw": "2026-07-28T13:08:12.252Z",
+      "createdAt": "28/07/2026 15:08",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "g",
+            "singular": "g",
+            "plural": "g",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "g",
+        "trackingUnit": "g",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-pvtm1z",
@@ -16710,6 +16740,12 @@
       "date": "28/07/2026 15:08",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié 5 μM 429 platelet-derived growth factor-AB (PDGF-AB, R&D Systems 10ug)."
+    },
+    {
+      "date": "28/07/2026 15:08",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Collagenase A from Clostridium histolycum (500mg)."
     },
     {
@@ -20132,5 +20168,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:08:01.214Z"
+  "updatedAt": "2026-07-28T13:08:12.254Z"
 }

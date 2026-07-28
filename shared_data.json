@@ -210,7 +210,12 @@
           "unitPrice": "2,3",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "CGTU DAT4L1.4MM",
+            "notes": "Fournisseur : Benewmedical"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -16769,6 +16774,12 @@
     {
       "date": "28/07/2026 17:13",
       "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 1.4MM."
+    },
+    {
+      "date": "28/07/2026 17:13",
+      "user": "Elina",
       "action": "Item supprimé",
       "detail": "Elina a supprimé REDUCTEUR SU 1.4MMref de l'inventaire."
     },
@@ -20229,5 +20240,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-28T15:13:24.830Z"
+  "updatedAt": "2026-07-28T15:13:59.495Z"
 }

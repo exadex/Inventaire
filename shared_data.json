@@ -11743,6 +11743,27 @@
   "experiments": [],
   "orders": [
     {
+      "id": "ord-1785233419378",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0019",
+      "itemName": "SupplementMix / Endothelial Cell Growth Medium 2",
+      "requestedQuantity": 5,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "28/07/2026 12:10",
+      "requestedAtRaw": "2026-07-28T10:10:19.378Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1785233264472",
       "status": "ordered",
       "itemMode": "existing",
@@ -14990,6 +15011,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 12:10",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour SupplementMix / Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "28/07/2026 12:08",
       "user": "Elina",
       "action": "Commande effectuée",
@@ -17953,5 +17980,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T10:08:17.210Z"
+  "updatedAt": "2026-07-28T10:10:19.380Z"
 }

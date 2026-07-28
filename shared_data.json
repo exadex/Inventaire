@@ -2394,35 +2394,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-CSV-0062",
-      "name": "REDUCTEUR SU 1.4MMref",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Tulipe"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Benewmedical",
-          "reference": "CGTU DAT4L1.4MM",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-CSV-0063",
       "name": "REDUCTEUR SU 2.4MM ref",
       "category": "Procédé ExAdEx L2",
@@ -16796,6 +16767,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 17:13",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé REDUCTEUR SU 1.4MMref de l'inventaire."
+    },
+    {
       "date": "28/07/2026 17:11",
       "user": "Elina",
       "action": "Item supprimé",
@@ -20252,5 +20229,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-28T15:11:38.591Z"
+  "updatedAt": "2026-07-28T15:13:24.830Z"
 }

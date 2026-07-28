@@ -15040,9 +15040,26 @@
       "phone": "",
       "notes": "",
       "aliases": []
+    },
+    {
+      "id": "contact-1785238792341-6i99yn",
+      "company": "Qiagen",
+      "salesRepresentative": "nicolas lezano",
+      "afterSalesService": "",
+      "customerService": "commandes-fr@qiagen.com",
+      "salesAndQuotes": "nicolas.lozano@qiagen.com",
+      "phone": "01 60 92 09 26",
+      "notes": "",
+      "aliases": []
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:39",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Qiagen."
+    },
     {
       "date": "28/07/2026 13:39",
       "user": "Caroline",
@@ -18049,5 +18066,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:39:00.525Z"
+  "updatedAt": "2026-07-28T11:39:52.342Z"
 }

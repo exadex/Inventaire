@@ -207,7 +207,8 @@
       const latest = await loadSharedData({ fresh: true });
       const data = latest.data || {};
       const movements = Array.isArray(data.stockMovements) ? data.stockMovements : [];
-      if (movements.some(entry => entry.operationId === operationId)) {
+      const agentOperations = Array.isArray(data.agentOperations) ? data.agentOperations : [];
+      if (movements.some(entry => entry.operationId === operationId) || agentOperations.some(entry => entry.operationId === operationId)) {
         return { data, sha: latest.sha, duplicate: true };
       }
       const next = await mutator(JSON.parse(JSON.stringify(data)));

@@ -1,0 +1,52 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../assets/css/design.css"><title>Tests Inventaire Physique et modifications massives</title></head>
+<body><div id="agentsRoot"></div><p id="result">En cours…</p>
+<script src="../../js/agents/agents_core.js"></script><script src="../../js/agents/agents_storage.js"></script><script>
+localStorage.clear();sessionStorage.clear();let confirmation=null,writes=0,nativeAlerts=0;
+const items=[
+ {id:"a",name:"Anticorps ABC",references:{primary:{reference:"Sigma-SAB2101234",supplier:""},secondary:[]},category:"Anticorps",location:"Congélateur 1",unit:"mL",minStock:0,version:1},
+ {id:"b",name:"Collagénase",references:{primary:{reference:"SIGMA-C0130",supplier:"Sigma"},secondary:[]},category:"Consommables",location:"Congélateur 1",unit:"mL",minStock:0,version:1},
+ {id:"c",name:"Contrôle",references:{primary:{reference:"MERCK-1",supplier:"Sigma"},secondary:[]},category:"Anticorps",location:"Congélateur 2",unit:"ml",minStock:2,version:1}
+];
+const physical=ExadexAgentsCore.createSession({name:"Ancien inventaire"}),bulk=ExadexAgentsCore.createSession({sessionType:"bulk",name:"Remplacement Sigma → Merck",originalText:"Remplacer Sigma par Merck dans la référence principale de tous les articles concernés."}),legacy=ExadexAgentsCore.createSession({sessionType:"bulk",name:"Ancienne session validée"}),physicalValidated=ExadexAgentsCore.createSession({name:"Inventaire validé"});
+legacy.status="Validé";legacy.report={applied:2,ignored:1,conflicts:0,errors:0,at:"2026-07-27T10:00:00.000Z",user:"Test"};
+physicalValidated.status="Validé";physicalValidated.report={applied:1,ignored:0,conflicts:0,errors:0,at:"2026-07-27T11:00:00.000Z",user:"Test",changes:[{itemId:"c",itemName:"Contrôle",field:"quantity",fieldLabel:"Stock",beforeValue:2,afterValue:5,delta:3}]};
+const parsed=ExadexAgentsCore.interpretBulkInstruction(bulk.originalText);bulk.bulkRule=parsed.rule;bulk.proposals=ExadexAgentsCore.buildBulkProposals(bulk,items);bulk.status="À valider";
+ExadexAgentsStorage.saveWorkspace({audits:[],sessions:[physical,bulk,legacy,physicalValidated]},localStorage);
+let shared={inventoryItems:JSON.parse(JSON.stringify(items)),history:[]};Object.defineProperties(window,{items:{get:()=>items},orders:{get:()=>[]},inventoryLocations:{get:()=>["Congélateur 1","Congélateur 2"]},inventoryCategories:{get:()=>["Anticorps","Consommables"]},currentName:{get:()=>"Test"}});window.alert=()=>{nativeAlerts++};window.openDeleteConfirmation=options=>{confirmation=options};window.ExadexInventoryAgent={async applyBulkChanges(request){writes++;request.proposals.forEach(proposal=>{const item=shared.inventoryItems.find(row=>row.id===proposal.itemId),before=ExadexAgentsCore.bulkValue(item,proposal.field);ExadexAgentsCore.applyBulkValue(item,proposal.field,proposal.afterValue);shared.history.push({action:"Modification massive par Agent",itemId:item.id,sessionId:request.sessionId,before,after:proposal.afterValue});});return{applied:request.proposals.length,conflicts:0,errors:0,data:shared}}};
+</script><script src="../../js/agents/agents_ui.js"></script><script>
+let passed=0;const check=(value,message)=>{if(!value)throw new Error(message);passed++};
+check(parsed.ok&&parsed.rule.field==="reference"&&parsed.rule.action==="replace","instruction convertie en règle autorisée");
+check(bulk.proposals.length===2&&bulk.proposals.every(p=>p.beforeValue.toLowerCase().includes("sigma")&&p.afterValue.startsWith("Merck")),"Sigma/Merck limité au champ référence");
+check(items[2].references.primary.supplier==="Sigma","autre champ contenant Sigma inchangé");
+const ambiguous=ExadexAgentsCore.interpretBulkInstruction("Remplacer Sigma par Merck dans la référence de tous les articles concernés.");check(ambiguous.needsClarification&&Boolean(ambiguous.question),"ambiguïté référence explicitée");
+const conflictProposal=bulk.proposals[0];items[0].references.primary.reference="Valeur modifiée";check(ExadexAgentsCore.detectBulkConflict(conflictProposal,items[0]).conflict,"conflit détecté après changement");
+items[0].references.primary.reference="Sigma-SAB2101234";
+ExadexAgentsUI.renderAgents();
+check(document.querySelectorAll(".agent-session-row").length===4&&[...document.querySelectorAll(".agent-session-row")].some(row=>row.textContent.includes("Modification massive")),"sessions récentes structurées et typées");
+check(document.querySelectorAll(".agent-session-row .audit-delete-btn").length===4,"suppression disponible avec le style des audits");
+const before=JSON.stringify(items);document.querySelector(`[data-delete-session="${physical.id}"]`).click();check(confirmation?.title==="Supprimer ce brouillon ?","modal générique de suppression affiché");check(JSON.stringify(items)===before&&writes===0,"ouverture du modal sans modification métier");
+confirmation.onConfirm();check(!ExadexAgentsUI._load().sessions.some(s=>s.id===physical.id)&&ExadexAgentsUI._load().sessions.some(s=>s.id===bulk.id),"seule la session ciblée supprimée");check(JSON.stringify(items)===before,"suppression du brouillon sans modifier les articles");
+document.querySelector(`[data-open-session="${legacy.id}"]`).click();check(document.querySelector(".session-result-legacy")?.textContent.includes("détail historique")&&!document.querySelector(".session-result-table"),"ancienne session validée sans détail affichée sans changement inventé");document.querySelector('[data-agent-action="home"]').click();
+document.querySelector(`[data-open-session="${physicalValidated.id}"]`).click();check(document.querySelector(".session-result-table")?.textContent.includes("Stock")&&document.querySelector(".session-result-table")?.textContent.includes("Différence : 3"),"inventaire physique validé affiché en lecture seule avec différence");check(!document.querySelector("[data-final-validate]")&&!document.querySelector("#physicalText"),"inventaire validé sans contrôle de réapplication");document.querySelector('[data-agent-action="home"]').click();
+document.querySelector(`[data-open-session="${bulk.id}"]`).click();check(document.querySelector("#bulkRuleForm")&&document.querySelectorAll("[data-bulk-proposal]").length===2,"règle et aperçu restaurés");
+const first=document.querySelector("[data-bulk-proposal]");first.checked=false;first.dispatchEvent(new Event("change"));const reloaded=ExadexAgentsUI._load().sessions.find(s=>s.id===bulk.id);check(reloaded.proposals.filter(p=>p.decision==="ignored").length===1,"exclusion persistée");
+check(document.querySelector("[data-final-bulk-validate]").textContent.includes("1 modification"),"validation compte seulement les propositions incluses");
+document.querySelector("[data-final-bulk-validate]").click();check(confirmation.title.includes("Appliquer 1 modification"),"confirmation finale explicite");
+confirmation.onConfirm().then(()=>{
+ check(shared.inventoryItems.find(item=>item.id==="a").references.primary.reference==="Sigma-SAB2101234","proposition exclue non appliquée");
+ check(shared.inventoryItems.find(item=>item.id==="b").references.primary.reference==="Merck-C0130","seule proposition incluse appliquée");
+ check(shared.history.some(entry=>entry.action==="Modification massive par Agent"&&entry.itemId==="b"),"modification individuelle historisée");
+ check(shared.history.some(entry=>entry.action==="Modification massive par Agent"&&entry.sessionId===bulk.id),"session traçable dans l’Historique");
+ check(nativeAlerts===0&&document.querySelector(".agent-operation-message.success"),"résumé intégré sans alerte native");
+ const validated=ExadexAgentsUI._load().sessions.find(session=>session.id===bulk.id);
+ check(validated.status==="Validé"&&validated.report.changes.length===1,"statut validé et compte rendu exact persistés");
+ check(validated.report.changes[0].itemId==="b"&&validated.report.changes[0].beforeValue==="SIGMA-C0130"&&validated.report.changes[0].afterValue==="Merck-C0130","avant/après conservés au moment de la validation");
+ check(validated.report.results.find(row=>row.itemId==="a").result==="excluded"&&validated.report.results.find(row=>row.itemId==="b").result==="applied","propositions appliquées et exclues distinguées");
+ document.querySelector(`[data-open-session="${bulk.id}"]`).click();
+ check(document.querySelector(".session-result-panel")&&!document.querySelector("#bulkRuleForm"),"session validée ouverte en compte rendu, sans formulaire");
+ check(!document.querySelector("[data-bulk-proposal]")&&!document.querySelector("[data-final-bulk-validate]"),"sélections et seconde validation absentes");
+ check(document.querySelector(".session-result-table").textContent.includes("Collag")&&!document.querySelector(".session-result-table").textContent.includes("Anticorps ABC"),"seule la modification réellement appliquée est affichée");
+ check(writes===1,"aucune seconde application accessible");
+ document.querySelector("#result").textContent=`${passed} tests Inventaire Physique et modifications massives réussis.`;
+});
+</script></body></html>

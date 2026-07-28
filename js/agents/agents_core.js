@@ -265,7 +265,83 @@
   }
   function createSession(data = {}) {
     const now = new Date().toISOString();
-    return { id: uid("physical"), name: data.name || `Inventaire du ${new Date().toLocaleDateString("fr-FR")}`, author: data.author || "", createdAt: now, updatedAt: now, readAt: now, scope: data.scope || "full", location: data.location || "", category: data.category || "", notes: data.notes || "", originalText: data.originalText || "", status: "Brouillon", lines: [], proposals: [], decisions: [], report: null };
+    return { id: uid("physical"), sessionType:data.sessionType||"physical", name: data.name || `Inventaire du ${new Date().toLocaleDateString("fr-FR")}`, author: data.author || "", createdAt: now, updatedAt: now, readAt: now, scope: data.scope || "full", location: data.location || "", category: data.category || "", notes: data.notes || "", originalText: data.originalText || "", status: "Brouillon", lines: [], proposals: [], decisions: [], report: null };
+  }
+  const BULK_FIELDS={
+    name:{label:"Nom",type:"string"},reference:{label:"Référence principale",type:"string"},supplier:{label:"Fournisseur",type:"string"},
+    category:{label:"Catégorie",type:"string"},location:{label:"Localisation",type:"string"},unit:{label:"Unité",type:"string"},
+    usage:{label:"Profil d’utilisation",type:"string"},tags:{label:"Tags",type:"array"},minimum:{label:"Stock minimum",type:"number"},quantity:{label:"Stock actuel",type:"number"}
+  };
+  const fieldAliases=[["stock minimum|seuil minimum","minimum"],["stock actuel|quantite","quantity"],["localisation","location"],["fournisseur","supplier"],["categorie","category"],["unite","unit"],["tag","tags"],["type|profil","usage"],["reference","reference"],["nom","name"]];
+  function bulkFieldFromText(text){const value=normalize(text);for(const [pattern,key] of fieldAliases)if(new RegExp(pattern,"i").test(value))return key;return"";}
+  function shortBulkName(rule){
+    if(rule.action==="replace")return`Remplacement ${rule.oldValue} → ${rule.newValue}`;
+    if(rule.field==="location")return`Déplacement ${rule.conditionValue} → ${rule.newValue}`;
+    if(rule.field==="tags")return`Ajout du tag ${rule.newValue}`;
+    if(rule.field==="minimum")return"Mise à jour du stock minimum";
+    return`Modification de ${BULK_FIELDS[rule.field]?.label||"champ"}`;
+  }
+  function interpretBulkInstruction(instruction){
+    const raw=String(instruction||"").trim(),text=raw.replace(/[“”"]/g,'"'),normalized=normalize(text);
+    if(!raw)return{ok:false,question:"Décrivez la modification à préparer."};
+    let rule={action:"set",replaceMode:"whole",field:"",conditionField:"",match:"exact",conditionValue:"",oldValue:"",newValue:"",caseInsensitive:true};
+    let match=text.match(/remplacer\s+["]?(.+?)["]?\s+par\s+["]?(.+?)["]?\s+dans\s+(?:le\s+)?(?:champ\s+)?(.+?)(?:\s+de\s+tous|\s+pour\s+tous|[.]?$)/i);
+    if(match){rule.action="replace";rule.replaceMode="partial";rule.oldValue=match[1].trim();rule.newValue=match[2].trim();rule.field=bulkFieldFromText(match[3]);rule.conditionField=rule.field;rule.match="contains";rule.conditionValue=rule.oldValue;}
+    if(!rule.field&&(match=text.match(/modifier\s+la\s+localisation.+?\s+de\s+(.+?)\s+vers\s+(.+?)[.]?$/i))){rule={...rule,action:"set",field:"location",conditionField:"location",match:"exact",conditionValue:match[1].trim(),newValue:match[2].trim()};}
+    if(!rule.field&&(match=text.match(/ajouter\s+(?:le\s+)?(?:fournisseur|tag)\s+(.+?)\s+aux?\s+articles\s+dont\s+(?:le\s+)?(.+?)\s+est\s+vide/i))){rule={...rule,action:/tag/i.test(text)?"add":"set",field:/fournisseur/i.test(text)?"supplier":"tags",conditionField:bulkFieldFromText(match[2]),match:"empty",conditionValue:"",newValue:match[1].trim()};}
+    if(!rule.field&&(match=text.match(/ajouter\s+(?:le\s+)?tag\s+(.+?)\s+[àa]\s+tous\s+les\s+articles/i))){rule={...rule,action:"add",field:"tags",conditionField:"category",match:"all",conditionValue:"",newValue:match[1].trim()};}
+    if(!rule.field&&(match=text.match(/mettre\s+(?:le\s+)?(.+?)\s+[àa]\s+(-?\d+(?:[.,]\d+)?)/i))){rule={...rule,action:"set",field:bulkFieldFromText(match[1]),conditionField:bulkFieldFromText(match[1]),match:/actuellement\s+[àa]\s+0/i.test(text)?"exact":"all",conditionValue:/actuellement\s+[àa]\s+0/i.test(text)?"0":"",newValue:match[2].replace(",",".")};}
+    const category=text.match(/cat[ée]gorie\s+["]?(.+?)["]?(?:\s+de\s+|\s+vers\s+|[.]?$)/i),prefix=text.match(/(?:référence|champ)\s+commence\s+par\s+["]?([^".]+)["]?/i);
+    if(category){rule.extraCondition={field:"category",match:"exact",value:category[1].trim()};}
+    if(prefix){rule.extraCondition={field:"reference",match:"starts",value:prefix[1].trim()};}
+    if(!rule.field||!BULK_FIELDS[rule.field])return{ok:false,question:"Quel champ de l’Inventaire souhaitez-vous modifier ?"};
+    const ambiguous=/\br[ée]f[ée]rence\b/i.test(text)&&!/r[ée]f[ée]rence principale/i.test(text),name=shortBulkName(rule);
+    if(ambiguous){rule.field="";rule.conditionField="";}
+    return{ok:true,needsClarification:ambiguous,question:ambiguous?"Le terme « référence » peut correspondre à la référence principale ou à une référence fournisseur. Quel champ souhaitez-vous modifier ?":"",rule,name};
+  }
+  function bulkValue(item,field){
+    if(field==="reference")return item?.references?.primary?.reference??item?.reference??"";
+    if(field==="supplier")return item?.references?.primary?.supplier??item?.supplier??item?.fournisseur??"";
+    if(field==="minimum")return item?.minStock??item?.minimum;
+    if(field==="usage")return item?.usageProfile??item?.usage??item?.inventoryType??"";
+    if(field==="tags")return Array.isArray(item?.tags)?item.tags:[];
+    return item?.[field];
+  }
+  function applyBulkValue(item,field,value){
+    if(field==="reference"||field==="supplier"){if(!item.references?.primary&&Object.prototype.hasOwnProperty.call(item,field)){item[field]=clone(value);return;}item.references=item.references&&typeof item.references==="object"?item.references:{primary:{},secondary:[]};item.references.primary=item.references.primary&&typeof item.references.primary==="object"?item.references.primary:{};item.references.primary[field]=clone(value);return;}
+    if(field==="minimum"){item.minStock=clone(value);return;}
+    if(field==="usage"){item.usageProfile=clone(value);return;}
+    if(field==="location"){item.location=clone(value);item.locations=value?[clone(value)]:[];return;}
+    item[field]=clone(value);
+  }
+  function bulkMatches(value,match,expected,caseInsensitive=true){
+    if(match==="all")return true;if(match==="empty")return value===null||value===undefined||String(value).trim()==="";
+    if(["gt","lt","gte","lte","eq"].includes(match)){const a=Number(value),b=Number(expected);return Number.isFinite(a)&&Number.isFinite(b)&&({gt:a>b,lt:a<b,gte:a>=b,lte:a<=b,eq:a===b})[match];}
+    let left=String(value??""),right=String(expected??"");if(caseInsensitive){left=left.toLocaleLowerCase("fr");right=right.toLocaleLowerCase("fr");}
+    return match==="contains"?left.includes(right):match==="starts"?left.startsWith(right):match==="ends"?left.endsWith(right):left===right;
+  }
+  function buildBulkProposals(session,items){
+    const rule=session.bulkRule||{},meta=BULK_FIELDS[rule.field];if(!meta)return[];
+    if((rule.action==="add"&&meta.type!=="array")||(rule.action==="replace"&&meta.type!=="string"))return[];
+    const replaceMode=rule.action==="replace"?(rule.replaceMode||(String(rule.oldValue||"").trim()?"partial":"whole")):"whole";
+    if(rule.action==="replace"&&replaceMode==="partial"&&!String(rule.oldValue||"").trim())return[];
+    const seen=new Set(),rows=[];
+    (items||[]).forEach(item=>{
+      if(!item?.id||seen.has(item.id))return;seen.add(item.id);
+      if(!bulkMatches(bulkValue(item,rule.conditionField),rule.match,rule.conditionValue,rule.caseInsensitive))return;
+      if(rule.extraCondition&&!bulkMatches(bulkValue(item,rule.extraCondition.field),rule.extraCondition.match,rule.extraCondition.value,rule.caseInsensitive))return;
+      const before=bulkValue(item,rule.field);let after=rule.newValue;
+      if(rule.action==="replace"&&replaceMode==="whole")after=rule.newValue;
+      if(rule.action==="replace"&&replaceMode==="partial"){const flags=rule.caseInsensitive?"gi":"g",escaped=String(rule.oldValue).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");after=String(before??"").replace(new RegExp(escaped,flags),String(rule.newValue));}
+      if(rule.action==="add"){const current=Array.isArray(before)?before:[],exists=current.some(value=>String(value).toLocaleLowerCase("fr")===String(rule.newValue).toLocaleLowerCase("fr"));after=exists?current:[...current,rule.newValue];}
+      if(meta.type==="number"){after=Number(after);if(!Number.isFinite(after))return;}
+      if(String(before??"")===String(after??""))return;
+      rows.push({id:uid("bulk-proposal"),itemId:item.id,itemName:item.name||item.id,field:rule.field,fieldLabel:meta.label,beforeValue:clone(before),afterValue:clone(after),conflictBasis:{id:item.id,value:clone(before),version:item.version??null,updatedAt:item.updatedAt||""},decision:"validated",valid:true,matchStatus:"certain",confidence:"Élevée",action:"bulk_field_update",operation:{type:"bulk_field_update",field:rule.field,value:clone(after)},conflict:null});
+    });return rows;
+  }
+  function detectBulkConflict(proposal,item){
+    if(!item)return{conflict:true,reason:"Article supprimé depuis l’analyse.",expected:proposal.beforeValue,current:null};
+    const current=bulkValue(item,proposal.field);return JSON.stringify(current)===JSON.stringify(proposal.beforeValue)?{conflict:false}:{conflict:true,reason:"La valeur a changé depuis l’analyse.",expected:proposal.beforeValue,current};
   }
   function buildProposals(session, items) {
     return (session.lines || []).map(line => {
@@ -302,5 +378,5 @@
     if(action==="physical_aliquots_recount")return{...common,preparations:(item?.aliquotTracking?.preparations||[]).map(x=>({id:x.id,version:x.version,locations:x.locations,openAliquots:(x.openAliquots||[]).map(a=>({id:a.id,version:a.version,remainingVolume:a.remainingVolume,status:a.status}))}))};
     return common;
   }
-  return { SCORE_ENGINE_VERSION,normalize,normalizeMeaningfulReference,normalizeContactReference,findContactForItem,similarity,extractSpecifications,compareSpecifications,scoreDuplicatePair,confidenceFromScore,audit,matchItem,parseFreeText,createSession,buildProposals,detectConflict,snapshot,clone,summarize };
+  return { SCORE_ENGINE_VERSION,BULK_FIELDS,normalize,normalizeMeaningfulReference,normalizeContactReference,findContactForItem,similarity,extractSpecifications,compareSpecifications,scoreDuplicatePair,confidenceFromScore,audit,matchItem,parseFreeText,createSession,interpretBulkInstruction,buildBulkProposals,detectBulkConflict,bulkValue,applyBulkValue,buildProposals,detectConflict,snapshot,clone,summarize };
 });

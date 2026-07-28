@@ -1,0 +1,23 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Tests sauvegarde modification massive</title></head>
+<body><p id="result">En cours…</p><iframe id="appFrame" src="../../index.html" style="width:1200px;height:700px"></iframe><script>
+const frame=document.querySelector("#appFrame"),result=document.querySelector("#result");
+frame.addEventListener("load",()=>setTimeout(async()=>{
+ try{
+  const w=frame.contentWindow,Core=w.ExadexAgentsCore;let passed=0;const check=(value,message)=>{if(!value)throw new Error(message);passed++;};
+  const makeState=()=>({version:1,inventoryItems:Array.from({length:20},(_,index)=>({id:`sigma-${index}`,name:`Produit ${index}`,category:"Test",unit:"u",quantity:1,minStock:0,references:{primary:{supplier:index%2?"SIGMA":"Merck Sigma",reference:`R-${index}`},secondary:[]}})),history:[],stockMovements:[],agentOperations:[],updatedAt:new Date().toISOString()});
+  let remote=makeState(),saveCalls=0;
+  w.ExadexGithubStorage={getConfig:()=>({owner:"test",repo:"test",path:"shared_data.json",token:"token"}),async mutateSharedData(operationId,mutator){if(remote.agentOperations.some(entry=>entry.operationId===operationId))return{data:JSON.parse(JSON.stringify(remote)),duplicate:true};const next=await mutator(JSON.parse(JSON.stringify(remote)));saveCalls++;remote=next;return{data:JSON.parse(JSON.stringify(remote)),duplicate:false}}};
+  const session=Core.createSession({sessionType:"bulk",name:"Sigma vers Merck"});session.bulkRule={action:"replace",replaceMode:"whole",field:"supplier",conditionField:"supplier",match:"contains",conditionValue:"sigma",oldValue:"",newValue:"Merck",caseInsensitive:true};const proposals=Core.buildBulkProposals(session,remote.inventoryItems);
+  check(proposals.length===20&&proposals.every(row=>row.afterValue==="Merck"),"aperçu de 20 remplacements complets exact");
+  const request={operationId:`bulk-session-${session.id}`,sessionId:session.id,sessionName:session.name,user:"Test",proposals};
+  const applied=await w.ExadexInventoryAgent.applyBulkChanges(request);
+  check(applied.applied===20&&saveCalls===1,"20 propositions sauvegardées en une mutation");
+  check(remote.inventoryItems.every(item=>item.references.primary.supplier==="Merck"),"20 fournisseurs réellement mis à jour");
+  check(remote.history.filter(entry=>entry.itemId).length===20&&remote.history.every(entry=>entry.action==="Modification massive par Agent"),"une entrée Historique par article");
+  const afterFirst=JSON.stringify(remote),duplicate=await w.ExadexInventoryAgent.applyBulkChanges(request);check(duplicate.duplicate&&JSON.stringify(remote)===afterFirst&&saveCalls===1,"deuxième application rendue idempotente");
+  const conflictState=makeState(),conflictSession=Core.createSession({sessionType:"bulk",name:"Conflit"});conflictSession.bulkRule=session.bulkRule;const conflictProposals=Core.buildBulkProposals(conflictSession,conflictState.inventoryItems);conflictState.inventoryItems[0].references.primary.supplier="Modifié entre-temps";remote=conflictState;let conflict=false;try{await w.ExadexInventoryAgent.applyBulkChanges({operationId:"conflict-operation",sessionId:conflictSession.id,sessionName:conflictSession.name,user:"Test",proposals:conflictProposals});}catch(error){conflict=error.message==="BULK_CONFLICT";}check(conflict&&remote.history.length===0&&remote.inventoryItems[1].references.primary.supplier!=="Merck","conflit bloque atomiquement toute l’écriture");
+  const failureState=makeState(),failureBefore=JSON.stringify(failureState);remote=failureState;w.ExadexGithubStorage.mutateSharedData=async(operationId,mutator)=>{await mutator(JSON.parse(JSON.stringify(remote)));throw new Error("GitHub save failed: 500");};let failed=false;try{await w.ExadexInventoryAgent.applyBulkChanges({...request,operationId:"failed-operation"});}catch{failed=true;}check(failed&&JSON.stringify(remote)===failureBefore,"échec simulé sans données ni Historique partiels");
+  result.textContent=`${passed} tests sauvegarde massive réussis.`;
+ }catch(error){result.textContent=`ÉCHEC: ${error.message}`;}
+},1900));
+</script></body></html>

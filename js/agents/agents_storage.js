@@ -23,25 +23,31 @@
   };
   const isQuota = error => error?.name === "QuotaExceededError" || error?.code === 22 || /quota/i.test(error?.message || "");
   const severityRank = { critical:0, warning:1, info:2 };
-  function compactAlert(row) {
+  function stableAlertId(row,report={}) {
+    const signature=[report.auditType||report.scope||"full",row.auditScope||"",row.referenceCriterion||"",row.type||"",row.severity||"",[...new Set(row.itemIds||[])].sort().join("|"),row.observed||""].join("::");
+    let hash=2166136261;
+    for(let index=0;index<signature.length;index++){hash^=signature.charCodeAt(index);hash=Math.imul(hash,16777619);}
+    return`alert-stable-${(hash>>>0).toString(36)}`;
+  }
+  function compactAlert(row,report={}) {
     const details=row.scoreDetails||{};
-    return { id:row.id, type:String(row.type||"").slice(0,100), auditScope:row.auditScope||"", severity:row.severity||"info", confidence:row.confidence||"", confidenceScore:Number(row.duplicateScore??row.confidenceScore??row.similarityScore??0), duplicateScore:Number(row.duplicateScore??row.confidenceScore??row.similarityScore??0), itemIds:[...new Set(row.itemIds||[])].slice(0,10), explanation:String(row.explanation||row.message||"").slice(0,500), observed:String(row.observed||row.clues||"").slice(0,500), reasons:(row.reasons||[]).slice(0,12), scoreDetails:{positive:(details.positive||row.reasons||[]).slice(0,12),differences:(details.differences||[]).slice(0,12),terms:(details.terms||[]).slice(0,20),rawScore:Number(details.rawScore??row.confidenceScore??0),boundedScore:Number(details.boundedScore??row.confidenceScore??0),capped:Boolean(details.capped),capReason:String(details.capReason||"").slice(0,300),nameSimilarity:Number(details.nameSimilarity||0)}, state:row.state||"pending", createdAt:row.createdAt||"" };
+    return { id:stableAlertId(row,report), type:String(row.type||"").slice(0,100), auditScope:row.auditScope||"", referenceCriterion:row.referenceCriterion||"", severity:row.severity||"info", confidence:row.confidence||"", confidenceScore:Number(row.duplicateScore??row.confidenceScore??row.similarityScore??0), duplicateScore:Number(row.duplicateScore??row.confidenceScore??row.similarityScore??0), itemIds:[...new Set(row.itemIds||[])].slice(0,10), explanation:String(row.explanation||row.message||"").slice(0,500), observed:String(row.observed||row.clues||"").slice(0,500), reasons:(row.reasons||[]).slice(0,12), scoreDetails:{positive:(details.positive||row.reasons||[]).slice(0,12),differences:(details.differences||[]).slice(0,12),terms:(details.terms||[]).slice(0,20),rawScore:Number(details.rawScore??row.confidenceScore??0),boundedScore:Number(details.boundedScore??row.confidenceScore??0),capped:Boolean(details.capped),capReason:String(details.capReason||"").slice(0,300),nameSimilarity:Number(details.nameSimilarity||0)}, state:row.state||"pending", createdAt:row.createdAt||"" };
   }
   function compactAudit(report) {
     const dedup=new Map();
     (report?.alerts||[]).forEach(row => {
-      const value=compactAlert(row), key=[value.type,value.severity,[...value.itemIds].sort().join("|"),value.observed].join("::");
+      const value=compactAlert(row,report), key=value.id;
       if(!dedup.has(key)) dedup.set(key,value);
     });
     const all=[...dedup.values()], kept=all.sort((a,b)=>(severityRank[a.severity]??9)-(severityRank[b.severity]??9)).slice(0,MAX_ALERTS);
-    return { id:report.id, auditType:report.auditType||"", rulesVersion:report.rulesVersion||1, scoreEngine:report.scoreEngine||"", scope:report.scope||"full", createdAt:report.createdAt, durationMs:report.durationMs||0, itemCount:report.itemCount||0, totalAlertCount:report.totalAlertCount??all.length, persistedAlertCount:kept.length, truncated:all.length>kept.length, alerts:kept, summary:report.summary||summary(all), scopeSummary:report.scopeSummary||null, referenceSummary:report.referenceSummary||null };
+    return { id:report.id, auditType:report.auditType||"", rulesVersion:report.rulesVersion||1, scoreEngine:report.scoreEngine||"", scope:report.scope||"full", createdAt:report.createdAt, durationMs:report.durationMs||0, itemCount:report.itemCount||0, totalAlertCount:report.totalAlertCount??all.length, initialAlertCount:report.initialAlertCount??kept.length, deletedAlertCount:Math.max(0,Number(report.deletedAlertCount)||0), persistedAlertCount:kept.length, truncated:all.length>kept.length, alerts:kept, summary:report.summary||summary(all), scopeSummary:report.scopeSummary||null, referenceSummary:report.referenceSummary||null };
   }
   function summary(rows){return{critical:rows.filter(x=>x.severity==="critical").length,warnings:rows.filter(x=>x.severity==="warning").length,info:rows.filter(x=>x.severity==="info").length,duplicates:rows.filter(x=>/doublon|référence partagée/i.test(x.type)).length};}
   function compactProposal(p) {
-    return { id:p.id,lineId:p.lineId,itemId:p.itemId,itemName:String(p.itemName||"").slice(0,200),matchStatus:p.matchStatus,candidates:(p.candidates||[]).slice(0,5).map(c=>({itemId:c.itemId,name:String(c.name||"").slice(0,200),score:c.score,reasons:(c.reasons||[]).slice(0,4)})),confidence:p.confidence,decision:p.decision||"pending",valid:Boolean(p.valid),action:p.action,operation:p.operation||null,conflictBasis:p.conflictBasis||null,beforeValue:p.beforeValue,afterValue:p.afterValue,readAt:p.readAt,reason:String(p.reason||"").slice(0,300),conflict:p.conflict?{conflict:true,reason:p.conflict.reason}:null};
+    return { id:p.id,lineId:p.lineId,itemId:p.itemId,itemName:String(p.itemName||"").slice(0,200),field:p.field||"",fieldLabel:String(p.fieldLabel||"").slice(0,80),matchStatus:p.matchStatus,candidates:(p.candidates||[]).slice(0,5).map(c=>({itemId:c.itemId,name:String(c.name||"").slice(0,200),score:c.score,reasons:(c.reasons||[]).slice(0,4)})),confidence:p.confidence,decision:p.decision||"pending",valid:Boolean(p.valid),action:p.action,operation:p.operation||null,conflictBasis:p.conflictBasis||null,beforeValue:p.beforeValue,afterValue:p.afterValue,readAt:p.readAt,reason:String(p.reason||"").slice(0,300),conflict:p.conflict?{conflict:true,reason:p.conflict.reason,expected:p.conflict.expected,current:p.conflict.current}:null};
   }
   function compactSession(s) {
-    return { id:s.id,name:String(s.name||"").slice(0,200),author:s.author||"",createdAt:s.createdAt,updatedAt:s.updatedAt,readAt:s.readAt,scope:s.scope,location:s.location||"",category:s.category||"",notes:String(s.notes||"").slice(0,3000),originalText:String(s.originalText||"").slice(0,50000),status:s.status||"Brouillon",lines:(s.lines||[]).map(l=>({id:l.id,raw:String(l.raw||"").slice(0,2000),text:String(l.text||"").slice(0,500),name:String(l.name||"").slice(0,300),action:l.action,location:l.location,quantity:l.quantity,closed:l.closed,openRemaining:l.openRemaining,openUnit:l.openUnit,aliquots:l.aliquots,openAliquotVolume:l.openAliquotVolume,openAliquotUnit:l.openAliquotUnit,parsed:l.parsed,match:l.match?{status:l.match.status,itemId:l.match.itemId,candidates:(l.match.candidates||[]).slice(0,5).map(c=>({itemId:c.itemId,name:c.name,score:c.score,reasons:c.reasons}))}:null})),proposals:(s.proposals||[]).map(compactProposal),decisions:(s.decisions||[]).slice(-1000),report:s.report||null};
+    return { id:s.id,sessionType:s.sessionType||"physical",name:String(s.name||"").slice(0,200),author:s.author||"",createdAt:s.createdAt,updatedAt:s.updatedAt,readAt:s.readAt,scope:s.scope,location:s.location||"",category:s.category||"",notes:String(s.notes||"").slice(0,3000),originalText:String(s.originalText||"").slice(0,50000),status:s.status||"Brouillon",bulkRule:s.bulkRule||null,clarification:String(s.clarification||"").slice(0,500),proposalSearch:String(s.proposalSearch||"").slice(0,200),lines:(s.lines||[]).map(l=>({id:l.id,raw:String(l.raw||"").slice(0,2000),text:String(l.text||"").slice(0,500),name:String(l.name||"").slice(0,300),action:l.action,location:l.location,quantity:l.quantity,closed:l.closed,openRemaining:l.openRemaining,openUnit:l.openUnit,aliquots:l.aliquots,openAliquotVolume:l.openAliquotVolume,openAliquotUnit:l.openAliquotUnit,parsed:l.parsed,match:l.match?{status:l.match.status,itemId:l.match.itemId,candidates:(l.match.candidates||[]).slice(0,5).map(c=>({itemId:c.itemId,name:c.name,score:c.score,reasons:c.reasons}))}:null})),proposals:(s.proposals||[]).map(compactProposal),decisions:(s.decisions||[]).slice(-1000),report:s.report||null};
   }
   const active = s => !["Validé","Abandonné"].includes(s.status);
   function retained(state) {
@@ -53,7 +59,7 @@
   function saveWorkspace(state, storage=root.localStorage, options={}) {
     const data=retained(state), oldAuditIds=read(storage,KEYS.auditIndex,[]).map(x=>x.id), oldSessionIds=read(storage,KEYS.sessionIndex,[]).map(x=>x.id);
     const auditIndex=data.audits.map(a=>({id:a.id,auditType:a.auditType||"",createdAt:a.createdAt,totalAlertCount:a.totalAlertCount,persistedAlertCount:a.persistedAlertCount,truncated:a.truncated,rulesVersion:a.rulesVersion||1,summary:a.summary}));
-    const sessionIndex=data.sessions.map(s=>({id:s.id,name:s.name,status:s.status,createdAt:s.createdAt,updatedAt:s.updatedAt}));
+    const sessionIndex=data.sessions.map(s=>({id:s.id,sessionType:s.sessionType||"physical",name:s.name,status:s.status,createdAt:s.createdAt,updatedAt:s.updatedAt}));
     const writes=[[KEYS.settings,{version:2,updatedAt:new Date().toISOString()}],[KEYS.auditIndex,auditIndex],[KEYS.sessionIndex,sessionIndex],...data.audits.map(a=>[KEYS.auditPrefix+a.id,a]),...data.sessions.map(s=>[KEYS.sessionPrefix+s.id,s])];
     let bytes=0;
     for(const [key,value] of writes){const result=write(storage,key,value);if(!result.ok){if(result.reason==="quota"&&!options.retried){cleanupOldReports(storage,data.audits.map(a=>a.id));return saveWorkspace(state,storage,{retried:true});}return result;}bytes+=result.bytes||0;}
@@ -88,7 +94,8 @@
   }
   function loadWorkspace(storage=root.localStorage) {
     const auditIndex=read(storage,KEYS.auditIndex,[]),sessionIndex=read(storage,KEYS.sessionIndex,[]);
-    return {version:2,audits:auditIndex.map(row=>read(storage,KEYS.auditPrefix+row.id,null)).filter(Boolean),sessions:sessionIndex.map(row=>read(storage,KEYS.sessionPrefix+row.id,null)).filter(Boolean)};
+    const audits=auditIndex.map(row=>read(storage,KEYS.auditPrefix+row.id,null)).filter(Boolean).map(report=>({...report,alerts:(report.alerts||[]).map(alert=>({...alert,id:stableAlertId(alert,report)}))}));
+    return {version:2,audits,sessions:sessionIndex.map(row=>read(storage,KEYS.sessionPrefix+row.id,null)).filter(Boolean)};
   }
   function migrate(storage=root.localStorage) {
     const raw=storage.getItem(KEYS.legacy); if(!raw)return{ok:true,migrated:false,beforeBytes:0,afterBytes:diagnostics(storage).bytes};
@@ -103,5 +110,5 @@
     [KEYS.settings,KEYS.auditIndex,KEYS.sessionIndex,...auditIndex.map(x=>KEYS.auditPrefix+x.id),...sessionIndex.map(x=>KEYS.sessionPrefix+x.id)].forEach(key=>{const size=byteSize(storage.getItem(key)||"");bytes+=size;if(key.startsWith(KEYS.auditPrefix))biggest=Math.max(biggest,size);});
     auditIndex.forEach(x=>alerts+=x.persistedAlertCount||0);return{bytes,audits:auditIndex.length,sessions:sessionIndex.length,alerts,biggestReportBytes:biggest};
   }
-  return {KEYS,MAX_AUDITS,MAX_ALERTS,MAX_FINISHED_SESSIONS,byteSize,compactAudit,compactSession,retained,saveWorkspace,loadWorkspace,migrate,cleanupOldReports,deleteAudits,diagnostics,isQuota};
+  return {KEYS,MAX_AUDITS,MAX_ALERTS,MAX_FINISHED_SESSIONS,byteSize,stableAlertId,compactAudit,compactSession,retained,saveWorkspace,loadWorkspace,migrate,cleanupOldReports,deleteAudits,diagnostics,isQuota};
 });

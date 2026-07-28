@@ -612,6 +612,7 @@ function createSharedState(rawState = null, options = {}) {
       ? source.history
       : bootstrap?.history || [],
     stockMovements: Array.isArray(source.stockMovements) ? source.stockMovements : [],
+    agentOperations: Array.isArray(source.agentOperations) ? source.agentOperations : [],
     updatedAt: source.updatedAt || bootstrap?.updatedAt || ""
   };
 }
@@ -648,6 +649,92 @@ Object.defineProperties(window, {
   inventoryCategories: { configurable: true, get: () => [...inventoryCategories] },
   currentName: { configurable: true, get: () => currentName }
 });
+
+function buildAgentBulkMutation(sourceState, request) {
+  const state = createSharedState(sourceState, { includeBootstrap: false });
+  const proposals = Array.isArray(request?.proposals) ? request.proposals : [];
+  const operationId = String(request?.operationId || "");
+  if (!operationId || !proposals.length) throw new Error("BULK_INVALID_REQUEST");
+  state.agentOperations = Array.isArray(state.agentOperations) ? state.agentOperations : [];
+  if (state.agentOperations.some(entry => entry.operationId === operationId)) return { state, duplicate: true, applied: 0 };
+  const ids = proposals.map(row => String(row?.itemId || ""));
+  if (ids.some(id => !id) || new Set(ids).size !== ids.length) throw new Error("BULK_INVALID_ITEM_IDS");
+  const allowed = new Set(Object.keys(window.ExadexAgentsCore?.BULK_FIELDS || {}));
+  if (proposals.some(row => !allowed.has(row.field) || row.field === "id" || row.decision !== "validated" || !row.valid)) throw new Error("BULK_INVALID_PROPOSAL");
+  if (proposals.some(row => {
+    const meta = window.ExadexAgentsCore.BULK_FIELDS[row.field];
+    if (meta.type === "number" && !Number.isFinite(Number(row.afterValue))) return true;
+    if (meta.type === "array" && !Array.isArray(row.afterValue)) return true;
+    return ["name", "category", "unit"].includes(row.field) && !String(row.afterValue || "").trim();
+  })) throw new Error("BULK_INVALID_VALUE");
+  const conflicts = [];
+  proposals.forEach(proposal => {
+    const item = state.inventoryItems.find(row => row.id === proposal.itemId);
+    const conflict = window.ExadexAgentsCore.detectBulkConflict(proposal, item);
+    if (conflict.conflict) conflicts.push({ itemId: proposal.itemId, reason: conflict.reason });
+  });
+  if (conflicts.length) {
+    const error = new Error("BULK_CONFLICT");
+    error.conflicts = conflicts;
+    throw error;
+  }
+  const now = new Date().toISOString();
+  const user = String(request.user || currentName || "");
+  const entries = [];
+  proposals.forEach(proposal => {
+    const item = state.inventoryItems.find(row => row.id === proposal.itemId);
+    const before = window.ExadexAgentsCore.clone(window.ExadexAgentsCore.bulkValue(item, proposal.field));
+    window.ExadexAgentsCore.applyBulkValue(item, proposal.field, proposal.afterValue);
+    item.updatedAt = now;
+    item.version = Number(item.version || 0) + 1;
+    entries.push({
+      date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date(now)),
+      user,
+      action: "Modification massive par Agent",
+      detail: `${request.sessionName} · ${item.name} · ${proposal.fieldLabel} : ${before ?? "—"} → ${proposal.afterValue ?? "—"}`,
+      sessionId: request.sessionId,
+      itemId: item.id,
+      field: proposal.field,
+      before,
+      after: window.ExadexAgentsCore.clone(proposal.afterValue)
+    });
+  });
+  state.history.unshift(...entries, {
+    date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date(now)),
+    user,
+    action: "Modification massive par Agent",
+    detail: `${proposals.length} modification${proposals.length > 1 ? "s" : ""} appliquée${proposals.length > 1 ? "s" : ""} · ${request.sessionName}`,
+    sessionId: request.sessionId
+  });
+  state.agentOperations.push({ operationId, sessionId: request.sessionId, applied: proposals.length, at: now });
+  state.updatedAt = now;
+  return { state, duplicate: false, applied: proposals.length };
+}
+
+window.ExadexInventoryAgent = {
+  async applyBulkChanges(request) {
+    const storage = window.ExadexGithubStorage;
+    const config = storage?.getConfig?.();
+    const remoteWritable = Boolean(storage?.mutateSharedData && (!storage.getConfig || (config?.owner && config?.repo && config?.path && config?.token)));
+    if (remoteWritable) {
+      let mutationResult = null;
+      const result = await storage.mutateSharedData(request.operationId, latest => {
+        mutationResult = buildAgentBulkMutation(latest, request);
+        return mutationResult.state;
+      }, { maxAttempts: 3 });
+      if (!mutationResult && result?.duplicate) return { applied: 0, conflicts: 0, errors: 0, duplicate: true, mode: "remote", data: result.data };
+      applySharedState(result.data);
+      return { applied: mutationResult.applied, conflicts: 0, errors: 0, duplicate: mutationResult.duplicate, mode: "remote", data: result.data };
+    }
+    const mutation = buildAgentBulkMutation(sharedState, request);
+    if (mutation.duplicate) return { applied: 0, conflicts: 0, errors: 0, duplicate: true, mode: "local-cache", data: mutation.state };
+    sharedState = mutation.state;
+    syncRuntimeStateFromShared();
+    persist();
+    render();
+    return { applied: mutation.applied, conflicts: 0, errors: 0, duplicate: false, mode: "local-cache", data: sharedState };
+  }
+};
 
 async function refreshSharedStateFromGithub() {
   try {
@@ -690,6 +777,7 @@ function syncRuntimeStateFromShared() {
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
   sharedState.stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
+  sharedState.agentOperations = Array.isArray(sharedState.agentOperations) ? sharedState.agentOperations : [];
 
   items = buildItems();
   orders = sharedState.orders;
@@ -711,6 +799,7 @@ function syncSharedStateFromRuntime() {
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(history) ? history : [];
   sharedState.stockMovements = Array.isArray(stockMovements) ? stockMovements : [];
+  sharedState.agentOperations = Array.isArray(sharedState.agentOperations) ? sharedState.agentOperations : [];
   sharedState.updatedAt = new Date().toISOString();
 }
 
@@ -2239,6 +2328,7 @@ function syncAppViewMode() {
   app.classList.toggle("locations-mode", activeView === "locations");
   app.classList.toggle("orders-mode", activeView === "orders");
   app.classList.toggle("contacts-mode", activeView === "contacts");
+  app.classList.toggle("agents-mode", activeView === "agents");
   app.classList.toggle("location-detail-mode", activeView === "locations" && Boolean(selectedLocation));
   app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }
@@ -7182,6 +7272,18 @@ function renderContactCardDetails(contact){
   ].filter(row=>String(row.value||"").trim()&&!contactEmails(row.value).length&&!contactPhones(row.value).length);
   return`${contact.salesRepresentative?`<div class="contact-card-info contact-card-person"><span aria-hidden="true">👤</span><span>${escapeHtml(contact.salesRepresentative)}</span></div>`:""}${emails[0]?`<div class="contact-card-info"><span aria-hidden="true">✉</span><span class="contact-card-value">${escapeHtml(emails[0])}</span></div>`:""}${phones[0]?`<div class="contact-card-info"><span aria-hidden="true">☎</span><span class="contact-card-value">${escapeHtml(phones[0])}</span></div>`:""}${hiddenCount?`<small class="contact-card-more">+ ${hiddenCount} coordonnée${hiddenCount>1?"s":""} supplémentaire${hiddenCount>1?"s":""}</small>`:""}${!emails.length&&!phones.length?`<p class="contact-card-empty">Aucune coordonnée enregistrée</p>`:""}${freeValues.map(row=>`<div class="contact-card-info contact-card-free"><span>${escapeHtml(row.label)}</span><span class="contact-card-value">${escapeHtml(row.value)}</span></div>`).join("")}`;
 }
+function renderContactPreviewCard(contact){
+  const count=getContactItems(contact).length,details=renderContactCardDetails(contact);
+  return`<article class="contact-card contact-accent-${contactCardAccent(contact)}" tabindex="0" role="button" data-contact-id="${escapeHtml(contact.id)}" aria-label="Ouvrir la fiche de ${escapeHtml(contact.company)}"><div class="contact-card-heading"><div class="contact-card-identity"><span class="contact-card-avatar" aria-hidden="true">${escapeHtml(contactCardInitial(contact.company))}</span><h3>${escapeHtml(contact.company)}</h3></div><span class="contact-product-count ${count?"has-products":"no-products"}">${count?`<span aria-hidden="true">📦</span> `:""}${contactCountLabel(count)}</span></div><div class="contact-card-body">${details||`<p class="contact-card-empty">Aucune coordonnée enregistrée</p>`}</div></article>`;
+}
+function groupContactsByInitial(rows){
+  const groups=[],byInitial=new Map();
+  rows.forEach(contact=>{const initial=contactCardInitial(contact.company).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase();if(!byInitial.has(initial)){const group={initial,contacts:[]};byInitial.set(initial,group);groups.push(group);}byInitial.get(initial).contacts.push(contact);});
+  return groups;
+}
+function renderContactPreviewGrid(rows){
+  return groupContactsByInitial(rows).map(group=>{const accent=contactCardAccent(group.contacts[0]);return`<div class="contact-letter-group contact-accent-${accent}" data-contact-initial="${escapeHtml(group.initial)}"><div class="contact-letter-separator" aria-label="Sociétés commençant par ${escapeHtml(group.initial)}"><span>${escapeHtml(group.initial)}</span><i aria-hidden="true"></i></div>${group.contacts.map(renderContactPreviewCard).join("")}</div>`;}).join("");
+}
 
 function renderContacts(){
   const root=document.querySelector("#contactsRoot");if(!root)return;
@@ -7190,7 +7292,7 @@ function renderContacts(){
   if(contactsLetterValue&&!availableLetters.has(contactsLetterValue))contactsLetterValue="";
   const hasEmail=contact=>contactAllValues(contact).some(row=>contactEmails(row.value).length||row.type==="email"),hasPhone=contact=>contactAllValues(contact).some(row=>contactPhones(row.value).length||row.type==="phone");
   const rows=supplierContacts.filter(contact=>!query||normalizeCompanyName([contact.company,contact.salesRepresentative,contact.customerService,contact.salesAndQuotes,contact.afterSalesService,contact.phone,contact.notes,(contact.aliases||[]).join(" "),(contact.coordinates||[]).map(row=>`${row.label} ${row.value}`).join(" ")].join(" ")).includes(query)).filter(contact=>!contactsLetterValue||contactInitial(contact.company)===contactsLetterValue).filter(contact=>contactsFilterValue==="all"||(contactsFilterValue==="representative"&&contact.salesRepresentative)||(contactsFilterValue==="email"&&hasEmail(contact))||(contactsFilterValue==="phone"&&hasPhone(contact))||(contactsFilterValue==="no-products"&&!getContactItems(contact).length)).sort((a,b)=>contactsSortValue==="company-desc"?b.company.localeCompare(a.company,"fr",{sensitivity:"base"}):contactsSortValue==="products"?getContactItems(b).length-getContactItems(a).length:a.company.localeCompare(b.company,"fr",{sensitivity:"base"}));
-  root.innerHTML=`<header class="contacts-header"><div><p class="eyebrow">Carnet fournisseurs</p><h2 id="contactsTitle">Contacts</h2><p>Retrouvez rapidement les sociétés et leurs coordonnées.</p></div><div class="contacts-header-meta"><span>${supplierContacts.length} société${supplierContacts.length>1?"s":""}</span><button class="primary-btn" type="button" data-add-contact>Ajouter un contact</button></div></header><section class="contacts-toolbar" aria-label="Recherche et filtres"><label class="contacts-search"><span class="sr-only">Rechercher un contact</span><input type="search" id="contactsSearch" placeholder="Rechercher une société, un commercial, un e-mail ou un téléphone…" value="${escapeHtml(contactsSearchValue)}"></label><select id="contactsFilter" aria-label="Filtrer les sociétés"><option value="all">Toutes les sociétés</option><option value="representative">Avec commercial</option><option value="email">Avec e-mail</option><option value="phone">Avec téléphone</option><option value="no-products">Sans produit associé</option></select><select id="contactsSort" aria-label="Trier les sociétés"><option value="company-asc">Société A–Z</option><option value="company-desc">Société Z–A</option><option value="products">Nombre de produits associés</option></select></section><nav class="contacts-alphabet" aria-label="Filtrer les sociétés par initiale"><div><button type="button" data-contact-letter="" class="${contactsLetterValue?"":"active"}" aria-pressed="${contactsLetterValue?"false":"true"}" title="Afficher toutes les sociétés">Toutes</button>${letters.map(letter=>`<button type="button" data-contact-letter="${letter}" class="${contactsLetterValue===letter?"active":""}" aria-label="${availableLetters.has(letter)?`Afficher les sociétés commençant par ${letter}`:`Aucune société commençant par ${letter}`}" title="${availableLetters.has(letter)?`Afficher les sociétés commençant par ${letter}`:`Aucune société commençant par ${letter}`}" aria-pressed="${contactsLetterValue===letter?"true":"false"}" ${availableLetters.has(letter)?"":'disabled aria-disabled="true"'}>${letter}</button>`).join("")}</div></nav><section class="contacts-results-zone"><p class="contacts-results" aria-live="polite">${rows.length} société${rows.length>1?"s":""} trouvée${rows.length>1?"s":""}</p><div class="contacts-list">${rows.map(contact=>{const count=getContactItems(contact).length,details=renderContactCardDetails(contact);return`<article class="contact-card contact-accent-${contactCardAccent(contact)}" tabindex="0" role="button" data-contact-id="${escapeHtml(contact.id)}" aria-label="Ouvrir la fiche de ${escapeHtml(contact.company)}"><div class="contact-card-heading"><div class="contact-card-identity"><span class="contact-card-avatar" aria-hidden="true">${escapeHtml(contactCardInitial(contact.company))}</span><h3>${escapeHtml(contact.company)}</h3></div><span class="contact-product-count ${count?"has-products":"no-products"}">${count?`<span aria-hidden="true">📦</span> `:""}${contactCountLabel(count)}</span></div><div class="contact-card-body">${details||`<p class="contact-card-empty">Aucune coordonnée enregistrée</p>`}</div></article>`;}).join("")||`<div class="agent-empty contacts-empty"><p>Aucune société ne correspond à cette combinaison de filtres.</p><button class="ghost-btn compact-btn" type="button" data-reset-contacts>Réinitialiser les filtres</button></div>`}</div></section>`;
+  root.innerHTML=`<header class="client-studies-header contacts-main-header"><div><p class="eyebrow">Carnet fournisseurs</p><div class="client-studies-title-row"><h3 id="contactsTitle">Contacts</h3></div><p class="main-section-subtitle">Retrouvez rapidement les sociétés et leurs coordonnées.</p></div><div class="contacts-header-meta"><span>${supplierContacts.length} société${supplierContacts.length>1?"s":""}</span><button class="primary-btn" type="button" data-add-contact>Ajouter un contact</button></div></header><section class="contacts-toolbar" aria-label="Recherche et filtres"><label class="contacts-search"><span class="sr-only">Rechercher un contact</span><input type="search" id="contactsSearch" placeholder="Rechercher une société, un commercial, un e-mail ou un téléphone…" value="${escapeHtml(contactsSearchValue)}"></label><select id="contactsFilter" aria-label="Filtrer les sociétés"><option value="all">Toutes les sociétés</option><option value="representative">Avec commercial</option><option value="email">Avec e-mail</option><option value="phone">Avec téléphone</option><option value="no-products">Sans produit associé</option></select><select id="contactsSort" aria-label="Trier les sociétés"><option value="company-asc">Société A–Z</option><option value="company-desc">Société Z–A</option><option value="products">Nombre de produits associés</option></select></section><nav class="contacts-alphabet" aria-label="Filtrer les sociétés par initiale"><div><button type="button" data-contact-letter="" class="${contactsLetterValue?"":"active"}" aria-pressed="${contactsLetterValue?"false":"true"}" title="Afficher toutes les sociétés">Toutes</button>${letters.map(letter=>`<button type="button" data-contact-letter="${letter}" class="${contactsLetterValue===letter?"active":""}" aria-label="${availableLetters.has(letter)?`Afficher les sociétés commençant par ${letter}`:`Aucune société commençant par ${letter}`}" title="${availableLetters.has(letter)?`Afficher les sociétés commençant par ${letter}`:`Aucune société commençant par ${letter}`}" aria-pressed="${contactsLetterValue===letter?"true":"false"}" ${availableLetters.has(letter)?"":'disabled aria-disabled="true"'}>${letter}</button>`).join("")}</div></nav><section class="contacts-results-zone"><p class="contacts-results" aria-live="polite">${rows.length} société${rows.length>1?"s":""} trouvée${rows.length>1?"s":""}</p><div class="contacts-list">${renderContactPreviewGrid(rows)||`<div class="agent-empty contacts-empty"><p>Aucune société ne correspond à cette combinaison de filtres.</p><button class="ghost-btn compact-btn" type="button" data-reset-contacts>Réinitialiser les filtres</button></div>`}</div></section>`;
   root.querySelector("[data-add-contact]").onclick=()=>openContactModal();
   root.querySelector("#contactsSearch").oninput=event=>{contactsSearchValue=event.target.value;renderContacts();const input=document.querySelector("#contactsSearch");input?.focus();input?.setSelectionRange(contactsSearchValue.length,contactsSearchValue.length);};
   root.querySelector("#contactsFilter").value=contactsFilterValue;root.querySelector("#contactsFilter").onchange=event=>{contactsFilterValue=event.target.value;renderContacts();};

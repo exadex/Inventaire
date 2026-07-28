@@ -3,7 +3,7 @@
 <head><meta charset="utf-8"><title>Tests Contacts</title></head>
 <body>
   <p id="result">Tests en cours…</p>
-  <iframe id="appFrame" src="../../index.html" style="width:1200px;height:900px"></iframe>
+  <iframe id="appFrame" src="../../index.html" style="width:1400px;height:900px"></iframe>
   <script>
     const result=document.querySelector("#result"),frame=document.querySelector("#appFrame");
     frame.addEventListener("load",()=>setTimeout(async()=>{
@@ -12,6 +12,17 @@
         let passed=0;const check=(value,message)=>{if(!value)throw new Error(message);passed++;};
         const nav=[...d.querySelectorAll(".nav-item")].map(x=>x.dataset.view);
         check(nav.indexOf("contacts")===nav.indexOf("orders")+1&&nav.indexOf("agents")===nav.indexOf("contacts")+1,"ordre navigation");
+        d.querySelector('[data-view="samples"]').click();
+        const sampleHeader=d.querySelector("#samplesView > .client-studies-header"),sampleLeft=sampleHeader.getBoundingClientRect().left,sampleTop=sampleHeader.getBoundingClientRect().top,sampleContentLeft=d.querySelector("#samplesView > .client-study-controls").getBoundingClientRect().left,sampleActionRight=d.querySelector("#addClientStudyBtn").getBoundingClientRect().right;
+        d.querySelector('[data-view="agents"]').click();
+        check(getComputedStyle(d.querySelector(".topbar")).display!=="none"&&getComputedStyle(d.querySelector(".topbar > div:first-child")).display==="none"&&getComputedStyle(d.querySelector("#metrics")).display==="none","barre utilisateur conservée et résumé Inventaire absent dans Agents");
+        check(d.querySelector(".agents-main-header.client-studies-header #agentsTitle")?.textContent==="Agents"&&d.querySelector(".agents-main-header .main-section-subtitle")?.textContent.includes("Analysez et préparez"),"en-tête Agents réutilise le composant principal");
+        const agentsHeader=d.querySelector(".agents-main-header"),agentsFirstContent=d.querySelector(".agent-card-grid");
+        check(Math.abs(agentsHeader.getBoundingClientRect().left-sampleLeft)<1&&Math.abs(agentsHeader.querySelector(".eyebrow").getBoundingClientRect().left-sampleLeft)<1&&Math.abs(d.querySelector("#agentsTitle").getBoundingClientRect().left-sampleLeft)<1,"origine horizontale Agents identique à Études clients");
+        check(Math.abs(agentsHeader.getBoundingClientRect().top-sampleTop)<1&&Math.abs(agentsFirstContent.getBoundingClientRect().left-sampleContentLeft)<1,"origine verticale et contenu Agents alignés");
+        check(Math.abs(agentsHeader.querySelector("[data-clean-reports]").getBoundingClientRect().right-sampleActionRight)<1,"action Agents alignée sur l’action de référence");
+        d.querySelector('[data-view="inventory"]').click();
+        check(getComputedStyle(d.querySelector(".topbar")).display!=="none"&&getComputedStyle(d.querySelector("#metrics")).display!=="none","résumé Inventaire conservé dans Inventaire");
         const contacts=api.getAll();
         check(contacts.some(x=>x.company==="Abcam"&&x.customerService==="orders@abcam.com"&&x.phone==="08 01 84 05 42"),"Abcam initial");
         check(contacts.some(x=>x.company==="BD Biosciences"&&x.salesRepresentative==="Loras Damien"&&x.salesAndQuotes==="devis@bd.com"),"BD initial");
@@ -26,6 +37,24 @@
         check(!d.querySelector("#primarySupplierContactId").value,"fournisseur libre reste non lié");
         d.querySelector('[data-view="contacts"]').click();
         check(d.querySelectorAll(".contact-card").length>=3,"liste rendue");
+        check(d.querySelector(".contacts-main-header.client-studies-header #contactsTitle")?.textContent==="Contacts"&&d.querySelector(".contacts-main-header .main-section-subtitle")?.textContent.includes("Retrouvez rapidement"),"en-tête Contacts réutilise le composant principal");
+        const contactsHeader=d.querySelector(".contacts-main-header");
+        check(Math.abs(contactsHeader.getBoundingClientRect().left-sampleLeft)<1&&Math.abs(contactsHeader.querySelector(".eyebrow").getBoundingClientRect().left-sampleLeft)<1&&Math.abs(d.querySelector("#contactsTitle").getBoundingClientRect().left-sampleLeft)<1,"origine horizontale Contacts identique à Études clients");
+        check(Math.abs(contactsHeader.getBoundingClientRect().top-sampleTop)<1&&Math.abs(d.querySelector(".contacts-toolbar").getBoundingClientRect().left-sampleContentLeft)<1,"origine verticale et contenu Contacts alignés");
+        check(Math.abs(contactsHeader.querySelector("[data-add-contact]").getBoundingClientRect().right-sampleActionRight)<1,"action Contacts alignée sur l’action de référence");
+        let letterGroups=[...d.querySelectorAll(".contact-letter-group")];
+        check(letterGroups.every(group=>group.querySelectorAll(".contact-letter-separator").length===1&&group.querySelector(".contact-letter-separator span").textContent===group.dataset.contactInitial),"un repère exact par groupe visible");
+        check(letterGroups.every(group=>[...group.classList].find(name=>name.startsWith("contact-accent-"))===[...group.querySelector(".contact-card").classList].find(name=>name.startsWith("contact-accent-"))),"repère et cartes partagent la couleur de lettre");
+        check(letterGroups.every(group=>[...group.querySelectorAll(".contact-card-avatar")].every(avatar=>avatar.textContent===group.dataset.contactInitial)),"sociétés regroupées par initiale");
+        check(new Set(letterGroups.map(group=>group.dataset.contactInitial)).size===letterGroups.length,"une seule grille par initiale");
+        check(letterGroups.every(group=>getComputedStyle(group).gridTemplateColumns.split(" ").length===3),"trois colonnes fixes sur grand écran");
+        const firstLeft=letterGroups[0].querySelector(".contact-card").getBoundingClientRect().left;
+        check(letterGroups.every(group=>Math.abs(group.querySelector(".contact-card").getBoundingClientRect().left-firstLeft)<1),"chaque lettre recommence dans la première colonne");
+        const cardWidths=[...d.querySelectorAll(".contact-card")].map(card=>Math.round(card.getBoundingClientRect().width));
+        check(Math.max(...cardWidths)-Math.min(...cardWidths)<=1,"largeur identique dans les lignes incomplètes");
+        const sort=d.querySelector("#contactsSort");sort.value="company-desc";sort.dispatchEvent(new w.Event("change"));letterGroups=[...d.querySelectorAll(".contact-letter-group")];
+        check(letterGroups.map(group=>group.dataset.contactInitial).join("")===[...letterGroups.map(group=>group.dataset.contactInitial)].sort().reverse().join(""),"groupes corrects en tri Z–A");
+        d.querySelector("#contactsSort").value="company-asc";d.querySelector("#contactsSort").dispatchEvent(new w.Event("change"));
         const previewCards=[...d.querySelectorAll(".contact-card")],bCards=previewCards.filter(card=>card.querySelector("h3")?.textContent.startsWith("B"));
         check(bCards.length>=2&&bCards.every(card=>[...card.classList].find(name=>name.startsWith("contact-accent-"))===[...bCards[0].classList].find(name=>name.startsWith("contact-accent-"))),"accent stable par lettre");
         check(!d.querySelector(".contact-card .contact-icon-action")&&!d.querySelector(".contact-card [data-copy-contact]")&&!d.querySelector('.contact-card a[href^="mailto:"]'),"aucune action dans les prévisualisations");
@@ -35,9 +64,12 @@
         const firstAvailable=d.querySelector('.contacts-alphabet button[data-contact-letter]:not([data-contact-letter=""]):not(:disabled)');firstAvailable.click();
         const letterColor=getComputedStyle(d.querySelector(".contacts-alphabet .active")).backgroundColor.match(/\d+/g).map(Number);
         check(letterColor[0]+letterColor[1]+letterColor[2]>600,"lettre active sans fond noir");
+        check(d.querySelectorAll(".contact-letter-group").length===1&&d.querySelector(".contact-letter-group").dataset.contactInitial===firstAvailable.dataset.contactLetter,"filtre alphabétique conserve un groupe unique");
+        check(d.querySelectorAll(".contact-letter-separator").length===1,"filtre alphabétique conserve un seul repère");
         d.querySelector('.contacts-alphabet button[data-contact-letter=""]').click();
         const search=d.querySelector("#contactsSearch");search.value="Loras";search.dispatchEvent(new w.Event("input"));
         check(d.querySelectorAll(".contact-card").length===1&&d.querySelector(".contact-card").textContent.includes("BD Biosciences"),"recherche commercial");
+        check(d.querySelectorAll(".contact-letter-separator").length===1&&d.querySelector(".contact-letter-separator span").textContent==="B","recherche sans repère vide");
         d.querySelector(".contact-card").click();
         check(d.querySelector('a[href^="mailto:"]')&&!d.querySelector('a[href^="tel:"]'),"e-mail cliquable et téléphone non cliquable");
         check(d.querySelector("[data-copy-contact]"),"copie disponible");
@@ -62,6 +94,13 @@
         d.querySelector("#confirmDeleteBtn").click();
         check(!api.getAll().some(x=>x.id===created.id),"suppression du contact");
         check(api.getAssociatedItems(created.id).length===0&&itemCountBefore===0,"aucun item supprimé");
+        for(const width of [900,500]){
+          frame.style.width=`${width}px`;void frame.offsetWidth;
+          d.querySelector('[data-view="samples"]').click();const referenceLeft=d.querySelector("#samplesView > .client-studies-header").getBoundingClientRect().left,referenceTop=d.querySelector("#samplesView > .client-studies-header").getBoundingClientRect().top;
+          d.querySelector('[data-view="agents"]').click();const agentRect=d.querySelector(".agents-main-header").getBoundingClientRect();
+          d.querySelector('[data-view="contacts"]').click();const contactRect=d.querySelector(".contacts-main-header").getBoundingClientRect();
+          check(Math.abs(agentRect.left-referenceLeft)<1&&Math.abs(contactRect.left-referenceLeft)<1&&Math.abs(agentRect.top-referenceTop)<1&&Math.abs(contactRect.top-referenceTop)<1,`alignement partagé à ${width}px`);
+        }
         result.textContent=`${passed} tests Contacts réussis.`;
       }catch(error){result.textContent=`ÉCHEC: ${error.message}`;}
     },1800));

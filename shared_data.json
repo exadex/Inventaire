@@ -6599,7 +6599,7 @@
       "notes": "Conditionnement : 10g",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "C9879-10G",
           "link": "https://www.sigmaaldrich.com/FR/fr/product/roche/collaro",
           "notes": "370",
@@ -6612,7 +6612,34 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T13:08:48.420Z",
-      "createdAt": "16/07/2026 15:08"
+      "createdAt": "16/07/2026 15:08",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "g",
+            "singular": "g",
+            "plural": "g",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "g",
+        "trackingUnit": "g",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0094",
@@ -15999,6 +16026,12 @@
       "date": "28/07/2026 15:02",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Collagen from bovine achilles tendon 10g."
+    },
+    {
+      "date": "28/07/2026 15:02",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié T75."
     },
     {
@@ -19259,5 +19292,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:02:09.814Z"
+  "updatedAt": "2026-07-28T13:02:29.326Z"
 }

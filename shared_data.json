@@ -1586,7 +1586,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "ThermoFischer",
+          "supplier": "Thermo Fischer",
           "reference": "174951",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -1599,7 +1599,34 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T13:07:38.059Z",
-      "createdAt": "16/07/2026 15:07"
+      "createdAt": "16/07/2026 15:07",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "flacon",
+            "singular": "flacon",
+            "plural": "flacons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "flacon",
+        "trackingUnit": "flacons",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0037",
@@ -15585,6 +15612,12 @@
       "date": "28/07/2026 14:58",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié T 75cm²FLACON DE CULTURE ULA COL INCLINÉ u BOUCHON VENTILÉ STÉRILE. x6 x4."
+    },
+    {
+      "date": "28/07/2026 14:58",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Bouchon ler lock st."
     },
     {
@@ -18761,5 +18794,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:58:35.941Z"
+  "updatedAt": "2026-07-28T12:58:59.118Z"
 }

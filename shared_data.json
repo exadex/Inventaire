@@ -11809,7 +11809,7 @@
     },
     {
       "id": "ord-1784705628709",
-      "status": "requested",
+      "status": "ordered",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "Luminex® Multiplex Assay Customization Tool",
@@ -11820,9 +11820,9 @@
       "requestedBy": "Caroline",
       "requestedAt": "22/07/2026 09:33",
       "requestedAtRaw": "2026-07-22T07:33:48.710Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
+      "orderedBy": "Caroline",
+      "orderedAt": "28/07/2026 12:59",
+      "orderedAtRaw": "2026-07-28T10:59:08.267Z",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -15014,6 +15014,12 @@
       "date": "28/07/2026 12:59",
       "user": "Caroline",
       "action": "Commande effectuée",
+      "detail": "Caroline a marqué Luminex® Multiplex Assay Customization Tool comme commandé."
+    },
+    {
+      "date": "28/07/2026 12:59",
+      "user": "Caroline",
+      "action": "Commande effectuée",
       "detail": "Caroline a marqué 96-well Magnetic Plate Separator comme commandé."
     },
     {
@@ -17992,5 +17998,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T10:59:05.797Z"
+  "updatedAt": "2026-07-28T10:59:08.268Z"
 }

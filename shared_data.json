@@ -7337,7 +7337,7 @@
       "notes": "Conditionnement : 10",
       "references": {
         "primary": {
-          "supplier": "ThermoFischer",
+          "supplier": "Thermo Fischer",
           "reference": "10361235",
           "link": "https://www.fishersci.fr/shop/products/p/10361235",
           "notes": "120",
@@ -7347,7 +7347,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-07-28T13:03:48.140Z",
+      "createdAt": "28/07/2026 15:03",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0110",
@@ -16200,6 +16230,12 @@
       "date": "28/07/2026 15:03",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié support de Plaque 96 puits applied Veriflex."
+    },
+    {
+      "date": "28/07/2026 15:03",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Plaque 96 puits applied OPTIQUE."
     },
     {
@@ -19502,5 +19538,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:03:38.094Z"
+  "updatedAt": "2026-07-28T13:03:48.142Z"
 }

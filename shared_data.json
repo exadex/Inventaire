@@ -3484,7 +3484,7 @@
       "notes": "Conditionnement : 50mg",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "R2408-50MG",
           "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/i7018",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -3494,7 +3494,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-07-28T13:05:45.980Z",
+      "createdAt": "28/07/2026 15:05",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mg",
+            "singular": "mg",
+            "plural": "mg",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mg",
+        "trackingUnit": "mg",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-qn040m",
@@ -16349,6 +16379,12 @@
       "date": "28/07/2026 15:05",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Rosiglitazone BRL."
+    },
+    {
+      "date": "28/07/2026 15:05",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Agarase from pseudomonas atlantica Sigma."
     },
     {
@@ -19693,5 +19729,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T13:05:36.838Z"
+  "updatedAt": "2026-07-28T13:05:45.982Z"
 }

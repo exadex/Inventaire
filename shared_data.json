@@ -15064,6 +15064,17 @@
       "aliases": []
     },
     {
+      "id": "contact-1785239528908-g3b4qv",
+      "company": "Roth",
+      "salesRepresentative": "Nadège Marchal",
+      "afterSalesService": "",
+      "customerService": "",
+      "salesAndQuotes": "N.Marchal@carlroth.de",
+      "phone": "",
+      "notes": "",
+      "aliases": []
+    },
+    {
       "id": "contact-1785239108709-s3tej8",
       "company": "Santa cruz",
       "salesRepresentative": "",
@@ -15120,6 +15131,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:52",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Roth."
+    },
     {
       "date": "28/07/2026 13:50",
       "user": "Caroline",
@@ -18174,5 +18191,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:50:59.567Z"
+  "updatedAt": "2026-07-28T11:52:08.910Z"
 }

@@ -15106,9 +15106,26 @@
       "phone": "",
       "notes": "",
       "aliases": []
+    },
+    {
+      "id": "contact-1785239459565-7t6yfo",
+      "company": "Thermo Fischer",
+      "salesRepresentative": "Dumoitier Nicolas - Perruchon Mathilde",
+      "afterSalesService": "",
+      "customerService": "serviceclients@thermofisher.com",
+      "salesAndQuotes": "nicolas.dumoitier@thermofisher.com // mathilde.perruchon@thermofisher.com",
+      "phone": "08 00 23 20 79 / 07 87 61 13 40 Nicolas Dumoitier / 06 09 51 25 93 Messeguer Virginie",
+      "notes": "Voir devis annuel ",
+      "aliases": []
     }
   ],
   "history": [
+    {
+      "date": "28/07/2026 13:50",
+      "user": "Caroline",
+      "action": "Contact ajouté",
+      "detail": "Caroline a ajouté le contact Thermo Fischer."
+    },
     {
       "date": "28/07/2026 13:48",
       "user": "Caroline",
@@ -18157,5 +18174,5 @@
       "correctionReason": ""
     }
   ],
-  "updatedAt": "2026-07-28T11:48:46.838Z"
+  "updatedAt": "2026-07-28T11:50:59.567Z"
 }

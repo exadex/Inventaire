@@ -2,6 +2,71 @@
   "version": 1,
   "inventoryItems": [
     {
+      "id": "web-1785252073452",
+      "name": "REDUCTEUR SU 1.2MM",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 5,
+      "unit": "boites",
+      "minStock": 1,
+      "usageProfile": "routine",
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Aesthetic Group",
+          "reference": "FD0000000-LLF12",
+          "link": "",
+          "notes": "46",
+          "price": "46",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239809949-wko6z2",
+      "createdAtRaw": "2026-07-28T15:21:13.452Z",
+      "createdAt": "28/07/2026 17:21",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "custom-unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 100
+          }
+        ],
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boites",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1784276773489",
       "name": "Plaques 48 puits",
       "category": "Procédé ExAdEx L2",
@@ -16772,6 +16837,12 @@
   ],
   "history": [
     {
+      "date": "28/07/2026 17:21",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté REDUCTEUR SU 1.2MM dans Procédé ExAdEx L2."
+    },
+    {
       "date": "28/07/2026 17:19",
       "user": "Elina",
       "action": "Item modifié",
@@ -20246,5 +20317,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-28T15:19:02.703Z"
+  "updatedAt": "2026-07-28T15:21:13.454Z"
 }

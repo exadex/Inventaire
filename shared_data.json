@@ -13455,7 +13455,7 @@
       "clientId": "client-APHM3",
       "canonicalClientCode": "APHM003",
       "location": "Culture L1",
-      "notes": "Poudre lyophilisée\nReconstituer dans 5mL\nStocker à RT",
+      "notes": "Poudre lyophilisée\nReconstituer dans 5mL\nStérile\nStocker à RT",
       "createdAtRaw": "2026-07-29T13:51:23.146Z",
       "createdAt": "29/07/2026 15:51",
       "name": "APHM003_produit n°3",
@@ -17012,6 +17012,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 16:03",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°3 pour APHM003."
+    },
     {
       "date": "29/07/2026 15:56",
       "user": "Caroline",
@@ -20697,5 +20703,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:56:53.851Z"
+  "updatedAt": "2026-07-29T14:03:30.915Z"
 }

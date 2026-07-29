@@ -9624,33 +9624,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1783931436295-94c9ec",
-      "name": "Insuline, humain recombinant, zinc solution, 4mg/ml",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "mL",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "95",
-          "price": "95",
-          "unitPrice": "19€/ml",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-web-1783931436295-2rzmhw",
       "name": "Liberase TL res Grade",
       "category": "Biomol",
@@ -16760,6 +16733,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 10:38",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Insuline, humain recombinant, zinc solution, 4mg/ml de l'inventaire."
+    },
+    {
       "date": "29/07/2026 09:59",
       "user": "Elina",
       "action": "Item modifié",
@@ -20300,5 +20279,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T07:59:21.155Z"
+  "updatedAt": "2026-07-29T08:38:18.448Z"
 }

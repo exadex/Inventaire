@@ -13297,6 +13297,36 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1785334383674-6py1lh",
+      "type": "client_product",
+      "clientCode": "APHM003",
+      "rawClientCode": "APHM003",
+      "normalizedClientKey": "APHM3",
+      "clientId": "client-APHM3",
+      "canonicalClientCode": "APHM003",
+      "location": "-80°C",
+      "notes": "Liquide\nStérile\nStocker à -80°C",
+      "createdAtRaw": "2026-07-29T14:13:03.674Z",
+      "createdAt": "29/07/2026 16:13",
+      "name": "APHM003_produit n°20",
+      "arrivalDate": "2026-07-29",
+      "quantity": 1,
+      "unit": "eppendorf",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "APHM003_produit n°20",
+      "creationDate": "",
+      "measureValue": 1,
+      "measureUnit": "eppendorf",
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1785334383674-6py1lh",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1785334321234-km1r6a",
       "type": "client_product",
       "clientCode": "APHM003",
@@ -17253,6 +17283,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 16:13",
+      "user": "Caroline",
+      "action": "Produit client ajouté",
+      "detail": "Caroline a ajouté APHM003_produit n°20 pour APHM003."
+    },
+    {
       "date": "29/07/2026 16:12",
       "user": "Caroline",
       "action": "Produit client ajouté",
@@ -21003,5 +21039,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T14:12:01.235Z"
+  "updatedAt": "2026-07-29T14:13:03.676Z"
 }

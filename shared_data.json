@@ -16311,7 +16311,7 @@
       "clientId": "client-APHM3",
       "canonicalClientCode": "APHM003",
       "location": "Culture L1",
-      "notes": "Conserver à RT\nInjecter 200µL",
+      "notes": "Liquide\nStérile\nConserver à RT",
       "createdAtRaw": "2026-07-13T13:46:05.570Z",
       "createdAt": "13/07/2026 15:46",
       "name": "APHM003_produit n°13",
@@ -16892,6 +16892,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:53",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°13 pour APHM003."
+    },
     {
       "date": "29/07/2026 15:53",
       "user": "Caroline",
@@ -20547,5 +20553,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:53:00.835Z"
+  "updatedAt": "2026-07-29T13:53:30.035Z"
 }

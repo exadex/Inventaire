@@ -13297,6 +13297,36 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1785332951729-xe4lv2",
+      "type": "client_product",
+      "clientCode": "APHM003",
+      "rawClientCode": "APHM003",
+      "normalizedClientKey": "APHM3",
+      "clientId": "client-APHM3",
+      "canonicalClientCode": "APHM003",
+      "location": "Frigo culture L1",
+      "notes": "Poudre lyophilisée\nReconstituer dans 5mL",
+      "createdAtRaw": "2026-07-29T13:49:11.729Z",
+      "createdAt": "29/07/2026 15:49",
+      "name": "APHM003_produit n°1",
+      "arrivalDate": "2026-07-29",
+      "quantity": 1,
+      "unit": "tube",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "APHM003_produit n°1",
+      "creationDate": "",
+      "measureValue": 1,
+      "measureUnit": "tube",
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1785332951729-xe4lv2",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1785332700841-1eq8m1",
       "type": "client_product",
       "clientCode": "LUB001",
@@ -16772,6 +16802,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:49",
+      "user": "Caroline",
+      "action": "Produit client ajouté",
+      "detail": "Caroline a ajouté APHM003_produit n°1 pour APHM003."
+    },
     {
       "date": "29/07/2026 15:46",
       "user": "Caroline",
@@ -20385,5 +20421,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:46:37.459Z"
+  "updatedAt": "2026-07-29T13:49:11.730Z"
 }

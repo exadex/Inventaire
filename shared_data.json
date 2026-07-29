@@ -13395,7 +13395,7 @@
       "clientId": "client-APHM3",
       "canonicalClientCode": "APHM003",
       "location": "Frigo culture L1",
-      "notes": "Poudre lyophilisée\nReconstituer dans 5mL\nStocker à 4°C",
+      "notes": "Poudre lyophilisée\nReconstituer dans 5mL\nStérile\nStocker à 4°C",
       "createdAtRaw": "2026-07-29T13:49:11.729Z",
       "createdAt": "29/07/2026 15:49",
       "name": "APHM003_produit n°1",
@@ -16892,6 +16892,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:53",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°1 pour APHM003."
+    },
     {
       "date": "29/07/2026 15:52",
       "user": "Caroline",
@@ -20541,5 +20547,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:52:53.163Z"
+  "updatedAt": "2026-07-29T13:53:00.835Z"
 }

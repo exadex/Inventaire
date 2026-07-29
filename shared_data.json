@@ -16185,32 +16185,32 @@
     {
       "id": "sample-client-1783950365570-f20i8q",
       "type": "client_product",
-      "clientCode": "APHM",
-      "rawClientCode": "APHM",
-      "normalizedClientKey": "APHM",
-      "clientId": "client-APHM",
-      "canonicalClientCode": "APHM",
+      "clientCode": "APHM003",
+      "rawClientCode": "APHM003",
+      "normalizedClientKey": "APHM3",
+      "clientId": "client-APHM3",
+      "canonicalClientCode": "APHM003",
       "location": "Culture L1",
       "notes": "Conserver à RT\nInjecter 200µL",
       "createdAtRaw": "2026-07-13T13:46:05.570Z",
       "createdAt": "13/07/2026 15:46",
-      "name": "Exosome test #1",
+      "name": "APHM-003_produit n°13",
       "arrivalDate": "2026-07-02",
       "quantity": 2,
       "unit": "mL",
       "referenceNumber": "",
       "lotNumber": "",
       "category": "",
-      "baseName": "Exosome test #1",
+      "baseName": "APHM-003_produit n°13",
       "creationDate": "",
       "measureValue": 2,
       "measureUnit": "mL",
-      "replicaNumber": null,
-      "replicaCount": 1,
       "generalData": {},
       "specificData": {},
       "groupId": "",
-      "replicaId": "sample-client-1783950365570-f20i8q"
+      "replicaId": "sample-client-1783950365570-f20i8q",
+      "replicaNumber": null,
+      "replicaCount": 1
     },
     {
       "id": "sample-client-1783950236643-fro2wp",
@@ -16343,6 +16343,16 @@
       ],
       "createdAtRaw": "2026-07-13T13:46:05.570Z",
       "updatedAtRaw": "2026-07-13T13:46:05.570Z"
+    },
+    {
+      "id": "client-APHM3",
+      "normalizedKey": "APHM3",
+      "canonicalCode": "APHM003",
+      "rawCodes": [
+        "APHM003"
+      ],
+      "createdAtRaw": "2026-07-29T13:46:22.099Z",
+      "updatedAtRaw": "2026-07-29T13:46:22.099Z"
     },
     {
       "normalizedKey": "ASH1",
@@ -16762,6 +16772,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:46",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM-003_produit n°13 pour APHM003."
+    },
     {
       "date": "29/07/2026 15:45",
       "user": "Elina",
@@ -20363,5 +20379,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:45:00.843Z"
+  "updatedAt": "2026-07-29T13:46:22.101Z"
 }

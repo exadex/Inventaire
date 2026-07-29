@@ -13297,6 +13297,36 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1785332700841-1eq8m1",
+      "type": "client_product",
+      "clientCode": "LUB001",
+      "rawClientCode": "LUB-001",
+      "normalizedClientKey": "LUB1",
+      "clientId": "client-LUB1",
+      "canonicalClientCode": "LUB001",
+      "location": "Frigo culture L1",
+      "notes": "",
+      "createdAtRaw": "2026-07-29T13:45:00.841Z",
+      "createdAt": "29/07/2026 15:45",
+      "name": "Product Z",
+      "arrivalDate": "2026-07-29",
+      "quantity": 11,
+      "unit": "mL",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "Product Z",
+      "creationDate": "",
+      "measureValue": 11,
+      "measureUnit": "mL",
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1785332700841-1eq8m1",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-created-1784292414504-5mazev",
       "type": "created_sample",
       "clientCode": "MIB002",
@@ -16325,6 +16355,17 @@
       "updatedAtRaw": "2026-07-13T13:38:57.192Z"
     },
     {
+      "id": "client-LUB1",
+      "normalizedKey": "LUB1",
+      "canonicalCode": "LUB001",
+      "rawCodes": [
+        "LUB-001",
+        "LUB001"
+      ],
+      "createdAtRaw": "2026-07-29T13:45:00.841Z",
+      "updatedAtRaw": "2026-07-29T13:45:00.841Z"
+    },
+    {
       "id": "client-MIB2",
       "normalizedKey": "MIB2",
       "canonicalCode": "MIB002",
@@ -16721,6 +16762,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:45",
+      "user": "Elina",
+      "action": "Produit client ajouté",
+      "detail": "Elina a ajouté Product Z pour LUB001."
+    },
     {
       "date": "29/07/2026 15:07",
       "user": "Elina",
@@ -20316,5 +20363,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:07:47.238Z"
+  "updatedAt": "2026-07-29T13:45:00.843Z"
 }

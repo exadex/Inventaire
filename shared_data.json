@@ -25,7 +25,12 @@
           "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "CGTU DAT4L1.2MM",
+            "notes": "Fournisseur : Benewmedical"
+          }
+        ]
       },
       "supplierContactId": "contact-1785239809949-wko6z2",
       "createdAtRaw": "2026-07-28T15:21:13.452Z",
@@ -45,15 +50,15 @@
           },
           {
             "id": "level-2",
-            "key": "custom-unite",
+            "key": "unite",
             "singular": "unité",
             "plural": "unités",
             "kind": "discrete",
             "contains": 100
           }
         ],
-        "trackingUnitKey": "boite",
-        "trackingUnit": "boites",
+        "trackingUnitKey": "custom-unite",
+        "trackingUnit": "unités",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -16808,6 +16813,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 09:56",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 1.2MM."
+    },
+    {
       "date": "29/07/2026 09:53",
       "user": "Elina",
       "action": "Item supprimé",
@@ -20294,5 +20305,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T07:53:45.187Z"
+  "updatedAt": "2026-07-29T07:56:20.896Z"
 }

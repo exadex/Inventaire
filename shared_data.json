@@ -858,7 +858,7 @@
       "id": "itm-CSV-0018",
       "name": "Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
-      "quantity": 2.2,
+      "quantity": 7.2,
       "unit": "Bouteilles",
       "minStock": 1,
       "location": "Frigo culture L1",
@@ -13242,7 +13242,11 @@
       "receivedBy": "Elina",
       "receivedAt": "29/07/2026 15:07",
       "receivedAtRaw": "2026-07-29T13:07:29.362Z",
-      "newItemData": null
+      "newItemData": null,
+      "addedToInventory": true,
+      "addedToInventoryQuantity": 5,
+      "addedToInventoryAt": "29/07/2026 15:07",
+      "addedToInventoryAtRaw": "2026-07-29T13:07:47.235Z"
     },
     {
       "id": "ord-1784705703173",
@@ -16717,6 +16721,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:07",
+      "user": "Elina",
+      "action": "Ajout à l'inventaire",
+      "detail": "Elina a ajouté 5 Bouteilles de Endothelial Cell Growth Medium 2 à l'inventaire."
+    },
     {
       "date": "29/07/2026 15:07",
       "user": "Elina",
@@ -20306,5 +20316,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:07:42.670Z"
+  "updatedAt": "2026-07-29T13:07:47.238Z"
 }

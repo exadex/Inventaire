@@ -969,7 +969,7 @@
       "id": "itm-CSV-0019",
       "name": "SupplementMix / Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
-      "quantity": 4,
+      "quantity": 9,
       "unit": "mL",
       "minStock": 1,
       "location": "-20°C culture L1",
@@ -13217,7 +13217,11 @@
       "receivedBy": "Elina",
       "receivedAt": "29/07/2026 15:07",
       "receivedAtRaw": "2026-07-29T13:07:25.626Z",
-      "newItemData": null
+      "newItemData": null,
+      "addedToInventory": true,
+      "addedToInventoryQuantity": 5,
+      "addedToInventoryAt": "29/07/2026 15:07",
+      "addedToInventoryAtRaw": "2026-07-29T13:07:42.666Z"
     },
     {
       "id": "ord-1785233264472",
@@ -16713,6 +16717,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:07",
+      "user": "Elina",
+      "action": "Ajout à l'inventaire",
+      "detail": "Elina a ajouté 5 mL de SupplementMix / Endothelial Cell Growth Medium 2 à l'inventaire."
+    },
     {
       "date": "29/07/2026 15:07",
       "user": "Elina",
@@ -20296,5 +20306,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:07:29.364Z"
+  "updatedAt": "2026-07-29T13:07:42.670Z"
 }

@@ -226,36 +226,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-CSV-0002",
-      "name": "Seringue BD 3P 20 ml Cone luer Lock",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 2.5,
-      "unit": "mL",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau",
-        "Culture L2"
-      ],
-      "tags": [
-        "Seringue luer lock"
-      ],
-      "notes": "120",
-      "references": {
-        "primary": {
-          "supplier": "bastide",
-          "reference": "100081",
-          "link": "https://www.bastideleconfortmedical.com/seringues-3-pieces-20-ml-bd-plastipak-cone-luer-lock-100081.html",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "38",
-          "unitPrice": "0,316666667",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-CSV-0004",
       "name": "REDUCTEUR SU 1.4MM",
       "category": "Procédé ExAdEx L2",
@@ -16733,6 +16703,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 10:39",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Seringue BD 3P 20 ml Cone luer Lock de l'inventaire."
+    },
+    {
       "date": "29/07/2026 10:38",
       "user": "Elina",
       "action": "Item supprimé",
@@ -20279,5 +20255,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T08:38:18.448Z"
+  "updatedAt": "2026-07-29T08:39:25.750Z"
 }

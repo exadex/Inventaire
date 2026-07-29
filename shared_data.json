@@ -1878,9 +1878,44 @@
           "unitPrice": "0,3",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "5100-000V0",
+            "notes": "Fournisseur : Honke sass Wolf"
+          }
+        ]
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239326837-r987ag",
+      "createdAtRaw": "2026-07-29T08:52:12.808Z",
+      "createdAt": "29/07/2026 10:52",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "custom-seringue",
+            "singular": "seringue",
+            "plural": "seringues",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "custom-seringue",
+        "trackingUnit": "seringues",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0046",
@@ -16708,6 +16743,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 10:52",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 10ml."
+    },
+    {
       "date": "29/07/2026 10:42",
       "user": "Elina",
       "action": "Item modifié",
@@ -20266,5 +20307,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T08:42:54.432Z"
+  "updatedAt": "2026-07-29T08:52:12.810Z"
 }

@@ -352,7 +352,7 @@
         ]
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785239809949-wko6z2",
       "createdAtRaw": "2026-07-28T12:54:10.172Z",
       "createdAt": "28/07/2026 14:54",
@@ -16766,6 +16766,12 @@
       "detail": "Elina a modifié REDUCTEUR SU 2.4MM."
     },
     {
+      "date": "29/07/2026 09:58",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 2.4MM."
+    },
+    {
       "date": "29/07/2026 09:57",
       "user": "Elina",
       "action": "Item supprimé",
@@ -20276,5 +20282,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T07:58:06.881Z"
+  "updatedAt": "2026-07-29T07:58:13.727Z"
 }

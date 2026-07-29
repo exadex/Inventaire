@@ -324,7 +324,7 @@
       "name": "REDUCTEUR SU 2.4MM",
       "category": "Procédé ExAdEx L2",
       "quantity": 6,
-      "unit": "unités",
+      "unit": "Boites",
       "minStock": 2,
       "location": "Bureau",
       "locations": [
@@ -333,7 +333,7 @@
       "tags": [
         "Tulipe"
       ],
-      "notes": "20",
+      "notes": "Conditionnement : 100 pièces par boites",
       "references": {
         "primary": {
           "supplier": "Aesthetic Group",
@@ -16760,6 +16760,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 09:58",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 2.4MM."
+    },
+    {
       "date": "29/07/2026 09:57",
       "user": "Elina",
       "action": "Item supprimé",
@@ -20270,5 +20276,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T07:57:08.273Z"
+  "updatedAt": "2026-07-29T07:58:06.881Z"
 }

@@ -13297,6 +13297,36 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-client-1785334188625-hr3ivu",
+      "type": "client_product",
+      "clientCode": "APHM003",
+      "rawClientCode": "APHM003",
+      "normalizedClientKey": "APHM3",
+      "clientId": "client-APHM3",
+      "canonicalClientCode": "APHM003",
+      "location": "Culture L1",
+      "notes": "Poudre lyophilisée\nReconstituer dans 5mL\nStérile\nStocker à RT",
+      "createdAtRaw": "2026-07-29T14:09:48.625Z",
+      "createdAt": "29/07/2026 16:09",
+      "name": "APHM003_produit n°16",
+      "arrivalDate": "2026-07-29",
+      "quantity": 1,
+      "unit": "tube",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "category": "",
+      "baseName": "APHM003_produit n°16",
+      "creationDate": "",
+      "measureValue": 1,
+      "measureUnit": "tube",
+      "generalData": {},
+      "specificData": {},
+      "groupId": "",
+      "replicaId": "sample-client-1785334188625-hr3ivu",
+      "replicaNumber": null,
+      "replicaCount": 1
+    },
+    {
       "id": "sample-client-1785334027130-p8t9wm",
       "type": "client_product",
       "clientCode": "APHM003",
@@ -17163,6 +17193,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 16:09",
+      "user": "Caroline",
+      "action": "Produit client ajouté",
+      "detail": "Caroline a ajouté APHM003_produit n°16 pour APHM003."
+    },
+    {
       "date": "29/07/2026 16:07",
       "user": "Caroline",
       "action": "Produit client ajouté",
@@ -20895,5 +20931,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T14:07:07.131Z"
+  "updatedAt": "2026-07-29T14:09:48.626Z"
 }

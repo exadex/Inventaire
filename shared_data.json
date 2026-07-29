@@ -492,35 +492,6 @@
       }
     },
     {
-      "id": "itm-CSV-0008",
-      "name": "Plaque Corning 6 puits ULA",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 5.5,
-      "unit": "plaques",
-      "minStock": 1,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Plaque 6 ula"
-      ],
-      "notes": "24",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "3471",
-          "link": "https://www.dutscher.com/article/003471",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "339",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-CSV-0009",
       "name": "ACL -eBioscience™ 10X RBC Lysis Buffer (Multi-species) 50 ml",
       "category": "Procédé ExAdEx L2",
@@ -16837,6 +16808,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 09:53",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Plaque Corning 6 puits ULA de l'inventaire."
+    },
+    {
       "date": "28/07/2026 17:21",
       "user": "Elina",
       "action": "Item ajouté",
@@ -20317,5 +20294,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-28T15:21:13.454Z"
+  "updatedAt": "2026-07-29T07:53:45.187Z"
 }

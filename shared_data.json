@@ -261,7 +261,7 @@
       "category": "Procédé ExAdEx L2",
       "quantity": 5,
       "unit": "Boites",
-      "minStock": 2,
+      "minStock": 1,
       "location": "Bureau",
       "locations": [
         "Bureau"
@@ -16760,6 +16760,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 09:59",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 1.4MM."
+    },
+    {
       "date": "29/07/2026 09:58",
       "user": "Elina",
       "action": "Item modifié",
@@ -20288,5 +20294,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T07:58:40.279Z"
+  "updatedAt": "2026-07-29T07:59:11.515Z"
 }

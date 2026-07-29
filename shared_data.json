@@ -344,7 +344,12 @@
           "unitPrice": "2,3",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "CGTU DAT4L2.4MM",
+            "notes": "Fournisseur : Benewmedical"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -16784,6 +16789,12 @@
   ],
   "history": [
     {
+      "date": "29/07/2026 09:57",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 2.4MM."
+    },
+    {
       "date": "29/07/2026 09:56",
       "user": "Elina",
       "action": "Item supprimé",
@@ -20282,5 +20293,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T07:56:29.397Z"
+  "updatedAt": "2026-07-29T07:57:00.101Z"
 }

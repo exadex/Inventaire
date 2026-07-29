@@ -16194,14 +16194,14 @@
       "notes": "Conserver à RT\nInjecter 200µL",
       "createdAtRaw": "2026-07-13T13:46:05.570Z",
       "createdAt": "13/07/2026 15:46",
-      "name": "APHM-003_produit n°13",
+      "name": "APHM003_produit n°13",
       "arrivalDate": "2026-07-02",
       "quantity": 2,
       "unit": "mL",
       "referenceNumber": "",
       "lotNumber": "",
       "category": "",
-      "baseName": "APHM-003_produit n°13",
+      "baseName": "APHM003_produit n°13",
       "creationDate": "",
       "measureValue": 2,
       "measureUnit": "mL",
@@ -16772,6 +16772,12 @@
     }
   ],
   "history": [
+    {
+      "date": "29/07/2026 15:46",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°13 pour APHM003."
+    },
     {
       "date": "29/07/2026 15:46",
       "user": "Caroline",
@@ -20379,5 +20385,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T13:46:22.101Z"
+  "updatedAt": "2026-07-29T13:46:37.459Z"
 }

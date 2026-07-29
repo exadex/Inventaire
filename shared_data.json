@@ -260,7 +260,7 @@
       "name": "REDUCTEUR SU 1.4MM",
       "category": "Procédé ExAdEx L2",
       "quantity": 5,
-      "unit": "unités",
+      "unit": "Boites",
       "minStock": 2,
       "location": "Bureau",
       "locations": [
@@ -269,7 +269,7 @@
       "tags": [
         "Tulipe"
       ],
-      "notes": "20",
+      "notes": "Conditionnement : 100 pièces par boites",
       "references": {
         "primary": {
           "supplier": "Aesthetic Group",
@@ -288,7 +288,7 @@
         ]
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785239809949-wko6z2",
       "createdAtRaw": "2026-07-28T12:53:55.349Z",
       "createdAt": "28/07/2026 14:53",
@@ -16763,6 +16763,12 @@
       "date": "29/07/2026 09:58",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 1.4MM."
+    },
+    {
+      "date": "29/07/2026 09:58",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié REDUCTEUR SU 2.4MM."
     },
     {
@@ -20282,5 +20288,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T07:58:13.727Z"
+  "updatedAt": "2026-07-29T07:58:40.279Z"
 }

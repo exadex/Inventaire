@@ -965,7 +965,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785238740524-xc8swm"
     },
     {
       "id": "itm-CSV-0019",
@@ -17285,6 +17286,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 10:16",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "30/07/2026 10:14",
       "user": "Elina",
       "action": "Item modifié",
@@ -21059,5 +21066,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:14:19.952Z"
+  "updatedAt": "2026-07-30T08:16:27.033Z"
 }

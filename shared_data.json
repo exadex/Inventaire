@@ -874,14 +874,23 @@
       "references": {
         "primary": {
           "supplier": "Promocell",
-          "reference": "C-22011",
+          "reference": "C-22211",
           "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
-          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
+          "notes": "Cette référence = juste les bouteilles d'EGM\nNA71 : Sérum et autre milieu pour culture cellulaire animale",
           "price": "153,85",
           "unitPrice": "",
           "leadTime": "15 jours"
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "C-22011",
+            "notes": "EGM + Suppléments 2+"
+          },
+          {
+            "reference": "C-22111",
+            "notes": "EGM + suppléments en tubes séparés"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -17317,6 +17326,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 10:28",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "30/07/2026 10:19",
       "user": "Elina",
       "action": "Item modifié",
@@ -21265,5 +21280,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:19:44.216Z"
+  "updatedAt": "2026-07-30T08:28:31.685Z"
 }

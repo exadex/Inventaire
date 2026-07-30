@@ -6369,9 +6369,44 @@
           "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "703031355",
+            "notes": "Fournisseur : Sarstedt"
+          }
+        ]
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-07-30T09:20:23.705Z",
+      "createdAt": "30/07/2026 11:20",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0078",
@@ -17239,6 +17274,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 11:20",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié cones filtrés 200µL."
+    },
+    {
       "date": "30/07/2026 11:13",
       "user": "Elina",
       "action": "Item supprimé",
@@ -21241,5 +21282,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T09:13:06.378Z"
+  "updatedAt": "2026-07-30T09:20:23.707Z"
 }

@@ -947,7 +947,7 @@
             "location": "Frigo culture L1",
             "remaining": 0,
             "capacity": 500,
-            "status": "open",
+            "status": "finished",
             "openedAt": "2026-07-27T09:29:23.522Z",
             "openedBy": {
               "userId": "elina",
@@ -955,9 +955,10 @@
               "userEmoji": "🔬",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-30T08:17:05.510Z",
+            "updatedAt": "2026-07-30T08:17:31.089Z",
             "updatedBy": "elina",
-            "version": 3
+            "version": 4,
+            "finishedAt": "2026-07-30T08:17:31.089Z"
           }
         ]
       },
@@ -17288,6 +17289,13 @@
     {
       "date": "30/07/2026 10:17",
       "action": "Stock mis à jour",
+      "detail": "Elina · container_finished · Endothelial Cell Growth Medium 2",
+      "user": "Elina",
+      "itemId": "itm-CSV-0018"
+    },
+    {
+      "date": "30/07/2026 10:17",
+      "action": "Stock mis à jour",
       "detail": "Elina · consumed · Endothelial Cell Growth Medium 2",
       "user": "Elina",
       "itemId": "itm-CSV-0018"
@@ -21128,8 +21136,67 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-ms78qh8x-2724222675-4154455332",
+      "operationId": "operation-ms78qgul-3966868755-166084645",
+      "itemId": "itm-CSV-0018",
+      "timestamp": "2026-07-30T08:17:31.089Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "container_finished",
+      "entityType": "container",
+      "entityId": "container-ms30zcqq-786182578-2110403160",
+      "preparationId": "",
+      "before": {
+        "id": "container-ms30zcqq-786182578-2110403160",
+        "label": "bouteille ouvert nº2",
+        "location": "Frigo culture L1",
+        "remaining": 0,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-27T09:29:23.522Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-30T08:17:05.510Z",
+        "updatedBy": "elina",
+        "version": 3
+      },
+      "after": {
+        "id": "container-ms30zcqq-786182578-2110403160",
+        "label": "bouteille ouvert nº2",
+        "location": "Frigo culture L1",
+        "remaining": 0,
+        "capacity": 500,
+        "status": "finished",
+        "openedAt": "2026-07-27T09:29:23.522Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-30T08:17:31.089Z",
+        "updatedBy": "elina",
+        "version": 4,
+        "finishedAt": "2026-07-30T08:17:31.089Z"
+      },
+      "quantity": 0,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Finie",
+      "correctionReason": "Finie"
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:17:05.510Z"
+  "updatedAt": "2026-07-30T08:17:31.089Z"
 }

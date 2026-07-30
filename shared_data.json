@@ -9214,12 +9214,12 @@
       "name": "Barrettes",
       "category": "Biomol",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "Cartons",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Bureau",
       "locations": [
-        "Laboratoire",
-        "Bureau"
+        "Bureau",
+        "Laboratoire"
       ],
       "tags": [],
       "notes": "",
@@ -9235,7 +9235,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-07-30T14:49:25.218Z",
+      "createdAt": "30/07/2026 16:49",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-f32jof",
@@ -17290,6 +17320,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 16:49",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Barrettes."
+    },
+    {
       "date": "30/07/2026 16:46",
       "user": "Elina",
       "action": "Item supprimé",
@@ -21329,5 +21365,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T14:46:45.892Z"
+  "updatedAt": "2026-07-30T14:49:25.220Z"
 }

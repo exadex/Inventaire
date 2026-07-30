@@ -4607,11 +4607,10 @@
       "name": "DMEM/F12 (1:1) W GLUT-I 500ML",
       "category": "Culture Cell",
       "quantity": 7,
-      "unit": "mL",
+      "unit": "Bouteilles",
       "minStock": 0,
-      "location": "Chambre froide",
+      "location": "Frigo labo",
       "locations": [
-        "Chambre froide",
         "Frigo labo"
       ],
       "tags": [
@@ -17267,6 +17266,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 11:04",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié DMEM/F12 (1:1) W GLUT-I 500ML."
+    },
+    {
       "date": "30/07/2026 11:02",
       "user": "Elina",
       "action": "Item modifié",
@@ -21257,5 +21262,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T09:02:36.777Z"
+  "updatedAt": "2026-07-30T09:04:36.956Z"
 }

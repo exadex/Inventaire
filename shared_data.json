@@ -6312,7 +6312,7 @@
         },
         "secondary": [
           {
-            "reference": "703031355",
+            "reference": "70.3031.355",
             "notes": "Fournisseur : Sarstedt"
           }
         ]
@@ -17215,6 +17215,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 14:14",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié cones filtrés 200µL."
+    },
+    {
       "date": "30/07/2026 11:20",
       "user": "Elina",
       "action": "Item supprimé",
@@ -21229,5 +21235,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T09:20:53.643Z"
+  "updatedAt": "2026-07-30T12:14:44.256Z"
 }

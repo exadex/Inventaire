@@ -4809,36 +4809,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1783931436295-i188f1",
-      "name": "Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix",
-      "category": "Culture Cell",
-      "quantity": 2,
-      "unit": "mL",
-      "minStock": 1,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo",
-        "Laboratoire"
-      ],
-      "tags": [
-        "Milieu EGM"
-      ],
-      "notes": "Conditionnement : 500mL",
-      "references": {
-        "primary": {
-          "supplier": "Promocell",
-          "reference": "c-22011",
-          "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
-          "notes": "146",
-          "price": "146",
-          "unitPrice": "14,6",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-web-1783931436295-4yhraf",
       "name": "3-Isobutyl-1-methylxanthine (IBMX)",
       "category": "Culture Cell",
@@ -17300,6 +17270,12 @@
       "date": "30/07/2026 10:39",
       "user": "Elina",
       "action": "Item supprimé",
+      "detail": "Elina a supprimé Growth Medium (Ready-to-use): Includes Basal Medium and SupplementMix de l'inventaire."
+    },
+    {
+      "date": "30/07/2026 10:39",
+      "user": "Elina",
+      "action": "Item supprimé",
       "detail": "Elina a supprimé SupplementMix: Contains all media supplements premixed in one vial de l'inventaire."
     },
     {
@@ -21257,5 +21233,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:39:30.535Z"
+  "updatedAt": "2026-07-30T08:39:47.278Z"
 }

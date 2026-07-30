@@ -64,7 +64,13 @@
       : items.filter(item=>findContactForItem(item,contacts)?.id===contact?.id).flatMap(itemContactReferences);
     return new Set(values.map(normalizeContactReference).filter(Boolean));
   }
-  const locations = item => [...new Set([item?.location, ...(Array.isArray(item?.locations) ? item.locations : [])].filter(Boolean))];
+  const locations = item => [...new Set([
+    item?.location,
+    ...(Array.isArray(item?.locations) ? item.locations : []),
+    ...(Array.isArray(item?.stockTracking?.closedByLocation) ? item.stockTracking.closedByLocation.map(row => row?.location) : []),
+    ...(Array.isArray(item?.stockTracking?.openContainers) ? item.stockTracking.openContainers.map(row => row?.location) : [])
+  ].filter(Boolean))];
+  const itemType = item => item?.type || item?.inventoryType || item?.kind || "Produit";
   const snapshot = item => JSON.stringify({
     id: item?.id, quantity: item?.quantity, location: item?.location, locations: item?.locations,
     stockTracking: item?.stockTracking, aliquotTracking: item?.aliquotTracking, updatedAt: item?.updatedAt, version: item?.version
@@ -139,7 +145,7 @@
   function audit(input, options = {}) {
     const started = Date.now(), items = clone(input?.items || []), orders = clone(input?.orders || []), contactsProvided=Array.isArray(input?.contacts),contacts=clone(input?.contacts || []);
     const validLocations = new Set(input?.locations || []), validCategories = new Set(input?.categories || []);
-    const scope = options.scope || "full", out = [], indexed = items.map(item => ({ item, norm: normalize(item.name), key: tokenKey(item.name), refs: refs(item), supplier: supplier(item) }));
+    const scope = options.scope || "full", out = [], filteredItems = items.filter(item => passesFilters(item, options)), matchingIds = new Set(filteredItems.map(item => item.id)), indexed = items.map(item => ({ item, norm: normalize(item.name), key: tokenKey(item.name), refs: refs(item), supplier: supplier(item) }));
     const byRef = new Map();
     indexed.forEach(row => row.refs.forEach(ref => { if (!byRef.has(ref)) byRef.set(ref, []); byRef.get(ref).push(row); }));
     const duplicatePairs = [];
@@ -149,8 +155,9 @@
         if(!left.item.id || !right.item.id || left.item.id===right.item.id)return;
         const pairIds=[left.item.id,right.item.id].sort(),pair=pairIds.join("|");
         if (pairs.has(pair)) return;
+        const matchedItemIds=pairIds.filter(id=>matchingIds.has(id));if(!matchedItemIds.length)return;
         const result=scoreDuplicatePair(left.item,right.item);if(result.score<=20)return;
-        const value=alert("Doublon potentiel","warning",pairIds,"Score unique calculé à partir des caractéristiques d’identité.",result.positive.join(" ; "),"",result.confidence,{reasons:result.positive,confidenceScore:result.score,duplicateScore:result.score,scoreDetails:result,auditScope:"duplicates"});
+        const value=alert("Doublon potentiel","warning",pairIds,"Score unique calculé à partir des caractéristiques d’identité.",result.positive.join(" ; "),"",result.confidence,{reasons:result.positive,confidenceScore:result.score,duplicateScore:result.score,scoreDetails:result,auditScope:"duplicates",matchedItemIds});
         pairs.set(pair,value);duplicatePairs.push(value);
       }));
       if(scope==="full"||scope==="duplicates")out.push(...duplicatePairs);
@@ -159,8 +166,7 @@
         if(refA&&refB&&refA!==refB)out.push({...value,id:uid("alert"),type:"Doublon potentiel avec références différentes",explanation:`Doublon potentiel avec références différentes : ${primaryReferenceValue(left)} ≠ ${primaryReferenceValue(right)}`,observed:`${primaryReferenceValue(left)} ≠ ${primaryReferenceValue(right)}`,auditScope:"references",referenceCriterion:"different-duplicates"});
       });
     }
-    indexed.forEach(({ item }) => {
-      if (!passesFilters(item, options)) return;
+    filteredItems.forEach(item => {
       const quantityAbsent=isAbsent(item.quantity),quantity=quantityAbsent?NaN:number(item.quantity);
       const minimumRaw = item.minimum ?? item.minStock;
       if (["full", "stock"].includes(scope)) {
@@ -213,13 +219,14 @@
     });
     const summary=summarize(out),scopeSummary={duplicates:out.filter(row=>row.auditScope==="duplicates").length,stock:out.filter(row=>row.auditScope==="stock").length,references:out.filter(row=>row.auditScope==="references").length};
     const referenceRows=out.filter(row=>row.auditScope==="references"),referenceSummary={differentDuplicates:referenceRows.filter(row=>row.referenceCriterion==="different-duplicates").length,missing:referenceRows.filter(row=>row.referenceCriterion==="missing"||row.type==="Référence principale non renseignée").length,unregisteredInContacts:referenceRows.filter(row=>row.referenceCriterion==="unregistered-contact").length,total:referenceRows.length,uniqueItemCount:new Set(referenceRows.flatMap(row=>row.itemIds||[])).size};
-    return { id: uid("audit"), auditType:scope, rulesVersion: SCORE_ENGINE_VERSION, scoreEngine:"duplicate-score-v3", scope, createdAt: new Date().toISOString(), durationMs: Date.now() - started, itemCount: items.length, alerts: out, summary, scopeSummary,referenceSummary };
+    return { id: uid("audit"), auditType:scope, rulesVersion: SCORE_ENGINE_VERSION, scoreEngine:"duplicate-score-v3", scope, filters:{category:options.category||"all",location:options.location||"all",type:options.type||options.usage||"all"}, createdAt: new Date().toISOString(), durationMs: Date.now() - started, itemCount: filteredItems.length, alerts: out, summary, scopeSummary,referenceSummary };
   }
   function passesFilters(item, options) {
-    if (options.category && options.category !== "all" && item.category !== options.category) return false;
-    if (options.location && options.location !== "all" && !locations(item).includes(options.location)) return false;
+    if (options.category && options.category !== "all" && normalize(item.category) !== normalize(options.category)) return false;
+    if (options.location && options.location !== "all" && !locations(item).some(value => normalize(value) === normalize(options.location))) return false;
     if (options.supplier && options.supplier !== "all" && supplier(item) !== normalize(options.supplier)) return false;
     if (options.usage && options.usage !== "all" && normalize(item.usageProfile || item.usage || item.inventoryType || "normal") !== normalize(options.usage)) return false;
+    if (options.type && options.type !== "all" && normalize(itemType(item)) !== normalize(options.type)) return false;
     return true;
   }
   function summarize(alerts) {

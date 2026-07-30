@@ -208,9 +208,10 @@
       const data = latest.data || {};
       const movements = Array.isArray(data.stockMovements) ? data.stockMovements : [];
       const agentOperations = Array.isArray(data.agentOperations) ? data.agentOperations : [];
+      const stockOperations = Array.isArray(data.stockOperations) ? data.stockOperations : [];
       const orders = Array.isArray(data.orders) ? data.orders : [];
       const orderReceipts = orders.flatMap(order => Array.isArray(order.inventoryReceiptOperations) ? order.inventoryReceiptOperations : []);
-      if (movements.some(entry => entry.operationId === operationId) || agentOperations.some(entry => entry.operationId === operationId) || orderReceipts.some(entry => entry.operationId === operationId)) {
+      if (movements.some(entry => entry.operationId === operationId) || agentOperations.some(entry => entry.operationId === operationId) || stockOperations.some(entry => entry.operationId === operationId) || orderReceipts.some(entry => entry.operationId === operationId)) {
         return { data, sha: latest.sha, duplicate: true };
       }
       const next = await mutator(JSON.parse(JSON.stringify(data)));

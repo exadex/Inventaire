@@ -203,8 +203,8 @@
             <section class="client-study-list-panel">
               <div class="client-study-list-head">
                 <span>Produit</span>
+                <span>Quantit&eacute;/Cat&eacute;gorie</span>
                 <span>Localisation</span>
-                <span>Quantit&eacute;</span>
                 <span>Date</span>
               </div>
               <div class="client-study-groups" id="sampleRows"></div>
@@ -686,12 +686,24 @@
           <label class="sample-created-field">
             <span>Cat&eacute;gorie <span class="required-star">*</span></span>
             <select id="sampleCategory">
-              <option value="Galette agarose">Galette agarose</option>
-              <option value="Secretion">S&eacute;cr&eacute;tion</option>
+              <option value="Fixation (galette)">Fixation (galette)</option>
+              <option value="Fixation (tissu)">Fixation (tissu)</option>
               <option value="ARN">ARN</option>
-              <option value="Tissu">Tissu</option>
+              <option value="cDNA">cDNA</option>
+              <option value="S&eacute;cr&eacute;tion">S&eacute;cr&eacute;tion</option>
             </select>
           </label>
+
+          <div id="sampleArnOptions" class="sample-created-field sample-arn-options hidden" aria-label="Options ARN">
+            <label class="sample-arn-option" for="sampleArnQiazol">
+              <input id="sampleArnQiazol" type="checkbox" checked>
+              <span>Qiazol</span>
+            </label>
+            <label class="sample-arn-option" for="sampleArnBead">
+              <input id="sampleArnBead" type="checkbox">
+              <span>+ bille</span>
+            </label>
+          </div>
 
           <label class="sample-client-product-field">
             <span>Date d'arriv&eacute;e <span class="required-star">*</span></span>
@@ -741,6 +753,7 @@
 
         <label class="full-label">
           <span>Notes</span>
+          <small id="sampleArnNotesHint" class="client-code-hint hidden">Noter la date de l’extraction d’ARN</small>
           <textarea id="sampleNotes" rows="3"></textarea>
         </label>
 
@@ -1090,5 +1103,17 @@
     <script src="js/agents/agents_storage.js"></script>
     <script src="js/agents/agents_ui.js"></script>
     <script src="js/app/script.js"></script>
+    <script>
+      if (new URLSearchParams(location.search).has("clientSampleTests")) {
+        const testScript = document.createElement("script");
+        testScript.src = "tests/clients/client_sample_browser_tests.js";
+        document.body.appendChild(testScript);
+      }
+      if (new URLSearchParams(location.search).has("stockRecountTests")) {
+        const testScript = document.createElement("script");
+        testScript.src = "tests/stock/recount_ui_tests.js";
+        document.body.appendChild(testScript);
+      }
+    </script>
   </body>
 </html>

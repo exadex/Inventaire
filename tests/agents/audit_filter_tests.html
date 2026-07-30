@@ -1,0 +1,17 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Filtres Audit</title><pre id="result"></pre>
+<script src="../../js/agents/agents_core.js"></script><script>
+const lines=[],test=(n,f)=>{try{f();lines.push(`✓ ${n}`)}catch(e){lines.push(`✗ ${n}: ${e.message}`)}},ok=(v,m)=>{if(!v)throw new Error(m)};
+const items=[
+ {id:"a",name:"Alpha",category:"Réactifs",location:"Congélateur -20 °C",type:"Produit",quantity:1,minStock:0,reference:"R"},
+ {id:"b",name:"Alpha",category:"Consommables",location:"Bureau",type:"Produit",quantity:1,minStock:0,reference:"R"},
+ {id:"c",name:"Gamma",category:"Réactifs",location:"Bureau",type:"Équipement",quantity:1,minStock:0}
+];
+test("catégorie",()=>ok(ExadexAgentsCore.audit({items},{scope:"stock",category:"reactifs"}).itemCount===2,"périmètre incorrect"));
+test("localisation",()=>ok(ExadexAgentsCore.audit({items},{scope:"stock",location:"congelateur -20 °c"}).itemCount===1,"périmètre incorrect"));
+test("type",()=>ok(ExadexAgentsCore.audit({items},{scope:"stock",type:"Équipement"}).itemCount===1,"périmètre incorrect"));
+test("intersection ET",()=>ok(ExadexAgentsCore.audit({items},{scope:"stock",category:"Réactifs",location:"Bureau",type:"Équipement"}).itemCount===1,"intersection incorrecte"));
+test("aucun résultat",()=>ok(ExadexAgentsCore.audit({items},{scope:"full",category:"Absent"}).itemCount===0,"audit global relancé"));
+test("doublon retenu par un même membre",()=>{const r=ExadexAgentsCore.audit({items},{scope:"duplicates",category:"Réactifs",location:"Congélateur -20 °C",type:"Produit"});ok(r.alerts.length===1&&r.alerts[0].matchedItemIds.join("")==="a","membres filtrés incorrects")});
+test("doublon hors périmètre exclu",()=>ok(ExadexAgentsCore.audit({items},{scope:"duplicates",category:"Réactifs",location:"Bureau",type:"Produit"}).alerts.length===0,"groupe hors périmètre"));
+document.querySelector("#result").textContent=lines.join("\n");document.body.dataset.failed=String(lines.some(x=>x.startsWith("✗")));
+</script></html>

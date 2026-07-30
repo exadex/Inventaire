@@ -8,7 +8,12 @@ const clientSampleTypes = {
   created_sample: "Échantillon créé"
 };
 
-const clientSampleCategories = ["Galette agarose", "Secretion", "ARN", "Tissu"];
+const clientSampleCategories = ["Fixation (galette)", "Fixation (tissu)", "ARN", "cDNA", "Sécrétion"];
+const clientSampleCategoryAliases = {
+  "Galette agarose": "Fixation (galette)",
+  "Tissu": "Fixation (tissu)",
+  "Secretion": "Sécrétion"
+};
 const INITIAL_SUPPLIER_CONTACTS = [
   { id:"contact-abcam", company:"Abcam", salesRepresentative:"", afterSalesService:"", customerService:"orders@abcam.com", salesAndQuotes:"", phone:"08 01 84 05 42", notes:"", aliases:[] },
   { id:"contact-bd-biosciences", company:"BD Biosciences", salesRepresentative:"Loras Damien", afterSalesService:"", customerService:"serviceclientbdf@europe.bd.com", salesAndQuotes:"devis@bd.com", phone:"06 31 75 07 07", notes:"", aliases:["BD","Becton Dickinson","BD France"] },
@@ -200,6 +205,10 @@ const sampleFields = [
   "sampleProductName",
   "sampleBaseName",
   "sampleCategory",
+  "sampleArnOptions",
+  "sampleArnQiazol",
+  "sampleArnBead",
+  "sampleArnNotesHint",
   "sampleArrivalDate",
   "sampleCreationDate",
   "sampleQuantity",
@@ -409,7 +418,11 @@ confirmDeleteDialog?.addEventListener("cancel", event => {
 });
 confirmDeleteDialog?.addEventListener("close", restoreDeleteConfirmationFocus);
 sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
-sampleFields.sampleCategory.addEventListener("change", syncSampleMeasureLabel);
+sampleFields.sampleCategory.addEventListener("change", () => syncSampleMeasureLabel({ clearOnUnitChange: true }));
+sampleFields.sampleArnQiazol.addEventListener("change", () => {
+  if (!sampleFields.sampleArnQiazol.checked) sampleFields.sampleArnBead.checked = false;
+  syncSampleMeasureLabel({ clearOnUnitChange: true });
+});
 sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
 experimentSearchInput.addEventListener("input", renderExperiments);
 experimentStatusFilter.addEventListener("change", renderExperiments);
@@ -612,6 +625,7 @@ function createSharedState(rawState = null, options = {}) {
       ? source.history
       : bootstrap?.history || [],
     stockMovements: Array.isArray(source.stockMovements) ? source.stockMovements : [],
+    stockOperations: Array.isArray(source.stockOperations) ? source.stockOperations : [],
     agentOperations: Array.isArray(source.agentOperations) ? source.agentOperations : [],
     updatedAt: source.updatedAt || bootstrap?.updatedAt || ""
   };
@@ -2336,7 +2350,7 @@ function syncAppViewMode() {
 function renderSampleDetail(sample) {
   const clientRecord = getClientForSample(sample);
   const clientCode = getSampleCanonicalClientCode(sample);
-  const sampleSubtitle = sample.category || getClientSampleSubLabel(sample);
+  const sampleSubtitle = getClientSampleCategoryLabel(sample) || getClientSampleSubLabel(sample);
 
   return `
     <div class="client-detail-header">
@@ -2614,7 +2628,7 @@ function renderReplicaFamilyRow(unit) {
   const isSelected = selectedSampleGroupId === unit.key;
   const formattedDate = formatDisplayDateFrench(formatClientSampleDate(firstSample)) || "—";
   const locations = Array.from(new Set(unit.samples.map(sample => sample.location).filter(Boolean)));
-  const formattedQuantity = formatReplicaFamilyQuantity(unit.samples);
+  const categoryTag = `<span class="client-type-badge created_sample sample-category-${getClientSampleCategoryColorKey(firstSample)}">${escapeHtml(getClientSampleCategoryLabel(firstSample) || "—")}</span>`;
 
   return `
     <div class="replica-family-block">
@@ -2648,9 +2662,9 @@ function renderReplicaFamilyRow(unit) {
           </div>
         </div>
 
-        <span class="client-table-cell">${escapeHtml(locations.join(", ") || "—")}</span>
-        <span class="client-table-cell">${escapeHtml(formattedQuantity)}</span>
-        <span class="client-table-cell">${escapeHtml(formattedDate)}</span>
+        <span class="client-table-cell" data-label="Catégorie"><span class="client-quantity-category-value">${categoryTag}</span></span>
+        <span class="client-table-cell" data-label="Localisation">${escapeHtml(locations.join(", ") || "—")}</span>
+        <span class="client-table-cell" data-label="Date">${escapeHtml(formattedDate)}</span>
       </button>
 
       ${isExpanded ? `
@@ -2667,6 +2681,9 @@ function renderClientSampleRow(sample, options = {}) {
   const isSelected = selectedSampleId === sample.id;
   const formattedDate = formatDisplayDateFrench(formatClientSampleDate(sample)) || "—";
   const formattedQuantity = formatSampleDisplayQuantity(sample) || "—";
+  const middleCell = sample.type === "created_sample"
+    ? `<span class="client-type-badge created_sample sample-category-${getClientSampleCategoryColorKey(sample)}">${escapeHtml(getClientSampleCategoryLabel(sample) || "—")}</span>`
+    : escapeHtml(formattedQuantity);
 
   return `
     <button
@@ -2683,9 +2700,9 @@ function renderClientSampleRow(sample, options = {}) {
         </div>
       </div>
 
-      <span class="client-table-cell">${escapeHtml(sample.location || "—")}</span>
-      <span class="client-table-cell">${escapeHtml(formattedQuantity)}</span>
-      <span class="client-table-cell">${escapeHtml(formattedDate)}</span>
+      <span class="client-table-cell" data-label="${sample.type === "created_sample" ? "Catégorie" : "Quantité"}"><span class="client-quantity-category-value">${middleCell}</span></span>
+      <span class="client-table-cell" data-label="Localisation">${escapeHtml(sample.location || "—")}</span>
+      <span class="client-table-cell" data-label="Date">${escapeHtml(formattedDate)}</span>
     </button>
   `;
 }
@@ -2895,8 +2912,21 @@ function compareClientSamples(a, b, sort) {
 }
 
 function getClientSampleSubLabel(sample) {
-  if (sample.type === "created_sample") return sample.category || "Échantillon créé";
+  if (sample.type === "created_sample") return getClientSampleCategoryLabel(sample) || "Échantillon créé";
   return [sample.referenceNumber, sample.lotNumber].filter(Boolean).join(" · ") || "Produit reçu du client";
+}
+
+function getClientSampleCategoryLabel(sample) {
+  if (!sample || sample.category !== "ARN") return sample?.category || "";
+  return sample.arnQiazol === false ? "ARN extrait" : "ARN + Qiazol";
+}
+
+function getClientSampleCategoryColorKey(sample) {
+  if (sample?.category === "ARN") return "arn";
+  if (sample?.category === "Sécrétion") return "secretion";
+  if (sample?.category === "cDNA") return "cdna";
+  if (["Fixation (galette)", "Fixation (tissu)"].includes(sample?.category)) return "fixation";
+  return "default";
 }
 
 function renderHistory() {
@@ -4237,7 +4267,7 @@ function renderReplicaGroupDetail(groupId, samples) {
           <span class="result-pill">${samples.length} réplicats</span>
         </div>
         <h3>${escapeHtml(getReplicaBaseName(sample))}</h3>
-        <p class="category">${escapeHtml(sample.category || "")}</p>
+        <p class="category">${escapeHtml(getClientSampleCategoryLabel(sample))}</p>
       </div>
     </div>
     <div class="client-detail-section">
@@ -4829,6 +4859,12 @@ function openSampleModal(id, options = {}) {
   sampleFields.sampleProductName.value = sample?.type === "client_product" ? sample.name : "";
   sampleFields.sampleBaseName.value = sample?.baseName || (sample?.type === "created_sample" ? sample.name : "");
   sampleFields.sampleCategory.value = sample?.category || clientSampleCategories[0];
+  sampleFields.sampleArnQiazol.checked = sample?.category === "ARN"
+    ? sample.arnQiazol !== false
+    : true;
+  sampleFields.sampleArnBead.checked = sample?.category === "ARN"
+    ? Boolean(sample.arnBead && sample?.arnQiazol !== false)
+    : false;
   sampleFields.sampleArrivalDate.value = sample?.arrivalDate || "";
   sampleFields.sampleCreationDate.value = sample?.creationDate || "";
   sampleFields.sampleQuantity.value = sample?.type === "client_product" ? sample.quantity ?? "" : "";
@@ -4872,10 +4908,36 @@ function syncSampleFormVisibility() {
   syncSampleMeasureLabel();
 }
 
-function syncSampleMeasureLabel() {
-  const isSecretion = sampleFields.sampleCategory.value === "Secretion";
-  sampleFields.sampleMeasureLabel.innerHTML = `${isSecretion ? "Volume (mL)" : "Poids (mg)"} <span class="required-star">*</span>`;
+function getCreatedSampleUnit(category, arnQiazol = true) {
+  if (category === "ARN") return arnQiazol ? "mg" : "µL";
+  if (category === "cDNA") return "µL";
+  if (category === "Sécrétion") return "mL";
+  return "mg";
 }
+
+function syncSampleMeasureLabel(options = {}) {
+  const category = sampleFields.sampleCategory.value;
+  const isArn = sampleFields.sampleType.value === "created_sample" && category === "ARN";
+  const previousUnit = sampleFields.sampleMeasureValue.dataset.measureUnit || "";
+  const unit = getCreatedSampleUnit(category, sampleFields.sampleArnQiazol.checked);
+  sampleFields.sampleArnOptions.classList.toggle("hidden", !isArn);
+  sampleFields.sampleArnNotesHint.classList.toggle("hidden", !isArn);
+  sampleFields.sampleArnBead.disabled = !isArn || !sampleFields.sampleArnQiazol.checked;
+  if (!isArn || !sampleFields.sampleArnQiazol.checked) sampleFields.sampleArnBead.checked = false;
+  if (options.clearOnUnitChange && previousUnit && previousUnit !== unit) {
+    sampleFields.sampleMeasureValue.value = "";
+  }
+  sampleFields.sampleMeasureValue.dataset.measureUnit = unit;
+  sampleFields.sampleMeasureLabel.innerHTML = `${unit === "mg" ? "Poids" : "Volume"} (${unit}) <span class="required-star">*</span>`;
+}
+
+window.ExadexClientSampleRules = {
+  getCreatedSampleUnit,
+  getClientSampleCategoryLabel,
+  migrateClientSamples,
+  syncSampleMeasureLabel,
+  fields: sampleFields
+};
 
 function saveSample() {
   syncSampleFormVisibility();
@@ -4938,7 +5000,9 @@ function saveSample() {
         ? getReplicaGroupSamples(sampleEditContext.groupId).length
         : 1;
     const category = sampleFields.sampleCategory.value;
-    const measureUnit = category === "Secretion" ? "mL" : "mg";
+    const arnQiazol = category === "ARN" ? sampleFields.sampleArnQiazol.checked : null;
+    const arnBead = category === "ARN" ? Boolean(arnQiazol && sampleFields.sampleArnBead.checked) : null;
+    const measureUnit = getCreatedSampleUnit(category, arnQiazol !== false);
     const measureValue = Number(sampleFields.sampleMeasureValue.value);
     const editableData = {
       type,
@@ -4950,6 +5014,8 @@ function saveSample() {
       location: base.location,
       baseName,
       category,
+      arnQiazol,
+      arnBead,
       creationDate: sampleFields.sampleCreationDate.value,
       measureValue,
       measureUnit,
@@ -5196,6 +5262,9 @@ function syncTrackingOptionCheckboxes(changedOption = "") {
     trackingFields.detailedPackagingEnabled.checked = true;
     message = "Le suivi détaillé ne peut pas être désactivé tant que les contenants actifs n’ont pas été consolidés proprement.";
   }
+  if (changedOption === "packaging" && trackingFields.detailedPackagingEnabled.checked && previousTracking.mode !== "containers") {
+    trackingFields.detailedTraceabilityEnabled.checked = true;
+  }
   const hasAliquotHistory = existingItem && stockMovements.some(event => event.itemId === existingItem.id && String(event.type || "").includes("aliquot"));
   if (changedOption === "aliquots" && !trackingFields.aliquotTrackingEnabled.checked && (previousAliquots.preparations.length > 0 || hasAliquotHistory)) {
     trackingFields.aliquotTrackingEnabled.checked = true;
@@ -5311,7 +5380,7 @@ function readTrackingForm(existingItem) {
   const structuralChanged = JSON.stringify(previous.packagingLevels.map(({ singular, plural, contains }) => ({ singular, plural, contains }))) !== JSON.stringify(levels.map(({ singular, plural, contains }) => ({ singular, plural, contains })));
   if (previous.mode === "containers" && structuralChanged && activeEntities) throw new Error("Le conditionnement ne peut pas être modifié tant que des sous-entités sont actives.");
   const now = new Date().toISOString();
-  let closedByLocation = previous.closedByLocation, openContainers = previous.openContainers;
+  let closedByLocation = previous.closedByLocation, closedContainers = previous.closedContainers, openContainers = previous.openContainers;
   if (previous.mode === "simple" && mode === "containers" && !closedByLocation.length && !openContainers.length) {
     const quantity = Number(existingItem?.quantity || fields.quantity.value || 0);
     if (!Number.isInteger(quantity)) {
@@ -5323,16 +5392,18 @@ function readTrackingForm(existingItem) {
         throw pendingError;
       }
       closedByLocation = migration.closedByLocation;
+      closedContainers = null;
       openContainers = migration.openContainers;
       const migrationEvent = createStockMigrationEvent(existingItem, migration);
       pendingStockMigration = null;
-      return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit.key, trackingUnit: selectedTrackingUnit.plural, quantityStep: 1, precision: selectedTrackingUnit.kind === "continuous" ? 6 : 0, closedByLocation, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked }, migrationEvent };
+      return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit.key, trackingUnit: selectedTrackingUnit.plural, quantityStep: 1, precision: selectedTrackingUnit.kind === "continuous" ? 6 : 0, closedByLocation, closedContainers, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked }, migrationEvent };
     }
     const locations = getSelectedLocations();
     if (locations.length !== 1 && quantity > 0) throw new Error("Pour la migration initiale, sélectionnez une seule localisation. Vous pourrez ensuite déplacer les contenants de façon tracée.");
     closedByLocation = quantity ? [{ location: locations[0], quantity, updatedAt: now, updatedBy: currentName }] : [];
+    closedContainers = null;
   }
-  return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit?.key || previous.trackingUnitKey, trackingUnit: selectedTrackingUnit?.plural || previous.trackingUnit, quantityStep: 1, precision: selectedTrackingUnit?.kind === "continuous" ? 6 : 0, closedByLocation, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked } };
+  return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit?.key || previous.trackingUnitKey, trackingUnit: selectedTrackingUnit?.plural || previous.trackingUnit, quantityStep: 1, precision: selectedTrackingUnit?.kind === "continuous" ? 6 : 0, closedByLocation, closedContainers, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked } };
 }
 
 function openStockMigrationAssistant(item, levels) {
@@ -5540,6 +5611,34 @@ function renderStockMovement(entry = {}) {
 }
 
 function formatStockMovementDescription(entry) {
+  if(entry.type==="received"&&entry.entityType==="container"){const status=entry.containerStatusAfter==="open"?"ouvert":"fermé",capacity=entry.afterCapacity??entry.after?.capacity;return `Ajout du contenant ${status} ${escapeHtml(entry.containerLabel||entry.containerId)} : ${StockTracking.format(entry.afterQuantity??entry.quantity)} ${escapeHtml(entry.unitAfter||entry.unit||"")} disponibles${capacity!==null&&capacity!==undefined?` sur une capacité de ${StockTracking.format(capacity)} ${escapeHtml(entry.unitAfter||entry.unit||"")}`:""}${entry.toLocation?` dans ${escapeHtml(entry.toLocation)}`:""}.`;}
+  if (Array.isArray(entry.containerTransitions) && entry.containerTransitions.length) {
+    return entry.containerTransitions.map(transition => {
+      const label=escapeHtml(transition.containerLabel || transition.containerId || "Contenant");
+      if (transition.automaticOpen) return `${label} ouvert automatiquement avec ${StockTracking.format(transition.after)} ${escapeHtml(transition.unit || "")} disponibles${transition.location?` à ${escapeHtml(transition.location)}`:""}.`;
+      if (transition.automaticFinish) return `${label} terminé automatiquement après utilisation : ${StockTracking.format(transition.before)} → 0 ${escapeHtml(transition.unit || "")} (${StockTracking.format(transition.difference)}).`;
+      return `${label} : ${StockTracking.format(transition.before)} → ${StockTracking.format(transition.after)} ${escapeHtml(transition.unit || "")} (${transition.difference>0?"+":""}${StockTracking.format(transition.difference)}).`;
+    }).join(" ");
+  }
+  if (entry.type === "consumed" && entry.entityType === "container") {
+    const before=entry.beforeQuantity ?? entry.before?.remaining ?? entry.before,after=entry.afterQuantity ?? entry.after?.remaining ?? entry.after;
+    return `${escapeHtml(entry.containerLabel || entry.containerId || "Contenant")} : ${StockTracking.format(before)} → ${StockTracking.format(after)} ${escapeHtml(entry.unit || "")} (${entry.difference>0?"+":""}${StockTracking.format(entry.difference ?? after-before)}).${entry.automaticFinish?" Terminé automatiquement.":""}`;
+  }
+  if (entry.type === "recounted" && ["container","closed"].includes(entry.entityType)) {
+    const rawBefore=entry.beforeQuantity ?? (entry.entityType==="closed"?entry.before?.quantity:entry.before?.remaining),rawAfter=entry.afterQuantity ?? (entry.entityType==="closed"?entry.after?.quantity:entry.after?.remaining);
+    const beforeUnit=entry.unitBefore||entry.unit,afterUnit=entry.unitAfter||entry.unit,changes=[];
+    if(beforeUnit!==afterUnit)changes.push(`unité ${escapeHtml(beforeUnit||"—")} → ${escapeHtml(afterUnit||"—")}`);
+    if(rawBefore!==rawAfter||beforeUnit!==afterUnit)changes.push(`quantité ${StockTracking.format(rawBefore)} ${escapeHtml(beforeUnit||"")} → ${StockTracking.format(rawAfter)} ${escapeHtml(afterUnit||"")}${beforeUnit===afterUnit?` (${entry.difference>0?"+":""}${StockTracking.format(entry.difference??rawAfter-rawBefore)})`:""}`);
+    const capacityBefore=entry.beforeCapacity??entry.before?.capacity,capacityAfter=entry.afterCapacity??entry.after?.capacity;
+    if(capacityBefore!==null&&capacityAfter!==null&&capacityBefore!==undefined&&capacityAfter!==undefined&&(capacityBefore!==capacityAfter||beforeUnit!==afterUnit))changes.push(`capacité ${StockTracking.format(capacityBefore)} ${escapeHtml(beforeUnit||"")} → ${StockTracking.format(capacityAfter)} ${escapeHtml(afterUnit||"")}`);
+    if(entry.fromLocation&&entry.toLocation&&entry.fromLocation!==entry.toLocation)changes.push(`localisation ${escapeHtml(entry.fromLocation)} → ${escapeHtml(entry.toLocation)}`);
+    if(entry.containerStatusBefore&&entry.containerStatusAfter&&entry.containerStatusBefore!==entry.containerStatusAfter){const labels={closed:"Fermé",open:"Ouvert",finished:"Terminé"};changes.push(`statut ${labels[entry.containerStatusBefore]||escapeHtml(entry.containerStatusBefore)} → ${labels[entry.containerStatusAfter]||escapeHtml(entry.containerStatusAfter)}`);}
+    return `Comptage du contenant ${escapeHtml(entry.containerLabel||entry.containerId||"")}: ${changes.join(" · ")||"informations corrigées"}.`;
+  }
+  if (entry.type === "container_opened") {
+    const label=escapeHtml(entry.containerLabel || entry.after?.label || entry.containerId || "Contenant"),from=entry.fromLocation||entry.before?.location,to=entry.toLocation||entry.after?.location;
+    return from&&to&&from!==to?`${label} ouvert${entry.automatic?" automatiquement":""} : ${escapeHtml(from)} → ${escapeHtml(to)}.`:`${label} ouvert${entry.automatic?" automatiquement":""}${entry.after?.remaining!==undefined?` avec ${StockTracking.format(entry.after.remaining)} ${escapeHtml(entry.unit||"")} disponibles`:""}.`;
+  }
   if (entry.type === "aliquots_consumed") { const before=StockTracking.remainingAliquots(entry.before || {locations:[]}),after=StockTracking.remainingAliquots(entry.after || {locations:[]}); return `${StockTracking.format(entry.quantity)} aliquote${entry.quantity>1?"s":""} utilisée${entry.quantity>1?"s":""}. ${before} → ${after} aliquotes.${entry.comment?` ${escapeHtml(entry.comment)}`:""}`; }
   if (entry.type === "open_aliquot_consumed") return `${StockTracking.format(entry.quantity)} ${escapeHtml(entry.unit)} utilisés. ${StockTracking.format(entry.before?.remainingVolume)} → ${StockTracking.format(entry.after?.remainingVolume)} ${escapeHtml(entry.unit)}.${entry.comment?` ${escapeHtml(entry.comment)}`:""}`;
   if (entry.type === "aliquot_opened") return `${escapeHtml(entry.after?.label || "Aliquote")} ouverte à ${escapeHtml(entry.after?.location || entry.toLocation || "—")} · ${StockTracking.format(entry.after?.remainingVolume)} ${escapeHtml(entry.after?.volumeUnit || "")}.`;
@@ -5565,7 +5664,7 @@ function usesAdvancedStockManager(item) {
 
 function getStockManagerActionState(item) {
   const tracking=StockTracking.normalizeTracking(item),aliquots=StockTracking.normalizeAliquots(item),actions=[];
-  if(tracking.mode==="containers")actions.push(["received","Réceptionner des contenants"],["container_opened","Ouvrir un contenant"],["consumed","Gérer les contenants ouverts — Utiliser"],["recounted","Faire un comptage"],["moved","Déplacer"],["container_finished","Terminer"]);else actions.push(["received","Réceptionner"],["consumed","Utiliser"]);
+  if(tracking.mode==="containers")actions.push(["received","Réceptionner des contenants"],["consumed","Gérer les contenants ouverts — Utiliser"],["recounted","Faire un comptage"],["moved","Déplacer"]);else actions.push(["received","Réceptionner"],["consumed","Utiliser"]);
   const activePreparations=aliquots.preparations.filter(row=>row.status==="active"),hasUnopened=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0),hasOpenable=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0&&row.volume>0&&row.volumeUnit),hasOpen=activePreparations.some(row=>row.openAliquots.some(open=>open.status==="open"&&open.remainingVolume>0));
   if(aliquots.enabled)actions.push(["aliquots_prepared","Préparer des aliquotes",false],["aliquots_consumed","Utiliser des aliquotes",!hasUnopened&&!hasOpen],["aliquot_opened","Ouvrir une aliquote",!hasOpenable]);
   if(hasOpen)actions.push(["open_aliquot_moved","Déplacer une aliquote ouverte",false],["open_aliquot_discarded","Terminer / jeter le reliquat",false]);
@@ -5581,6 +5680,55 @@ function openStockManager(itemId, options = {}) {
 
 function stockSelect(id, label, values, extra="") { return `<label><span>${label}</span><select id="${id}" required>${values.map(([value,text]) => `<option value="${escapeHtml(value)}">${escapeHtml(text)}</option>`).join("")}</select>${extra}</label>`; }
 function stockNumber(id,label,step="1",max="") { return `<label><span>${label}</span><input id="${id}" type="number" min="0" step="${step}" data-quantity-step="1" ${max !== "" ? `max="${max}"` : ""} required></label>`; }
+
+function containerValueForUnit(value, tracking, unitKey) {
+  const index=tracking.packagingLevels.findIndex(level=>level.key===unitKey),factor=index<0?StockTracking.trackingFactor(tracking):tracking.packagingLevels.slice(index+1).reduce((value,level)=>value*level.contains,1);
+  return Number((Number(value||0)/factor).toFixed(6));
+}
+
+function renderContainerRecountRow(container, tracking, locations, options = {}) {
+  const isNew=Boolean(options.isNew),unitKey=container.unitKey||tracking.trackingUnitKey,quantity=containerValueForUnit(container.remaining,tracking,unitKey),units=tracking.packagingLevels.map(level=>[level.key,level.plural]),places=Array.from(new Set(["",...locations,container.location].filter(value=>value!==undefined)));
+  return `<section class="container-recount-row" data-container-id="${escapeHtml(container.id)}" data-version="${Number(container.version||0)}" data-original-status="${isNew?"":escapeHtml(container.status)}" data-original-unit="${isNew?"":escapeHtml(unitKey)}" data-current-unit="${escapeHtml(unitKey)}" data-capacity-base="${Number(container.capacity||0)}" data-original-location="${isNew?"":escapeHtml(container.location||"")}" data-original-quantity="${isNew?"":quantity}" data-new-container="${isNew?"true":"false"}">
+    <header><strong>${escapeHtml(container.label||container.id)}</strong>${isNew?`<button class="container-recount-remove" type="button" data-remove-new-container>Supprimer</button>`:""}<span class="stock-distribution-badge stock-distribution-badge--${container.status==="closed"?"closed":"open"}">${container.status==="closed"?"Fermé":"Ouvert"}</span></header>
+    <label><span>Statut</span><select data-recount-status><option value="closed" ${container.status==="closed"?"selected":""}>Fermé</option><option value="open" ${container.status==="open"?"selected":""}>Ouvert</option>${isNew?"":`<option value="finished">Terminé</option>`}</select></label>
+    <label><span>Unité</span><select data-recount-unit>${units.map(([value,label])=>`<option value="${escapeHtml(value)}" ${value===unitKey?"selected":""}>${escapeHtml(label)}</option>`).join("")}</select></label>
+    <label><span>Localisation</span><select data-recount-location required>${places.map(place=>`<option value="${escapeHtml(place)}" ${place===container.location?"selected":""}>${escapeHtml(place||"Sélectionner…")}</option>`).join("")}</select></label>
+    <label><span data-recount-quantity-label>${container.status==="open"?"Quantité restante":"Quantité actuelle"}</span><input data-recount-quantity type="number" min="0" step="any" value="${quantity}" required></label>
+  </section>`;
+}
+
+function renderContainerRecountFields(item) {
+  const tracking=StockTracking.normalizeTracking(item),active=[...tracking.closedContainers,...tracking.openContainers.filter(row=>row.status==="open")];
+  const locations=Array.from(new Set([...inventoryLocations,...active.map(row=>row.location)].filter(Boolean))),outer=tracking.packagingLevels[0];
+  return `<div class="container-recount-list">${active.length?active.map(container=>renderContainerRecountRow(container,tracking,locations)).join(""):`<div class="stock-source-empty"><strong>Aucun contenant actif à compter.</strong></div>`}<div class="container-recount-new-rows"></div><button class="ghost-btn compact-btn container-recount-add" type="button" data-add-primary-container>+ Ajouter un ${escapeHtml(outer.singular)}</button></div>`;
+}
+
+function bindContainerRecountControls(root, item, tracking = StockTracking.normalizeTracking(item)) {
+  const list=root.querySelector(".container-recount-new-rows"),button=root.querySelector("[data-add-primary-container]");
+  const closedLocations=Array.from(new Set(tracking.closedContainers.map(row=>row.location).filter(Boolean)));
+  const configuredLocation=item.stockTracking?.closedContainerLocation||item.stockTracking?.defaultClosedLocation||"";
+  const defaultLocation=closedLocations.length===1?closedLocations[0]:configuredLocation||(closedLocations.length===0?item.location||"":"");
+  button?.addEventListener("click",()=>{
+    const index=list.querySelectorAll("[data-new-container='true']").length+1,outer=tracking.packagingLevels[0];
+    const draft={id:`draft-${Date.now()}-${Math.random().toString(36).slice(2)}`,label:`Nouveau ${outer.singular} ${index}`,location:defaultLocation,remaining:StockTracking.capacity(tracking),capacity:StockTracking.capacity(tracking),unitKey:tracking.trackingUnitKey,status:"closed",version:0};
+    list.insertAdjacentHTML("beforeend",renderContainerRecountRow(draft,tracking,inventoryLocations,{isNew:true}));
+  });
+  list?.addEventListener("click",event=>event.target.closest("[data-remove-new-container]")?.closest(".container-recount-row")?.remove());
+  root.querySelector(".container-recount-list")?.addEventListener("change",event=>{
+    const row=event.target.closest(".container-recount-row");if(!row)return;
+    if(event.target.matches("[data-recount-unit]")){
+      const previousKey=row.dataset.currentUnit,newKey=event.target.value,previousIndex=tracking.packagingLevels.findIndex(level=>level.key===previousKey),newIndex=tracking.packagingLevels.findIndex(level=>level.key===newKey);
+      if(previousIndex>=0&&newIndex>=0){const previousFactor=tracking.packagingLevels.slice(previousIndex+1).reduce((value,level)=>value*level.contains,1),newFactor=tracking.packagingLevels.slice(newIndex+1).reduce((value,level)=>value*level.contains,1),input=row.querySelector("[data-recount-quantity]"),parsed=StockTracking.parseLocalizedNumber(input.value);if(Number.isFinite(parsed))input.value=Number((parsed*previousFactor/newFactor).toFixed(6));row.dataset.currentUnit=newKey;}
+      return;
+    }
+    if(!event.target.matches("[data-recount-status]"))return;
+    const badge=row.querySelector(".stock-distribution-badge"),quantityLabel=row.querySelector("[data-recount-quantity-label]");if(!badge)return;
+    badge.classList.remove("stock-distribution-badge--closed","stock-distribution-badge--open");
+    if(event.target.value==="closed"){badge.textContent="Fermé";badge.classList.add("stock-distribution-badge--closed");quantityLabel.textContent="Quantité actuelle";}
+    else if(event.target.value==="open"){badge.textContent="Ouvert";badge.classList.add("stock-distribution-badge--open");quantityLabel.textContent="Quantité restante";}
+    else{badge.textContent="Terminé";quantityLabel.textContent="Quantité restante";}
+  });
+}
 
 function getAliquotPreparationSources(item) {
   const tracking = StockTracking.normalizeTracking(item);
@@ -5717,7 +5865,8 @@ function renderStockManagerFields() {
   if (action === "received") html = tracking.mode === "simple" ? stockNumber("smQuantity",`Quantité reçue — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1") : stockSelect("smTo","Localisation",locations)+stockNumber("smQuantity","Nombre de contenants fermés");
   else if (action === "container_opened") html = stockSelect("smFrom","Localisation du contenant fermé",tracking.closedByLocation.filter(row=>row.quantity).map(row=>[row.location,`${row.location} (${row.quantity})`]));
   else if (action === "consumed" && tracking.mode === "simple") html = stockNumber("smQuantity",`Quantité utilisée — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1",StockTracking.simpleRawAvailable(item));
-  else if (["consumed","recounted","container_finished"].includes(action)) html = stockSelect("smEntity","Contenant",containers)+(action!=="container_finished"?stockNumber("smQuantity",`${action==="recounted"?"Quantité observée":"Quantité utilisée"} — ${openUnit.plural}`,inputStep):"");
+  else if (action === "consumed") html = (containers.length ? stockSelect("smEntity","Contenant à utiliser en premier",containers) : `<input id="smEntity" type="hidden" value="">`)+stockNumber("smQuantity",`Quantité utilisée — ${openUnit.plural}`,inputStep);
+  else if (action === "recounted") html=renderContainerRecountFields(item);
   else if (action === "moved") html = stockSelect("smEntityType","Type",[["closed","Contenant fermé"],["container","Contenant ouvert"]])+stockSelect("smFrom","Origine",locations)+stockSelect("smTo","Destination",locations)+stockNumber("smQuantity","Quantité (1 pour un contenant ouvert)");
   else if (action === "aliquots_prepared") html = renderAliquotPreparationFields(item, locations);
   else if (action === "aliquots_consumed") html = renderAliquotUseFields(item);
@@ -5736,6 +5885,7 @@ function renderStockManagerFields() {
   if (action === "aliquots_consumed") { const preferred=modal.dataset.entityId, opened=getActiveOpenAliquots(aliquots); if (preferred && opened.some(({open})=>open.id===preferred)) modal.querySelector("#smAliquotUseMode").value="open_existing"; syncAliquotUseFields(modal,item); modal.querySelector("#smAliquotUseMode")?.addEventListener("change",()=>syncAliquotUseFields(modal,item)); }
   if (action === "aliquot_opened") { syncAliquotOpeningLocations(modal,item); modal.querySelector("#smEntity")?.addEventListener("change",()=>syncAliquotOpeningLocations(modal,item)); }
   if (action === "open_aliquot_discarded") modal.querySelector("#smDiscardReason")?.addEventListener("change", event => { const other=modal.querySelector("#smDiscardOtherField"), input=modal.querySelector("#smDiscardOther"), visible=event.target.value==="Autre"; other.classList.toggle("hidden",!visible); input.disabled=!visible; input.required=visible; if(!visible)input.value=""; });
+  if(action==="recounted"&&tracking.mode==="containers")bindContainerRecountControls(modal,item,tracking);
   modal.querySelector("[data-empty-stock-action]")?.addEventListener("click", () => { modal.close(); if (StockTracking.normalizeTracking(item).mode === "simple") openStockModal(item.id); else { openStockManager(item.id); const nextModal = document.querySelector("#stockManagerDialog"); nextModal.querySelector("#stockManagerAction").value = "received"; renderStockManagerFields(); } });
 }
 
@@ -5745,9 +5895,38 @@ async function submitStockManager(event) {
   if (modal.querySelector("#stockManagerAction")?.value === "aliquots_prepared" && !validateAliquotDistribution(modal)) return;
   if (!event.currentTarget.reportValidity()) return;
   const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), action = value("stockManagerAction"), operationId = StockTracking.id("operation"), comment = normalizeMultilineText(value("stockManagerComment")), operation = { operationId, type: action, entityId:value("smEntity"), entityType: action.startsWith("aliquot") || action.startsWith("preparation") ? "preparation" : "container", quantity:numeric("smQuantity"), fromLocation:value("smFrom"), toLocation:value("smTo"), comment, correctionReason:["container_finished","preparation_finished"].includes(action)?comment:"" };
+  const sourceItem = items.find(row => row.id === value("stockManagerItemId")), sourceTracking = StockTracking.normalizeTracking(sourceItem || {});
+  if (action === "recounted" && sourceTracking.mode === "containers") {
+    const changes=Array.from(modal.querySelectorAll(".container-recount-row")).map(row=>{
+      const status=row.querySelector("[data-recount-status]").value,unitKey=row.querySelector("[data-recount-unit]").value,location=row.querySelector("[data-recount-location]").value,quantity=StockTracking.parseLocalizedNumber(row.querySelector("[data-recount-quantity]").value),levelIndex=sourceTracking.packagingLevels.findIndex(level=>level.key===unitKey),factor=sourceTracking.packagingLevels.slice(levelIndex+1).reduce((value,level)=>value*level.contains,1),capacity=Number(row.dataset.capacityBase)/factor;
+      const changed=status!==row.dataset.originalStatus||unitKey!==row.dataset.originalUnit||location!==row.dataset.originalLocation||Math.abs(quantity-Number(row.dataset.originalQuantity))>1e-8;
+      return changed?{containerId:row.dataset.containerId,expectedVersion:Number(row.dataset.version),status,unitKey,location,quantity,capacity,beforeStatus:row.dataset.originalStatus,isNew:row.dataset.newContainer==="true"}:null;
+    }).filter(Boolean);
+    if(!changes.length){errorBox.textContent="Aucun contenant n’a été modifié.";errorBox.classList.remove("hidden");return;}
+    if(changes.some(change=>!Number.isFinite(change.quantity)||change.quantity<0||!Number.isFinite(change.capacity)||change.capacity<=0)){errorBox.textContent="Chaque quantité doit être positive ou nulle et chaque capacité doit être strictement positive.";errorBox.classList.remove("hidden");return;}
+    if(changes.some(change=>change.quantity>change.capacity)){errorBox.textContent="La quantité actuelle ou restante ne peut pas dépasser la capacité totale.";errorBox.classList.remove("hidden");return;}
+    if(changes.some(change=>change.isNew&&change.status==="open"&&change.quantity===0)){errorBox.textContent="Un nouveau contenant ouvert doit avoir une quantité restante positive.";errorBox.classList.remove("hidden");return;}
+    for(const change of changes){if(change.beforeStatus==="open"&&change.status==="open"&&change.quantity===0){if(!window.confirm(`${change.containerId} ne contient plus de stock. Le marquer comme terminé ?`))return;change.status="finished";}}
+    const confirmations=[];
+    changes.forEach(change=>{
+      if(!change.isNew&&change.beforeStatus!==change.status)confirmations.push(`${change.containerId} : confirmer la transition ${change.beforeStatus==="closed"?"Fermé":"Ouvert"} → ${change.status==="closed"?"Fermé":change.status==="open"?"Ouvert":"Terminé"}.`);
+    });
+    if(confirmations.length&&!window.confirm(`${confirmations.join("\n")}\n\nEnregistrer ces modifications ?`))return;
+    operation.type="containers_recounted";operation.entityType="containers";operation.changes=changes;
+  }
+  if (action === "consumed" && sourceTracking.mode === "containers") {
+    const quantity=numeric("smQuantity"), openUnit=StockTracking.trackingLevel(sourceTracking), required=StockTracking.toBaseQuantity(quantity,sourceTracking), opened=sourceTracking.openContainers.filter(row=>row.status==="open"&&row.remaining>0), openAvailable=opened.reduce((sum,row)=>sum+row.remaining,0), closedCount=StockTracking.totalClosed(sourceTracking), totalAvailable=openAvailable+closedCount*StockTracking.capacity(sourceTracking);
+    if (!(quantity>0) || required>totalAvailable) { errorBox.textContent="Aucun stock ouvert ou fermé suffisant ne permet d’enregistrer cette utilisation."; errorBox.classList.remove("hidden"); return; }
+    const needsOpen=required>openAvailable, finishes=required>=openAvailable&&opened.length>0 || opened.some(row=>row.id===operation.entityId&&required>=row.remaining);
+    const messages=[];
+    if(needsOpen)messages.push(`Aucun contenant ouvert suffisant n’est disponible. Un contenant fermé sera ouvert automatiquement avant d’enregistrer cette utilisation.`);
+    if(finishes)messages.push(`Cette utilisation consommera tout le stock restant d’au moins un contenant, qui sera automatiquement marqué comme terminé.`);
+    if(messages.length&&!window.confirm(`${messages.join("\n\n")}\n\nContinuer ?`))return;
+    operation.entityType="containers_auto";
+  }
   if (action === "moved") { operation.entityType=value("smEntityType"); if (operation.entityType === "container") { const item=items.find(row=>row.id===value("stockManagerItemId")); const candidate=StockTracking.normalizeTracking(item).openContainers.find(row=>row.location===operation.fromLocation&&row.status==="open"); if(!candidate) { errorBox.textContent="Aucun contenant ouvert dans cette localisation."; errorBox.classList.remove("hidden"); return; } operation.entityId=candidate.id; operation.quantity=1; } }
   if (action === "aliquots_prepared") Object.assign(operation, buildAliquotPreparationOperation(modal, items.find(row => row.id === value("stockManagerItemId"))));
-  const sourceItem = items.find(row => row.id === value("stockManagerItemId")), sourceAliquots = StockTracking.normalizeAliquots(sourceItem || {});
+  const sourceAliquots = StockTracking.normalizeAliquots(sourceItem || {});
   if (action === "aliquots_consumed") {
     const mode=value("smAliquotUseMode");
     if (mode === "whole") { const prep=sourceAliquots.preparations.find(row=>row.id===value("smEntity")); Object.assign(operation,{type:"aliquots_consumed",entityId:value("smEntity"),entityType:"preparation",expectedVersion:prep?.version}); }
@@ -5769,7 +5948,7 @@ async function executeAtomicStockOperation(itemId, operation) {
   try {
     const result=await storage.mutateSharedData(operation.operationId, latest => {
       const state=createSharedState(latest,{includeBootstrap:false}), index=state.inventoryItems.findIndex(row=>row.id===itemId); if(index<0) throw new Error("Cet item n’existe plus.");
-      const applied=StockTracking.apply(state.inventoryItems[index],{...operation},{name:currentName,emoji:userIcons[currentName]||""}), events=applied.events || [applied.event]; state.inventoryItems[index]=applied.item; state.stockMovements=Array.isArray(state.stockMovements)?state.stockMovements:[]; state.stockMovements.push(...events); state.history=Array.isArray(state.history)?state.history:[]; state.history.unshift({date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date(applied.event.timestamp)),action:"Stock mis à jour",detail:`${applied.event.userName} · ${applied.event.type} · ${applied.item.name}`,user:applied.event.userName,itemId}); state.updatedAt=applied.event.timestamp; return state;
+      const applied=StockTracking.apply(state.inventoryItems[index],{...operation},{name:currentName,emoji:userIcons[currentName]||""}), events=applied.events || [applied.event]; state.inventoryItems[index]=applied.item; state.stockMovements=Array.isArray(state.stockMovements)?state.stockMovements:[]; if(StockTracking.normalizeTracking(applied.item).traceabilityMode==="detailed")state.stockMovements.push(...events); state.stockOperations=Array.isArray(state.stockOperations)?state.stockOperations:[];state.stockOperations.push({operationId:operation.operationId,itemId,at:applied.event.timestamp,type:operation.type}); state.history=Array.isArray(state.history)?state.history:[]; state.history.unshift({date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date(applied.event.timestamp)),action:"Stock mis à jour",detail:`${applied.event.userName} · ${applied.event.type} · ${applied.item.name}`,user:applied.event.userName,itemId}); state.updatedAt=applied.event.timestamp; return state;
     });
     sharedDataSha=result.sha; sharedDataMode="github-write"; sharedDataHasUnsavedChanges=false; sharedDataRemoteReady=true; sharedDataLastError=""; applySharedState(result.data);
   } finally { sharedDataIsSaving=false; renderAlerts(); }
@@ -7732,11 +7911,17 @@ function migrateClientSamples(sampleList) {
     seenIds.add(id);
 
     const type = sample?.type === "created_sample" ? "created_sample" : "client_product";
-    const category = clientSampleCategories.includes(sample?.category)
-      ? sample.category
-      : (type === "created_sample" ? clientSampleCategories[0] : "");
+    const mappedCategory = clientSampleCategoryAliases[sample?.category] || sample?.category;
+    const category = clientSampleCategories.includes(mappedCategory)
+      ? mappedCategory
+      : (type === "created_sample" ? String(sample?.category || clientSampleCategories[0]) : "");
+    const historicalUnit = String(sample?.measureUnit || sample?.unit || "").trim();
+    const legacyArnQiazol = category === "ARN"
+      ? (typeof sample?.arnQiazol === "boolean" ? sample.arnQiazol : historicalUnit === "µL" ? false : true)
+      : null;
+    const legacyArnBead = category === "ARN" ? Boolean(legacyArnQiazol && sample?.arnBead) : null;
     const measureUnit = type === "created_sample"
-      ? (category === "Secretion" ? "mL" : "mg")
+      ? (historicalUnit || getCreatedSampleUnit(category, legacyArnQiazol !== false))
       : (sample?.unit || "");
     const location = inventoryLocations.includes(sample?.location)
       ? sample.location
@@ -7789,6 +7974,8 @@ function migrateClientSamples(sampleList) {
       clientId: sample?.clientId || (normalizedClient.normalizedKey ? `client-${normalizedClient.normalizedKey}` : ""),
       canonicalClientCode,
       category,
+      arnQiazol: legacyArnQiazol,
+      arnBead: legacyArnBead,
       location,
       arrivalDate: sample?.arrivalDate || "",
       creationDate: sample?.creationDate || "",

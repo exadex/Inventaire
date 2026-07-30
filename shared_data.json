@@ -893,7 +893,7 @@
         ]
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "createdAtRaw": "2026-07-27T09:26:58.685Z",
       "createdAt": "27/07/2026 11:26",
       "stockTracking": {
@@ -17267,6 +17267,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 10:40",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "30/07/2026 10:39",
       "user": "Elina",
       "action": "Item supprimé",
@@ -21233,5 +21239,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:39:47.278Z"
+  "updatedAt": "2026-07-30T08:40:58.716Z"
 }

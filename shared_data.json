@@ -974,7 +974,7 @@
       "name": "SupplementMix / Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
       "quantity": 9,
-      "unit": "mL",
+      "unit": "Tubes",
       "minStock": 1,
       "location": "-20°C culture L1",
       "locations": [
@@ -996,7 +996,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785238740524-xc8swm",
+      "createdAtRaw": "2026-07-30T08:19:44.214Z",
+      "createdAt": "30/07/2026 10:19",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0020",
@@ -17288,6 +17318,12 @@
   "history": [
     {
       "date": "30/07/2026 10:19",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié SupplementMix / Endothelial Cell Growth Medium 2."
+    },
+    {
+      "date": "30/07/2026 10:19",
       "action": "Stock mis à jour",
       "detail": "Elina · received · Endothelial Cell Growth Medium 2",
       "user": "Elina",
@@ -21229,5 +21265,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:19:14.527Z"
+  "updatedAt": "2026-07-30T08:19:44.216Z"
 }

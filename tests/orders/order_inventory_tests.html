@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>Tests réception de commande</title>
+<pre id="result">Tests en cours…</pre>
+<script src="../../js/stock/stock_tracking.js"></script>
+<script src="../../js/orders/order_inventory.js"></script>
+<script>
+const lines = [];
+const test = (name, fn) => {
+  try { fn(); lines.push(`✓ ${name}`); }
+  catch (error) { lines.push(`✗ ${name}: ${error.message}`); }
+};
+const assert = (condition, message) => { if (!condition) throw new Error(message); };
+const makeState = (traceabilityMode = "detailed") => ({
+  inventoryItems: [{ id:"item-1", name:"Article", quantity:5, unit:"unités", stockTracking:{mode:"simple",traceabilityMode}, aliquotTracking:{enabled:false,preparations:[]} }],
+  orders: [{ id:"CMD-2026-015", status:"received", inventoryItemId:"item-1", inventoryUnit:"unités", requestedQuantity:5, receivedQuantity:5 }],
+  history: [],
+  stockMovements: []
+});
+const receive = (state, operationId, quantity) => ExadexOrderInventory.applyReceipt(state, {
+  orderId:"CMD-2026-015", operationId, quantity, unit:"unités", user:{name:"Caroline"}
+}, {stockTracking:StockTracking});
+
+test("stock 5 + réception 3 = 8", () => {
+  const result=receive(makeState(),"receipt-1",3);
+  assert(result.state.inventoryItems[0].quantity===8,"stock incorrect");
+  assert(result.state.orders[0].addedToInventoryQuantity===3,"commande incorrecte");
+});
+test("deux réceptions partielles 2 + 3", () => {
+  let result=receive(makeState(),"partial-1",2);
+  result=receive(result.state,"partial-2",3);
+  assert(result.state.inventoryItems[0].quantity===10,"stock incorrect");
+  assert(result.state.orders[0].inventoryReceiptOperations.length===2,"opérations incorrectes");
+});
+test("même opération idempotente", () => {
+  const once=receive(makeState(),"duplicate-1",2);
+  const twice=receive(once.state,"duplicate-1",2);
+  assert(twice.duplicate&&twice.state.inventoryItems[0].quantity===7,"double ajout");
+});
+test("le stock courant est utilisé", () => {
+  const state=makeState(); state.inventoryItems[0].quantity=7;
+  assert(receive(state,"current-1",3).state.inventoryItems[0].quantity===10,"stock écrasé");
+});
+test("traçabilité détaillée activée", () => {
+  const result=receive(makeState("detailed"),"trace-1",3);
+  assert(result.state.stockMovements.length===1&&result.state.stockMovements[0].type==="order_received","mouvement absent");
+});
+test("traçabilité détaillée désactivée", () => {
+  const result=receive(makeState("periodic"),"trace-off-1",3);
+  assert(result.state.inventoryItems[0].quantity===8&&result.state.stockMovements.length===0,"mouvement indésirable");
+});
+test("article supprimé bloqué", () => {
+  const state=makeState(); state.inventoryItems=[];
+  try { receive(state,"missing-1",1); throw new Error("opération acceptée"); }
+  catch(error) { assert(/n’existe plus/.test(error.message),"message incorrect"); }
+});
+test("unité incompatible bloquée", () => {
+  const state=makeState(); state.orders[0].inventoryUnit="kg";
+  try { receive(state,"unit-1",1); throw new Error("opération acceptée"); }
+  catch(error) { assert(/Unité incompatible/.test(error.message),"message incorrect"); }
+});
+document.querySelector("#result").textContent=lines.join("\n");
+document.body.dataset.failed=String(lines.some(line=>line.startsWith("✗")));
+</script>
+</html>

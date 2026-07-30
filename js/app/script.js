@@ -5535,7 +5535,7 @@ function renderStockMovementSafely(entry) {
 }
 
 function renderStockMovement(entry = {}) {
-  const labels = { received:"Réception", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Comptage", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Comptage", preparation_finished:"Préparation terminée", corrected:"Correction", configuration_changed:"Configuration" };
+  const labels = { received:"Réception", order_received:"Réception de commande", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Comptage", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Comptage", preparation_finished:"Préparation terminée", corrected:"Correction", configuration_changed:"Configuration" };
   return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")} · ${escapeHtml(entry.userName || "Utilisateur")}</strong><small>${escapeHtml(formatDateTimeFrench(getStockMovementDate(entry)))}</small><p class="multiline-text">${formatStockMovementDescription(entry)}</p></div></article>`;
 }
 
@@ -6657,6 +6657,7 @@ function saveOrder() {
       status: "requested",
       itemMode: "existing",
       inventoryItemId: item.id,
+      inventoryUnit: item.unit,
       itemName: item.name,
       requestedQuantity: Number(orderFields.orderQuantity.value),
       receivedQuantity: 0,
@@ -6798,12 +6799,15 @@ function openReceiveInventoryDialog(id) {
 
   const unit = linkedItem?.unit || order.newItemData?.unit || "";
   const requestedQuantity = getOrderRequestedNumericQuantity(order);
+  const alreadyAdded = Number(order.addedToInventoryQuantity || 0);
+  const remainingQuantity = Math.max(0, Number((requestedQuantity - alreadyAdded).toFixed(6)));
 
   receiveInventoryFields.receiveOrderId.value = order.id;
   receiveInventoryFields.receiveInventoryItemName.textContent = order.itemName;
-  receiveInventoryFields.receiveInventoryRequestedText.textContent = `Quantité demandée : ${requestedQuantity} ${unit}`.trim();
-  receiveInventoryFields.receiveQuantity.value = requestedQuantity;
+  receiveInventoryFields.receiveInventoryRequestedText.textContent = `Quantité demandée : ${requestedQuantity} ${unit} · Déjà ajoutée : ${alreadyAdded} ${unit}`.trim();
+  receiveInventoryFields.receiveQuantity.value = remainingQuantity;
   receiveInventoryFields.receiveUnit.value = unit;
+  delete receiveInventoryForm.dataset.operationId;
 
   receiveInventoryDialog.showModal();
 }
@@ -6828,7 +6832,7 @@ function linkCreatedItemToOrder(orderId, item) {
 }
 
 // idem que la anterior
-function confirmReceiveInventory() {
+async function confirmReceiveInventory() {
   if (!receiveInventoryForm.reportValidity()) return;
 
   const id = receiveInventoryFields.receiveOrderId.value;
@@ -6851,15 +6855,26 @@ function confirmReceiveInventory() {
   const finalQuantity = Number(confirmedQuantity.toFixed(3));
 
   if (order.inventoryItemId) {
-    const item = items.find(entry => entry.id === order.inventoryItemId);
-    if (!item) {
-      window.alert("L'article lié dans l'inventaire est introuvable.");
-      return;
+    const button = document.querySelector("#confirmReceiveInventoryBtn");
+    const operationId = receiveInventoryForm.dataset.operationId
+      || `order-receipt-${order.id}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    receiveInventoryForm.dataset.operationId = operationId;
+    button.disabled = true;
+    try {
+      await executeAtomicOrderInventoryReceipt({
+        orderId: order.id,
+        operationId,
+        quantity: finalQuantity,
+        unit
+      });
+      receiveInventoryDialog.close();
+      delete receiveInventoryForm.dataset.operationId;
+    } catch (error) {
+      window.alert(error.message || String(error));
+    } finally {
+      button.disabled = false;
     }
-
-    patchStoredItem(item.id, {
-      quantity: Number((Number(item.quantity) + finalQuantity).toFixed(3))
-    });
+    return;
   } else if (order.newItemData) {
     const createdItem = createStoredItem({
       ...order.newItemData,
@@ -6892,6 +6907,36 @@ function confirmReceiveInventory() {
   receiveInventoryDialog.close();
   persist();
   render();
+}
+
+async function executeAtomicOrderInventoryReceipt(request) {
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.path || !config?.token) {
+    throw new Error("La sauvegarde partagée GitHub en écriture est requise pour ajouter cette réception au stock.");
+  }
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    let mutation = null;
+    const result = await storage.mutateSharedData(request.operationId, latest => {
+      mutation = window.ExadexOrderInventory.applyReceipt(latest, {
+        ...request,
+        user: { name: currentName, emoji: userIcons[currentName] || "" }
+      }, { stockTracking: window.StockTracking });
+      return mutation.state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    return { duplicate: Boolean(result.duplicate || mutation?.duplicate), data: result.data };
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 function openOrdersHistory() {

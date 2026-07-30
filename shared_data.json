@@ -5568,7 +5568,7 @@
       "category": "Culture Cell",
       "quantity": 1.4,
       "unit": "cartons",
-      "minStock": 1,
+      "minStock": 0.5,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -17267,6 +17267,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 11:02",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Microtube 1,5 ml."
+    },
+    {
       "date": "30/07/2026 10:55",
       "user": "Elina",
       "action": "Item modifié",
@@ -21251,5 +21257,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:55:26.797Z"
+  "updatedAt": "2026-07-30T09:02:36.777Z"
 }

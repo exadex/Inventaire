@@ -12585,33 +12585,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-CSV-0173",
-      "name": "Blouse jetable ENDO protectlab taille XL",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "3,1",
-          "price": "3,1",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-CSV-0174",
       "name": "Pince à bouts plats, arrondis, acier inoxydable",
       "category": "Bureautique",
@@ -17266,6 +17239,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 11:13",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Blouse jetable ENDO protectlab taille XL de l'inventaire."
+    },
+    {
       "date": "30/07/2026 11:04",
       "user": "Elina",
       "action": "Item modifié",
@@ -21262,5 +21241,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T09:04:36.956Z"
+  "updatedAt": "2026-07-30T09:13:06.378Z"
 }

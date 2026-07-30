@@ -9537,33 +9537,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1783931436295-yw1d2e",
-      "name": "gelatine solution",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-web-1783931436295-2rzmhw",
       "name": "Liberase TL res Grade",
       "category": "Biomol",
@@ -17188,6 +17161,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 14:56",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé gelatine solution de l'inventaire."
+    },
+    {
       "date": "30/07/2026 14:55",
       "user": "Elina",
       "action": "Item supprimé",
@@ -21214,5 +21193,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T12:55:55.183Z"
+  "updatedAt": "2026-07-30T12:56:24.127Z"
 }

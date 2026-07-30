@@ -860,7 +860,7 @@
       "id": "itm-CSV-0018",
       "name": "Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
-      "quantity": 2,
+      "quantity": 7,
       "unit": "Bouteilles",
       "minStock": 1,
       "location": "Frigo culture L1",
@@ -916,7 +916,7 @@
         "closedByLocation": [
           {
             "location": "Frigo culture L1",
-            "quantity": 2,
+            "quantity": 7,
             "updatedAt": "2026-07-27T09:26:58.686Z",
             "updatedBy": "Elina"
           }
@@ -17287,6 +17287,13 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 10:19",
+      "action": "Stock mis à jour",
+      "detail": "Elina · received · Endothelial Cell Growth Medium 2",
+      "user": "Elina",
+      "itemId": "itm-CSV-0018"
+    },
+    {
       "date": "30/07/2026 10:17",
       "action": "Stock mis à jour",
       "detail": "Elina · container_finished · Endothelial Cell Growth Medium 2",
@@ -21195,8 +21202,32 @@
       "toLocation": "",
       "comment": "Finie",
       "correctionReason": "Finie"
+    },
+    {
+      "id": "movement-ms78sp27-3947750410-4103943056",
+      "operationId": "operation-ms78sohy-3760484469-199060719",
+      "itemId": "itm-CSV-0018",
+      "timestamp": "2026-07-30T08:19:14.527Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "",
+      "preparationId": "",
+      "before": 2,
+      "after": 7,
+      "quantity": 5,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Frigo culture L1",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:17:31.089Z"
+  "updatedAt": "2026-07-30T08:19:14.527Z"
 }

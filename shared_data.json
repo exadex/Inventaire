@@ -4663,35 +4663,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-4whslp",
-      "name": "SupplementMix: Contains all media supplements premixed in one vial",
-      "category": "Culture Cell",
-      "quantity": 11,
-      "unit": "unités",
-      "minStock": 2,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Milieu EGM"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Promocell",
-          "reference": "c-39216",
-          "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
-          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
-          "price": "56,50 €",
-          "unitPrice": "2,8",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-web-1783931436295-56643c",
       "name": "SupplementPack: Contains all media supplements as individual vials",
       "category": "Culture Cell",
@@ -17326,6 +17297,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 10:39",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé SupplementMix: Contains all media supplements premixed in one vial de l'inventaire."
+    },
+    {
       "date": "30/07/2026 10:28",
       "user": "Elina",
       "action": "Item modifié",
@@ -21280,5 +21257,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:28:31.685Z"
+  "updatedAt": "2026-07-30T08:39:30.535Z"
 }

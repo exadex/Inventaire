@@ -3393,7 +3393,7 @@
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "Bouteilles",
-      "minStock": 1,
+      "minStock": 0,
       "location": "Laboratoire",
       "locations": [
         "Laboratoire"
@@ -17291,6 +17291,12 @@
       "detail": "Elina a modifié Accumax solution."
     },
     {
+      "date": "30/07/2026 10:14",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Accumax solution."
+    },
+    {
       "date": "30/07/2026 10:12",
       "user": "Elina",
       "action": "Item modifié",
@@ -21053,5 +21059,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:14:07.240Z"
+  "updatedAt": "2026-07-30T08:14:19.952Z"
 }

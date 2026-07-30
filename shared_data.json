@@ -3392,7 +3392,7 @@
       "name": "Accumax solution",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "mL",
+      "unit": "Bouteilles",
       "minStock": 1,
       "location": "Laboratoire",
       "locations": [
@@ -3415,7 +3415,7 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "backup",
       "supplierContactId": "contact-1785225250289-lwwcas",
       "createdAtRaw": "2026-07-28T13:08:41.276Z",
       "createdAt": "28/07/2026 15:08",
@@ -17285,6 +17285,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 10:14",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Accumax solution."
+    },
+    {
       "date": "30/07/2026 10:12",
       "user": "Elina",
       "action": "Item modifié",
@@ -21047,5 +21053,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:12:02.430Z"
+  "updatedAt": "2026-07-30T08:14:07.240Z"
 }

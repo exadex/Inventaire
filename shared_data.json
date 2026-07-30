@@ -15617,8 +15617,8 @@
       "notes": "",
       "createdAtRaw": "2026-07-15T08:42:12.352Z",
       "createdAt": "15/07/2026 10:42",
-      "name": "P234_ASH001_J0 Vehicle 1",
-      "baseName": "P234_ASH001_J0 Vehicle",
+      "name": "P234_ASH001_J0 Vehicle + GLP1 1",
+      "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 1,
       "replicaCount": 7,
       "category": "Secretion",
@@ -15638,7 +15638,7 @@
         "clientId": "client-ASH1",
         "canonicalClientCode": "ASH001",
         "location": "-20°C blanc labo",
-        "baseName": "P234_ASH001_J0 Vehicle",
+        "baseName": "P234_ASH001_J0 Vehicle + GLP1",
         "category": "Secretion",
         "creationDate": "2026-07-10",
         "measureValue": 0.5,
@@ -15648,7 +15648,7 @@
         "arrivalDate": "",
         "referenceNumber": "",
         "lotNumber": "",
-        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+        "notes": "Partagé le Vehicle + GLP1 avec MIB002"
       },
       "specificData": {
         "notes": ""
@@ -15668,8 +15668,8 @@
       "notes": "",
       "createdAtRaw": "2026-07-15T08:42:12.352Z",
       "createdAt": "15/07/2026 10:42",
-      "name": "P234_ASH001_J0 Vehicle 2",
-      "baseName": "P234_ASH001_J0 Vehicle",
+      "name": "P234_ASH001_J0 Vehicle + GLP1 2",
+      "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 2,
       "replicaCount": 7,
       "category": "Secretion",
@@ -15689,7 +15689,7 @@
         "clientId": "client-ASH1",
         "canonicalClientCode": "ASH001",
         "location": "-20°C blanc labo",
-        "baseName": "P234_ASH001_J0 Vehicle",
+        "baseName": "P234_ASH001_J0 Vehicle + GLP1",
         "category": "Secretion",
         "creationDate": "2026-07-10",
         "measureValue": 0.5,
@@ -15699,7 +15699,7 @@
         "arrivalDate": "",
         "referenceNumber": "",
         "lotNumber": "",
-        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+        "notes": "Partagé le Vehicle + GLP1 avec MIB002"
       },
       "specificData": {
         "notes": ""
@@ -15719,8 +15719,8 @@
       "notes": "",
       "createdAtRaw": "2026-07-15T08:42:12.352Z",
       "createdAt": "15/07/2026 10:42",
-      "name": "P234_ASH001_J0 Vehicle 3",
-      "baseName": "P234_ASH001_J0 Vehicle",
+      "name": "P234_ASH001_J0 Vehicle + GLP1 3",
+      "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 3,
       "replicaCount": 7,
       "category": "Secretion",
@@ -15740,7 +15740,7 @@
         "clientId": "client-ASH1",
         "canonicalClientCode": "ASH001",
         "location": "-20°C blanc labo",
-        "baseName": "P234_ASH001_J0 Vehicle",
+        "baseName": "P234_ASH001_J0 Vehicle + GLP1",
         "category": "Secretion",
         "creationDate": "2026-07-10",
         "measureValue": 0.5,
@@ -15750,7 +15750,7 @@
         "arrivalDate": "",
         "referenceNumber": "",
         "lotNumber": "",
-        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+        "notes": "Partagé le Vehicle + GLP1 avec MIB002"
       },
       "specificData": {
         "notes": ""
@@ -15770,8 +15770,8 @@
       "notes": "",
       "createdAtRaw": "2026-07-15T08:42:12.352Z",
       "createdAt": "15/07/2026 10:42",
-      "name": "P234_ASH001_J0 Vehicle 4",
-      "baseName": "P234_ASH001_J0 Vehicle",
+      "name": "P234_ASH001_J0 Vehicle + GLP1 4",
+      "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 4,
       "replicaCount": 7,
       "category": "Secretion",
@@ -15791,7 +15791,7 @@
         "clientId": "client-ASH1",
         "canonicalClientCode": "ASH001",
         "location": "-20°C blanc labo",
-        "baseName": "P234_ASH001_J0 Vehicle",
+        "baseName": "P234_ASH001_J0 Vehicle + GLP1",
         "category": "Secretion",
         "creationDate": "2026-07-10",
         "measureValue": 0.5,
@@ -15801,7 +15801,7 @@
         "arrivalDate": "",
         "referenceNumber": "",
         "lotNumber": "",
-        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+        "notes": "Partagé le Vehicle + GLP1 avec MIB002"
       },
       "specificData": {
         "notes": ""
@@ -15821,8 +15821,8 @@
       "notes": "",
       "createdAtRaw": "2026-07-15T08:42:12.352Z",
       "createdAt": "15/07/2026 10:42",
-      "name": "P234_ASH001_J0 Vehicle 5",
-      "baseName": "P234_ASH001_J0 Vehicle",
+      "name": "P234_ASH001_J0 Vehicle + GLP1 5",
+      "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 5,
       "replicaCount": 7,
       "category": "Secretion",
@@ -15842,7 +15842,7 @@
         "clientId": "client-ASH1",
         "canonicalClientCode": "ASH001",
         "location": "-20°C blanc labo",
-        "baseName": "P234_ASH001_J0 Vehicle",
+        "baseName": "P234_ASH001_J0 Vehicle + GLP1",
         "category": "Secretion",
         "creationDate": "2026-07-10",
         "measureValue": 0.5,
@@ -15852,7 +15852,7 @@
         "arrivalDate": "",
         "referenceNumber": "",
         "lotNumber": "",
-        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+        "notes": "Partagé le Vehicle + GLP1 avec MIB002"
       },
       "specificData": {
         "notes": ""
@@ -15872,8 +15872,8 @@
       "notes": "",
       "createdAtRaw": "2026-07-15T08:42:12.352Z",
       "createdAt": "15/07/2026 10:42",
-      "name": "P234_ASH001_J0 Vehicle 6",
-      "baseName": "P234_ASH001_J0 Vehicle",
+      "name": "P234_ASH001_J0 Vehicle + GLP1 6",
+      "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 6,
       "replicaCount": 7,
       "category": "Secretion",
@@ -15893,7 +15893,7 @@
         "clientId": "client-ASH1",
         "canonicalClientCode": "ASH001",
         "location": "-20°C blanc labo",
-        "baseName": "P234_ASH001_J0 Vehicle",
+        "baseName": "P234_ASH001_J0 Vehicle + GLP1",
         "category": "Secretion",
         "creationDate": "2026-07-10",
         "measureValue": 0.5,
@@ -15903,7 +15903,7 @@
         "arrivalDate": "",
         "referenceNumber": "",
         "lotNumber": "",
-        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+        "notes": "Partagé le Vehicle + GLP1 avec MIB002"
       },
       "specificData": {
         "notes": ""
@@ -15923,8 +15923,8 @@
       "notes": "",
       "createdAtRaw": "2026-07-15T08:42:12.352Z",
       "createdAt": "15/07/2026 10:42",
-      "name": "P234_ASH001_J0 Vehicle 7",
-      "baseName": "P234_ASH001_J0 Vehicle",
+      "name": "P234_ASH001_J0 Vehicle + GLP1 7",
+      "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 7,
       "replicaCount": 7,
       "category": "Secretion",
@@ -15944,7 +15944,7 @@
         "clientId": "client-ASH1",
         "canonicalClientCode": "ASH001",
         "location": "-20°C blanc labo",
-        "baseName": "P234_ASH001_J0 Vehicle",
+        "baseName": "P234_ASH001_J0 Vehicle + GLP1",
         "category": "Secretion",
         "creationDate": "2026-07-10",
         "measureValue": 0.5,
@@ -15954,7 +15954,7 @@
         "arrivalDate": "",
         "referenceNumber": "",
         "lotNumber": "",
-        "notes": "Partagé avec le Vehicle (+ GLP1) de MIB002"
+        "notes": "Partagé le Vehicle + GLP1 avec MIB002"
       },
       "specificData": {
         "notes": ""
@@ -17266,6 +17266,12 @@
     }
   ],
   "history": [
+    {
+      "date": "30/07/2026 10:45",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a modifié 7 échantillons P234_ASH001_J0 Vehicle + GLP1 pour ASH001."
+    },
     {
       "date": "30/07/2026 10:40",
       "user": "Elina",
@@ -21239,5 +21245,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T08:40:58.716Z"
+  "updatedAt": "2026-07-30T08:45:24.326Z"
 }

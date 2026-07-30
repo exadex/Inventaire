@@ -1691,35 +1691,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-CSV-0038",
-      "name": "3 voie seuls",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Robinet"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "92831",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-CSV-0039",
       "name": "3 voies seuls, rotation 360° (boite de 100)",
       "category": "Procédé ExAdEx L2",
@@ -13202,7 +13173,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785334383674-6py1lh",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785334321234-km1r6a",
@@ -13232,7 +13205,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785334321234-km1r6a",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785334245359-g7pjk3",
@@ -13262,7 +13237,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785334245359-g7pjk3",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785334188625-hr3ivu",
@@ -13292,7 +13269,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785334188625-hr3ivu",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785334027130-p8t9wm",
@@ -13322,7 +13301,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785334027130-p8t9wm",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333971706-akhe8p",
@@ -13352,7 +13333,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333971706-akhe8p",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333925114-7l0ver",
@@ -13382,7 +13365,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333925114-7l0ver",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333883106-p2ek3k",
@@ -13412,7 +13397,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333883106-p2ek3k",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333850466-v4hn6c",
@@ -13442,7 +13429,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333850466-v4hn6c",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333413850-jt7thw",
@@ -13472,7 +13461,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333413850-jt7thw",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333368201-thbnb4",
@@ -13502,7 +13493,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333368201-thbnb4",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333324706-97ep83",
@@ -13532,7 +13525,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333324706-97ep83",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333260785-6eioi4",
@@ -13562,7 +13557,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333260785-6eioi4",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333145138-r7j3xq",
@@ -13592,7 +13589,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333145138-r7j3xq",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333083146-5obwcp",
@@ -13622,7 +13621,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333083146-5obwcp",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785333028122-5wa151",
@@ -13652,7 +13653,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785333028122-5wa151",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785332951729-xe4lv2",
@@ -13682,7 +13685,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785332951729-xe4lv2",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1785332700841-1eq8m1",
@@ -13712,7 +13717,9 @@
       "groupId": "",
       "replicaId": "sample-client-1785332700841-1eq8m1",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292414504-5mazev",
@@ -13727,7 +13734,7 @@
       "createdAtRaw": "2026-07-17T12:46:54.503Z",
       "createdAt": "17/07/2026 14:46",
       "baseName": "P234_MIB002_J7 High Dose",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -13763,7 +13770,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292414504-7zzgbm",
@@ -13778,7 +13787,7 @@
       "createdAtRaw": "2026-07-17T12:46:54.503Z",
       "createdAt": "17/07/2026 14:46",
       "baseName": "P234_MIB002_J7 High Dose",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -13814,7 +13823,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292414504-ia3nqr",
@@ -13829,7 +13840,7 @@
       "createdAtRaw": "2026-07-17T12:46:54.503Z",
       "createdAt": "17/07/2026 14:46",
       "baseName": "P234_MIB002_J7 High Dose",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -13865,7 +13876,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292414504-4vbjxr",
@@ -13880,7 +13893,7 @@
       "createdAtRaw": "2026-07-17T12:46:54.503Z",
       "createdAt": "17/07/2026 14:46",
       "baseName": "P234_MIB002_J7 High Dose",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -13916,7 +13929,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292317584-gypec8",
@@ -13931,7 +13946,7 @@
       "createdAtRaw": "2026-07-17T12:45:17.584Z",
       "createdAt": "17/07/2026 14:45",
       "baseName": "P234_MIB002_J7 Low Dose",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -13967,7 +13982,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292317584-7l4soq",
@@ -13982,7 +13999,7 @@
       "createdAtRaw": "2026-07-17T12:45:17.584Z",
       "createdAt": "17/07/2026 14:45",
       "baseName": "P234_MIB002_J7 Low Dose",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14018,7 +14035,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292317584-w1yk5j",
@@ -14033,7 +14052,7 @@
       "createdAtRaw": "2026-07-17T12:45:17.584Z",
       "createdAt": "17/07/2026 14:45",
       "baseName": "P234_MIB002_J7 Low Dose",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14069,7 +14088,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292033065-sj4s3n",
@@ -14084,7 +14105,7 @@
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
       "baseName": "P234_MIB002_J7 Vehicule",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14120,7 +14141,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292033065-j0pxir",
@@ -14135,7 +14158,7 @@
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
       "baseName": "P234_MIB002_J7 Vehicule",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14171,7 +14194,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292033065-awpce9",
@@ -14186,7 +14211,7 @@
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
       "baseName": "P234_MIB002_J7 Vehicule",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14222,7 +14247,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784292033065-onje51",
@@ -14237,7 +14264,7 @@
       "createdAtRaw": "2026-07-17T12:40:33.065Z",
       "createdAt": "17/07/2026 14:40",
       "baseName": "P234_MIB002_J7 Vehicule",
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-17",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14273,7 +14300,9 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105357936-y5mu0n",
@@ -14291,7 +14320,7 @@
       "baseName": "P234_MIB002_J0 Low dose",
       "replicaNumber": 1,
       "replicaCount": 5,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14324,7 +14353,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105357936-y5mu0n"
+      "replicaId": "sample-created-1784105357936-y5mu0n",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105357936-hgf3qi",
@@ -14342,7 +14373,7 @@
       "baseName": "P234_MIB002_J0 Low dose",
       "replicaNumber": 2,
       "replicaCount": 5,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14375,7 +14406,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105357936-hgf3qi"
+      "replicaId": "sample-created-1784105357936-hgf3qi",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105357936-wkds13",
@@ -14393,7 +14426,7 @@
       "baseName": "P234_MIB002_J0 Low dose",
       "replicaNumber": 3,
       "replicaCount": 5,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14426,7 +14459,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105357936-wkds13"
+      "replicaId": "sample-created-1784105357936-wkds13",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105357936-otbt8i",
@@ -14444,7 +14479,7 @@
       "baseName": "P234_MIB002_J0 Low dose",
       "replicaNumber": 4,
       "replicaCount": 5,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14477,7 +14512,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105357936-otbt8i"
+      "replicaId": "sample-created-1784105357936-otbt8i",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105357936-uodwq5",
@@ -14495,7 +14532,7 @@
       "baseName": "P234_MIB002_J0 Low dose",
       "replicaNumber": 5,
       "replicaCount": 5,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14528,7 +14565,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105357936-uodwq5"
+      "replicaId": "sample-created-1784105357936-uodwq5",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105335232-p09kdp",
@@ -14546,7 +14585,7 @@
       "baseName": "P234_MIB002_J0 High dose",
       "replicaNumber": 1,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14579,7 +14618,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105335232-p09kdp"
+      "replicaId": "sample-created-1784105335232-p09kdp",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105335232-pp69rg",
@@ -14597,7 +14638,7 @@
       "baseName": "P234_MIB002_J0 High dose",
       "replicaNumber": 2,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14630,7 +14671,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105335232-pp69rg"
+      "replicaId": "sample-created-1784105335232-pp69rg",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105335232-ugm6ts",
@@ -14648,7 +14691,7 @@
       "baseName": "P234_MIB002_J0 High dose",
       "replicaNumber": 3,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14681,7 +14724,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105335232-ugm6ts"
+      "replicaId": "sample-created-1784105335232-ugm6ts",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105335232-x9t91h",
@@ -14699,7 +14744,7 @@
       "baseName": "P234_MIB002_J0 High dose",
       "replicaNumber": 4,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14732,7 +14777,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105335232-x9t91h"
+      "replicaId": "sample-created-1784105335232-x9t91h",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105335232-kwgzly",
@@ -14750,7 +14797,7 @@
       "baseName": "P234_MIB002_J0 High dose",
       "replicaNumber": 5,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14783,7 +14830,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105335232-kwgzly"
+      "replicaId": "sample-created-1784105335232-kwgzly",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105335232-n5wrqw",
@@ -14801,7 +14850,7 @@
       "baseName": "P234_MIB002_J0 High dose",
       "replicaNumber": 6,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14834,7 +14883,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105335232-n5wrqw"
+      "replicaId": "sample-created-1784105335232-n5wrqw",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105304265-pxdsud",
@@ -14852,7 +14903,7 @@
       "baseName": "P234_MIB002_J0 Vehicle",
       "replicaNumber": 1,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14885,7 +14936,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105304265-pxdsud"
+      "replicaId": "sample-created-1784105304265-pxdsud",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105304265-jsfy2m",
@@ -14903,7 +14956,7 @@
       "baseName": "P234_MIB002_J0 Vehicle",
       "replicaNumber": 2,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14936,7 +14989,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105304265-jsfy2m"
+      "replicaId": "sample-created-1784105304265-jsfy2m",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105304265-ukqzzl",
@@ -14954,7 +15009,7 @@
       "baseName": "P234_MIB002_J0 Vehicle",
       "replicaNumber": 3,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -14987,7 +15042,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105304265-ukqzzl"
+      "replicaId": "sample-created-1784105304265-ukqzzl",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105304265-u7krjs",
@@ -15005,7 +15062,7 @@
       "baseName": "P234_MIB002_J0 Vehicle",
       "replicaNumber": 4,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15038,7 +15095,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105304265-u7krjs"
+      "replicaId": "sample-created-1784105304265-u7krjs",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105304265-4jtnsd",
@@ -15056,7 +15115,7 @@
       "baseName": "P234_MIB002_J0 Vehicle",
       "replicaNumber": 5,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15089,7 +15148,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105304265-4jtnsd"
+      "replicaId": "sample-created-1784105304265-4jtnsd",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105304265-52orti",
@@ -15107,7 +15168,7 @@
       "baseName": "P234_MIB002_J0 Vehicle",
       "replicaNumber": 6,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15140,7 +15201,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105304265-52orti"
+      "replicaId": "sample-created-1784105304265-52orti",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105304265-0ysqgf",
@@ -15158,7 +15221,7 @@
       "baseName": "P234_MIB002_J0 Vehicle",
       "replicaNumber": 7,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15191,7 +15254,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105304265-0ysqgf"
+      "replicaId": "sample-created-1784105304265-0ysqgf",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105072456-24xr8z",
@@ -15209,7 +15274,7 @@
       "baseName": "P234_MIB002_J0 Control",
       "replicaNumber": 1,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15242,7 +15307,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105072456-24xr8z"
+      "replicaId": "sample-created-1784105072456-24xr8z",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105072456-enk3wq",
@@ -15260,7 +15327,7 @@
       "baseName": "P234_MIB002_J0 Control",
       "replicaNumber": 2,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15293,7 +15360,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105072456-enk3wq"
+      "replicaId": "sample-created-1784105072456-enk3wq",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105072456-fdvxgs",
@@ -15311,7 +15380,7 @@
       "baseName": "P234_MIB002_J0 Control",
       "replicaNumber": 3,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15344,7 +15413,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105072456-fdvxgs"
+      "replicaId": "sample-created-1784105072456-fdvxgs",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105072456-kob742",
@@ -15362,7 +15433,7 @@
       "baseName": "P234_MIB002_J0 Control",
       "replicaNumber": 4,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15395,7 +15466,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105072456-kob742"
+      "replicaId": "sample-created-1784105072456-kob742",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105072456-ynzb9r",
@@ -15413,7 +15486,7 @@
       "baseName": "P234_MIB002_J0 Control",
       "replicaNumber": 5,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15446,7 +15519,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105072456-ynzb9r"
+      "replicaId": "sample-created-1784105072456-ynzb9r",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784105072456-ajzf9i",
@@ -15464,7 +15539,7 @@
       "baseName": "P234_MIB002_J0 Control",
       "replicaNumber": 6,
       "replicaCount": 6,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15497,7 +15572,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784105072456-ajzf9i"
+      "replicaId": "sample-created-1784105072456-ajzf9i",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104932352-0tu0wb",
@@ -15515,7 +15592,7 @@
       "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 1,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15548,7 +15625,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104932352-0tu0wb"
+      "replicaId": "sample-created-1784104932352-0tu0wb",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104932352-jj4bl3",
@@ -15566,7 +15645,7 @@
       "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 2,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15599,7 +15678,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104932352-jj4bl3"
+      "replicaId": "sample-created-1784104932352-jj4bl3",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104932352-3jsep1",
@@ -15617,7 +15698,7 @@
       "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 3,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15650,7 +15731,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104932352-3jsep1"
+      "replicaId": "sample-created-1784104932352-3jsep1",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104932352-gfi9l8",
@@ -15668,7 +15751,7 @@
       "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 4,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15701,7 +15784,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104932352-gfi9l8"
+      "replicaId": "sample-created-1784104932352-gfi9l8",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104932352-i8z01q",
@@ -15719,7 +15804,7 @@
       "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 5,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15752,7 +15837,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104932352-i8z01q"
+      "replicaId": "sample-created-1784104932352-i8z01q",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104932352-zbcbrs",
@@ -15770,7 +15857,7 @@
       "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 6,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15803,7 +15890,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104932352-zbcbrs"
+      "replicaId": "sample-created-1784104932352-zbcbrs",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104932352-z754pu",
@@ -15821,7 +15910,7 @@
       "baseName": "P234_ASH001_J0 Vehicle + GLP1",
       "replicaNumber": 7,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15854,7 +15943,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104932352-z754pu"
+      "replicaId": "sample-created-1784104932352-z754pu",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104837903-ifrzie",
@@ -15872,7 +15963,7 @@
       "baseName": "P234_ASH001_J0 Low dose",
       "replicaNumber": 1,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15905,7 +15996,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104837903-ifrzie"
+      "replicaId": "sample-created-1784104837903-ifrzie",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104837903-2o21en",
@@ -15923,7 +16016,7 @@
       "baseName": "P234_ASH001_J0 Low dose",
       "replicaNumber": 2,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -15956,7 +16049,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104837903-2o21en"
+      "replicaId": "sample-created-1784104837903-2o21en",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104837903-a11pwb",
@@ -15974,7 +16069,7 @@
       "baseName": "P234_ASH001_J0 Low dose",
       "replicaNumber": 3,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16007,7 +16102,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104837903-a11pwb"
+      "replicaId": "sample-created-1784104837903-a11pwb",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104837903-1mol74",
@@ -16025,7 +16122,7 @@
       "baseName": "P234_ASH001_J0 Low dose",
       "replicaNumber": 4,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16058,7 +16155,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104837903-1mol74"
+      "replicaId": "sample-created-1784104837903-1mol74",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104837903-hkdken",
@@ -16076,7 +16175,7 @@
       "baseName": "P234_ASH001_J0 Low dose",
       "replicaNumber": 5,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16109,7 +16208,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104837903-hkdken"
+      "replicaId": "sample-created-1784104837903-hkdken",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104837903-qc50ng",
@@ -16127,7 +16228,7 @@
       "baseName": "P234_ASH001_J0 Low dose",
       "replicaNumber": 6,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16160,7 +16261,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104837903-qc50ng"
+      "replicaId": "sample-created-1784104837903-qc50ng",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104837903-b3veox",
@@ -16178,7 +16281,7 @@
       "baseName": "P234_ASH001_J0 Low dose",
       "replicaNumber": 7,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16211,7 +16314,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104837903-b3veox"
+      "replicaId": "sample-created-1784104837903-b3veox",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104807567-lrga23",
@@ -16229,7 +16334,7 @@
       "baseName": "P234_ASH001_J0 High dose",
       "replicaNumber": 1,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16262,7 +16367,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104807567-lrga23"
+      "replicaId": "sample-created-1784104807567-lrga23",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104807567-jtmcla",
@@ -16280,7 +16387,7 @@
       "baseName": "P234_ASH001_J0 High dose",
       "replicaNumber": 2,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16313,7 +16420,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104807567-jtmcla"
+      "replicaId": "sample-created-1784104807567-jtmcla",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104807567-gqtkv5",
@@ -16331,7 +16440,7 @@
       "baseName": "P234_ASH001_J0 High dose",
       "replicaNumber": 3,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16364,7 +16473,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104807567-gqtkv5"
+      "replicaId": "sample-created-1784104807567-gqtkv5",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104807567-92uvi2",
@@ -16382,7 +16493,7 @@
       "baseName": "P234_ASH001_J0 High dose",
       "replicaNumber": 4,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16415,7 +16526,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104807567-92uvi2"
+      "replicaId": "sample-created-1784104807567-92uvi2",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104807567-az2u71",
@@ -16433,7 +16546,7 @@
       "baseName": "P234_ASH001_J0 High dose",
       "replicaNumber": 5,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16466,7 +16579,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104807567-az2u71"
+      "replicaId": "sample-created-1784104807567-az2u71",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104807567-nu0dxz",
@@ -16484,7 +16599,7 @@
       "baseName": "P234_ASH001_J0 High dose",
       "replicaNumber": 6,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16517,7 +16632,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104807567-nu0dxz"
+      "replicaId": "sample-created-1784104807567-nu0dxz",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-created-1784104807567-f5qel7",
@@ -16535,7 +16652,7 @@
       "baseName": "P234_ASH001_J0 High dose",
       "replicaNumber": 7,
       "replicaCount": 7,
-      "category": "Secretion",
+      "category": "Sécrétion",
       "creationDate": "2026-07-10",
       "measureValue": 0.5,
       "measureUnit": "mL",
@@ -16568,7 +16685,9 @@
         "notes": ""
       },
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
-      "replicaId": "sample-created-1784104807567-f5qel7"
+      "replicaId": "sample-created-1784104807567-f5qel7",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1783950365570-f20i8q",
@@ -16598,7 +16717,9 @@
       "groupId": "",
       "replicaId": "sample-client-1783950365570-f20i8q",
       "replicaNumber": null,
-      "replicaCount": 1
+      "replicaCount": 1,
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1783950236643-fro2wp",
@@ -16628,7 +16749,9 @@
       "generalData": {},
       "specificData": {},
       "groupId": "",
-      "replicaId": "sample-client-1783950236643-fro2wp"
+      "replicaId": "sample-client-1783950236643-fro2wp",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1783950214076-ma4inn",
@@ -16658,7 +16781,9 @@
       "generalData": {},
       "specificData": {},
       "groupId": "",
-      "replicaId": "sample-client-1783950214076-ma4inn"
+      "replicaId": "sample-client-1783950214076-ma4inn",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1783950114371-9vaw87",
@@ -16688,7 +16813,9 @@
       "generalData": {},
       "specificData": {},
       "groupId": "",
-      "replicaId": "sample-client-1783950114371-9vaw87"
+      "replicaId": "sample-client-1783950114371-9vaw87",
+      "arnQiazol": null,
+      "arnBead": null
     },
     {
       "id": "sample-client-1783950067755-qnq4at",
@@ -16718,7 +16845,9 @@
       "generalData": {},
       "specificData": {},
       "groupId": "",
-      "replicaId": "sample-client-1783950067755-qnq4at"
+      "replicaId": "sample-client-1783950067755-qnq4at",
+      "arnQiazol": null,
+      "arnBead": null
     }
   ],
   "clients": [
@@ -17160,6 +17289,12 @@
     }
   ],
   "history": [
+    {
+      "date": "30/07/2026 16:46",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé 3 voie seuls de l'inventaire."
+    },
     {
       "date": "30/07/2026 14:56",
       "user": "Elina",
@@ -21192,6 +21327,7 @@
       "correctionReason": ""
     }
   ],
+  "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T12:56:24.127Z"
+  "updatedAt": "2026-07-30T14:46:45.892Z"
 }

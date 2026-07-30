@@ -13,7 +13,9 @@
         "Bureau"
       ],
       "location": "Bureau",
-      "tags": [],
+      "tags": [
+        "Tulipe"
+      ],
       "notes": "",
       "references": {
         "primary": {
@@ -57,7 +59,7 @@
             "contains": 100
           }
         ],
-        "trackingUnitKey": "custom-unite",
+        "trackingUnitKey": "unite",
         "trackingUnit": "unités",
         "quantityStep": 1,
         "precision": 0,
@@ -17283,6 +17285,12 @@
   ],
   "history": [
     {
+      "date": "30/07/2026 10:12",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 1.2MM."
+    },
+    {
       "date": "29/07/2026 16:13",
       "user": "Caroline",
       "action": "Produit client ajouté",
@@ -21039,5 +21047,5 @@
     }
   ],
   "agentOperations": [],
-  "updatedAt": "2026-07-29T14:13:03.676Z"
+  "updatedAt": "2026-07-30T08:12:02.430Z"
 }

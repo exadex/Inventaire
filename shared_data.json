@@ -13129,12 +13129,12 @@
     },
     {
       "id": "ord-1784705703173",
-      "status": "ordered",
+      "status": "received",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "96-well Magnetic Plate Separator",
       "requestedQuantity": 1,
-      "receivedQuantity": 0,
+      "receivedQuantity": 1,
       "priority": "urgent",
       "notes": "https://www.bio-techne.com/p/luminex-instrument/96-well-magnetic-plate-separator_lu-mag-01\nPour IEB/IFF-001. A l'attente du devis par le commercial, on devrait avoir -20% sur la première commande",
       "requestedBy": "Caroline",
@@ -13143,9 +13143,9 @@
       "orderedBy": "Caroline",
       "orderedAt": "28/07/2026 12:59",
       "orderedAtRaw": "2026-07-28T10:59:05.796Z",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
+      "receivedBy": "Caroline",
+      "receivedAt": "07/08/2026 10:16",
+      "receivedAtRaw": "2026-08-07T08:16:28.982Z",
       "newItemData": {
         "name": "96-well Magnetic Plate Separator"
       }
@@ -17320,6 +17320,12 @@
   ],
   "history": [
     {
+      "date": "07/08/2026 10:16",
+      "user": "Caroline",
+      "action": "Commande reçue",
+      "detail": "Caroline a marqué 96-well Magnetic Plate Separator comme arrivé."
+    },
+    {
       "date": "30/07/2026 16:49",
       "user": "Elina",
       "action": "Item modifié",
@@ -21365,5 +21371,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-07-30T14:49:25.220Z"
+  "updatedAt": "2026-08-07T08:16:28.983Z"
 }

@@ -6001,7 +6001,7 @@
       "notes": "Au 16/07/2026 : 1 ouvert - dont 3 sous-cartons neufs et 1 sous-carton entamé",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "62.476.028",
           "link": "",
           "notes": "La ref a l'air de ne plus exister",
@@ -6012,7 +6012,7 @@
         "secondary": [
           {
             "reference": "62526028",
-            "notes": "starstedt"
+            "notes": "Sarsdest"
           }
         ]
       },
@@ -6055,6 +6055,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": [
           {
             "id": "container-mrp2ra0j-1981727022-2225938014",
@@ -6073,7 +6074,8 @@
             "updatedAt": "2026-07-17T15:10:47.380Z",
             "updatedBy": "caroline",
             "version": 2,
-            "finishedAt": "2026-07-17T15:10:47.380Z"
+            "finishedAt": "2026-07-17T15:10:47.380Z",
+            "unitKey": "custom-sous-carton"
           },
           {
             "id": "container-mrp2s45h-3972346573-4065194562",
@@ -6091,7 +6093,8 @@
             },
             "updatedAt": "2026-07-17T15:11:16.906Z",
             "updatedBy": "caroline",
-            "version": 2
+            "version": 2,
+            "unitKey": "custom-sous-carton"
           }
         ]
       },
@@ -6099,7 +6102,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-web-1783931436295-xpwlf5",
@@ -17693,6 +17697,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:36",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Falcon facs 5ml."
+    },
+    {
       "date": "10/08/2026 13:34",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21936,5 +21946,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:34:33.230Z"
+  "updatedAt": "2026-08-10T11:36:23.575Z"
 }

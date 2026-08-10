@@ -9857,7 +9857,7 @@
       "tags": [
         "Plaque 96"
       ],
-      "notes": "Conditionnement : 20",
+      "notes": "Conditionnement : 20\nApplied Biosystems™ Plaque de réaction optique MicroAmp™ à 96 puits avec code-barres",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -9894,6 +9894,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -20995,6 +20996,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:23",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 96 puits applied OPTIQUE."
+    },
+    {
       "date": "10/08/2026 17:22",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25621,5 +25628,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:22:48.633Z"
+  "updatedAt": "2026-08-10T15:23:11.704Z"
 }

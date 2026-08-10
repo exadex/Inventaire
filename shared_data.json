@@ -1572,7 +1572,7 @@
     },
     {
       "id": "itm-CSV-0034",
-      "name": "T25cm FLACON DE CULTURE ULA VENTILE STERILE x5x2",
+      "name": "Flacon de culture avec capuchon à filtre 25 cm²",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
       "unit": "flacons",
@@ -1584,12 +1584,12 @@
       "tags": [
         "Flask ULA T25"
       ],
-      "notes": "10",
+      "notes": "10\nT25cm FLACON DE CULTURE ULA VENTILE STERILE x5x2",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Dutscher",
           "reference": "330193",
-          "link": "",
+          "link": "https://www.dutscher.com/article/330193",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "120",
           "unitPrice": "12",
@@ -1597,7 +1597,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-08-10T11:24:38.286Z",
+      "createdAt": "10/08/2026 13:24",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "flacon",
+            "singular": "flacon",
+            "plural": "flacons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "flacon",
+        "trackingUnit": "flacons",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0035",
@@ -17472,6 +17503,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:24",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Flacon de culture avec capuchon à filtre 25 cm²."
+    },
+    {
       "date": "10/08/2026 13:19",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21667,5 +21704,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:19:26.351Z"
+  "updatedAt": "2026-08-10T11:24:38.288Z"
 }

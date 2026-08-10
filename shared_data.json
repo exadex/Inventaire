@@ -5924,7 +5924,7 @@
     },
     {
       "id": "itm-web-1783931436295-9a6sx8",
-      "name": "Microtube 2ml",
+      "name": "Microtube 2mL",
       "category": "Culture Cell",
       "quantity": 1.8,
       "unit": "cartons",
@@ -17840,6 +17840,12 @@
       "date": "10/08/2026 13:41",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Microtube 2mL."
+    },
+    {
+      "date": "10/08/2026 13:41",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Microtube 2ml."
     },
     {
@@ -22116,5 +22122,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:41:28.831Z"
+  "updatedAt": "2026-08-10T11:41:37.127Z"
 }

@@ -3734,7 +3734,7 @@
     },
     {
       "id": "itm-web-1783931436294-t9aqbd",
-      "name": "Rosiglithazone BRL 49653",
+      "name": "Rosiglithazone (BRL 49653)",
       "category": "Culture Cell",
       "quantity": 0,
       "unit": "unités",
@@ -3759,7 +3759,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-08-10T11:34:33.229Z",
+      "createdAt": "10/08/2026 13:34",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-s698y8",
@@ -17663,6 +17693,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:34",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Rosiglithazone (BRL 49653)."
+    },
+    {
       "date": "10/08/2026 13:33",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21900,5 +21936,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:33:40.038Z"
+  "updatedAt": "2026-08-10T11:34:33.230Z"
 }

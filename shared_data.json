@@ -5260,7 +5260,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "86.1253.001",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1253.001/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5316,6 +5316,34 @@
             "updatedBy": "Caroline"
           }
         ],
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-7pfrox-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-07-17T14:41:40.818Z",
+            "updatedAt": "2026-07-17T14:41:40.818Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-7pfrox-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-07-17T14:41:40.818Z",
+            "updatedAt": "2026-07-17T14:41:40.818Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mrp1qoh0-2934017318-887767080",
@@ -5333,7 +5361,8 @@
             },
             "updatedAt": "2026-07-17T14:44:02.684Z",
             "updatedBy": "caroline",
-            "version": 3
+            "version": 3,
+            "unitKey": "sachet"
           }
         ]
       },
@@ -5341,7 +5370,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-web-1783931436295-yln0s3",
@@ -17759,6 +17789,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:40",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette 5 ml."
+    },
+    {
       "date": "10/08/2026 13:39",
       "user": "Caroline",
       "action": "Item modifié",
@@ -22020,5 +22056,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:39:56.264Z"
+  "updatedAt": "2026-08-10T11:40:18.807Z"
 }

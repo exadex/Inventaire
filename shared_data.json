@@ -6188,7 +6188,7 @@
       "notes": "500*5000",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Thermo Fischer",
           "reference": "2869314",
           "link": "https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6198,7 +6198,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T09:38:38.517Z",
+      "createdAt": "10/08/2026 11:38",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-osftkk",
@@ -17326,6 +17357,12 @@
       "date": "10/08/2026 11:38",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié cones 1000µL non filtrés."
+    },
+    {
+      "date": "10/08/2026 11:38",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié cones filtrés 1000µL."
     },
     {
@@ -21398,5 +21435,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:38:13.310Z"
+  "updatedAt": "2026-08-10T09:38:38.519Z"
 }

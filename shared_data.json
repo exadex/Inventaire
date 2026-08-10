@@ -12554,7 +12554,7 @@
       "name": "Portoir pour tubes coniques 50 ml SPL - 132,7 x 249,7 x 48,1 mm",
       "category": "Bureautique",
       "quantity": 0,
-      "unit": "mL",
+      "unit": "unités",
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
@@ -12564,9 +12564,9 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
+          "supplier": "Dutscher",
+          "reference": "330133",
+          "link": "https://www.dutscher.com/article/330133",
           "notes": "23,3",
           "price": "23,3",
           "unitPrice": "",
@@ -12574,7 +12574,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-08-10T11:16:17.662Z",
+      "createdAt": "10/08/2026 13:16",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0178",
@@ -17405,6 +17436,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:16",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Portoir pour tubes coniques 50 ml SPL - 132,7 x 249,7 x 48,1 mm."
+    },
+    {
       "date": "10/08/2026 13:14",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -21582,5 +21619,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:14:43.647Z"
+  "updatedAt": "2026-08-10T11:16:17.664Z"
 }

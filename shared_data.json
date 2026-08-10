@@ -5684,7 +5684,7 @@
       "notes": "Conditionnement : 100 plaques/cartons - 20 sachets/carton - 5 plaques/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 16 sachets - 2 fermés",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "83.3924",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3924/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5697,7 +5697,35 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T11:59:51.126Z",
-      "createdAt": "17/07/2026 13:59"
+      "createdAt": "17/07/2026 13:59",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "carton",
+        "trackingUnit": "Carton",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-nfh67s",
@@ -17896,6 +17924,12 @@
       "date": "10/08/2026 13:42",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 96 puits Standard, fond plat."
+    },
+    {
+      "date": "10/08/2026 13:42",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Pipette 1 mL."
     },
     {
@@ -22190,5 +22224,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:42:18.007Z"
+  "updatedAt": "2026-08-10T11:42:31.136Z"
 }

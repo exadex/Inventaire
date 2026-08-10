@@ -6128,7 +6128,7 @@
       "notes": "10x500",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "70.3050",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3050/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6168,7 +6168,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-web-1783931436295-p4bim9",
@@ -17297,6 +17298,12 @@
       "detail": "Caroline a modifié cones 1000µL non filtrés."
     },
     {
+      "date": "10/08/2026 11:34",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié cones 1000µL non filtrés."
+    },
+    {
       "date": "10/08/2026 11:33",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -21354,5 +21361,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:34:27.559Z"
+  "updatedAt": "2026-08-10T09:34:56.486Z"
 }

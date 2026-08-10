@@ -6248,8 +6248,8 @@
       "notes": "Conditionnement : 1000",
       "references": {
         "primary": {
-          "supplier": "starstedt",
-          "reference": "703030",
+          "supplier": "Sarsdest",
+          "reference": "70.3030",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3030/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "45",
@@ -6258,7 +6258,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-08-10T09:44:51.756Z",
+      "createdAt": "10/08/2026 11:44",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-32px27",
@@ -17453,6 +17484,12 @@
     {
       "date": "10/08/2026 11:44",
       "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié cones 200µL non filtrés."
+    },
+    {
+      "date": "10/08/2026 11:44",
+      "user": "Caroline",
       "action": "Item supprimé",
       "detail": "Caroline a supprimé Mycostrip de l'inventaire."
     },
@@ -21562,5 +21599,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:44:18.774Z"
+  "updatedAt": "2026-08-10T09:44:51.758Z"
 }

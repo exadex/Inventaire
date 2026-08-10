@@ -5689,7 +5689,7 @@
       "notes": "Conditionnement : 7",
       "references": {
         "primary": {
-          "supplier": "thermofischer",
+          "supplier": "Thermo Fischer",
           "reference": "174932",
           "link": "https://www.thermofisher.com/order/catalog/product/174932?SKULINK",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5699,7 +5699,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T11:40:39.918Z",
+      "createdAt": "10/08/2026 13:40",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-qpxakb",
@@ -17792,6 +17823,12 @@
       "date": "10/08/2026 13:40",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié plaque 6 puit ULA."
+    },
+    {
+      "date": "10/08/2026 13:40",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Pipette 5 ml."
     },
     {
@@ -22056,5 +22093,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:40:18.807Z"
+  "updatedAt": "2026-08-10T11:40:39.919Z"
 }

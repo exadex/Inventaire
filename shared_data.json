@@ -16513,7 +16513,7 @@
     },
     {
       "id": "itm-CSV-0189",
-      "name": "Pipette tip, 200 µl, transparent, PCR Performance Tested, 1,000 piece(s)/bag",
+      "name": "Cones non-filtrés 200µL",
       "category": "Cones pipettes",
       "quantity": 0,
       "unit": "unités",
@@ -16523,11 +16523,11 @@
         "Laboratoire"
       ],
       "tags": [],
-      "notes": "",
+      "notes": "Pipette tip, 200 µl, transparent, PCR Performance Tested, 1,000 piece(s)/bag",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "Sarstedt",
+          "reference": "70.3030",
           "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3030/",
           "notes": "49",
           "price": "49",
@@ -16544,7 +16544,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-08-10T15:16:06.279Z",
+      "createdAt": "10/08/2026 17:16",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0190",
@@ -21030,6 +21061,12 @@
     }
   ],
   "history": [
+    {
+      "date": "10/08/2026 17:16",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non-filtrés 200µL."
+    },
     {
       "date": "10/08/2026 17:14",
       "user": "Caroline",
@@ -25591,5 +25628,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:14:44.993Z"
+  "updatedAt": "2026-08-10T15:16:06.281Z"
 }

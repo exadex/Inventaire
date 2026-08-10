@@ -2136,13 +2136,18 @@
         "primary": {
           "supplier": "Thermo Fischer",
           "reference": "15349067",
-          "link": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+          "link": "https://www.fishersci.fr/shop/products/3-part-50ml-luer-lock-syringes/15349067#?keyword=%2015349067",
+          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques\nFournisseur : Terumo",
           "price": "30",
           "unitPrice": "0",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
+            "notes": "Lien direct de Terumo"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -2168,6 +2173,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -17466,6 +17472,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:19",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Seringue luer lock 50 mL."
+    },
+    {
       "date": "10/08/2026 13:17",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21655,5 +21667,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:17:11.055Z"
+  "updatedAt": "2026-08-10T11:19:26.351Z"
 }

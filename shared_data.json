@@ -8468,7 +8468,7 @@
         "secondary": [
           {
             "reference": "70.3010",
-            "notes": "Sarstedt. Prix 140,00 €, prix unitaire 0,01 €"
+            "notes": "Sarstedt. Prix 140,00 € prix unitaire 0,01 €"
           }
         ]
       },
@@ -25613,5 +25613,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:21:15.343Z"
+  "updatedAt": "2026-08-10T15:21:31.504Z"
 }

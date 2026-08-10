@@ -7610,7 +7610,7 @@
     },
     {
       "id": "itm-CSV-0104",
-      "name": "MEM nea 100X",
+      "name": "MEM Non-Essential Amino Acids Solution (100X)",
       "category": "Culture Cell",
       "quantity": 6,
       "unit": "unités",
@@ -7622,12 +7622,12 @@
       "tags": [
         "Milieu MEM"
       ],
-      "notes": "",
+      "notes": "MEM nea 100X",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Thermo Fischer",
           "reference": "11140-035",
-          "link": "",
+          "link": "https://www.thermofisher.com/order/catalog/product/fr/en/11140035",
           "notes": "293",
           "price": "293",
           "unitPrice": "29,3",
@@ -7635,7 +7635,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T11:28:43.974Z",
+      "createdAt": "10/08/2026 13:28",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0105",
@@ -17534,6 +17565,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:28",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié MEM Non-Essential Amino Acids Solution (100X)."
+    },
+    {
       "date": "10/08/2026 13:27",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21741,5 +21778,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:27:27.720Z"
+  "updatedAt": "2026-08-10T11:28:43.976Z"
 }

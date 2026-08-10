@@ -7951,12 +7951,7 @@
           "unitPrice": "",
           "leadTime": "rapide"
         },
-        "secondary": [
-          {
-            "reference": "2869323",
-            "notes": "Ref UGAP de Sarstedt"
-          }
-        ]
+        "secondary": []
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -21074,6 +21069,12 @@
       "detail": "Caroline a modifié Cones filtrés 1000µL."
     },
     {
+      "date": "10/08/2026 17:11",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 1000µL."
+    },
+    {
       "date": "10/08/2026 17:08",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -25598,5 +25599,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:11:20.048Z"
+  "updatedAt": "2026-08-10T15:11:44.449Z"
 }

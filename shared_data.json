@@ -4664,35 +4664,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1783931436295-0kh5qd",
-      "name": "Basal medium 2 (500ml)",
-      "category": "Culture Cell",
-      "quantity": 11,
-      "unit": "mL",
-      "minStock": 1,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo"
-      ],
-      "tags": [
-        "Milieu"
-      ],
-      "notes": "Conditionnement : 500ml",
-      "references": {
-        "primary": {
-          "supplier": "Promocell",
-          "reference": "c-22211",
-          "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
-          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
-          "price": "140,00 €",
-          "unitPrice": "0,28",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-web-1783931436295-c9o2wm",
       "name": "PBS",
       "category": "Culture Cell",
@@ -17434,6 +17405,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:14",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Basal medium 2 (500ml) de l'inventaire."
+    },
+    {
       "date": "10/08/2026 13:13",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -21605,5 +21582,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:13:25.231Z"
+  "updatedAt": "2026-08-10T11:14:43.647Z"
 }

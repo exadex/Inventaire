@@ -16509,72 +16509,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0187",
-      "name": "Pipette tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box",
-      "category": "Cones pipettes",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "70.3010.205",
-          "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.205/",
-          "notes": "68,16",
-          "price": "68,16",
-          "unitPrice": "0,0355",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-08-10T09:42:56.325Z",
-      "createdAt": "10/08/2026 11:42",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-5fe79t",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0188",
       "name": "Filter tip, 20 µl, transparent, Biosphere® plus, 96 piece(s)/box",
       "category": "Cones pipettes",
@@ -21131,6 +21065,12 @@
     {
       "date": "10/08/2026 17:08",
       "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Pipette tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box de l'inventaire."
+    },
+    {
+      "date": "10/08/2026 17:08",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Cones filtrés 10µL."
     },
@@ -25647,5 +25587,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:08:13.584Z"
+  "updatedAt": "2026-08-10T15:08:17.472Z"
 }

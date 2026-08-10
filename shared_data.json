@@ -5978,7 +5978,7 @@
       "notes": "Conditionnement : 100ml",
       "references": {
         "primary": {
-          "supplier": "thermofischer",
+          "supplier": "Thermo Fischer",
           "reference": "35050061",
           "link": "https://www.thermofisher.com/order/catalog/product/35050061",
           "notes": "62",
@@ -5996,7 +5996,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T14:35:23.486Z",
+      "createdAt": "10/08/2026 16:35",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-4yhraf",
@@ -21039,6 +21070,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 16:35",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Supplément GlutaMAX™."
+    },
+    {
       "date": "10/08/2026 16:33",
       "user": "Caroline",
       "action": "Contact modifié",
@@ -25533,5 +25570,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T14:33:33.826Z"
+  "updatedAt": "2026-08-10T14:35:23.489Z"
 }

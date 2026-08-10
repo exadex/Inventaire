@@ -6174,7 +6174,7 @@
     },
     {
       "id": "itm-web-1783931436295-p4bim9",
-      "name": "cones 1000µL non filtrés",
+      "name": "cones 1000µL filtrés",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -6190,7 +6190,7 @@
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
-          "reference": "2869314",
+          "reference": "11973466",
           "link": "https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "45",
@@ -17487,6 +17487,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 11:49",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié cones 1000µL filtrés."
+    },
+    {
       "date": "10/08/2026 11:47",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -21622,5 +21628,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:47:45.406Z"
+  "updatedAt": "2026-08-10T09:49:25.207Z"
 }

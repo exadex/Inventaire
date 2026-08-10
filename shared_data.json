@@ -4027,10 +4027,10 @@
     },
     {
       "id": "itm-web-1783931436294-1cbqkj",
-      "name": "Sodium L ascorbate",
+      "name": "(+)-Sodium L-ascorbate",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "g",
+      "unit": "unités",
       "minStock": 0,
       "location": "Culture L1",
       "locations": [
@@ -4042,9 +4042,9 @@
       "notes": "Conditionnement : 100g",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Merck",
           "reference": "A4034-100G",
-          "link": "",
+          "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/a4034?srsltid=AfmBOop4SQlL7AtII3INN332EnW2pppj08zbM_WbTVPhrQB1G8QR5zGj",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
           "price": "",
           "unitPrice": "",
@@ -4052,7 +4052,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-08-10T11:29:44.606Z",
+      "createdAt": "10/08/2026 13:29",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "g",
+            "singular": "g",
+            "plural": "g",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "g",
+        "trackingUnit": "g",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-8t6yex",
@@ -17565,6 +17596,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:29",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié (+)-Sodium L-ascorbate."
+    },
+    {
       "date": "10/08/2026 13:28",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21778,5 +21815,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:28:43.976Z"
+  "updatedAt": "2026-08-10T11:29:44.607Z"
 }

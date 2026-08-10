@@ -6102,7 +6102,7 @@
       "name": "RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES (pour lipolyse)",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "mL",
+      "unit": "unités",
       "minStock": 0,
       "location": "Frigo labo",
       "locations": [
@@ -6114,10 +6114,10 @@
       "notes": "Conditionnement : 500mL",
       "references": {
         "primary": {
-          "supplier": "Thermofisher",
+          "supplier": "Thermo Fischer",
           "reference": "72400021",
-          "link": "",
-          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale · RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES",
+          "link": "https://www.fishersci.fr/shop/products/rpmi-1640-medium-glutamax-supplement-hepes-4/11544526?searchHijack=true&searchTerm=72400021&searchType=RAPID&matchedCatNo=72400021",
+          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale\nRPMI 1640 Medium, GlutaMAX™ Supplement, HEPES",
           "price": "25",
           "unitPrice": "",
           "leadTime": ""
@@ -6132,7 +6132,38 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T14:36:47.614Z",
+      "createdAt": "10/08/2026 16:36",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-ytshf4",
@@ -21070,6 +21101,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 16:36",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES (pour lipolyse)."
+    },
+    {
       "date": "10/08/2026 16:35",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25570,5 +25607,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T14:35:23.489Z"
+  "updatedAt": "2026-08-10T14:36:47.617Z"
 }

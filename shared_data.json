@@ -123,7 +123,7 @@
       "notes": "Transparent, with ventilation cams",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "82.1473.001",
           "link": "https://www.sarstedt.com/en/FRA/c/life-science/microbiology/petri-dishes/p/petri-dishes-round/82.1473.001",
           "notes": "",
@@ -196,7 +196,9 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-CSV-0001",
@@ -2346,7 +2348,7 @@
       "notes": "50",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques · UGAP",
@@ -2356,7 +2358,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-CSV-0057",
@@ -5198,7 +5202,7 @@
       "notes": "Conditionnement : 200",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "86.1171",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques · Produit - Sarstedt",
@@ -5208,7 +5212,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-9b57e9",
@@ -5477,7 +5483,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "86.1254.001",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1254.001/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5558,7 +5564,9 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-cgioxi",
@@ -5577,7 +5585,7 @@
       "notes": "Conditionnement : 50 plaques/cartons\n\nAu 16/07/2026 : 1 ouvert - reste 27 sachets - 2 fermés",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "83.3920",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3920/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5590,7 +5598,9 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T12:02:49.973Z",
-      "createdAt": "17/07/2026 14:02"
+      "createdAt": "17/07/2026 14:02",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-ookfph",
@@ -5609,7 +5619,7 @@
       "notes": "Conditionnement : 50 plaques/cartons \n\nAu 16/07/2026 : 1 ouvert - reste 30 - 1 fermé\n+ 1 carton hybride avec la ref secondaire ~70 plaques",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "83.3921",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5627,7 +5637,9 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T12:05:45.349Z",
-      "createdAt": "17/07/2026 14:05"
+      "createdAt": "17/07/2026 14:05",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-xj2mx3",
@@ -5678,7 +5690,7 @@
       "notes": "Conditionnement : 50 plaques/cartons",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "83.3923",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3923/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -5696,7 +5708,9 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T08:28:12.186Z",
-      "createdAt": "17/07/2026 10:28"
+      "createdAt": "17/07/2026 10:28",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-bcmh1a",
@@ -5922,7 +5936,7 @@
       "notes": "Conditionnement : 5000",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "72,699",
           "link": "",
           "notes": "NB11",
@@ -5935,7 +5949,9 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T12:37:02.504Z",
-      "createdAt": "17/07/2026 14:37"
+      "createdAt": "17/07/2026 14:37",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-wncvj7",
@@ -5954,7 +5970,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "72.690.001",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/microtubes-a-vis-tubes-a-reaction/tubes-a-reaction/produit/72.706/",
           "notes": "NB11",
@@ -6035,7 +6051,9 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-9a6sx8",
@@ -6198,7 +6216,7 @@
       "notes": "Conditionnement : 250",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "759922420",
           "link": "",
           "notes": "74,8",
@@ -6208,7 +6226,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-zbiref",
@@ -6227,7 +6247,7 @@
       "notes": "Conditionnement : 50",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "72379006",
           "link": "",
           "notes": "14",
@@ -6237,7 +6257,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-1dofvn",
@@ -6377,7 +6399,7 @@
       "notes": "Conditionnement : 500",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "352059",
           "link": "",
           "notes": "ugap",
@@ -6387,7 +6409,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-hsn9dp",
@@ -6406,7 +6430,7 @@
       "notes": "500 (50/sac)",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "62554502",
           "link": "https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.554.502/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6416,7 +6440,9 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-cwj79e",
@@ -6435,7 +6461,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "62.547.254",
           "link": "https://www.sarstedt.com/en/products/laboratory/reagent-centrifuge-tubes/tubes/product/62.547.254/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6535,7 +6561,9 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-web-1783931436295-bvqchf",
@@ -7241,7 +7269,7 @@
       "notes": "Conditionnement : 840",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarstedt",
           "reference": "",
           "link": "",
           "notes": "ugap",
@@ -7254,7 +7282,9 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T13:09:30.932Z",
-      "createdAt": "16/07/2026 15:09"
+      "createdAt": "16/07/2026 15:09",
+      "updatedAt": "2026-08-10T11:45:29.112Z",
+      "version": 1
     },
     {
       "id": "itm-CSV-0087",
@@ -17952,6 +17982,178 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Petri dish, 92 x 16 mm · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "web-1784214685893",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · filtre 0,45 · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-CSV-0056",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Pipette 3,5 ml non stérile · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-qump8w",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Pipette 10 ml · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-yln0s3",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Plaque 6 puits, standard, fond plat · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-cgioxi",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Plaque 12 Puits · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-ookfph",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Plaque 48 puits fond plats standart · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-tm3qnv",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Microtube 0,5ml · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-k9m0fn",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Microtube 1,5 ml · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-wncvj7",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · contenant 120ml (bouteilles bouchon jaune) · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-n1d52k",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Cryotubes 1,8 ml · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-zbiref",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · falcon fac 15 ml · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-xpwlf5",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Falcon 15 · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-hsn9dp",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · Falcon 50 · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "Modification massive · T12 · Fournisseur : starstedt → Sarstedt",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "itemId": "itm-CSV-0086",
+      "field": "supplier",
+      "before": "starstedt",
+      "after": "Sarstedt"
+    },
+    {
+      "date": "10/08/2026 13:45",
+      "user": "Caroline",
+      "action": "Modification massive par Agent",
+      "detail": "15 modifications appliquées · Modification massive",
+      "sessionId": "physical-1786362247400-s2qbutz"
+    },
+    {
       "date": "10/08/2026 13:43",
       "user": "Caroline",
       "action": "Item modifié",
@@ -22260,6 +22462,13 @@
     }
   ],
   "stockOperations": [],
-  "agentOperations": [],
-  "updatedAt": "2026-08-10T11:43:23.775Z"
+  "agentOperations": [
+    {
+      "operationId": "bulk-session-physical-1786362247400-s2qbutz",
+      "sessionId": "physical-1786362247400-s2qbutz",
+      "applied": 15,
+      "at": "2026-08-10T11:45:29.112Z"
+    }
+  ],
+  "updatedAt": "2026-08-10T11:45:29.112Z"
 }

@@ -4830,25 +4830,25 @@
     },
     {
       "id": "itm-web-1783931436295-56643c",
-      "name": "SupplementPack: Contains all media supplements as individual vials",
+      "name": "SupplementPack containing all media supplements as individual vials",
       "category": "Culture Cell",
       "quantity": 6,
       "unit": "unités",
       "minStock": 1,
-      "location": "Frigo labo",
+      "location": "Laboratoire",
       "locations": [
-        "Frigo labo",
-        "Laboratoire"
+        "Laboratoire",
+        "Frigo labo"
       ],
       "tags": [
         "Milieu EGM"
       ],
-      "notes": "",
+      "notes": "1 Pack for 500 ml",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "c-39211",
-          "link": "",
+          "supplier": "Merck",
+          "reference": "C-39211",
+          "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/c39211?srsltid=AfmBOor3TjNv9VDRN5sWquj6s4RZeAKVEZXC-1AwN8gB5diWVKb9qYD1",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
           "price": "234,00 €",
           "unitPrice": "23,4",
@@ -4856,7 +4856,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-08-10T11:39:56.262Z",
+      "createdAt": "10/08/2026 13:39",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-c9o2wm",
@@ -17728,6 +17759,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:39",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié SupplementPack containing all media supplements as individual vials."
+    },
+    {
       "date": "10/08/2026 13:38",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21983,5 +22020,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:38:02.944Z"
+  "updatedAt": "2026-08-10T11:39:56.264Z"
 }

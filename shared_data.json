@@ -8320,7 +8320,7 @@
       "tags": [
         "Pointes (référence ok)"
       ],
-      "notes": "Conditionnement : 1920",
+      "notes": "Conditionnement : 1920\nFilter tip, 20 µl, transparent, Biosphere® plus, 96 piece(s)/box",
       "references": {
         "primary": {
           "supplier": "Sarsdest",
@@ -8335,7 +8335,6 @@
       },
       "source": "seed",
       "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-07-28T13:01:02.620Z",
       "createdAt": "28/07/2026 15:01",
       "stockTracking": {
@@ -8357,6 +8356,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -21028,6 +21028,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:18",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié cones filtrés 20uL."
+    },
+    {
       "date": "10/08/2026 17:17",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -25612,5 +25618,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:17:19.864Z"
+  "updatedAt": "2026-08-10T15:18:22.720Z"
 }

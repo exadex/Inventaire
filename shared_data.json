@@ -10769,33 +10769,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-web-1783931436295-pybdqi",
-      "name": "Agarase from pseudomonas atlantica Sigma",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306",
-          "notes": "141",
-          "price": "141",
-          "unitPrice": "0,28/ml",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-web-1783931436295-evflpy",
       "name": "Mouse TNFa antibody 100 microg",
       "category": "Microscopie",
@@ -17516,6 +17489,12 @@
     {
       "date": "10/08/2026 11:47",
       "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Agarase from pseudomonas atlantica Sigma de l'inventaire."
+    },
+    {
+      "date": "10/08/2026 11:47",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Agarase from pseudomonas atlantica Sigma."
     },
@@ -21643,5 +21622,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:47:12.382Z"
+  "updatedAt": "2026-08-10T09:47:45.406Z"
 }

@@ -10789,11 +10789,11 @@
         "Laboratoire"
       ],
       "tags": [],
-      "notes": "",
+      "notes": "Applied Biosystems™ Fast Plaque de réaction optique MicroAmp™ à 96 puits, 0,1 ml",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "Thermo Fischer",
+          "reference": "10670986",
           "link": "https://www.fishersci.fr/shop/products/applied-biosystems-microamp-fast-optical-96-well-reaction-plate-0-1ml-1/10670986?searchHijack=true&searchTerm=4346907&searchType=RAPID&matchedCatNo=4346907",
           "notes": "65",
           "price": "65",
@@ -10810,7 +10810,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T15:22:48.631Z",
+      "createdAt": "10/08/2026 17:22",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-f1weix",
@@ -20964,6 +20995,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:22",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque optique 96 puits lecture rapide."
+    },
+    {
       "date": "10/08/2026 17:21",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -25584,5 +25621,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:21:37.217Z"
+  "updatedAt": "2026-08-10T15:22:48.633Z"
 }

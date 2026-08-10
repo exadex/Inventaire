@@ -6856,7 +6856,12 @@
           "unitPrice": "7,44",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "2582557",
+            "notes": "Ref UGAP de Sarsdest"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "backup",
@@ -6882,6 +6887,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -17487,6 +17493,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:10",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié T25."
+    },
+    {
       "date": "10/08/2026 11:49",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21628,5 +21640,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:49:25.207Z"
+  "updatedAt": "2026-08-10T11:10:43.736Z"
 }

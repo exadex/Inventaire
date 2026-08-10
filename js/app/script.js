@@ -62,6 +62,10 @@ let activeView = "inventory";
 let currentName = "Caroline";
 let alertsExpanded = false;
 let selectedLocation = null;
+let selectedRoomId = null;
+let selectedLocationId = null;
+let selectedSublocationId = null;
+let locationScopeMode = "direct";
 let locationDetailSearch = "";
 let locationDetailStatus = "all";
 let locationDetailFacet = "all";
@@ -153,10 +157,8 @@ let deleteConfirmationTrigger = null;
 let deleteConfirmationPending = false;
 const secondaryReferencesList = document.querySelector("#secondaryReferencesList");
 const addSecondaryReferenceBtn = document.querySelector("#addSecondaryReferenceBtn");
-const locationDropdown = document.querySelector("#locationDropdown");
-const locationTrigger = document.querySelector("#locationTrigger");
-const locationTriggerText = document.querySelector("#locationTriggerText");
-const locationMenu = document.querySelector("#locationMenu");
+const placementsList = document.querySelector("#placementsList");
+const placementsError = document.querySelector("#placementsError");
 const locationSearchInput = document.querySelector("#locationSearchInput");
 const locationSortSelect = document.querySelector("#locationSortSelect");
 const historySearchInput = document.querySelector("#historySearchInput");
@@ -481,6 +483,10 @@ document.querySelectorAll(".nav-item").forEach((button) => {
     selectedSampleId = null;
     selectedExperimentId = null;
     selectedLocation = null;
+    selectedRoomId = null;
+    selectedLocationId = null;
+    selectedSublocationId = null;
+    locationScopeMode = "direct";
     selectedContactId = null;
     itemReturnContext = { view: activeView, experimentId: null };
 
@@ -525,10 +531,8 @@ document.querySelector("#cancelReceiveInventoryBtn").addEventListener("click", (
 document.querySelector("#contactForm")?.addEventListener("submit", saveContact);
 document.querySelector("#closeContactDialogBtn")?.addEventListener("click",()=>document.querySelector("#contactDialog").close());
 document.querySelector("#cancelContactBtn")?.addEventListener("click",()=>document.querySelector("#contactDialog").close());
-fields.primarySupplier?.addEventListener("input",()=>{
-  const key=normalizeCompanyName(fields.primarySupplier.value),contact=supplierContacts.find(row=>contactNames(row).includes(key));
-  fields.primarySupplierContactId.value=contact?.id||"";
-});
+fields.primarySupplier?.addEventListener("input",syncPrimarySupplierContact);
+fields.primarySupplier?.addEventListener("blur",syncPrimarySupplierContact);
 
 function load(key, fallback) {
   try {
@@ -601,7 +605,8 @@ function createSharedState(rawState = null, options = {}) {
   const bootstrap = includeBootstrap ? createBootstrapSharedState() : null;
 
   return {
-    version: 1,
+    version: 2,
+    locationCatalog: normalizeLocationCatalog(source.locationCatalog || bootstrap?.locationCatalog),
     inventoryItems: migrateItems(
       Array.isArray(source.inventoryItems)
         ? source.inventoryItems
@@ -644,6 +649,10 @@ function hasSharedDataPayload(data) {
     data.history
     ,data.stockMovements
   ].some(value => Array.isArray(value)) || Boolean(data.updatedAt);
+}
+
+function needsHierarchyMigration(data) {
+  return Number(data?.version || 0) < 2 || !data?.locationCatalog;
 }
 
 function applySharedState(incomingState) {
@@ -699,6 +708,10 @@ function buildAgentBulkMutation(sourceState, request) {
     const item = state.inventoryItems.find(row => row.id === proposal.itemId);
     const before = window.ExadexAgentsCore.clone(window.ExadexAgentsCore.bulkValue(item, proposal.field));
     window.ExadexAgentsCore.applyBulkValue(item, proposal.field, proposal.afterValue);
+    if (proposal.field === "supplier") {
+      if (proposal.supplierContactId) item.supplierContactId = proposal.supplierContactId;
+      else delete item.supplierContactId;
+    }
     item.updatedAt = now;
     item.version = Number(item.version || 0) + 1;
     entries.push({
@@ -782,6 +795,7 @@ document.addEventListener("visibilitychange", () => {
 setInterval(refreshSharedStateFromGithub, 30000);
 
 function syncRuntimeStateFromShared() {
+  sharedState.locationCatalog = normalizeLocationCatalog(sharedState.locationCatalog);
   sharedState.inventoryItems = migrateItems(sharedState.inventoryItems);
   sharedState.experiments = migrateExperiments(sharedState.experiments);
   sharedState.orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
@@ -804,6 +818,7 @@ function syncRuntimeStateFromShared() {
 }
 
 function syncSharedStateFromRuntime() {
+  sharedState.locationCatalog = normalizeLocationCatalog(sharedState.locationCatalog);
   sharedState.inventoryItems = migrateItems(items);
   sharedState.experiments = migrateExperiments(experiments);
   sharedState.orders = Array.isArray(orders) ? orders : [];
@@ -834,12 +849,12 @@ async function hydrateSharedData() {
     sharedDataRemoteReady = true;
 
     if (hasSharedDataPayload(result.data)) {
-      const contactsBefore=Array.isArray(result.data.supplierContacts)?result.data.supplierContacts:[],needsContactsMigration=INITIAL_SUPPLIER_CONTACTS.some(seed=>!contactsBefore.some(contact=>normalizeCompanyName(contact?.company)===normalizeCompanyName(seed.company)));
+      const contactsBefore=Array.isArray(result.data.supplierContacts)?result.data.supplierContacts:[],needsContactsMigration=INITIAL_SUPPLIER_CONTACTS.some(seed=>!contactsBefore.some(contact=>normalizeCompanyName(contact?.company)===normalizeCompanyName(seed.company))),hierarchyMigrationRequired=needsHierarchyMigration(result.data);
       sharedState = createSharedState(result.data, { includeBootstrap: false });
       syncRuntimeStateFromShared();
       cacheSharedState();
       sharedDataLastError = "";
-      if(needsContactsMigration&&result.mode==="github-write")scheduleSharedSave();
+      if((needsContactsMigration||hierarchyMigrationRequired)&&result.mode==="github-write")scheduleSharedSave();
 
       if (!app.classList.contains("hidden")) {
         render();
@@ -2343,7 +2358,7 @@ function syncAppViewMode() {
   app.classList.toggle("orders-mode", activeView === "orders");
   app.classList.toggle("contacts-mode", activeView === "contacts");
   app.classList.toggle("agents-mode", activeView === "agents");
-  app.classList.toggle("location-detail-mode", activeView === "locations" && Boolean(selectedLocation));
+  app.classList.remove("location-detail-mode");
   app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }
 
@@ -3329,8 +3344,6 @@ function renderLocations() {
   const locationGrid = document.querySelector("#locationGrid");
   if (!locationGrid) return;
 
-  renderLocationMetrics(groups);
-
   if (selectedLocation) {
     syncAppViewMode();
     renderLocationDetail(locationGrid, groups[selectedLocation] || []);
@@ -3747,36 +3760,6 @@ function buildLocationGroups() {
   });
 
   return groups;
-}
-
-function renderLocationMetrics(groups) {
-  const metricsContainer = document.querySelector("#locationMetrics");
-  if (!metricsContainer) return;
-
-  const zones = inventoryLocations.length;
-  const localizedReferences = inventoryLocations.reduce(
-    (total, place) => total + (groups[place]?.length || 0),
-    0
-  );
-  const busiest = inventoryLocations
-    .map(place => ({ place, count: groups[place]?.length || 0 }))
-    .sort((a, b) => b.count - a.count || a.place.localeCompare(b.place, "fr"))[0];
-
-  const metrics = [
-    ["📍", "Zones de stockage", zones],
-    ["📦", "Références localisées", localizedReferences],
-    ["🏷️", "Zone la plus remplie", busiest ? `${busiest.place} · ${busiest.count}` : ""]
-  ].filter(([, , value]) => value !== "");
-
-  metricsContainer.innerHTML = metrics.map(([icon, label, value]) => `
-    <article class="client-kpi-card">
-      <span class="client-kpi-icon" aria-hidden="true">${icon}</span>
-      <div>
-        <span>${escapeHtml(label)}</span>
-        <strong>${escapeHtml(value)}</strong>
-      </div>
-    </article>
-  `).join("");
 }
 
 function compareLocationGroups(a, b, sort = "name") {
@@ -4607,20 +4590,10 @@ function normalizeMultilineText(value) {
   return String(value ?? "").replace(/\r\n?/g, "\n");
 }
 
-function getSelectedLocations() {
-  return Array.from(
-    locationMenu.querySelectorAll('input[type="checkbox"]:checked')
-  ).map(input => input.value);
-}
-
-function setSelectedLocations(values = []) {
-  locationMenu.querySelectorAll('input[type="checkbox"]').forEach(input => {
-    input.checked = values.includes(input.value);
-  });
-  syncLocationField();
-}
-
 function getItemLocations(item) {
+  if (Array.isArray(item.placements) && item.placements.length) {
+    return Array.from(new Set(item.placements.map(placementDisplayName).filter(Boolean)));
+  }
   if (Array.isArray(item.locations)) return item.locations;
   if (item.location) return [item.location];
   return [];
@@ -4631,40 +4604,91 @@ function formatLocations(item) {
   return locations.length ? locations.join(", ") : "Sans localisation";
 }
 
-function syncLocationField() {
-  const selected = getSelectedLocations();
-  fields.location.value = selected.join("|");
-  locationTriggerText.textContent = selected.length
-    ? selected.join(", ")
-    : "Sélectionner une ou plusieurs localisations";
+function newStableId(prefix) {
+  return `${prefix}-${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`}`;
 }
 
-function renderLocationOptions() {
-  locationMenu.innerHTML = inventoryLocations.map(location => `
-    <label class="location-option">
-      <input type="checkbox" value="${escapeHtml(location)}" />
-      <span>${escapeHtml(location)}</span>
-    </label>
-  `).join("");
+function placementDisplayName(placement) {
+  const catalog = normalizeLocationCatalog(sharedState?.locationCatalog);
+  const sublocation = catalog.sublocations.find(row => row.id === placement?.sublocationId);
+  const location = catalog.locations.find(row => row.id === placement?.locationId);
+  const room = FIXED_INVENTORY_ROOMS.find(row => row.id === placement?.roomId);
+  return sublocation?.name || location?.name || room?.name || placement?.legacyValue || "";
+}
 
-  locationMenu.querySelectorAll('input[type="checkbox"]').forEach(input => {
-    input.addEventListener("change", syncLocationField);
+function readPlacementEditor() {
+  return [...(placementsList?.querySelectorAll("[data-placement-row]") || [])].map(row => ({
+    id: row.dataset.placementId || newStableId("placement"),
+    roomId: row.querySelector("[data-placement-room]")?.value || null,
+    locationId: row.querySelector("[data-placement-location]")?.value || null,
+    sublocationId: row.querySelector("[data-placement-sublocation]")?.value || null
+  }));
+}
+
+// Compatibilité avec les écrans de suivi de stock encore fondés sur un libellé plat.
+function getSelectedLocations() {
+  return readPlacementEditor().map(placementDisplayName).filter(Boolean);
+}
+
+function validatePlacements(placements, options = {}) {
+  const catalog = normalizeLocationCatalog(sharedState.locationCatalog);
+  const rows = [...(placementsList?.querySelectorAll("[data-placement-row]") || [])];
+  rows.forEach(row => { const error=row.querySelector("[data-placement-row-error]"); if(error){error.textContent="";error.classList.add("hidden");} });
+  let hasEmpty = false, invalid = false;
+  placements.forEach((placement,index) => {
+    const empty = !placement.roomId && !placement.locationId && !placement.sublocationId;
+    if (empty) {
+      hasEmpty = true;
+      if (options.onSubmit) { const error=rows[index]?.querySelector("[data-placement-row-error]"); if(error){error.textContent="Veuillez sélectionner une salle ou supprimer cet emplacement vide.";error.classList.remove("hidden");} }
+      return;
+    }
+    const location = placement.locationId && catalog.locations.find(row => row.id === placement.locationId);
+    const sublocation = placement.sublocationId && catalog.sublocations.find(row => row.id === placement.sublocationId);
+    invalid = invalid || (!placement.roomId && Boolean(placement.locationId || placement.sublocationId)) ||
+      (placement.roomId && !FIXED_INVENTORY_ROOMS.some(row => row.id === placement.roomId)) ||
+      (placement.locationId && (!location || location.roomId !== placement.roomId)) ||
+      (placement.sublocationId && (!placement.locationId || !sublocation || sublocation.locationId !== placement.locationId));
   });
-
-  syncLocationField();
+  const keys = placements.filter(row => row.roomId || row.locationId || row.sublocationId).map(row => `${row.roomId}|${row.locationId || ""}|${row.sublocationId || ""}`);
+  const message = invalid ? "Un emplacement contient une hiérarchie incohérente." : new Set(keys).size !== keys.length ? "Un même chemin ne peut pas être ajouté deux fois." : "";
+  placementsError?.classList.toggle("hidden", !message);
+  if (placementsError) placementsError.textContent = message;
+  fields.location.setCustomValidity(message);
+  return !message && !(options.onSubmit && hasEmpty);
 }
 
-locationTrigger.addEventListener("click", () => {
-  const isHidden = locationMenu.classList.contains("hidden");
-  locationMenu.classList.toggle("hidden", !isHidden);
-  locationTrigger.setAttribute("aria-expanded", String(isHidden));
-});
+function renderPlacementEditor(placements = readPlacementEditor()) {
+  if (!placementsList) return;
+  const catalog = normalizeLocationCatalog(sharedState.locationCatalog);
+  const safePlacements = placements.length ? placements : [{ id: newStableId("placement"), roomId: "", locationId: null, sublocationId: null }];
+  placementsList.innerHTML = safePlacements.map((placement, index) => {
+    const roomLocations = catalog.locations.filter(row => row.roomId === placement.roomId);
+    const sublocations = catalog.sublocations.filter(row => row.locationId === placement.locationId);
+    return `<section class="placement-row" data-placement-row data-placement-id="${escapeHtml(placement.id)}">
+      <div class="placement-row-title"><strong>Emplacement ${index + 1}</strong><button class="icon-btn" type="button" data-remove-placement aria-label="Retirer cet emplacement" ${safePlacements.length === 1 ? "disabled" : ""}>×</button></div>
+      <label>Salle<select data-placement-room required><option value="">Sélectionner une salle</option>${FIXED_INVENTORY_ROOMS.map(room => `<option value="${room.id}" ${room.id === placement.roomId ? "selected" : ""}>${escapeHtml(room.name)}</option>`).join("")}</select></label>
+      ${roomLocations.length ? `<label>Localisation<select data-placement-location><option value="">Aucune — directement dans la salle</option>${roomLocations.map(location => `<option value="${location.id}" ${location.id === placement.locationId ? "selected" : ""}>${escapeHtml(location.name)}</option>`).join("")}</select></label>` : ""}
+      ${sublocations.length ? `<label>Sous-localisation<select data-placement-sublocation><option value="">Aucune — directement dans la localisation</option>${sublocations.map(sub => `<option value="${sub.id}" ${sub.id === placement.sublocationId ? "selected" : ""}>${escapeHtml(sub.name)}</option>`).join("")}</select></label>` : ""}
+      <small class="field-validation-message hidden placement-row-error" data-placement-row-error aria-live="polite"></small>
+    </section>`;
+  }).join("");
+  fields.location.value = safePlacements.every(row => row.roomId) ? "valid" : "";
+  placementsList.querySelectorAll("[data-placement-room]").forEach((select, index) => select.addEventListener("change", () => {
+    const next = readPlacementEditor(); next[index].roomId = select.value; next[index].locationId = null; next[index].sublocationId = null; renderPlacementEditor(next);
+  }));
+  placementsList.querySelectorAll("[data-placement-location]").forEach(select => select.addEventListener("change", () => {
+    const row = select.closest("[data-placement-row]"), next = readPlacementEditor(), index = [...placementsList.children].indexOf(row); next[index].locationId = select.value || null; next[index].sublocationId = null; renderPlacementEditor(next);
+  }));
+  placementsList.querySelectorAll("[data-placement-sublocation]").forEach(select => select.addEventListener("change", () => validatePlacements(readPlacementEditor())));
+  placementsList.querySelectorAll("[data-remove-placement]").forEach((button, index) => button.addEventListener("click", () => { const next = readPlacementEditor(); next.splice(index, 1); renderPlacementEditor(next); }));
+  validatePlacements(readPlacementEditor());
+}
 
-document.addEventListener("click", event => {
-  if (!locationDropdown.contains(event.target)) {
-    locationMenu.classList.add("hidden");
-    locationTrigger.setAttribute("aria-expanded", "false");
-  }
+function renderLocationOptions() { renderPlacementEditor([]); }
+document.querySelector("#addPlacementBtn")?.addEventListener("click", event => {
+  event.currentTarget.disabled = true;
+  const next = readPlacementEditor(); next.push({ id: newStableId("placement"), roomId: "", locationId: null, sublocationId: null }); renderPlacementEditor(next);
+  event.currentTarget.disabled = false;
 });
 
 function selectItem(id) {
@@ -5123,6 +5147,17 @@ function requestSampleDeletionFromModal() {
   });
 }
 
+function preparePlacementsForTarget(existingPlacements, targetPlacement) {
+  const placements = (Array.isArray(existingPlacements) ? existingPlacements : []).map(row => ({ ...row }));
+  if (!targetPlacement) return placements;
+  const exact = placements.some(row => row.roomId === targetPlacement.roomId && row.locationId === targetPlacement.locationId && row.sublocationId === targetPlacement.sublocationId);
+  if (exact) return placements;
+  const directIndex = placements.findIndex(row => row.roomId === targetPlacement.roomId && !row.locationId && !row.sublocationId);
+  if (directIndex >= 0) placements[directIndex] = { ...placements[directIndex], roomId: targetPlacement.roomId, locationId: targetPlacement.locationId, sublocationId: targetPlacement.sublocationId };
+  else placements.push({ ...targetPlacement, id: targetPlacement.id || newStableId("placement") });
+  return placements;
+}
+
 function openModal(id, options = {}) {
   const item = items.find(entry => entry.id === id);
   const prefill = options.prefill || {};
@@ -5136,11 +5171,14 @@ function openModal(id, options = {}) {
   fields.unit.value = item?.unit || prefill.unit || "";
   fields.minStock.value = item?.minStock ?? prefill.minStock ?? "";
   setUsageProfile(item?.usageProfile || "normal");
-  setSelectedLocations(item ? getItemLocations(item) : (prefill.locations || []));
+  const prefillPlacements = prefill.placements || (prefill.roomId ? [{ id: newStableId("placement"), roomId: prefill.roomId, locationId: prefill.locationId || null, sublocationId: prefill.sublocationId || null }] : []);
+  let modalPlacements = item?.placements ? item.placements.map(row=>({...row})) : prefillPlacements;
+  modalPlacements = preparePlacementsForTarget(modalPlacements, options.targetPlacement || options.appendPlacement);
+  renderPlacementEditor(modalPlacements);
   fields.tags.value = item?.tags?.join(", ") || prefill.tags?.join(", ") || "";
   fields.notes.value = item?.notes || prefill.notes || "";
   fields.primarySupplier.value = references.primary.supplier || "";
-  fields.primarySupplierContactId.value = findSupplierContactForItem(item)?.id || "";
+  fields.primarySupplierContactId.value = resolveExactSupplierContact(fields.primarySupplier.value,item?.supplierContactId)?.id || "";
   hydrateSupplierContactOptions();
   fields.primaryReference.value = references.primary.reference || "";
   fields.primaryLink.value = references.primary.link || "";
@@ -5156,9 +5194,10 @@ function openModal(id, options = {}) {
 function saveItem() {
   syncTrackingConfigVisibility();
   if (!validateTrackingUnitSelection()) return;
+  const placements = readPlacementEditor();
+  if (!validatePlacements(placements, { onSubmit: true })) return;
   if (!form.reportValidity()) return;
-
-  const selectedLocations = getSelectedLocations();
+  syncPrimarySupplierContact();
   const existingId = fields.itemId.value.trim();
 
   const existingItem = existingId
@@ -5174,8 +5213,9 @@ function saveItem() {
     unit: fields.unit.value.trim(),
     minStock: parseStockMinimum(fields.minStock.value),
     usageProfile: normalizeUsageProfile(fields.usageProfile.value),
-    locations: selectedLocations,
-    location: selectedLocations[0] || "",
+    placements,
+    locations: Array.from(new Set(placements.map(placementDisplayName).filter(Boolean))),
+    location: placementDisplayName(placements[0]) || "",
     tags: fields.tags.value.split(",").map(tag => tag.trim()).filter(Boolean),
     notes: normalizeMultilineText(fields.notes.value),
     references: getItemReferences(),
@@ -7417,6 +7457,21 @@ function migrateSupplierContacts(list, options = {}) {
 }
 
 function contactNames(contact){return[contact.company,...(contact.aliases||[])].map(normalizeCompanyName).filter(Boolean);}
+function exactSupplierContacts(value,contacts=supplierContacts){return contacts.filter(contact=>contact.company===String(value??""));}
+function resolveExactSupplierContact(value,preferredId="",contacts=supplierContacts){
+  const matches=exactSupplierContacts(value,contacts);
+  if(matches.length!==1)return null;
+  if(preferredId&&matches[0].id!==preferredId)return null;
+  return matches[0];
+}
+function syncPrimarySupplierContact(){
+  if(!fields.primarySupplier||!fields.primarySupplierContactId)return null;
+  const value=fields.primarySupplier.value,currentId=fields.primarySupplierContactId.value,current=supplierContacts.find(contact=>contact.id===currentId);
+  if(current?.company===value)return current;
+  const exact=resolveExactSupplierContact(value);
+  fields.primarySupplierContactId.value=exact?.id||"";
+  return exact;
+}
 function getItemSupplier(item){return String(item?.references?.primary?.supplier||item?.supplier||item?.fournisseur||"").trim();}
 function findSupplierContactForItem(item){
   if(item?.supplierContactId){const explicit=supplierContacts.find(contact=>contact.id===item.supplierContactId);if(explicit)return explicit;}
@@ -7610,6 +7665,8 @@ window.ExadexContacts={
   findForItem:item=>findSupplierContactForItem(item),
   getAll:()=>JSON.parse(JSON.stringify(supplierContacts)),
   getAssociatedItems:id=>{const contact=supplierContacts.find(row=>row.id===id);return contact?JSON.parse(JSON.stringify(getContactItems(contact))):[];},
+  exactMatches:(value,contacts=supplierContacts)=>JSON.parse(JSON.stringify(exactSupplierContacts(value,contacts))),
+  resolveExact:(value,contacts=supplierContacts)=>JSON.parse(JSON.stringify(resolveExactSupplierContact(value,"",contacts))),
   open:openSupplierContact
 };
 
@@ -7626,6 +7683,54 @@ function createSafeItemId(prefix = "itm-web") {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
+function normalizeLocationCatalog(rawCatalog) {
+  const raw = rawCatalog && typeof rawCatalog === "object" ? rawCatalog : {};
+  const locations = new Map(INITIAL_INVENTORY_LOCATION_CATALOG.locations.map(row => [row.id, { ...row }]));
+  (Array.isArray(raw.locations) ? raw.locations : []).forEach(row => {
+    if (!row?.id || !FIXED_INVENTORY_ROOMS.some(room => room.id === row.roomId)) return;
+    locations.set(row.id, { id: String(row.id), roomId: String(row.roomId), name: String(row.name || "").trim(), icon: row.icon || "📍" });
+  });
+  const sublocations = new Map();
+  (Array.isArray(raw.sublocations) ? raw.sublocations : []).forEach(row => {
+    if (!row?.id || !locations.has(row.locationId)) return;
+    sublocations.set(row.id, { id: String(row.id), locationId: String(row.locationId), name: String(row.name || "").trim() });
+  });
+  return { locations: [...locations.values()].filter(row => row.name), sublocations: [...sublocations.values()].filter(row => row.name) };
+}
+
+function stablePlacementId(itemId, value, index) {
+  let hash = 2166136261;
+  for (const char of `${itemId}|${value}|${index}`) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+  return `placement-legacy-${(hash >>> 0).toString(36)}`;
+}
+
+function migrateItemPlacements(item, itemId) {
+  if (Array.isArray(item?.placements) && item.placements.length) {
+    const seen = new Set();
+    return item.placements.map((row, index) => ({
+      id: String(row?.id || stablePlacementId(itemId, `${row?.roomId}|${row?.locationId}|${row?.sublocationId}`, index)),
+      roomId: row?.roomId || null,
+      locationId: row?.locationId || null,
+      sublocationId: row?.sublocationId || null,
+      ...(row?.legacyValue ? { legacyValue: String(row.legacyValue) } : {})
+    })).filter(row => {
+      const key = `${row.roomId}|${row.locationId}|${row.sublocationId}|${row.legacyValue || ""}`;
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+  }
+  const values = Array.from(new Set([...(Array.isArray(item?.locations) ? item.locations : []), item?.location].map(value => String(value || "").trim()).filter(Boolean)));
+  return values.map((value, index) => {
+    const canonical = legacyLocationMap[value] || value;
+    const mapped = LEGACY_PLACEMENT_MAP[canonical];
+    if (!mapped) {
+      console.warn(`[Migration localisations] Valeur inconnue conservée pour l'item ${itemId}:`, value);
+      return { id: stablePlacementId(itemId, value, index), roomId: null, locationId: null, sublocationId: null, legacyValue: value };
+    }
+    return { id: stablePlacementId(itemId, canonical, index), roomId: mapped[0], locationId: mapped[1], sublocationId: null };
+  });
+}
+
 function migrateItems(itemList) {
   const safeList = Array.isArray(itemList) ? itemList : [];
   const seenIds = new Set();
@@ -7640,15 +7745,22 @@ function migrateItems(itemList) {
 
     seenIds.add(id);
 
+    const placements = migrateItemPlacements(item, id);
+    const previousNames = Array.isArray(item?.locations) ? item.locations : [item?.location].filter(Boolean);
+    const compatibilityNames = placements.map((placement, placementIndex) => {
+      const location = INITIAL_INVENTORY_LOCATION_CATALOG.locations.find(row => row.id === placement.locationId);
+      const room = FIXED_INVENTORY_ROOMS.find(row => row.id === placement.roomId);
+      return location?.name || room?.name || placement.legacyValue || previousNames[placementIndex] || "";
+    }).filter(Boolean);
     return {
       ...itemWithoutMaxStock,
       id,
       category: inventoryCategories.includes(item?.category)
         ? item.category
         : legacyCategoryMap[item?.category] || inventoryCategories[0],
-      location: inventoryLocations.includes(item?.location)
-        ? item.location
-        : legacyLocationMap[item?.location] || inventoryLocations[0],
+      placements,
+      locations: compatibilityNames,
+      location: compatibilityNames[0] || "",
       tags: Array.isArray(item?.tags) ? item.tags : [],
       references: normalizeReferences(item?.references)
     };
@@ -8250,3 +8362,148 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
+// Navigation hiérarchique des emplacements (salle → localisation → sous-localisation).
+function hierarchyCatalog() { return normalizeLocationCatalog(sharedState.locationCatalog); }
+function hierarchyRoom(id) { return FIXED_INVENTORY_ROOMS.find(row => row.id === id); }
+function hierarchyLocation(id) { return hierarchyCatalog().locations.find(row => row.id === id); }
+function hierarchySublocation(id) { return hierarchyCatalog().sublocations.find(row => row.id === id); }
+function uniqueEntryCount(entries) { return new Set(entries.map(entry => `${entry.kind}:${entry.record.id}`)).size; }
+function inventoryPlacementEntries(predicate) {
+  return items.flatMap(item => (item.placements || []).filter(predicate).map(placement => ({ kind: "inventory", record: item, placement })));
+}
+function roomEntries(roomId, directOnly = false) { return inventoryPlacementEntries(row => row.roomId === roomId && (!directOnly || (!row.locationId && !row.sublocationId))); }
+function locationEntries(locationId, directOnly = false) { return inventoryPlacementEntries(row => row.locationId === locationId && (!directOnly || !row.sublocationId)); }
+function sublocationEntries(sublocationId) { return inventoryPlacementEntries(row => row.sublocationId === sublocationId); }
+function hierarchyPreview(entries) {
+  const unique = [], seen = new Set();
+  entries.forEach(entry => { if (!seen.has(entry.record.id)) { seen.add(entry.record.id); unique.push(entry.record.name); } });
+  const preview = unique.slice(0, 3), remaining = Math.max(0, unique.length - preview.length);
+  return preview.length ? `${preview.map(name => `<span>${escapeHtml(name)}</span>`).join("")}${remaining ? `<span class="location-more-count">+ ${formatLocationCount(remaining,"autre référence","autres références")}</span>` : ""}` : `<span class="location-empty-preview">Aucune référence stockée</span>`;
+}
+function hierarchyRow(entity, entries, type, selected = false) {
+  const count = uniqueEntryCount(entries);
+  const icon = type === "sublocation" ? `<span class="location-explorer-icon location-sublocation-marker-wrap" aria-hidden="true"><i class="location-sublocation-marker"></i></span>` : `<span class="location-explorer-icon" aria-hidden="true">${entity.icon || "📍"}</span>`;
+  const actions = type === "room" ? "" : `<span class="location-row-actions-menu"><button class="location-menu-trigger" type="button" data-toggle-location-menu aria-haspopup="menu" aria-expanded="false" aria-label="Actions pour ${escapeHtml(entity.name)}">⋮</button><span class="location-actions-popover hidden" role="menu"><button type="button" role="menuitem" data-edit-hierarchy="${type}">Modifier</button><button type="button" role="menuitem" data-delete-hierarchy="${type}">Supprimer</button></span></span>`;
+  return `<article class="location-explorer-row${selected ? " is-selected" : ""}" tabindex="0" role="option" aria-selected="${selected}" data-${type}-id="${escapeHtml(entity.id)}">${icon}<strong class="location-explorer-name" title="${escapeHtml(entity.name)}">${escapeHtml(entity.name)}</strong><span class="location-explorer-count">${escapeHtml(formatLocationCount(count,"item"))}</span>${actions}<span class="location-explorer-chevron" aria-hidden="true">›</span></article>`;
+}
+function resetLocationDetailState() { locationDetailSearch = ""; locationDetailStatus = "all"; locationDetailFacet = "all"; locationDetailSort = "name-asc"; locationDetailPage = 1; selectedLocationEntry = null; }
+
+function renderLocations() {
+  const grid = document.querySelector("#locationGrid"); if (!grid) return;
+  selectedLocation = selectedRoomId || null; syncAppViewMode();
+  const query = normalizeSearch(locationSearchInput?.value || "");
+  const rooms = FIXED_INVENTORY_ROOMS.map((room,index) => ({ room, entries: roomEntries(room.id), index })).filter(({ room, entries }) => !query || normalizeSearch(`${room.name} ${entries.map(row => row.record.name).join(" ")}`).includes(query)).sort((a,b)=>uniqueEntryCount(b.entries)-uniqueEntryCount(a.entries)||a.index-b.index);
+  document.querySelector("#locationResultCount").textContent = formatLocationCount(rooms.length, "salle");
+  const catalog=hierarchyCatalog(), locations=selectedRoomId?catalog.locations.filter(row=>row.roomId===selectedRoomId):[], subs=selectedLocationId?catalog.sublocations.filter(row=>row.locationId===selectedLocationId):[];
+  grid.innerHTML = `<section class="location-explorer-card" aria-label="Explorateur des emplacements"><h3>Explorateur des emplacements</h3><div class="location-explorer">${renderExplorerColumn(1,"Salles",rooms.map(({room,entries})=>hierarchyRow(room,entries,"room",room.id===selectedRoomId)).join("")||"Aucune salle ne correspond à votre recherche.","room")}${renderExplorerColumn(2,"Localisations",selectedRoomId?(locations.map(row=>hierarchyRow(row,locationEntries(row.id),"location",row.id===selectedLocationId)).join("")||"Aucune localisation dans cette salle") : "Sélectionnez une salle","location")}${renderExplorerColumn(3,"Sous-localisations",selectedLocationId?(subs.map(row=>hierarchyRow(row,sublocationEntries(row.id),"sublocation",row.id===selectedSublocationId)).join("")||"Aucune sous-localisation dans cette localisation") : "Sélectionnez une localisation","sublocation")}</div>${renderLocationPathBar()}</section>${renderHierarchyContent()}`;
+  bindHierarchyEvents(grid);
+}
+
+function renderExplorerColumn(number,title,content,type){const canAdd=(type==="location"&&selectedRoomId)||(type==="sublocation"&&selectedLocationId),addLabel=type==="location"?"Localisation":"Sous-localisation";return `<section class="location-explorer-column"><header><span class="location-step">${number}</span><strong>${title}</strong>${type!=="room"?`<button class="text-btn location-column-add" type="button" data-add-hierarchy="${type}" ${canAdd?"":"disabled"}>+ ${addLabel}</button>`:""}</header><div class="location-explorer-panel"><div class="location-explorer-list" role="listbox">${content&&content.startsWith("<")?content:`<p class="location-column-empty">${escapeHtml(content)}</p>`}</div></div></section>`;}
+function renderLocationPathBar(){const room=hierarchyRoom(selectedRoomId),location=hierarchyLocation(selectedLocationId),sub=hierarchySublocation(selectedSublocationId),segments=[];if(room)segments.push(`<button type="button" data-breadcrumb-level="room"><span aria-hidden="true">${room.icon||"📍"}</span>${escapeHtml(room.name)}</button>`);if(location)segments.push(`<button type="button" data-breadcrumb-level="location"><span aria-hidden="true">${location.icon||"📍"}</span>${escapeHtml(location.name)}</button>`);if(sub)segments.push(`<strong><span class="location-path-sublocation-marker" aria-hidden="true"></span>${escapeHtml(sub.name)}</strong>`);return `<div class="location-path-bar"><nav class="location-path" aria-label="Chemin sélectionné">${segments.length?segments.join('<span class="location-path-chevron" aria-hidden="true">›</span>'):`<span class="location-path-empty">Sélectionnez une salle pour commencer</span>`}</nav><div class="location-path-actions"><button class="primary-btn compact-btn" type="button" data-add-hierarchy="item" ${room?"":"disabled"}>+ Ajouter un item</button></div></div>`;}
+function renderHierarchyContent(){if(!selectedRoomId)return `<section class="location-content-welcome"><span aria-hidden="true">📍</span><p>Sélectionnez une salle pour explorer ses localisations et ses items.</p></section>`;const room=hierarchyRoom(selectedRoomId),location=hierarchyLocation(selectedLocationId),sub=hierarchySublocation(selectedSublocationId);let title=room.name,meta=`Salle · ${formatLocationCount(uniqueEntryCount(roomEntries(room.id)),"item")}`,entries=roomEntries(room.id,true),sectionTitle="Items directement dans cette salle",empty="Aucun item directement dans cette salle.",hide=true,actions=allItemsButton();if(location){title=location.name;meta=`Localisation dans ${room.name} · ${formatLocationCount(uniqueEntryCount(locationEntries(location.id)),"item")}`;entries=locationEntries(location.id,true);sectionTitle="Items directement dans cette localisation";empty="Aucun item directement dans cette localisation.";hide=false;}if(sub){title=sub.name;meta=`Sous-localisation dans ${location.name} · ${formatLocationCount(uniqueEntryCount(sublocationEntries(sub.id)),"item")}`;entries=sublocationEntries(sub.id);sectionTitle="Items dans cette sous-localisation";empty="Aucun item dans cette sous-localisation.";actions="";}else if(location&&locationScopeMode==="all"){entries=locationEntries(location.id);sectionTitle="Tous les items de la localisation";}else if(!location&&locationScopeMode==="all"){entries=roomEntries(room.id);sectionTitle="Tous les items de la salle";hide=false;}return `<section class="location-active-content"><header><div><h3>${escapeHtml(title)}</h3><p>${escapeHtml(meta)}</p></div><div class="location-content-actions">${actions}</div></header>${directItemsSection(entries,sectionTitle,empty,hide)}</section>`;}
+
+function hierarchyHeader(title, icon, meta, backLabel, backAction, addLabel = "", addType = "") {
+  return `<div class="inventory-detail-return-row"><button class="ghost-btn inventory-back-btn" type="button" data-hierarchy-back><span aria-hidden="true">←</span> ${escapeHtml(backLabel)}</button></div><header class="inventory-detail-header"><div class="inventory-detail-title location-detail-title">${icon ? `<span class="room-icon" aria-hidden="true">${icon}</span>` : ""}<div class="location-detail-title-text"><h3>${escapeHtml(title)}</h3><div class="inventory-detail-meta"><span>${escapeHtml(meta)}</span></div></div></div>${addLabel ? `<div class="detail-actions inventory-detail-actions"><button class="primary-btn compact-btn" type="button" data-add-hierarchy="${addType}">${escapeHtml(addLabel)}</button></div>` : ""}</header>`;
+}
+function directItemsSection(entries, title, emptyText, hidePathColumns = false) { return `<section class="hierarchy-direct-items"><h4>${escapeHtml(title)}</h4>${entries.length ? renderLocationDetailTable(entries,{hidePathColumns}) : `<div class="location-detail-empty"><p>${escapeHtml(emptyText)}</p></div>`}</section>`; }
+function allItemsButton() { return `<button class="ghost-btn hierarchy-all-items" type="button" data-show-all-items>${locationScopeMode === "all" ? "Afficher uniquement les items directs" : "Afficher tous les items"}</button>`; }
+
+
+let hierarchyCreationPending = false;
+let hierarchyEntityContext = null;
+function openHierarchyEntityModal(type, entityId = null) {
+  const dialog=document.querySelector("#hierarchyEntityDialog"), form=document.querySelector("#hierarchyEntityForm"), input=document.querySelector("#hierarchyEntityName"), error=document.querySelector("#hierarchyEntityError"), entity=type==="location"?hierarchyLocation(entityId):hierarchySublocation(entityId);
+  hierarchyEntityContext={type,entityId}; hierarchyCreationPending=false; form.reset(); input.value=entity?.name||""; error.textContent=""; error.classList.add("hidden"); document.querySelector("#hierarchyEntityTitle").textContent=`${entity?"Modifier":"Ajouter"} ${type==="location"?"une localisation":"une sous-localisation"}`; document.querySelector("#saveHierarchyEntityBtn").disabled=false; dialog.showModal(); window.setTimeout(()=>input.focus(),0);
+}
+function closeHierarchyEntityModal(){const dialog=document.querySelector("#hierarchyEntityDialog");if(dialog?.open)dialog.close();hierarchyEntityContext=null;hierarchyCreationPending=false;}
+function saveHierarchyEntity(event){
+  event.preventDefault(); if(hierarchyCreationPending||!hierarchyEntityContext)return; const input=document.querySelector("#hierarchyEntityName"),error=document.querySelector("#hierarchyEntityError"),button=document.querySelector("#saveHierarchyEntityBtn"),name=input.value.trim().replace(/\s+/g," ");
+  if(!name){input.setCustomValidity("Le titre est obligatoire.");input.reportValidity();return;} input.setCustomValidity(""); const {type,entityId}=hierarchyEntityContext,catalog=hierarchyCatalog(),siblings=type==="location"?catalog.locations.filter(row=>row.roomId===selectedRoomId):catalog.sublocations.filter(row=>row.locationId===selectedLocationId);
+  if(siblings.some(row=>row.id!==entityId&&row.name===name)){error.textContent="Ce titre existe déjà sous ce parent.";error.classList.remove("hidden");return;}
+  hierarchyCreationPending=true;button.disabled=true;if(entityId){const collection=type==="location"?catalog.locations:catalog.sublocations,entity=collection.find(row=>row.id===entityId);entity.name=name;}else if(type==="location")catalog.locations.push({id:newStableId("location"),roomId:selectedRoomId,name,icon:"📍"});else catalog.sublocations.push({id:newStableId("sublocation"),locationId:selectedLocationId,name});
+  sharedState.locationCatalog=catalog;
+  if(entityId) items=items.map(item=>{if(!(item.placements||[]).some(row=>type==="location"?row.locationId===entityId:row.sublocationId===entityId))return item;const names=Array.from(new Set(item.placements.map(placementDisplayName).filter(Boolean)));return{...item,locations:names,location:names[0]||""};});
+  addHistory(entityId?"Emplacement modifié":type==="location"?"Localisation ajoutée":"Sous-localisation ajoutée",`${currentName} a ${entityId?"renommé":"ajouté"} ${name}.`);persist();closeHierarchyEntityModal();renderLocations();
+}
+document.querySelector("#hierarchyEntityForm")?.addEventListener("submit",saveHierarchyEntity);
+document.querySelectorAll("[data-close-hierarchy-entity]").forEach(button=>button.addEventListener("click",closeHierarchyEntityModal));
+
+function reparentItemsForHierarchyDeletion(sourceItems,type,id){
+  return sourceItems.map(item=>{let changed=false;const deduped=[],seen=new Set();(item.placements||[]).forEach(placement=>{let next={...placement};if(type==="sublocation"&&placement.sublocationId===id){next.sublocationId=null;changed=true;}else if(type==="location"&&placement.locationId===id){next.locationId=null;next.sublocationId=null;changed=true;}const key=`${next.roomId||""}|${next.locationId||""}|${next.sublocationId||""}`;if(!seen.has(key)){seen.add(key);deduped.push(next);}});return changed?{...item,placements:deduped}:item;});
+}
+function requestHierarchyDeletion(type,id,trigger){
+  const catalog=hierarchyCatalog(),entity=type==="location"?hierarchyLocation(id):hierarchySublocation(id);if(!entity)return;
+  const parentLocation=type==="sublocation"?hierarchyLocation(entity.locationId):null,room=hierarchyRoom(type==="location"?entity.roomId:parentLocation?.roomId),affected=type==="location"?locationEntries(id):sublocationEntries(id),count=uniqueEntryCount(affected),destination=type==="location"?room?.name:`${room?.name} > ${parentLocation?.name}`;
+  const message=type==="location"?`${count?`Cette localisation contient ${formatLocationCount(count,"item")}. Ils seront déplacés vers « ${room?.name} ». Aucun item ne sera supprimé. `:""}Les sous-localisations associées seront également supprimées.`:`${count?`Cette sous-localisation contient ${formatLocationCount(count,"item")}. Ils seront déplacés vers « ${destination} ». Aucun item ne sera supprimé.`:"Cette sous-localisation est vide."}`;
+  openDeleteConfirmation({title:`Supprimer ${type==="location"?"la localisation":"la sous-localisation"} « ${entity.name} » ?`,message,confirmText:"Supprimer",trigger,onConfirm:()=>{
+    const previousItems=items,previousCatalog=sharedState.locationCatalog;
+    try{
+      const nextItems=reparentItemsForHierarchyDeletion(items,type,id),nextCatalog=hierarchyCatalog();
+      if(type==="location"){nextCatalog.locations=nextCatalog.locations.filter(row=>row.id!==id);nextCatalog.sublocations=nextCatalog.sublocations.filter(row=>row.locationId!==id);}else nextCatalog.sublocations=nextCatalog.sublocations.filter(row=>row.id!==id);
+      sharedState.locationCatalog=nextCatalog;items=nextItems.map(item=>{if(item===previousItems.find(row=>row.id===item.id))return item;const names=Array.from(new Set((item.placements||[]).map(placementDisplayName).filter(Boolean)));return{...item,locations:names,location:names[0]||""};});
+      const orphan=items.some(item=>(item.placements||[]).some(row=>type==="location"?(row.locationId===id||nextCatalog.sublocations.some(sub=>sub.locationId===id&&row.sublocationId===sub.id)):row.sublocationId===id));
+      if(orphan)throw new Error("La réaffectation des items n’a pas pu être vérifiée.");
+      if(type==="location"){selectedLocationId=null;selectedSublocationId=null;}else selectedSublocationId=null;
+      addHistory("Emplacement supprimé",`${currentName} a supprimé ${entity.name}. ${count?`${formatLocationCount(count,"item")} remonté${count>1?"s":""} vers ${destination}.`:""}`);persist();renderLocations();
+    }catch(error){items=previousItems;sharedState.locationCatalog=previousCatalog;throw error;}
+  }});
+}
+
+function openSublocationItemPicker(){
+  const pickerDialog=document.querySelector("#sublocationItemDialog"),input=document.querySelector("#sublocationItemSearch"),error=document.querySelector("#sublocationItemError");
+  input.value=""; error.textContent=""; error.classList.add("hidden"); renderSublocationItemResults(); pickerDialog.showModal(); window.setTimeout(()=>input.focus(),0);
+}
+function renderSublocationItemResults(){
+  const input=document.querySelector("#sublocationItemSearch"),host=document.querySelector("#sublocationItemResults"),clearButton=document.querySelector("#clearSublocationItemSearch"),query=normalizeSearch(input?.value||"");
+  clearButton?.classList.toggle("hidden",!query);
+  if(!query){host.innerHTML=`<p class="sublocation-search-state">Saisissez un nom ou une référence pour rechercher un item.</p>`;return;}
+  const matches=items.filter(item=>{
+    const references=normalizeReferences(item?.references),name=normalizeSearch(item?.name),reference=normalizeSearch(references.primary.reference);
+    return name.includes(query)||reference.includes(query);
+  });
+  host.innerHTML=matches.length?matches.map(item=>{
+    const reference=normalizeReferences(item.references).primary.reference;
+    return `<article class="sublocation-item-result" role="option">
+      <div class="sublocation-item-result-copy"><strong>${escapeHtml(item.name||"Item sans nom")}</strong><span>Réf. principale : ${escapeHtml(reference||"Non renseignée")}${item.category?` · ${escapeHtml(item.category)}`:""}</span></div>
+      <button class="ghost-btn compact-btn" type="button" data-pick-sublocation-item="${escapeHtml(item.id)}">Sélectionner</button>
+    </article>`;
+  }).join(""):`<p class="sublocation-search-state">Aucun item trouvé pour cette recherche.</p>`;
+  host.querySelectorAll("[data-pick-sublocation-item]").forEach(button=>button.addEventListener("click",()=>selectSublocationItem(button.dataset.pickSublocationItem)));
+}
+function selectSublocationItem(id){const item=items.find(row=>row.id===id),sub=hierarchySublocation(selectedSublocationId),location=hierarchyLocation(sub.locationId),placement={id:newStableId("placement"),roomId:location.roomId,locationId:location.id,sublocationId:sub.id},duplicate=(item.placements||[]).some(row=>row.roomId===placement.roomId&&row.locationId===placement.locationId&&row.sublocationId===placement.sublocationId);if(duplicate){const error=document.querySelector("#sublocationItemError");error.textContent="Cet item est déjà présent dans cette sous-localisation.";error.classList.remove("hidden");return;}document.querySelector("#sublocationItemDialog").close();openModal(id,{targetPlacement:placement});}
+document.querySelector("#sublocationItemSearch")?.addEventListener("input",renderSublocationItemResults);
+document.querySelector("#clearSublocationItemSearch")?.addEventListener("click",()=>{const input=document.querySelector("#sublocationItemSearch");input.value="";renderSublocationItemResults();input.focus();});
+document.querySelectorAll("[data-close-sublocation-item]").forEach(button=>button.addEventListener("click",()=>document.querySelector("#sublocationItemDialog")?.close()));
+function bindHierarchyEvents(grid) {
+  const selectRow=row=>{if(row.dataset.roomId){selectedRoomId=row.dataset.roomId;selectedLocationId=null;selectedSublocationId=null;}else if(row.dataset.locationId){selectedLocationId=row.dataset.locationId;selectedSublocationId=null;}else if(row.dataset.sublocationId)selectedSublocationId=row.dataset.sublocationId;locationScopeMode="direct";resetLocationDetailState();renderLocations();};
+  grid.querySelectorAll(".location-explorer-row").forEach(row=>{row.addEventListener("click",event=>{if(!event.target.closest("button"))selectRow(row);});row.addEventListener("keydown",event=>{if((event.key==="Enter"||event.key===" ")&&!event.target.closest("button")){event.preventDefault();selectRow(row);}});});
+  grid.querySelectorAll("[data-breadcrumb-level]").forEach(button=>button.onclick=()=>{const level=button.dataset.breadcrumbLevel;if(level==="all"){selectedRoomId=null;selectedLocationId=null;selectedSublocationId=null;}else if(level==="room"){selectedLocationId=null;selectedSublocationId=null;}else selectedSublocationId=null;locationScopeMode="direct";renderLocations();});
+  grid.querySelectorAll("[data-toggle-location-menu]").forEach(button=>button.onclick=event=>{event.stopPropagation();const menu=button.nextElementSibling,willOpen=menu.classList.contains("hidden");grid.querySelectorAll(".location-actions-popover").forEach(row=>row.classList.add("hidden"));grid.querySelectorAll("[data-toggle-location-menu]").forEach(row=>row.setAttribute("aria-expanded","false"));menu.classList.toggle("hidden",!willOpen);button.setAttribute("aria-expanded",String(willOpen));});
+  grid.querySelector("[data-show-all-items]")?.addEventListener("click",()=>{locationScopeMode=locationScopeMode==="all"?"direct":"all";renderLocations();});
+  grid.querySelectorAll("[data-add-hierarchy]").forEach(button=>button.addEventListener("click",event=>{const type=event.currentTarget.dataset.addHierarchy;if(type!=="item"){openHierarchyEntityModal(type);return;}if(!selectedRoomId)return;openModal(null,{prefill:{roomId:selectedRoomId,locationId:selectedLocationId||null,sublocationId:selectedSublocationId||null}});}));
+  grid.querySelectorAll("[data-edit-hierarchy]").forEach(button=>button.onclick=()=>{const type=button.dataset.editHierarchy,card=button.closest(type==="location"?"[data-location-id]":"[data-sublocation-id]");openHierarchyEntityModal(type,card.dataset[`${type}Id`]);});
+  grid.querySelectorAll("[data-delete-hierarchy]").forEach(button=>button.onclick=()=>{const type=button.dataset.deleteHierarchy,card=button.closest(type==="location"?"[data-location-id]":"[data-sublocation-id]");requestHierarchyDeletion(type,card.dataset[`${type}Id`],button);});
+  grid.querySelectorAll("[data-update-stock]").forEach(button=>button.onclick=()=>{const item=items.find(row=>row.id===button.dataset.updateStock);usesAdvancedStockManager(item)?openStockManager(item.id):openStockModal(item.id);});
+  grid.querySelectorAll("[data-edit-item]").forEach(button=>button.onclick=()=>openModal(button.dataset.editItem));
+  grid.querySelectorAll("[data-open-entry]").forEach(button=>button.onclick=()=>openItemDetail(button.closest("tr").dataset.entryId,{view:"locations",location:selectedRoomId}));
+}
+
+function renderLocationDetailTable(entries,options={}) { const hide=Boolean(options.hidePathColumns);return `<div class="location-detail-table-wrap"><table class="location-detail-table ${hide?"location-detail-table--direct-room":""}"><thead><tr><th>Référence</th><th>Stock actuel</th><th>Minimum</th><th>Statut</th><th>Tags</th>${hide?"":"<th>Localisation</th><th>Sous-localisation</th>"}<th>Actions</th></tr></thead><tbody>${entries.map(entry=>renderLocationDetailRow(entry,{hidePathColumns:hide})).join("")}</tbody></table></div>`; }
+function renderLocationDetailRow(entry,options={}) {
+  const record=entry.record, status=getLocationEntryStatus(entry), displayed=getLocationDisplayedStatus(entry), location=hierarchyLocation(entry.placement?.locationId), sub=hierarchySublocation(entry.placement?.sublocationId), current=StockTracking.normalizeTracking(record).mode === "containers" ? escapeHtml(StockTracking.summary(record,placementDisplayName(entry.placement))) : formatInventoryCardQuantity(record.quantity,record.unit), minimum=status==="undefined"?"—":formatInventoryCardQuantity(record.minStock,record.unit);
+  const pathCells=options.hidePathColumns?"":`<td data-label="Localisation">${escapeHtml(location?.name||"-")}</td><td data-label="Sous-localisation">${escapeHtml(sub?.name||"-")}</td>`;
+  return `<tr class="location-detail-row" tabindex="0" data-entry-kind="inventory" data-entry-id="${escapeHtml(record.id)}"><td data-label="Référence"><button class="location-reference-button" type="button" data-open-entry><span class="location-reference-title">${renderRoutineStar(record)}<strong>${escapeHtml(record.name)}</strong></span><span>${escapeHtml(record.category||"")}</span></button></td><td data-label="Stock actuel"><strong>${current}</strong></td><td data-label="Minimum">${minimum}</td><td data-label="Statut"><span class="location-status-badge ${displayed.className}">${escapeHtml(displayed.label)}</span></td><td data-label="Tags"><div class="location-table-tags">${(record.tags||[]).length?(record.tags||[]).map(tag=>`<span class="tag">${escapeHtml(tag)}</span>`).join(""):`<span class="location-no-tags">Aucun tag</span>`}</div></td>${pathCells}<td data-label="Actions"><div class="location-row-actions"><button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">${usesAdvancedStockManager(record)?"Gérer le stock":"Mettre à jour le stock"}</button><button class="ghost-btn compact-btn" type="button" data-edit-item="${escapeHtml(record.id)}">Modifier</button></div></td></tr>`;
+}
+
+window.ExadexLocations = {
+  rooms: () => JSON.parse(JSON.stringify(FIXED_INVENTORY_ROOMS)),
+  catalog: () => JSON.parse(JSON.stringify(hierarchyCatalog())),
+  migratePlacements: item => JSON.parse(JSON.stringify(migrateItemPlacements(item || {}, String(item?.id || "test-item")))),
+  validatePlacement: placement => {
+    const catalog=hierarchyCatalog(), location=placement?.locationId&&catalog.locations.find(row=>row.id===placement.locationId), sub=placement?.sublocationId&&catalog.sublocations.find(row=>row.id===placement.sublocationId);
+    return Boolean(placement?.roomId&&hierarchyRoom(placement.roomId)&&(!placement.locationId||location?.roomId===placement.roomId)&&(!placement.sublocationId||sub?.locationId===placement.locationId));
+  },
+  uniqueCount: entries => uniqueEntryCount(entries || [])
+};

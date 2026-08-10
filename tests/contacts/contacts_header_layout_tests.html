@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alignement du header Contacts</title></head>
+<body>
+  <p id="result">Tests en cours…</p>
+  <iframe id="appFrame" src="../../index.html" style="height:1200px;border:0"></iframe>
+  <script>
+    const frame=document.querySelector("#appFrame"),result=document.querySelector("#result"),requestedWidth=Number(new URLSearchParams(location.search).get("width")),widths=requestedWidth?[requestedWidth]:[1440,1024,768,390];
+    frame.addEventListener("load",()=>setTimeout(async()=>{
+      try{
+        const w=frame.contentWindow,d=w.document;
+        if(!d.querySelector(".app")?.classList.contains("authenticated")){d.querySelector("#loginForm")?.requestSubmit();await new Promise(resolve=>setTimeout(resolve,3500));}
+        let passed=0;const check=(value,message)=>{if(!value)throw new Error(message);passed++;};
+        d.querySelector("#alerts").innerHTML="";
+        for(const width of widths){
+          frame.style.width=`${width}px`;void frame.offsetWidth;await new Promise(resolve=>setTimeout(resolve,80));
+          d.querySelector('[data-view="locations"]').click();await new Promise(resolve=>setTimeout(resolve,30));
+          const reference=d.querySelector("#locationsView > .client-studies-header").getBoundingClientRect();
+          d.querySelector('[data-view="contacts"]').click();await new Promise(resolve=>setTimeout(resolve,30));
+          const contact=d.querySelector(".contacts-main-header").getBoundingClientRect(),workspace=d.querySelector(".workspace").getBoundingClientRect();
+          check(getComputedStyle(d.querySelector("#alerts")).display==="none",`${width}px : alertes vides sans espace`);
+          check(Math.abs(contact.left-reference.left)<1&&Math.abs(contact.top-reference.top)<1,`${width}px : origine identique (Contacts ${contact.left}/${contact.top}, référence ${reference.left}/${reference.top})`);
+          check(contact.left>=workspace.left&&contact.right<=workspace.right+1,`${width}px : aucun débordement horizontal`);
+        }
+        result.textContent=`${passed} tests d’alignement Contacts réussis.`;
+      }catch(error){result.textContent=`ÉCHEC : ${error.message}`;}
+    },4500));
+  </script>
+</body>
+</html>

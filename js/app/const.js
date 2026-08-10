@@ -17,6 +17,53 @@ const inventoryLocations = [
   "-20°C Floricia labo"
 ];
 
+// Hiérarchie stable des emplacements. Les libellés sont des données d'affichage :
+// toutes les associations persistées utilisent les identifiants.
+const FIXED_INVENTORY_ROOMS = [
+  { id: "room-bureau", name: "Bureau", icon: "💻" },
+  { id: "room-laboratoire", name: "Laboratoire", icon: "🔬" },
+  { id: "room-reserve", name: "Réserve", icon: "📦" },
+  { id: "room-culture-l1", name: "Culture L1", icon: "🧫" },
+  { id: "room-culture-l2", name: "Culture L2", icon: "🧪" },
+  { id: "room-chambre-froide", name: "Chambre froide", icon: "❄️" },
+  { id: "room-piece-80", name: "Pièce -80°C", icon: "🧊" }
+];
+
+const INITIAL_INVENTORY_LOCATION_CATALOG = {
+  locations: [
+    ["location-frigo-labo", "room-laboratoire", "Frigo labo", "🌨️"],
+    ["location-20-blanc-labo", "room-laboratoire", "-20°C blanc labo", "☃️"],
+    ["location-20-gris-labo", "room-laboratoire", "-20°C gris labo", "☃️"],
+    ["location-20-floricia-labo", "room-laboratoire", "-20°C Floricia labo", "🌸"],
+    ["location-frigo-culture-l1", "room-culture-l1", "Frigo culture L1", "🌨️"],
+    ["location-20-culture-l1", "room-culture-l1", "-20°C culture L1", "☃️"],
+    ["location-20-1-salle-80", "room-piece-80", "-20°C 1 salle -80", "1️⃣"],
+    ["location-20-2-salle-80", "room-piece-80", "-20°C 2 salle -80", "2️⃣"],
+    ["location-20-3-salle-80", "room-piece-80", "-20°C 3 salle -80", "3️⃣"],
+    ["location-80", "room-piece-80", "-80°C", "🧊"]
+  ].map(([id, roomId, name, icon]) => ({ id, roomId, name, icon })),
+  sublocations: []
+};
+
+const LEGACY_PLACEMENT_MAP = {
+  "Bureau": ["room-bureau", null],
+  "Réserve": ["room-reserve", null],
+  "Laboratoire": ["room-laboratoire", null],
+  "Chambre froide": ["room-chambre-froide", null],
+  "Culture L1": ["room-culture-l1", null],
+  "Culture L2": ["room-culture-l2", null],
+  "Frigo labo": ["room-laboratoire", "location-frigo-labo"],
+  "-20°C blanc labo": ["room-laboratoire", "location-20-blanc-labo"],
+  "-20°C gris labo": ["room-laboratoire", "location-20-gris-labo"],
+  "-20°C Floricia labo": ["room-laboratoire", "location-20-floricia-labo"],
+  "Frigo culture L1": ["room-culture-l1", "location-frigo-culture-l1"],
+  "-20°C culture L1": ["room-culture-l1", "location-20-culture-l1"],
+  "-80°C": ["room-piece-80", "location-80"],
+  "-20°C 1 salle -80": ["room-piece-80", "location-20-1-salle-80"],
+  "-20°C 2 salle -80": ["room-piece-80", "location-20-2-salle-80"],
+  "-20°C 3 salle -80": ["room-piece-80", "location-20-3-salle-80"]
+};
+
 const locationIcons = {
   "Laboratoire": "🔬",
   "Réserve": "📦​",

@@ -222,6 +222,7 @@
               <div class="client-studies-title-row">
                 <h3>Localisations du laboratoire</h3>
               </div>
+              <p class="location-page-description">Explorez l&rsquo;organisation du laboratoire et retrouvez les items par salle, localisation et sous-localisation.</p>
             </div>
           </div>
 
@@ -245,10 +246,6 @@
               </select>
             </label>
           </section>
-
-          <div class="client-study-kpis client-study-kpis-compact" id="locationMetrics"></div>
-
-          <h3 class="client-study-section-title">Zones de stockage</h3>
 
           <div class="location-grid" id="locationGrid"></div>
         </section>
@@ -489,20 +486,15 @@
             <label><span>Quantité <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="any" data-quantity-step="1" required /></label>
             <label><span>Unité <span class="required-star">*</span></span><input id="unit" required /></label>
             <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="any" data-quantity-step="1" required /></label>
-            <label class="location-field">
-              <span>Localisation <span class="required-star">*</span></span>
-
-              <div class="location-dropdown" id="locationDropdown">
-                <button type="button" class="location-trigger" id="locationTrigger" aria-expanded="false">
-                  <span id="locationTriggerText">Sélectionner une ou plusieurs localisations</span>
-                  <span class="location-trigger-arrow">⌄</span>
-                </button>
-
-                <div class="location-menu hidden" id="locationMenu"></div>
+            <section class="placement-editor full-width" aria-labelledby="placementsLegend">
+              <div class="placement-editor-heading">
+                <span id="placementsLegend">Emplacements <span class="required-star">*</span></span>
+                <button id="addPlacementBtn" class="ghost-btn compact-btn" type="button">+ Ajouter un emplacement</button>
               </div>
-
+              <div id="placementsList" class="placement-list"></div>
               <input id="location" type="hidden" required />
-            </label>
+              <small id="placementsError" class="field-validation-message hidden" aria-live="polite"></small>
+            </section>
             <label>Tags<input id="tags" placeholder="adipocyte, ELISA" /></label>
           </div>
         <section class="usage-profile-field" aria-labelledby="usageProfileLegend">
@@ -1037,6 +1029,34 @@
       </form>
     </dialog>
 
+    <dialog id="hierarchyEntityDialog" class="modal confirmation-modal">
+      <form id="hierarchyEntityForm">
+        <div class="modal-header">
+          <h3 id="hierarchyEntityTitle">Ajouter une localisation</h3>
+          <button class="icon-btn" type="button" data-close-hierarchy-entity>&times;</button>
+        </div>
+        <label class="full-label"><span>Titre <span class="required-star">*</span></span><input id="hierarchyEntityName" required autocomplete="off" /></label>
+        <p id="hierarchyEntityError" class="confirmation-modal-error hidden" role="alert"></p>
+        <div class="modal-actions"><button class="ghost-btn" type="button" data-close-hierarchy-entity>Annuler</button><button id="saveHierarchyEntityBtn" class="primary-btn" type="submit">Enregistrer</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="sublocationItemDialog" class="modal confirmation-modal">
+      <form id="sublocationItemForm">
+        <div class="modal-header"><h3>Ajouter un item</h3><button class="icon-btn" type="button" data-close-sublocation-item>&times;</button></div>
+        <div class="sublocation-item-modal-body">
+          <label class="sublocation-item-search-label" for="sublocationItemSearch">Rechercher un item</label>
+          <div class="sublocation-item-search-wrapper">
+            <input id="sublocationItemSearch" class="sublocation-item-search-input" type="search" autocomplete="off" placeholder="Nom ou référence principale…" />
+            <button id="clearSublocationItemSearch" class="order-combobox-clear hidden" type="button" aria-label="Effacer la recherche">&times;</button>
+          </div>
+          <div id="sublocationItemResults" class="hierarchy-item-results" role="listbox" aria-live="polite"></div>
+          <p id="sublocationItemError" class="confirmation-modal-error hidden" role="alert"></p>
+        </div>
+        <footer class="modal-actions sublocation-item-modal-footer"><button class="ghost-btn" type="button" data-close-sublocation-item>Annuler</button></footer>
+      </form>
+    </dialog>
+
     <dialog id="receiveInventoryDialog" class="modal">
       <form id="receiveInventoryForm" method="dialog" novalidate>
         <div class="modal-header">
@@ -1112,6 +1132,25 @@
       if (new URLSearchParams(location.search).has("stockRecountTests")) {
         const testScript = document.createElement("script");
         testScript.src = "tests/stock/recount_ui_tests.js";
+        document.body.appendChild(testScript);
+      }
+      if (new URLSearchParams(location.search).has("hierarchyTests")) {
+        const testScript = document.createElement("script");
+        testScript.src = "tests/locations/hierarchy_tests.js";
+        document.body.appendChild(testScript);
+      }
+      if (new URLSearchParams(location.search).has("locationPreview")) {
+        document.querySelector("#loginForm")?.requestSubmit();
+        window.setTimeout(() => document.querySelector('[data-view="locations"]')?.click(), 3200);
+      }
+      if (new URLSearchParams(location.search).has("finalExplorerTests")) {
+        const testScript = document.createElement("script");
+        testScript.src = "tests/locations/final_explorer_tests.js";
+        document.body.appendChild(testScript);
+      }
+      if (new URLSearchParams(location.search).has("supplierExactTests")) {
+        const testScript = document.createElement("script");
+        testScript.src = "tests/contacts/supplier_exact_match_tests.js";
         document.body.appendChild(testScript);
       }
     </script>

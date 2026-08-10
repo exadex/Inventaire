@@ -31,12 +31,15 @@
         check(api.normalizeCompanyName("  BD Biosciences  ")===api.normalizeCompanyName("bd biosciences"),"normalisation fiable");
         check(api.findForItem({references:{primary:{supplier:"ABCAM"}}})?.company==="Abcam","association textuelle");
         check(!api.findForItem({references:{primary:{supplier:"Abca"}}}),"pas de rapprochement approximatif");
-        const supplierInput=d.querySelector("#primarySupplier");supplierInput.value="ABCAM";supplierInput.dispatchEvent(new w.Event("input"));
-        check(d.querySelector("#primarySupplierContactId").value==="contact-abcam","sélection fournisseur stocke ID stable");
+        const supplierInput=d.querySelector("#primarySupplier");supplierInput.value="Abcam";supplierInput.dispatchEvent(new w.Event("input"));
+        check(d.querySelector("#primarySupplierContactId").value==="contact-abcam","nom canonique exact stocke ID stable");
+        supplierInput.value="ABCAM";supplierInput.dispatchEvent(new w.Event("input"));
+        check(!d.querySelector("#primarySupplierContactId").value,"différence de casse reste libre");
         supplierInput.value="Fournisseur libre";supplierInput.dispatchEvent(new w.Event("input"));
         check(!d.querySelector("#primarySupplierContactId").value,"fournisseur libre reste non lié");
         d.querySelector('[data-view="contacts"]').click();
         check(d.querySelectorAll(".contact-card").length>=3,"liste rendue");
+        check(getComputedStyle(d.querySelector("#alerts")).display==="none","conteneur d’alertes vide sans marge résiduelle dans Contacts");
         check(d.querySelector(".contacts-main-header.client-studies-header #contactsTitle")?.textContent==="Contacts"&&d.querySelector(".contacts-main-header .main-section-subtitle")?.textContent.includes("Retrouvez rapidement"),"en-tête Contacts réutilise le composant principal");
         const contactsHeader=d.querySelector(".contacts-main-header");
         check(Math.abs(contactsHeader.getBoundingClientRect().left-sampleLeft)<1&&Math.abs(contactsHeader.querySelector(".eyebrow").getBoundingClientRect().left-sampleLeft)<1&&Math.abs(d.querySelector("#contactsTitle").getBoundingClientRect().left-sampleLeft)<1,"origine horizontale Contacts identique à Études clients");

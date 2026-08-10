@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../assets/css/design.css"><title>Tests Inventaire Physique et modifications massives</title></head>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="../../assets/css/design.css"><title>Tests Inventaire Physique et modifications massives</title></head>
 <body><div id="agentsRoot"></div><p id="result">En cours…</p>
 <script src="../../js/agents/agents_core.js"></script><script src="../../js/agents/agents_storage.js"></script><script>
 localStorage.clear();sessionStorage.clear();let confirmation=null,writes=0,nativeAlerts=0;
@@ -14,7 +14,7 @@ const parsed=ExadexAgentsCore.interpretBulkInstruction(bulk.originalText);bulk.b
 ExadexAgentsStorage.saveWorkspace({audits:[],sessions:[physical,bulk,legacy,physicalValidated]},localStorage);
 let shared={inventoryItems:JSON.parse(JSON.stringify(items)),history:[]};Object.defineProperties(window,{items:{get:()=>items},orders:{get:()=>[]},inventoryLocations:{get:()=>["Congélateur 1","Congélateur 2"]},inventoryCategories:{get:()=>["Anticorps","Consommables"]},currentName:{get:()=>"Test"}});window.alert=()=>{nativeAlerts++};window.openDeleteConfirmation=options=>{confirmation=options};window.ExadexInventoryAgent={async applyBulkChanges(request){writes++;request.proposals.forEach(proposal=>{const item=shared.inventoryItems.find(row=>row.id===proposal.itemId),before=ExadexAgentsCore.bulkValue(item,proposal.field);ExadexAgentsCore.applyBulkValue(item,proposal.field,proposal.afterValue);shared.history.push({action:"Modification massive par Agent",itemId:item.id,sessionId:request.sessionId,before,after:proposal.afterValue});});return{applied:request.proposals.length,conflicts:0,errors:0,data:shared}}};
 </script><script src="../../js/agents/agents_ui.js"></script><script>
-let passed=0;const check=(value,message)=>{if(!value)throw new Error(message);passed++};
+let passed=0;const check=(value,message)=>{if(!value){document.querySelector("#result").textContent=`ÉCHEC après ${passed} tests : ${message}`;throw new Error(message);}passed++};
 check(parsed.ok&&parsed.rule.field==="reference"&&parsed.rule.action==="replace","instruction convertie en règle autorisée");
 check(bulk.proposals.length===2&&bulk.proposals.every(p=>p.beforeValue.toLowerCase().includes("sigma")&&p.afterValue.startsWith("Merck")),"Sigma/Merck limité au champ référence");
 check(items[2].references.primary.supplier==="Sigma","autre champ contenant Sigma inchangé");
@@ -29,6 +29,11 @@ confirmation.onConfirm();check(!ExadexAgentsUI._load().sessions.some(s=>s.id===p
 document.querySelector(`[data-open-session="${legacy.id}"]`).click();check(document.querySelector(".session-result-legacy")?.textContent.includes("détail historique")&&!document.querySelector(".session-result-table"),"ancienne session validée sans détail affichée sans changement inventé");document.querySelector('[data-agent-action="home"]').click();
 document.querySelector(`[data-open-session="${physicalValidated.id}"]`).click();check(document.querySelector(".session-result-table")?.textContent.includes("Stock")&&document.querySelector(".session-result-table")?.textContent.includes("Différence : 3"),"inventaire physique validé affiché en lecture seule avec différence");check(!document.querySelector("[data-final-validate]")&&!document.querySelector("#physicalText"),"inventaire validé sans contrôle de réapplication");document.querySelector('[data-agent-action="home"]').click();
 document.querySelector(`[data-open-session="${bulk.id}"]`).click();check(document.querySelector("#bulkRuleForm")&&document.querySelectorAll("[data-bulk-proposal]").length===2,"règle et aperçu restaurés");
+check([...document.querySelectorAll(".bulk-step")].some(section=>section.textContent.includes("Items concernés"))&&[...document.querySelectorAll(".bulk-step")].some(section=>section.textContent.includes("Modification à appliquer")),"filtres et modification visuellement séparés");
+check(!document.querySelector("#bulkRuleForm").textContent.includes("Champ utilisé comme condition")&&!document.querySelector("#bulkRuleForm").textContent.includes("Valeur de condition")&&!document.querySelector("#bulkRuleForm").textContent.includes("Ancienne valeur"),"anciens libellés confus supprimés");
+const multiRule={action:"set",field:"supplier",newValue:"Bio-Techne",caseInsensitive:true,filters:[{field:"category",match:"exact",value:"Anticorps"},{field:"supplier",match:"contains",value:"Sigma"}]},multiItems=[{id:"m1",name:"A",category:"Anticorps",references:{primary:{supplier:"Sigma"}}},{id:"m2",name:"B",category:"Consommables",references:{primary:{supplier:"Sigma"}}},{id:"m3",name:"C",category:"Anticorps",references:{primary:{supplier:"Bio-Techne"}}}],multiSession=ExadexAgentsCore.createSession({sessionType:"bulk"});multiSession.bulkRule=multiRule;
+check(ExadexAgentsCore.countBulkMatches(multiRule,multiItems)===1&&ExadexAgentsCore.buildBulkProposals(multiSession,multiItems).map(row=>row.itemId).join("")==="m1","plusieurs filtres combinés avec logique ET");
+check(ExadexAgentsCore.buildBulkProposals({...multiSession,bulkRule:{...multiRule,filters:[multiRule.filters[0]]}},multiItems).length===1,"items déjà conformes exclus des modifications");
 const first=document.querySelector("[data-bulk-proposal]");first.checked=false;first.dispatchEvent(new Event("change"));const reloaded=ExadexAgentsUI._load().sessions.find(s=>s.id===bulk.id);check(reloaded.proposals.filter(p=>p.decision==="ignored").length===1,"exclusion persistée");
 check(document.querySelector("[data-final-bulk-validate]").textContent.includes("1 modification"),"validation compte seulement les propositions incluses");
 document.querySelector("[data-final-bulk-validate]").click();check(confirmation.title.includes("Appliquer 1 modification"),"confirmation finale explicite");
@@ -47,6 +52,15 @@ confirmation.onConfirm().then(()=>{
  check(!document.querySelector("[data-bulk-proposal]")&&!document.querySelector("[data-final-bulk-validate]"),"sélections et seconde validation absentes");
  check(document.querySelector(".session-result-table").textContent.includes("Collag")&&!document.querySelector(".session-result-table").textContent.includes("Anticorps ABC"),"seule la modification réellement appliquée est affichée");
  check(writes===1,"aucune seconde application accessible");
+ document.querySelector('[data-agent-action="home"]').click();document.querySelector('[data-agent-action="physical"]').click();document.querySelector('[data-session-mode="bulk"]').click();
+ check(document.querySelector("#bulkRuleForm")&&!document.querySelector("#bulkInstructionForm")&&!document.querySelector("textarea[name='instruction']"),"Préparer une modification massive ouvre directement le formulaire structuré");
+ const fieldSelect=document.querySelector(".bulk-change-grid [name='field']");fieldSelect.value="supplier";fieldSelect.dispatchEvent(new Event("change",{bubbles:true}));
+ const changeGrid=document.querySelector(".bulk-change-grid"),groups=[...changeGrid.querySelectorAll(".bulk-form-group")],supplierInput=changeGrid.querySelector("[name='newValue']"),supplierList=changeGrid.querySelector("datalist"),changeButton=document.querySelector(".bulk-change-step .modal-actions button");
+ check(groups.length===2&&groups[0].contains(changeGrid.querySelector("[name='field']"))&&groups[1].contains(supplierInput),"chaque libellé conserve son contrôle dans le même groupe");
+ check(innerWidth<=900||Math.abs(groups[0].getBoundingClientRect().top-groups[1].getBoundingClientRect().top)<2,"groupes alignés en haut sur desktop");
+ check(changeGrid.querySelector("[name='field']").getBoundingClientRect().height<=50&&Math.abs(changeGrid.querySelector("[name='field']").getBoundingClientRect().height-supplierInput.getBoundingClientRect().height)<2,"contrôles compacts de hauteur comparable");
+ check(getComputedStyle(supplierList).display==="none"&&supplierList.getBoundingClientRect().height===0,"datalist fournisseur invisible lorsque fermé");
+ check(changeButton.getBoundingClientRect().top-groups[0].getBoundingClientRect().bottom<50,"bouton placé naturellement après les champs");
  document.querySelector("#result").textContent=`${passed} tests Inventaire Physique et modifications massives réussis.`;
 });
 </script></body></html>

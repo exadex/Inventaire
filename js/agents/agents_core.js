@@ -322,11 +322,17 @@
     item[field]=clone(value);
   }
   function bulkMatches(value,match,expected,caseInsensitive=true){
-    if(match==="all")return true;if(match==="empty")return value===null||value===undefined||String(value).trim()==="";
+    if(match==="all")return true;if(match==="empty")return value===null||value===undefined||String(value).trim()==="";if(match==="not_empty")return !(value===null||value===undefined||String(value).trim()==="");
     if(["gt","lt","gte","lte","eq"].includes(match)){const a=Number(value),b=Number(expected);return Number.isFinite(a)&&Number.isFinite(b)&&({gt:a>b,lt:a<b,gte:a>=b,lte:a<=b,eq:a===b})[match];}
     let left=String(value??""),right=String(expected??"");if(caseInsensitive){left=left.toLocaleLowerCase("fr");right=right.toLocaleLowerCase("fr");}
-    return match==="contains"?left.includes(right):match==="starts"?left.startsWith(right):match==="ends"?left.endsWith(right):left===right;
+    return match==="contains"?left.includes(right):match==="not_contains"?!left.includes(right):match==="not_exact"?left!==right:match==="starts"?left.startsWith(right):match==="ends"?left.endsWith(right):left===right;
   }
+  function bulkRuleFilters(rule){
+    if(Array.isArray(rule?.filters)&&rule.filters.length)return rule.filters;
+    const filters=[];if(rule?.conditionField)filters.push({field:rule.conditionField,match:rule.match||"exact",value:rule.conditionValue||""});if(rule?.extraCondition?.field)filters.push({field:rule.extraCondition.field,match:rule.extraCondition.match||"exact",value:rule.extraCondition.value||""});return filters;
+  }
+  function itemMatchesBulkRule(item,rule){const filters=bulkRuleFilters(rule);return filters.length>0&&filters.every(filter=>BULK_FIELDS[filter.field]&&bulkMatches(bulkValue(item,filter.field),filter.match,filter.value,rule.caseInsensitive));}
+  function countBulkMatches(rule,items){const seen=new Set();return(items||[]).filter(item=>item?.id&&!seen.has(item.id)&&seen.add(item.id)&&itemMatchesBulkRule(item,rule)).length;}
   function buildBulkProposals(session,items){
     const rule=session.bulkRule||{},meta=BULK_FIELDS[rule.field];if(!meta)return[];
     if((rule.action==="add"&&meta.type!=="array")||(rule.action==="replace"&&meta.type!=="string"))return[];
@@ -335,8 +341,7 @@
     const seen=new Set(),rows=[];
     (items||[]).forEach(item=>{
       if(!item?.id||seen.has(item.id))return;seen.add(item.id);
-      if(!bulkMatches(bulkValue(item,rule.conditionField),rule.match,rule.conditionValue,rule.caseInsensitive))return;
-      if(rule.extraCondition&&!bulkMatches(bulkValue(item,rule.extraCondition.field),rule.extraCondition.match,rule.extraCondition.value,rule.caseInsensitive))return;
+      if(!itemMatchesBulkRule(item,rule))return;
       const before=bulkValue(item,rule.field);let after=rule.newValue;
       if(rule.action==="replace"&&replaceMode==="whole")after=rule.newValue;
       if(rule.action==="replace"&&replaceMode==="partial"){const flags=rule.caseInsensitive?"gi":"g",escaped=String(rule.oldValue).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");after=String(before??"").replace(new RegExp(escaped,flags),String(rule.newValue));}
@@ -385,5 +390,5 @@
     if(action==="physical_aliquots_recount")return{...common,preparations:(item?.aliquotTracking?.preparations||[]).map(x=>({id:x.id,version:x.version,locations:x.locations,openAliquots:(x.openAliquots||[]).map(a=>({id:a.id,version:a.version,remainingVolume:a.remainingVolume,status:a.status}))}))};
     return common;
   }
-  return { SCORE_ENGINE_VERSION,BULK_FIELDS,normalize,normalizeMeaningfulReference,normalizeContactReference,findContactForItem,similarity,extractSpecifications,compareSpecifications,scoreDuplicatePair,confidenceFromScore,audit,matchItem,parseFreeText,createSession,interpretBulkInstruction,buildBulkProposals,detectBulkConflict,bulkValue,applyBulkValue,buildProposals,detectConflict,snapshot,clone,summarize };
+  return { SCORE_ENGINE_VERSION,BULK_FIELDS,normalize,normalizeMeaningfulReference,normalizeContactReference,findContactForItem,similarity,extractSpecifications,compareSpecifications,scoreDuplicatePair,confidenceFromScore,audit,matchItem,parseFreeText,createSession,interpretBulkInstruction,buildBulkProposals,bulkRuleFilters,itemMatchesBulkRule,countBulkMatches,detectBulkConflict,bulkValue,applyBulkValue,buildProposals,detectConflict,snapshot,clone,summarize };
 });

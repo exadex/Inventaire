@@ -20976,14 +20976,16 @@
     },
     {
       "id": "contact-1785239153980-6o71tv",
-      "company": "Sarsdest",
+      "company": "Sarstedt",
       "salesRepresentative": "",
       "afterSalesService": "",
       "customerService": "info@sarstedt.com",
       "salesAndQuotes": "patricia.patin@sarstedt.com",
       "phone": "",
       "notes": "",
-      "aliases": [],
+      "aliases": [
+        "Sarsdest"
+      ],
       "coordinates": []
     },
     {
@@ -21036,6 +21038,12 @@
     }
   ],
   "history": [
+    {
+      "date": "10/08/2026 16:33",
+      "user": "Caroline",
+      "action": "Contact modifié",
+      "detail": "Caroline a modifié le contact Sarstedt."
+    },
     {
       "date": "10/08/2026 13:45",
       "user": "Caroline",
@@ -25525,5 +25533,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T11:45:29.112Z"
+  "updatedAt": "2026-08-10T14:33:33.826Z"
 }

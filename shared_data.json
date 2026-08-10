@@ -2835,7 +2835,12 @@
           "unitPrice": "0,8",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "2699694",
+            "notes": "Ref UGAP de GROSSERON SAS"
+          }
+        ]
       },
       "source": "seed",
       "placements": [
@@ -2845,7 +2850,37 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-08-10T15:14:00.430Z",
+      "createdAt": "10/08/2026 17:14",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0055",
@@ -21063,6 +21098,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:14",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié filtre 0,22 13mm."
+    },
+    {
       "date": "10/08/2026 17:13",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25605,5 +25646,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:13:30.440Z"
+  "updatedAt": "2026-08-10T15:14:00.433Z"
 }

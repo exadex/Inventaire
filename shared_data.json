@@ -10008,73 +10008,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0111",
-      "name": "filtre 0,22",
-      "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 1,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Tamis/ Filtre"
-      ],
-      "notes": "Conditionnement : 50",
-      "references": {
-        "primary": {
-          "supplier": "GROSSERON SAS",
-          "reference": "SF13CA22S",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques · UGAP",
-          "price": "103",
-          "unitPrice": "2,06",
-          "leadTime": "1 tous les 3 mois"
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-07-28T13:04:08.316Z",
-      "createdAt": "28/07/2026 15:04",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-81ud36",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0112",
       "name": "petrie dish 100x100x20 carrée",
       "category": "Culture Cell",
@@ -21100,6 +21033,12 @@
     {
       "date": "10/08/2026 17:14",
       "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé filtre 0,22 de l'inventaire."
+    },
+    {
+      "date": "10/08/2026 17:14",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié filtre 0,22 13mm."
     },
@@ -25652,5 +25591,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:14:28.943Z"
+  "updatedAt": "2026-08-10T15:14:44.993Z"
 }

@@ -4906,7 +4906,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "thermofischer",
+          "supplier": "Thermo Fischer",
           "reference": "14190-094",
           "link": "https://www.thermofisher.com/order/catalog/product/14190094",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -4916,7 +4916,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T11:43:23.774Z",
+      "createdAt": "10/08/2026 13:43",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-wyurz7",
@@ -17921,6 +17952,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:43",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié PBS."
+    },
+    {
       "date": "10/08/2026 13:42",
       "user": "Caroline",
       "action": "Item modifié",
@@ -22224,5 +22261,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:42:31.136Z"
+  "updatedAt": "2026-08-10T11:43:23.775Z"
 }

@@ -4515,7 +4515,7 @@
         "primary": {
           "supplier": "Thermo Fischer",
           "reference": "11966025",
-          "link": "",
+          "link": "https://www.fishersci.fr/shop/products/gibco-dmem-no-glucose/11520416?searchHijack=true&searchTerm=11966025&searchType=RAPID&matchedCatNo=11966025",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale · DMEM, sans glucose",
           "price": "18",
           "unitPrice": "",
@@ -17672,6 +17672,12 @@
       "date": "10/08/2026 13:33",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM sans glucose (pour glucose uptake)."
+    },
+    {
+      "date": "10/08/2026 13:33",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié DMEM, high glucose, GlutaMAX™ Supplement, pyruvate."
     },
     {
@@ -21894,5 +21900,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:33:22.511Z"
+  "updatedAt": "2026-08-10T11:33:40.038Z"
 }

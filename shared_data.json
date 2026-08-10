@@ -4962,9 +4962,9 @@
       "notes": "Conditionnement : 250mg",
       "references": {
         "primary": {
-          "supplier": "Sigma",
+          "supplier": "Merck",
           "reference": "I7018-250MG",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/d4902",
+          "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/i7018",
           "notes": "250",
           "price": "250",
           "unitPrice": "1",
@@ -4972,7 +4972,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-08-10T11:38:02.942Z",
+      "createdAt": "10/08/2026 13:38",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mg",
+            "singular": "mg",
+            "plural": "mg",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mg",
+        "trackingUnit": "mg",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-sxbsy8",
@@ -17697,6 +17728,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:38",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié 3-Isobutyl-1-methylxanthine (IBMX)."
+    },
+    {
       "date": "10/08/2026 13:36",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21946,5 +21983,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:36:23.575Z"
+  "updatedAt": "2026-08-10T11:38:02.944Z"
 }

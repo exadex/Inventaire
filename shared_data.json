@@ -1380,8 +1380,8 @@
       "notes": "50",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "Labotienda",
+          "reference": "RBB019",
           "link": "https://www.labotienda.com/fr/produits-laboratoire/blouse-jetable-taille-xl-blanche-1-pc/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "",
@@ -1390,7 +1390,37 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-08-10T11:17:11.054Z",
+      "createdAt": "10/08/2026 13:17",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0029",
@@ -17436,6 +17466,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:17",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Blouse jetable ENDO protectlab taille XL."
+    },
+    {
       "date": "10/08/2026 13:16",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21619,5 +21655,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:16:17.664Z"
+  "updatedAt": "2026-08-10T11:17:11.055Z"
 }

@@ -13189,8 +13189,8 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "Sarsdest",
+          "reference": "70.3050.205",
           "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.205/",
           "notes": "80,64",
           "price": "80,64",
@@ -13199,7 +13199,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-08-10T09:43:40.005Z",
+      "createdAt": "10/08/2026 11:43",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     }
   ],
   "experiments": [],
@@ -17450,6 +17481,12 @@
       "date": "10/08/2026 11:43",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Pipette tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box."
+    },
+    {
+      "date": "10/08/2026 11:43",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Filter tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box."
     },
     {
@@ -21546,5 +21583,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:43:27.174Z"
+  "updatedAt": "2026-08-10T09:43:40.006Z"
 }

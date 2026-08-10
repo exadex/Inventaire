@@ -6380,65 +6380,6 @@
       }
     },
     {
-      "id": "itm-CSV-0079",
-      "name": "cones filtrés 20uL",
-      "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Pointes"
-      ],
-      "notes": "Conditionnement : 1920",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "3020255",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "82",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-07-28T13:01:11.293Z",
-      "createdAt": "28/07/2026 15:01",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-CSV-0080",
       "name": "cones filtrés 20µL",
       "category": "Culture Cell",
@@ -17320,6 +17261,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 11:33",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé cones filtrés 20uL de l'inventaire."
+    },
+    {
       "date": "07/08/2026 10:16",
       "user": "Caroline",
       "action": "Commande reçue",
@@ -21371,5 +21318,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-07T08:16:28.983Z"
+  "updatedAt": "2026-08-10T09:33:22.039Z"
 }

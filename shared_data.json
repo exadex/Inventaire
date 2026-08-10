@@ -6897,65 +6897,6 @@
       }
     },
     {
-      "id": "itm-CSV-0088",
-      "name": "T25",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Flask"
-      ],
-      "notes": "Conditionnement : 300",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "2582557",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "170",
-          "unitPrice": "0,566666667",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-07-28T13:02:00.916Z",
-      "createdAt": "28/07/2026 15:02",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-CSV-0089",
       "name": "T75",
       "category": "Culture Cell",
@@ -17495,6 +17436,12 @@
     {
       "date": "10/08/2026 13:13",
       "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé T25 de l'inventaire."
+    },
+    {
+      "date": "10/08/2026 13:13",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Flacon culture cellulaire T25."
     },
@@ -21658,5 +21605,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:13:14.590Z"
+  "updatedAt": "2026-08-10T11:13:25.231Z"
 }

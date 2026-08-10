@@ -6859,7 +6859,7 @@
         "secondary": [
           {
             "reference": "2582557",
-            "notes": "Ref UGAP de Sarsdest"
+            "notes": "Ref UGAP de Sarsdest. Prix 170€, prix unitaire 0.57€"
           }
         ]
       },
@@ -17493,6 +17493,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:13",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Flacon culture cellulaire T25."
+    },
+    {
       "date": "10/08/2026 13:11",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21652,5 +21658,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:11:22.630Z"
+  "updatedAt": "2026-08-10T11:13:14.590Z"
 }

@@ -2911,7 +2911,7 @@
       "name": "Agarase from pseudomonas atlantica Sigma",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "g",
+      "unit": "unités",
       "minStock": 1,
       "location": "Laboratoire",
       "locations": [
@@ -2957,6 +2957,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -17513,6 +17514,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 11:47",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Agarase from pseudomonas atlantica Sigma."
+    },
+    {
       "date": "10/08/2026 11:45",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21636,5 +21643,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:45:42.207Z"
+  "updatedAt": "2026-08-10T09:47:12.382Z"
 }

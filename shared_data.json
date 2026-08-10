@@ -8406,7 +8406,7 @@
     },
     {
       "id": "itm-CSV-0081",
-      "name": "cones filtrés 10µL",
+      "name": "Cones filtrés 10µL",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -8418,7 +8418,7 @@
       "tags": [
         "Pointes (référence ok)"
       ],
-      "notes": "Conditionnement : 1920",
+      "notes": "Conditionnement : 1920\nPipette tip, 10µl, transparent, Biosphere® plus, 96 piece(s)/box",
       "references": {
         "primary": {
           "supplier": "Sarsdest",
@@ -8433,7 +8433,6 @@
       },
       "source": "seed",
       "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-07-28T13:01:28.596Z",
       "createdAt": "28/07/2026 15:01",
       "stockTracking": {
@@ -8455,6 +8454,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -21129,6 +21129,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:08",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 10µL."
+    },
+    {
       "date": "10/08/2026 16:37",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25641,5 +25647,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T14:37:23.896Z"
+  "updatedAt": "2026-08-10T15:08:13.584Z"
 }

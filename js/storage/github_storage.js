@@ -106,11 +106,12 @@
 
   async function loadSharedData(options = {}) {
     const config = getConfig();
+    const shouldCache = options.cache !== false;
 
     if (!configured(config)) {
       const result = await requestPublicJson(config, options);
 
-      if (result.data) {
+      if (result.data && shouldCache) {
         localStorage.setItem(
           CACHE_KEY,
           JSON.stringify({
@@ -126,14 +127,16 @@
 
     const result = await requestContents(config, options);
 
-    localStorage.setItem(
-      CACHE_KEY,
-      JSON.stringify({
-        data: result.data,
-        sha: result.sha,
-        loadedAt: new Date().toISOString()
-      })
-    );
+    if (shouldCache) {
+      localStorage.setItem(
+        CACHE_KEY,
+        JSON.stringify({
+          data: result.data,
+          sha: result.sha,
+          loadedAt: new Date().toISOString()
+        })
+      );
+    }
 
     return {
       ...result,
@@ -177,7 +180,11 @@
     });
 
     if (response.status === 409) {
-      throw new Error("GitHub save conflict: reload shared data and retry.");
+      const error = new Error("GitHub save conflict: local changes were preserved for recovery.");
+      error.code = "GITHUB_CONFLICT";
+      error.status = 409;
+      error.sha = current.sha || null;
+      throw error;
     }
 
     if (!response.ok) {

@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Recovery tests</title></head>
+<body><pre id="results">RUNNING</pre><script>Object.defineProperty(window, "indexedDB", { value: undefined });</script><script src="../../js/storage/recovery_storage.js"></script><script>
+(async function () {
+  const output = [], fixture = { version: 2, inventoryItems: [{ id: "fixture-only", stock: 7 }] };
+  const assert = (value, message) => { if (!value) throw new Error(message); };
+  async function test(name, fn) { try { await fn(); output.push(`PASS ${name}`); } catch (error) { output.push(`FAIL ${name}: ${error.message}`); } }
+  await test("17 unsynced snapshot is persisted", async () => {
+    await ExadexRecoveryStorage.save({ data: fixture, baseData: { version: 2 }, lastKnownSha: "base-sha", user: "Fixture" });
+    const stored = await ExadexRecoveryStorage.load();
+    assert(stored.unsynced && stored.data.inventoryItems[0].id === "fixture-only", "snapshot missing");
+  });
+  await test("18 recovery metadata is retained", async () => {
+    const stored = await ExadexRecoveryStorage.load();
+    assert(stored.lastKnownSha === "base-sha" && stored.user === "Fixture" && stored.modifiedAt, "metadata missing");
+  });
+  await test("19 confirmed save marks snapshot synchronized", async () => {
+    await ExadexRecoveryStorage.markSynced({ lastKnownSha: "saved-sha" });
+    const stored = await ExadexRecoveryStorage.load();
+    assert(!stored.unsynced && stored.lastKnownSha === "saved-sha" && stored.syncedAt, "sync marker missing");
+  });
+  await test("20 marking synchronized does not alter recovered data", async () => {
+    const stored = await ExadexRecoveryStorage.load();
+    assert(stored.data.inventoryItems.length === 1 && stored.data.inventoryItems[0].stock === 7, "recovery data changed");
+  });
+  document.getElementById("results").textContent = output.join("\n") + `\n${output.filter(x => x.startsWith("PASS")).length}/4 tests passed`;
+  document.title = output.every(x => x.startsWith("PASS")) ? "PASS" : "FAIL";
+})();
+</script></body></html>

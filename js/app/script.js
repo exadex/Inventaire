@@ -32,6 +32,10 @@ let sharedDataLastError = "";
 let sharedDataRemoteReady = false;
 let sharedDataHasUnsavedChanges = false;
 let sharedDataIsSaving = false;
+let sharedDataSyncStatus = "loading";
+let sharedDataSaveCoordinator = null;
+let sharedDataConflict = null;
+let sharedDataRecovery = null;
 let sharedState = createSharedState(readCachedSharedState(), { includeBootstrap: false });
 
 
@@ -843,10 +847,22 @@ async function hydrateSharedData() {
       return;
     }
 
-    const result = await storage.loadSharedData();
+    const recovery = await window.ExadexRecoveryStorage?.load?.().catch(() => null);
+    const result = await storage.loadSharedData({ cache: !recovery?.unsynced });
     sharedDataMode = result.mode;
     sharedDataSha = result.sha;
     sharedDataRemoteReady = true;
+
+    if (recovery?.unsynced && hasSharedDataPayload(recovery.data)) {
+      sharedDataRecovery = recovery;
+      sharedDataSyncStatus = "recovery";
+      sharedDataLastError = "Des modifications locales non synchronisées ont été retrouvées.";
+      sharedState = createSharedState(recovery.data, { includeBootstrap: false });
+      syncRuntimeStateFromShared();
+      initializeSharedSaveCoordinator(recovery.baseData || result.data, recovery.lastKnownSha || result.sha);
+      if (!app.classList.contains("hidden")) render();
+      return;
+    }
 
     if (hasSharedDataPayload(result.data)) {
       const contactsBefore=Array.isArray(result.data.supplierContacts)?result.data.supplierContacts:[],needsContactsMigration=INITIAL_SUPPLIER_CONTACTS.some(seed=>!contactsBefore.some(contact=>normalizeCompanyName(contact?.company)===normalizeCompanyName(seed.company))),hierarchyMigrationRequired=needsHierarchyMigration(result.data);
@@ -854,6 +870,8 @@ async function hydrateSharedData() {
       syncRuntimeStateFromShared();
       cacheSharedState();
       sharedDataLastError = "";
+      sharedDataSyncStatus = "saved";
+      initializeSharedSaveCoordinator(result.data, result.sha);
       if((needsContactsMigration||hierarchyMigrationRequired)&&result.mode==="github-write")scheduleSharedSave();
 
       if (!app.classList.contains("hidden")) {
@@ -865,6 +883,7 @@ async function hydrateSharedData() {
       cacheSharedState();
 
       if (result.mode === "github-write") {
+        initializeSharedSaveCoordinator(result.data, result.sha);
         scheduleSharedSave({ allowInitialSeed: true });
       }
     }
@@ -877,6 +896,45 @@ async function hydrateSharedData() {
     cacheSharedState();
     renderAlerts();
   }
+}
+
+function initializeSharedSaveCoordinator(baseData, initialSha) {
+  const storage = window.ExadexGithubStorage;
+  if (!storage || !window.ExadexSharedSync) return;
+  sharedDataSaveCoordinator = window.ExadexSharedSync.createSaveCoordinator({
+    initialBase: baseData,
+    initialSha,
+    save: (data, sha) => storage.saveSharedData(data, sha),
+    loadRemote: () => storage.loadSharedData({ fresh: true, cache: false }),
+    onStatus(status, error) {
+      sharedDataSyncStatus = status;
+      sharedDataIsSaving = status === "saving";
+      if (error) sharedDataLastError = error.message || String(error);
+      renderAlerts();
+    },
+    async onSaved(result) {
+      sharedDataSha = result.sha;
+      sharedDataMode = "github-write";
+      sharedDataLastError = "";
+      sharedDataRemoteReady = true;
+      sharedDataConflict = null;
+      sharedDataHasUnsavedChanges = Boolean(result.pending);
+      if (!result.pending) {
+        await window.ExadexRecoveryStorage?.markSynced?.({ lastKnownSha: result.sha, lastGithubSavedAt: new Date().toISOString() }).catch(() => null);
+      }
+    },
+    async onMerged(result) {
+      sharedState = createSharedState(result.data, { includeBootstrap: false });
+      syncRuntimeStateFromShared();
+      cacheSharedState();
+      render();
+    },
+    onConflict(conflict) {
+      sharedDataConflict = conflict;
+      sharedDataHasUnsavedChanges = true;
+      sharedDataLastError = `${conflict.conflicts.length} conflit(s) précis nécessitent une résolution. Les données locales restent intactes.`;
+    }
+  });
 }
 
 function scheduleSharedSave(options = {}) {
@@ -898,16 +956,12 @@ function scheduleSharedSave(options = {}) {
         throw new Error("Remote shared data was not loaded, so saving is blocked to protect GitHub data.");
       }
 
-      sharedDataIsSaving = true;
-      renderAlerts();
-      sharedDataSha = await storage.saveSharedData(sharedState, sharedDataSha);
-      sharedDataMode = "github-write";
-      sharedDataLastError = "";
-      sharedDataHasUnsavedChanges = false;
-      sharedDataRemoteReady = true;
+      if (!sharedDataSaveCoordinator) initializeSharedSaveCoordinator(sharedState, sharedDataSha);
+      await sharedDataSaveCoordinator.enqueue(sharedState);
     } catch (error) {
       sharedDataLastError = error.message || String(error);
       sharedDataHasUnsavedChanges = true;
+      sharedDataSyncStatus = "error";
       console.warn("Shared storage save failed.", error);
     } finally {
       sharedDataIsSaving = false;
@@ -921,6 +975,15 @@ function persist(options = {}) {
   syncSharedStateFromRuntime();
   cacheSharedState();
   sharedDataHasUnsavedChanges = true;
+  sharedDataSyncStatus = "unsynced";
+  window.ExadexRecoveryStorage?.save?.({
+    data: sharedState,
+    baseData: sharedDataSaveCoordinator?.getState?.().base || null,
+    lastKnownSha: sharedDataSha,
+    user: currentName,
+    sessionId: sessionStorage.getItem("exadex_session_id") || "browser-session",
+    syncStatus: "unsynced"
+  }).catch(error => console.warn("Local recovery copy failed.", error));
 
   if (!options.skipRemote) {
     scheduleSharedSave();
@@ -1137,6 +1200,21 @@ function renderAlerts() {
 }
 
 function renderSharedDataAlert() {
+  if (sharedDataRecovery?.unsynced) {
+    return `
+      <div class="alert shared-data-alert">
+        Des modifications locales non synchronisées ont été retrouvées (${escapeHtml(sharedDataRecovery.modifiedAt || "date inconnue")}).
+        <button type="button" class="btn ghost" onclick="downloadRecoveredSharedData()">Télécharger une copie</button>
+        <button type="button" class="btn ghost" onclick="compareRecoveredSharedData()">Comparer et récupérer</button>
+        <button type="button" class="btn ghost" onclick="ignoreRecoveredSharedData()">Ignorer</button>
+      </div>
+    `;
+  }
+
+  if (sharedDataSyncStatus === "conflict") {
+    return `<div class="alert shared-data-alert">Conflit détecté — récupération nécessaire. ${escapeHtml(sharedDataLastError)}</div>`;
+  }
+
   if (sharedDataLastError) {
     return `
       <div class="alert shared-data-alert">
@@ -1161,8 +1239,43 @@ function renderSharedDataAlert() {
     `;
   }
 
+  if (sharedDataSyncStatus === "saved" && sharedDataMode === "github-write") {
+    return `<div class="alert shared-data-alert saving">Enregistré</div>`;
+  }
+
   return "";
 }
+
+function downloadRecoveredSharedData() {
+  if (sharedDataRecovery) window.ExadexRecoveryStorage?.download?.(sharedDataRecovery);
+}
+
+function compareRecoveredSharedData() {
+  sharedDataRecovery = null;
+  sharedDataLastError = "";
+  sharedDataHasUnsavedChanges = true;
+  sharedDataSyncStatus = "unsynced";
+  scheduleSharedSave();
+  renderAlerts();
+}
+
+async function ignoreRecoveredSharedData() {
+  sharedDataRecovery = null;
+  await window.ExadexRecoveryStorage?.markSynced?.({ ignoredAt: new Date().toISOString() }).catch(() => null);
+  const result = await window.ExadexGithubStorage.loadSharedData({ fresh: true });
+  sharedDataSha = result.sha;
+  sharedDataLastError = "";
+  sharedDataSyncStatus = "saved";
+  applySharedState(result.data);
+  initializeSharedSaveCoordinator(result.data, result.sha);
+  render();
+}
+
+window.addEventListener("beforeunload", event => {
+  if (!sharedDataHasUnsavedChanges && sharedDataSyncStatus !== "conflict") return;
+  event.preventDefault();
+  event.returnValue = "";
+});
 
 function renderInventory() {
   renderUsageProfileFilterOptions();

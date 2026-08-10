@@ -8308,7 +8308,7 @@
     },
     {
       "id": "itm-CSV-0078",
-      "name": "cones filtrés 20uL",
+      "name": "Cones filtrés 20uL",
       "category": "Culture Cell",
       "quantity": 3,
       "unit": "unités",
@@ -8325,10 +8325,10 @@
         "primary": {
           "supplier": "Sarsdest",
           "reference": "70.3020.255",
-          "link": "",
+          "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3020.255/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "",
-          "unitPrice": "",
+          "price": "81,60",
+          "unitPrice": "0,04",
           "leadTime": ""
         },
         "secondary": []
@@ -21028,6 +21028,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:19",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 20uL."
+    },
+    {
       "date": "10/08/2026 17:18",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25618,5 +25624,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:18:22.720Z"
+  "updatedAt": "2026-08-10T15:19:02.088Z"
 }

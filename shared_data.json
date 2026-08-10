@@ -7550,7 +7550,7 @@
     },
     {
       "id": "itm-CSV-0103",
-      "name": "MEM 100X",
+      "name": "MEM Non-essential Amino Acid Solution (100×)",
       "category": "Culture Cell",
       "quantity": 4,
       "unit": "unités",
@@ -7562,12 +7562,12 @@
       "tags": [
         "Milieu MEM"
       ],
-      "notes": "",
+      "notes": "MEM 100X",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Merck",
           "reference": "M7145",
-          "link": "",
+          "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/m7145?srsltid=AfmBOoqfuA7FWgpYoS7-lOsrLAhsc08jXmjxbn68ad93YQNDUOoLZyhI",
           "notes": "293",
           "price": "293",
           "unitPrice": "",
@@ -7575,7 +7575,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-08-10T11:27:27.718Z",
+      "createdAt": "10/08/2026 13:27",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0104",
@@ -17503,6 +17534,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:27",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié MEM Non-essential Amino Acid Solution (100×)."
+    },
+    {
       "date": "10/08/2026 13:24",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21704,5 +21741,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:24:38.288Z"
+  "updatedAt": "2026-08-10T11:27:27.720Z"
 }

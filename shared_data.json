@@ -7928,7 +7928,7 @@
     },
     {
       "id": "itm-web-1783931436295-p4bim9",
-      "name": "cones 1000µL filtrés",
+      "name": "Cones filtrés 1000µL",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -7951,7 +7951,12 @@
           "unitPrice": "",
           "leadTime": "rapide"
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "2869323",
+            "notes": "Ref UGAP de Sarstedt"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -21063,6 +21068,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:11",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 1000µL."
+    },
+    {
       "date": "10/08/2026 17:08",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -25587,5 +25598,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:08:17.472Z"
+  "updatedAt": "2026-08-10T15:11:20.048Z"
 }

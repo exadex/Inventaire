@@ -164,9 +164,9 @@
       "notes": "Conditionnement : 300 plaques/cartons",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Thermo Fischer",
           "reference": "150687",
-          "link": "",
+          "link": "https://www.thermofisher.com/order/catalog/product/fr/fr/150687",
           "notes": "",
           "price": "",
           "unitPrice": "",
@@ -184,7 +184,35 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "carton",
+        "trackingUnit": "Carton",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "web-1784214685893",
@@ -21101,6 +21129,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 16:37",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaques 48 puits."
+    },
+    {
       "date": "10/08/2026 16:36",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25607,5 +25641,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T14:36:47.617Z"
+  "updatedAt": "2026-08-10T14:37:23.896Z"
 }

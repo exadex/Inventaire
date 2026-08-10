@@ -8442,7 +8442,7 @@
     },
     {
       "id": "itm-CSV-0081",
-      "name": "Cones filtrés 10µL",
+      "name": "Cones non-filtrés 10µL",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -8457,7 +8457,7 @@
       "notes": "Conditionnement : 1920\nPipette tip, 10µl, transparent, Biosphere® plus, 96 piece(s)/box",
       "references": {
         "primary": {
-          "supplier": "Sarsdest",
+          "supplier": "Sarstedt",
           "reference": "70.3010.205",
           "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.205/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -8465,7 +8465,12 @@
           "unitPrice": "0,0355",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "70.3010",
+            "notes": "Sarstedt"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -8505,7 +8510,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-CSV-0082",
@@ -20993,6 +20999,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:20",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non-filtrés 10µL."
+    },
+    {
       "date": "10/08/2026 17:19",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -25595,5 +25607,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:19:10.168Z"
+  "updatedAt": "2026-08-10T15:20:47.200Z"
 }

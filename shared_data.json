@@ -13131,8 +13131,8 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "Sarsdest",
+          "reference": "70.3050.255",
           "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.255/",
           "notes": "113,28",
           "price": "113,28",
@@ -13141,7 +13141,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-08-10T09:43:27.173Z",
+      "createdAt": "10/08/2026 11:43",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0194",
@@ -17416,6 +17447,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 11:43",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Filter tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box."
+    },
+    {
       "date": "10/08/2026 11:42",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21509,5 +21546,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:42:56.327Z"
+  "updatedAt": "2026-08-10T09:43:27.174Z"
 }

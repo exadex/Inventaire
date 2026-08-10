@@ -2838,7 +2838,7 @@
         "secondary": [
           {
             "reference": "2699694",
-            "notes": "Ref UGAP de GROSSERON SAS"
+            "notes": "Ref UGAP de GROSSERON SAS. Prix 103€, prix unitaire 2.06€"
           }
         ]
       },
@@ -21104,6 +21104,12 @@
       "detail": "Caroline a modifié filtre 0,22 13mm."
     },
     {
+      "date": "10/08/2026 17:14",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié filtre 0,22 13mm."
+    },
+    {
       "date": "10/08/2026 17:13",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25646,5 +25652,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:14:00.433Z"
+  "updatedAt": "2026-08-10T15:14:28.943Z"
 }

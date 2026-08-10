@@ -11462,33 +11462,6 @@
       "source": "seed"
     },
     {
-      "id": "itm-CSV-0132",
-      "name": "Mycostrip",
-      "category": "Qualité",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "-20°C blanc labo",
-      "locations": [
-        "-20°C blanc labo"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.invivogen.com/mycostrip?gclid=Cj0KCQjwwYSwBhDcARIsAOyL0fidnFpoEfcfjw4vCPaobOQd6PuZwqOwrI7SbfyvBTcK2PofbGya_AUaAva0EALw_wcB",
-          "notes": "",
-          "price": "",
-          "unitPrice": "350",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed"
-    },
-    {
       "id": "itm-CSV-0133",
       "name": "kit mycoplasme Venor®GeM OneStep",
       "category": "Qualité",
@@ -17478,6 +17451,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 11:44",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Mycostrip de l'inventaire."
+    },
+    {
       "date": "10/08/2026 11:43",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21583,5 +21562,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:43:40.006Z"
+  "updatedAt": "2026-08-10T09:44:18.774Z"
 }

@@ -8261,7 +8261,7 @@
         "secondary": [
           {
             "reference": "70.3031.355",
-            "notes": "Fournisseur : Sarstedt"
+            "notes": "Fournisseur : Sarstedt. Prix 85,44 €, prix unitaire 0,04 €"
           }
         ]
       },
@@ -21063,6 +21063,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:17",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 200µL."
+    },
+    {
       "date": "10/08/2026 17:16",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25635,5 +25641,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:16:21.968Z"
+  "updatedAt": "2026-08-10T15:17:10.304Z"
 }

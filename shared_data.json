@@ -9913,7 +9913,7 @@
     },
     {
       "id": "itm-CSV-0109",
-      "name": "support de Plaque 96 puits applied Veriflex",
+      "name": "Support de plaque 96 puits applied Veriflex",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "plaques",
@@ -9962,6 +9962,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -20999,6 +21000,12 @@
       "date": "10/08/2026 17:23",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Support de plaque 96 puits applied Veriflex."
+    },
+    {
+      "date": "10/08/2026 17:23",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Plaque 96 puits applied OPTIQUE."
     },
     {
@@ -25628,5 +25635,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:23:11.704Z"
+  "updatedAt": "2026-08-10T15:23:42.232Z"
 }

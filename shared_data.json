@@ -9989,7 +9989,7 @@
       "notes": "Conditionnement : 50",
       "references": {
         "primary": {
-          "supplier": "Sarsdest",
+          "supplier": "GROSSERON SAS",
           "reference": "SF13CA22S",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques · UGAP",
@@ -10001,7 +10001,6 @@
       },
       "source": "seed",
       "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-07-28T13:04:08.316Z",
       "createdAt": "28/07/2026 15:04",
       "stockTracking": {
@@ -10023,6 +10022,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -21063,6 +21063,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 17:13",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié filtre 0,22."
+    },
+    {
       "date": "10/08/2026 17:11",
       "user": "Caroline",
       "action": "Item modifié",
@@ -25599,5 +25605,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:11:44.449Z"
+  "updatedAt": "2026-08-10T15:13:30.440Z"
 }

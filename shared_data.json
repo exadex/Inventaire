@@ -4513,7 +4513,7 @@
       "notes": "Conditionnement : 500mL",
       "references": {
         "primary": {
-          "supplier": "Thermofisher",
+          "supplier": "Thermo Fischer",
           "reference": "11966025",
           "link": "",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale · DMEM, sans glucose",
@@ -4523,7 +4523,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T11:33:22.509Z",
+      "createdAt": "10/08/2026 13:33",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-qufvjj",
@@ -17635,6 +17666,12 @@
       "date": "10/08/2026 13:33",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM sans glucose (pour glucose uptake)."
+    },
+    {
+      "date": "10/08/2026 13:33",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié DMEM, high glucose, GlutaMAX™ Supplement, pyruvate."
     },
     {
@@ -21857,5 +21894,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:33:02.080Z"
+  "updatedAt": "2026-08-10T11:33:22.511Z"
 }

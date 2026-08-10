@@ -1,5 +1,70 @@
 {
-  "version": 1,
+  "version": 2,
+  "locationCatalog": {
+    "locations": [
+      {
+        "id": "location-frigo-labo",
+        "roomId": "room-laboratoire",
+        "name": "Frigo labo",
+        "icon": "🌨️"
+      },
+      {
+        "id": "location-20-blanc-labo",
+        "roomId": "room-laboratoire",
+        "name": "-20°C blanc labo",
+        "icon": "☃️"
+      },
+      {
+        "id": "location-20-gris-labo",
+        "roomId": "room-laboratoire",
+        "name": "-20°C gris labo",
+        "icon": "☃️"
+      },
+      {
+        "id": "location-20-floricia-labo",
+        "roomId": "room-laboratoire",
+        "name": "-20°C Floricia labo",
+        "icon": "🌸"
+      },
+      {
+        "id": "location-frigo-culture-l1",
+        "roomId": "room-culture-l1",
+        "name": "Frigo culture L1",
+        "icon": "🌨️"
+      },
+      {
+        "id": "location-20-culture-l1",
+        "roomId": "room-culture-l1",
+        "name": "-20°C culture L1",
+        "icon": "☃️"
+      },
+      {
+        "id": "location-20-1-salle-80",
+        "roomId": "room-piece-80",
+        "name": "-20°C 1 salle -80",
+        "icon": "1️⃣"
+      },
+      {
+        "id": "location-20-2-salle-80",
+        "roomId": "room-piece-80",
+        "name": "-20°C 2 salle -80",
+        "icon": "2️⃣"
+      },
+      {
+        "id": "location-20-3-salle-80",
+        "roomId": "room-piece-80",
+        "name": "-20°C 3 salle -80",
+        "icon": "3️⃣"
+      },
+      {
+        "id": "location-80",
+        "roomId": "room-piece-80",
+        "name": "-80°C",
+        "icon": "🧊"
+      }
+    ],
+    "sublocations": []
+  },
   "inventoryItems": [
     {
       "id": "web-1785252073452",
@@ -71,7 +136,15 @@
         "enabled": false,
         "preparations": []
       },
-      "source": "web"
+      "source": "web",
+      "placements": [
+        {
+          "id": "placement-legacy-16qrsx1",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "web-1784276773489",
@@ -103,7 +176,15 @@
       },
       "createdAtRaw": "2026-07-17T08:26:13.489Z",
       "createdAt": "17/07/2026 10:26",
-      "source": "web"
+      "source": "web",
+      "placements": [
+        {
+          "id": "placement-legacy-nhwmih",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "web-1784214685893",
@@ -198,7 +279,15 @@
         "preparations": []
       },
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-1rll5o0",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0001",
@@ -227,7 +316,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-vpm5i0",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0004",
@@ -291,7 +388,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1xvvrc1",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0005",
@@ -355,7 +460,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-w2s93o",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0006",
@@ -414,7 +527,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1t1bj8k",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0007",
@@ -473,7 +594,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-onkwui",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0009",
@@ -533,7 +662,21 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-13s1b6q",
+          "roomId": "room-culture-l2",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-8x9g5z",
+          "roomId": "room-culture-l1",
+          "locationId": "location-frigo-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0010",
@@ -562,7 +705,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1pk7d3q",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0011",
@@ -621,7 +772,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-orll8m",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0012",
@@ -681,7 +840,21 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-acfwfb",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-15abxkt",
+          "roomId": "room-culture-l2",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0013",
@@ -710,7 +883,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1lcd4r3",
+          "roomId": "room-culture-l2",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0014",
@@ -769,7 +950,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1d3ysxm",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0015",
@@ -798,7 +987,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1siox9b",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0016",
@@ -827,7 +1024,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1dqqqqz",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0017",
@@ -856,7 +1061,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-njstct",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0018",
@@ -978,7 +1191,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785238740524-xc8swm"
+      "supplierContactId": "contact-1785238740524-xc8swm",
+      "placements": [
+        {
+          "id": "placement-legacy-ir1516",
+          "roomId": "room-culture-l1",
+          "locationId": "location-frigo-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0019",
@@ -1037,7 +1258,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1sad1bs",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0020",
@@ -1096,7 +1325,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-con0hf",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0021",
@@ -1155,7 +1392,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-88zrsm",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0022",
@@ -1214,7 +1459,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-nl732l",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0023",
@@ -1243,7 +1496,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1kcplog",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0024",
@@ -1275,7 +1536,15 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T12:14:39.744Z",
-      "createdAt": "16/07/2026 14:14"
+      "createdAt": "16/07/2026 14:14",
+      "placements": [
+        {
+          "id": "placement-legacy-wf1iv3",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0025",
@@ -1304,7 +1573,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-a7lfya",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0026",
@@ -1333,7 +1610,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1fscdzf",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0027",
@@ -1362,7 +1647,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-clnfnw",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0028",
@@ -1422,7 +1715,21 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-ujyxo0",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-1kdwrv2",
+          "roomId": "room-culture-l2",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0029",
@@ -1454,7 +1761,15 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T12:14:51.503Z",
-      "createdAt": "16/07/2026 14:14"
+      "createdAt": "16/07/2026 14:14",
+      "placements": [
+        {
+          "id": "placement-legacy-clytqe",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0030",
@@ -1483,7 +1798,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1by7pes",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0031",
@@ -1512,7 +1835,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-czj8tf",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0032",
@@ -1541,7 +1872,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-12qja3e",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0033",
@@ -1570,7 +1909,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-18kzurr",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0034",
@@ -1630,7 +1977,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-mfdle8",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0035",
@@ -1662,7 +2017,15 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T12:24:18.477Z",
-      "createdAt": "16/07/2026 14:24"
+      "createdAt": "16/07/2026 14:24",
+      "placements": [
+        {
+          "id": "placement-legacy-15d96r9",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0036",
@@ -1722,7 +2085,21 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1jeemou",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-tw867",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0037",
@@ -1751,7 +2128,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-velfwt",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0039",
@@ -1780,7 +2165,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-88q2nt",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0040",
@@ -1809,7 +2202,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-17bqjt5",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0041",
@@ -1841,7 +2242,15 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T12:24:28.764Z",
-      "createdAt": "16/07/2026 14:24"
+      "createdAt": "16/07/2026 14:24",
+      "placements": [
+        {
+          "id": "placement-legacy-1o9u5ae",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0042",
@@ -1870,7 +2279,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-u2jvcv",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0043",
@@ -1899,7 +2316,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-teauz6",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0045",
@@ -1963,7 +2388,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1xdh7fj",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0046",
@@ -1992,7 +2425,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-5azufv",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0047",
@@ -2057,7 +2498,21 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-l68ogm",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-qzasf",
+          "roomId": "room-culture-l2",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0048",
@@ -2086,7 +2541,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1l4lyld",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0049",
@@ -2119,7 +2582,21 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T12:18:14.111Z",
-      "createdAt": "16/07/2026 14:18"
+      "createdAt": "16/07/2026 14:18",
+      "placements": [
+        {
+          "id": "placement-legacy-r0z6ms",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-1tigzgx",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0050",
@@ -2148,7 +2625,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-3my3aa",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0051",
@@ -2213,7 +2698,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1lwjqz3",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0052",
@@ -2242,7 +2735,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1fwe6vg",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0053",
@@ -2271,7 +2772,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-o7df0l",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0054",
@@ -2300,7 +2809,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-112dyzy",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0055",
@@ -2329,7 +2846,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-9oofbc",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0056",
@@ -2360,7 +2885,15 @@
       },
       "source": "seed",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-19dxg2",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0057",
@@ -2392,7 +2925,15 @@
       "source": "seed",
       "usageProfile": "backup",
       "createdAtRaw": "2026-07-16T13:08:08.060Z",
-      "createdAt": "16/07/2026 15:08"
+      "createdAt": "16/07/2026 15:08",
+      "placements": [
+        {
+          "id": "placement-legacy-1awcdr5",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0058",
@@ -2421,7 +2962,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-6shnds",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0059",
@@ -2450,7 +2999,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-r2ezfr",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0060",
@@ -2479,7 +3036,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-p8qwjl",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0064",
@@ -2538,7 +3103,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-nydb71",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0065",
@@ -2567,7 +3140,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-dl0t8l",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0066",
@@ -2596,7 +3177,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-12fp927",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0067",
@@ -2625,7 +3214,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-17kfi5s",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0068",
@@ -2654,7 +3251,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-u6zuih",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0069",
@@ -2683,7 +3288,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-17a5wya",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0070",
@@ -2712,7 +3325,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-6zln1c",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0071",
@@ -2741,7 +3362,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1ubcrdb",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0072",
@@ -2770,7 +3399,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1xv1osm",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0073",
@@ -2799,7 +3436,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1n5kizh",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0074",
@@ -2828,7 +3473,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1crtj04",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0075",
@@ -2887,7 +3540,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-vlrh1y",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-k56flv",
@@ -2946,7 +3607,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-eu091c",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-vdx813",
@@ -2975,7 +3644,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1avlc0w",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-arib18",
@@ -3035,7 +3712,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1b0poiz",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-qxduy0",
@@ -3134,7 +3819,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv"
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "placements": [
+        {
+          "id": "placement-legacy-17currz",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-6j33l2",
@@ -3228,7 +3921,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv"
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "placements": [
+        {
+          "id": "placement-legacy-1n6tvcg",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-d6kovv",
@@ -3287,7 +3988,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1q1k17s",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-9lpsq8",
@@ -3381,7 +4090,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv"
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "placements": [
+        {
+          "id": "placement-legacy-1pzid7p",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-8xgtpz",
@@ -3410,7 +4127,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-uka4o0",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-tnuw1r",
@@ -3469,7 +4194,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-173aa85",
+          "roomId": "room-culture-l1",
+          "locationId": "location-frigo-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-zjfnga",
@@ -3528,7 +4261,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1bp519u",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-ilyv16",
@@ -3587,7 +4328,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-arx6ll",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-o5o87b",
@@ -3616,7 +4365,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-bdhsec",
+          "roomId": "room-culture-l1",
+          "locationId": "location-frigo-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-bvrb00",
@@ -3675,7 +4432,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1clw4y",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-qn040m",
@@ -3734,7 +4499,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-sp3ik2",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-t9aqbd",
@@ -3793,7 +4566,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-5x271o",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-s698y8",
@@ -3852,7 +4633,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-z0u297",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-vseygc",
@@ -3911,7 +4700,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-17r89ir",
+          "roomId": "room-culture-l1",
+          "locationId": "location-frigo-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-ai5dyp",
@@ -3940,7 +4737,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-4n9ovh",
+          "roomId": "room-piece-80",
+          "locationId": "location-20-1-salle-80",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-1kgpb7",
@@ -3969,7 +4774,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-jq66mu",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-f2uidn",
@@ -4028,7 +4841,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-m2dadf",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-gris-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-1bvmx2",
@@ -4057,7 +4878,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14u7yx",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-1cbqkj",
@@ -4117,7 +4946,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1tsyfrx",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-8t6yex",
@@ -4146,7 +4983,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-fo7pov",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-gris-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-vfciuu",
@@ -4205,7 +5050,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-h6dhvb",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-pvtm1z",
@@ -4264,7 +5117,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1jhzwqf",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-sr573x",
@@ -4323,7 +5184,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-zjlc9j",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-hbrov0",
@@ -4352,7 +5221,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1kwcj38",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-0yi65l",
@@ -4411,7 +5288,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1wmtu34",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-1cu5ou",
@@ -4470,7 +5355,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-6rmz51",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-gris-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-aoxq1k",
@@ -4499,7 +5392,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1tufeso",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-ka6esa",
@@ -4528,7 +5429,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-174zirm",
+          "roomId": "room-culture-l1",
+          "locationId": "location-20-culture-l1",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-prq1rh",
@@ -4588,7 +5497,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-99rk9d",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-qufvjj",
@@ -4647,7 +5564,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1xln8v1",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-t6s1p3",
@@ -4706,7 +5631,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-13mckkq",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-h0uujo",
@@ -4771,7 +5704,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-18232aw",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436294-y4uvlu",
@@ -4830,7 +5771,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-quwcgc",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-56643c",
@@ -4891,7 +5840,21 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-14saqyg",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-epfolq",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-c9o2wm",
@@ -4951,7 +5914,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-sssgtb",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-wyurz7",
@@ -4980,7 +5951,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1a5cuqw",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-gmhpnp",
@@ -5009,7 +5988,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1kd0fup",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-4yhraf",
@@ -5069,7 +6056,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1rdgiu1",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-sxbsy8",
@@ -5098,7 +6093,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-2xl7sj",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ytshf4",
@@ -5183,7 +6186,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-aenrmx",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-qump8w",
@@ -5214,7 +6225,15 @@
       },
       "source": "seed",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-1ul0rqf",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-9b57e9",
@@ -5274,7 +6293,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-a69804",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-9h1ov8",
@@ -5334,7 +6361,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-11sc2tm",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-7pfrox",
@@ -5464,7 +6499,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv"
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "placements": [
+        {
+          "id": "placement-legacy-k3pbpx",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-yln0s3",
@@ -5566,7 +6609,15 @@
         "preparations": []
       },
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-1oc2mo0",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-cgioxi",
@@ -5600,7 +6651,15 @@
       "createdAtRaw": "2026-07-17T12:02:49.973Z",
       "createdAt": "17/07/2026 14:02",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-25mu54",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ookfph",
@@ -5639,7 +6698,15 @@
       "createdAtRaw": "2026-07-17T12:05:45.349Z",
       "createdAt": "17/07/2026 14:05",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-1glzigs",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-xj2mx3",
@@ -5671,7 +6738,15 @@
       "source": "seed",
       "usageProfile": "normal",
       "createdAtRaw": "2026-07-17T08:15:32.008Z",
-      "createdAt": "17/07/2026 10:15"
+      "createdAt": "17/07/2026 10:15",
+      "placements": [
+        {
+          "id": "placement-legacy-196igkz",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-tm3qnv",
@@ -5710,7 +6785,15 @@
       "createdAtRaw": "2026-07-17T08:28:12.186Z",
       "createdAt": "17/07/2026 10:28",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-1xap806",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-bcmh1a",
@@ -5770,7 +6853,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-wghapl",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-nfh67s",
@@ -5799,7 +6890,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1sm85t",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-81mkc8",
@@ -5859,7 +6958,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-14u2mqd",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-qpxakb",
@@ -5888,7 +6995,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1wqick",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-06zf4c",
@@ -5917,7 +7032,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1p3jd5c",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-k9m0fn",
@@ -5951,7 +7074,15 @@
       "createdAtRaw": "2026-07-17T12:37:02.504Z",
       "createdAt": "17/07/2026 14:37",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-22om64",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-wncvj7",
@@ -6053,7 +7184,15 @@
         "preparations": []
       },
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-47gglm",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-9a6sx8",
@@ -6170,7 +7309,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv"
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "placements": [
+        {
+          "id": "placement-legacy-1na0m0c",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-c47v8h",
@@ -6197,7 +7344,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-gsj7rs",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-n1d52k",
@@ -6228,7 +7383,15 @@
       },
       "source": "seed",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-xipv8d",
+          "roomId": "room-culture-l1",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-zbiref",
@@ -6259,7 +7422,15 @@
       },
       "source": "seed",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-1b1aiuh",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-1dofvn",
@@ -6380,7 +7551,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv"
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "placements": [
+        {
+          "id": "placement-legacy-1abnq69",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-xpwlf5",
@@ -6411,7 +7590,15 @@
       },
       "source": "seed",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-9xoth3",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-hsn9dp",
@@ -6442,7 +7629,15 @@
       },
       "source": "seed",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-12lq9x5",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-cwj79e",
@@ -6563,7 +7758,15 @@
         "preparations": []
       },
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-120ho7a",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-bvqchf",
@@ -6623,7 +7826,15 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv"
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "placements": [
+        {
+          "id": "placement-legacy-1ab69on",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-p4bim9",
@@ -6683,7 +7894,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1pippym",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-osftkk",
@@ -6743,7 +7962,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1em5qsb",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-32px27",
@@ -6803,7 +8030,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-v9zc6b",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-kwjv0i",
@@ -6863,7 +8098,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-110ni90",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0077",
@@ -6927,7 +8170,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1tytj1z",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0078",
@@ -6986,7 +8237,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-18c2jfm",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0080",
@@ -7045,7 +8304,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-weqk75",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0081",
@@ -7104,7 +8371,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-quqmya",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0082",
@@ -7163,7 +8438,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-dawrib",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0083",
@@ -7192,7 +8475,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-18qcwsu",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0084",
@@ -7221,7 +8512,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1ttnxa3",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0085",
@@ -7250,7 +8549,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-11cbojg",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0086",
@@ -7284,7 +8591,15 @@
       "createdAtRaw": "2026-07-16T13:09:30.932Z",
       "createdAt": "16/07/2026 15:09",
       "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1
+      "version": 1,
+      "placements": [
+        {
+          "id": "placement-legacy-1aivd2n",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0087",
@@ -7349,7 +8664,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-cjfhk",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0089",
@@ -7408,7 +8731,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1mzsfoq",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0090",
@@ -7435,7 +8766,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1y0dcvy",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0091",
@@ -7464,7 +8803,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-nn1rx1",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0092",
@@ -7493,7 +8840,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1hd2ooo",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0093",
@@ -7552,7 +8907,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-hpvu5j",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0094",
@@ -7581,7 +8944,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-d39u0b",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0095",
@@ -7640,7 +9011,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-17i1wq2",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0096",
@@ -7699,7 +9078,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-5llk99",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0097",
@@ -7758,7 +9145,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1099xzw",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0098",
@@ -7817,7 +9212,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-kq6vfq",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0099",
@@ -7846,7 +9249,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-17kapbq",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0100",
@@ -7875,7 +9286,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-cxlgy9",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0101",
@@ -7904,7 +9323,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-tq670w",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0102",
@@ -7963,7 +9390,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-ywe1n2",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0103",
@@ -8023,7 +9458,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-pz2hm6",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0104",
@@ -8083,7 +9526,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-jk0pfh",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0105",
@@ -8112,7 +9563,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-dc5fcr",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0106",
@@ -8205,7 +9664,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1a6r8x4",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0107",
@@ -8234,7 +9701,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1vho6vt",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0108",
@@ -8293,7 +9768,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-22zmsq",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0109",
@@ -8352,7 +9835,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1vy7qux",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0110",
@@ -8381,7 +9872,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-ek5p3z",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0111",
@@ -8440,7 +9939,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-81ud36",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0112",
@@ -8467,7 +9974,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-3j372j",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-xcczxu",
@@ -8494,7 +10009,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1na5xiw",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-cvk4ll",
@@ -8521,7 +10044,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-d1kdat",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-cxs8eq",
@@ -8548,7 +10079,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1nqs6al",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-xgl2c1",
@@ -8575,7 +10114,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-dyybjs",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-hv1ucl",
@@ -8602,7 +10149,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-w5mwh4",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-qimld4",
@@ -8630,7 +10185,21 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-dku4b9",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-1pigcj",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-q9ke99",
@@ -8657,7 +10226,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-zwrsvn",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ccchbz",
@@ -8684,7 +10261,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-vdwzjm",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-993nfc",
@@ -8711,7 +10296,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1t2r43u",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-gris-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-s3423n",
@@ -8738,7 +10331,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1gq4ip6",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-f3pe9l",
@@ -8766,7 +10367,21 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-110aee6",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-nk2xsh",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-0hdzoo",
@@ -8794,7 +10409,21 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1qaunt5",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-o0fu1g",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-j28epe",
@@ -8821,7 +10450,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-mmu65p",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ujjokf",
@@ -8848,7 +10485,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-nfbvou",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-qhaqqq",
@@ -8875,7 +10520,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1x6nfhy",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-hdtq2g",
@@ -8902,7 +10555,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-o53y8b",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-lkqj79",
@@ -8930,7 +10591,21 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-17np2yp",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-1s8vml0",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-cn5q2d",
@@ -8957,7 +10632,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1pvb4eu",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ahsxdn",
@@ -8984,7 +10667,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14z4uf1",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-d1vox6",
@@ -9011,7 +10702,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1ae2zel",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-u4o2a4",
@@ -9038,7 +10737,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14jdmya",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-f1weix",
@@ -9065,7 +10772,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-w8m62n",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-wq3bza",
@@ -9092,7 +10807,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1xtbgrx",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-hx14gm",
@@ -9119,7 +10842,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1dvb40m",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-e36sm0",
@@ -9146,7 +10877,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1v3kaop",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-hoo65x",
@@ -9174,7 +10913,21 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-4ardm",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-mt8oer",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-005quu",
@@ -9201,7 +10954,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1j96o9v",
+          "roomId": "room-piece-80",
+          "locationId": "location-80",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ba3kug",
@@ -9228,7 +10989,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1gbx2so",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ccczq8",
@@ -9255,7 +11024,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1utw2m1",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-12yv5s",
@@ -9282,7 +11059,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1v85d9b",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-bvbap8",
@@ -9309,7 +11094,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-r2ohee",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-na9gtw",
@@ -9336,7 +11129,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-gkzsej",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-ebldnh",
@@ -9363,7 +11164,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-ebttt2",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-owtenw",
@@ -9390,7 +11199,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1h0ednd",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-y9no6v",
@@ -9417,7 +11234,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-4wr8fb",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-0te4tf",
@@ -9444,7 +11269,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1tlwopo",
+          "roomId": "room-piece-80",
+          "locationId": "location-80",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-rjh1j1",
@@ -9471,7 +11304,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1unz9kd",
+          "roomId": "room-piece-80",
+          "locationId": "location-80",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-h7xdiv",
@@ -9498,7 +11339,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1pa3ycu",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-rztgyv",
@@ -9525,7 +11374,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-v646um",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-s0pszg",
@@ -9552,7 +11409,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-kukh5v",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-0zyus6",
@@ -9579,7 +11444,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-z647c2",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-mnv6b5",
@@ -9606,7 +11479,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-x46g6t",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-0nt8ah",
@@ -9633,7 +11514,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-127suyx",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-4d1j08",
@@ -9660,7 +11549,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-f2meh0",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-aqwsrn",
@@ -9687,7 +11584,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-15l2uoc",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-pk2ssq",
@@ -9714,7 +11619,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1h0bzhi",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-h4ysnh",
@@ -9741,7 +11654,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-2r3h3e",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-0uf1ba",
@@ -9768,7 +11689,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1bcb645",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-60n9jt",
@@ -9826,7 +11755,21 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-9t8rgq",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-legacy-xljkm5",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-f32jof",
@@ -9853,7 +11796,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-pdfy2e",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-a1gzdj",
@@ -9880,7 +11831,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1498bzb",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-4zddf9",
@@ -9907,7 +11866,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14scais",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-lv1hou",
@@ -9934,7 +11901,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-12jeatp",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-zw713r",
@@ -9961,7 +11936,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-153orsq",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-71mz7l",
@@ -9988,7 +11971,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-19qjwgk",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-2tzybk",
@@ -10015,7 +12006,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1jf8n57",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-pgia92",
@@ -10042,7 +12041,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1nzp78z",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-4tpbeo",
@@ -10069,7 +12076,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-p51l4t",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-idc514",
@@ -10096,7 +12111,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1dyqmo8",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-2rzmhw",
@@ -10123,7 +12146,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-ldg66r",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-1i51gv",
@@ -10150,7 +12181,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1g56xfq",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-3jjlep",
@@ -10177,7 +12216,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-phtsf9",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-6ix9f4",
@@ -10204,7 +12251,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1xgichb",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-k54ct9",
@@ -10231,7 +12286,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1j55tdt",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-lhwxs8",
@@ -10258,7 +12321,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-lh3m97",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-y1genw",
@@ -10285,7 +12356,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-12mlloa",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-9ujt1f",
@@ -10312,7 +12391,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-p61x14",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-noc21h",
@@ -10339,7 +12426,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-18vbd18",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-9q0nut",
@@ -10366,7 +12461,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1hkghq6",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-1j3kur",
@@ -10393,7 +12496,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14f8lex",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-20id4b",
@@ -10420,7 +12531,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1oe7cji",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-4j5ehf",
@@ -10447,7 +12566,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1oav9el",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-2sp16r",
@@ -10474,7 +12601,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1kgx7nl",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-2km4yc",
@@ -10501,7 +12636,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1t2hybj",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-nertdf",
@@ -10528,7 +12671,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-187on22",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-2lgkif",
@@ -10555,7 +12706,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-v8wya4",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-rh9nly",
@@ -10582,7 +12741,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1d7k7od",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-3qd9iq",
@@ -10609,7 +12776,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1454sfq",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-13ahe9",
@@ -10636,7 +12811,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1hpr31c",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-dxuv9v",
@@ -10663,7 +12846,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-df9omh",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-kx9smp",
@@ -10690,7 +12881,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-130z56f",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-68gr3m",
@@ -10717,7 +12916,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1emtnk",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-lfwgie",
@@ -10744,7 +12951,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1rmdfaj",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-7i2b02",
@@ -10771,7 +12986,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-w0egtz",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-m47pnb",
@@ -10798,7 +13021,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-nm40hr",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-3v7r95",
@@ -10825,7 +13056,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1n433k7",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-fbdpyh",
@@ -10852,7 +13091,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-18uyhy2",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-eoaj5v",
@@ -10879,7 +13126,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1odtnsx",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-9v4f8v",
@@ -10906,7 +13161,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1zvnzs",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-dk0ugd",
@@ -10933,7 +13196,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-sof4ne",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-mwnp4b",
@@ -10960,7 +13231,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-bslqml",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-o8s6y0",
@@ -10987,7 +13266,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-64wt2s",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-mh0c9r",
@@ -11014,7 +13301,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1qdmf65",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-16e9jz",
@@ -11041,7 +13336,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14ax95e",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-90ljaj",
@@ -11068,7 +13371,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1jn19xh",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-lrj94y",
@@ -11095,7 +13406,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1blcut7",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-n4dn21",
@@ -11122,7 +13441,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1japwka",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-sq10bm",
@@ -11149,7 +13476,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-p4347",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-2vv4cu",
@@ -11176,7 +13511,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-lqadwh",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-2cye1d",
@@ -11203,7 +13546,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-od3t6h",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-mg1alo",
@@ -11230,7 +13581,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-110jmlo",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-evflpy",
@@ -11257,7 +13616,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1cobrjh",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-c7hi53",
@@ -11284,7 +13651,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-16nzwym",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-l5lcx8",
@@ -11311,7 +13686,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1m2ld7x",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-cdcmee",
@@ -11338,7 +13721,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-ejijvq",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-xpcson",
@@ -11365,7 +13756,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1emnzj4",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-vcgdft",
@@ -11392,7 +13791,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-mg5m6h",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-riizb7",
@@ -11419,7 +13826,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-p7amkm",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-web-1783931436295-0w8lsr",
@@ -11446,7 +13861,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14a5pln",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0113",
@@ -11473,7 +13896,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1fct8ss",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0114",
@@ -11500,7 +13931,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1yjil2t",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0115",
@@ -11527,7 +13966,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-jz92u6",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0116",
@@ -11554,7 +14001,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-6h8b9j",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0117",
@@ -11581,7 +14036,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-qwtdlk",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0118",
@@ -11608,7 +14071,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-7ov1v5",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0119",
@@ -11635,7 +14106,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1bltroq",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0120",
@@ -11662,7 +14141,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-o92euy",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0121",
@@ -11689,7 +14176,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-jie77l",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0122",
@@ -11716,7 +14211,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1ws5etg",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0123",
@@ -11743,7 +14246,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1kxrzvh",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0124",
@@ -11770,7 +14281,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-17jj4k6",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0125",
@@ -11797,7 +14316,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-k7gbwj",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0126",
@@ -11824,7 +14351,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-ok56y8",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0127",
@@ -11851,7 +14386,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-sp70m7",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0128",
@@ -11878,7 +14421,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-ps4r0y",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0129",
@@ -11905,7 +14456,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1moyxh5",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0130",
@@ -11932,7 +14491,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-9bvnpv",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0131",
@@ -11959,7 +14526,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-cn958o",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0133",
@@ -11986,7 +14561,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1ogqvoi",
+          "roomId": "room-laboratoire",
+          "locationId": "location-20-blanc-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0134",
@@ -12013,7 +14596,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-gywz3",
+          "roomId": "room-piece-80",
+          "locationId": "location-80",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0135",
@@ -12040,7 +14631,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1gna5xc",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0136",
@@ -12067,7 +14666,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1lv3325",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0137",
@@ -12094,7 +14701,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-mf0s4m",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0138",
@@ -12121,7 +14736,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-jxbzmz",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0139",
@@ -12148,7 +14771,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-s5aeek",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0140",
@@ -12175,7 +14806,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-110cgbw",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0141",
@@ -12202,7 +14841,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-sdm1yj",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0142",
@@ -12229,7 +14876,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-bdo1sy",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0143",
@@ -12256,7 +14911,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-n8vft5",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0145",
@@ -12283,7 +14946,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-r7ko6f",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0146",
@@ -12310,7 +14981,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-8gy4xq",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0147",
@@ -12337,7 +15016,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-x4qlxx",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0148",
@@ -12364,7 +15051,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1wv8rtg",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0149",
@@ -12391,7 +15086,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-5aaln7",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0150",
@@ -12418,7 +15121,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-vqkx5p",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0151",
@@ -12445,7 +15156,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-jj511i",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0152",
@@ -12472,7 +15191,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-p9aibz",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0153",
@@ -12499,7 +15226,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1bjhrq8",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0154",
@@ -12526,7 +15261,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-cpbb3l",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0155",
@@ -12553,7 +15296,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-11jbe3u",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0156",
@@ -12580,7 +15331,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-53mlmb",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0157",
@@ -12607,7 +15366,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-3u3z90",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0158",
@@ -12634,7 +15401,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1smw25x",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0159",
@@ -12661,7 +15436,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-2lymlb",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0160",
@@ -12688,7 +15471,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1fxwm8v",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0161",
@@ -12715,7 +15506,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-hdlr4u",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0162",
@@ -12742,7 +15541,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-11nh1j5",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0163",
@@ -12769,7 +15576,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1nfll34",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0164",
@@ -12796,7 +15611,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-23hhaj",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0165",
@@ -12823,7 +15646,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1bef4a",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0166",
@@ -12850,7 +15681,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1v4cui5",
+          "roomId": "room-laboratoire",
+          "locationId": "location-frigo-labo",
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0167",
@@ -12877,7 +15716,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1lik87f",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0168",
@@ -12904,7 +15751,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-8bmgue",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0169",
@@ -12931,7 +15786,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1wn9d0d",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0170",
@@ -12958,7 +15821,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1vge1sn",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0171",
@@ -12985,7 +15856,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-cs3ilk",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0172",
@@ -13012,7 +15891,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1ry3951",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0174",
@@ -13039,7 +15926,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1fd5pzv",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0175",
@@ -13066,7 +15961,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1a0xbmk",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0176",
@@ -13093,7 +15996,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-13ooojd",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0177",
@@ -13151,7 +16062,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1gruqz6",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0178",
@@ -13178,7 +16097,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1bxe333",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0179",
@@ -13205,7 +16132,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1h24c6o",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0180",
@@ -13232,7 +16167,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-zln534",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0181",
@@ -13259,7 +16202,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1x8xhkf",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0182",
@@ -13286,7 +16237,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-5ddrae",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0183",
@@ -13313,7 +16272,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-14tg27x",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0184",
@@ -13340,7 +16307,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1bsyc9g",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0185",
@@ -13367,7 +16342,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1rbcour",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0186",
@@ -13425,7 +16408,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-dwgo0a",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0187",
@@ -13483,7 +16474,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-5fe79t",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0188",
@@ -13510,7 +16509,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-dnpw6w",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0189",
@@ -13537,7 +16544,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-16impev",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0190",
@@ -13564,7 +16579,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1de3qap",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0191",
@@ -13591,7 +16614,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1d42x0a",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0192",
@@ -13618,7 +16649,15 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "placements": [
+        {
+          "id": "placement-legacy-1wxg5k3",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0193",
@@ -13676,7 +16715,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-wk64o4",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     },
     {
       "id": "itm-CSV-0194",
@@ -13734,7 +16781,15 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "placements": [
+        {
+          "id": "placement-legacy-1qzdqx9",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ]
     }
   ],
   "experiments": [],

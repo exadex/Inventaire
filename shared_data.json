@@ -16478,41 +16478,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0188",
-      "name": "Filter tip, 20 µl, transparent, Biosphere® plus, 96 piece(s)/box",
-      "category": "Cones pipettes",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3020.255/",
-          "notes": "81,6",
-          "price": "81,6",
-          "unitPrice": "0,0425",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-dnpw6w",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0189",
       "name": "Cones non-filtrés 200µL",
       "category": "Cones pipettes",
@@ -21027,6 +20992,12 @@
     }
   ],
   "history": [
+    {
+      "date": "10/08/2026 17:19",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Filter tip, 20 µl, transparent, Biosphere® plus, 96 piece(s)/box de l'inventaire."
+    },
     {
       "date": "10/08/2026 17:19",
       "user": "Caroline",
@@ -25624,5 +25595,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:19:02.088Z"
+  "updatedAt": "2026-08-10T15:19:10.168Z"
 }

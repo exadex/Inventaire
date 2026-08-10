@@ -8235,7 +8235,7 @@
     },
     {
       "id": "itm-CSV-0077",
-      "name": "cones filtrés 200µL",
+      "name": "Cones filtrés 200µL",
       "category": "Culture Cell",
       "quantity": 3.5,
       "unit": "unités",
@@ -8289,6 +8289,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -21065,6 +21066,12 @@
       "date": "10/08/2026 17:16",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 200µL."
+    },
+    {
+      "date": "10/08/2026 17:16",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Cones non-filtrés 200µL."
     },
     {
@@ -25628,5 +25635,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T15:16:06.281Z"
+  "updatedAt": "2026-08-10T15:16:21.968Z"
 }

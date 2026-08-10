@@ -6833,7 +6833,7 @@
     },
     {
       "id": "itm-CSV-0087",
-      "name": "T25",
+      "name": "Flacon culture cellulaire T25 gamme rouge cellules adhérentes col incliné bouchon filtrant x 300",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -17493,6 +17493,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:11",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Flacon culture cellulaire T25 gamme rouge cellules adhérentes col incliné bouchon filtrant x 300."
+    },
+    {
       "date": "10/08/2026 13:10",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21640,5 +21646,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:10:43.736Z"
+  "updatedAt": "2026-08-10T11:11:01.821Z"
 }

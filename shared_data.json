@@ -5939,9 +5939,9 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "72.691",
-          "link": "",
+          "link": "https://www.sarstedt.com/en/FRA/c/life-science/sample-handling/reaction-tubes/p/reaction-tubes/72.691",
           "notes": "NB12",
           "price": "70",
           "unitPrice": "0,014",
@@ -5995,6 +5995,21 @@
             "updatedBy": "Caroline"
           }
         ],
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-9a6sx8-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 50000,
+            "capacity": 50000,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-07-17T14:54:57.737Z",
+            "updatedAt": "2026-07-17T14:54:57.737Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mrp27m27-4052964793-574651051",
@@ -6012,7 +6027,8 @@
             },
             "updatedAt": "2026-07-17T14:55:09.681Z",
             "updatedBy": "caroline",
-            "version": 2
+            "version": 2,
+            "unitKey": "sachet"
           }
         ]
       },
@@ -6020,7 +6036,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-web-1783931436295-c47v8h",
@@ -17820,6 +17837,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:41",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Microtube 2ml."
+    },
+    {
       "date": "10/08/2026 13:40",
       "user": "Caroline",
       "action": "Item modifié",
@@ -22093,5 +22116,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:40:39.919Z"
+  "updatedAt": "2026-08-10T11:41:28.831Z"
 }

@@ -6275,7 +6275,7 @@
       "notes": "Conditionnement : 1920",
       "references": {
         "primary": {
-          "supplier": "starstedt",
+          "supplier": "Sarsdest",
           "reference": "2869323",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -6285,7 +6285,38 @@
         },
         "secondary": []
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-08-10T09:38:13.309Z",
+      "createdAt": "10/08/2026 11:38",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0077",
@@ -17292,6 +17323,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 11:38",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié cones filtrés 1000µL."
+    },
+    {
       "date": "10/08/2026 11:34",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21361,5 +21398,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T09:34:56.486Z"
+  "updatedAt": "2026-08-10T09:38:13.310Z"
 }

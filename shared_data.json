@@ -4645,7 +4645,7 @@
     },
     {
       "id": "itm-web-1783931436294-h0uujo",
-      "name": "DMEM glutamax 4,5g/l",
+      "name": "DMEM, high glucose, GlutaMAX™ Supplement, pyruvate",
       "category": "Culture Cell",
       "quantity": 24,
       "unit": "mL",
@@ -4657,20 +4657,56 @@
       "tags": [
         "Milieu DMEM"
       ],
-      "notes": "Conditionnement : 500ml",
+      "notes": "Conditionnement : 500ml\nDMEM W/GLUTAMAX-I,PYR,4.5G GLU Milieu de Eagle modifié par Dulbecco (D-MEM) 500 mL X1",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Thermo Fischer",
           "reference": "31960-021",
-          "link": "",
+          "link": "https://www.thermofisher.com/order/catalog/product/fr/fr/31966021",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
           "price": "75,5",
           "unitPrice": "0,75",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "3772613",
+            "notes": "UGAP"
+          }
+        ]
       },
-      "source": "seed"
+      "source": "seed",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-10T11:33:02.078Z",
+      "createdAt": "10/08/2026 13:33",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-y4uvlu",
@@ -17596,6 +17632,12 @@
   ],
   "history": [
     {
+      "date": "10/08/2026 13:33",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM, high glucose, GlutaMAX™ Supplement, pyruvate."
+    },
+    {
       "date": "10/08/2026 13:29",
       "user": "Caroline",
       "action": "Item modifié",
@@ -21815,5 +21857,5 @@
   ],
   "stockOperations": [],
   "agentOperations": [],
-  "updatedAt": "2026-08-10T11:29:44.607Z"
+  "updatedAt": "2026-08-10T11:33:02.080Z"
 }

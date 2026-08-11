@@ -330,6 +330,7 @@ document.querySelector("#deleteItemBtn").addEventListener("click", requestItemDe
 document.querySelector("#saveSampleBtn").addEventListener("click", saveSample);
 document.querySelector("#deleteSampleBtn").addEventListener("click", requestSampleDeletionFromModal);
 document.querySelector("#saveStockBtn").addEventListener("click", saveStockUpdate);
+stockFields.stockAction?.addEventListener("change", syncSimpleStockActionFields);
 document.querySelector("#migrationOpenCount")?.addEventListener("input", renderMigrationOpenRows);
 stockMigrationForm?.addEventListener("input", updateStockMigrationComparison);
 document.querySelector("#migrationReason")?.addEventListener("change", syncMigrationReasonFields);
@@ -976,6 +977,22 @@ function scheduleSharedSave(options = {}) {
       renderAlerts();
     }
   }, 400);
+}
+
+async function flushPendingSharedDataBeforeAtomicOperation() {
+  window.clearTimeout(sharedDataSaveTimer);
+  if (!sharedDataHasUnsavedChanges && !sharedDataSaveCoordinator?.getState?.().pending) return;
+  const storage=window.ExadexGithubStorage,config=storage?.getConfig?.();
+  if(!storage?.saveSharedData||!config?.owner||!config?.repo||!config?.path||!config?.token)throw new Error("Les modifications de la fiche doivent être synchronisées sur GitHub avant de gérer le stock.");
+  syncSharedStateFromRuntime();
+  if(!sharedDataSaveCoordinator)initializeSharedSaveCoordinator(sharedState,sharedDataSha);
+  await sharedDataSaveCoordinator.enqueue(sharedState);
+  const coordinatorState=sharedDataSaveCoordinator.getState();
+  if(coordinatorState.pending||sharedDataSyncStatus==="conflict"||sharedDataSyncStatus==="error")throw new Error(sharedDataLastError||"La fiche n’a pas pu être synchronisée avant l’opération de stock.");
+  sharedDataSha=coordinatorState.sha;
+  sharedDataHasUnsavedChanges=false;
+  sharedDataRemoteReady=true;
+  sharedDataLastError="";
 }
 
 // guarda una copia cache local y publica el estado compartido en GitHub cuando esta configurado
@@ -5785,7 +5802,16 @@ function openStockModal(id) {
   stockFields.stockAmount.value = "";
   stockFields.stockUnit.value = item.unit;
   stockFields.stockNotes.value = "";
+  stockFields.stockUnit.readOnly = true;
+  document.querySelector("#stockUpdateError")?.classList.add("hidden");
+  syncSimpleStockActionFields();
   stockDialog.showModal();
+}
+
+function syncSimpleStockActionFields() {
+  const action=stockFields.stockAction?.value,label=document.querySelector("#stockAmountLabel");
+  if(label)label.textContent=action==="recounted"?"Stock physique compté":action==="received"?"Quantité reçue":"Quantité utilisée";
+  if(stockFields.stockTitle)stockFields.stockTitle.placeholder=action==="recounted"?"Ex. inventaire mensuel, comptage physique...":action==="received"?"Ex. réception fournisseur...":"Ex. expérience pilote...";
 }
 
 function renderAdvancedStockDetail(item) {
@@ -5848,12 +5874,13 @@ function renderStockMovementSafely(entry) {
 }
 
 function renderStockMovement(entry = {}) {
-  const labels = { received:"Réception", order_received:"Réception de commande", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Comptage", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Comptage", preparation_finished:"Préparation terminée", corrected:"Correction", configuration_changed:"Configuration" };
+  const labels = { received:"Réception", order_received:"Réception de commande", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Comptage / Ajustement", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Comptage", preparation_finished:"Préparation terminée", corrected:"Correction", configuration_changed:"Configuration" };
   return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")} · ${escapeHtml(entry.userName || "Utilisateur")}</strong><small>${escapeHtml(formatDateTimeFrench(getStockMovementDate(entry)))}</small><p class="multiline-text">${formatStockMovementDescription(entry)}</p></div></article>`;
 }
 
 function formatStockMovementDescription(entry) {
   if(entry.type==="received"&&entry.entityType==="container"){const status=entry.containerStatusAfter==="open"?"ouvert":"fermé",capacity=entry.afterCapacity??entry.after?.capacity;return `Ajout du contenant ${status} ${escapeHtml(entry.containerLabel||entry.containerId)} : ${StockTracking.format(entry.afterQuantity??entry.quantity)} ${escapeHtml(entry.unitAfter||entry.unit||"")} disponibles${capacity!==null&&capacity!==undefined?` sur une capacité de ${StockTracking.format(capacity)} ${escapeHtml(entry.unitAfter||entry.unit||"")}`:""}${entry.toLocation?` dans ${escapeHtml(entry.toLocation)}`:""}.`;}
+  if(entry.type==="recounted"&&entry.entityType==="item"){const before=entry.beforeQuantity??entry.before??0,after=entry.afterQuantity??entry.after??0,difference=entry.difference??after-before;return `Stock précédent : ${StockTracking.format(before)} ${escapeHtml(entry.unit||"")} · Stock compté : ${StockTracking.format(after)} ${escapeHtml(entry.unit||"")} · Écart : ${difference>0?"+":""}${StockTracking.format(difference)} ${escapeHtml(entry.unit||"")}.${entry.comment?` Note : ${escapeHtml(entry.comment)}`:""}`;}
   if (Array.isArray(entry.containerTransitions) && entry.containerTransitions.length) {
     return entry.containerTransitions.map(transition => {
       const label=escapeHtml(transition.containerLabel || transition.containerId || "Contenant");
@@ -5906,7 +5933,7 @@ function usesAdvancedStockManager(item) {
 
 function getStockManagerActionState(item) {
   const tracking=StockTracking.normalizeTracking(item),aliquots=StockTracking.normalizeAliquots(item),actions=[];
-  if(tracking.mode==="containers")actions.push(["received","Réceptionner des contenants"],["consumed","Gérer les contenants ouverts — Utiliser"],["recounted","Faire un comptage"],["moved","Déplacer"]);else actions.push(["received","Réceptionner"],["consumed","Utiliser"]);
+  if(tracking.mode==="containers")actions.push(["received","Réceptionner des contenants"],["consumed","Gérer les contenants ouverts — Utiliser"],["stock_recounted","Comptage / Ajustement du stock"],["recounted","Corriger les contenants un par un"],["moved","Déplacer"]);else actions.push(["received","Réceptionner"],["consumed","Utiliser"],["stock_recounted","Comptage / Ajustement du stock"]);
   const activePreparations=aliquots.preparations.filter(row=>row.status==="active"),hasUnopened=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0),hasOpenable=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0&&row.volume>0&&row.volumeUnit),hasOpen=activePreparations.some(row=>row.openAliquots.some(open=>open.status==="open"&&open.remainingVolume>0));
   if(aliquots.enabled)actions.push(["aliquots_prepared","Préparer des aliquotes",false],["aliquots_consumed","Utiliser des aliquotes",!hasUnopened&&!hasOpen],["aliquot_opened","Ouvrir une aliquote",!hasOpenable]);
   if(hasOpen)actions.push(["open_aliquot_moved","Déplacer une aliquote ouverte",false],["open_aliquot_discarded","Terminer / jeter le reliquat",false]);
@@ -6108,6 +6135,8 @@ function renderStockManagerFields() {
   else if (action === "container_opened") html = stockSelect("smFrom","Localisation du contenant fermé",tracking.closedByLocation.filter(row=>row.quantity).map(row=>[row.location,`${row.location} (${row.quantity})`]));
   else if (action === "consumed" && tracking.mode === "simple") html = stockNumber("smQuantity",`Quantité utilisée — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1",StockTracking.simpleRawAvailable(item));
   else if (action === "consumed") html = (containers.length ? stockSelect("smEntity","Contenant à utiliser en premier",containers) : `<input id="smEntity" type="hidden" value="">`)+stockNumber("smQuantity",`Quantité utilisée — ${openUnit.plural}`,inputStep);
+  else if (action === "stock_recounted" && tracking.mode === "simple") html=`<div class="stock-source-summary"><span>Stock enregistré</span><strong>${StockTracking.format(item.quantity)} ${escapeHtml(item.unit)}</strong><small>La quantité saisie remplacera le stock enregistré.</small></div>${stockNumber("smQuantity",`Stock physique compté — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1")}`;
+  else if (action === "stock_recounted") { const recountLocations=Array.from(new Set([item.location,...getItemLocations(item),...tracking.closedByLocation.map(row=>row.location),...inventoryLocations].filter(Boolean))),outer=tracking.packagingLevels[0],feminine=isLikelyFeminineUnit(outer.singular),closed=feminine?"fermées":"fermés",registered=feminine?"enregistrées":"enregistrés",counted=feminine?"comptées":"comptés";html=`<div class="stock-source-summary"><span>Comptage absolu</span><strong>${StockTracking.totalClosed(tracking)} ${escapeHtml(outer.plural)} ${closed} ${registered}</strong><small>Le nombre saisi remplacera uniquement les contenants ${closed} de la localisation choisie. Les contenants ouverts resteront inchangés.</small></div>${stockSelect("smFrom","Localisation",recountLocations.map(place=>{const current=tracking.closedByLocation.find(row=>row.location===place)?.quantity||0;return[place,`${place} — ${current} ${outer.plural} ${closed}`]}))}${stockNumber("smQuantity",`Nombre de ${outer.plural} ${closed} ${counted}`)}`; }
   else if (action === "recounted") html=renderContainerRecountFields(item);
   else if (action === "moved") html = stockSelect("smEntityType","Type",[["closed","Contenant fermé"],["container","Contenant ouvert"]])+stockSelect("smFrom","Origine",locations)+stockSelect("smTo","Destination",locations)+stockNumber("smQuantity","Quantité (1 pour un contenant ouvert)");
   else if (action === "aliquots_prepared") html = renderAliquotPreparationFields(item, locations);
@@ -6138,6 +6167,7 @@ async function submitStockManager(event) {
   if (!event.currentTarget.reportValidity()) return;
   const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), action = value("stockManagerAction"), operationId = StockTracking.id("operation"), comment = normalizeMultilineText(value("stockManagerComment")), operation = { operationId, type: action, entityId:value("smEntity"), entityType: action.startsWith("aliquot") || action.startsWith("preparation") ? "preparation" : "container", quantity:numeric("smQuantity"), fromLocation:value("smFrom"), toLocation:value("smTo"), comment, correctionReason:["container_finished","preparation_finished"].includes(action)?comment:"" };
   const sourceItem = items.find(row => row.id === value("stockManagerItemId")), sourceTracking = StockTracking.normalizeTracking(sourceItem || {});
+  if(action==="stock_recounted"){operation.type="recounted";operation.entityType=sourceTracking.mode==="containers"?"closed":"item";}
   if (action === "recounted" && sourceTracking.mode === "containers") {
     const changes=Array.from(modal.querySelectorAll(".container-recount-row")).map(row=>{
       const status=row.querySelector("[data-recount-status]").value,unitKey=row.querySelector("[data-recount-unit]").value,location=row.querySelector("[data-recount-location]").value,quantity=StockTracking.parseLocalizedNumber(row.querySelector("[data-recount-quantity]").value),levelIndex=sourceTracking.packagingLevels.findIndex(level=>level.key===unitKey),factor=sourceTracking.packagingLevels.slice(levelIndex+1).reduce((value,level)=>value*level.contains,1),capacity=Number(row.dataset.capacityBase)/factor;
@@ -6186,13 +6216,23 @@ async function submitStockManager(event) {
 async function executeAtomicStockOperation(itemId, operation) {
   const storage=window.ExadexGithubStorage, config=storage?.getConfig?.();
   if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) throw new Error("La sauvegarde GitHub en écriture est requise pour une opération de stock avancée.");
+  await flushPendingSharedDataBeforeAtomicOperation();
   sharedDataIsSaving=true; renderAlerts();
   try {
     const result=await storage.mutateSharedData(operation.operationId, latest => {
       const state=createSharedState(latest,{includeBootstrap:false}), index=state.inventoryItems.findIndex(row=>row.id===itemId); if(index<0) throw new Error("Cet item n’existe plus.");
-      const applied=StockTracking.apply(state.inventoryItems[index],{...operation},{name:currentName,emoji:userIcons[currentName]||""}), events=applied.events || [applied.event]; state.inventoryItems[index]=applied.item; state.stockMovements=Array.isArray(state.stockMovements)?state.stockMovements:[]; if(StockTracking.normalizeTracking(applied.item).traceabilityMode==="detailed")state.stockMovements.push(...events); state.stockOperations=Array.isArray(state.stockOperations)?state.stockOperations:[];state.stockOperations.push({operationId:operation.operationId,itemId,at:applied.event.timestamp,type:operation.type}); state.history=Array.isArray(state.history)?state.history:[]; state.history.unshift({date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date(applied.event.timestamp)),action:"Stock mis à jour",detail:`${applied.event.userName} · ${applied.event.type} · ${applied.item.name}`,user:applied.event.userName,itemId}); state.updatedAt=applied.event.timestamp; return state;
+      const sourceItem=state.inventoryItems[index],previousQuantity=StockTracking.available(sourceItem),applied=StockTracking.apply(sourceItem,{...operation},{name:currentName,emoji:userIcons[currentName]||""}),events=applied.events||[applied.event],isRecount=["recounted","containers_recounted"].includes(operation.type),currentQuantity=StockTracking.available(applied.item),historyUnit=StockTracking.normalizeTracking(applied.item).mode==="containers"?StockTracking.normalizeTracking(applied.item).packagingLevels[0].plural:applied.item.unit,difference=Number((currentQuantity-previousQuantity).toFixed(6)),note=normalizeMultilineText(operation.comment||"");
+      state.inventoryItems[index]={...sourceItem,quantity:applied.item.quantity,stockTracking:applied.item.stockTracking,aliquotTracking:applied.item.aliquotTracking,locations:applied.item.locations,location:applied.item.location};
+      state.stockMovements=Array.isArray(state.stockMovements)?state.stockMovements:[];
+      if(StockTracking.normalizeTracking(applied.item).traceabilityMode==="detailed"||isRecount)state.stockMovements.push(...events);
+      state.stockOperations=Array.isArray(state.stockOperations)?state.stockOperations:[];
+      state.stockOperations.push({operationId:operation.operationId,itemId,at:applied.event.timestamp,type:operation.type});
+      state.history=Array.isArray(state.history)?state.history:[];
+      state.history.unshift(isRecount?{id:`history-${operation.operationId}`,operationId:operation.operationId,date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date(applied.event.timestamp)),action:"Comptage / Ajustement",detail:`${applied.event.userName} · ${applied.item.name} · Stock précédent : ${StockTracking.format(previousQuantity)} ${historyUnit} · Stock compté : ${StockTracking.format(currentQuantity)} ${historyUnit} · Écart : ${difference>0?"+":""}${StockTracking.format(difference)} ${historyUnit}${note?` · Note : ${note}`:""}`,user:applied.event.userName,itemId,type:"recounted",previousQuantity,countedQuantity:currentQuantity,difference,unit:historyUnit,note}:{id:`history-${operation.operationId}`,operationId:operation.operationId,date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date(applied.event.timestamp)),action:"Stock mis à jour",detail:`${applied.event.userName} · ${applied.event.type} · ${applied.item.name}${note?` · ${note}`:""}`,user:applied.event.userName,itemId});
+      state.updatedAt=applied.event.timestamp;
+      return state;
     });
-    sharedDataSha=result.sha; sharedDataMode="github-write"; sharedDataHasUnsavedChanges=false; sharedDataRemoteReady=true; sharedDataLastError=""; applySharedState(result.data);
+    sharedDataSha=result.sha; sharedDataMode="github-write"; sharedDataHasUnsavedChanges=false; sharedDataRemoteReady=true; sharedDataLastError=""; applySharedState(result.data); initializeSharedSaveCoordinator(result.data,result.sha);
   } finally { sharedDataIsSaving=false; renderAlerts(); }
 }
 
@@ -6308,44 +6348,29 @@ function createStoredItem(itemData) {
   return items.find(entry => entry.id === newItem.id) || newItem;
 }
 
-function saveStockUpdate() {
+async function saveStockUpdate() {
   if (!stockForm.reportValidity()) return;
 
   const id = stockFields.stockItemId.value;
   const item = items.find(entry => entry.id === id);
   if (!item) return;
 
-  const amount = Number(stockFields.stockAmount.value);
+  const amount = StockTracking.parseLocalizedNumber(stockFields.stockAmount.value);
   const direction = stockFields.stockAction.value;
-  const nextQuantity = direction === "received"
-    ? Number(item.quantity) + amount
-    : Number(item.quantity) - amount;
-
-  if (nextQuantity < 0) {
-    stockFields.stockAmount.setCustomValidity("La quantite ne peut pas devenir negative.");
+  if(!Number.isFinite(amount)||amount<0||(direction!=="recounted"&&amount<=0)){
+    stockFields.stockAmount.setCustomValidity(direction==="recounted"?"Le stock compté doit être positif ou nul.":"La quantité doit être strictement positive.");
     stockForm.reportValidity();
     stockFields.stockAmount.setCustomValidity("");
     return;
   }
-
   const title = stockFields.stockTitle.value.trim();
   const note = normalizeMultilineText(stockFields.stockNotes.value);
-  const previousQuantity = Number(item.quantity);
-  const updatedItem = patchStoredItem(id, {
-    quantity: Number(nextQuantity.toFixed(3))
-  });
-
-  if (!updatedItem) return;
-
-  const actionLabel = direction === "received" ? "reçu" : "pris";
-  addHistory(
-    "Stock mis à jour",
-    `${currentName} a ${actionLabel} ${amount} ${updatedItem.unit} pour ${updatedItem.name} (${title}). Stock: ${previousQuantity} -> ${updatedItem.quantity} ${updatedItem.unit}.${note ? ` Note: ${note}` : ""}`
-  );
-
-  persist();
-  stockDialog.close();
-  render();
+  const operation={operationId:StockTracking.id("operation"),type:direction==="used"?"consumed":direction,entityType:"item",quantity:amount,comment:[title,note].filter(Boolean).join(" · ")};
+  const button=document.querySelector("#saveStockBtn"),errorBox=document.querySelector("#stockUpdateError");
+  button.disabled=true;errorBox?.classList.add("hidden");
+  try{await executeAtomicStockOperation(id,operation);stockDialog.close();render();}
+  catch(error){if(errorBox){errorBox.textContent=error.message||String(error);errorBox.classList.remove("hidden");}}
+  finally{button.disabled=false;}
 }
 
 function openExperimentModal(id) {
@@ -7336,6 +7361,7 @@ async function executeAtomicOrderInventoryReceipt(request) {
   if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.path || !config?.token) {
     throw new Error("La sauvegarde partagée GitHub en écriture est requise pour ajouter cette réception au stock.");
   }
+  await flushPendingSharedDataBeforeAtomicOperation();
   sharedDataIsSaving = true;
   renderAlerts();
   try {
@@ -7353,6 +7379,7 @@ async function executeAtomicOrderInventoryReceipt(request) {
     sharedDataRemoteReady = true;
     sharedDataLastError = "";
     applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data,result.sha);
     return { duplicate: Boolean(result.duplicate || mutation?.duplicate), data: result.data };
   } finally {
     sharedDataIsSaving = false;

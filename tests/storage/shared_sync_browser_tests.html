@@ -133,8 +133,16 @@
     assert(finalItems[0].name === "Newest" && finalItems[1].name === "Remote", "pending edit or remote merge was lost");
   });
 
-  lines.push(`${passed}/17 tests passed`);
+  await test("17 concurrent legacy history additions are both preserved", () => {
+    const original = { date: "01/08/2026 10:00", user: "Caroline", action: "Création", detail: "Base" };
+    const localEntry = { date: "01/08/2026 10:01", user: "Caroline", action: "Item modifié", detail: "Nom local" };
+    const remoteEntry = { date: "01/08/2026 10:01", user: "Julien", action: "Item modifié", detail: "Note distante" };
+    const result = ExadexSharedSync.mergeSharedData({ history: [original] }, { history: [localEntry, original] }, { history: [remoteEntry, original] });
+    assert(!result.conflicts.length && result.data.history.length === 3 && result.data.history.some(row => row.user === "Caroline") && result.data.history.some(row => row.user === "Julien"), "append-only history merge lost an entry");
+  });
+
+  lines.push(`${passed}/18 tests passed`);
   document.getElementById("results").textContent = lines.join("\n");
-  document.title = passed === 17 ? "PASS" : "FAIL";
+  document.title = passed === 18 ? "PASS" : "FAIL";
 })();
 </script></body></html>

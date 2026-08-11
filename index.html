@@ -834,6 +834,7 @@
             <select id="stockAction" required>
               <option value="used">Utilisé</option>
               <option value="received">Reçu</option>
+              <option value="recounted">Comptage / Ajustement du stock</option>
             </select>
           </label>
 
@@ -843,7 +844,7 @@
           </label>
 
           <label>
-            <span>Quantité</span>
+            <span id="stockAmountLabel">Quantité</span>
             <input id="stockAmount" type="number" min="0" step="any" data-quantity-step="1" required />
           </label>
 
@@ -854,9 +855,11 @@
         </div>
 
         <label class="full-label">
-          <span>Notes</span>
+          <span>Notes (facultatif)</span>
           <textarea id="stockNotes" rows="3"></textarea>
         </label>
+
+        <p id="stockUpdateError" class="confirmation-modal-error hidden" role="alert"></p>
 
         <div class="modal-actions">
           <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
@@ -1167,15 +1170,15 @@
     <script src="js/app/seed_items.js"></script>
     <script src="js/app/protocols.js"></script>
     <script src="js/storage/github_storage.js?v=20260811-4"></script>
-    <script src="js/storage/shared_sync.js?v=20260811-1"></script>
+    <script src="js/storage/shared_sync.js?v=20260811-2"></script>
     <script src="js/storage/recovery_storage.js?v=20260811-1"></script>
-    <script src="js/stock/stock_tracking.js"></script>
+    <script src="js/stock/stock_tracking.js?v=20260811-1"></script>
     <script src="js/export/backup_export.js?v=20260811-1"></script>
     <script src="js/orders/order_inventory.js"></script>
     <script src="js/agents/agents_core.js"></script>
     <script src="js/agents/agents_storage.js"></script>
     <script src="js/agents/agents_ui.js"></script>
-    <script src="js/app/script.js?v=20260811-4"></script>
+    <script src="js/app/script.js?v=20260811-5"></script>
     <script>
       if (new URLSearchParams(location.search).has("clientSampleTests")) {
         const testScript = document.createElement("script");
@@ -1185,6 +1188,11 @@
       if (new URLSearchParams(location.search).has("stockRecountTests")) {
         const testScript = document.createElement("script");
         testScript.src = "tests/stock/recount_ui_tests.js";
+        document.body.appendChild(testScript);
+      }
+      if (new URLSearchParams(location.search).has("legacyStockWorkflowTests")) {
+        const testScript = document.createElement("script");
+        testScript.src = "tests/stock/legacy_stock_workflow_tests.js";
         document.body.appendChild(testScript);
       }
       if (new URLSearchParams(location.search).has("hierarchyTests")) {

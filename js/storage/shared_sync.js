@@ -3,12 +3,27 @@
   const equal = (left, right) => JSON.stringify(left) === JSON.stringify(right);
   const isObject = value => value && typeof value === "object" && !Array.isArray(value);
 
+  function mergeAppendOnlyHistory(base, local, remote) {
+    const fingerprint = entry => JSON.stringify(entry);
+    const baseFingerprints = new Set((base || []).map(fingerprint));
+    const localFingerprints = new Set(local.map(fingerprint));
+    const remoteFingerprints = new Set(remote.map(fingerprint));
+    if (![...baseFingerprints].every(value => localFingerprints.has(value) && remoteFingerprints.has(value))) return null;
+    const additions = [...local.filter(entry => !baseFingerprints.has(fingerprint(entry))), ...remote.filter(entry => !baseFingerprints.has(fingerprint(entry)))];
+    const seen = new Set();
+    return [...additions, ...(base || [])].filter(entry => { const key=fingerprint(entry);if(seen.has(key))return false;seen.add(key);return true; });
+  }
+
   function mergeNode(base, local, remote, path, conflicts) {
     if (equal(local, remote)) return clone(local);
     if (equal(local, base)) return clone(remote);
     if (equal(remote, base)) return clone(local);
 
     if (Array.isArray(local) && Array.isArray(remote)) {
+      if (path === "history") {
+        const mergedHistory = mergeAppendOnlyHistory(Array.isArray(base) ? base : [], local, remote);
+        if (mergedHistory) return clone(mergedHistory);
+      }
       const keyed = [...local, ...remote, ...(Array.isArray(base) ? base : [])]
         .every(entry => isObject(entry) && entry.id != null);
       if (!keyed) {

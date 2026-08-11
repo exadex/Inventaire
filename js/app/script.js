@@ -916,6 +916,7 @@ function initializeSharedSaveCoordinator(baseData, initialSha) {
     onStatus(status, error) {
       sharedDataSyncStatus = status;
       sharedDataIsSaving = status === "saving";
+      if (status === "saving") sharedDataLastError = "";
       if (error) sharedDataLastError = error.message || String(error);
       renderAlerts();
     },
@@ -1289,7 +1290,7 @@ function renderAlerts() {
 function renderSharedDataAlert() {
   if (sharedDataRecovery?.unsynced) {
     return `
-      <div class="alert shared-data-alert">
+      <div class="alert shared-data-alert danger" role="alert">
         Des modifications locales non synchronisées ont été retrouvées (${escapeHtml(sharedDataRecovery.modifiedAt || "date inconnue")}).
         <button type="button" class="btn ghost" onclick="downloadRecoveredSharedData()">Télécharger une copie</button>
         <button type="button" class="btn ghost" onclick="compareRecoveredSharedData()">Comparer et récupérer</button>
@@ -1299,35 +1300,35 @@ function renderSharedDataAlert() {
   }
 
   if (sharedDataSyncStatus === "conflict") {
-    return `<div class="alert shared-data-alert">Conflit détecté — récupération nécessaire. ${escapeHtml(sharedDataLastError)}</div>`;
-  }
-
-  if (sharedDataLastError) {
-    return `
-      <div class="alert shared-data-alert">
-        Données partagées non sauvegardées sur GitHub : ${escapeHtml(sharedDataLastError)}
-      </div>
-    `;
+    return `<div class="alert shared-data-alert danger" role="alert">Conflit détecté — récupération nécessaire. ${escapeHtml(sharedDataLastError)}</div>`;
   }
 
   if (sharedDataIsSaving) {
     return `
-      <div class="alert shared-data-alert saving">
+      <div class="alert shared-data-alert saving" role="status">
         Synchronisation GitHub en cours...
+      </div>
+    `;
+  }
+
+  if (sharedDataLastError) {
+    return `
+      <div class="alert shared-data-alert danger" role="alert">
+        Données partagées non sauvegardées sur GitHub : ${escapeHtml(sharedDataLastError)}
       </div>
     `;
   }
 
   if (sharedDataHasUnsavedChanges && sharedDataMode !== "github-write") {
     return `
-      <div class="alert shared-data-alert">
+      <div class="alert shared-data-alert danger" role="alert">
         Modifications en cache local uniquement : la sauvegarde GitHub n'est pas active.
       </div>
     `;
   }
 
-  if (sharedDataSyncStatus === "saved" && sharedDataMode === "github-write") {
-    return `<div class="alert shared-data-alert saving">Enregistré</div>`;
+  if (sharedDataHasUnsavedChanges || sharedDataSyncStatus === "unsynced") {
+    return `<div class="alert shared-data-alert danger" role="alert">Modifications non synchronisées — aucun enregistrement n'est en cours.</div>`;
   }
 
   return "";

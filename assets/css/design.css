@@ -326,6 +326,19 @@ textarea[readonly] {
   color: #174a73;
 }
 
+.shared-data-alert.danger {
+  background: #e60000;
+  border-color: #970000;
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.18), 0 8px 20px rgba(151, 0, 0, 0.2);
+}
+
+.shared-data-alert.danger .btn.ghost {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #a00000;
+}
+
 .alerts-header-row {
   display: flex;
   justify-content: space-between;

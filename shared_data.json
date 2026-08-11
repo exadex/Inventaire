@@ -83,7 +83,8 @@
         }
       ],
       "locations": [
-        "-20°C 1 salle -80"
+        "-20°C 1 salle -80",
+        "-20°C 2 salle -80"
       ],
       "location": "-20°C 1 salle -80",
       "tags": [
@@ -715,14 +716,14 @@
             "id": "closed-web-1786452661627-20-c-1-salle-80-1",
             "label": "bouteille fermé nº1",
             "location": "-20°C 1 salle -80",
-            "remaining": 460,
+            "remaining": 220,
             "capacity": 500,
             "unitKey": "mL",
             "status": "open",
             "createdAt": "2026-08-11T12:51:01.628Z",
-            "updatedAt": "2026-08-11T12:51:52.348Z",
+            "updatedAt": "2026-08-11T12:52:58.664Z",
             "updatedBy": "caroline",
-            "version": 3,
+            "version": 4,
             "openedAt": "2026-08-11T12:51:52.348Z",
             "openedBy": {
               "userId": "caroline",
@@ -736,7 +737,38 @@
       "aliquotTracking": {
         "version": 1,
         "enabled": true,
-        "preparations": []
+        "preparations": [
+          {
+            "id": "preparation-msonuy08-2045040757-1664846507",
+            "label": "Préparation nº1",
+            "createdCount": 6,
+            "representedSourceQuantity": 240,
+            "sourceUnit": "mL",
+            "volume": 40,
+            "volumeUnit": "mL",
+            "concentration": 100,
+            "concentrationUnit": "%",
+            "locations": [
+              {
+                "location": "-20°C 2 salle -80",
+                "quantity": 6
+              }
+            ],
+            "openAliquots": [],
+            "preparedAt": "2026-08-11",
+            "preparedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "note": "",
+            "status": "active",
+            "updatedAt": "2026-08-11T12:52:58.664Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "source": "web"
     },
@@ -22994,6 +23026,13 @@
   ],
   "history": [
     {
+      "date": "11/08/2026 14:52",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · aliquots_prepared · Fetal Bovine Serum (FBS)",
+      "user": "Caroline",
+      "itemId": "web-1786452661627"
+    },
+    {
       "date": "11/08/2026 14:51",
       "action": "Stock mis à jour",
       "detail": "Caroline · consumed · Fetal Bovine Serum (FBS)",
@@ -28044,6 +28083,74 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-msonuy08-3218513579-2371524600",
+      "operationId": "operation-msonux5p-2375576065-2363533036",
+      "itemId": "web-1786452661627",
+      "timestamp": "2026-08-11T12:52:58.664Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "aliquots_prepared",
+      "entityType": "preparation",
+      "entityId": "preparation-msonuy08-2045040757-1664846507",
+      "containerId": "preparation-msonuy08-2045040757-1664846507",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "preparation-msonuy08-2045040757-1664846507",
+        "label": "Préparation nº1",
+        "createdCount": 6,
+        "representedSourceQuantity": 240,
+        "sourceUnit": "mL",
+        "volume": 40,
+        "volumeUnit": "mL",
+        "concentration": 100,
+        "concentrationUnit": "%",
+        "locations": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 6
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-11",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "",
+        "status": "active",
+        "updatedAt": "2026-08-11T12:52:58.664Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 6,
+      "difference": null,
+      "unit": "aliquotes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "mL",
+      "fromLocation": "",
+      "toLocation": "-20°C 2 salle -80",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -28052,6 +28159,12 @@
       "itemId": "web-1786452661627",
       "at": "2026-08-11T12:51:52.349Z",
       "type": "consumed"
+    },
+    {
+      "operationId": "operation-msonux5p-2375576065-2363533036",
+      "itemId": "web-1786452661627",
+      "at": "2026-08-11T12:52:58.664Z",
+      "type": "aliquots_prepared"
     }
   ],
   "agentOperations": [
@@ -28062,5 +28175,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-11T12:51:52.349Z"
+  "updatedAt": "2026-08-11T12:52:58.664Z"
 }

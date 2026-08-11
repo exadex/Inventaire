@@ -6369,10 +6369,10 @@
     },
     {
       "id": "itm-web-1783931436294-qufvjj",
-      "name": "DMEM sans glu",
+      "name": "DMEM - low glucose",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "mL",
+      "unit": "bouteilles",
       "minStock": 1,
       "location": "Frigo labo",
       "locations": [
@@ -6381,12 +6381,12 @@
       "tags": [
         "Milieu DMEM"
       ],
-      "notes": "Conditionnement : 500 ml",
+      "notes": "Conditionnement : 500 ml\nPERIME DEPUIS 01/2022 !!",
       "references": {
         "primary": {
           "supplier": "Merck",
           "reference": "D6046",
-          "link": "",
+          "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/d6046?srsltid=AfmBOorOvdjyE0F8i0FTetViuGBuWpTeTod1jJRoq-S-FP05EXbVo33x",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
           "price": "32",
           "unitPrice": "0,06",
@@ -6401,24 +6401,66 @@
       "createdAt": "28/07/2026 15:07",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
             "key": "mL",
             "singular": "mL",
             "plural": "mL",
             "kind": "continuous",
-            "contains": 1
+            "contains": 500
           }
         ],
         "trackingUnitKey": "mL",
         "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "Frigo labo",
+            "quantity": 2,
+            "updatedAt": "2026-08-11T14:50:54.348Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436294-qufvjj-frigo-labo-1",
+            "label": "bouteille fermé nº1",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-11T14:50:54.348Z",
+            "updatedAt": "2026-08-11T14:50:54.348Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-qufvjj-frigo-labo-2",
+            "label": "bouteille fermé nº2",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-11T14:50:54.348Z",
+            "updatedAt": "2026-08-11T14:50:54.348Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -23056,6 +23098,18 @@
   ],
   "history": [
     {
+      "date": "11/08/2026 16:51",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM - low glucose."
+    },
+    {
+      "date": "11/08/2026 16:50",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM sans glu."
+    },
+    {
       "date": "11/08/2026 16:49",
       "action": "Stock mis à jour",
       "detail": "Caroline · received · DMEM sans glu",
@@ -28389,5 +28443,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-11T14:49:36.037Z"
+  "updatedAt": "2026-08-11T14:51:09.262Z"
 }

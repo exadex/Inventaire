@@ -67,6 +67,88 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1786452661627",
+      "name": "Fetal Bovine Serum (FBS)",
+      "category": "Culture Cell",
+      "quantity": 45,
+      "unit": "bouteilles",
+      "minStock": 1,
+      "usageProfile": "routine",
+      "placements": [
+        {
+          "id": "placement-5de43ceb-9124-4a47-96e2-32d290a84df1",
+          "roomId": "room-piece-80",
+          "locationId": "location-20-1-salle-80",
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "-20°C 1 salle -80"
+      ],
+      "location": "-20°C 1 salle -80",
+      "tags": [
+        "culture"
+      ],
+      "notes": "Fetal calf serum (FCS)",
+      "references": {
+        "primary": {
+          "supplier": "Gibco",
+          "reference": "10270-106",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-08-11T12:51:01.628Z",
+      "createdAt": "11/08/2026 14:51",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 500
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "-20°C 1 salle -80",
+            "quantity": 45,
+            "updatedAt": "2026-08-11T12:51:01.628Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": true,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1785252073452",
       "name": "REDUCTEUR SU 1.2MM",
       "category": "Procédé ExAdEx L2",
@@ -22320,6 +22402,12 @@
   ],
   "history": [
     {
+      "date": "11/08/2026 14:51",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Fetal Bovine Serum (FBS) dans Culture Cell."
+    },
+    {
       "date": "10/08/2026 18:07",
       "user": "Caroline",
       "action": "Item modifié",
@@ -27282,5 +27370,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-10T16:15:59.512Z"
+  "updatedAt": "2026-08-11T12:51:01.630Z"
 }

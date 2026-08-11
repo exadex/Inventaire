@@ -865,14 +865,12 @@ async function hydrateSharedData() {
     }
 
     if (hasSharedDataPayload(result.data)) {
-      const contactsBefore=Array.isArray(result.data.supplierContacts)?result.data.supplierContacts:[],needsContactsMigration=INITIAL_SUPPLIER_CONTACTS.some(seed=>!contactsBefore.some(contact=>normalizeCompanyName(contact?.company)===normalizeCompanyName(seed.company))),hierarchyMigrationRequired=needsHierarchyMigration(result.data);
       sharedState = createSharedState(result.data, { includeBootstrap: false });
       syncRuntimeStateFromShared();
       cacheSharedState();
       sharedDataLastError = "";
       sharedDataSyncStatus = "saved";
       initializeSharedSaveCoordinator(result.data, result.sha);
-      if((needsContactsMigration||hierarchyMigrationRequired)&&result.mode==="github-write")scheduleSharedSave();
 
       if (!app.classList.contains("hidden")) {
         render();

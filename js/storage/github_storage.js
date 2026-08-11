@@ -155,11 +155,37 @@
       throw new Error("GitHub token is missing; shared data is read-only.");
     }
 
-    const current = previousSha
-      ? { sha: previousSha }
-      : latestSha
-        ? { sha: latestSha }
-        : await requestContents(config, { fresh: true });
+    const current = await requestContents(config, { fresh: true });
+    const expectedSha = previousSha || latestSha;
+    if (expectedSha && current.sha && expectedSha !== current.sha) {
+      const conflict = new Error("GitHub data changed before this save. Reload and merge before saving.");
+      conflict.code = "GITHUB_CONFLICT";
+      conflict.status = 409;
+      conflict.sha = current.sha;
+      throw conflict;
+    }
+
+    const protectedCollections = [
+      "inventoryItems",
+      "orders",
+      "clientSamples",
+      "clients",
+      "supplierContacts",
+      "history",
+      "stockMovements"
+    ];
+    const catastrophicLosses = protectedCollections.flatMap(key => {
+      const before = Array.isArray(current.data?.[key]) ? current.data[key].length : 0;
+      const after = Array.isArray(data?.[key]) ? data[key].length : 0;
+      const maximumExpectedDeletion = Math.max(5, Math.ceil(before * 0.2));
+      return before - after > maximumExpectedDeletion ? [`${key}: ${before} → ${after}`] : [];
+    });
+    if (catastrophicLosses.length) {
+      const unsafe = new Error(`Sauvegarde bloquée pour protéger les données (${catastrophicLosses.join(", ")}). Rechargez la page avant de réessayer.`);
+      unsafe.code = "CATASTROPHIC_DATA_LOSS";
+      unsafe.status = 422;
+      throw unsafe;
+    }
 
     const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${encodePath(config.path)}`;
 

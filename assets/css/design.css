@@ -4562,3 +4562,24 @@ td { font-size: 14px; }
 .location-path-actions button{min-height:40px;padding:8px 12px;font-size:14px;font-weight:600}
 @media(max-width:1024px){.location-explorer-column header strong{font-size:16px}.location-column-add{font-size:12px}.location-explorer-row{padding-inline:8px;gap:6px}.location-explorer-name{font-size:15px}.location-explorer-count{font-size:13px}.location-explorer-icon{width:26px;height:26px;font-size:20px}}
 @media(max-width:760px){.location-explorer{align-items:start}.location-explorer-column{display:block}.location-explorer-panel{display:block;height:auto;min-height:72px;max-height:none;overflow:visible}.location-explorer-list{height:auto;min-height:0;max-height:none;overflow:visible}.location-explorer-column header strong{font-size:18px}.location-column-add{font-size:14px}.location-explorer-name{font-size:15px;white-space:normal}}
+
+.backups-view { display:none; }
+.backups-view.active { display:block; }
+.backups-header { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; margin-bottom:22px; }
+.backups-header h2 { margin:4px 0 8px; }
+.backups-header p:last-child { max-width:760px; margin:0; color:var(--muted); }
+.backups-header-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.backups-status { min-height:24px; margin-bottom:12px; color:var(--muted); }
+.backups-status.error { color:#a43838; }
+.backups-list { display:grid; gap:12px; }
+.backup-card { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:center; padding:18px; border:1px solid #dfe8e4; border-radius:16px; background:#fff; }
+.backup-card-main { display:grid; gap:6px; }
+.backup-card-title { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.backup-card-title strong { font-size:1rem; }
+.backup-type { padding:4px 9px; border-radius:999px; background:#edf7f2; color:#28644e; font-size:.75rem; font-weight:700; }
+.backup-card small { color:var(--muted); }
+.backup-card-actions { display:flex; gap:8px; }
+.backup-empty { padding:28px; border:1px dashed #cbdad3; border-radius:16px; text-align:center; color:var(--muted); }
+.backup-preview { margin-top:8px; padding:12px; border-radius:12px; background:#f5f8f7; color:#40534c; }
+.backup-restore-modal { max-width:520px; }
+@media(max-width:760px){.backups-header,.backup-card{grid-template-columns:1fr;flex-direction:column}.backups-header-actions,.backup-card-actions{width:100%}.backups-header-actions button,.backup-card-actions button{flex:1}}

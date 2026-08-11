@@ -107,6 +107,7 @@ let orderHistorySort = "newest";
 let orderHistoryPage = 1;
 let orderHistoryPageSize = 50;
 let pendingOrderInventoryLink = null;
+let backupsLoaded = false;
 const collapsedClientGroups = new Set();
 const expandedReplicaGroups = new Set();
 const SAMPLE_PAGE_SIZE = 50;
@@ -524,9 +525,16 @@ document.querySelectorAll(".nav-item").forEach((button) => {
       renderContacts();
     } else if (activeView === "agents") {
       renderAgents();
+    } else if (activeView === "backups") {
+      renderBackups();
     }
   });
 });
+
+document.querySelector("#refreshBackupsBtn")?.addEventListener("click", () => renderBackups(true));
+document.querySelector("#createFullBackupBtn")?.addEventListener("click", createManualFullBackup);
+document.querySelectorAll("[data-close-backup-restore]").forEach(button => button.addEventListener("click", () => document.querySelector("#restoreBackupDialog")?.close()));
+document.querySelector("#restoreBackupForm")?.addEventListener("submit", restoreSelectedBackup);
 
 // Listeners para dialogo de recepcion de inventario al recibir una orden
 document.querySelector("#confirmReceiveInventoryBtn").addEventListener("click", confirmReceiveInventory);
@@ -902,7 +910,7 @@ function initializeSharedSaveCoordinator(baseData, initialSha) {
   sharedDataSaveCoordinator = window.ExadexSharedSync.createSaveCoordinator({
     initialBase: baseData,
     initialSha,
-    save: (data, sha) => storage.saveSharedData(data, sha),
+    save: (data, sha) => storage.saveSharedData(data, sha, { user: currentName }),
     loadRemote: () => storage.loadSharedData({ fresh: true, cache: false }),
     onStatus(status, error) {
       sharedDataSyncStatus = status;
@@ -986,6 +994,49 @@ function persist(options = {}) {
   if (!options.skipRemote) {
     scheduleSharedSave();
   }
+}
+
+function backupSummaryMarkup(summary = {}) {
+  return [["Items",summary.inventoryItems],["Études clients",summary.clientSamples],["Localisations",summary.locations],["Expériences",summary.experiments],["Commandes",summary.orders],["Contacts",summary.contacts],["Historique",summary.history]]
+    .map(([label,value])=>`<span><strong>${Number(value||0)}</strong> ${escapeHtml(label)}</span>`).join(" · ");
+}
+
+async function renderBackups(force = false) {
+  const root=document.querySelector("#backupsRoot"),status=document.querySelector("#backupsStatus");
+  if(!root||!status||(backupsLoaded&&!force))return;
+  root.innerHTML=`<div class="backup-empty">Chargement des sauvegardes…</div>`;status.textContent="";status.classList.remove("error");
+  try{
+    const backups=await window.ExadexGithubStorage.listBackups();backupsLoaded=true;
+    const lastError=localStorage.getItem("exadex_backup_last_error");
+    if(lastError){status.textContent=`Dernière sauvegarde automatique incomplète : ${lastError}`;status.classList.add("error");}
+    else status.textContent=`${backups.length} sauvegarde(s) disponible(s). Elles sont créées uniquement lorsqu'une modification réelle est enregistrée.`;
+    root.innerHTML=backups.length?backups.map(entry=>`<article class="backup-card" data-backup-path="${escapeHtml(entry.path)}"><div class="backup-card-main"><div class="backup-card-title"><strong>${escapeHtml(entry.name.replace(/\.json$/i,""))}</strong><span class="backup-type">${escapeHtml(entry.label)}</span></div><small>${Math.max(1,Math.round(Number(entry.size||0)/1024))} Ko · copie immuable sur GitHub</small><div class="backup-preview hidden" data-backup-preview></div></div><div class="backup-card-actions"><button class="ghost-btn compact-btn" type="button" data-preview-backup>Prévisualiser</button><button class="primary-btn compact-btn" type="button" data-restore-backup>Restaurer</button></div></article>`).join(""):`<div class="backup-empty"><strong>Aucune sauvegarde planifiée pour le moment.</strong><br>La première sera créée lors du prochain changement, ou utilisez « Créer une copie complète ».</div>`;
+    root.querySelectorAll("[data-preview-backup]").forEach(button=>button.addEventListener("click",previewBackup));
+    root.querySelectorAll("[data-restore-backup]").forEach(button=>button.addEventListener("click",openRestoreBackupDialog));
+  }catch(error){backupsLoaded=false;root.innerHTML=`<div class="backup-empty">Impossible de charger les sauvegardes.</div>`;status.textContent=error.message||String(error);status.classList.add("error");}
+}
+
+async function previewBackup(event){
+  const card=event.currentTarget.closest("[data-backup-path]"),preview=card?.querySelector("[data-backup-preview]");if(!card||!preview)return;
+  preview.classList.remove("hidden");preview.textContent="Chargement…";
+  try{const backup=await window.ExadexGithubStorage.loadBackup(card.dataset.backupPath),backupState=backup?.snapshot||(backup?.version&&Array.isArray(backup?.inventoryItems)?backup:null),summary=backup?.summary||window.ExadexGithubStorage.backupSummary(backupState||{inventoryItems:backup?.inventoryItems||[]});preview.innerHTML=`${backupSummaryMarkup(summary)}<br><small>Créée le ${escapeHtml(backup?.createdAt?new Date(backup.createdAt).toLocaleString("fr-FR"):"date du fichier")} par ${escapeHtml(backup?.createdBy||"utilisateur inventaire")}.</small>`;}catch(error){preview.textContent=error.message||String(error);}
+}
+
+function openRestoreBackupDialog(event){
+  const card=event.currentTarget.closest("[data-backup-path]"),dialog=document.querySelector("#restoreBackupDialog");if(!card||!dialog)return;
+  document.querySelector("#restoreBackupPath").value=card.dataset.backupPath;document.querySelector("#restoreBackupPassword").value="";document.querySelector("#restoreBackupDescription").textContent=`Une copie complète de l'état actuel sera créée avant de restaurer ${card.dataset.backupPath}.`;document.querySelector("#restoreBackupError").classList.add("hidden");dialog.showModal();document.querySelector("#restoreBackupPassword").focus();
+}
+
+async function restoreSelectedBackup(event){
+  event.preventDefault();const password=document.querySelector("#restoreBackupPassword").value,path=document.querySelector("#restoreBackupPath").value,errorBox=document.querySelector("#restoreBackupError"),button=document.querySelector("#confirmRestoreBackupBtn");errorBox.classList.add("hidden");
+  if(password!=="645443"){errorBox.textContent="Mot de passe incorrect.";errorBox.classList.remove("hidden");return;}
+  button.disabled=true;button.textContent="Restauration…";
+  try{const storage=window.ExadexGithubStorage,[backup,latest]=await Promise.all([storage.loadBackup(path),storage.loadSharedData({fresh:true,cache:false})]);if(!backup||!latest?.data)throw new Error("La sauvegarde ou l'état actuel est illisible.");await storage.createNamedFullBackup(latest.data,currentName,"pre-restore");const inventoryOnly=backup.type==="inventory"||path.includes("/inventory/"),restored=inventoryOnly?{...latest.data,inventoryItems:backup.inventoryItems||[]}:(backup.snapshot||backup);if(!restored||!Array.isArray(restored.inventoryItems))throw new Error("Cette sauvegarde n'est pas valide.");const sha=await storage.saveSharedData(restored,latest.sha,{allowCatastrophic:true,skipScheduledBackups:true,user:currentName});sharedDataSha=sha;sharedDataMode="github-write";sharedDataSyncStatus="saved";sharedDataHasUnsavedChanges=false;await window.ExadexRecoveryStorage?.markSynced?.({lastKnownSha:sha,restoredAt:new Date().toISOString()}).catch(()=>null);applySharedState(restored);initializeSharedSaveCoordinator(restored,sha);document.querySelector("#restoreBackupDialog").close();backupsLoaded=false;await renderBackups(true);document.querySelector("#backupsStatus").textContent="Restauration terminée et confirmée sur GitHub.";}catch(error){errorBox.textContent=error.message||String(error);errorBox.classList.remove("hidden");}finally{button.disabled=false;button.textContent="Restaurer";}
+}
+
+async function createManualFullBackup(){
+  const button=document.querySelector("#createFullBackupBtn"),status=document.querySelector("#backupsStatus");button.disabled=true;status.classList.remove("error");status.textContent="Création de la sauvegarde complète…";
+  try{const latest=await window.ExadexGithubStorage.loadSharedData({fresh:true,cache:false});await window.ExadexGithubStorage.createNamedFullBackup(latest.data,currentName,"manual");backupsLoaded=false;await renderBackups(true);status.textContent="Sauvegarde complète créée.";}catch(error){status.textContent=error.message||String(error);status.classList.add("error");}finally{button.disabled=false;}
 }
 
 function updateUserIdentity() {

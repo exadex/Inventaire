@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<meta charset="utf-8">
+<title>RUNNING</title>
+<pre id="result">RUNNING</pre>
+<script src="../../js/stock/stock_tracking.js"></script>
+<script src="../../js/export/backup_export.js"></script>
+<script>
+(async () => {
+  const result = document.querySelector("#result");
+  const lines = [];
+  let passed = 0;
+  const test = (name, condition) => { lines.push(`${condition ? "PASS" : "FAIL"} ${name}`); if (condition) passed += 1; };
+  const state = {
+    version: 2,
+    locationCatalog: {
+      locations: [{ id: "loc-a", roomId: "room-laboratoire", name: "Frigo A" }],
+      sublocations: [{ id: "sub-a", locationId: "loc-a", name: "Bac 1" }]
+    },
+    inventoryItems: [
+      { id: "i2", name: "Bêta", category: "B", quantity: 2, unit: "boîtes", minStock: 1, placements: [{ roomId: "room-laboratoire", locationId: "loc-a", sublocationId: "sub-a" }], tags: [], usageProfile: "normal", references: { primary: { supplier: "F2", reference: "R2" }, secondary: [] } },
+      { id: "i1", name: "Alpha", category: "A", quantity: 1.5, unit: "cartons", minStock: 1, placements: [{ roomId: "room-laboratoire", locationId: "loc-a" }, { roomId: "room-reserve" }], tags: ["froid"], usageProfile: "routine", stockTracking: { mode: "containers", closedByLocation: [{ location: "Frigo A", quantity: 1 }], openContainers: [{ status: "open", remaining: 0.5, capacity: 1 }] }, references: { primary: { supplier: "F1", reference: "R1" }, secondary: [{ reference: "R1-bis", notes: "secondaire" }] } }
+    ],
+    clientSamples: [
+      { id: "s2", clientCode: "CLI002", canonicalClientCode: "CLI002", type: "created_sample", name: "Échantillon 1", replicaNumber: 1, creationDate: "2026-08-01", quantity: 1, unit: "mL", location: "Bac 1" },
+      { id: "s1", clientCode: "CLI001", canonicalClientCode: "CLI001", type: "client_product", name: "Produit", arrivalDate: "2026-07-01", quantity: 2, unit: "mg", location: "Frigo A" }
+    ],
+    experiments: [],
+    orders: [{ itemMode: "new", status: "ordered", itemName: "Produit", requestedQuantity: 2, receivedQuantity: 0, priority: "urgent", requestedBy: "Caroline", requestedAt: "01/08/2026" }],
+    supplierContacts: [{ company: "Fournisseur", customerService: "contact@example.com", coordinates: [{ label: "Commercial", value: "vente@example.com" }], aliases: ["F"] }],
+    history: []
+  };
+  const full = { backupVersion: 1, type: "full", createdAt: "2026-08-01T04:00:00.000Z", createdBy: "Test", snapshot: state };
+  const weekly = { backupVersion: 1, type: "inventory", createdAt: "2026-08-03T04:00:00.000Z", inventoryItems: state.inventoryItems };
+  const weeklyBuilt = ExadexBackupExport.buildSheets(weekly, { folder: "inventory", name: "2026-08-03_06-00.json" });
+  const fullBuilt = ExadexBackupExport.buildSheets(full, { folder: "full", name: "2026-08-01_06-00.json" });
+  test("copie hebdomadaire avec feuille Items uniquement", weeklyBuilt.sheets.length === 1 && weeklyBuilt.sheets[0].name === "Items");
+  test("copie complète avec sept feuilles", fullBuilt.sheets.map(sheet => sheet.name).join("|") === "Résumé|Items|Études clients|Localisations|Expériences|Commandes|Contacts");
+  const itemSheet = fullBuilt.sheets[1];
+  test("colonnes de stock près du début", itemSheet.headers.slice(4, 7).join("|") === "Unités ouvertes|Unités fermées|Stock restant");
+  test("ligne vide entre catégories", itemSheet.rows.some(row => row.length === 0));
+  test("emplacements supplémentaires dynamiques", itemSheet.headers.includes("Salle 2") && itemSheet.headers.includes("Sous-localisation 2"));
+  test("références secondaires tout à la fin", itemSheet.headers.slice(-2).join("|") === "Référence 2|Notes référence 2");
+  const clientSheet = fullBuilt.sheets[2];
+  test("ligne vide entre clients", clientSheet.rows.some(row => row.length === 0));
+  test("localisations sans chemin complet", !fullBuilt.sheets[3].headers.includes("Chemin complet"));
+  test("expériences en préparation", fullBuilt.sheets[4].rows[0][0] === "En cours de préparation");
+  test("commandes commencent par Item / Nom", fullBuilt.sheets[5].headers.slice(0, 3).join("|") === "Item / Nom|Statut|Type de demande" && fullBuilt.sheets[5].rows[0][0] === "Produit");
+  const files = ExadexBackupExport.workbookFiles(fullBuilt.sheets);
+  test("XML du classeur valide", Object.values(files).every(content => !new DOMParser().parseFromString(content, "application/xml").querySelector("parsererror")));
+  const zip = ExadexBackupExport.zipFiles(files);
+  test("fichier XLSX au format ZIP", zip[0] === 0x50 && zip[1] === 0x4b && zip[2] === 0x03 && zip[3] === 0x04);
+  test("nom de fichier daté", fullBuilt.descriptor.baseName === "Copie_complete_mensuelle_2026-08-01_06-00");
+  window.ExadexGithubStorage = { loadSharedData: async () => ({ data: { ...state, inventoryItems: [{ id: "current" }] } }) };
+  const originalCreate = URL.createObjectURL, originalClick = HTMLAnchorElement.prototype.click;
+  URL.createObjectURL = () => "blob:test"; HTMLAnchorElement.prototype.click = () => {};
+  const json = await ExadexBackupExport.exportJson(weekly, { folder: "inventory", name: "2026-08-03_06-00.json" });
+  URL.createObjectURL = originalCreate; HTMLAnchorElement.prototype.click = originalClick;
+  test("JSON hebdomadaire reconstitue shared_data complet", json.state.clientSamples.length === 2 && json.state.inventoryItems[0].id === "i2");
+  test("JSON clairement identifiable", json.filename === "shared_data_Copie_hebdomadaire_inventaire_2026-08-03_06-00.json");
+  const [realWeekly, realFull] = await Promise.all([
+    fetch("../../backups/inventory/2026-08-10_18-15.json").then(response => response.json()),
+    fetch("../../backups/full/2026-08-10_18-15.json").then(response => response.json())
+  ]);
+  const realWeeklyBuilt = ExadexBackupExport.buildSheets(realWeekly, { folder: "inventory", name: "2026-08-10_18-15.json" });
+  const realFullBuilt = ExadexBackupExport.buildSheets(realFull, { folder: "full", name: "2026-08-10_18-15.json" });
+  test("357 items réels exportables", realWeeklyBuilt.sheets[0].rows.filter(row => row.length).length === 357);
+  test("copie complète réelle exportable", realFullBuilt.sheets.length === 7 && realFullBuilt.sheets[2].rows.filter(row => row.length).length === 79);
+  const realZip = ExadexBackupExport.zipFiles(ExadexBackupExport.workbookFiles(realFullBuilt.sheets));
+  test("classeur réel généré", realZip.length > 100000 && realZip[0] === 0x50 && realZip[1] === 0x4b);
+  result.textContent = `${lines.join("\n")}\n${passed}/${lines.length} tests passed`;
+  document.title = passed === lines.length ? "PASS" : "FAIL";
+  document.body.dataset.failed = String(passed !== lines.length);
+})();
+</script>
+</html>

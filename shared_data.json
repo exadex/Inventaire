@@ -83,8 +83,7 @@
         }
       ],
       "locations": [
-        "-20°C 1 salle -80",
-        "-20°C 2 salle -80"
+        "-20°C 1 salle -80"
       ],
       "location": "-20°C 1 salle -80",
       "tags": [
@@ -6372,7 +6371,7 @@
       "id": "itm-web-1783931436294-qufvjj",
       "name": "DMEM sans glu",
       "category": "Culture Cell",
-      "quantity": 0,
+      "quantity": 2,
       "unit": "mL",
       "minStock": 1,
       "location": "Frigo labo",
@@ -6419,6 +6418,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -23056,6 +23056,13 @@
   ],
   "history": [
     {
+      "date": "11/08/2026 16:49",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · received · DMEM sans glu",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436294-qufvjj"
+    },
+    {
       "date": "11/08/2026 14:54",
       "action": "Stock mis à jour",
       "detail": "Caroline · aliquots_prepared · Fetal Bovine Serum (FBS)",
@@ -28366,6 +28373,12 @@
       "itemId": "web-1786452661627",
       "at": "2026-08-11T12:54:50.303Z",
       "type": "aliquots_prepared"
+    },
+    {
+      "operationId": "operation-msos0wfw-2907131666-1418658447",
+      "itemId": "itm-web-1783931436294-qufvjj",
+      "at": "2026-08-11T14:49:36.037Z",
+      "type": "received"
     }
   ],
   "agentOperations": [
@@ -28376,5 +28389,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-11T12:54:50.303Z"
+  "updatedAt": "2026-08-11T14:49:36.037Z"
 }

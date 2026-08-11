@@ -70,7 +70,7 @@
       "id": "web-1786452661627",
       "name": "Fetal Bovine Serum (FBS)",
       "category": "Culture Cell",
-      "quantity": 44.92,
+      "quantity": 45.08,
       "unit": "bouteilles",
       "minStock": 1,
       "usageProfile": "routine",
@@ -83,8 +83,7 @@
         }
       ],
       "locations": [
-        "-20°C 1 salle -80",
-        "-20°C 2 salle -80"
+        "-20°C 1 salle -80"
       ],
       "location": "-20°C 1 salle -80",
       "tags": [
@@ -716,14 +715,14 @@
             "id": "closed-web-1786452661627-20-c-1-salle-80-1",
             "label": "bouteille fermé nº1",
             "location": "-20°C 1 salle -80",
-            "remaining": 220,
+            "remaining": 300,
             "capacity": 500,
             "unitKey": "mL",
             "status": "open",
             "createdAt": "2026-08-11T12:51:01.628Z",
-            "updatedAt": "2026-08-11T12:52:58.664Z",
+            "updatedAt": "2026-08-11T12:54:18.411Z",
             "updatedBy": "caroline",
-            "version": 4,
+            "version": 5,
             "openedAt": "2026-08-11T12:51:52.348Z",
             "openedBy": {
               "userId": "caroline",
@@ -23026,6 +23025,13 @@
   ],
   "history": [
     {
+      "date": "11/08/2026 14:54",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · recounted · Fetal Bovine Serum (FBS)",
+      "user": "Caroline",
+      "itemId": "web-1786452661627"
+    },
+    {
       "date": "11/08/2026 14:52",
       "action": "Stock mis à jour",
       "detail": "Caroline · aliquots_prepared · Fetal Bovine Serum (FBS)",
@@ -28151,6 +28157,83 @@
       "toLocation": "-20°C 2 salle -80",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-msonwnjg-3251583495-200566902",
+      "operationId": "operation-msonwmut-4067638402-428446832-closed-web-1786452661627-20-c-1-salle-80-1",
+      "itemId": "web-1786452661627",
+      "timestamp": "2026-08-11T12:54:18.412Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-web-1786452661627-20-c-1-salle-80-1",
+      "containerId": "closed-web-1786452661627-20-c-1-salle-80-1",
+      "containerLabel": "bouteille fermé nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 220,
+      "afterQuantity": 300,
+      "beforeCapacity": 500,
+      "afterCapacity": 500,
+      "unitBefore": "mL",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1786452661627-20-c-1-salle-80-1",
+        "label": "bouteille fermé nº1",
+        "location": "-20°C 1 salle -80",
+        "remaining": 220,
+        "capacity": 500,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-11T12:51:01.628Z",
+        "updatedAt": "2026-08-11T12:52:58.664Z",
+        "updatedBy": "caroline",
+        "version": 4,
+        "openedAt": "2026-08-11T12:51:52.348Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "after": {
+        "id": "closed-web-1786452661627-20-c-1-salle-80-1",
+        "label": "bouteille fermé nº1",
+        "location": "-20°C 1 salle -80",
+        "remaining": 300,
+        "capacity": 500,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-11T12:51:01.628Z",
+        "updatedAt": "2026-08-11T12:54:18.411Z",
+        "updatedBy": "caroline",
+        "version": 5,
+        "openedAt": "2026-08-11T12:51:52.348Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 300,
+      "difference": 80,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "-20°C 1 salle -80",
+      "toLocation": "-20°C 1 salle -80",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -28165,6 +28248,12 @@
       "itemId": "web-1786452661627",
       "at": "2026-08-11T12:52:58.664Z",
       "type": "aliquots_prepared"
+    },
+    {
+      "operationId": "operation-msonwmut-4067638402-428446832",
+      "itemId": "web-1786452661627",
+      "at": "2026-08-11T12:54:18.412Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -28175,5 +28264,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-11T12:52:58.664Z"
+  "updatedAt": "2026-08-11T12:54:18.412Z"
 }

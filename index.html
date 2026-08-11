@@ -473,17 +473,16 @@
         </section>
 
         <section class="view backups-view" id="backupsView" aria-labelledby="backupsTitle">
-          <header class="backups-header">
+          <div class="client-studies-header">
             <div>
-              <p class="eyebrow">Protection des données</p>
-              <h2 id="backupsTitle">Sauvegardes et restauration</h2>
-              <p>Une copie des items est créée au premier changement de chaque semaine, et une copie complète au premier changement de chaque mois.</p>
+              <p class="eyebrow">PROTECTION DES DONNÉES</p>
+              <div class="client-studies-title-row"><h3 id="backupsTitle">Sauvegardes et restauration</h3></div>
+              <p class="location-page-description">Une copie des items est créée chaque lundi à 06:00, et une copie complète le premier jour de chaque mois à 06:00.</p>
             </div>
-            <div class="backups-header-actions">
-              <button class="ghost-btn" id="refreshBackupsBtn" type="button">Actualiser</button>
+            <div class="orders-header-actions">
               <button class="primary-btn" id="createFullBackupBtn" type="button">Créer une copie complète</button>
             </div>
-          </header>
+          </div>
           <div id="backupsStatus" class="backups-status" aria-live="polite"></div>
           <div id="backupsRoot" class="backups-list"></div>
         </section>
@@ -503,6 +502,23 @@
         <div class="modal-actions">
           <button class="ghost-btn" type="button" data-close-backup-restore>Annuler</button>
           <button class="primary-btn" id="confirmRestoreBackupBtn" type="submit">Restaurer</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="deleteBackupDialog" class="modal backup-restore-modal">
+      <form id="deleteBackupForm">
+        <div class="modal-header">
+          <div><p class="eyebrow">Suppression protégée</p><h3>Supprimer cette sauvegarde ?</h3></div>
+          <button class="icon-btn" type="button" data-close-backup-delete>&times;</button>
+        </div>
+        <input id="deleteBackupPath" type="hidden">
+        <p>Cette action supprimera uniquement la copie sélectionnée. Elle ne modifiera pas l'inventaire actif.</p>
+        <label>Mot de passe<input id="deleteBackupPassword" type="password" inputmode="numeric" autocomplete="off" required></label>
+        <p id="deleteBackupError" class="confirmation-modal-error hidden" role="alert"></p>
+        <div class="modal-actions">
+          <button class="ghost-btn" type="button" data-close-backup-delete>Annuler</button>
+          <button class="danger-btn" id="confirmDeleteBackupBtn" type="submit">Supprimer</button>
         </div>
       </form>
     </dialog>
@@ -1150,7 +1166,7 @@
     <script src="js/app/const.js"></script>
     <script src="js/app/seed_items.js"></script>
     <script src="js/app/protocols.js"></script>
-    <script src="js/storage/github_storage.js?v=20260811-2"></script>
+    <script src="js/storage/github_storage.js?v=20260811-4"></script>
     <script src="js/storage/shared_sync.js?v=20260811-1"></script>
     <script src="js/storage/recovery_storage.js?v=20260811-1"></script>
     <script src="js/stock/stock_tracking.js"></script>
@@ -1158,7 +1174,7 @@
     <script src="js/agents/agents_core.js"></script>
     <script src="js/agents/agents_storage.js"></script>
     <script src="js/agents/agents_ui.js"></script>
-    <script src="js/app/script.js?v=20260811-3"></script>
+    <script src="js/app/script.js?v=20260811-4"></script>
     <script>
       if (new URLSearchParams(location.search).has("clientSampleTests")) {
         const testScript = document.createElement("script");

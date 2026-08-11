@@ -1,0 +1,8 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><base href="../../"><title>Tests sauvegardes locales</title></head><body><pre id="result">Tests en cours…</pre>
+<script src="js/storage/github_storage.js"></script><script>
+(async()=>{const lines=[];let passed=0;const test=async(name,fn)=>{try{await fn();lines.push(`PASS ${name}`);passed++}catch(error){lines.push(`FAIL ${name}: ${error.message}`)}};
+await test("liste locale sans configuration GitHub",async()=>{const list=await ExadexGithubStorage.listBackups();if(list.length!==2||!list.some(x=>x.folder==="inventory")||!list.some(x=>x.folder==="full"))throw new Error("copies locales absentes")});
+await test("chargement local sans appel API",async()=>{const backup=await ExadexGithubStorage.loadBackup("backups/full/2026-08-10_18-15.json");if(!Array.isArray(backup.snapshot?.inventoryItems)||backup.snapshot.inventoryItems.length!==357)throw new Error("copie complète illisible")});
+await test("écriture refusée proprement",async()=>{let clean=false;try{await ExadexGithubStorage.createNamedFullBackup({inventoryItems:[]},"Test","manual")}catch(error){clean=/GitHub|écriture/i.test(error.message)}if(!clean)throw new Error("erreur de configuration non détectée")});
+document.querySelector("#result").textContent=lines.join("\n")+`\n${passed}/3 tests passed`;document.body.dataset.failed=String(passed!==3);document.title=passed===3?"PASS":"FAIL"})();
+</script></body></html>

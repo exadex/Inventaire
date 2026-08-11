@@ -3,6 +3,10 @@
   const TOKEN_KEY = "exadex_github_token";
 
   const CACHE_KEY = "exadex_shared_state_cache";
+  const LOCAL_BACKUPS = [
+    { name: "2026-08-10_18-15.json", path: "backups/inventory/2026-08-10_18-15.json", size: 0, type: "file", folder: "inventory", label: "Copie hebdomadaire de l'inventaire" },
+    { name: "2026-08-10_18-15.json", path: "backups/full/2026-08-10_18-15.json", size: 0, type: "file", folder: "full", label: "Copie complète mensuelle" }
+  ];
   let latestSha = null;
 
   function readJson(value, fallback = null) {
@@ -229,21 +233,8 @@
       })
     );
 
-    if (!options.skipScheduledBackups) ensureScheduledBackups(data, options.user).catch(error => {
-      localStorage.setItem("exadex_backup_last_error", error.message || String(error));
-      console.warn("Scheduled backup failed.", error);
-    });
-
     return latestSha;
 }
-
-  function isoWeekKey(date = new Date()) {
-    const value = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-    value.setUTCDate(value.getUTCDate() + 4 - (value.getUTCDay() || 7));
-    const yearStart = new Date(Date.UTC(value.getUTCFullYear(), 0, 1));
-    const week = Math.ceil((((value - yearStart) / 86400000) + 1) / 7);
-    return `${value.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
-  }
 
   function backupSummary(data) {
     return {
@@ -258,6 +249,9 @@
   }
 
   async function requestRepositoryPath(config, path) {
+    if (!configured(config)) {
+      throw new Error("GitHub n'est pas configuré pour cette adresse Live Server.");
+    }
     const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${encodePath(path)}?ref=${encodeURIComponent(config.branch)}&t=${Date.now()}`;
     const headers = { Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" };
     if (config.token) headers.Authorization = `Bearer ${config.token}`;
@@ -283,34 +277,19 @@
     return { path, created: response.ok };
   }
 
-  async function ensureScheduledBackups(data, user = "Utilisateur inventaire") {
-    const now = new Date();
-    const createdAt = now.toISOString();
-    const week = isoWeekKey(now);
-    const month = createdAt.slice(0, 7);
-    const weekly = {
-      backupVersion: 1, type: "inventory", period: week, createdAt, createdBy: user,
-      summary: backupSummary(data), inventoryItems: data.inventoryItems || [], locationCatalogSnapshot: data.locationCatalog || null
-    };
-    const monthly = {
-      backupVersion: 1, type: "full", period: month, createdAt, createdBy: user,
-      summary: backupSummary(data), snapshot: data
-    };
-    const weeklyResult = await writeBackup(`backups/inventory/${week}.json`, weekly, `Backup inventaire ${week}`);
-    const monthlyResult = await writeBackup(`backups/full/${month}.json`, monthly, `Backup complet ${month}`);
-    return [weeklyResult, monthlyResult];
-  }
-
   async function createNamedFullBackup(data, user, reason = "manual") {
-    const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-    const payload = { backupVersion: 1, type: "full", period: stamp, reason, createdAt: new Date().toISOString(), createdBy: user, summary: backupSummary(data), snapshot: data };
+    const now = new Date();
+    const parts = Object.fromEntries(new Intl.DateTimeFormat("fr-FR", { timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" }).formatToParts(now).filter(part => part.type !== "literal").map(part => [part.type, part.value]));
+    const stamp = `${parts.year}-${parts.month}-${parts.day}_${parts.hour}-${parts.minute}-${parts.second}`;
+    const payload = { backupVersion: 1, type: "full", period: stamp, reason, createdAt: now.toISOString(), createdBy: user, summary: backupSummary(data), snapshot: data };
     const folder = reason === "pre-restore" ? "restore-points" : "manual";
     return writeBackup(`backups/${folder}/${stamp}.json`, payload, reason === "pre-restore" ? "Point de restauration automatique" : "Sauvegarde complète manuelle");
   }
 
   async function listBackups() {
     const config = getConfig();
-    const folders = [["inventory", "Inventaire hebdomadaire"], ["full", "Complète mensuelle"], ["manual", "Complète manuelle"], ["restore-points", "Avant restauration"]];
+    if (!configured(config)) return LOCAL_BACKUPS.map(entry => ({ ...entry }));
+    const folders = [["inventory", "Copie hebdomadaire de l'inventaire"], ["full", "Copie complète mensuelle"], ["manual", "Copie complète manuelle"], ["restore-points", "Avant restauration"]];
     const groups = await Promise.all(folders.map(async ([folder, label]) => {
       const entries = await requestRepositoryPath(config, `backups/${folder}`);
       return (Array.isArray(entries) ? entries : []).filter(entry => entry.type === "file" && entry.name.endsWith(".json")).map(entry => ({ ...entry, folder, label }));
@@ -320,9 +299,29 @@
 
   async function loadBackup(path) {
     const config = getConfig();
+    if (!configured(config)) {
+      const response = await fetch(`${encodePath(path)}?t=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Sauvegarde locale introuvable : ${response.status}`);
+      return response.json();
+    }
     const entry = await requestRepositoryPath(config, path);
     if (!entry?.content) throw new Error("Cette sauvegarde est introuvable.");
     return readJson(decodeBase64Utf8(String(entry.content).replace(/\s/g, "")), null);
+  }
+
+  async function deleteBackup(path) {
+    const config = getConfig();
+    if (!configured(config) || !config.token) throw new Error("La suppression nécessite la configuration GitHub en écriture.");
+    const entry = await requestRepositoryPath(config, path);
+    if (!entry?.sha) throw new Error("Cette sauvegarde est introuvable.");
+    const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${encodePath(path)}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${config.token}`, "Content-Type": "application/json", "X-GitHub-Api-Version": "2022-11-28" },
+      body: JSON.stringify({ message: `Supprimer la sauvegarde ${path}`, sha: entry.sha, branch: config.branch })
+    });
+    if (!response.ok) throw new Error(`GitHub backup delete failed: ${response.status}`);
+    return true;
   }
 
   async function mutateSharedData(operationId, mutator, options = {}) {
@@ -357,10 +356,10 @@
     loadSharedData,
     saveSharedData,
     mutateSharedData,
-    ensureScheduledBackups,
     createNamedFullBackup,
     listBackups,
     loadBackup,
+    deleteBackup,
     backupSummary,
     STORAGE_CONFIG_KEY,
     TOKEN_KEY

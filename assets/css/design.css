@@ -4565,21 +4565,26 @@ td { font-size: 14px; }
 
 .backups-view { display:none; }
 .backups-view.active { display:block; }
-.backups-header { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; margin-bottom:22px; }
-.backups-header h2 { margin:4px 0 8px; }
-.backups-header p:last-child { max-width:760px; margin:0; color:var(--muted); }
-.backups-header-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.backups-mode .topbar { justify-content:flex-end; margin-bottom:14px; }
+.backups-mode .topbar > div:first-child,
+.backups-mode .metrics,
+.backups-mode #addItemBtn { display:none; }
+.backups-mode .alerts:empty { display:none; }
 .backups-status { min-height:24px; margin-bottom:12px; color:var(--muted); }
 .backups-status.error { color:#a43838; }
 .backups-list { display:grid; gap:12px; }
-.backup-card { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:center; padding:18px; border:1px solid #dfe8e4; border-radius:16px; background:#fff; }
+.backup-card { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; align-items:center; padding:18px; border:1px solid #dfe8e4; border-radius:16px; background:#fff; cursor:pointer; transition:border-color .15s ease,box-shadow .15s ease; }
+.backup-card:hover,.backup-card:focus-visible { border-color:#afcbbf; box-shadow:0 8px 22px rgba(27,69,55,.08); outline:none; }
+.backup-card button { cursor:pointer; }
 .backup-card-main { display:grid; gap:6px; }
 .backup-card-title { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .backup-card-title strong { font-size:1rem; }
-.backup-type { padding:4px 9px; border-radius:999px; background:#edf7f2; color:#28644e; font-size:.75rem; font-weight:700; }
+.backup-type { padding:4px 9px; border-radius:999px; font-size:.75rem; font-weight:700; }
+.backup-type-weekly { background:#e8f5eb; color:#27623b; }
+.backup-type-full { background:#fff0f0; color:#963b3b; }
 .backup-card small { color:var(--muted); }
 .backup-card-actions { display:flex; gap:8px; }
 .backup-empty { padding:28px; border:1px dashed #cbdad3; border-radius:16px; text-align:center; color:var(--muted); }
 .backup-preview { margin-top:8px; padding:12px; border-radius:12px; background:#f5f8f7; color:#40534c; }
 .backup-restore-modal { max-width:520px; }
-@media(max-width:760px){.backups-header,.backup-card{grid-template-columns:1fr;flex-direction:column}.backups-header-actions,.backup-card-actions{width:100%}.backups-header-actions button,.backup-card-actions button{flex:1}}
+@media(max-width:760px){.backup-card{grid-template-columns:1fr}.backup-card-actions{width:100%}.backup-card-actions button{flex:1}}

@@ -1,0 +1,38 @@
+name: Sauvegardes planifiées
+
+on:
+  schedule:
+    # Deux passages couvrent 06:00 à Paris en heure d'été comme en heure d'hiver.
+    - cron: "0 4,5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exadex-scheduled-backups
+  cancel-in-progress: false
+
+jobs:
+  create-backups:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Créer les sauvegardes prévues à 06:00 Europe/Paris
+        shell: pwsh
+        run: ./scripts/create_scheduled_backup.ps1
+      - name: Publier uniquement si une copie a été créée
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- backups)" ]; then
+            echo "Aucune sauvegarde à publier."
+            exit 0
+          fi
+          git config user.name "ExAdEx Backup"
+          git config user.email "contact@exadex-innov.com"
+          git add backups
+          git commit -m "Sauvegarde automatique $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git pull --rebase origin main
+          git push

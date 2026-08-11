@@ -531,10 +531,11 @@ document.querySelectorAll(".nav-item").forEach((button) => {
   });
 });
 
-document.querySelector("#refreshBackupsBtn")?.addEventListener("click", () => renderBackups(true));
 document.querySelector("#createFullBackupBtn")?.addEventListener("click", createManualFullBackup);
 document.querySelectorAll("[data-close-backup-restore]").forEach(button => button.addEventListener("click", () => document.querySelector("#restoreBackupDialog")?.close()));
 document.querySelector("#restoreBackupForm")?.addEventListener("submit", restoreSelectedBackup);
+document.querySelectorAll("[data-close-backup-delete]").forEach(button => button.addEventListener("click", () => document.querySelector("#deleteBackupDialog")?.close()));
+document.querySelector("#deleteBackupForm")?.addEventListener("submit", deleteSelectedBackup);
 
 // Listeners para dialogo de recepcion de inventario al recibir una orden
 document.querySelector("#confirmReceiveInventoryBtn").addEventListener("click", confirmReceiveInventory);
@@ -1001,6 +1002,21 @@ function backupSummaryMarkup(summary = {}) {
     .map(([label,value])=>`<span><strong>${Number(value||0)}</strong> ${escapeHtml(label)}</span>`).join(" · ");
 }
 
+function backupDisplayTitle(name = "") {
+  const match = String(name).match(/^(\d{4})-(\d{2})-(\d{2})_(\d{2})-(\d{2})/);
+  return match ? `${match[3]}/${match[2]}/${match[1]} à ${match[4]}:${match[5]}` : String(name).replace(/\.json$/i, "");
+}
+
+function nextBackupExecutionLabel(now = new Date()) {
+  const parts=Object.fromEntries(new Intl.DateTimeFormat("fr-FR",{timeZone:"Europe/Paris",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(now).filter(part=>part.type!=="literal").map(part=>[part.type,part.value]));
+  const year=Number(parts.year),month=Number(parts.month),day=Number(parts.day),minutes=Number(parts.hour)*60+Number(parts.minute),today=Date.UTC(year,month-1,day),weekday=new Date(today).getUTCDay();
+  let daysUntilMonday=(8-weekday)%7;if(daysUntilMonday===0&&minutes>=360)daysUntilMonday=7;
+  const monday=today+daysUntilMonday*86400000;
+  const monthly=day===1&&minutes<360?today:Date.UTC(year,month,1);
+  const next=new Date(Math.min(monday,monthly));
+  return `${String(next.getUTCDate()).padStart(2,"0")}/${String(next.getUTCMonth()+1).padStart(2,"0")}/${next.getUTCFullYear()} à 06:00`;
+}
+
 async function renderBackups(force = false) {
   const root=document.querySelector("#backupsRoot"),status=document.querySelector("#backupsStatus");
   if(!root||!status||(backupsLoaded&&!force))return;
@@ -1009,22 +1025,37 @@ async function renderBackups(force = false) {
     const backups=await window.ExadexGithubStorage.listBackups();backupsLoaded=true;
     const lastError=localStorage.getItem("exadex_backup_last_error");
     if(lastError){status.textContent=`Dernière sauvegarde automatique incomplète : ${lastError}`;status.classList.add("error");}
-    else status.textContent=`${backups.length} sauvegarde(s) disponible(s). Elles sont créées uniquement lorsqu'une modification réelle est enregistrée.`;
-    root.innerHTML=backups.length?backups.map(entry=>`<article class="backup-card" data-backup-path="${escapeHtml(entry.path)}"><div class="backup-card-main"><div class="backup-card-title"><strong>${escapeHtml(entry.name.replace(/\.json$/i,""))}</strong><span class="backup-type">${escapeHtml(entry.label)}</span></div><small>${Math.max(1,Math.round(Number(entry.size||0)/1024))} Ko · copie immuable sur GitHub</small><div class="backup-preview hidden" data-backup-preview></div></div><div class="backup-card-actions"><button class="ghost-btn compact-btn" type="button" data-preview-backup>Prévisualiser</button><button class="primary-btn compact-btn" type="button" data-restore-backup>Restaurer</button></div></article>`).join(""):`<div class="backup-empty"><strong>Aucune sauvegarde planifiée pour le moment.</strong><br>La première sera créée lors du prochain changement, ou utilisez « Créer une copie complète ».</div>`;
-    root.querySelectorAll("[data-preview-backup]").forEach(button=>button.addEventListener("click",previewBackup));
+    else status.textContent=`${backups.length} sauvegarde(s) disponible(s). Prochaine exécution planifiée le ${nextBackupExecutionLabel()}.`;
+    root.innerHTML=backups.length?backups.map(entry=>`<article class="backup-card" data-backup-path="${escapeHtml(entry.path)}" role="button" tabindex="0" aria-expanded="false"><div class="backup-card-main"><div class="backup-card-title"><strong>${escapeHtml(backupDisplayTitle(entry.name))}</strong><span class="backup-type ${entry.folder==="inventory"?"backup-type-weekly":"backup-type-full"}">${escapeHtml(entry.label)}</span></div><small>${Math.max(1,Math.round(Number(entry.size||0)/1024))} Ko · cliquez sur la copie pour afficher son contenu</small><div class="backup-preview hidden" data-backup-preview></div></div><div class="backup-card-actions"><button class="primary-btn compact-btn" type="button" data-restore-backup>Restaurer</button><button class="danger-btn compact-btn" type="button" data-delete-backup>Supprimer</button></div></article>`).join(""):`<div class="backup-empty"><strong>Aucune sauvegarde planifiée pour le moment.</strong><br>La première sera créée à la prochaine échéance, ou utilisez « Créer une copie complète ».</div>`;
+    root.querySelectorAll(".backup-card").forEach(card=>{card.addEventListener("click",toggleBackupCard);card.addEventListener("keydown",event=>{if((event.key==="Enter"||event.key===" ")&&!event.target.closest("button")){event.preventDefault();toggleBackupCard({currentTarget:card,target:card});}});});
     root.querySelectorAll("[data-restore-backup]").forEach(button=>button.addEventListener("click",openRestoreBackupDialog));
+    root.querySelectorAll("[data-delete-backup]").forEach(button=>button.addEventListener("click",openDeleteBackupDialog));
   }catch(error){backupsLoaded=false;root.innerHTML=`<div class="backup-empty">Impossible de charger les sauvegardes.</div>`;status.textContent=error.message||String(error);status.classList.add("error");}
 }
 
-async function previewBackup(event){
-  const card=event.currentTarget.closest("[data-backup-path]"),preview=card?.querySelector("[data-backup-preview]");if(!card||!preview)return;
+async function toggleBackupCard(event){
+  const card=event.currentTarget.closest("[data-backup-path]"),preview=card?.querySelector("[data-backup-preview]");if(!card||!preview||event.target.closest("button"))return;
+  if(!preview.classList.contains("hidden")){preview.classList.add("hidden");card.setAttribute("aria-expanded","false");return;}
+  card.setAttribute("aria-expanded","true");
   preview.classList.remove("hidden");preview.textContent="Chargement…";
-  try{const backup=await window.ExadexGithubStorage.loadBackup(card.dataset.backupPath),backupState=backup?.snapshot||(backup?.version&&Array.isArray(backup?.inventoryItems)?backup:null),summary=backup?.summary||window.ExadexGithubStorage.backupSummary(backupState||{inventoryItems:backup?.inventoryItems||[]});preview.innerHTML=`${backupSummaryMarkup(summary)}<br><small>Créée le ${escapeHtml(backup?.createdAt?new Date(backup.createdAt).toLocaleString("fr-FR"):"date du fichier")} par ${escapeHtml(backup?.createdBy||"utilisateur inventaire")}.</small>`;}catch(error){preview.textContent=error.message||String(error);}
+  try{const backup=await window.ExadexGithubStorage.loadBackup(card.dataset.backupPath),backupState=backup?.snapshot||(backup?.version&&Array.isArray(backup?.inventoryItems)?backup:null),summary=backup?.summary||window.ExadexGithubStorage.backupSummary(backupState||{inventoryItems:backup?.inventoryItems||[]}),inventoryOnly=backup?.type==="inventory"||card.dataset.backupPath.includes("/inventory/"),details=inventoryOnly?`<span><strong>${Number(summary.inventoryItems||0)}</strong> Items</span>`:backupSummaryMarkup(summary);preview.innerHTML=`${details}<br><small>Créée le ${escapeHtml(backup?.createdAt?new Date(backup.createdAt).toLocaleString("fr-FR"):"date du fichier")} par ${escapeHtml(backup?.createdBy||"utilisateur inventaire")}.</small>`;}catch(error){preview.textContent=error.message||String(error);}
 }
 
 function openRestoreBackupDialog(event){
   const card=event.currentTarget.closest("[data-backup-path]"),dialog=document.querySelector("#restoreBackupDialog");if(!card||!dialog)return;
   document.querySelector("#restoreBackupPath").value=card.dataset.backupPath;document.querySelector("#restoreBackupPassword").value="";document.querySelector("#restoreBackupDescription").textContent=`Une copie complète de l'état actuel sera créée avant de restaurer ${card.dataset.backupPath}.`;document.querySelector("#restoreBackupError").classList.add("hidden");dialog.showModal();document.querySelector("#restoreBackupPassword").focus();
+}
+
+function openDeleteBackupDialog(event){
+  const card=event.currentTarget.closest("[data-backup-path]"),dialog=document.querySelector("#deleteBackupDialog");if(!card||!dialog)return;
+  document.querySelector("#deleteBackupPath").value=card.dataset.backupPath;document.querySelector("#deleteBackupPassword").value="";document.querySelector("#deleteBackupError").classList.add("hidden");dialog.showModal();document.querySelector("#deleteBackupPassword").focus();
+}
+
+async function deleteSelectedBackup(event){
+  event.preventDefault();const password=document.querySelector("#deleteBackupPassword").value,path=document.querySelector("#deleteBackupPath").value,errorBox=document.querySelector("#deleteBackupError"),button=document.querySelector("#confirmDeleteBackupBtn");errorBox.classList.add("hidden");
+  if(password!=="645443"){errorBox.textContent="Mot de passe incorrect.";errorBox.classList.remove("hidden");return;}
+  button.disabled=true;button.textContent="Suppression…";
+  try{await window.ExadexGithubStorage.deleteBackup(path);document.querySelector("#deleteBackupDialog").close();backupsLoaded=false;await renderBackups(true);document.querySelector("#backupsStatus").textContent="Sauvegarde supprimée.";}catch(error){errorBox.textContent=error.message||String(error);errorBox.classList.remove("hidden");}finally{button.disabled=false;button.textContent="Supprimer";}
 }
 
 async function restoreSelectedBackup(event){
@@ -2520,6 +2551,7 @@ function syncAppViewMode() {
   app.classList.toggle("orders-mode", activeView === "orders");
   app.classList.toggle("contacts-mode", activeView === "contacts");
   app.classList.toggle("agents-mode", activeView === "agents");
+  app.classList.toggle("backups-mode", activeView === "backups");
   app.classList.remove("location-detail-mode");
   app.classList.toggle("inventory-detail-mode", activeView === "inventory" && Boolean(selectedItemId));
 }

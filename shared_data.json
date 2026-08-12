@@ -4019,7 +4019,8 @@
         "Laboratoire"
       ],
       "tags": [
-        "Antibiotique"
+        "Antibiotique",
+        "culture"
       ],
       "notes": "pen/strep, P/S",
       "references": {
@@ -23651,6 +23652,12 @@
       "detail": "Caroline a modifié Pénicilline-streptomycine."
     },
     {
+      "date": "12/08/2026 10:32",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pénicilline-streptomycine."
+    },
+    {
       "date": "12/08/2026 09:58",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29222,5 +29229,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:32:09.063Z"
+  "updatedAt": "2026-08-12T08:32:26.062Z"
 }

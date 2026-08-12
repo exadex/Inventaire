@@ -31,7 +31,7 @@
         "roomId": "room-culture-l1",
         "name": "Frigo culture L1 principal",
         "icon": "🌨️",
-        "order": 0
+        "order": 1
       },
       {
         "id": "location-20-culture-l1",
@@ -69,7 +69,7 @@
         "roomId": "room-culture-l1",
         "name": "Frigo culture L1 à l'entré",
         "icon": "📍",
-        "order": 1
+        "order": 0
       }
     ],
     "sublocations": [
@@ -24408,6 +24408,12 @@
       "detail": "Caroline a déplacé Frigo culture L1 à l'entré."
     },
     {
+      "date": "12/08/2026 13:53",
+      "user": "Caroline",
+      "action": "Ordre des emplacements modifié",
+      "detail": "Caroline a déplacé Frigo culture L1 à l'entré."
+    },
+    {
       "id": "history-operation-mspz080u-1821506043-2146034749",
       "operationId": "operation-mspz080u-1821506043-2146034749",
       "date": "12/08/2026 12:52",
@@ -31268,5 +31274,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T11:53:27.336Z"
+  "updatedAt": "2026-08-12T11:53:28.816Z"
 }

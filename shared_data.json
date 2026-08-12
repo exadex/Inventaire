@@ -69,7 +69,13 @@
         "icon": "📍"
       }
     ],
-    "sublocations": []
+    "sublocations": [
+      {
+        "id": "sublocation-a82f2ba1-6482-4d6c-8ea8-f589a1486d4a",
+        "locationId": "location-20-2-salle-80",
+        "name": "Tiroir n°1"
+      }
+    ]
   },
   "inventoryItems": [
     {
@@ -23813,6 +23819,12 @@
     {
       "date": "12/08/2026 10:48",
       "user": "Caroline",
+      "action": "Sous-localisation ajoutée",
+      "detail": "Caroline a ajouté Tiroir n°1."
+    },
+    {
+      "date": "12/08/2026 10:48",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Insuline, humain recombinant, zinc solution, 4mg/ml."
     },
@@ -29691,5 +29703,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:48:16.551Z"
+  "updatedAt": "2026-08-12T08:48:37.527Z"
 }

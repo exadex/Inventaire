@@ -20172,12 +20172,12 @@
     },
     {
       "id": "ord-1784705628709",
-      "status": "ordered",
+      "status": "received",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "Luminex® Multiplex Assay Customization Tool",
       "requestedQuantity": 1,
-      "receivedQuantity": 0,
+      "receivedQuantity": 1,
       "priority": "urgent",
       "notes": "https://www.bio-techne.com/luminex-assay-customization-tool\nPour IEB/IFF-001. A l'attente du devis par le commercial, on devrait avoir -20% sur la première commande\nLuminex sur :\nPro-Collagen I alpha 1\nAdiponectin/Acrp30,\nIL-6, \nIL-8/CXCL8, \nIL-15, \nBDNF, \nFollistatin-like 1/FSTL1, \nLIF",
       "requestedBy": "Caroline",
@@ -20186,9 +20186,9 @@
       "orderedBy": "Caroline",
       "orderedAt": "28/07/2026 12:59",
       "orderedAtRaw": "2026-07-28T10:59:08.267Z",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
+      "receivedBy": "Caroline",
+      "receivedAt": "12/08/2026 15:15",
+      "receivedAtRaw": "2026-08-12T13:15:41.455Z",
       "newItemData": {
         "name": "Luminex® Multiplex Assay Customization Tool"
       }
@@ -24341,6 +24341,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/08/2026 15:15",
+      "user": "Caroline",
+      "action": "Commande reçue",
+      "detail": "Caroline a marqué Luminex® Multiplex Assay Customization Tool comme arrivé."
+    },
     {
       "id": "history-operation-msq428ug-4270189954-3206924599",
       "operationId": "operation-msq428ug-4270189954-3206924599",
@@ -31350,5 +31356,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T13:14:20.309Z"
+  "updatedAt": "2026-08-12T13:15:41.457Z"
 }

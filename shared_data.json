@@ -107,6 +107,74 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1786540670103",
+      "name": "96-well Magnetic Plate Separator",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "plaques",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-620e015b-56b5-45b2-a236-9b025b25db63",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [
+        "Luminex"
+      ],
+      "notes": "Plaque pour envoi de Luminex",
+      "references": {
+        "primary": {
+          "supplier": "R&D systems",
+          "reference": "LU-MAG-01",
+          "link": "https://www.bio-techne.com/p/luminex-instrument/96-well-magnetic-plate-separator_lu-mag-01",
+          "notes": "710",
+          "price": "710",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239056045-dnjj9a",
+      "createdAtRaw": "2026-08-12T13:17:50.103Z",
+      "createdAt": "12/08/2026 15:17",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1786531739181",
       "name": "Trypsine-EDTA (0,05 %)",
       "category": "Culture Cell",
@@ -20151,7 +20219,7 @@
       "id": "ord-1784705703173",
       "status": "received",
       "itemMode": "new",
-      "inventoryItemId": null,
+      "inventoryItemId": "web-1786540670103",
       "itemName": "96-well Magnetic Plate Separator",
       "requestedQuantity": 1,
       "receivedQuantity": 1,
@@ -20168,7 +20236,11 @@
       "receivedAtRaw": "2026-08-07T08:16:28.982Z",
       "newItemData": {
         "name": "96-well Magnetic Plate Separator"
-      }
+      },
+      "addedToInventory": true,
+      "addedToInventoryQuantity": 1,
+      "addedToInventoryAt": "12/08/2026 15:17",
+      "addedToInventoryAtRaw": "2026-08-12T13:17:50.104Z"
     },
     {
       "id": "ord-1784705628709",
@@ -24341,6 +24413,18 @@
     }
   ],
   "history": [
+    {
+      "date": "12/08/2026 15:17",
+      "user": "Caroline",
+      "action": "Ajout à l'inventaire",
+      "detail": "Caroline a créé 96-well Magnetic Plate Separator depuis la demande de commande 96-well Magnetic Plate Separator."
+    },
+    {
+      "date": "12/08/2026 15:17",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté 96-well Magnetic Plate Separator dans Procédé ExAdEx L2."
+    },
     {
       "date": "12/08/2026 15:15",
       "user": "Caroline",
@@ -31356,5 +31440,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T13:15:41.457Z"
+  "updatedAt": "2026-08-12T13:17:50.106Z"
 }

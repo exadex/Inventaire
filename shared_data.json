@@ -10960,8 +10960,7 @@
       "minStock": 1,
       "location": "-20°C 2 salle -80",
       "locations": [
-        "-20°C 2 salle -80",
-        "Tiroir n°3"
+        "-20°C 2 salle -80"
       ],
       "tags": [
         "Milieu"
@@ -13541,9 +13540,9 @@
       "quantity": 0,
       "unit": "unités",
       "minStock": 0,
-      "location": "Frigo labo",
+      "location": "-20°C 2 salle -80",
       "locations": [
-        "Frigo labo"
+        "-20°C 2 salle -80"
       ],
       "tags": [],
       "notes": "",
@@ -13563,11 +13562,41 @@
       "placements": [
         {
           "id": "placement-legacy-127suyx",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
+          "sublocationId": "sublocation-fe3a753f-9623-40a5-a8b3-6d6fcaed4335"
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-08-12T09:04:59.949Z",
+      "createdAt": "12/08/2026 11:04",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": true,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-4d1j08",
@@ -24077,6 +24106,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 11:04",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Human FGF-21."
+    },
+    {
       "id": "history-operation-mspus3yd-879712480-535089503",
       "operationId": "operation-mspus3yd-879712480-535089503",
       "date": "12/08/2026 10:54",
@@ -30416,5 +30451,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:54:33.268Z"
+  "updatedAt": "2026-08-12T09:04:59.951Z"
 }

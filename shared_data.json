@@ -13537,7 +13537,7 @@
       "id": "itm-web-1783931436295-0nt8ah",
       "name": "Human FGF-21",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 1,
       "unit": "unités",
       "minStock": 0,
       "location": "-20°C 2 salle -80",
@@ -24106,6 +24106,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspv6szh-2513779669-228185987",
+      "operationId": "operation-mspv6szh-2513779669-228185987",
+      "date": "12/08/2026 11:05",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · received · Human FGF-21 · comptage afin de noter les aliquots présents",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-0nt8ah"
+    },
+    {
       "date": "12/08/2026 11:04",
       "user": "Caroline",
       "action": "Item modifié",
@@ -30441,6 +30450,12 @@
       "itemId": "itm-CSV-0100",
       "at": "2026-08-12T08:54:33.268Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mspv6szh-2513779669-228185987",
+      "itemId": "itm-web-1783931436295-0nt8ah",
+      "at": "2026-08-12T09:05:56.030Z",
+      "type": "received"
     }
   ],
   "agentOperations": [
@@ -30451,5 +30466,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T09:04:59.951Z"
+  "updatedAt": "2026-08-12T09:05:56.030Z"
 }

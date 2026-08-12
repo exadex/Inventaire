@@ -8518,7 +8518,7 @@
     },
     {
       "id": "itm-web-1783931436295-wncvj7",
-      "name": "Microtube 1,5 ml",
+      "name": "Microtube 1,5mL",
       "category": "Culture Cell",
       "quantity": 1.4,
       "unit": "cartons",
@@ -8589,6 +8589,21 @@
             "updatedBy": "Caroline"
           }
         ],
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-wncvj7-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 5000,
+            "capacity": 5000,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-07-17T14:51:40.242Z",
+            "updatedAt": "2026-07-17T14:51:40.242Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mrp23eel-2257530651-1161088923",
@@ -8606,7 +8621,8 @@
             },
             "updatedAt": "2026-07-17T14:51:54.500Z",
             "updatedBy": "caroline",
-            "version": 2
+            "version": 2,
+            "unitKey": "sachet"
           }
         ]
       },
@@ -8624,7 +8640,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-web-1783931436295-9a6sx8",
@@ -23627,6 +23644,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:58",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Microtube 1,5mL."
+    },
+    {
       "date": "12/08/2026 09:57",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29192,5 +29215,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:57:35.374Z"
+  "updatedAt": "2026-08-12T07:58:04.796Z"
 }

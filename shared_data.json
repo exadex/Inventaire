@@ -120,9 +120,10 @@
         }
       ],
       "locations": [
+        "Tiroir n°2",
         "-20°C 2 salle -80"
       ],
-      "location": "-20°C 2 salle -80",
+      "location": "Tiroir n°2",
       "tags": [
         "culture"
       ],
@@ -170,12 +171,102 @@
         "closedByLocation": [
           {
             "location": "Tiroir n°2",
-            "quantity": 7,
-            "updatedAt": "2026-08-12T10:50:43.158Z",
-            "updatedBy": "Caroline"
+            "quantity": 7
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-web-1786531739181-tiroir-n-2-1",
+            "label": "bouteille fermé nº1",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T10:50:43.158Z",
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-web-1786531739181-tiroir-n-2-2",
+            "label": "bouteille fermé nº2",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T10:50:43.158Z",
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-web-1786531739181-tiroir-n-2-3",
+            "label": "bouteille fermé nº3",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T10:50:43.158Z",
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-web-1786531739181-tiroir-n-2-4",
+            "label": "bouteille fermé nº4",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T10:50:43.158Z",
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-web-1786531739181-tiroir-n-2-5",
+            "label": "bouteille fermé nº5",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T10:50:43.158Z",
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-web-1786531739181-tiroir-n-2-6",
+            "label": "bouteille fermé nº6",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T10:50:43.158Z",
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-web-1786531739181-tiroir-n-2-7",
+            "label": "bouteille fermé nº7",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T10:50:43.158Z",
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -207,10 +298,11 @@
               "userInitials": ""
             },
             "note": "",
-            "status": "active",
-            "updatedAt": "2026-08-12T10:49:52.004Z",
+            "status": "finished",
+            "updatedAt": "2026-08-12T10:51:43.725Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2,
+            "finishedAt": "2026-08-12T10:51:43.725Z"
           }
         ]
       },
@@ -24250,6 +24342,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspyyuta-2854940093-3355996355",
+      "operationId": "operation-mspyyuta-2854940093-3355996355",
+      "date": "12/08/2026 12:51",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · preparation_finished · Trypsine-EDTA (0,05 %) · compatege",
+      "user": "Caroline",
+      "itemId": "web-1786531739181"
+    },
+    {
       "date": "12/08/2026 12:50",
       "user": "Caroline",
       "action": "Item modifié",
@@ -30610,6 +30711,104 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspyyvam-263270484-2106608151",
+      "operationId": "operation-mspyyuta-2854940093-3355996355",
+      "itemId": "web-1786531739181",
+      "timestamp": "2026-08-12T10:51:43.726Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "preparation_finished",
+      "entityType": "preparation",
+      "entityId": "preparation-mspywh38-2922475306-2109359357",
+      "containerId": "preparation-mspywh38-2922475306-2109359357",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "preparation-mspywh38-2922475306-2109359357",
+      "before": {
+        "id": "preparation-mspywh38-2922475306-2109359357",
+        "label": "Préparation nº1",
+        "createdCount": 9,
+        "representedSourceQuantity": 1,
+        "sourceUnit": "bouteilles",
+        "volume": 10,
+        "volumeUnit": "mL",
+        "concentration": 100,
+        "concentrationUnit": "%",
+        "locations": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 9
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "",
+        "status": "active",
+        "updatedAt": "2026-08-12T10:49:52.004Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "preparation-mspywh38-2922475306-2109359357",
+        "label": "Préparation nº1",
+        "createdCount": 9,
+        "representedSourceQuantity": 1,
+        "sourceUnit": "bouteilles",
+        "volume": 10,
+        "volumeUnit": "mL",
+        "concentration": 100,
+        "concentrationUnit": "%",
+        "locations": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 9
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "",
+        "status": "finished",
+        "updatedAt": "2026-08-12T10:51:43.725Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "finishedAt": "2026-08-12T10:51:43.725Z"
+      },
+      "quantity": 0,
+      "difference": null,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Bureau",
+      "toLocation": "",
+      "comment": "compatege",
+      "correctionReason": "compatege"
     }
   ],
   "stockOperations": [
@@ -30708,6 +30907,12 @@
       "itemId": "web-1786531739181",
       "at": "2026-08-12T10:50:17.100Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mspyyuta-2854940093-3355996355",
+      "itemId": "web-1786531739181",
+      "at": "2026-08-12T10:51:43.726Z",
+      "type": "preparation_finished"
     }
   ],
   "agentOperations": [
@@ -30718,5 +30923,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:50:43.160Z"
+  "updatedAt": "2026-08-12T10:51:43.726Z"
 }

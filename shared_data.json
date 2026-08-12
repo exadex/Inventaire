@@ -6820,11 +6820,10 @@
       "name": "SupplementPack containing all media supplements as individual vials",
       "category": "Culture Cell",
       "quantity": 6,
-      "unit": "unités",
+      "unit": "flacons",
       "minStock": 1,
-      "location": "Laboratoire",
+      "location": "Frigo labo",
       "locations": [
-        "Laboratoire",
         "Frigo labo"
       ],
       "tags": [
@@ -6878,12 +6877,6 @@
       "placements": [
         {
           "id": "placement-legacy-14saqyg",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        },
-        {
-          "id": "placement-legacy-epfolq",
           "roomId": "room-laboratoire",
           "locationId": "location-frigo-labo",
           "sublocationId": null
@@ -23244,6 +23237,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:44",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié SupplementPack containing all media supplements as individual vials."
+    },
+    {
       "date": "12/08/2026 09:43",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28625,5 +28624,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:43:29.301Z"
+  "updatedAt": "2026-08-12T07:44:07.612Z"
 }

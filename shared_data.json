@@ -135,9 +135,9 @@
           "supplier": "Thermo Fischer",
           "reference": "25300-054",
           "link": "https://www.thermofisher.com/order/catalog/product/25300054?SID=srch-hj-25300-054",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
+          "notes": "59,30",
+          "price": "59,30",
+          "unitPrice": "0,59",
           "leadTime": ""
         },
         "secondary": []
@@ -24411,6 +24411,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 13:55",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Trypsine-EDTA (0,05 %)."
+    },
+    {
       "date": "12/08/2026 13:54",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31289,5 +31295,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T11:54:42.041Z"
+  "updatedAt": "2026-08-12T11:55:12.240Z"
 }

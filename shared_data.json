@@ -143,24 +143,39 @@
       "createdAt": "12/08/2026 12:48",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 100
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "Tiroir n°2",
+            "quantity": 7,
+            "updatedAt": "2026-08-12T10:50:43.158Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -24235,6 +24250,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 12:50",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Trypsine-EDTA (0,05 %)."
+    },
+    {
       "id": "history-operation-mspywzw5-2356249267-1971838932",
       "operationId": "operation-mspywzw5-2356249267-1971838932",
       "date": "12/08/2026 12:50",
@@ -30697,5 +30718,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:50:17.100Z"
+  "updatedAt": "2026-08-12T10:50:43.160Z"
 }

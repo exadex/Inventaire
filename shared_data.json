@@ -4069,13 +4069,98 @@
         "closedByLocation": [
           {
             "location": "-20°C 2 salle -80",
-            "quantity": 6,
-            "updatedAt": "2026-08-12T08:44:52.965Z",
-            "updatedBy": "Caroline"
+            "quantity": 5
           }
         ],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [
+          {
+            "id": "closed-itm-csv-0064-20-c-2-salle-80-2",
+            "label": "bouteille fermé nº2",
+            "location": "-20°C 2 salle -80",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:44:52.965Z",
+            "updatedAt": "2026-08-12T08:44:52.965Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0064-20-c-2-salle-80-3",
+            "label": "bouteille fermé nº3",
+            "location": "-20°C 2 salle -80",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:44:52.965Z",
+            "updatedAt": "2026-08-12T08:44:52.965Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0064-20-c-2-salle-80-4",
+            "label": "bouteille fermé nº4",
+            "location": "-20°C 2 salle -80",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:44:52.965Z",
+            "updatedAt": "2026-08-12T08:44:52.965Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0064-20-c-2-salle-80-5",
+            "label": "bouteille fermé nº5",
+            "location": "-20°C 2 salle -80",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:44:52.965Z",
+            "updatedAt": "2026-08-12T08:44:52.965Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0064-20-c-2-salle-80-6",
+            "label": "bouteille fermé nº6",
+            "location": "-20°C 2 salle -80",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:44:52.965Z",
+            "updatedAt": "2026-08-12T08:44:52.965Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-itm-csv-0064-20-c-2-salle-80-1",
+            "label": "bouteille fermé nº1",
+            "location": "-20°C 2 salle -80",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "open",
+            "createdAt": "2026-08-12T08:44:52.965Z",
+            "updatedAt": "2026-08-12T08:45:33.117Z",
+            "updatedBy": "caroline",
+            "version": 2,
+            "openedAt": "2026-08-12T08:45:33.117Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -23662,6 +23747,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspugiba-652872722-3555367137",
+      "operationId": "operation-mspugiba-652872722-3555367137",
+      "date": "12/08/2026 10:45",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Pénicilline-streptomycine · Stock précédent : 6 bouteilles · Stock compté : 6 bouteilles · Écart : 0 bouteilles",
+      "user": "Caroline",
+      "itemId": "itm-CSV-0064",
+      "type": "recounted",
+      "previousQuantity": 6,
+      "countedQuantity": 6,
+      "difference": 0,
+      "unit": "bouteilles",
+      "note": ""
+    },
+    {
       "date": "12/08/2026 10:44",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29209,6 +29309,76 @@
       "toLocation": "-80°C",
       "comment": "Ajout du contenant kit fermé nº2 dans -80°C.",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspuglrx-3267770704-4175865793",
+      "operationId": "operation-mspugiba-652872722-3555367137-closed-itm-csv-0064-20-c-2-salle-80-1",
+      "itemId": "itm-CSV-0064",
+      "timestamp": "2026-08-12T08:45:33.117Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-csv-0064-20-c-2-salle-80-1",
+      "containerId": "closed-itm-csv-0064-20-c-2-salle-80-1",
+      "containerLabel": "bouteille fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 100,
+      "afterQuantity": 100,
+      "beforeCapacity": 100,
+      "afterCapacity": 100,
+      "unitBefore": "mL",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-csv-0064-20-c-2-salle-80-1",
+        "label": "bouteille fermé nº1",
+        "location": "-20°C 2 salle -80",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "closed",
+        "createdAt": "2026-08-12T08:44:52.965Z",
+        "updatedAt": "2026-08-12T08:44:52.965Z",
+        "updatedBy": "Caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-csv-0064-20-c-2-salle-80-1",
+        "label": "bouteille fermé nº1",
+        "location": "-20°C 2 salle -80",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-12T08:44:52.965Z",
+        "updatedAt": "2026-08-12T08:45:33.117Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "openedAt": "2026-08-12T08:45:33.117Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 100,
+      "difference": 0,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "-20°C 2 salle -80",
+      "toLocation": "-20°C 2 salle -80",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -29247,6 +29417,12 @@
       "itemId": "itm-web-1783931436295-0te4tf",
       "at": "2026-08-12T07:55:20.366Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mspugiba-652872722-3555367137",
+      "itemId": "itm-CSV-0064",
+      "at": "2026-08-12T08:45:33.117Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -29257,5 +29433,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:44:52.967Z"
+  "updatedAt": "2026-08-12T08:45:33.117Z"
 }

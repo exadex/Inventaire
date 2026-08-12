@@ -104,6 +104,73 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1786531739181",
+      "name": "Trypsine-EDTA (0,05 %)",
+      "category": "Culture Cell",
+      "quantity": 8,
+      "unit": "bouteilles",
+      "minStock": 1,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-29a3ed0a-330b-4426-8500-7b2160912223",
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
+          "sublocationId": "sublocation-400c33ea-ed94-4a3c-90d3-b406ca307c8c"
+        }
+      ],
+      "locations": [
+        "-20°C 2 salle -80"
+      ],
+      "location": "-20°C 2 salle -80",
+      "tags": [
+        "culture"
+      ],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Gibco",
+          "reference": "25300-054",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-08-12T10:48:59.182Z",
+      "createdAt": "12/08/2026 12:48",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "bouteille",
+        "trackingUnit": "bouteilles",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": true,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1786452661627",
       "name": "Fetal Bovine Serum (FBS)",
       "category": "Culture Cell",
@@ -24137,6 +24204,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 12:48",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Trypsine-EDTA (0,05 %) dans Culture Cell."
+    },
+    {
       "date": "12/08/2026 11:07",
       "user": "Caroline",
       "action": "Item modifié",
@@ -30518,5 +30591,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T09:07:10.478Z"
+  "updatedAt": "2026-08-12T10:48:59.184Z"
 }

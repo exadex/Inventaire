@@ -1669,7 +1669,7 @@ function renderInventoryDetail(item) {
             Modifier la fiche
           </button>
           <button class="primary-btn compact-btn" type="button" onclick="${usesAdvancedStockManager(item) ? `openStockManager('${escapeHtml(item.id)}')` : `openStockModal('${escapeHtml(item.id)}')`}">
-            ${usesAdvancedStockManager(item) ? "Gérer le stock" : "Mettre à jour le stock"}
+            Mettre à jour le stock
           </button>
         </div>
       </div>
@@ -2332,7 +2332,7 @@ function renderOrderDetailLegacy(order) {
             Modifier
           </button>
           <button class="primary-btn compact-btn" type="button" onclick="${usesAdvancedStockManager(item) ? `openStockManager('${escapeHtml(item.id)}')` : `openStockModal('${escapeHtml(item.id)}')`}">
-            ${usesAdvancedStockManager(item) ? "Gérer le stock" : "Mettre à jour le stock"}
+            Mettre à jour le stock
           </button>
         </div>
       </div>
@@ -3236,6 +3236,11 @@ function parseHistoryDate(value) {
 }
 
 function formatDateTimeFrench(value, fallback = "Date inconnue") {
+  const raw = typeof value === "string" ? value.trim() : "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+    const [year, month, day] = raw.split("-").map(Number);
+    return new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" }).format(new Date(year, month - 1, day));
+  }
   let date = null;
   if (value instanceof Date) date = new Date(value.getTime());
   else if (typeof value === "number" && Number.isFinite(value)) date = new Date(value);
@@ -3850,7 +3855,7 @@ function renderLocationDetailRow(entry) {
       </td>
       <td data-label="Actions">
         <div class="location-row-actions">
-          ${isClientSample ? "" : `<button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">${usesAdvancedStockManager(record) ? "Gérer le stock" : "Mettre à jour le stock"}</button>`}
+          ${isClientSample ? "" : `<button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">Mettre à jour le stock</button>`}
           <button class="ghost-btn compact-btn" type="button" ${isClientSample ? `data-edit-sample="${escapeHtml(record.id)}"` : `data-edit-item="${escapeHtml(record.id)}"`}>Modifier</button>
         </div>
       </td>
@@ -5508,7 +5513,7 @@ function hydrateTrackingForm(item) {
   trackingFields.detailedTraceabilityEnabled.checked = tracking.traceabilityMode === "detailed";
   trackingFields.aliquotTrackingEnabled.checked = aliquots.enabled;
   fields.quantity.readOnly = Boolean(item && (tracking.mode === "containers" || tracking.traceabilityMode === "detailed" || aliquots.enabled));
-  fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Gérer le stock » pour modifier cette quantité de manière tracée." : "";
+  fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Mettre à jour le stock » pour modifier cette quantité de manière tracée." : "";
   trackingFields.packagingLevels.innerHTML = tracking.packagingLevels.map(renderPackagingLevelRow).join("");
   syncTrackingConfigVisibility(); updateTrackingUnitOptions(tracking.trackingUnitKey); updatePackagingPreview();
 }
@@ -5536,7 +5541,7 @@ function syncTrackingOptionCheckboxes(changedOption = "") {
   trackingFields.aliquotTrackingExplanation.textContent = trackingFields.detailedPackagingEnabled.checked ? "Vous pourrez sélectionner le contenant utilisé pour chaque préparation." : "Les préparations utiliseront directement le stock global de l’item.";
   trackingFields.trackingOptionError.textContent = message;
   trackingFields.trackingOptionError.classList.toggle("hidden", !message);
-  if (existingItem) { fields.quantity.readOnly = trackingFields.detailedPackagingEnabled.checked || trackingFields.detailedTraceabilityEnabled.checked || trackingFields.aliquotTrackingEnabled.checked; fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Gérer le stock » pour modifier cette quantité de manière tracée." : ""; }
+  if (existingItem) { fields.quantity.readOnly = trackingFields.detailedPackagingEnabled.checked || trackingFields.detailedTraceabilityEnabled.checked || trackingFields.aliquotTrackingEnabled.checked; fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Mettre à jour le stock » pour modifier cette quantité de manière tracée." : ""; }
   syncTrackingConfigVisibility();
 }
 
@@ -5853,6 +5858,8 @@ function renderPreparationStockCard(item, prep) {
   return `<article class="tracked-entity-card preparation-stock-card"><div><strong>${escapeHtml(prep.label)}</strong><span>${unopened} aliquote${unopened > 1 ? "s" : ""} non ouverte${unopened > 1 ? "s" : ""} · ${opened.length} aliquote${opened.length > 1 ? "s" : ""} ouverte${opened.length > 1 ? "s" : ""}</span></div><small>Préparée par ${escapeHtml(identity.value)} ${escapeHtml(identity.name)} · ${escapeHtml(preparedDate)}</small><small>${escapeHtml(prep.volume ? `${StockTracking.format(prep.volume)} ${prep.volumeUnit}` : "Volume individuel non défini")} ${escapeHtml(prep.concentration ? `· ${StockTracking.format(prep.concentration)} ${prep.concentrationUnit}` : "")}</small><ul>${prep.locations.map(row => `<li>${escapeHtml(row.location)} — ${row.quantity} non ouverte${row.quantity > 1 ? "s" : ""}</li>`).join("")}</ul>${openCards ? `<div class="open-aliquot-list">${openCards}</div>` : ""}</article>`;
 }
 
+function renderPreparationStockCard(item,prep){const unopened=StockTracking.remainingAliquots(prep),opened=(prep.openAliquots||[]).filter(row=>row.status==="open"&&row.remainingVolume>0),available=unopened+opened.length,identity=getOpenedContainerIdentity(prep.preparedBy),preparedDate=formatDateTimeFrench(prep.preparedAt).replace(" · "," à "),locations=(prep.locations||[]).map(row=>row.location).filter(Boolean),source=prep.sourceContainerId||prep.sourceId||"—";return `<article class="tracked-entity-card preparation-stock-card preparation-stock-card--summary"><header><strong>${escapeHtml(prep.label)}</strong></header><dl class="preparation-key-metrics"><div><dt>Disponibles</dt><dd>${available} aliquote${available>1?"s":""}</dd></div><div><dt>Volume / aliquote</dt><dd>${prep.volume?`${StockTracking.format(prep.volume)} ${escapeHtml(prep.volumeUnit||"")}`:"Non défini"}</dd></div><div><dt>Concentration</dt><dd>${prep.concentration?`${StockTracking.format(prep.concentration)} ${escapeHtml(prep.concentrationUnit||"")}`:"Non définie"}</dd></div><div><dt>Localisation</dt><dd>${escapeHtml(locations.join(" · ")||"—")}</dd></div></dl><div class="preparation-secondary"><span>${unopened} non ouverte${unopened>1?"s":""} · ${opened.length} ouverte${opened.length>1?"s":""}</span><span>Préparée par ${escapeHtml(identity.value)} ${escapeHtml(identity.name)}</span><time>${escapeHtml(preparedDate)}</time><span>Contenant source : ${escapeHtml(source)}</span>${prep.note?`<span>Note : ${escapeHtml(prep.note)}</span>`:""}${prep.updatedAt&&prep.updatedAt!==prep.preparedAt?`<span>Dernière modification : ${escapeHtml(formatDateTimeFrench(prep.updatedAt).replace(" · "," à "))}</span>`:""}</div></article>`;}
+
 function getStockMovementDate(entry) {
   return entry?.timestamp ?? entry?.createdAt ?? entry?.date ?? null;
 }
@@ -5918,7 +5925,7 @@ function formatStockMovementDescription(entry) {
 
 function ensureStockManagerDialog() {
   let modal = document.querySelector("#stockManagerDialog"); if (modal) return modal;
-  document.body.insertAdjacentHTML("beforeend", `<dialog id="stockManagerDialog" class="modal stock-manager-modal"><form id="stockManagerForm"><div class="modal-header"><div><h3>Gérer le stock</h3><small id="stockManagerItemName"></small></div><button class="icon-btn" type="button" data-close-stock-manager>×</button></div><input id="stockManagerItemId" type="hidden"><label>Action<select id="stockManagerAction"></select></label><p id="stockManagerAvailabilityNote" class="tracking-option-explanation hidden"></p><div id="stockManagerFields" class="form-grid"></div><label class="full-label">Commentaire ou expérience (facultatif)<textarea id="stockManagerComment" rows="2"></textarea></label><p id="stockManagerError" class="confirmation-modal-error hidden" role="alert"></p><div class="modal-actions"><button class="ghost-btn" type="button" data-close-stock-manager>Annuler</button><button id="executeStockManagerBtn" class="primary-btn" type="submit">Enregistrer</button></div></form></dialog>`);
+  document.body.insertAdjacentHTML("beforeend", `<dialog id="stockManagerDialog" class="modal stock-manager-modal"><form id="stockManagerForm"><div class="modal-header"><div><h3>Mise à jour du stock</h3><small id="stockManagerItemName"></small></div><button class="icon-btn" type="button" data-close-stock-manager>×</button></div><input id="stockManagerItemId" type="hidden"><label>Action<select id="stockManagerAction"></select></label><p id="stockManagerAvailabilityNote" class="tracking-option-explanation hidden"></p><div id="stockManagerFields" class="form-grid"></div><label class="full-label">Motif de la modification *<textarea id="stockManagerComment" rows="2" required placeholder="Précisez la raison de la modification (réception d’un colis, étude client XXX, inventaire, correction d’une erreur, etc.) afin d’assurer la traçabilité."></textarea></label><p id="stockManagerError" class="confirmation-modal-error hidden" role="alert"></p><div class="modal-actions"><button class="ghost-btn" type="button" data-close-stock-manager>Annuler</button><button id="executeStockManagerBtn" class="primary-btn" type="submit">Enregistrer</button></div></form></dialog>`);
   modal = document.querySelector("#stockManagerDialog");
   modal.querySelectorAll("[data-close-stock-manager]").forEach(btn => btn.addEventListener("click", () => modal.close()));
   modal.querySelector("#stockManagerAction").addEventListener("change", renderStockManagerFields);
@@ -5933,11 +5940,10 @@ function usesAdvancedStockManager(item) {
 
 function getStockManagerActionState(item) {
   const tracking=StockTracking.normalizeTracking(item),aliquots=StockTracking.normalizeAliquots(item),actions=[];
-  if(tracking.mode==="containers")actions.push(["received","Réceptionner des contenants"],["consumed","Gérer les contenants ouverts — Utiliser"],["stock_recounted","Comptage / Ajustement du stock"],["recounted","Corriger les contenants un par un"],["moved","Déplacer"]);else actions.push(["received","Réceptionner"],["consumed","Utiliser"],["stock_recounted","Comptage / Ajustement du stock"]);
+  if(tracking.mode==="containers")actions.push(["recounted","Mise à jour du stock"]);else actions.push(["stock_recounted","Mise à jour du stock"]);
   const activePreparations=aliquots.preparations.filter(row=>row.status==="active"),hasUnopened=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0),hasOpenable=activePreparations.some(row=>StockTracking.remainingAliquots(row)>0&&row.volume>0&&row.volumeUnit),hasOpen=activePreparations.some(row=>row.openAliquots.some(open=>open.status==="open"&&open.remainingVolume>0));
-  if(aliquots.enabled)actions.push(["aliquots_prepared","Préparer des aliquotes",false],["aliquots_consumed","Utiliser des aliquotes",!hasUnopened&&!hasOpen],["aliquot_opened","Ouvrir une aliquote",!hasOpenable]);
-  if(hasOpen)actions.push(["open_aliquot_moved","Déplacer une aliquote ouverte",false],["open_aliquot_discarded","Terminer / jeter le reliquat",false]);
-  if(activePreparations.length)actions.push(["aliquots_moved","Déplacer des aliquotes",false],["preparation_recounted","Recompter des aliquotes",false],["preparation_finished","Terminer une préparation",false]);
+  if(aliquots.enabled)actions.push(["aliquots_prepared","Préparer des aliquotes",false]);
+  if(activePreparations.length)actions.push(["preparation_recounted","Mise à jour des aliquotes disponibles",false]);
   return {tracking,aliquots,actions,activePreparations,hasUnopened,hasOpenable,hasOpen};
 }
 
@@ -5950,6 +5956,18 @@ function openStockManager(itemId, options = {}) {
 function stockSelect(id, label, values, extra="") { return `<label><span>${label}</span><select id="${id}" required>${values.map(([value,text]) => `<option value="${escapeHtml(value)}">${escapeHtml(text)}</option>`).join("")}</select>${extra}</label>`; }
 function stockNumber(id,label,step="1",max="") { return `<label><span>${label}</span><input id="${id}" type="number" min="0" step="${step}" data-quantity-step="1" ${max !== "" ? `max="${max}"` : ""} required></label>`; }
 
+function hierarchyPathForIds(roomId,locationId,sublocationId){const room=hierarchyRoom(roomId),location=hierarchyLocation(locationId),sub=hierarchySublocation(sublocationId);return[room?.name,location?.name,sub?.name].filter(Boolean).join(" → ");}
+function hierarchySelectorsHtml(prefix,values={}){
+  const catalog=hierarchyCatalog(),rooms=FIXED_INVENTORY_ROOMS,locations=values.roomId?catalog.locations.filter(row=>row.roomId===values.roomId):[],subs=values.locationId?catalog.sublocations.filter(row=>row.locationId===values.locationId):[];
+  return `<div class="stock-hierarchy-selectors" data-hierarchy-prefix="${prefix}"><label><span>Salle</span><select data-hierarchy-room required><option value="">Sélectionner…</option>${rooms.map(row=>`<option value="${escapeHtml(row.id)}" ${row.id===values.roomId?"selected":""}>${escapeHtml(row.name)}</option>`).join("")}</select></label><label data-hierarchy-location-field ${locations.length?"":"class=\"hidden\""}><span>Loc.</span><select data-hierarchy-location ${locations.length?"required":"disabled"}><option value="">Sélectionner…</option>${locations.map(row=>`<option value="${escapeHtml(row.id)}" ${row.id===values.locationId?"selected":""}>${escapeHtml(row.name)}</option>`).join("")}</select></label><label data-hierarchy-sublocation-field ${subs.length?"":"class=\"hidden\""}><span>Sous-loc.</span><select data-hierarchy-sublocation ${subs.length?"":"disabled"}><option value="">Aucune</option>${subs.map(row=>`<option value="${escapeHtml(row.id)}" ${row.id===values.sublocationId?"selected":""}>${escapeHtml(row.name)}</option>`).join("")}</select></label></div>`;
+}
+function bindHierarchySelectors(root){root.querySelectorAll("[data-hierarchy-prefix]").forEach(group=>{
+  if(group.dataset.hierarchyBound==="true")return;group.dataset.hierarchyBound="true";
+  const room=group.querySelector("[data-hierarchy-room]"),location=group.querySelector("[data-hierarchy-location]"),sub=group.querySelector("[data-hierarchy-sublocation]"),locationField=group.querySelector("[data-hierarchy-location-field]"),subField=group.querySelector("[data-hierarchy-sublocation-field]"),hidden=group.parentElement.querySelector("[data-recount-location]");
+  const update=()=>{if(hidden)hidden.value=hierarchyPathForIds(room.value,location.value,sub.value);},syncSubs=()=>{const rows=hierarchyCatalog().sublocations.filter(row=>row.locationId===location.value);sub.innerHTML=`<option value="">Aucune</option>${rows.map(row=>`<option value="${escapeHtml(row.id)}">${escapeHtml(row.name)}</option>`).join("")}`;subField.classList.toggle("hidden",!rows.length);sub.disabled=!rows.length;if(!rows.length)sub.value="";update();},syncLocations=()=>{const rows=hierarchyCatalog().locations.filter(row=>row.roomId===room.value);location.innerHTML=`<option value="">Sélectionner…</option>${rows.map(row=>`<option value="${escapeHtml(row.id)}">${escapeHtml(row.name)}</option>`).join("")}`;locationField.classList.toggle("hidden",!rows.length);location.disabled=!rows.length;location.required=Boolean(rows.length);if(!rows.length)location.value="";syncSubs();};
+  room.addEventListener("change",syncLocations);location.addEventListener("change",syncSubs);sub.addEventListener("change",update);
+});}
+
 function containerValueForUnit(value, tracking, unitKey) {
   const index=tracking.packagingLevels.findIndex(level=>level.key===unitKey),factor=index<0?StockTracking.trackingFactor(tracking):tracking.packagingLevels.slice(index+1).reduce((value,level)=>value*level.contains,1);
   return Number((Number(value||0)/factor).toFixed(6));
@@ -5958,31 +5976,35 @@ function containerValueForUnit(value, tracking, unitKey) {
 function renderContainerRecountRow(container, tracking, locations, options = {}) {
   const isNew=Boolean(options.isNew),unitKey=container.unitKey||tracking.trackingUnitKey,quantity=containerValueForUnit(container.remaining,tracking,unitKey),units=tracking.packagingLevels.map(level=>[level.key,level.plural]),places=Array.from(new Set(["",...locations,container.location].filter(value=>value!==undefined)));
   return `<section class="container-recount-row" data-container-id="${escapeHtml(container.id)}" data-version="${Number(container.version||0)}" data-original-status="${isNew?"":escapeHtml(container.status)}" data-original-unit="${isNew?"":escapeHtml(unitKey)}" data-current-unit="${escapeHtml(unitKey)}" data-capacity-base="${Number(container.capacity||0)}" data-original-location="${isNew?"":escapeHtml(container.location||"")}" data-original-quantity="${isNew?"":quantity}" data-new-container="${isNew?"true":"false"}">
-    <header><strong>${escapeHtml(container.label||container.id)}</strong>${isNew?`<button class="container-recount-remove" type="button" data-remove-new-container>Supprimer</button>`:""}<span class="stock-distribution-badge stock-distribution-badge--${container.status==="closed"?"closed":"open"}">${container.status==="closed"?"Fermé":"Ouvert"}</span></header>
+    <header><strong data-container-display-title>${escapeHtml(container.label||container.id)}</strong>${isNew?`<span class="stock-distribution-badge">Nouveau</span>`:""}<button class="container-recount-remove" type="button" data-remove-container>${isNew?"Supprimer":"Retirer"}</button><span class="stock-distribution-badge stock-distribution-badge--${container.status==="closed"?"closed":"open"}">${container.status==="closed"?"Fermé":"Ouvert"}</span></header>
     <label><span>Statut</span><select data-recount-status><option value="closed" ${container.status==="closed"?"selected":""}>Fermé</option><option value="open" ${container.status==="open"?"selected":""}>Ouvert</option>${isNew?"":`<option value="finished">Terminé</option>`}</select></label>
-    <label><span>Unité</span><select data-recount-unit>${units.map(([value,label])=>`<option value="${escapeHtml(value)}" ${value===unitKey?"selected":""}>${escapeHtml(label)}</option>`).join("")}</select></label>
-    <label><span>Localisation</span><select data-recount-location required>${places.map(place=>`<option value="${escapeHtml(place)}" ${place===container.location?"selected":""}>${escapeHtml(place||"Sélectionner…")}</option>`).join("")}</select></label>
     <label><span data-recount-quantity-label>${container.status==="open"?"Quantité restante":"Quantité actuelle"}</span><input data-recount-quantity type="number" min="0" step="any" value="${quantity}" required></label>
+    <label><span>Unité</span><select data-recount-unit>${units.map(([value,label])=>`<option value="${escapeHtml(value)}" ${value===unitKey?"selected":""}>${escapeHtml(label)}</option>`).join("")}</select></label>
+    ${hierarchySelectorsHtml(`container-${container.id}`,container)}<input type="hidden" data-recount-location value="${escapeHtml(container.location||"")}">
   </section>`;
 }
 
 function renderContainerRecountFields(item) {
-  const tracking=StockTracking.normalizeTracking(item),active=[...tracking.closedContainers,...tracking.openContainers.filter(row=>row.status==="open")];
+  const tracking=StockTracking.normalizeTracking(item),active=[...tracking.openContainers.filter(row=>row.status==="open"),...tracking.closedContainers];
+  const fallbackPlacement=(item.placements||[])[0]||{};active.forEach(container=>{if(!container.roomId)Object.assign(container,{roomId:fallbackPlacement.roomId||"",locationId:fallbackPlacement.locationId||"",sublocationId:fallbackPlacement.sublocationId||""});});
   const locations=Array.from(new Set([...inventoryLocations,...active.map(row=>row.location)].filter(Boolean))),outer=tracking.packagingLevels[0];
   return `<div class="container-recount-list">${active.length?active.map(container=>renderContainerRecountRow(container,tracking,locations)).join(""):`<div class="stock-source-empty"><strong>Aucun contenant actif à compter.</strong></div>`}<div class="container-recount-new-rows"></div><button class="ghost-btn compact-btn container-recount-add" type="button" data-add-primary-container>+ Ajouter un ${escapeHtml(outer.singular)}</button></div>`;
 }
 
 function bindContainerRecountControls(root, item, tracking = StockTracking.normalizeTracking(item)) {
   const list=root.querySelector(".container-recount-new-rows"),button=root.querySelector("[data-add-primary-container]");
+  bindHierarchySelectors(root);
+  const reorderRows=(changedRow=null)=>{const host=root.querySelector(".container-recount-list"),anchor=host.querySelector(".container-recount-new-rows"),rows=[...host.querySelectorAll(":scope > .container-recount-row, .container-recount-new-rows > .container-recount-row")].filter(row=>!row.classList.contains("hidden"));if(changedRow){const status=changedRow.querySelector("[data-recount-status]").value,last=rows.filter(row=>row!==changedRow&&row.querySelector("[data-recount-status]").value===status).at(-1);if(last)last.after(changedRow);}const ordered=[...host.querySelectorAll(":scope > .container-recount-row, .container-recount-new-rows > .container-recount-row")].sort((a,b)=>{const rank=row=>row.querySelector("[data-recount-status]").value==="open"?0:1;return rank(a)-rank(b);});ordered.forEach(row=>host.insertBefore(row,anchor));};
+  const refreshTitles=()=>{const counters={closed:0,open:0},unit=tracking.packagingLevels[0].singular,feminine=isLikelyFeminineUnit(unit);root.querySelectorAll(".container-recount-row").forEach(row=>{const status=row.querySelector("[data-recount-status]")?.value;if(status==="finished"){row.classList.add("hidden");return;}row.classList.remove("hidden");counters[status]=(counters[status]||0)+1;const adjective=status==="closed"?(feminine?"fermée":"fermé"):(feminine?"ouverte":"ouvert"),title=`${unit.charAt(0).toLocaleUpperCase("fr-FR")}${unit.slice(1)} ${adjective} ${counters[status]}`;row.querySelector("[data-container-display-title]").textContent=title;row.querySelector("[data-container-display-title]").title=title;});};
   const closedLocations=Array.from(new Set(tracking.closedContainers.map(row=>row.location).filter(Boolean)));
   const configuredLocation=item.stockTracking?.closedContainerLocation||item.stockTracking?.defaultClosedLocation||"";
   const defaultLocation=closedLocations.length===1?closedLocations[0]:configuredLocation||(closedLocations.length===0?item.location||"":"");
   button?.addEventListener("click",()=>{
     const index=list.querySelectorAll("[data-new-container='true']").length+1,outer=tracking.packagingLevels[0];
     const draft={id:`draft-${Date.now()}-${Math.random().toString(36).slice(2)}`,label:`Nouveau ${outer.singular} ${index}`,location:defaultLocation,remaining:StockTracking.capacity(tracking),capacity:StockTracking.capacity(tracking),unitKey:tracking.trackingUnitKey,status:"closed",version:0};
-    list.insertAdjacentHTML("beforeend",renderContainerRecountRow(draft,tracking,inventoryLocations,{isNew:true}));
+    list.insertAdjacentHTML("beforeend",renderContainerRecountRow(draft,tracking,inventoryLocations,{isNew:true}));bindHierarchySelectors(list);refreshTitles();
   });
-  list?.addEventListener("click",event=>event.target.closest("[data-remove-new-container]")?.closest(".container-recount-row")?.remove());
+  root.querySelector(".container-recount-list")?.addEventListener("click",event=>{const remove=event.target.closest("[data-remove-container]");if(!remove)return;const row=remove.closest(".container-recount-row");if(row.dataset.newContainer==="true")row.remove();else{row.querySelector("[data-recount-status]").value="finished";row.querySelector("[data-recount-quantity]").value="0";}refreshTitles();});
   root.querySelector(".container-recount-list")?.addEventListener("change",event=>{
     const row=event.target.closest(".container-recount-row");if(!row)return;
     if(event.target.matches("[data-recount-unit]")){
@@ -5991,12 +6013,13 @@ function bindContainerRecountControls(root, item, tracking = StockTracking.norma
       return;
     }
     if(!event.target.matches("[data-recount-status]"))return;
-    const badge=row.querySelector(".stock-distribution-badge"),quantityLabel=row.querySelector("[data-recount-quantity-label]");if(!badge)return;
+    const badge=[...row.querySelectorAll(".stock-distribution-badge")].at(-1),quantityLabel=row.querySelector("[data-recount-quantity-label]");if(!badge)return;
     badge.classList.remove("stock-distribution-badge--closed","stock-distribution-badge--open");
     if(event.target.value==="closed"){badge.textContent="Fermé";badge.classList.add("stock-distribution-badge--closed");quantityLabel.textContent="Quantité actuelle";}
     else if(event.target.value==="open"){badge.textContent="Ouvert";badge.classList.add("stock-distribution-badge--open");quantityLabel.textContent="Quantité restante";}
-    else{badge.textContent="Terminé";quantityLabel.textContent="Quantité restante";}
+    else{badge.textContent="Terminé";quantityLabel.textContent="Quantité restante";row.querySelector("[data-recount-quantity]").value="0";}reorderRows(row);refreshTitles();
   });
+  reorderRows();refreshTitles();
 }
 
 function getAliquotPreparationSources(item) {
@@ -6006,8 +6029,8 @@ function getAliquotPreparationSources(item) {
     return { mode: "simple", quantity, unit: StockTracking.normalizeUnitLabel(item.unit), location: getItemLocations(item)[0] || item.location || "—", groups: quantity > 0 ? [{ type: "simple", label: "Stock disponible", sources: [{ id: "global", quantity, location: getItemLocations(item)[0] || item.location || "—" }] }] : [] };
   }
   const openUnit = StockTracking.trackingLevel(tracking), outer = tracking.packagingLevels[0];
-  const open = tracking.openContainers.filter(row => row.status === "open" && row.remaining > 0).map(row => { const quantity = StockTracking.fromBaseQuantity(row.remaining, tracking); return { id: row.id, quantity, location: row.location || "—", label: `${formatOpenContainerDisplayTitle(row.label, outer.singular)} · ${StockTracking.format(quantity)} ${StockTracking.plural(quantity, openUnit.singular, openUnit.plural)} · ${row.location || "—"}` }; });
-  const closed = tracking.closedByLocation.filter(row => row.quantity > 0 && row.location).map(row => ({ id: row.location, quantity: row.quantity, location: row.location, label: `${row.location} · ${row.quantity} ${StockTracking.plural(row.quantity, outer.singular, outer.plural)} fermés` }));
+  const open = tracking.openContainers.filter(row => row.status === "open" && row.remaining > 0).map(row => { const quantity = StockTracking.fromBaseQuantity(row.remaining, tracking); return { id: row.id, quantity, location: row.location || "—",roomId:row.roomId||"",locationId:row.locationId||"",sublocationId:row.sublocationId||"", label: `${formatOpenContainerDisplayTitle(row.label, outer.singular)} · Ouvert · ${StockTracking.format(quantity)} ${StockTracking.plural(quantity, openUnit.singular, openUnit.plural)} · ${row.location || "—"}` }; });
+  const closed = tracking.closedContainers.filter(row=>row.status==="closed"&&row.remaining>0).map(row=>{const quantity=StockTracking.fromBaseQuantity(row.remaining,tracking);return{id:row.id,quantity,location:row.location,roomId:row.roomId||"",locationId:row.locationId||"",sublocationId:row.sublocationId||"",label:`${row.label||row.id} · Fermé · ${StockTracking.format(quantity)} ${StockTracking.plural(quantity,openUnit.singular,openUnit.plural)} · ${row.location||"—"}`};});
   return { mode: "containers", unit: openUnit, groups: [...(open.length ? [{ type: "container", label: "Contenant ouvert", sources: open }] : []), ...(closed.length ? [{ type: "closed", label: "Contenant fermé", sources: closed }] : [])] };
 }
 
@@ -6020,7 +6043,7 @@ function renderAliquotPreparationFields(item, locations) {
   const initialMax = sourceState.mode === "simple" ? sourceState.quantity : "";
   const secondLocation = stockSelect("smTo2", "Localisation supplémentaire", [["","—"],...locations]).replace(" required>", " disabled>");
   const secondQuantity = stockNumber("smLocationQuantity2", "Aliquotes dans cette localisation").replace(" required>", " disabled>");
-  return `${sourceControls}${stockNumber("smSourceQuantity", `Quantité source utilisée — ${unit.plural}`, inputStep, initialMax)}${stockNumber("smCreated", "Nombre d’aliquotes")}${stockNumber("smVolume", "Volume final", "any")}<label>Unité de volume<input id="smVolumeUnit" value="µL" required></label>${stockNumber("smConcentration", "Concentration finale", "any")}<label>Unité de concentration<input id="smConcentrationUnit" value="mM" required></label><div class="aliquot-location-row">${stockSelect("smTo", "Localisation", locations)}${stockNumber("smLocationQuantity", "Nombre d’aliquotes dans cette localisation")}</div><button id="addAliquotLocationBtn" class="ghost-btn compact-btn aliquot-location-add" type="button">+ Ajouter une localisation</button><div id="additionalAliquotLocationRow" class="aliquot-location-row aliquot-location-row--additional hidden">${secondLocation}${secondQuantity}<button id="removeAliquotLocationBtn" class="icon-btn" type="button" aria-label="Retirer la localisation supplémentaire">×</button></div>`;
+  return `${sourceControls}${stockNumber("smCreated", "Nombre d’aliquotes")}${stockNumber("smVolume", "Volume final", "any")}<label>Unité de volume<input id="smVolumeUnit" value="µL" required></label>${stockNumber("smSourceQuantity", `Quantité source utilisée — ${unit.plural}`, inputStep, initialMax)}<small id="smSourceQuantityNotice" class="full-label"></small>${stockNumber("smConcentration", "Concentration finale", "any")}<label>Unité de concentration<input id="smConcentrationUnit" value="mM" required></label><div class="aliquot-location-row">${hierarchySelectorsHtml("aliquot-preparation",{})}<input id="smTo" type="hidden" data-recount-location>${stockNumber("smLocationQuantity", "Nombre d’aliquotes dans cette localisation")}</div>`;
 }
 
 function setAdditionalAliquotLocationVisible(modal, visible, values = {}) {
@@ -6065,7 +6088,8 @@ function validateAliquotDistribution(modal) {
 
 function buildAliquotPreparationOperation(modal, sourceItem) {
   const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), sourceType = value("smSourceType"), sourceId = value("smSourceId"), sourceTracking = StockTracking.normalizeTracking(sourceItem || {}), normalizedSourceQuantity = numeric("smSourceQuantity");
-  return { sourceType, sourceId, fromLocation: sourceType === "closed" ? sourceId : value("smFrom"), sourceQuantity: normalizedSourceQuantity, representedSourceQuantity: normalizedSourceQuantity, createdCount: numeric("smCreated"), volume: numeric("smVolume"), volumeUnit: value("smVolumeUnit"), concentration: numeric("smConcentration"), concentrationUnit: value("smConcentrationUnit"), sourceUnit: sourceTracking.mode === "simple" ? (sourceItem?.unit || "") : StockTracking.trackingLevel(sourceTracking).plural, preparedAt: new Date().toISOString().slice(0, 10), locations: [{ location: value("smTo"), quantity: numeric("smLocationQuantity") }, { location: value("smTo2"), quantity: numeric("smLocationQuantity2") }].filter(row => row.location && row.quantity) };
+  const hierarchy=modal.querySelector("[data-hierarchy-prefix='aliquot-preparation']"),roomId=hierarchy?.querySelector("[data-hierarchy-room]").value||"",locationId=hierarchy?.querySelector("[data-hierarchy-location]").value||"",sublocationId=hierarchy?.querySelector("[data-hierarchy-sublocation]").value||"";
+  return { sourceType, sourceId, fromLocation: value("smFrom"), sourceQuantity: normalizedSourceQuantity, representedSourceQuantity: normalizedSourceQuantity, createdCount: numeric("smCreated"), volume: numeric("smVolume"), volumeUnit: value("smVolumeUnit"), concentration: numeric("smConcentration"), concentrationUnit: value("smConcentrationUnit"), sourceUnit: sourceTracking.mode === "simple" ? (sourceItem?.unit || "") : StockTracking.trackingLevel(sourceTracking).plural, preparedAt: new Date().toISOString(), locations: [{ location: value("smTo"),roomId,locationId,sublocationId, quantity: numeric("smLocationQuantity") }].filter(row => row.location && row.quantity) };
 }
 
 function syncAliquotSourceEntity(modal, item) {
@@ -6075,11 +6099,12 @@ function syncAliquotSourceEntity(modal, item) {
   host.innerHTML = group?.sources.length ? stockSelect("smSourceId", type === "container" ? "Contenant source" : "Stock fermé source", group.sources.map(source => [source.id, source.label])) : "";
   const syncLimit = () => {
     const selected = group?.sources.find(source => source.id === modal.querySelector("#smSourceId")?.value), quantity = modal.querySelector("#smSourceQuantity");
+    const destination=modal.querySelector("[data-hierarchy-prefix='aliquot-preparation']");if(selected&&destination&&(selected.roomId||selected.locationId)){destination.outerHTML=hierarchySelectorsHtml("aliquot-preparation",selected);bindHierarchySelectors(modal);const hidden=modal.querySelector("#smTo");if(hidden)hidden.value=hierarchyPathForIds(selected.roomId,selected.locationId,selected.sublocationId);}
     if (!quantity) return;
     const capacity = type === "closed" ? StockTracking.trackingCapacity(StockTracking.normalizeTracking(item)) : selected?.quantity;
     quantity.max = Number.isFinite(capacity) ? capacity : "";
-    quantity.value = type === "closed" && Number.isFinite(capacity) ? capacity : "";
-    quantity.readOnly = type === "closed";
+    if (!quantity.dataset.manual) quantity.value = "";
+    quantity.readOnly = false;
   };
   modal.querySelector("#smSourceId")?.addEventListener("change", syncLimit);
   syncLimit();
@@ -6102,6 +6127,9 @@ function renderAliquotUseFields(item) {
   const legacyNote = unopened.length && !partial.length ? `<p class="tracking-option-explanation">Le volume individuel de cette préparation n’est pas défini. Seule la consommation d’aliquotes entières est disponible.</p>` : "";
   return `${stockSelect("smAliquotUseMode", "Mode d’utilisation", modes)}${legacyNote}<div id="smAliquotUseFields" class="form-grid nested-stock-fields"></div>`;
 }
+
+function renderPreparationCorrectionFields(item){const preps=StockTracking.normalizeAliquots(item).preparations.filter(row=>row.status==="active"),options=preps.map(prep=>[prep.id,`${prep.label} · ${StockTracking.remainingAliquots(prep)+(prep.openAliquots||[]).filter(row=>row.status==="open").length} disponibles · ${prep.volume||"—"} ${prep.volumeUnit||""} · ${(prep.locations||[]).map(row=>row.location).join(", ")}`]);return `${stockSelect("smEntity","Préparation ou lot",options)}<div id="smPreparationCorrection"></div>`;}
+function syncPreparationCorrectionFields(modal,item){const prep=StockTracking.normalizeAliquots(item).preparations.find(row=>row.id===modal.querySelector("#smEntity")?.value),host=modal.querySelector("#smPreparationCorrection");if(!prep||!host)return;const open=(prep.openAliquots||[]).filter(row=>row.status==="open").length,total=StockTracking.remainingAliquots(prep)+open,location=(prep.locations||[])[0]||{};host.innerHTML=`${stockNumber("smAvailableCount","Nombre d’aliquotes disponibles")}${stockNumber("smVolume","Volume d’une aliquote","any")}<label><span>Unité du volume</span><input id="smVolumeUnit" value="${escapeHtml(prep.volumeUnit||"")}" required></label>${stockNumber("smConcentration","Concentration","any")}<label><span>Unité de concentration</span><input id="smConcentrationUnit" value="${escapeHtml(prep.concentrationUnit||"")}" required></label>${hierarchySelectorsHtml("preparation-correction",location)}<input id="smPrepLocation" type="hidden" data-recount-location value="${escapeHtml(location.location||"")}">`;host.querySelector("#smAvailableCount").value=total;host.querySelector("#smVolume").value=prep.volume||0;host.querySelector("#smConcentration").value=prep.concentration||0;bindHierarchySelectors(host);}
 
 function syncAliquotUseFields(modal, item) {
   const host = modal.querySelector("#smAliquotUseFields"), mode = modal.querySelector("#smAliquotUseMode")?.value, aliquots = StockTracking.normalizeAliquots(item); if (!host || !mode) return;
@@ -6142,29 +6170,36 @@ function renderStockManagerFields() {
   else if (action === "aliquots_prepared") html = renderAliquotPreparationFields(item, locations);
   else if (action === "aliquots_consumed") html = renderAliquotUseFields(item);
   else if (["aliquot_opened","open_aliquot_moved","open_aliquot_discarded"].includes(action)) html = renderOpenAliquotActionFields(item, action);
-  else if (["aliquots_moved","preparation_recounted","preparation_finished"].includes(action)) html = stockSelect("smEntity","Préparation",preps)+stockSelect("smFrom","Localisation",locations)+(action==="aliquots_moved"?stockSelect("smTo","Destination",locations):"")+(action!=="preparation_finished"?stockNumber("smQuantity",action==="preparation_recounted"?"Quantité observée":"Nombre d’aliquotes"):"");
+  else if (action==="preparation_recounted") html=renderPreparationCorrectionFields(item);
+  else if (["aliquots_moved","preparation_finished"].includes(action)) html = stockSelect("smEntity","Préparation",preps)+stockSelect("smFrom","Localisation",locations)+(action==="aliquots_moved"?stockSelect("smTo","Destination",locations):"")+(action!=="preparation_finished"?stockNumber("smQuantity","Nombre d’aliquotes"):"");
   modal.querySelector("#stockManagerFields").innerHTML = html;
   const executeButton = modal.querySelector("#executeStockManagerBtn"), noSource = action === "aliquots_prepared" && !getAliquotPreparationSources(item).groups.length;
   executeButton.disabled = noSource;
   if (action === "aliquots_prepared" && !noSource) {
     syncAliquotSourceEntity(modal, item);
+    bindHierarchySelectors(modal);
     modal.querySelector("#smSourceType")?.addEventListener("change", () => syncAliquotSourceEntity(modal, item));
     setAdditionalAliquotLocationVisible(modal, false);
     modal.querySelector("#addAliquotLocationBtn")?.addEventListener("click", () => setAdditionalAliquotLocationVisible(modal, true));
     modal.querySelector("#removeAliquotLocationBtn")?.addEventListener("click", () => setAdditionalAliquotLocationVisible(modal, false));
+    const sourceQuantity=modal.querySelector("#smSourceQuantity"),created=modal.querySelector("#smCreated"),volume=modal.querySelector("#smVolume"),notice=modal.querySelector("#smSourceQuantityNotice");
+    const recalculate=()=>{const count=StockTracking.parseLocalizedNumber(created?.value),perAliquot=StockTracking.parseLocalizedNumber(volume?.value);if(Number.isFinite(count)&&Number.isFinite(perAliquot)){sourceQuantity.value=Number((count*perAliquot).toFixed(6));sourceQuantity.dataset.manual="false";notice.textContent="Quantité source actualisée à partir du nombre et du volume final.";}};
+    sourceQuantity?.addEventListener("input",()=>{sourceQuantity.dataset.manual="true";notice.textContent="Valeur corrigée manuellement ; elle sera conservée à la validation.";});created?.addEventListener("input",recalculate);volume?.addEventListener("input",recalculate);
   }
   if (action === "aliquots_consumed") { const preferred=modal.dataset.entityId, opened=getActiveOpenAliquots(aliquots); if (preferred && opened.some(({open})=>open.id===preferred)) modal.querySelector("#smAliquotUseMode").value="open_existing"; syncAliquotUseFields(modal,item); modal.querySelector("#smAliquotUseMode")?.addEventListener("change",()=>syncAliquotUseFields(modal,item)); }
   if (action === "aliquot_opened") { syncAliquotOpeningLocations(modal,item); modal.querySelector("#smEntity")?.addEventListener("change",()=>syncAliquotOpeningLocations(modal,item)); }
   if (action === "open_aliquot_discarded") modal.querySelector("#smDiscardReason")?.addEventListener("change", event => { const other=modal.querySelector("#smDiscardOtherField"), input=modal.querySelector("#smDiscardOther"), visible=event.target.value==="Autre"; other.classList.toggle("hidden",!visible); input.disabled=!visible; input.required=visible; if(!visible)input.value=""; });
   if(action==="recounted"&&tracking.mode==="containers")bindContainerRecountControls(modal,item,tracking);
+  if(action==="preparation_recounted"){syncPreparationCorrectionFields(modal,item);modal.querySelector("#smEntity")?.addEventListener("change",()=>syncPreparationCorrectionFields(modal,item));}
   modal.querySelector("[data-empty-stock-action]")?.addEventListener("click", () => { modal.close(); if (StockTracking.normalizeTracking(item).mode === "simple") openStockModal(item.id); else { openStockManager(item.id); const nextModal = document.querySelector("#stockManagerDialog"); nextModal.querySelector("#stockManagerAction").value = "received"; renderStockManagerFields(); } });
 }
 
 async function submitStockManager(event) {
   event.preventDefault(); const modal = event.currentTarget.closest("dialog"), button = modal.querySelector("#executeStockManagerBtn"), errorBox = modal.querySelector("#stockManagerError");
   if (button.disabled) return;
+  const reason=modal.querySelector("#stockManagerComment");reason.setCustomValidity(reason.value.trim()?"":"Veuillez préciser le motif de la modification afin d’assurer la traçabilité.");
   if (modal.querySelector("#stockManagerAction")?.value === "aliquots_prepared" && !validateAliquotDistribution(modal)) return;
-  if (!event.currentTarget.reportValidity()) return;
+  if (!event.currentTarget.reportValidity()) { errorBox.textContent=reason.validationMessage;errorBox.classList.remove("hidden");return; }
   const value = id => modal.querySelector(`#${id}`)?.value || "", numeric = id => StockTracking.parseLocalizedNumber(value(id)), action = value("stockManagerAction"), operationId = StockTracking.id("operation"), comment = normalizeMultilineText(value("stockManagerComment")), operation = { operationId, type: action, entityId:value("smEntity"), entityType: action.startsWith("aliquot") || action.startsWith("preparation") ? "preparation" : "container", quantity:numeric("smQuantity"), fromLocation:value("smFrom"), toLocation:value("smTo"), comment, correctionReason:["container_finished","preparation_finished"].includes(action)?comment:"" };
   const sourceItem = items.find(row => row.id === value("stockManagerItemId")), sourceTracking = StockTracking.normalizeTracking(sourceItem || {});
   if(action==="stock_recounted"){operation.type="recounted";operation.entityType=sourceTracking.mode==="containers"?"closed":"item";}
@@ -6174,6 +6209,7 @@ async function submitStockManager(event) {
       const changed=status!==row.dataset.originalStatus||unitKey!==row.dataset.originalUnit||location!==row.dataset.originalLocation||Math.abs(quantity-Number(row.dataset.originalQuantity))>1e-8;
       return changed?{containerId:row.dataset.containerId,expectedVersion:Number(row.dataset.version),status,unitKey,location,quantity,capacity,beforeStatus:row.dataset.originalStatus,isNew:row.dataset.newContainer==="true"}:null;
     }).filter(Boolean);
+    changes.forEach(change=>{const row=modal.querySelector(`.container-recount-row[data-container-id="${CSS.escape(change.containerId)}"]`),group=row?.querySelector("[data-hierarchy-prefix]");if(group){change.roomId=group.querySelector("[data-hierarchy-room]").value;change.locationId=group.querySelector("[data-hierarchy-location]").value;change.sublocationId=group.querySelector("[data-hierarchy-sublocation]").value;}});
     if(!changes.length){errorBox.textContent="Aucun contenant n’a été modifié.";errorBox.classList.remove("hidden");return;}
     if(changes.some(change=>!Number.isFinite(change.quantity)||change.quantity<0||!Number.isFinite(change.capacity)||change.capacity<=0)){errorBox.textContent="Chaque quantité doit être positive ou nulle et chaque capacité doit être strictement positive.";errorBox.classList.remove("hidden");return;}
     if(changes.some(change=>change.quantity>change.capacity)){errorBox.textContent="La quantité actuelle ou restante ne peut pas dépasser la capacité totale.";errorBox.classList.remove("hidden");return;}
@@ -6199,6 +6235,7 @@ async function submitStockManager(event) {
   if (action === "moved") { operation.entityType=value("smEntityType"); if (operation.entityType === "container") { const item=items.find(row=>row.id===value("stockManagerItemId")); const candidate=StockTracking.normalizeTracking(item).openContainers.find(row=>row.location===operation.fromLocation&&row.status==="open"); if(!candidate) { errorBox.textContent="Aucun contenant ouvert dans cette localisation."; errorBox.classList.remove("hidden"); return; } operation.entityId=candidate.id; operation.quantity=1; } }
   if (action === "aliquots_prepared") Object.assign(operation, buildAliquotPreparationOperation(modal, items.find(row => row.id === value("stockManagerItemId"))));
   const sourceAliquots = StockTracking.normalizeAliquots(sourceItem || {});
+  if(action==="preparation_recounted"){const prep=sourceAliquots.preparations.find(row=>row.id===value("smEntity")),group=modal.querySelector("[data-hierarchy-prefix='preparation-correction']");Object.assign(operation,{type:"preparation_corrected",entityId:prep?.id,entityType:"preparation",expectedVersion:prep?.version,availableCount:numeric("smAvailableCount"),volume:numeric("smVolume"),volumeUnit:value("smVolumeUnit"),concentration:numeric("smConcentration"),concentrationUnit:value("smConcentrationUnit"),roomId:group?.querySelector("[data-hierarchy-room]").value||"",locationId:group?.querySelector("[data-hierarchy-location]").value||"",sublocationId:group?.querySelector("[data-hierarchy-sublocation]").value||"",location:value("smPrepLocation")});}
   if (action === "aliquots_consumed") {
     const mode=value("smAliquotUseMode");
     if (mode === "whole") { const prep=sourceAliquots.preparations.find(row=>row.id===value("smEntity")); Object.assign(operation,{type:"aliquots_consumed",entityId:value("smEntity"),entityType:"preparation",expectedVersion:prep?.version}); }
@@ -7917,12 +7954,12 @@ function normalizeLocationCatalog(rawCatalog) {
   const locations = new Map(INITIAL_INVENTORY_LOCATION_CATALOG.locations.map(row => [row.id, { ...row }]));
   (Array.isArray(raw.locations) ? raw.locations : []).forEach(row => {
     if (!row?.id || !FIXED_INVENTORY_ROOMS.some(room => room.id === row.roomId)) return;
-    locations.set(row.id, { id: String(row.id), roomId: String(row.roomId), name: String(row.name || "").trim(), icon: row.icon || "📍" });
+    locations.set(row.id, { id: String(row.id), roomId: String(row.roomId), name: String(row.name || "").trim(), icon: row.icon || "📍", ...(Number.isFinite(Number(row.order)) ? { order: Number(row.order) } : {}) });
   });
   const sublocations = new Map();
   (Array.isArray(raw.sublocations) ? raw.sublocations : []).forEach(row => {
     if (!row?.id || !locations.has(row.locationId)) return;
-    sublocations.set(row.id, { id: String(row.id), locationId: String(row.locationId), name: String(row.name || "").trim() });
+    sublocations.set(row.id, { id: String(row.id), locationId: String(row.locationId), name: String(row.name || "").trim(), ...(Number.isFinite(Number(row.order)) ? { order: Number(row.order) } : {}) });
   });
   return { locations: [...locations.values()].filter(row => row.name), sublocations: [...sublocations.values()].filter(row => row.name) };
 }
@@ -8613,8 +8650,8 @@ function hierarchyPreview(entries) {
 function hierarchyRow(entity, entries, type, selected = false) {
   const count = uniqueEntryCount(entries);
   const icon = type === "sublocation" ? `<span class="location-explorer-icon location-sublocation-marker-wrap" aria-hidden="true"><i class="location-sublocation-marker"></i></span>` : `<span class="location-explorer-icon" aria-hidden="true">${entity.icon || "📍"}</span>`;
-  const actions = type === "room" ? "" : `<span class="location-row-actions-menu"><button class="location-menu-trigger" type="button" data-toggle-location-menu aria-haspopup="menu" aria-expanded="false" aria-label="Actions pour ${escapeHtml(entity.name)}">⋮</button><span class="location-actions-popover hidden" role="menu"><button type="button" role="menuitem" data-edit-hierarchy="${type}">Modifier</button><button type="button" role="menuitem" data-delete-hierarchy="${type}">Supprimer</button></span></span>`;
-  return `<article class="location-explorer-row${selected ? " is-selected" : ""}" tabindex="0" role="option" aria-selected="${selected}" data-${type}-id="${escapeHtml(entity.id)}">${icon}<strong class="location-explorer-name" title="${escapeHtml(entity.name)}">${escapeHtml(entity.name)}</strong><span class="location-explorer-count">${escapeHtml(formatLocationCount(count,"item"))}</span>${actions}<span class="location-explorer-chevron" aria-hidden="true">›</span></article>`;
+  const actions = type === "room" ? "" : `<span class="location-order-actions"><button class="icon-btn" type="button" data-move-hierarchy="up" title="Monter" aria-label="Monter ${escapeHtml(entity.name)}" ${entity._first?"disabled":""}>↑</button><button class="icon-btn" type="button" data-move-hierarchy="down" title="Descendre" aria-label="Descendre ${escapeHtml(entity.name)}" ${entity._last?"disabled":""}>↓</button></span><span class="location-row-actions-menu"><button class="location-menu-trigger" type="button" data-toggle-location-menu aria-haspopup="menu" aria-expanded="false" aria-label="Actions pour ${escapeHtml(entity.name)}">⋮</button><span class="location-actions-popover hidden" role="menu"><button type="button" role="menuitem" data-edit-hierarchy="${type}">Modifier</button><button type="button" role="menuitem" data-delete-hierarchy="${type}">Supprimer</button></span></span>`;
+  return `<article class="location-explorer-row${selected ? " is-selected" : ""}" tabindex="0" role="option" aria-selected="${selected}" data-${type}-id="${escapeHtml(entity.id)}">${icon}<strong class="location-explorer-name" title="${escapeHtml(entity.name)}">${escapeHtml(entity.name)}</strong><span class="location-explorer-count">${escapeHtml(formatLocationCount(count,"item"))}</span>${actions}</article>`;
 }
 function resetLocationDetailState() { locationDetailSearch = ""; locationDetailStatus = "all"; locationDetailFacet = "all"; locationDetailSort = "name-asc"; locationDetailPage = 1; selectedLocationEntry = null; }
 
@@ -8624,7 +8661,7 @@ function renderLocations() {
   const query = normalizeSearch(locationSearchInput?.value || "");
   const rooms = FIXED_INVENTORY_ROOMS.map((room,index) => ({ room, entries: roomEntries(room.id), index })).filter(({ room, entries }) => !query || normalizeSearch(`${room.name} ${entries.map(row => row.record.name).join(" ")}`).includes(query)).sort((a,b)=>uniqueEntryCount(b.entries)-uniqueEntryCount(a.entries)||a.index-b.index);
   document.querySelector("#locationResultCount").textContent = formatLocationCount(rooms.length, "salle");
-  const catalog=hierarchyCatalog(), locations=selectedRoomId?catalog.locations.filter(row=>row.roomId===selectedRoomId):[], subs=selectedLocationId?catalog.sublocations.filter(row=>row.locationId===selectedLocationId):[];
+  const catalog=hierarchyCatalog(), ordered=rows=>rows.sort((a,b)=>(a.order??Number.MAX_SAFE_INTEGER)-(b.order??Number.MAX_SAFE_INTEGER)||a._index-b._index).map((row,index,array)=>({...row,_first:index===0,_last:index===array.length-1})), locations=selectedRoomId?ordered(catalog.locations.filter(row=>row.roomId===selectedRoomId).map((row,_index)=>({...row,_index}))):[], subs=selectedLocationId?ordered(catalog.sublocations.filter(row=>row.locationId===selectedLocationId).map((row,_index)=>({...row,_index}))):[];
   grid.innerHTML = `<section class="location-explorer-card" aria-label="Explorateur des emplacements"><h3>Explorateur des emplacements</h3><div class="location-explorer">${renderExplorerColumn(1,"Salles",rooms.map(({room,entries})=>hierarchyRow(room,entries,"room",room.id===selectedRoomId)).join("")||"Aucune salle ne correspond à votre recherche.","room")}${renderExplorerColumn(2,"Localisations",selectedRoomId?(locations.map(row=>hierarchyRow(row,locationEntries(row.id),"location",row.id===selectedLocationId)).join("")||"Aucune localisation dans cette salle") : "Sélectionnez une salle","location")}${renderExplorerColumn(3,"Sous-localisations",selectedLocationId?(subs.map(row=>hierarchyRow(row,sublocationEntries(row.id),"sublocation",row.id===selectedSublocationId)).join("")||"Aucune sous-localisation dans cette localisation") : "Sélectionnez une localisation","sublocation")}</div>${renderLocationPathBar()}</section>${renderHierarchyContent()}`;
   bindHierarchyEvents(grid);
 }
@@ -8714,16 +8751,21 @@ function bindHierarchyEvents(grid) {
   grid.querySelectorAll("[data-add-hierarchy]").forEach(button=>button.addEventListener("click",event=>{const type=event.currentTarget.dataset.addHierarchy;if(type!=="item"){openHierarchyEntityModal(type);return;}if(!selectedRoomId)return;openModal(null,{prefill:{roomId:selectedRoomId,locationId:selectedLocationId||null,sublocationId:selectedSublocationId||null}});}));
   grid.querySelectorAll("[data-edit-hierarchy]").forEach(button=>button.onclick=()=>{const type=button.dataset.editHierarchy,card=button.closest(type==="location"?"[data-location-id]":"[data-sublocation-id]");openHierarchyEntityModal(type,card.dataset[`${type}Id`]);});
   grid.querySelectorAll("[data-delete-hierarchy]").forEach(button=>button.onclick=()=>{const type=button.dataset.deleteHierarchy,card=button.closest(type==="location"?"[data-location-id]":"[data-sublocation-id]");requestHierarchyDeletion(type,card.dataset[`${type}Id`],button);});
+  grid.querySelectorAll("[data-move-hierarchy]").forEach(button=>button.onclick=()=>{
+    const card=button.closest("[data-location-id],[data-sublocation-id]"),type=card.dataset.locationId?"location":"sublocation",id=card.dataset[`${type}Id`],catalog=hierarchyCatalog(),collection=type==="location"?catalog.locations:catalog.sublocations,entity=collection.find(row=>row.id===id),siblings=collection.filter(row=>type==="location"?row.roomId===entity.roomId:row.locationId===entity.locationId),ordered=siblings.map((row,index)=>({...row,_index:index})).sort((a,b)=>(a.order??Number.MAX_SAFE_INTEGER)-(b.order??Number.MAX_SAFE_INTEGER)||a._index-b._index),index=ordered.findIndex(row=>row.id===id),target=index+(button.dataset.moveHierarchy==="up"?-1:1);
+    if(target<0||target>=ordered.length)return;
+    [ordered[index],ordered[target]]=[ordered[target],ordered[index]];ordered.forEach((row,order)=>{collection.find(entry=>entry.id===row.id).order=order;});sharedState.locationCatalog=catalog;addHistory("Ordre des emplacements modifié",`${currentName} a déplacé ${entity.name}.`);persist();renderLocations();
+  });
   grid.querySelectorAll("[data-update-stock]").forEach(button=>button.onclick=()=>{const item=items.find(row=>row.id===button.dataset.updateStock);usesAdvancedStockManager(item)?openStockManager(item.id):openStockModal(item.id);});
   grid.querySelectorAll("[data-edit-item]").forEach(button=>button.onclick=()=>openModal(button.dataset.editItem));
   grid.querySelectorAll("[data-open-entry]").forEach(button=>button.onclick=()=>openItemDetail(button.closest("tr").dataset.entryId,{view:"locations",location:selectedRoomId}));
 }
 
-function renderLocationDetailTable(entries,options={}) { const hide=Boolean(options.hidePathColumns);return `<div class="location-detail-table-wrap"><table class="location-detail-table ${hide?"location-detail-table--direct-room":""}"><thead><tr><th>Référence</th><th>Stock actuel</th><th>Minimum</th><th>Statut</th><th>Tags</th>${hide?"":"<th>Localisation</th><th>Sous-localisation</th>"}<th>Actions</th></tr></thead><tbody>${entries.map(entry=>renderLocationDetailRow(entry,{hidePathColumns:hide})).join("")}</tbody></table></div>`; }
+function renderLocationDetailTable(entries,options={}) { const hide=Boolean(options.hidePathColumns),rows=entries.map(entry=>renderLocationDetailRow(entry,{hidePathColumns:hide}).replace(/<td data-label="Minimum">[\s\S]*?<\/td>/,""));return `<div class="location-detail-table-wrap"><table class="location-detail-table ${hide?"location-detail-table--direct-room":""}"><thead><tr><th>Référence</th><th>Stock actuel</th><th>Statut</th><th>Tags</th>${hide?"":"<th>Localisation</th><th>Sous-localisation</th>"}<th>Actions</th></tr></thead><tbody>${rows.join("")}</tbody></table></div>`; }
 function renderLocationDetailRow(entry,options={}) {
-  const record=entry.record, status=getLocationEntryStatus(entry), displayed=getLocationDisplayedStatus(entry), location=hierarchyLocation(entry.placement?.locationId), sub=hierarchySublocation(entry.placement?.sublocationId), current=StockTracking.normalizeTracking(record).mode === "containers" ? escapeHtml(StockTracking.summary(record,placementDisplayName(entry.placement))) : formatInventoryCardQuantity(record.quantity,record.unit), minimum=status==="undefined"?"—":formatInventoryCardQuantity(record.minStock,record.unit);
+  const record=entry.record, status=getLocationEntryStatus(entry), displayed=getLocationDisplayedStatus(entry), location=hierarchyLocation(entry.placement?.locationId), sub=hierarchySublocation(entry.placement?.sublocationId), tracking=StockTracking.normalizeTracking(record), total=StockTracking.available(record), primaryUnit=tracking.mode==="containers"?tracking.packagingLevels[0]:StockTracking.normalizeUnitLabel(record.unit), current=`${StockTracking.format(total)} ${escapeHtml(StockTracking.plural(total,primaryUnit.singular,primaryUnit.plural))}`, minimum=status==="undefined"?"—":formatInventoryCardQuantity(record.minStock,record.unit);
   const pathCells=options.hidePathColumns?"":`<td data-label="Localisation">${escapeHtml(location?.name||"-")}</td><td data-label="Sous-localisation">${escapeHtml(sub?.name||"-")}</td>`;
-  return `<tr class="location-detail-row" tabindex="0" data-entry-kind="inventory" data-entry-id="${escapeHtml(record.id)}"><td data-label="Référence"><button class="location-reference-button" type="button" data-open-entry><span class="location-reference-title">${renderRoutineStar(record)}<strong>${escapeHtml(record.name)}</strong></span><span>${escapeHtml(record.category||"")}</span></button></td><td data-label="Stock actuel"><strong>${current}</strong></td><td data-label="Minimum">${minimum}</td><td data-label="Statut"><span class="location-status-badge ${displayed.className}">${escapeHtml(displayed.label)}</span></td><td data-label="Tags"><div class="location-table-tags">${(record.tags||[]).length?(record.tags||[]).map(tag=>`<span class="tag">${escapeHtml(tag)}</span>`).join(""):`<span class="location-no-tags">Aucun tag</span>`}</div></td>${pathCells}<td data-label="Actions"><div class="location-row-actions"><button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">${usesAdvancedStockManager(record)?"Gérer le stock":"Mettre à jour le stock"}</button><button class="ghost-btn compact-btn" type="button" data-edit-item="${escapeHtml(record.id)}">Modifier</button></div></td></tr>`;
+  return `<tr class="location-detail-row" tabindex="0" data-entry-kind="inventory" data-entry-id="${escapeHtml(record.id)}"><td data-label="Référence"><button class="location-reference-button" type="button" data-open-entry><span class="location-reference-title">${renderRoutineStar(record)}<strong>${escapeHtml(record.name)}</strong></span><span>${escapeHtml(record.category||"")}</span></button></td><td data-label="Stock actuel"><strong>${current}</strong></td><td data-label="Minimum">${minimum}</td><td data-label="Statut"><span class="location-status-badge ${displayed.className}">${escapeHtml(displayed.label)}</span></td><td data-label="Tags"><div class="location-table-tags">${(record.tags||[]).length?(record.tags||[]).map(tag=>`<span class="tag">${escapeHtml(tag)}</span>`).join(""):`<span class="location-no-tags">Aucun tag</span>`}</div></td>${pathCells}<td data-label="Actions"><div class="location-row-actions"><button class="primary-btn compact-btn" type="button" data-update-stock="${escapeHtml(record.id)}">Mettre à jour le stock</button><button class="ghost-btn compact-btn" type="button" data-edit-item="${escapeHtml(record.id)}">Modifier</button></div></td></tr>`;
 }
 
 window.ExadexLocations = {

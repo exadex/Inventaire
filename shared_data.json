@@ -29,7 +29,7 @@
       {
         "id": "location-frigo-culture-l1",
         "roomId": "room-culture-l1",
-        "name": "Frigo culture L1",
+        "name": "Frigo culture L1 principal",
         "icon": "🌨️"
       },
       {
@@ -23136,6 +23136,12 @@
     {
       "date": "12/08/2026 09:41",
       "user": "Caroline",
+      "action": "Emplacement modifié",
+      "detail": "Caroline a renommé Frigo culture L1 principal."
+    },
+    {
+      "date": "12/08/2026 09:41",
+      "user": "Caroline",
       "action": "Localisation ajoutée",
       "detail": "Caroline a ajouté Frigo culture L1 à l'entré."
     },
@@ -28497,5 +28503,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:41:37.364Z"
+  "updatedAt": "2026-08-12T07:41:50.302Z"
 }

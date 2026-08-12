@@ -6504,9 +6504,9 @@
       "quantity": 2,
       "unit": "bouteilles",
       "minStock": 1,
-      "location": "Frigo labo",
+      "location": "Culture L1",
       "locations": [
-        "Frigo labo"
+        "Culture L1"
       ],
       "tags": [
         "Milieu DMEM"
@@ -6601,8 +6601,8 @@
       "placements": [
         {
           "id": "placement-legacy-1xln8v1",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
+          "roomId": "room-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
           "sublocationId": null
         }
       ]
@@ -23564,6 +23564,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:45",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM - low glucose."
+    },
+    {
       "date": "12/08/2026 09:44",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28963,5 +28969,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:44:39.500Z"
+  "updatedAt": "2026-08-12T07:45:31.580Z"
 }

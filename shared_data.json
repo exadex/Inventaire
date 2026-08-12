@@ -107,7 +107,7 @@
       "id": "web-1786531739181",
       "name": "Trypsine-EDTA (0,05 %)",
       "category": "Culture Cell",
-      "quantity": 8,
+      "quantity": 7,
       "unit": "bouteilles",
       "minStock": 1,
       "usageProfile": "normal",
@@ -24235,6 +24235,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspywzw5-2356249267-1971838932",
+      "operationId": "operation-mspywzw5-2356249267-1971838932",
+      "date": "12/08/2026 12:50",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Trypsine-EDTA (0,05 %) · Stock précédent : 8 bouteilles · Stock compté : 7 bouteilles · Écart : -1 bouteilles",
+      "user": "Caroline",
+      "itemId": "web-1786531739181",
+      "type": "recounted",
+      "previousQuantity": 8,
+      "countedQuantity": 7,
+      "difference": -1,
+      "unit": "bouteilles",
+      "note": ""
+    },
+    {
       "id": "history-operation-mspywgmn-3022761929-4086359727",
       "operationId": "operation-mspywgmn-3022761929-4086359727",
       "date": "12/08/2026 12:49",
@@ -30535,6 +30550,45 @@
       "toLocation": "Tiroir n°3",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspyx0gc-3265561202-1328994313",
+      "operationId": "operation-mspywzw5-2356249267-1971838932",
+      "itemId": "web-1786531739181",
+      "timestamp": "2026-08-12T10:50:17.100Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 8,
+      "afterQuantity": 7,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 8,
+      "after": 7,
+      "quantity": 7,
+      "difference": -1,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -30627,6 +30681,12 @@
       "itemId": "web-1786531739181",
       "at": "2026-08-12T10:49:52.004Z",
       "type": "aliquots_prepared"
+    },
+    {
+      "operationId": "operation-mspywzw5-2356249267-1971838932",
+      "itemId": "web-1786531739181",
+      "at": "2026-08-12T10:50:17.100Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -30637,5 +30697,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:49:52.004Z"
+  "updatedAt": "2026-08-12T10:50:17.100Z"
 }

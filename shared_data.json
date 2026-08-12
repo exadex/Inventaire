@@ -6681,9 +6681,9 @@
       "quantity": 24,
       "unit": "bouteilles",
       "minStock": 3,
-      "location": "Frigo labo",
+      "location": "Culture L1",
       "locations": [
-        "Frigo labo"
+        "Culture L1"
       ],
       "tags": [
         "Milieu DMEM"
@@ -6745,7 +6745,320 @@
             "updatedBy": "Caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-1",
+            "label": "bouteille fermé nº1",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-2",
+            "label": "bouteille fermé nº2",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-3",
+            "label": "bouteille fermé nº3",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-4",
+            "label": "bouteille fermé nº4",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-5",
+            "label": "bouteille fermé nº5",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-6",
+            "label": "bouteille fermé nº6",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-7",
+            "label": "bouteille fermé nº7",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-8",
+            "label": "bouteille fermé nº8",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-9",
+            "label": "bouteille fermé nº9",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-10",
+            "label": "bouteille fermé nº10",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-11",
+            "label": "bouteille fermé nº11",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-12",
+            "label": "bouteille fermé nº12",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-13",
+            "label": "bouteille fermé nº13",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-14",
+            "label": "bouteille fermé nº14",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-15",
+            "label": "bouteille fermé nº15",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-16",
+            "label": "bouteille fermé nº16",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-17",
+            "label": "bouteille fermé nº17",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-18",
+            "label": "bouteille fermé nº18",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-19",
+            "label": "bouteille fermé nº19",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-20",
+            "label": "bouteille fermé nº20",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-21",
+            "label": "bouteille fermé nº21",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-22",
+            "label": "bouteille fermé nº22",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-23",
+            "label": "bouteille fermé nº23",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436294-h0uujo-frigo-labo-24",
+            "label": "bouteille fermé nº24",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -6756,8 +7069,8 @@
       "placements": [
         {
           "id": "placement-legacy-18232aw",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
+          "roomId": "room-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
           "sublocationId": null
         }
       ]
@@ -23254,6 +23567,12 @@
       "date": "12/08/2026 09:44",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM, high glucose, GlutaMAX™ Supplement, pyruvate."
+    },
+    {
+      "date": "12/08/2026 09:44",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié DMEM sans glucose (pour glucose uptake)."
     },
     {
@@ -28644,5 +28963,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:44:26.988Z"
+  "updatedAt": "2026-08-12T07:44:39.500Z"
 }

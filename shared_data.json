@@ -5425,7 +5425,7 @@
         "primary": {
           "supplier": "Merck",
           "reference": "T6397",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/i7018",
+          "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/t6397",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
           "price": "67",
           "unitPrice": "0,67",
@@ -5457,6 +5457,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -23646,6 +23647,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 10:34",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié (T3) 3,3′,5-Triiodo-L-thyronine sodium Salt."
+    },
+    {
       "date": "12/08/2026 10:32",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29229,5 +29236,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:32:26.062Z"
+  "updatedAt": "2026-08-12T08:34:40.638Z"
 }

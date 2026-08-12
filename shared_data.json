@@ -4012,11 +4012,11 @@
       "name": "Pénicilline-streptomycine",
       "category": "Procédé ExAdEx L2",
       "quantity": 6,
-      "unit": "mL",
-      "minStock": 0,
-      "location": "Laboratoire",
+      "unit": "bouteilles",
+      "minStock": 1,
+      "location": "-20°C 2 salle -80",
       "locations": [
-        "Laboratoire"
+        "-20°C 2 salle -80"
       ],
       "tags": [
         "Antibiotique",
@@ -4042,36 +4042,51 @@
       "createdAt": "28/07/2026 15:00",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
             "key": "mL",
             "singular": "mL",
             "plural": "mL",
             "kind": "continuous",
-            "contains": 1
+            "contains": 100
           }
         ],
         "trackingUnitKey": "mL",
         "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 6,
+            "updatedAt": "2026-08-12T08:44:52.965Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
         "version": 1,
-        "enabled": false,
+        "enabled": true,
         "preparations": []
       },
       "placements": [
         {
           "id": "placement-legacy-nydb71",
-          "roomId": "room-laboratoire",
-          "locationId": null,
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
           "sublocationId": null
         }
       ]
@@ -23647,6 +23662,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 10:44",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pénicilline-streptomycine."
+    },
+    {
       "date": "12/08/2026 10:34",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29236,5 +29257,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:34:40.638Z"
+  "updatedAt": "2026-08-12T08:44:52.967Z"
 }

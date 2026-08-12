@@ -10955,12 +10955,13 @@
       "id": "itm-CSV-0100",
       "name": "L-glutamine",
       "category": "Culture Cell",
-      "quantity": 7,
+      "quantity": 10,
       "unit": "bouteilles",
       "minStock": 1,
       "location": "-20°C 2 salle -80",
       "locations": [
-        "-20°C 2 salle -80"
+        "-20°C 2 salle -80",
+        "Tiroir n°3"
       ],
       "tags": [
         "Milieu"
@@ -11019,13 +11020,168 @@
         "closedByLocation": [
           {
             "location": "Tiroir n°3",
-            "quantity": 7,
-            "updatedAt": "2026-08-12T08:52:52.269Z",
-            "updatedBy": "Caroline"
+            "quantity": 9
           }
         ],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [
+          {
+            "id": "closed-itm-csv-0100-tiroir-n-3-1",
+            "label": "bouteille fermé nº1",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:52:52.269Z",
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0100-tiroir-n-3-2",
+            "label": "bouteille fermé nº2",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:52:52.269Z",
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0100-tiroir-n-3-3",
+            "label": "bouteille fermé nº3",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:52:52.269Z",
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0100-tiroir-n-3-4",
+            "label": "bouteille fermé nº4",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:52:52.269Z",
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0100-tiroir-n-3-5",
+            "label": "bouteille fermé nº5",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:52:52.269Z",
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0100-tiroir-n-3-6",
+            "label": "bouteille fermé nº6",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:52:52.269Z",
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0100-tiroir-n-3-7",
+            "label": "bouteille fermé nº7",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:52:52.269Z",
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mspuqqsf-56453365-1135081373",
+            "label": "bouteille fermé nº8",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:53:26.175Z",
+            "createdBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-12T08:53:26.175Z",
+            "updatedBy": "caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mspuqqsf-565386218-3202806435",
+            "label": "bouteille fermé nº9",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T08:53:26.175Z",
+            "createdBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-12T08:53:26.175Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-container-mspuqqsf-2750134920-808076596",
+            "label": "bouteille ouvert nº10",
+            "location": "Tiroir n°3",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "open",
+            "createdAt": "2026-08-12T08:53:26.175Z",
+            "createdBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-12T08:53:26.175Z",
+            "updatedBy": "caroline",
+            "version": 1,
+            "openedAt": "2026-08-12T08:53:26.175Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -23889,6 +24045,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspuqqce-4072257664-632527319",
+      "operationId": "operation-mspuqqce-4072257664-632527319",
+      "date": "12/08/2026 10:53",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · L-glutamine · Stock précédent : 7 bouteilles · Stock compté : 10 bouteilles · Écart : +3 bouteilles",
+      "user": "Caroline",
+      "itemId": "itm-CSV-0100",
+      "type": "recounted",
+      "previousQuantity": 7,
+      "countedQuantity": 10,
+      "difference": 3,
+      "unit": "bouteilles",
+      "note": ""
+    },
+    {
       "date": "12/08/2026 10:52",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29769,6 +29940,184 @@
       "toLocation": "-20°C 2 salle -80",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspuqqsf-1996122232-3426197545",
+      "operationId": "operation-mspuqqce-4072257664-632527319-closed-container-mspuqqsf-56453365-1135081373",
+      "itemId": "itm-CSV-0100",
+      "timestamp": "2026-08-12T08:53:26.175Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mspuqqsf-56453365-1135081373",
+      "containerId": "closed-container-mspuqqsf-56453365-1135081373",
+      "containerLabel": "bouteille fermé nº8",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 100,
+      "beforeCapacity": 0,
+      "afterCapacity": 100,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mspuqqsf-56453365-1135081373",
+        "label": "bouteille fermé nº8",
+        "location": "Tiroir n°3",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "closed",
+        "createdAt": "2026-08-12T08:53:26.175Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T08:53:26.175Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 100,
+      "difference": 100,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Tiroir n°3",
+      "comment": "Ajout du contenant bouteille fermé nº8 dans Tiroir n°3.",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mspuqqsf-1725782046-2939591997",
+      "operationId": "operation-mspuqqce-4072257664-632527319-closed-container-mspuqqsf-565386218-3202806435",
+      "itemId": "itm-CSV-0100",
+      "timestamp": "2026-08-12T08:53:26.175Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mspuqqsf-565386218-3202806435",
+      "containerId": "closed-container-mspuqqsf-565386218-3202806435",
+      "containerLabel": "bouteille fermé nº9",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 100,
+      "beforeCapacity": 0,
+      "afterCapacity": 100,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mspuqqsf-565386218-3202806435",
+        "label": "bouteille fermé nº9",
+        "location": "Tiroir n°3",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "closed",
+        "createdAt": "2026-08-12T08:53:26.175Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T08:53:26.175Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 100,
+      "difference": 100,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Tiroir n°3",
+      "comment": "Ajout du contenant bouteille fermé nº9 dans Tiroir n°3.",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mspuqqsf-1007800005-2170013282",
+      "operationId": "operation-mspuqqce-4072257664-632527319-closed-container-mspuqqsf-2750134920-808076596",
+      "itemId": "itm-CSV-0100",
+      "timestamp": "2026-08-12T08:53:26.175Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mspuqqsf-2750134920-808076596",
+      "containerId": "closed-container-mspuqqsf-2750134920-808076596",
+      "containerLabel": "bouteille ouvert nº10",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 0,
+      "afterQuantity": 100,
+      "beforeCapacity": 0,
+      "afterCapacity": 100,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mspuqqsf-2750134920-808076596",
+        "label": "bouteille ouvert nº10",
+        "location": "Tiroir n°3",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-12T08:53:26.175Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T08:53:26.175Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "openedAt": "2026-08-12T08:53:26.175Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 100,
+      "difference": 100,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Tiroir n°3",
+      "comment": "Ajout du contenant bouteille ouvert nº10 dans Tiroir n°3.",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -29825,6 +30174,12 @@
       "itemId": "itm-CSV-0064",
       "at": "2026-08-12T08:46:49.137Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mspuqqce-4072257664-632527319",
+      "itemId": "itm-CSV-0100",
+      "at": "2026-08-12T08:53:26.175Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -29835,5 +30190,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:52:52.271Z"
+  "updatedAt": "2026-08-12T08:53:26.175Z"
 }

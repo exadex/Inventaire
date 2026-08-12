@@ -4809,7 +4809,7 @@
         "primary": {
           "supplier": "Sarsdest",
           "reference": "83.3902",
-          "link": "https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3903/",
+          "link": "https://www.sarstedt.com/fr/FRA/c/life-science/culture-cellulaire/boites-de-culture-cellulaire/p/boite-de-culture-cellulaire-100/83.3902",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "68,22",
           "unitPrice": "0,2274",
@@ -4856,6 +4856,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": [
           {
             "id": "container-mrp306rn-4033899303-4120031035",
@@ -4873,7 +4874,8 @@
             },
             "updatedAt": "2026-07-17T15:17:15.203Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 1,
+            "unitKey": "sachet"
           }
         ]
       },
@@ -4882,7 +4884,6 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "placements": [
         {
           "id": "placement-legacy-1n6tvcg",
@@ -23564,6 +23565,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:48",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Boîte C.C 100 mm, standard."
+    },
+    {
       "date": "12/08/2026 09:45",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28969,5 +28976,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:45:31.580Z"
+  "updatedAt": "2026-08-12T07:48:50.300Z"
 }

@@ -10956,11 +10956,11 @@
       "name": "L-glutamine",
       "category": "Culture Cell",
       "quantity": 7,
-      "unit": "unités",
+      "unit": "bouteilles",
       "minStock": 1,
-      "location": "Frigo labo",
+      "location": "-20°C 2 salle -80",
       "locations": [
-        "Frigo labo"
+        "-20°C 2 salle -80"
       ],
       "tags": [
         "Milieu"
@@ -10968,9 +10968,9 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "lonza",
+          "supplier": "Lonza",
           "reference": "BE17-605E",
-          "link": "",
+          "link": "https://bioscience.lonza.com/lonza_bs/FR/en/Culture-Media-and-Reagents/p/000000000000224282/L-Glutamine-GMP%2C-200mM-100ml?srsltid=AfmBOorLQxVKmXs9qDw6y-V_CwCyfyj0_ESURIEjs5TvcXRmMK7i_Yt5",
           "notes": "240",
           "price": "240",
           "unitPrice": "",
@@ -10982,11 +10982,56 @@
       "placements": [
         {
           "id": "placement-legacy-cxlgy9",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
+          "sublocationId": "sublocation-4258795f-51de-4e7a-a0ba-bf320c452413"
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-08-12T08:52:52.269Z",
+      "createdAt": "12/08/2026 10:52",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 100
+          }
+        ],
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
+        "quantityStep": 1,
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "Tiroir n°3",
+            "quantity": 7,
+            "updatedAt": "2026-08-12T08:52:52.269Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": true,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0101",
@@ -23844,6 +23889,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 10:52",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié L-glutamine."
+    },
+    {
       "date": "12/08/2026 10:50",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29784,5 +29835,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:50:48.391Z"
+  "updatedAt": "2026-08-12T08:52:52.271Z"
 }

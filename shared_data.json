@@ -12751,14 +12751,14 @@
       "name": "Glucose Uptake-Glo™ Assay",
       "category": "Biomol",
       "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
+      "unit": "kit",
+      "minStock": 1,
       "location": "-80°C",
       "locations": [
         "-80°C"
       ],
       "tags": [],
-      "notes": "",
+      "notes": "Conditionnement : 5mL",
       "references": {
         "primary": {
           "supplier": "Promega",
@@ -12786,24 +12786,32 @@
       "createdAt": "10/08/2026 17:57",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "kit",
+            "singular": "kit",
+            "plural": "kits",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 5
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
+        "precision": 6,
         "closedByLocation": [],
-        "closedContainers": [],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -23565,6 +23573,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:54",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Glucose Uptake-Glo™ Assay."
+    },
+    {
       "date": "12/08/2026 09:48",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28976,5 +28990,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:48:50.300Z"
+  "updatedAt": "2026-08-12T07:54:59.900Z"
 }

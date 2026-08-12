@@ -107,7 +107,7 @@
       "id": "web-1786531739181",
       "name": "Trypsine-EDTA (0,05 %)",
       "category": "Culture Cell",
-      "quantity": 7,
+      "quantity": 8,
       "unit": "bouteilles",
       "minStock": 1,
       "usageProfile": "normal",
@@ -120,10 +120,10 @@
         }
       ],
       "locations": [
-        "Tiroir n°2",
-        "-20°C 2 salle -80"
+        "-20°C 2 salle -80",
+        "Tiroir n°2"
       ],
-      "location": "Tiroir n°2",
+      "location": "-20°C 2 salle -80",
       "tags": [
         "culture"
       ],
@@ -267,7 +267,34 @@
             "version": 1
           }
         ],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "closed-container-mspyzb43-574713748-1760828287",
+            "label": "bouteille ouvert nº8",
+            "location": "Tiroir n°2",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "mL",
+            "status": "open",
+            "createdAt": "2026-08-12T10:52:04.227Z",
+            "createdBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-12T10:52:04.227Z",
+            "updatedBy": "caroline",
+            "version": 1,
+            "openedAt": "2026-08-12T10:52:04.227Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -24342,6 +24369,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspyzapy-4021260296-1230066810",
+      "operationId": "operation-mspyzapy-4021260296-1230066810",
+      "date": "12/08/2026 12:52",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Trypsine-EDTA (0,05 %) · Stock précédent : 7 bouteilles · Stock compté : 8 bouteilles · Écart : +1 bouteilles",
+      "user": "Caroline",
+      "itemId": "web-1786531739181",
+      "type": "recounted",
+      "previousQuantity": 7,
+      "countedQuantity": 8,
+      "difference": 1,
+      "unit": "bouteilles",
+      "note": ""
+    },
+    {
       "id": "history-operation-mspyyuta-2854940093-3355996355",
       "operationId": "operation-mspyyuta-2854940093-3355996355",
       "date": "12/08/2026 12:51",
@@ -30809,6 +30851,70 @@
       "toLocation": "",
       "comment": "compatege",
       "correctionReason": "compatege"
+    },
+    {
+      "id": "movement-mspyzb43-567245103-757662997",
+      "operationId": "operation-mspyzapy-4021260296-1230066810-closed-container-mspyzb43-574713748-1760828287",
+      "itemId": "web-1786531739181",
+      "timestamp": "2026-08-12T10:52:04.227Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mspyzb43-574713748-1760828287",
+      "containerId": "closed-container-mspyzb43-574713748-1760828287",
+      "containerLabel": "bouteille ouvert nº8",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 0,
+      "afterQuantity": 100,
+      "beforeCapacity": 0,
+      "afterCapacity": 100,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mspyzb43-574713748-1760828287",
+        "label": "bouteille ouvert nº8",
+        "location": "Tiroir n°2",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-12T10:52:04.227Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T10:52:04.227Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "openedAt": "2026-08-12T10:52:04.227Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 100,
+      "difference": 100,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Tiroir n°2",
+      "comment": "Ajout du contenant bouteille ouvert nº8 dans Tiroir n°2.",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -30913,6 +31019,12 @@
       "itemId": "web-1786531739181",
       "at": "2026-08-12T10:51:43.726Z",
       "type": "preparation_finished"
+    },
+    {
+      "operationId": "operation-mspyzapy-4021260296-1230066810",
+      "itemId": "web-1786531739181",
+      "at": "2026-08-12T10:52:04.227Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -30923,5 +31035,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:51:43.726Z"
+  "updatedAt": "2026-08-12T10:52:04.227Z"
 }

@@ -132,9 +132,9 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Gibco",
+          "supplier": "Thermo Fischer",
           "reference": "25300-054",
-          "link": "",
+          "link": "https://www.thermofisher.com/order/catalog/product/25300054?SID=srch-hj-25300-054",
           "notes": "",
           "price": "",
           "unitPrice": "",
@@ -173,7 +173,9 @@
         "closedByLocation": [
           {
             "location": "Tiroir n°2",
-            "quantity": 7
+            "quantity": 7,
+            "updatedAt": "",
+            "updatedBy": ""
           }
         ],
         "closedContainers": [
@@ -316,7 +318,10 @@
             "locations": [
               {
                 "location": "-20°C 2 salle -80",
-                "quantity": 9
+                "quantity": 9,
+                "roomId": "",
+                "locationId": "",
+                "sublocationId": ""
               }
             ],
             "openAliquots": [],
@@ -347,7 +352,10 @@
             "locations": [
               {
                 "location": "-20°C 2 salle -80",
-                "quantity": 9
+                "quantity": 9,
+                "roomId": "",
+                "locationId": "",
+                "sublocationId": ""
               }
             ],
             "openAliquots": [],
@@ -366,7 +374,8 @@
           }
         ]
       },
-      "source": "web"
+      "source": "web",
+      "supplierContactId": "contact-1785239459565-7t6yfo"
     },
     {
       "id": "web-1786452661627",
@@ -24402,6 +24411,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 13:54",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Trypsine-EDTA (0,05 %)."
+    },
+    {
       "date": "12/08/2026 13:53",
       "user": "Caroline",
       "action": "Ordre des emplacements modifié",
@@ -31274,5 +31289,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T11:53:28.816Z"
+  "updatedAt": "2026-08-12T11:54:42.041Z"
 }

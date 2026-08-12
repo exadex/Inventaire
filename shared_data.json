@@ -13595,7 +13595,38 @@
       "aliquotTracking": {
         "version": 1,
         "enabled": true,
-        "preparations": []
+        "preparations": [
+          {
+            "id": "preparation-mspv7tkb-3397851363-3401671172",
+            "label": "Préparation nº1",
+            "createdCount": 40,
+            "representedSourceQuantity": 1,
+            "sourceUnit": "unités",
+            "volume": 10,
+            "volumeUnit": "µL",
+            "concentration": 100,
+            "concentrationUnit": "µg/mL",
+            "locations": [
+              {
+                "location": "-20°C 2 salle -80",
+                "quantity": 40
+              }
+            ],
+            "openAliquots": [],
+            "preparedAt": "2026-08-12",
+            "preparedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "note": "Quantité approximative",
+            "status": "active",
+            "updatedAt": "2026-08-12T09:06:42.923Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       }
     },
     {
@@ -24106,6 +24137,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspv7t65-2292775518-4250647505",
+      "operationId": "operation-mspv7t65-2292775518-4250647505",
+      "date": "12/08/2026 11:06",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · aliquots_prepared · Human FGF-21 · Quantité approximative",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-0nt8ah"
+    },
+    {
       "id": "history-operation-mspv6szh-2513779669-228185987",
       "operationId": "operation-mspv6szh-2513779669-228185987",
       "date": "12/08/2026 11:05",
@@ -30456,6 +30496,12 @@
       "itemId": "itm-web-1783931436295-0nt8ah",
       "at": "2026-08-12T09:05:56.030Z",
       "type": "received"
+    },
+    {
+      "operationId": "operation-mspv7t65-2292775518-4250647505",
+      "itemId": "itm-web-1783931436295-0nt8ah",
+      "at": "2026-08-12T09:06:42.923Z",
+      "type": "aliquots_prepared"
     }
   ],
   "agentOperations": [
@@ -30466,5 +30512,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T09:05:56.030Z"
+  "updatedAt": "2026-08-12T09:06:42.923Z"
 }

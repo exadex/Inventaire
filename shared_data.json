@@ -120,10 +120,10 @@
         }
       ],
       "locations": [
-        "-20°C 2 salle -80",
-        "Tiroir n°2"
+        "Tiroir n°2",
+        "-20°C 2 salle -80"
       ],
-      "location": "-20°C 2 salle -80",
+      "location": "Tiroir n°2",
       "tags": [
         "culture"
       ],
@@ -272,7 +272,7 @@
             "id": "closed-container-mspyzb43-574713748-1760828287",
             "label": "bouteille ouvert nº8",
             "location": "Tiroir n°2",
-            "remaining": 100,
+            "remaining": 10,
             "capacity": 100,
             "unitKey": "mL",
             "status": "open",
@@ -283,9 +283,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-08-12T10:52:04.227Z",
+            "updatedAt": "2026-08-12T10:52:31.263Z",
             "updatedBy": "caroline",
-            "version": 1,
+            "version": 2,
             "openedAt": "2026-08-12T10:52:04.227Z",
             "openedBy": {
               "userId": "caroline",
@@ -330,6 +330,36 @@
             "updatedBy": "caroline",
             "version": 2,
             "finishedAt": "2026-08-12T10:51:43.725Z"
+          },
+          {
+            "id": "preparation-mspyzvz3-3207792610-3599999632",
+            "label": "Préparation nº2",
+            "createdCount": 9,
+            "representedSourceQuantity": 90,
+            "sourceUnit": "mL",
+            "volume": 10,
+            "volumeUnit": "mL",
+            "concentration": 100,
+            "concentrationUnit": "%",
+            "locations": [
+              {
+                "location": "-20°C 2 salle -80",
+                "quantity": 9
+              }
+            ],
+            "openAliquots": [],
+            "preparedAt": "2026-08-12",
+            "preparedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "note": "",
+            "status": "active",
+            "updatedAt": "2026-08-12T10:52:31.263Z",
+            "updatedBy": "caroline",
+            "version": 1
           }
         ]
       },
@@ -24369,6 +24399,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspyzvd3-2242542319-3906769705",
+      "operationId": "operation-mspyzvd3-2242542319-3906769705",
+      "date": "12/08/2026 12:52",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · aliquots_prepared · Trypsine-EDTA (0,05 %)",
+      "user": "Caroline",
+      "itemId": "web-1786531739181"
+    },
+    {
       "id": "history-operation-mspyzapy-4021260296-1230066810",
       "operationId": "operation-mspyzapy-4021260296-1230066810",
       "date": "12/08/2026 12:52",
@@ -30915,6 +30954,74 @@
       "toLocation": "Tiroir n°2",
       "comment": "Ajout du contenant bouteille ouvert nº8 dans Tiroir n°2.",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspyzvz3-2557003285-1473094803",
+      "operationId": "operation-mspyzvd3-2242542319-3906769705",
+      "itemId": "web-1786531739181",
+      "timestamp": "2026-08-12T10:52:31.263Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "aliquots_prepared",
+      "entityType": "preparation",
+      "entityId": "preparation-mspyzvz3-3207792610-3599999632",
+      "containerId": "preparation-mspyzvz3-3207792610-3599999632",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "preparation-mspyzvz3-3207792610-3599999632",
+        "label": "Préparation nº2",
+        "createdCount": 9,
+        "representedSourceQuantity": 90,
+        "sourceUnit": "mL",
+        "volume": 10,
+        "volumeUnit": "mL",
+        "concentration": 100,
+        "concentrationUnit": "%",
+        "locations": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 9
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "",
+        "status": "active",
+        "updatedAt": "2026-08-12T10:52:31.263Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 9,
+      "difference": null,
+      "unit": "aliquotes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "mL",
+      "fromLocation": "",
+      "toLocation": "-20°C 2 salle -80",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -31025,6 +31132,12 @@
       "itemId": "web-1786531739181",
       "at": "2026-08-12T10:52:04.227Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mspyzvd3-2242542319-3906769705",
+      "itemId": "web-1786531739181",
+      "at": "2026-08-12T10:52:31.263Z",
+      "type": "aliquots_prepared"
     }
   ],
   "agentOperations": [
@@ -31035,5 +31148,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:52:04.227Z"
+  "updatedAt": "2026-08-12T10:52:31.263Z"
 }

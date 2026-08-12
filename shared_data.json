@@ -6407,9 +6407,9 @@
       "quantity": 1,
       "unit": "bouteilles",
       "minStock": 0,
-      "location": "Frigo culture L1",
+      "location": "Culture L1",
       "locations": [
-        "Frigo culture L1"
+        "Culture L1"
       ],
       "tags": [
         "Milieu DMEM"
@@ -6466,7 +6466,21 @@
             "updatedBy": "Caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436294-prq1rh-frigo-culture-l1-1",
+            "label": "bouteille fermé nº1",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:41:13.243Z",
+            "updatedAt": "2026-08-12T07:41:13.243Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -6478,7 +6492,7 @@
         {
           "id": "placement-legacy-99rk9d",
           "roomId": "room-culture-l1",
-          "locationId": "location-frigo-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
           "sublocationId": null
         }
       ]
@@ -23240,6 +23254,12 @@
       "date": "12/08/2026 09:44",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM sans glucose (pour glucose uptake)."
+    },
+    {
+      "date": "12/08/2026 09:44",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié SupplementPack containing all media supplements as individual vials."
     },
     {
@@ -28624,5 +28644,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:44:07.612Z"
+  "updatedAt": "2026-08-12T07:44:26.988Z"
 }

@@ -107,6 +107,74 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1786540743486",
+      "name": "Luminex® Multiplex Assay Customization Tool",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "kit",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-bd3776b6-43c8-40ce-9d80-6ae4c0645b47",
+          "roomId": "room-chambre-froide",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Chambre froide"
+      ],
+      "location": "Chambre froide",
+      "tags": [
+        "Luminex"
+      ],
+      "notes": "Luminex sur :\nPro-Collagen I alpha 1\nAdiponectin/Acrp30,\nIL-6, \nIL-8/CXCL8, \nIL-15, \nBDNF, \nFollistatin-like 1/FSTL1, \nLIF",
+      "references": {
+        "primary": {
+          "supplier": "R&D systems",
+          "reference": "LXSAHM-08",
+          "link": "https://www.bio-techne.com/luminex-assay-customization-tool",
+          "notes": "1895",
+          "price": "1895",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239056045-dnjj9a",
+      "createdAtRaw": "2026-08-12T13:19:03.486Z",
+      "createdAt": "12/08/2026 15:19",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "kit",
+        "trackingUnit": "kit",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1786540670103",
       "name": "96-well Magnetic Plate Separator",
       "category": "Procédé ExAdEx L2",
@@ -20246,7 +20314,7 @@
       "id": "ord-1784705628709",
       "status": "received",
       "itemMode": "new",
-      "inventoryItemId": null,
+      "inventoryItemId": "web-1786540743486",
       "itemName": "Luminex® Multiplex Assay Customization Tool",
       "requestedQuantity": 1,
       "receivedQuantity": 1,
@@ -20263,7 +20331,11 @@
       "receivedAtRaw": "2026-08-12T13:15:41.455Z",
       "newItemData": {
         "name": "Luminex® Multiplex Assay Customization Tool"
-      }
+      },
+      "addedToInventory": true,
+      "addedToInventoryQuantity": 1,
+      "addedToInventoryAt": "12/08/2026 15:19",
+      "addedToInventoryAtRaw": "2026-08-12T13:19:03.487Z"
     }
   ],
   "clientSamples": [
@@ -24413,6 +24485,18 @@
     }
   ],
   "history": [
+    {
+      "date": "12/08/2026 15:19",
+      "user": "Caroline",
+      "action": "Ajout à l'inventaire",
+      "detail": "Caroline a créé Luminex® Multiplex Assay Customization Tool depuis la demande de commande Luminex® Multiplex Assay Customization Tool."
+    },
+    {
+      "date": "12/08/2026 15:19",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Luminex® Multiplex Assay Customization Tool dans Procédé ExAdEx L2."
+    },
     {
       "date": "12/08/2026 15:17",
       "user": "Caroline",
@@ -31440,5 +31524,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T13:17:50.106Z"
+  "updatedAt": "2026-08-12T13:19:03.488Z"
 }

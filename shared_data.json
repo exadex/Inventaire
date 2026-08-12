@@ -6304,11 +6304,11 @@
       "name": "DMEM sans glucose (pour glucose uptake)",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "mL",
+      "unit": "bouteilles",
       "minStock": 0,
-      "location": "Frigo labo",
+      "location": "Frigo culture L1",
       "locations": [
-        "Frigo labo"
+        "Frigo culture L1"
       ],
       "tags": [
         "Milieu DMEM"
@@ -6333,24 +6333,39 @@
       "createdAt": "10/08/2026 13:33",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
             "key": "mL",
             "singular": "mL",
             "plural": "mL",
             "kind": "continuous",
-            "contains": 1
+            "contains": 500
           }
         ],
         "trackingUnitKey": "mL",
         "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "Frigo culture L1",
+            "quantity": 1,
+            "updatedAt": "2026-08-12T07:41:13.243Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -6361,8 +6376,8 @@
       "placements": [
         {
           "id": "placement-legacy-99rk9d",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
+          "roomId": "room-culture-l1",
+          "locationId": "location-frigo-culture-l1",
           "sublocationId": null
         }
       ]
@@ -23113,6 +23128,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:41",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM sans glucose (pour glucose uptake)."
+    },
+    {
       "date": "12/08/2026 09:40",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28464,5 +28485,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:40:21.502Z"
+  "updatedAt": "2026-08-12T07:41:13.246Z"
 }

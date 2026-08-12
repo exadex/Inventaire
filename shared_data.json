@@ -13539,7 +13539,7 @@
       "category": "Biomol",
       "quantity": 1,
       "unit": "unités",
-      "minStock": 0,
+      "minStock": 1,
       "location": "-20°C 2 salle -80",
       "locations": [
         "-20°C 2 salle -80"
@@ -24137,6 +24137,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 11:07",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Human FGF-21."
+    },
+    {
       "id": "history-operation-mspv7t65-2292775518-4250647505",
       "operationId": "operation-mspv7t65-2292775518-4250647505",
       "date": "12/08/2026 11:06",
@@ -30512,5 +30518,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T09:06:42.923Z"
+  "updatedAt": "2026-08-12T09:07:10.478Z"
 }

@@ -12750,7 +12750,7 @@
       "id": "itm-web-1783931436295-0te4tf",
       "name": "Glucose Uptake-Glo™ Assay",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 2,
       "unit": "kit",
       "minStock": 1,
       "location": "-80°C",
@@ -12810,9 +12810,61 @@
         "trackingUnit": "mL",
         "quantityStep": 1,
         "precision": 6,
-        "closedByLocation": [],
-        "closedContainers": null,
-        "openContainers": []
+        "closedByLocation": [
+          {
+            "location": "-80°C",
+            "quantity": 1
+          }
+        ],
+        "closedContainers": [
+          {
+            "id": "closed-container-mspso14d-3970048876-2914773580",
+            "label": "kit fermé nº2",
+            "location": "-80°C",
+            "remaining": 5,
+            "capacity": 5,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:55:20.365Z",
+            "createdBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-12T07:55:20.365Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-container-mspso14d-1515073633-4204132232",
+            "label": "kit ouvert nº1",
+            "location": "-80°C",
+            "remaining": 5,
+            "capacity": 5,
+            "unitKey": "mL",
+            "status": "open",
+            "createdAt": "2026-08-12T07:55:20.365Z",
+            "createdBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-12T07:55:20.365Z",
+            "updatedBy": "caroline",
+            "version": 1,
+            "openedAt": "2026-08-12T07:55:20.365Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -23573,6 +23625,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspso0bp-2045927478-787853155",
+      "operationId": "operation-mspso0bp-2045927478-787853155",
+      "date": "12/08/2026 09:55",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Glucose Uptake-Glo™ Assay · Stock précédent : 0 kits · Stock compté : 2 kits · Écart : +2 kits",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 2,
+      "difference": 2,
+      "unit": "kits",
+      "note": ""
+    },
+    {
       "date": "12/08/2026 09:54",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28948,6 +29015,127 @@
       "toLocation": "-20°C 2 salle -80",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspso14d-2518931718-2162086668",
+      "operationId": "operation-mspso0bp-2045927478-787853155-closed-container-mspso14d-1515073633-4204132232",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "timestamp": "2026-08-12T07:55:20.365Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mspso14d-1515073633-4204132232",
+      "containerId": "closed-container-mspso14d-1515073633-4204132232",
+      "containerLabel": "kit ouvert nº1",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 0,
+      "afterQuantity": 5,
+      "beforeCapacity": 0,
+      "afterCapacity": 5,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mspso14d-1515073633-4204132232",
+        "label": "kit ouvert nº1",
+        "location": "-80°C",
+        "remaining": 5,
+        "capacity": 5,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-12T07:55:20.365Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T07:55:20.365Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "openedAt": "2026-08-12T07:55:20.365Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 5,
+      "difference": 5,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "-80°C",
+      "comment": "Ajout du contenant kit ouvert nº1 dans -80°C.",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mspso14e-1847702808-758438372",
+      "operationId": "operation-mspso0bp-2045927478-787853155-closed-container-mspso14d-3970048876-2914773580",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "timestamp": "2026-08-12T07:55:20.366Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mspso14d-3970048876-2914773580",
+      "containerId": "closed-container-mspso14d-3970048876-2914773580",
+      "containerLabel": "kit fermé nº2",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 5,
+      "beforeCapacity": 0,
+      "afterCapacity": 5,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mspso14d-3970048876-2914773580",
+        "label": "kit fermé nº2",
+        "location": "-80°C",
+        "remaining": 5,
+        "capacity": 5,
+        "unitKey": "mL",
+        "status": "closed",
+        "createdAt": "2026-08-12T07:55:20.365Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T07:55:20.365Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 5,
+      "difference": 5,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "-80°C",
+      "comment": "Ajout du contenant kit fermé nº2 dans -80°C.",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -28980,6 +29168,12 @@
       "itemId": "itm-web-1783931436294-qufvjj",
       "at": "2026-08-11T14:49:36.037Z",
       "type": "received"
+    },
+    {
+      "operationId": "operation-mspso0bp-2045927478-787853155",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "at": "2026-08-12T07:55:20.366Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -28990,5 +29184,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:54:59.900Z"
+  "updatedAt": "2026-08-12T07:55:20.366Z"
 }

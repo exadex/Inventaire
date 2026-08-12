@@ -4102,7 +4102,9 @@
         "closedByLocation": [
           {
             "location": "-20°C 2 salle -80",
-            "quantity": 5
+            "quantity": 5,
+            "updatedAt": "",
+            "updatedBy": ""
           }
         ],
         "closedContainers": [
@@ -4237,7 +4239,7 @@
           "id": "placement-legacy-nydb71",
           "roomId": "room-piece-80",
           "locationId": "location-20-2-salle-80",
-          "sublocationId": null
+          "sublocationId": "sublocation-fcb00973-dc6d-4a27-ad7b-d8c02a30318a"
         }
       ]
     },
@@ -23845,6 +23847,12 @@
       "date": "12/08/2026 10:49",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Pénicilline-streptomycine."
+    },
+    {
+      "date": "12/08/2026 10:49",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Fetal Bovine Serum (FBS)."
     },
     {
@@ -29764,5 +29772,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:49:28.711Z"
+  "updatedAt": "2026-08-12T08:49:38.223Z"
 }

@@ -13949,7 +13949,10 @@
             "concentrationUnit": "µg/mL",
             "locations": [
               {
-                "location": "-20°C 2 salle -80",
+                "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°5",
+                "roomId": "room-piece-80",
+                "locationId": "location-20-2-salle-80",
+                "sublocationId": "sublocation-fe3a753f-9623-40a5-a8b3-6d6fcaed4335",
                 "quantity": 40
               }
             ],
@@ -13963,9 +13966,9 @@
             },
             "note": "Quantité approximative",
             "status": "active",
-            "updatedAt": "2026-08-12T09:06:42.923Z",
+            "updatedAt": "2026-08-12T14:15:58.762Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       }
@@ -24486,6 +24489,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-msq69iqh-3045563748-1683852847",
+      "operationId": "operation-msq69iqh-3045563748-1683852847",
+      "date": "12/08/2026 16:15",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · preparation_corrected · Human FGF-21 · Les aliquots comptés sont une approximation !",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-0nt8ah"
+    },
+    {
       "date": "12/08/2026 15:19",
       "user": "Caroline",
       "action": "Ajout à l'inventaire",
@@ -31514,6 +31526,12 @@
       "itemId": "web-1786531739181",
       "at": "2026-08-12T13:14:20.309Z",
       "type": "preparation_corrected"
+    },
+    {
+      "operationId": "operation-msq69iqh-3045563748-1683852847",
+      "itemId": "itm-web-1783931436295-0nt8ah",
+      "at": "2026-08-12T14:15:58.762Z",
+      "type": "preparation_corrected"
     }
   ],
   "agentOperations": [
@@ -31524,5 +31542,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T13:19:03.488Z"
+  "updatedAt": "2026-08-12T14:15:58.762Z"
 }

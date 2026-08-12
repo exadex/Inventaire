@@ -152,6 +152,7 @@
   function remainingAliquots(prep) { return prep.locations.reduce((sum, row) => sum + row.quantity, 0); }
   function aliquotEquivalent(prep) { const unopened = prep.createdCount ? prep.representedSourceQuantity * remainingAliquots(prep) / prep.createdCount : 0, opened = (prep.openAliquots || []).filter(row => row.status === "open").reduce((sum, row) => sum + number(row.sourceEquivalentRemaining), 0); return round(unopened + opened); }
   function activeAliquotEquivalent(item) { return normalizeAliquots(item).preparations.filter(row => row.status === "active").reduce((sum, prep) => sum + aliquotEquivalent(prep), 0); }
+  function activePreparationLabels(item){return normalizeAliquots(item).preparations.filter(row=>row.status==="active").map((preparation,index)=>({id:preparation.id,label:`Préparation nº${index+1}`,index}));}
   function simpleRawAvailable(item) { return round(Math.max(0, number(item.quantity) - activeAliquotEquivalent(item))); }
   function available(item) {
     const tracking = normalizeTracking(item);
@@ -289,5 +290,5 @@
     operation.before = before; operation.after = after; const event = eventFor(item, operation, user); return { item, event, events: [...additionalEvents, event] };
   }
 
-  window.StockTracking = { VERSION, id, normalizeUnitLabel, parseLocalizedNumber, packagingPreview, migrationComparison, migrationPresentation, normalizeTracking, normalizeAliquots, capacity, trackingLevel, trackingFactor, trackingCapacity, fromBaseQuantity, toBaseQuantity, validateUnitQuantity, totalClosed, remainingAliquots, aliquotEquivalent, activeAliquotEquivalent, simpleRawAvailable, available, format, plural, summary, validateStep, apply };
+  window.StockTracking = { VERSION, id, normalizeUnitLabel, parseLocalizedNumber, packagingPreview, migrationComparison, migrationPresentation, normalizeTracking, normalizeAliquots, capacity, trackingLevel, trackingFactor, trackingCapacity, fromBaseQuantity, toBaseQuantity, validateUnitQuantity, totalClosed, remainingAliquots, aliquotEquivalent, activeAliquotEquivalent, activePreparationLabels, simpleRawAvailable, available, format, plural, summary, validateStep, apply };
 })();

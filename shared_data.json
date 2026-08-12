@@ -116,7 +116,7 @@
           "id": "placement-5de43ceb-9124-4a47-96e2-32d290a84df1",
           "roomId": "room-piece-80",
           "locationId": "location-20-2-salle-80",
-          "sublocationId": "sublocation-4258795f-51de-4e7a-a0ba-bf320c452413"
+          "sublocationId": "sublocation-400c33ea-ed94-4a3c-90d3-b406ca307c8c"
         }
       ],
       "locations": [
@@ -23847,6 +23847,12 @@
       "date": "12/08/2026 10:50",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Fetal Bovine Serum (FBS)."
+    },
+    {
+      "date": "12/08/2026 10:50",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Insuline, humain recombinant, zinc solution, 4mg/ml."
     },
     {
@@ -29778,5 +29784,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:50:16.503Z"
+  "updatedAt": "2026-08-12T08:50:48.391Z"
 }

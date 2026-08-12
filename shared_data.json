@@ -155,8 +155,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "bouteille",
-        "trackingUnit": "bouteilles",
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -166,7 +166,38 @@
       "aliquotTracking": {
         "version": 1,
         "enabled": true,
-        "preparations": []
+        "preparations": [
+          {
+            "id": "preparation-mspywh38-2922475306-2109359357",
+            "label": "Préparation nº1",
+            "createdCount": 9,
+            "representedSourceQuantity": 1,
+            "sourceUnit": "bouteilles",
+            "volume": 10,
+            "volumeUnit": "mL",
+            "concentration": 100,
+            "concentrationUnit": "%",
+            "locations": [
+              {
+                "location": "-20°C 2 salle -80",
+                "quantity": 9
+              }
+            ],
+            "openAliquots": [],
+            "preparedAt": "2026-08-12",
+            "preparedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "note": "",
+            "status": "active",
+            "updatedAt": "2026-08-12T10:49:52.004Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "source": "web"
     },
@@ -24204,6 +24235,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspywgmn-3022761929-4086359727",
+      "operationId": "operation-mspywgmn-3022761929-4086359727",
+      "date": "12/08/2026 12:49",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · aliquots_prepared · Trypsine-EDTA (0,05 %)",
+      "user": "Caroline",
+      "itemId": "web-1786531739181"
+    },
+    {
       "date": "12/08/2026 12:48",
       "user": "Caroline",
       "action": "Item ajouté",
@@ -30581,6 +30621,12 @@
       "itemId": "itm-web-1783931436295-0nt8ah",
       "at": "2026-08-12T09:06:42.923Z",
       "type": "aliquots_prepared"
+    },
+    {
+      "operationId": "operation-mspywgmn-3022761929-4086359727",
+      "itemId": "web-1786531739181",
+      "at": "2026-08-12T10:49:52.004Z",
+      "type": "aliquots_prepared"
     }
   ],
   "agentOperations": [
@@ -30591,5 +30637,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:48:59.184Z"
+  "updatedAt": "2026-08-12T10:49:52.004Z"
 }

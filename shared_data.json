@@ -79,6 +79,11 @@
         "id": "sublocation-400c33ea-ed94-4a3c-90d3-b406ca307c8c",
         "locationId": "location-20-2-salle-80",
         "name": "Tiroir n°2"
+      },
+      {
+        "id": "sublocation-4258795f-51de-4e7a-a0ba-bf320c452413",
+        "locationId": "location-20-2-salle-80",
+        "name": "Tiroir n°3"
       }
     ]
   },
@@ -23825,6 +23830,12 @@
       "date": "12/08/2026 10:48",
       "user": "Caroline",
       "action": "Sous-localisation ajoutée",
+      "detail": "Caroline a ajouté Tiroir n°3."
+    },
+    {
+      "date": "12/08/2026 10:48",
+      "user": "Caroline",
+      "action": "Sous-localisation ajoutée",
       "detail": "Caroline a ajouté Tiroir n°2."
     },
     {
@@ -29714,5 +29725,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:48:45.079Z"
+  "updatedAt": "2026-08-12T08:48:52.647Z"
 }

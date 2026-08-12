@@ -4009,7 +4009,7 @@
     },
     {
       "id": "itm-CSV-0064",
-      "name": "pen/strep stock",
+      "name": "Pénicilline-streptomycine",
       "category": "Procédé ExAdEx L2",
       "quantity": 6,
       "unit": "mL",
@@ -4021,7 +4021,7 @@
       "tags": [
         "Antibiotique"
       ],
-      "notes": "",
+      "notes": "pen/strep, P/S",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -4058,6 +4058,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -23644,6 +23645,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 10:32",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Pénicilline-streptomycine."
+    },
+    {
       "date": "12/08/2026 09:58",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29215,5 +29222,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:58:04.796Z"
+  "updatedAt": "2026-08-12T08:32:09.063Z"
 }

@@ -10958,10 +10958,10 @@
       "quantity": 10,
       "unit": "bouteilles",
       "minStock": 1,
-      "location": "-20°C 2 salle -80",
+      "location": "Tiroir n°3",
       "locations": [
-        "-20°C 2 salle -80",
-        "Tiroir n°3"
+        "Tiroir n°3",
+        "-20°C 2 salle -80"
       ],
       "tags": [
         "Milieu"
@@ -11159,7 +11159,7 @@
             "id": "closed-container-mspuqqsf-2750134920-808076596",
             "label": "bouteille ouvert nº10",
             "location": "Tiroir n°3",
-            "remaining": 100,
+            "remaining": 85,
             "capacity": 100,
             "unitKey": "mL",
             "status": "open",
@@ -11170,9 +11170,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-08-12T08:53:26.175Z",
+            "updatedAt": "2026-08-12T08:54:12.670Z",
             "updatedBy": "caroline",
-            "version": 1,
+            "version": 2,
             "openedAt": "2026-08-12T08:53:26.175Z",
             "openedBy": {
               "userId": "caroline",
@@ -11186,7 +11186,38 @@
       "aliquotTracking": {
         "version": 1,
         "enabled": true,
-        "preparations": []
+        "preparations": [
+          {
+            "id": "preparation-mspurqny-2049812420-447654745",
+            "label": "Préparation nº1",
+            "createdCount": 3,
+            "representedSourceQuantity": 15,
+            "sourceUnit": "mL",
+            "volume": 5,
+            "volumeUnit": "mL",
+            "concentration": 200,
+            "concentrationUnit": "mM",
+            "locations": [
+              {
+                "location": "-20°C 2 salle -80",
+                "quantity": 3
+              }
+            ],
+            "openAliquots": [],
+            "preparedAt": "2026-08-12",
+            "preparedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "note": "Tiroir n°3",
+            "status": "active",
+            "updatedAt": "2026-08-12T08:54:12.670Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       }
     },
     {
@@ -24045,6 +24076,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspurq2m-998990495-3188420953",
+      "operationId": "operation-mspurq2m-998990495-3188420953",
+      "date": "12/08/2026 10:54",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · aliquots_prepared · L-glutamine · Tiroir n°3",
+      "user": "Caroline",
+      "itemId": "itm-CSV-0100"
+    },
+    {
       "id": "history-operation-mspuqqce-4072257664-632527319",
       "operationId": "operation-mspuqqce-4072257664-632527319",
       "date": "12/08/2026 10:53",
@@ -30118,6 +30158,74 @@
       "toLocation": "Tiroir n°3",
       "comment": "Ajout du contenant bouteille ouvert nº10 dans Tiroir n°3.",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspurqny-4134289111-4206972202",
+      "operationId": "operation-mspurq2m-998990495-3188420953",
+      "itemId": "itm-CSV-0100",
+      "timestamp": "2026-08-12T08:54:12.670Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "aliquots_prepared",
+      "entityType": "preparation",
+      "entityId": "preparation-mspurqny-2049812420-447654745",
+      "containerId": "preparation-mspurqny-2049812420-447654745",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "preparation-mspurqny-2049812420-447654745",
+        "label": "Préparation nº1",
+        "createdCount": 3,
+        "representedSourceQuantity": 15,
+        "sourceUnit": "mL",
+        "volume": 5,
+        "volumeUnit": "mL",
+        "concentration": 200,
+        "concentrationUnit": "mM",
+        "locations": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 3
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "Tiroir n°3",
+        "status": "active",
+        "updatedAt": "2026-08-12T08:54:12.670Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 3,
+      "difference": null,
+      "unit": "aliquotes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "mL",
+      "fromLocation": "",
+      "toLocation": "-20°C 2 salle -80",
+      "comment": "Tiroir n°3",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -30180,6 +30288,12 @@
       "itemId": "itm-CSV-0100",
       "at": "2026-08-12T08:53:26.175Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mspurq2m-998990495-3188420953",
+      "itemId": "itm-CSV-0100",
+      "at": "2026-08-12T08:54:12.670Z",
+      "type": "aliquots_prepared"
     }
   ],
   "agentOperations": [
@@ -30190,5 +30304,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:53:26.175Z"
+  "updatedAt": "2026-08-12T08:54:12.670Z"
 }

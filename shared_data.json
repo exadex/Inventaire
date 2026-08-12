@@ -107,7 +107,7 @@
       "id": "web-1786531739181",
       "name": "Trypsine-EDTA (0,05 %)",
       "category": "Culture Cell",
-      "quantity": 8,
+      "quantity": 7.9,
       "unit": "bouteilles",
       "minStock": 1,
       "usageProfile": "normal",
@@ -120,10 +120,10 @@
         }
       ],
       "locations": [
-        "Tiroir n°2",
-        "-20°C 2 salle -80"
+        "-20°C 2 salle -80",
+        "Tiroir n°2"
       ],
-      "location": "Tiroir n°2",
+      "location": "-20°C 2 salle -80",
       "tags": [
         "culture"
       ],
@@ -272,10 +272,10 @@
             "id": "closed-container-mspyzb43-574713748-1760828287",
             "label": "bouteille ouvert nº8",
             "location": "Tiroir n°2",
-            "remaining": 10,
+            "remaining": 0,
             "capacity": 100,
             "unitKey": "mL",
-            "status": "open",
+            "status": "finished",
             "createdAt": "2026-08-12T10:52:04.227Z",
             "createdBy": {
               "userId": "caroline",
@@ -283,16 +283,17 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-08-12T10:52:31.263Z",
+            "updatedAt": "2026-08-12T10:52:48.695Z",
             "updatedBy": "caroline",
-            "version": 2,
+            "version": 3,
             "openedAt": "2026-08-12T10:52:04.227Z",
             "openedBy": {
               "userId": "caroline",
               "userName": "Caroline",
               "userEmoji": "🧪",
               "userInitials": ""
-            }
+            },
+            "finishedAt": "2026-08-12T10:52:48.695Z"
           }
         ]
       },
@@ -24399,6 +24400,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mspz080u-1821506043-2146034749",
+      "operationId": "operation-mspz080u-1821506043-2146034749",
+      "date": "12/08/2026 12:52",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Trypsine-EDTA (0,05 %) · Stock précédent : 8 bouteilles · Stock compté : 7,9 bouteilles · Écart : -0,1 bouteilles",
+      "user": "Caroline",
+      "itemId": "web-1786531739181",
+      "type": "recounted",
+      "previousQuantity": 8,
+      "countedQuantity": 7.9,
+      "difference": -0.1,
+      "unit": "bouteilles",
+      "note": ""
+    },
+    {
       "id": "history-operation-mspyzvd3-2242542319-3906769705",
       "operationId": "operation-mspyzvd3-2242542319-3906769705",
       "date": "12/08/2026 12:52",
@@ -31022,6 +31038,96 @@
       "toLocation": "-20°C 2 salle -80",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mspz09fb-1785954072-65742225",
+      "operationId": "operation-mspz080u-1821506043-2146034749-closed-container-mspyzb43-574713748-1760828287",
+      "itemId": "web-1786531739181",
+      "timestamp": "2026-08-12T10:52:48.695Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-container-mspyzb43-574713748-1760828287",
+      "containerId": "closed-container-mspyzb43-574713748-1760828287",
+      "containerLabel": "bouteille ouvert nº8",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 10,
+      "afterQuantity": 0,
+      "beforeCapacity": 100,
+      "afterCapacity": 100,
+      "unitBefore": "mL",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-container-mspyzb43-574713748-1760828287",
+        "label": "bouteille ouvert nº8",
+        "location": "Tiroir n°2",
+        "remaining": 10,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-12T10:52:04.227Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T10:52:31.263Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "openedAt": "2026-08-12T10:52:04.227Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "after": {
+        "id": "closed-container-mspyzb43-574713748-1760828287",
+        "label": "bouteille ouvert nº8",
+        "location": "Tiroir n°2",
+        "remaining": 0,
+        "capacity": 100,
+        "unitKey": "mL",
+        "status": "finished",
+        "createdAt": "2026-08-12T10:52:04.227Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-12T10:52:48.695Z",
+        "updatedBy": "caroline",
+        "version": 3,
+        "openedAt": "2026-08-12T10:52:04.227Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "finishedAt": "2026-08-12T10:52:48.695Z"
+      },
+      "quantity": 0,
+      "difference": -10,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Tiroir n°2",
+      "toLocation": "Tiroir n°2",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -31138,6 +31244,12 @@
       "itemId": "web-1786531739181",
       "at": "2026-08-12T10:52:31.263Z",
       "type": "aliquots_prepared"
+    },
+    {
+      "operationId": "operation-mspz080u-1821506043-2146034749",
+      "itemId": "web-1786531739181",
+      "at": "2026-08-12T10:52:48.695Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -31148,5 +31260,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:52:31.263Z"
+  "updatedAt": "2026-08-12T10:52:48.695Z"
 }

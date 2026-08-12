@@ -6549,7 +6549,7 @@
       "name": "DMEM, high glucose, GlutaMAX™ Supplement, pyruvate",
       "category": "Culture Cell",
       "quantity": 24,
-      "unit": "mL",
+      "unit": "bouteilles",
       "minStock": 3,
       "location": "Frigo labo",
       "locations": [
@@ -6583,24 +6583,39 @@
       "createdAt": "10/08/2026 13:33",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
             "key": "mL",
             "singular": "mL",
             "plural": "mL",
             "kind": "continuous",
-            "contains": 1
+            "contains": 500
           }
         ],
         "trackingUnitKey": "mL",
         "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "Frigo labo",
+            "quantity": 24,
+            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -23098,6 +23113,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:40",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié DMEM, high glucose, GlutaMAX™ Supplement, pyruvate."
+    },
+    {
       "date": "11/08/2026 16:51",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28443,5 +28464,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-11T14:51:09.262Z"
+  "updatedAt": "2026-08-12T07:40:21.502Z"
 }

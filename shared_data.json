@@ -6895,7 +6895,7 @@
       "name": "PBS",
       "category": "Culture Cell",
       "quantity": 5,
-      "unit": "unités",
+      "unit": "bouteilles",
       "minStock": 2,
       "location": "Frigo labo",
       "locations": [
@@ -6918,30 +6918,45 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785239459565-7t6yfo",
       "createdAtRaw": "2026-08-10T11:43:23.774Z",
       "createdAt": "10/08/2026 13:43",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 500
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "Frigo labo",
+            "quantity": 5,
+            "updatedAt": "2026-08-12T07:43:29.299Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -23229,6 +23244,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:43",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié PBS."
+    },
+    {
       "date": "12/08/2026 09:42",
       "user": "Caroline",
       "action": "Item modifié",
@@ -28604,5 +28625,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:42:14.252Z"
+  "updatedAt": "2026-08-12T07:43:29.301Z"
 }

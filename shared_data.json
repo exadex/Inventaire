@@ -30,13 +30,15 @@
         "id": "location-frigo-culture-l1",
         "roomId": "room-culture-l1",
         "name": "Frigo culture L1 principal",
-        "icon": "🌨️"
+        "icon": "🌨️",
+        "order": 0
       },
       {
         "id": "location-20-culture-l1",
         "roomId": "room-culture-l1",
         "name": "-20°C culture L1",
-        "icon": "☃️"
+        "icon": "☃️",
+        "order": 2
       },
       {
         "id": "location-20-1-salle-80",
@@ -66,7 +68,8 @@
         "id": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
         "roomId": "room-culture-l1",
         "name": "Frigo culture L1 à l'entré",
-        "icon": "📍"
+        "icon": "📍",
+        "order": 1
       }
     ],
     "sublocations": [
@@ -120,8 +123,7 @@
         }
       ],
       "locations": [
-        "-20°C 2 salle -80",
-        "Tiroir n°2"
+        "-20°C 2 salle -80"
       ],
       "location": "-20°C 2 salle -80",
       "tags": [
@@ -24400,6 +24402,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 13:53",
+      "user": "Caroline",
+      "action": "Ordre des emplacements modifié",
+      "detail": "Caroline a déplacé Frigo culture L1 à l'entré."
+    },
+    {
       "id": "history-operation-mspz080u-1821506043-2146034749",
       "operationId": "operation-mspz080u-1821506043-2146034749",
       "date": "12/08/2026 12:52",
@@ -31260,5 +31268,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T10:52:48.695Z"
+  "updatedAt": "2026-08-12T11:53:27.336Z"
 }

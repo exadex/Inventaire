@@ -1845,11 +1845,11 @@
       "name": "Endothelial Cell Growth Medium 2",
       "category": "Procédé ExAdEx L2",
       "quantity": 7,
-      "unit": "Bouteilles",
+      "unit": "bouteilles",
       "minStock": 1,
-      "location": "Frigo culture L1",
+      "location": "Culture L1",
       "locations": [
-        "Frigo culture L1"
+        "Culture L1"
       ],
       "tags": [
         "Milieu EGM"
@@ -1914,6 +1914,99 @@
             "updatedBy": "Elina"
           }
         ],
+        "closedContainers": [
+          {
+            "id": "closed-itm-csv-0018-frigo-culture-l1-1",
+            "label": "bouteille fermé nº1",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-07-27T09:26:58.686Z",
+            "updatedAt": "2026-07-27T09:26:58.686Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0018-frigo-culture-l1-2",
+            "label": "bouteille fermé nº2",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-07-27T09:26:58.686Z",
+            "updatedAt": "2026-07-27T09:26:58.686Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0018-frigo-culture-l1-3",
+            "label": "bouteille fermé nº3",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-07-27T09:26:58.686Z",
+            "updatedAt": "2026-07-27T09:26:58.686Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0018-frigo-culture-l1-4",
+            "label": "bouteille fermé nº4",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-07-27T09:26:58.686Z",
+            "updatedAt": "2026-07-27T09:26:58.686Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0018-frigo-culture-l1-5",
+            "label": "bouteille fermé nº5",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-07-27T09:26:58.686Z",
+            "updatedAt": "2026-07-27T09:26:58.686Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0018-frigo-culture-l1-6",
+            "label": "bouteille fermé nº6",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-07-27T09:26:58.686Z",
+            "updatedAt": "2026-07-27T09:26:58.686Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0018-frigo-culture-l1-7",
+            "label": "bouteille fermé nº7",
+            "location": "Frigo culture L1",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-07-27T09:26:58.686Z",
+            "updatedAt": "2026-07-27T09:26:58.686Z",
+            "updatedBy": "Elina",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-ms30yc3f-2568918001-2538998356",
@@ -1932,7 +2025,8 @@
             "updatedAt": "2026-07-27T09:29:06.889Z",
             "updatedBy": "elina",
             "version": 2,
-            "finishedAt": "2026-07-27T09:29:06.889Z"
+            "finishedAt": "2026-07-27T09:29:06.889Z",
+            "unitKey": "mL"
           },
           {
             "id": "container-ms30zcqq-786182578-2110403160",
@@ -1951,7 +2045,8 @@
             "updatedAt": "2026-07-30T08:17:31.089Z",
             "updatedBy": "elina",
             "version": 4,
-            "finishedAt": "2026-07-30T08:17:31.089Z"
+            "finishedAt": "2026-07-30T08:17:31.089Z",
+            "unitKey": "mL"
           }
         ]
       },
@@ -1965,7 +2060,7 @@
         {
           "id": "placement-legacy-ir1516",
           "roomId": "room-culture-l1",
-          "locationId": "location-frigo-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
           "sublocationId": null
         }
       ]
@@ -23134,6 +23229,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 09:42",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "12/08/2026 09:41",
       "user": "Caroline",
       "action": "Emplacement modifié",
@@ -28503,5 +28604,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T07:41:50.302Z"
+  "updatedAt": "2026-08-12T07:42:14.252Z"
 }

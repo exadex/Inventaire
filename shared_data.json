@@ -116,7 +116,7 @@
           "id": "placement-5de43ceb-9124-4a47-96e2-32d290a84df1",
           "roomId": "room-piece-80",
           "locationId": "location-20-2-salle-80",
-          "sublocationId": null
+          "sublocationId": "sublocation-4258795f-51de-4e7a-a0ba-bf320c452413"
         }
       ],
       "locations": [
@@ -23844,6 +23844,12 @@
     {
       "date": "12/08/2026 10:49",
       "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Fetal Bovine Serum (FBS)."
+    },
+    {
+      "date": "12/08/2026 10:49",
+      "user": "Caroline",
       "action": "Sous-localisation ajoutée",
       "detail": "Caroline a ajouté Tiroir n°6."
     },
@@ -29758,5 +29764,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:49:13.383Z"
+  "updatedAt": "2026-08-12T08:49:28.711Z"
 }

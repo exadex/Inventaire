@@ -5875,7 +5875,7 @@
           "id": "placement-legacy-4n9ovh",
           "roomId": "room-piece-80",
           "locationId": "location-20-2-salle-80",
-          "sublocationId": null
+          "sublocationId": "sublocation-4258795f-51de-4e7a-a0ba-bf320c452413"
         }
       ],
       "usageProfile": "normal",
@@ -23844,6 +23844,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 10:50",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Insuline, humain recombinant, zinc solution, 4mg/ml."
+    },
+    {
       "date": "12/08/2026 10:49",
       "user": "Caroline",
       "action": "Item modifié",
@@ -29772,5 +29778,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:49:38.223Z"
+  "updatedAt": "2026-08-12T08:50:16.503Z"
 }

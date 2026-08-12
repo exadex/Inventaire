@@ -84,14 +84,14 @@
         {
           "id": "placement-5de43ceb-9124-4a47-96e2-32d290a84df1",
           "roomId": "room-piece-80",
-          "locationId": "location-20-1-salle-80",
+          "locationId": "location-20-2-salle-80",
           "sublocationId": null
         }
       ],
       "locations": [
-        "-20°C 1 salle -80"
+        "-20°C 2 salle -80"
       ],
-      "location": "-20°C 1 salle -80",
+      "location": "-20°C 2 salle -80",
       "tags": [
         "culture"
       ],
@@ -139,7 +139,9 @@
         "closedByLocation": [
           {
             "location": "-20°C 1 salle -80",
-            "quantity": 44
+            "quantity": 44,
+            "updatedAt": "",
+            "updatedBy": ""
           }
         ],
         "closedContainers": [
@@ -23779,6 +23781,12 @@
   ],
   "history": [
     {
+      "date": "12/08/2026 10:48",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Fetal Bovine Serum (FBS)."
+    },
+    {
       "id": "history-operation-mspui3yc-2191149532-243224634",
       "operationId": "operation-mspui3yc-2191149532-243224634",
       "date": "12/08/2026 10:46",
@@ -29647,5 +29655,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T08:46:49.137Z"
+  "updatedAt": "2026-08-12T08:48:11.830Z"
 }

@@ -5677,73 +5677,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436294-ilyv16",
-      "name": "Trypsine 0,5 + EDTA 1X",
-      "category": "Culture Cell",
-      "quantity": 5,
-      "unit": "mL",
-      "minStock": 1,
-      "location": "-20°C blanc labo",
-      "locations": [
-        "-20°C blanc labo"
-      ],
-      "tags": [
-        "Trypsine"
-      ],
-      "notes": "Conditionnement : 100ml",
-      "references": {
-        "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "25300-054",
-          "link": "https://www.thermofisher.com/order/catalog/product/25300054?SID=srch-hj-25300-054",
-          "notes": "59,3",
-          "price": "59,3",
-          "unitPrice": "0,59",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-07-28T13:06:18.116Z",
-      "createdAt": "28/07/2026 15:06",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-arx6ll",
-          "roomId": "room-laboratoire",
-          "locationId": "location-20-blanc-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436294-o5o87b",
       "name": "Collagénase A",
       "category": "Culture Cell",
@@ -24413,6 +24346,12 @@
     {
       "date": "12/08/2026 13:55",
       "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Trypsine 0,5 + EDTA 1X de l'inventaire."
+    },
+    {
+      "date": "12/08/2026 13:55",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Trypsine-EDTA (0,05 %)."
     },
@@ -31295,5 +31234,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T11:55:12.240Z"
+  "updatedAt": "2026-08-12T11:55:33.473Z"
 }

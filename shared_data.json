@@ -173,9 +173,7 @@
         "closedByLocation": [
           {
             "location": "Tiroir n°2",
-            "quantity": 7,
-            "updatedAt": "",
-            "updatedBy": ""
+            "quantity": 7
           }
         ],
         "closedContainers": [
@@ -351,11 +349,11 @@
             "concentrationUnit": "%",
             "locations": [
               {
-                "location": "-20°C 2 salle -80",
-                "quantity": 9,
-                "roomId": "",
-                "locationId": "",
-                "sublocationId": ""
+                "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°2",
+                "roomId": "room-piece-80",
+                "locationId": "location-20-2-salle-80",
+                "sublocationId": "sublocation-400c33ea-ed94-4a3c-90d3-b406ca307c8c",
+                "quantity": 9
               }
             ],
             "openAliquots": [],
@@ -368,9 +366,9 @@
             },
             "note": "",
             "status": "active",
-            "updatedAt": "2026-08-12T10:52:31.263Z",
+            "updatedAt": "2026-08-12T13:14:20.308Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       },
@@ -24344,6 +24342,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-msq428ug-4270189954-3206924599",
+      "operationId": "operation-msq428ug-4270189954-3206924599",
+      "date": "12/08/2026 15:14",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · preparation_corrected · Trypsine-EDTA (0,05 %) · inventaire",
+      "user": "Caroline",
+      "itemId": "web-1786531739181"
+    },
+    {
       "date": "12/08/2026 13:55",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -31102,6 +31109,109 @@
       "toLocation": "Tiroir n°2",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-msq429lh-3972755334-1790718331",
+      "operationId": "operation-msq428ug-4270189954-3206924599",
+      "itemId": "web-1786531739181",
+      "timestamp": "2026-08-12T13:14:20.309Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "preparation_corrected",
+      "entityType": "preparation",
+      "entityId": "preparation-mspyzvz3-3207792610-3599999632",
+      "containerId": "preparation-mspyzvz3-3207792610-3599999632",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 9,
+      "afterQuantity": 9,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "preparation-mspyzvz3-3207792610-3599999632",
+      "before": {
+        "id": "preparation-mspyzvz3-3207792610-3599999632",
+        "label": "Préparation nº2",
+        "createdCount": 9,
+        "representedSourceQuantity": 90,
+        "sourceUnit": "mL",
+        "volume": 10,
+        "volumeUnit": "mL",
+        "concentration": 100,
+        "concentrationUnit": "%",
+        "locations": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 9,
+            "roomId": "",
+            "locationId": "",
+            "sublocationId": ""
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "",
+        "status": "active",
+        "updatedAt": "2026-08-12T10:52:31.263Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "preparation-mspyzvz3-3207792610-3599999632",
+        "label": "Préparation nº2",
+        "createdCount": 9,
+        "representedSourceQuantity": 90,
+        "sourceUnit": "mL",
+        "volume": 10,
+        "volumeUnit": "mL",
+        "concentration": 100,
+        "concentrationUnit": "%",
+        "locations": [
+          {
+            "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°2",
+            "roomId": "room-piece-80",
+            "locationId": "location-20-2-salle-80",
+            "sublocationId": "sublocation-400c33ea-ed94-4a3c-90d3-b406ca307c8c",
+            "quantity": 9
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "",
+        "status": "active",
+        "updatedAt": "2026-08-12T13:14:20.308Z",
+        "updatedBy": "caroline",
+        "version": 2
+      },
+      "quantity": 9,
+      "difference": 0,
+      "unit": "aliquotes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "inventaire",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -31224,6 +31334,12 @@
       "itemId": "web-1786531739181",
       "at": "2026-08-12T10:52:48.695Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-msq428ug-4270189954-3206924599",
+      "itemId": "web-1786531739181",
+      "at": "2026-08-12T13:14:20.309Z",
+      "type": "preparation_corrected"
     }
   ],
   "agentOperations": [
@@ -31234,5 +31350,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T11:55:33.473Z"
+  "updatedAt": "2026-08-12T13:14:20.309Z"
 }

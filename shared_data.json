@@ -134,7 +134,7 @@
         "primary": {
           "supplier": "R&D systems",
           "reference": "LXSAHM-08",
-          "link": "https://www.bio-techne.com/luminex-assay-customization-tool",
+          "link": "https://www.bio-techne.com/p/luminex-assays/human-luminex-discovery-assay_lxsahm",
           "notes": "1895",
           "price": "1895",
           "unitPrice": "",
@@ -159,8 +159,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "kit",
-        "trackingUnit": "kit",
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -24489,6 +24489,12 @@
   ],
   "history": [
     {
+      "date": "13/08/2026 16:07",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Luminex® Multiplex Assay Customization Tool."
+    },
+    {
       "id": "history-operation-msq69iqh-3045563748-1683852847",
       "operationId": "operation-msq69iqh-3045563748-1683852847",
       "date": "12/08/2026 16:15",
@@ -31542,5 +31548,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-12T14:15:58.762Z"
+  "updatedAt": "2026-08-13T14:07:23.162Z"
 }

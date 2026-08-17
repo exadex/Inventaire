@@ -1,0 +1,21 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Tests UI Assistant transversal</title><body>
+<pre id="result">Tests en cours…</pre><iframe id="appFrame" style="position:absolute;left:-10000px;width:1400px;height:1000px"></iframe><script>
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms)),frame=document.querySelector("#appFrame");
+frame.addEventListener("load",async()=>{
+  const w=frame.contentWindow,d=frame.contentDocument,lines=[];let passed=0;
+  const test=(name,value)=>{lines.push(`${value?"PASS":"FAIL"} ${name}`);if(value)passed++;};
+  const submit=async text=>{const input=d.querySelector("#inventoryChatInput");input.value=text;input.dispatchEvent(new w.KeyboardEvent("keydown",{key:"Enter",bubbles:true}));await wait(1350);};
+  d.querySelector("#nameInput").value="Caroline";d.querySelector("#loginForm").requestSubmit();await wait(2200);const fixtureItems=[{id:"ui-low",name:"DMEM low glucose",quantity:1000,unit:"mL",location:"Frigo principal",references:{primary:{},secondary:[]},stockTracking:{mode:"simple"}},{id:"ui-f12",name:"DMEM/F12",quantity:500,unit:"mL",location:"Frigo principal",references:{primary:{},secondary:[]},stockTracking:{mode:"simple"}}];Object.defineProperty(w,"items",{configurable:true,get:()=>JSON.parse(JSON.stringify(fixtureItems))});d.querySelector('[data-view="agents"]').click();await wait(80);[...d.querySelectorAll(".agent-card")].find(card=>card.textContent.includes("Assistant Inventaire"))?.querySelector("button").click();await wait(1250);
+  test("40 nouvel accueil transversal",d.querySelector(".inventory-chat-message.assistant p")?.textContent.includes("études clients")&&d.querySelector(".inventory-chat-message.assistant p")?.textContent.includes("fournisseurs"));
+  await submit("je vais faire une nouvelle etude client, jaurais besoin de 200mL de DMEM low glucose et 300mL de DMEM/F12. Estce que jai tout ca ?");
+  const lastAssistant=[...d.querySelectorAll(".inventory-chat-message.assistant")].at(-1),cards=[...(lastAssistant?.querySelectorAll(".inventory-chat-result")||[])],names=cards.map(card=>card.querySelector(".inventory-chat-result-name")?.textContent).join(" | ");
+  const debugSource=w.ExadexAssistantDataSources.snapshot(),debugSearch=w.ExadexInventoryAssistant.search("DMEM low glucose",debugSource.inventory.map(row=>row.source)),debugAnswer=w.ExadexInventoryAssistant.answer("je vais faire une nouvelle etude client, jaurais besoin de 200mL de DMEM low glucose et 300mL de DMEM/F12. Estce que jai tout ca ?",debugSource,{stockInfo:w.ExadexAgentsUI.assistantStockInfo,stockText:w.ExadexAgentsUI.assistantStockText,locationText:w.ExadexAgentsUI.assistantLocationText});
+  test("41 nom et stock séparés",cards.length>=2&&cards.every(card=>card.querySelector(".inventory-chat-result-name")&&card.querySelector(".inventory-chat-result-field")));
+  test("42 stock et localisation non collés",cards.length>=2&&cards.every(card=>card.querySelector(".inventory-chat-result-details")?.children.length>=2));
+  test("43 produits visuellement séparés",cards.length===2&&cards[0].nextElementSibling===cards[1]);
+  test("44 liens lisibles et cliquables",cards.length===2&&cards.every(card=>card.querySelector("button[data-assistant-nav='item']")));
+  test("45 avatars et indicateur préservés",d.querySelectorAll(".inventory-chat-avatar[aria-hidden='true']").length>=3&&!d.querySelector(".inventory-chat-thinking"));
+  frame.style.width="390px";await wait(60);const chat=d.querySelector("#inventoryChatMessages");test("46 aucun débordement mobile",chat.scrollWidth<=chat.clientWidth&&cards.every(card=>card.scrollWidth<=card.clientWidth));
+  document.querySelector("#result").textContent=lines.join("\n")+`\n${passed}/7 tests passed`;document.title=passed===7?"PASS":"FAIL";document.body.dataset.failed=String(passed!==7);w.stop();
+});frame.src="../../index.html";
+</script></body></html>

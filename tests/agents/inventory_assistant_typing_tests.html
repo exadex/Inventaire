@@ -1,0 +1,30 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Tests indicateur de saisie Assistant</title><body>
+<pre id="result">Tests en cours…</pre>
+<iframe id="appFrame" style="position:absolute;left:-10000px;width:1400px;height:900px"></iframe>
+<script>
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const frame=document.querySelector("#appFrame");
+frame.addEventListener("load",async()=>{
+  const w=frame.contentWindow,d=frame.contentDocument,lines=[];let passed=0;
+  const test=(name,value)=>{lines.push(`${value?"PASS":"FAIL"} ${name}`);if(value)passed++;};
+  const openAssistant=async()=>{d.querySelector('[data-view="agents"]').click();await wait(50);[...d.querySelectorAll(".agent-card")].find(card=>card.textContent.includes("Assistant Inventaire"))?.querySelector("button").click();await wait(30);};
+  const submit=text=>{const input=d.querySelector("#inventoryChatInput");input.value=text;input.dispatchEvent(new w.KeyboardEvent("keydown",{key:"Enter",bubbles:true}));};
+  d.querySelector("#nameInput").value="Test";d.querySelector("#loginForm").requestSubmit();await wait(2200);await openAssistant();await wait(1250);
+  const originalAnswer=w.ExadexInventoryAssistant.answer,originalRandom=w.Math.random;
+  w.Math.random=()=>0;
+  let calls=0;w.ExadexInventoryAssistant.answer=()=>{calls++;return{text:"Réponse instantanée",items:[],context:{lastItemIds:[]}};};
+  submit("question instantanée");
+  test("1 indicateur immédiat",Boolean(d.querySelector(".inventory-chat-thinking")));
+  test("2 bulle et libellé accessibles",d.querySelector(".inventory-chat-thinking")?.getAttribute("aria-label")==="L’Assistant Inventaire prépare sa réponse."&&d.querySelectorAll(".inventory-chat-typing-dots i").length===3);
+  await wait(650);test("3 délai minimal respecté",!d.body.textContent.includes("Réponse instantanée"));
+  await wait(220);test("4 indicateur remplacé par la réponse",d.body.textContent.includes("Réponse instantanée")&&!d.querySelector(".inventory-chat-thinking"));
+  test("5 une seule recherche et une seule réponse",calls===1&&[...d.querySelectorAll(".inventory-chat-message.assistant p")].filter(p=>p.textContent==="Réponse instantanée").length===1);
+  let resolveSlow;w.ExadexInventoryAssistant.answer=()=>new Promise(resolve=>{resolveSlow=resolve;});const slowStart=w.performance.now();submit("question lente");await wait(900);resolveSlow({text:"Réponse lente",items:[],context:{lastItemIds:[]}});await wait(35);test("6 pas de seconde artificielle ajoutée",d.body.textContent.includes("Réponse lente")&&w.performance.now()-slowStart<1100);
+  w.ExadexInventoryAssistant.answer=()=>({text:"Réponse unique",items:[],context:{lastItemIds:[]}});const input=d.querySelector("#inventoryChatInput");input.value="double entrée";input.dispatchEvent(new w.KeyboardEvent("keydown",{key:"Enter",bubbles:true}));input.dispatchEvent(new w.KeyboardEvent("keydown",{key:"Enter",bubbles:true}));test("7 double Entrée sans duplication",[...d.querySelectorAll(".inventory-chat-message.user p")].filter(p=>p.textContent==="double entrée").length===1&&d.querySelectorAll(".inventory-chat-thinking").length===1);await wait(830);
+  const uniqueBefore=[...d.querySelectorAll(".inventory-chat-message.assistant p")].filter(p=>p.textContent==="Réponse unique").length;submit("à annuler");await wait(20);d.querySelector('[data-agent-action="home"]').click();await wait(850);[...d.querySelectorAll(".agent-card")].find(card=>card.textContent.includes("Assistant Inventaire"))?.querySelector("button").click();await wait(30);const uniqueAfter=[...d.querySelectorAll(".inventory-chat-message.assistant p")].filter(p=>p.textContent==="Réponse unique").length;test("8 temporisateur nettoyé à la fermeture",uniqueAfter===uniqueBefore&&!d.querySelector(".inventory-chat-thinking"));
+  w.ExadexInventoryAssistant.answer=()=>Promise.reject(new Error("échec simulé"));submit("erreur");await wait(830);test("9 erreur remplace l’indicateur",d.body.textContent.includes("Je ne peux pas consulter les données de l’application pour le moment")&&!d.querySelector(".inventory-chat-thinking"));
+  const reducedRule=[...d.styleSheets].flatMap(sheet=>{try{return[...sheet.cssRules]}catch{return[]}}).some(rule=>rule.conditionText?.includes("prefers-reduced-motion")&&rule.cssText.includes("inventory-chat-typing-dots"));test("10 mouvement réduit prévu",reducedRule);
+  frame.style.width="390px";await wait(40);w.ExadexInventoryAssistant.answer=()=>({text:"Mobile",items:[],context:{lastItemIds:[]}});submit("mobile");test("11 indicateur mobile sans débordement",d.querySelector(".inventory-chat-shell").scrollWidth<=d.querySelector(".inventory-chat-shell").clientWidth&&Boolean(d.querySelector(".inventory-chat-thinking")));
+  w.ExadexInventoryAssistant.answer=originalAnswer;w.Math.random=originalRandom;document.querySelector("#result").textContent=lines.join("\n")+`\n${passed}/11 tests passed`;document.title=passed===11?"PASS":"FAIL";document.body.dataset.failed=String(passed!==11);w.stop();
+});frame.src="../../index.html";
+</script></body></html>

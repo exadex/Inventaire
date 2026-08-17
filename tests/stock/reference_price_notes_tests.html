@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Tests prix et notes de référence</title></head>
+<body>
+  <p id="result">Tests en cours…</p>
+  <iframe id="appFrame" src="../../index.html" hidden></iframe>
+  <script>
+    const result = document.querySelector("#result");
+    document.querySelector("#appFrame").addEventListener("load", () => setTimeout(() => {
+      try {
+        const app = document.querySelector("#appFrame").contentWindow;
+        let passed = 0;
+        const check = (condition, message) => {
+          if (!condition) throw new Error(message);
+          passed += 1;
+        };
+
+        const priced = app.normalizeReferences({ primary: { price: "12,50" } });
+        check(priced.primary.price === "12,50", "le prix est conservé");
+        check(priced.primary.notes === "", "le prix n'est pas copié dans les notes");
+
+        const explicitNotes = app.normalizeReferences({ primary: { price: "12,50", notes: "Tarif 2026" } });
+        check(explicitNotes.primary.notes === "Tarif 2026", "les notes explicites sont conservées");
+
+        const legacyQuantity = app.normalizeReferences({ primary: { quantity: "Conditionnement par 10" } });
+        check(legacyQuantity.primary.notes === "Conditionnement par 10", "l'ancienne quantité libre reste compatible");
+
+        result.textContent = `${passed} tests prix/notes réussis.`;
+      } catch (error) {
+        result.textContent = `ÉCHEC : ${error.message}`;
+        throw error;
+      }
+    }, 600));
+  </script>
+</body>
+</html>

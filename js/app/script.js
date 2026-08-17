@@ -108,6 +108,7 @@ let orderHistoryPage = 1;
 let orderHistoryPageSize = 50;
 let pendingOrderInventoryLink = null;
 let backupsLoaded = false;
+let pendingBackupExport = null;
 const collapsedClientGroups = new Set();
 const expandedReplicaGroups = new Set();
 const SAMPLE_PAGE_SIZE = 50;
@@ -537,6 +538,8 @@ document.querySelectorAll("[data-close-backup-restore]").forEach(button => butto
 document.querySelector("#restoreBackupForm")?.addEventListener("submit", restoreSelectedBackup);
 document.querySelectorAll("[data-close-backup-delete]").forEach(button => button.addEventListener("click", () => document.querySelector("#deleteBackupDialog")?.close()));
 document.querySelector("#deleteBackupForm")?.addEventListener("submit", deleteSelectedBackup);
+document.querySelectorAll("[data-close-backup-export]").forEach(button => button.addEventListener("click", closeBackupExportDialog));
+document.querySelector("#exportBackupForm")?.addEventListener("submit", confirmBackupExport);
 
 // Listeners para dialogo de recepcion de inventario al recibir una orden
 document.querySelector("#confirmReceiveInventoryBtn").addEventListener("click", confirmReceiveInventory);
@@ -682,10 +685,27 @@ function applySharedState(incomingState) {
 Object.defineProperties(window, {
   items: { configurable: true, get: () => JSON.parse(JSON.stringify(items)) },
   orders: { configurable: true, get: () => JSON.parse(JSON.stringify(orders)) },
+  clientSamples: { configurable: true, get: () => JSON.parse(JSON.stringify(clientSamples)) },
+  clients: { configurable: true, get: () => JSON.parse(JSON.stringify(clients)) },
+  supplierContacts: { configurable: true, get: () => JSON.parse(JSON.stringify(supplierContacts)) },
+  applicationHistory: { configurable: true, get: () => JSON.parse(JSON.stringify(history)) },
+  inventoryLocationCatalog: { configurable: true, get: () => JSON.parse(JSON.stringify({ rooms: FIXED_INVENTORY_ROOMS, ...normalizeLocationCatalog(sharedState.locationCatalog) })) },
+  applicationUsers: { configurable: true, get: () => Object.entries(userIcons).map(([name, emoji]) => ({ id: name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\W+/g, "-"), name, emoji })) },
   inventoryLocations: { configurable: true, get: () => [...inventoryLocations] },
   inventoryCategories: { configurable: true, get: () => [...inventoryCategories] },
   currentName: { configurable: true, get: () => currentName }
 });
+
+window.ExadexAssistantNavigation = {
+  item: id => openItemDetail(id, { view: "agents" }),
+  clientProduct: id => openSampleDetail(id, { view: "agents" }),
+  clientStudy: id => { const sample=clientSamples.find(row=>row.clientId===id); if(sample)openSampleDetail(sample.id,{view:"agents"}); else document.querySelector('[data-view="samples"]')?.click(); },
+  supplier: id => openSupplierContact(id),
+  order: id => { document.querySelector('[data-view="orders"]')?.click(); selectedOrderId=id; renderOrders(); },
+  orders: query => { document.querySelector('[data-view="orders"]')?.click(); ordersMode="history"; orderHistorySearch=String(query||""); selectedOrderId=null; renderOrders(); },
+  location: () => document.querySelector('[data-view="locations"]')?.click(),
+  history: () => document.querySelector('[data-view="history"]')?.click()
+};
 
 function buildAgentBulkMutation(sourceState, request) {
   const state = createSharedState(sourceState, { includeBootstrap: false });
@@ -1048,14 +1068,29 @@ async function renderBackups(force = false) {
     root.querySelectorAll(".backup-card").forEach(card=>{card.addEventListener("click",toggleBackupCard);card.addEventListener("keydown",event=>{if((event.key==="Enter"||event.key===" ")&&!event.target.closest("button")){event.preventDefault();toggleBackupCard({currentTarget:card,target:card});}});});
     root.querySelectorAll("[data-restore-backup]").forEach(button=>button.addEventListener("click",openRestoreBackupDialog));
     root.querySelectorAll("[data-delete-backup]").forEach(button=>button.addEventListener("click",openDeleteBackupDialog));
-    root.querySelectorAll("[data-export-backup]").forEach(button=>button.addEventListener("click",exportSelectedBackup));
+    root.querySelectorAll("[data-export-backup]").forEach(button=>button.addEventListener("click",openBackupExportDialog));
   }catch(error){backupsLoaded=false;root.innerHTML=`<div class="backup-empty">Impossible de charger les sauvegardes.</div>`;status.textContent=error.message||String(error);status.classList.add("error");}
 }
 
-async function exportSelectedBackup(event){
-  const button=event.currentTarget,card=button.closest("[data-backup-path]"),status=document.querySelector("#backupsStatus"),format=button.dataset.exportBackup,originalText=button.textContent;if(!card||!window.ExadexBackupExport)return;
+function openBackupExportDialog(event){
+  const button=event.currentTarget,card=button.closest("[data-backup-path]"),dialog=document.querySelector("#exportBackupDialog");if(!card||!dialog)return;
+  pendingBackupExport={button,format:button.dataset.exportBackup,entry:{path:card.dataset.backupPath,folder:card.dataset.backupFolder,name:card.dataset.backupName,label:card.dataset.backupLabel}};
+  document.querySelector("#exportBackupTitle").textContent=`Exporter cette sauvegarde en ${pendingBackupExport.format==="json"?"JSON":"Excel"} ?`;
+  document.querySelector("#exportBackupPassword").value="";document.querySelector("#exportBackupError").classList.add("hidden");dialog.showModal();document.querySelector("#exportBackupPassword").focus();
+}
+
+function closeBackupExportDialog(){document.querySelector("#exportBackupDialog")?.close();pendingBackupExport=null;}
+
+async function confirmBackupExport(event){
+  event.preventDefault();const errorBox=document.querySelector("#exportBackupError");
+  if(document.querySelector("#exportBackupPassword").value!=="645443"){errorBox.textContent="Code administrateur incorrect.";errorBox.classList.remove("hidden");return;}
+  const request=pendingBackupExport;if(!request)return;document.querySelector("#exportBackupDialog").close();pendingBackupExport=null;await exportSelectedBackup(request);
+}
+
+async function exportSelectedBackup(request){
+  const {button,format,entry}=request,status=document.querySelector("#backupsStatus"),originalText=button.textContent;if(!window.ExadexBackupExport)return;
   button.disabled=true;button.textContent="Export…";status.classList.remove("error");status.textContent=`Préparation de l'export ${format==="json"?"JSON":"Excel"}…`;
-  try{const backup=await window.ExadexGithubStorage.loadBackup(card.dataset.backupPath),entry={path:card.dataset.backupPath,folder:card.dataset.backupFolder,name:card.dataset.backupName,label:card.dataset.backupLabel},result=format==="json"?await window.ExadexBackupExport.exportJson(backup,entry):await window.ExadexBackupExport.exportExcel(backup,entry);status.textContent=`Export créé : ${result.filename}`;}catch(error){status.textContent=error.message||String(error);status.classList.add("error");}finally{button.disabled=false;button.textContent=originalText;}
+  try{const backup=await window.ExadexGithubStorage.loadBackup(entry.path),result=format==="json"?await window.ExadexBackupExport.exportJson(backup,entry):await window.ExadexBackupExport.exportExcel(backup,entry);status.textContent=`Export créé : ${result.filename}`;}catch(error){status.textContent=error.message||String(error);status.classList.add("error");}finally{button.disabled=false;button.textContent=originalText;}
 }
 
 async function toggleBackupCard(event){
@@ -1631,7 +1666,7 @@ function formatInventoryDisplayUnit(quantity, unit) {
 function renderInventoryDetail(item) {
   const status = itemStatus(item);
   const references = normalizeReferences(item.references);
-  const locations = formatLocations(item);
+  const locations = formatItemLocationPaths(item);
 
   return `
     <section class="inventory-detail-panel">
@@ -4840,6 +4875,21 @@ function placementDisplayName(placement) {
   return sublocation?.name || location?.name || room?.name || placement?.legacyValue || "";
 }
 
+function placementFullPathDisplayName(placement) {
+  const catalog = normalizeLocationCatalog(sharedState?.locationCatalog);
+  const sublocation = catalog.sublocations.find(row => row.id === placement?.sublocationId);
+  const location = catalog.locations.find(row => row.id === (placement?.locationId || sublocation?.locationId));
+  const room = FIXED_INVENTORY_ROOMS.find(row => row.id === (placement?.roomId || location?.roomId));
+  const path = [room?.name, location?.name, sublocation?.name].filter(Boolean);
+  return path.length ? path.join(" → ") : placement?.legacyValue || "";
+}
+
+function formatItemLocationPaths(item) {
+  if (!Array.isArray(item?.placements) || !item.placements.length) return formatLocations(item);
+  const paths = Array.from(new Set(item.placements.map(placementFullPathDisplayName).filter(Boolean)));
+  return paths.length ? paths.join(", ") : "Sans localisation";
+}
+
 function readPlacementEditor() {
   return [...(placementsList?.querySelectorAll("[data-placement-row]") || [])].map(row => ({
     id: row.dataset.placementId || newStableId("placement"),
@@ -5860,7 +5910,7 @@ function renderPreparationStockCard(item, prep) {
 
 function activePreparationViews(item){const preparations=StockTracking.normalizeAliquots(item||{}).preparations,labels=StockTracking.activePreparationLabels(item||{});return labels.map(view=>({preparation:preparations.find(row=>row.id===view.id),index:view.index,label:view.label}));}
 function activePreparationLabel(item,id){return activePreparationViews(item).find(view=>view.preparation.id===id)?.label||"Préparation inactive";}
-function renderPreparationStockCard(item,prep,displayLabel=activePreparationLabel(item,prep.id)){const unopened=StockTracking.remainingAliquots(prep),opened=(prep.openAliquots||[]).filter(row=>row.status==="open"&&row.remainingVolume>0),available=unopened+opened.length,identity=getOpenedContainerIdentity(prep.preparedBy),preparedDate=formatDateTimeFrench(prep.preparedAt).replace(" · "," à "),locations=(prep.locations||[]).map(row=>row.location).filter(Boolean),source=prep.sourceContainerId||prep.sourceId||"—",updated=prep.updatedAt&&prep.updatedAt!==prep.preparedAt?formatDateTimeFrench(prep.updatedAt).replace(" · "," à "):"";return `<article class="tracked-entity-card preparation-stock-card preparation-stock-card--summary" data-preparation-id="${escapeHtml(prep.id)}"><header><strong>${escapeHtml(displayLabel)}</strong></header><dl class="preparation-key-metrics"><div><dt>Disponibles</dt><dd>${available} aliquote${available>1?"s":""}</dd></div><div><dt>Volume / aliquote</dt><dd>${prep.volume?`${StockTracking.format(prep.volume)} ${escapeHtml(prep.volumeUnit||"")}`:"Non défini"}</dd></div><div><dt>Concentration</dt><dd>${prep.concentration?`${StockTracking.format(prep.concentration)} ${escapeHtml(prep.concentrationUnit||"")}`:"Non définie"}</dd></div><div><dt>Localisation</dt><dd>${escapeHtml(locations.join(" · ")||"—")}</dd></div></dl><div class="preparation-secondary"><span>${unopened} non ouverte${unopened>1?"s":""} · ${opened.length} ouverte${opened.length>1?"s":""} · Préparée par ${escapeHtml(identity.value)} ${escapeHtml(identity.name)} · ${escapeHtml(preparedDate)}</span><span>Contenant source : ${escapeHtml(source)}${updated?` · Dernière modification : ${escapeHtml(updated)}`:""}${prep.note?` · Note : ${escapeHtml(prep.note)}`:""}</span></div></article>`;}
+function renderPreparationStockCard(item,prep,displayLabel=activePreparationLabel(item,prep.id)){const unopened=StockTracking.remainingAliquots(prep),opened=(prep.openAliquots||[]).filter(row=>row.status==="open"&&row.remainingVolume>0),available=unopened+opened.length,identity=getOpenedContainerIdentity(prep.preparedBy),preparedDate=formatDateTimeFrench(prep.preparedAt).replace(" · "," à "),locations=(prep.locations||[]).map(row=>row.location).filter(Boolean);return `<article class="tracked-entity-card preparation-stock-card preparation-stock-card--summary" data-preparation-id="${escapeHtml(prep.id)}"><header><strong>${escapeHtml(displayLabel)}</strong></header><dl class="preparation-key-metrics"><div><dt>Disponibles</dt><dd>${available} aliquote${available>1?"s":""}</dd></div><div><dt>Volume / aliquote</dt><dd>${prep.volume?`${StockTracking.format(prep.volume)} ${escapeHtml(prep.volumeUnit||"")}`:"Non défini"}</dd></div><div><dt>Concentration</dt><dd>${prep.concentration?`${StockTracking.format(prep.concentration)} ${escapeHtml(prep.concentrationUnit||"")}`:"Non définie"}</dd></div><div><dt>Localisation</dt><dd>${escapeHtml(locations.join(" · ")||"—")}</dd></div></dl><p class="preparation-note"><strong>Notes :</strong> ${escapeHtml(prep.note||"—")}</p><div class="preparation-secondary"><span>Préparée par ${escapeHtml(identity.value)} ${escapeHtml(identity.name)} · ${escapeHtml(preparedDate)}</span></div></article>`;}
 
 function getStockMovementDate(entry) {
   return entry?.timestamp ?? entry?.createdAt ?? entry?.date ?? null;
@@ -8553,10 +8603,10 @@ function getItemReferences() {
 }
 
 function normalizeReferences(references) {
-  const legacyPrimaryNotes = [
-    references?.primary?.quantity,
-    references?.primary?.price
-  ].filter(Boolean).join(" - ");
+  // Older records could store a free-form quantity alongside the reference.
+  // A price, however, is already a first-class field and must never be copied
+  // into the reference notes when those notes are empty.
+  const legacyPrimaryNotes = references?.primary?.quantity || "";
 
   return {
     primary: {

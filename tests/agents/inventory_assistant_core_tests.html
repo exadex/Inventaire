@@ -1,0 +1,35 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Tests Assistant Inventaire</title><body><pre id="result">Tests en cours…</pre><script src="../../js/stock/stock_tracking.js"></script><script src="../../js/agents/inventory_assistant.js"></script><script>
+const A=ExadexInventoryAssistant,S=StockTracking,rows=[];let passed=0;const test=(name,fn)=>{try{if(fn()===false)throw Error("condition fausse");rows.push(`PASS ${name}`);passed++}catch(e){rows.push(`FAIL ${name}: ${e.message}`)}};
+const simple=(id,name,extra={})=>({id,name,quantity:extra.quantity??3.5,unit:extra.unit||"bouteilles",category:extra.category||"Milieux de culture",description:extra.description||"",tags:extra.tags||[],notes:extra.notes||"",location:extra.location||"Salle de culture → Réfrigérateur 4 °C → Étagère 2",references:{primary:{reference:extra.reference||"",supplier:extra.supplier||"",notes:extra.referenceNotes||""},secondary:[]},...extra});
+const items=[simple("dmem","DMEM"),simple("dmem-hg","DMEM High Glucose",{quantity:2}),simple("serum","Sérum fœtal bovin",{tags:["FBS"]}),simple("trypsine","Trypsine 0,05 %",{reference:"TRY-005"}),simple("collagene","Anticorps anti-collagène",{category:"Anticorps"}),simple("note-only","Produit témoin",{notes:"DMEM ancien"})];
+const adapters={stockText:item=>`${S.format(S.available(item))} ${item.unit}`,locationText:item=>item.location};
+test("01 DMEM trouvé",()=>A.search("Avons-nous du DMEM ?",items).results[0].item.id==="dmem");
+test("02 casse ignorée",()=>A.search("Est-ce qu’on a du dmem ?",items).results[0].item.id==="dmem");
+test("03 accents tolérés",()=>A.search("serum foetal",items).results[0].item.id==="serum");
+test("04 petite faute",()=>A.search("colagene",items).results[0].item.id==="collagene");
+test("05 référence exacte prioritaire",()=>A.search("TRY-005",items).results[0].item.id==="trypsine");
+test("06 nom prioritaire sur note",()=>A.search("DMEM",items).results[0].item.id==="dmem"&&!A.search("DMEM",items).results.some(row=>row.item.id==="note-only"&&row.score>=A.search("DMEM",items).results[0].score));
+test("07 mots génériques ignorés",()=>A.search("je cherche un produit du laboratoire",items).generic===true);
+test("08 existence Oui",()=>A.answer("Avons-nous du DMEM ?",items,adapters).text.startsWith("Oui"));
+test("09 quantité réelle",()=>A.answer("Combien de DMEM reste-t-il ?",[items[0]],adapters).items[0].stock==="3,5 bouteilles");
+test("10 hiérarchie complète",()=>A.answer("Où est le DMEM ?",[items[0]],adapters).items[0].location.includes("→ Étagère 2"));
+test("11 intention combinée",()=>{const r=A.answer("Avons-nous du DMEM, combien et où ?",[items[0]],adapters);return r.text.startsWith("Oui")&&r.items[0].stock&&r.items[0].location});
+test("12 résultat exact non complété artificiellement",()=>A.answer("trouve DMEM",items,adapters).items.length===1);
+test("13 aucune invention",()=>A.answer("Produit totalement absent XYZ",items,adapters).kind==="empty");
+test("14 chaque résultat possède un lien logique",()=>A.answer("DMEM",items,adapters).items.every(row=>row.id&&row.name));
+test("15 identifiants stables",()=>A.answer("DMEM",items,adapters).items[0].id==="dmem");
+const tracked=simple("tracked","Flacons PBS",{quantity:0,unit:"flacons",stockTracking:{mode:"containers",packagingLevels:[{key:"flacon",singular:"flacon",plural:"flacons",contains:1},{key:"ml",singular:"mL",plural:"mL",kind:"continuous",contains:500}],trackingUnitKey:"ml",trackingUnit:"mL",closedContainers:[{id:"closed",status:"closed",capacity:500,remaining:500}],openContainers:[{id:"open",status:"open",capacity:500,remaining:250},{id:"done",status:"finished",capacity:500,remaining:0}]}});
+test("16 terminé exclu",()=>S.available(tracked)<1500);
+test("17 ouvert non doublé",()=>S.available(tracked)===1.5);
+test("18 même calcul fiche/chat",()=>{const f=S.available(tracked),r=A.answer("PBS",[tracked],{stockText:i=>String(S.available(i)),locationText:i=>i.location});return Number(r.items[0].stock)===f});
+test("19 stock simple",()=>S.available(items[0])===3.5);
+test("20 suivi détaillé",()=>A.answer("PBS",[tracked],{stockText:i=>String(S.available(i)),locationText:i=>i.location}).items[0].stock==="1.5");
+test("21 recherche immuable",()=>{const before=JSON.stringify(items);A.answer("DMEM",items,adapters);return JSON.stringify(items)===before});
+test("22 modification refusée",()=>A.answer("Ajoute 3 bouteilles de DMEM",items,adapters).kind==="readonly");
+test("23 données indisponibles",()=>A.answer("DMEM",null,adapters).kind==="error");
+test("24 intention quantité",()=>A.intents("Combien reste-t-il ?").quantity);
+test("25 intention localisation",()=>A.intents("Où est-il ?").location);
+test("26 synonymes extensibles",()=>Array.isArray(A.SYNONYMS.dmem)&&A.expansions(["dmem"]).some(x=>x.includes("dulbecco")));
+test("27 tirets chiffres pourcentages",()=>A.search("trypsine 0,05%",items).results[0].item.id==="trypsine");
+document.querySelector("#result").textContent=rows.join("\n")+`\n${passed}/27 tests passed`;document.title=passed===27?"PASS":"FAIL";document.body.dataset.failed=String(passed!==27);
+</script></body></html>

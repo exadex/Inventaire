@@ -1,0 +1,15 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Tests accueil animé Assistant</title><body>
+<pre id="result">Tests en cours…</pre><iframe id="appFrame" style="position:absolute;left:-10000px;width:1400px;height:900px"></iframe>
+<script>
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms)),frame=document.querySelector("#appFrame"),lines=[];let passed=0;
+const test=(name,value)=>{lines.push(`${value?"PASS":"FAIL"} ${name}`);if(value)passed++;};
+frame.addEventListener("load",async()=>{const w=frame.contentWindow,d=frame.contentDocument;d.querySelector("#nameInput").value="Test";d.querySelector("#loginForm").requestSubmit();await wait(2200);w.Math.random=()=>0;d.querySelector('[data-view="agents"]').click();await wait(60);[...d.querySelectorAll(".agent-card")].find(card=>card.textContent.includes("Assistant Inventaire"))?.querySelector("button").click();await wait(20);
+test("1 indicateur avant accueil",Boolean(d.querySelector(".inventory-chat-thinking"))&&!d.querySelector(".inventory-chat-message.assistant p"));
+test("2 avatar robot avec indicateur",d.querySelector(".inventory-chat-thinking .inventory-chat-avatar.assistant")?.textContent==="🤖");
+d.querySelector('[data-agent-action="home"]').click();await wait(820);test("7 temporisateur annulé à la fermeture",!d.body.textContent.includes("Bonjour 👋, je suis l’Assistant Inventaire."));[...d.querySelectorAll(".agent-card")].find(card=>card.textContent.includes("Assistant Inventaire"))?.querySelector("button").click();await wait(650);test("5 accueil absent avant délai minimal",!d.body.textContent.includes("Bonjour 👋, je suis l’Assistant Inventaire."));await wait(190);
+test("3 accueil remplace indicateur",!d.querySelector(".inventory-chat-thinking")&&Boolean(d.querySelector(".inventory-chat-message.assistant p")));
+test("4 début exact",d.querySelector(".inventory-chat-message.assistant p")?.textContent.startsWith("Bonjour 👋, je suis l’Assistant Inventaire."));
+w.renderAgents();test("6 aucun doublon",[...d.querySelectorAll(".inventory-chat-message.assistant p")].filter(p=>p.textContent.startsWith("Bonjour 👋")).length===1&&d.querySelectorAll(".inventory-chat-avatar.assistant").length===1);
+const reduced=[...d.styleSheets].flatMap(sheet=>{try{return[...sheet.cssRules]}catch{return[]}}).some(rule=>rule.conditionText?.includes("prefers-reduced-motion")&&rule.cssText.includes("inventory-chat-typing-dots"));test("8 mouvement réduit",reduced);
+document.querySelector("#result").textContent=lines.join("\n")+`\n${passed}/8 tests passed`;document.title=passed===8?"PASS":"FAIL";document.body.dataset.failed=String(passed!==8);w.stop();});frame.src="../../index.html";
+</script></body></html>

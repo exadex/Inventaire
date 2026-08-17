@@ -60,8 +60,8 @@
           <button class="nav-item" data-view="orders">&Agrave; commander</button>
           <button class="nav-item" data-view="contacts">Contacts</button>
           <button class="nav-item" data-view="agents"><span aria-hidden="true">✦</span> Agents</button>
-          <button class="nav-item" data-view="history">Historique</button>
           <button class="nav-item" data-view="backups">Sauvegardes</button>
+          <button class="nav-item" data-view="history">Historique</button>
         </nav>
         <div class="team-card">
           <p>Identit&eacute; active</p>
@@ -480,6 +480,7 @@
               <p class="location-page-description">Une copie des items est créée chaque lundi à 06:00, et une copie complète le premier jour de chaque mois à 06:00.</p>
             </div>
             <div class="orders-header-actions">
+              <small class="backup-local-scope-note">Accès propre à ce navigateur : les autres utilisateurs ne verront pas cette copie sans configurer leur propre accès, même si votre token est actif ici.</small>
               <button class="primary-btn" id="createFullBackupBtn" type="button">Créer une copie complète</button>
             </div>
           </div>
@@ -519,6 +520,22 @@
         <div class="modal-actions">
           <button class="ghost-btn" type="button" data-close-backup-delete>Annuler</button>
           <button class="danger-btn" id="confirmDeleteBackupBtn" type="submit">Supprimer</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="exportBackupDialog" class="modal backup-restore-modal">
+      <form id="exportBackupForm">
+        <div class="modal-header">
+          <div><p class="eyebrow">Export protégé</p><h3 id="exportBackupTitle">Exporter cette sauvegarde ?</h3></div>
+          <button class="icon-btn" type="button" data-close-backup-export>&times;</button>
+        </div>
+        <p>L’export contient une copie des données de la sauvegarde sélectionnée.</p>
+        <label>Code administrateur<input id="exportBackupPassword" type="password" inputmode="numeric" autocomplete="off" required></label>
+        <p id="exportBackupError" class="confirmation-modal-error hidden" role="alert"></p>
+        <div class="modal-actions">
+          <button class="ghost-btn" type="button" data-close-backup-export>Annuler</button>
+          <button class="primary-btn" id="confirmExportBackupBtn" type="submit">Exporter</button>
         </div>
       </form>
     </dialog>
@@ -1177,7 +1194,11 @@
     <script src="js/orders/order_inventory.js"></script>
     <script src="js/agents/agents_core.js"></script>
     <script src="js/agents/agents_storage.js"></script>
-    <script src="js/agents/agents_ui.js"></script>
+    <script src="js/agents/scientific_variants.js"></script>
+    <script src="js/agents/inventory_assistant.js"></script>
+    <script src="js/agents/assistant_data_sources.js?v=20260813-1"></script>
+    <script src="js/agents/transversal_assistant.js?v=20260813-1"></script>
+    <script src="js/agents/agents_ui.js?v=20260813-1"></script>
     <script src="js/app/script.js?v=20260811-5"></script>
     <script>
       if (new URLSearchParams(location.search).has("clientSampleTests")) {

@@ -24470,7 +24470,7 @@
       "customerService": "serviceclients@thermofisher.com",
       "salesAndQuotes": "nicolas.dumoitier@thermofisher.com // mathilde.perruchon@thermofisher.com",
       "phone": "08 00 23 20 79 / 07 87 61 13 40 Nicolas Dumoitier / 06 09 51 25 93 Messeguer Virginie",
-      "notes": "Voir devis annuel ",
+      "notes": "Compte : accounting@exadex-innov.com - mdp : ExAdEx2026!\nVoir devis annuel ",
       "aliases": [],
       "coordinates": []
     },
@@ -24488,6 +24488,12 @@
     }
   ],
   "history": [
+    {
+      "date": "17/08/2026 09:51",
+      "user": "Elina",
+      "action": "Contact modifié",
+      "detail": "Elina a modifié le contact Thermo Fischer."
+    },
     {
       "date": "13/08/2026 16:07",
       "user": "Caroline",
@@ -31548,5 +31554,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-13T14:07:23.162Z"
+  "updatedAt": "2026-08-17T07:51:57.371Z"
 }

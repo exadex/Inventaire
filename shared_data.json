@@ -9791,7 +9791,7 @@
     },
     {
       "id": "itm-web-1783931436295-bvqchf",
-      "name": "cones 1000µL non filtrés",
+      "name": "Cones non filtrés 1000µL",
       "category": "Culture Cell",
       "quantity": 0,
       "unit": "unités",
@@ -9847,7 +9847,6 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "placements": [
         {
           "id": "placement-legacy-1ab69on",
@@ -24489,6 +24488,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 09:27",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non filtrés 1000µL."
+    },
+    {
       "date": "17/08/2026 09:51",
       "user": "Elina",
       "action": "Contact modifié",
@@ -31554,5 +31559,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-17T07:51:57.371Z"
+  "updatedAt": "2026-08-18T07:27:13.768Z"
 }

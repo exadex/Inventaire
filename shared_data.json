@@ -10307,9 +10307,9 @@
       "id": "itm-CSV-0081",
       "name": "Cones non-filtrés 10µL",
       "category": "Culture Cell",
-      "quantity": 1,
+      "quantity": 2,
       "unit": "unités",
-      "minStock": 0,
+      "minStock": 1,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -24434,6 +24434,12 @@
       "detail": "Caroline a modifié Cones non-filtrés 10µL."
     },
     {
+      "date": "18/08/2026 10:30",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non-filtrés 10µL."
+    },
+    {
       "date": "18/08/2026 10:26",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -31565,5 +31571,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:30:22.383Z"
+  "updatedAt": "2026-08-18T08:30:42.654Z"
 }

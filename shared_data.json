@@ -20037,72 +20037,6 @@
           "sublocationId": null
         }
       ]
-    },
-    {
-      "id": "itm-CSV-0194",
-      "name": "Pipette tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box",
-      "category": "Cones pipettes",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "70.3050.205",
-          "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.205/",
-          "notes": "80,64",
-          "price": "80,64",
-          "unitPrice": "0,042",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-08-10T09:43:40.005Z",
-      "createdAt": "10/08/2026 11:43",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-1qzdqx9",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
     }
   ],
   "experiments": [],
@@ -24359,6 +24293,12 @@
     }
   ],
   "history": [
+    {
+      "date": "18/08/2026 10:32",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Pipette tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box de l'inventaire."
+    },
     {
       "date": "18/08/2026 10:32",
       "user": "Caroline",
@@ -31527,5 +31467,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:32:37.951Z"
+  "updatedAt": "2026-08-18T08:32:51.527Z"
 }

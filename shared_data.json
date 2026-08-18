@@ -16416,7 +16416,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Bio-techne",
+          "supplier": "R&D systems",
           "reference": "10291-TA",
           "link": "https://www.bio-techne.com/p/proteins-enzymes/recombinant-human-tnf-alpha-hek293-expressed-protein-cf_10291-ta",
           "notes": "207",
@@ -16464,7 +16464,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239056045-dnjj9a"
     },
     {
       "id": "itm-web-1783931436295-l5lcx8",
@@ -24294,6 +24295,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 10:33",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Recombinant Human TNF-alpha Protein, CF."
+    },
+    {
       "date": "18/08/2026 10:32",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -31467,5 +31474,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:32:51.527Z"
+  "updatedAt": "2026-08-18T08:33:28.959Z"
 }

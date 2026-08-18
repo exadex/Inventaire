@@ -10332,6 +10332,10 @@
           {
             "reference": "70.3010",
             "notes": "Sarstedt. Prix 140,00 € prix unitaire 0,01 €"
+          },
+          {
+            "reference": "70.3010.200",
+            "notes": "Sarstedt. Prix  € prix unitaire €"
           }
         ]
       },
@@ -24418,6 +24422,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 10:30",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non-filtrés 10µL."
+    },
+    {
       "date": "18/08/2026 10:26",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -31549,5 +31559,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:26:10.007Z"
+  "updatedAt": "2026-08-18T08:30:04.256Z"
 }

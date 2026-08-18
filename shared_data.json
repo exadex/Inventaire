@@ -20070,13 +20070,15 @@
       "category": "Cones pipettes",
       "quantity": 0,
       "unit": "unités",
-      "minStock": 0,
+      "minStock": 2,
       "location": "Laboratoire",
       "locations": [
         "Laboratoire"
       ],
-      "tags": [],
-      "notes": "Pipette tip, 1,000 µl, transparent, PCR Performance Tested, 500 piece(s)/bag",
+      "tags": [
+        "pointes"
+      ],
+      "notes": "Pipette tip, 1,000 µl, transparent, PCR Performance Tested, 500 piece(s)/bag\n10x500",
       "references": {
         "primary": {
           "supplier": "Sarstedt",
@@ -24517,6 +24519,12 @@
     }
   ],
   "history": [
+    {
+      "date": "18/08/2026 10:24",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non-filtrés 1000µL."
+    },
     {
       "date": "18/08/2026 09:32",
       "user": "Caroline",
@@ -31631,5 +31639,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T07:32:07.847Z"
+  "updatedAt": "2026-08-18T08:24:43.520Z"
 }

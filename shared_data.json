@@ -11438,7 +11438,10 @@
             "concentrationUnit": "mM",
             "locations": [
               {
-                "location": "-20°C 2 salle -80",
+                "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°3",
+                "roomId": "room-piece-80",
+                "locationId": "location-20-2-salle-80",
+                "sublocationId": "sublocation-4258795f-51de-4e7a-a0ba-bf320c452413",
                 "quantity": 3
               }
             ],
@@ -11452,9 +11455,9 @@
             },
             "note": "Tiroir n°3",
             "status": "active",
-            "updatedAt": "2026-08-12T08:54:12.670Z",
+            "updatedAt": "2026-08-18T08:34:50.579Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2
           }
         ]
       }
@@ -24296,6 +24299,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-msyepxjz-3606349863-1056042320",
+      "operationId": "operation-msyepxjz-3606349863-1056042320",
+      "date": "18/08/2026 10:34",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · preparation_corrected · L-glutamine · MAJ",
+      "user": "Caroline",
+      "itemId": "itm-CSV-0100"
+    },
+    {
       "date": "18/08/2026 10:34",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31337,6 +31349,109 @@
       "toLocation": "",
       "comment": "inventaire",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-msyepxzo-4234162537-3002977754",
+      "operationId": "operation-msyepxjz-3606349863-1056042320",
+      "itemId": "itm-CSV-0100",
+      "timestamp": "2026-08-18T08:34:50.580Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "preparation_corrected",
+      "entityType": "preparation",
+      "entityId": "preparation-mspurqny-2049812420-447654745",
+      "containerId": "preparation-mspurqny-2049812420-447654745",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 3,
+      "afterQuantity": 3,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "preparation-mspurqny-2049812420-447654745",
+      "before": {
+        "id": "preparation-mspurqny-2049812420-447654745",
+        "label": "Préparation nº1",
+        "createdCount": 3,
+        "representedSourceQuantity": 15,
+        "sourceUnit": "mL",
+        "volume": 5,
+        "volumeUnit": "mL",
+        "concentration": 200,
+        "concentrationUnit": "mM",
+        "locations": [
+          {
+            "location": "-20°C 2 salle -80",
+            "quantity": 3,
+            "roomId": "",
+            "locationId": "",
+            "sublocationId": ""
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "Tiroir n°3",
+        "status": "active",
+        "updatedAt": "2026-08-12T08:54:12.670Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "preparation-mspurqny-2049812420-447654745",
+        "label": "Préparation nº1",
+        "createdCount": 3,
+        "representedSourceQuantity": 15,
+        "sourceUnit": "mL",
+        "volume": 5,
+        "volumeUnit": "mL",
+        "concentration": 200,
+        "concentrationUnit": "mM",
+        "locations": [
+          {
+            "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°3",
+            "roomId": "room-piece-80",
+            "locationId": "location-20-2-salle-80",
+            "sublocationId": "sublocation-4258795f-51de-4e7a-a0ba-bf320c452413",
+            "quantity": 3
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-08-12",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "note": "Tiroir n°3",
+        "status": "active",
+        "updatedAt": "2026-08-18T08:34:50.579Z",
+        "updatedBy": "caroline",
+        "version": 2
+      },
+      "quantity": 3,
+      "difference": 0,
+      "unit": "aliquotes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "MAJ",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -31471,6 +31586,12 @@
       "itemId": "itm-web-1783931436295-0nt8ah",
       "at": "2026-08-12T14:15:58.762Z",
       "type": "preparation_corrected"
+    },
+    {
+      "operationId": "operation-msyepxjz-3606349863-1056042320",
+      "itemId": "itm-CSV-0100",
+      "at": "2026-08-18T08:34:50.580Z",
+      "type": "preparation_corrected"
     }
   ],
   "agentOperations": [
@@ -31481,5 +31602,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:34:05.399Z"
+  "updatedAt": "2026-08-18T08:34:50.580Z"
 }

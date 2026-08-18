@@ -19994,7 +19994,7 @@
         "secondary": [
           {
             "reference": "70.3050.205",
-            "notes": "Sarsdest. Prix prix unitaire"
+            "notes": "Sarsdest. Prix 84,64€ prix unitaire 0,04€"
           }
         ]
       },
@@ -24359,6 +24359,12 @@
     }
   ],
   "history": [
+    {
+      "date": "18/08/2026 10:32",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non-filtrés 1000µL."
+    },
     {
       "date": "18/08/2026 10:32",
       "user": "Caroline",
@@ -31521,5 +31527,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:32:12.614Z"
+  "updatedAt": "2026-08-18T08:32:37.951Z"
 }

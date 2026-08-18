@@ -8838,7 +8838,7 @@
     },
     {
       "id": "itm-web-1783931436295-nfh67s",
-      "name": "Plaque 6 puits ULA",
+      "name": "Plaque 6 puits ULA Dutscher",
       "category": "Culture Cell",
       "quantity": 5.5,
       "unit": "plaques",
@@ -24521,6 +24521,12 @@
       "date": "18/08/2026 09:31",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 6 puits ULA Dutscher."
+    },
+    {
+      "date": "18/08/2026 09:31",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Plaque 6 puits ULA."
     },
     {
@@ -31619,5 +31625,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T07:31:46.503Z"
+  "updatedAt": "2026-08-18T07:31:57.617Z"
 }

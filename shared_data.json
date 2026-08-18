@@ -9962,74 +9962,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-32px27",
-      "name": "cones 10µl non filtrés",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 2,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Pointes"
-      ],
-      "notes": "480/b 1920/carton",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "70.3010.200",
-          "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3010.200/",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "45",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-08-10T09:45:42.205Z",
-      "createdAt": "10/08/2026 11:45",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-v9zc6b",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-kwjv0i",
       "name": "Cones filtrés 1000µL Sarstedt (UGAP)",
       "category": "Culture Cell",
@@ -24424,6 +24356,12 @@
     {
       "date": "18/08/2026 10:30",
       "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé cones 10µl non filtrés de l'inventaire."
+    },
+    {
+      "date": "18/08/2026 10:30",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Cones non-filtrés 10µL."
     },
@@ -31571,5 +31509,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:30:42.654Z"
+  "updatedAt": "2026-08-18T08:30:53.431Z"
 }

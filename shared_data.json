@@ -16956,7 +16956,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Bio-techne",
+          "supplier": "R&D systems",
           "reference": "MAB005",
           "link": "https://www.bio-techne.com/p/isotype-controls/rat-igg1-isotype-control_mab005",
           "notes": "194",
@@ -17004,7 +17004,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "supplierContactId": "contact-1785239056045-dnjj9a"
     },
     {
       "id": "itm-CSV-0118",
@@ -24295,6 +24296,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 10:34",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Rat IgG1 Isotype Control."
+    },
+    {
       "date": "18/08/2026 10:33",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31474,5 +31481,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:33:28.959Z"
+  "updatedAt": "2026-08-18T08:34:05.399Z"
 }

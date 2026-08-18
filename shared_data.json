@@ -8855,7 +8855,7 @@
         "primary": {
           "supplier": "Dutscher",
           "reference": "3471",
-          "link": "",
+          "link": "https://www.dutscher.com/article/003471",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "248",
           "unitPrice": "",
@@ -8871,7 +8871,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-08-18T07:31:46.501Z",
+      "createdAt": "18/08/2026 09:31",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "periodic",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-81mkc8",
@@ -24487,6 +24518,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 09:31",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 6 puits ULA."
+    },
+    {
       "date": "18/08/2026 09:30",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31582,5 +31619,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T07:30:40.949Z"
+  "updatedAt": "2026-08-18T07:31:46.503Z"
 }

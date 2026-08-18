@@ -9821,73 +9821,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-bvqchf",
-      "name": "Cones non filtrés 1000µL",
-      "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 2,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Pointes"
-      ],
-      "notes": "10x500",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "70.3050",
-          "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pointes-de-pipette/produit/70.3050/",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "46",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T09:34:27.557Z",
-      "createdAt": "10/08/2026 11:34",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-1ab69on",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-p4bim9",
       "name": "Cones filtrés 1000µL Thermo",
       "category": "Culture Cell",
@@ -24522,6 +24455,12 @@
     {
       "date": "18/08/2026 10:24",
       "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Cones non filtrés 1000µL de l'inventaire."
+    },
+    {
+      "date": "18/08/2026 10:24",
+      "user": "Caroline",
       "action": "Item modifié",
       "detail": "Caroline a modifié Cones non-filtrés 1000µL."
     },
@@ -31639,5 +31578,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:24:43.520Z"
+  "updatedAt": "2026-08-18T08:24:53.207Z"
 }

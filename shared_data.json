@@ -10067,7 +10067,7 @@
     },
     {
       "id": "itm-web-1783931436295-kwjv0i",
-      "name": "Cones filtrés 1000µL",
+      "name": "Cones filtrés 1000µL Sarstedt (UGAP)",
       "category": "Culture Cell",
       "quantity": 1.5,
       "unit": "unités",
@@ -24490,6 +24490,12 @@
       "date": "18/08/2026 09:30",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 1000µL Sarstedt (UGAP)."
+    },
+    {
+      "date": "18/08/2026 09:30",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Cones filtrés 1000µL Thermo."
     },
     {
@@ -31576,5 +31582,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T07:30:24.950Z"
+  "updatedAt": "2026-08-18T07:30:40.949Z"
 }

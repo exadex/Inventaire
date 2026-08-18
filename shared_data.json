@@ -19968,16 +19968,18 @@
     },
     {
       "id": "itm-CSV-0193",
-      "name": "Filter tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box",
+      "name": "Cones non-filtrés 1000µL",
       "category": "Cones pipettes",
       "quantity": 0,
       "unit": "unités",
-      "minStock": 0,
+      "minStock": 1,
       "location": "Laboratoire",
       "locations": [
         "Laboratoire"
       ],
-      "tags": [],
+      "tags": [
+        "pointes"
+      ],
       "notes": "",
       "references": {
         "primary": {
@@ -19989,11 +19991,15 @@
           "unitPrice": "0,059",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "70.3050.205",
+            "notes": "Sarsdest. Prix prix unitaire"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-08-10T09:43:27.173Z",
       "createdAt": "10/08/2026 11:43",
       "stockTracking": {
@@ -24353,6 +24359,12 @@
     }
   ],
   "history": [
+    {
+      "date": "18/08/2026 10:32",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones non-filtrés 1000µL."
+    },
     {
       "date": "18/08/2026 10:30",
       "user": "Caroline",
@@ -31509,5 +31521,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:30:53.431Z"
+  "updatedAt": "2026-08-18T08:32:12.614Z"
 }

@@ -14552,41 +14552,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-pgia92",
-      "name": "Film adhésif AeraSeal™ stérile",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/a6306",
-          "notes": "106",
-          "price": "106",
-          "unitPrice": "0,110416667",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1nzp78z",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-4tpbeo",
       "name": "Smart ladder SF",
       "category": "Biomol",
@@ -24453,6 +24418,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 10:26",
+      "user": "Caroline",
+      "action": "Item supprimé",
+      "detail": "Caroline a supprimé Film adhésif AeraSeal™ stérile de l'inventaire."
+    },
+    {
       "date": "18/08/2026 10:24",
       "user": "Caroline",
       "action": "Item supprimé",
@@ -31578,5 +31549,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:24:53.207Z"
+  "updatedAt": "2026-08-18T08:26:10.007Z"
 }

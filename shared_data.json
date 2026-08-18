@@ -9858,7 +9858,7 @@
     },
     {
       "id": "itm-web-1783931436295-p4bim9",
-      "name": "Cones filtrés 1000µL",
+      "name": "Cones filtrés 1000µL Thermo",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -24487,6 +24487,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 09:30",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Cones filtrés 1000µL Thermo."
+    },
+    {
       "date": "18/08/2026 09:29",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31570,5 +31576,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T07:29:30.862Z"
+  "updatedAt": "2026-08-18T07:30:24.950Z"
 }

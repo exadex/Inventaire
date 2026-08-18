@@ -10084,8 +10084,8 @@
         "primary": {
           "supplier": "Sarsdest",
           "reference": "2869323",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
+          "link": "https://www.ugap.fr/laboratoire-1/consommables-scientifiques-gauss-32634/pointes-et-micropipettes-36277/pointes-36422/pointe-1000-l-a-filtre-graduee-rack-de-96-biosphere-plus-x-1920-p2869323",
+          "notes": "UGAP\nNB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "113",
           "unitPrice": "",
           "leadTime": ""
@@ -10094,7 +10094,6 @@
       },
       "source": "seed",
       "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-08-10T09:38:13.309Z",
       "createdAt": "10/08/2026 11:38",
       "stockTracking": {
@@ -24488,6 +24487,12 @@
   ],
   "history": [
     {
+      "date": "18/08/2026 09:29",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié cones filtrés 1000µL."
+    },
+    {
       "date": "18/08/2026 09:27",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31559,5 +31564,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T07:27:13.768Z"
+  "updatedAt": "2026-08-18T07:29:23.630Z"
 }

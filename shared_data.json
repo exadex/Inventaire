@@ -5371,7 +5371,7 @@
       "id": "itm-web-1783931436294-6j33l2",
       "name": "Boîte C.C 100 mm, standard",
       "category": "Culture Cell",
-      "quantity": 0.966667,
+      "quantity": 0.933333,
       "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -5439,7 +5439,7 @@
             "id": "container-mrp306rn-4033899303-4120031035",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 290,
+            "remaining": 280,
             "capacity": 300,
             "status": "open",
             "openedAt": "2026-07-17T15:17:15.203Z",
@@ -5449,10 +5449,13 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T15:17:15.203Z",
-            "updatedBy": "caroline",
-            "version": 1,
-            "unitKey": "sachet"
+            "updatedAt": "2026-08-19T13:40:01.254Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "unitKey": "sachet",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": ""
           }
         ]
       },
@@ -24299,6 +24302,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mt0528i8-606394158-2464700243",
+      "operationId": "operation-mt0528i8-606394158-2464700243",
+      "date": "19/08/2026 15:40",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Boîte C.C 100 mm, standard · Stock précédent : 0,967 cartons · Stock compté : 0,933 cartons · Écart : -0,033 cartons · Note : Pour hmads",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436294-6j33l2",
+      "type": "recounted",
+      "previousQuantity": 0.966667,
+      "countedQuantity": 0.933333,
+      "difference": -0.033334,
+      "unit": "cartons",
+      "note": "Pour hmads"
+    },
+    {
       "id": "history-operation-msyepxjz-3606349863-1056042320",
       "operationId": "operation-msyepxjz-3606349863-1056042320",
       "date": "18/08/2026 10:34",
@@ -31452,6 +31470,84 @@
       "toLocation": "",
       "comment": "MAJ",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mt05299i-2683706527-4086744482",
+      "operationId": "operation-mt0528i8-606394158-2464700243-container-mrp306rn-4033899303-4120031035",
+      "itemId": "itm-web-1783931436294-6j33l2",
+      "timestamp": "2026-08-19T13:40:01.254Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp306rn-4033899303-4120031035",
+      "containerId": "container-mrp306rn-4033899303-4120031035",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 29,
+      "afterQuantity": 28,
+      "beforeCapacity": 30,
+      "afterCapacity": 30,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp306rn-4033899303-4120031035",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 290,
+        "capacity": 300,
+        "status": "open",
+        "openedAt": "2026-07-17T15:17:15.203Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T15:17:15.203Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "unitKey": "sachet"
+      },
+      "after": {
+        "id": "container-mrp306rn-4033899303-4120031035",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 280,
+        "capacity": 300,
+        "status": "open",
+        "openedAt": "2026-07-17T15:17:15.203Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-19T13:40:01.254Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "unitKey": "sachet",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 28,
+      "difference": -1,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Pour hmads",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -31592,6 +31688,12 @@
       "itemId": "itm-CSV-0100",
       "at": "2026-08-18T08:34:50.580Z",
       "type": "preparation_corrected"
+    },
+    {
+      "operationId": "operation-mt0528i8-606394158-2464700243",
+      "itemId": "itm-web-1783931436294-6j33l2",
+      "at": "2026-08-19T13:40:01.254Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -31602,5 +31704,5 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-18T08:34:50.580Z"
+  "updatedAt": "2026-08-19T13:40:01.254Z"
 }

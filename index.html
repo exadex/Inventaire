@@ -252,53 +252,42 @@
         </section>
 
         <section class="view" id="experimentsView">
-          <div class="section-heading">
-            <h3>Expériences</h3>
-            <span>Templates, consommation prévisionnelle et suivi</span>
+          <div class="client-studies-header experiments-page-header">
+            <div><p class="eyebrow">PROTOCOLES ET SUIVI</p><div class="client-studies-title-row"><h3>Expériences</h3></div></div>
+            <div class="orders-header-actions">
+              <button id="manageProtocolTemplatesBtn" class="ghost-btn" type="button">Gérer les protocoles</button>
+              <button id="addExperimentBtn" class="primary-btn" type="button">Nouvelle expérience</button>
+            </div>
           </div>
 
-          <div class="control-bar experiment-controls">
-            <label class="search-box">
-              <span>Rech.</span>
+          <section class="client-study-controls orders-controls experiments-controls" aria-label="Recherche des expériences">
+            <label class="client-study-search order-control-field" for="experimentSearchInput">
+              <span>Rechercher</span>
               <input
                 id="experimentSearchInput"
                 type="search"
-                placeholder="Rechercher par nom, template, créateur ou statut..."
+                placeholder="Code client, nom ou statut…"
               />
+              <strong class="client-study-result-count" id="experimentResultCount" aria-live="polite"></strong>
             </label>
+            <label class="order-control-field" for="experimentSortSelect">
+              <span>Tri</span>
+              <select class="select" id="experimentSortSelect">
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="client">Code client</option>
+                <option value="status">Statut</option>
+              </select>
+              <span class="order-control-secondary" aria-hidden="true"></span>
+            </label>
+            <div class="order-control-field order-reset-field"><span aria-hidden="true"></span><button class="ghost-btn compact-btn order-reset-btn" id="resetExperimentSearchBtn" type="button">Réinitialiser</button><span aria-hidden="true"></span></div>
+          </section>
 
-            <select id="experimentStatusFilter" class="select hidden">
-              <option value="all">Tous statuts</option>
-              <option value="draft">Draft</option>
-              <option value="running">Running</option>
-              <option value="completed">Completed</option>
-            </select>
-
-            <button id="addExperimentBtn" class="primary-btn" type="button">Ajouter une expérience</button>
-          </div>
+          <div class="client-study-kpis experiments-kpis" id="experimentMetrics"></div>
 
           <div id="experimentDetail"></div>
-          <div class="order-flow experiment-flow" id="experimentGrid">
-            <section class="order-step">
-              <div class="order-column-head">
-                <h4>Brouillon <span id="draftExperimentCount"></span></h4>
-              </div>
-              <div class="order-list" id="draftExperimentList"></div>
-            </section>
-
-            <section class="order-step">
-              <div class="order-column-head">
-                <h4>En cours <span id="runningExperimentCount"></span></h4>
-              </div>
-              <div class="order-list" id="runningExperimentList"></div>
-            </section>
-
-            <section class="order-step">
-              <div class="order-column-head">
-                <h4>Terminé <span id="completedExperimentCount"></span></h4>
-              </div>
-              <div class="order-list" id="completedExperimentList"></div>
-            </section>
+          <div class="sample-table-wrap experiments-table-wrap" id="experimentGrid">
+            <table class="sample-table experiments-list-table"><thead><tr><th scope="col">Code client</th><th scope="col">Nom</th><th scope="col">Date du statut</th><th scope="col">Statut</th><th scope="col">Items suffisants</th><th scope="col">Items insuffisants</th></tr></thead><tbody id="experimentTableBody"></tbody></table>
           </div>
         </section>
 
@@ -900,10 +889,17 @@
             <select id="experimentTemplate" required></select>
           </label>
 
-          <label>
-            <span>Nom de l’expérience</span>
-            <input id="experimentName" required />
-          </label>
+          <div class="experiment-name-client-row">
+            <label>
+              <span>Nom de l’expérience</span>
+              <input id="experimentName" required />
+            </label>
+
+            <label>
+              <span>Code client</span>
+              <input id="experimentClientCode" />
+            </label>
+          </div>
 
           <label>
             <span>Conditions</span>
@@ -930,7 +926,7 @@
           </label>
         </div>
 
-        <label class="full-label">
+        <label id="experimentTemplateNotesField" class="full-label">
           <span>Template Notes</span>
           <textarea id="experimentTemplateNotes" rows="3" readonly></textarea>
         </label>
@@ -984,7 +980,10 @@
         <section class="reference-section">
           <div class="reference-heading">
             <h4>Items consommés</h4>
-            <button id="addExperimentItemBtn" class="ghost-btn compact-btn" type="button">Ajouter une ligne</button>
+            <div class="experiment-item-add-actions">
+              <button id="addExperimentInventoryItemBtn" class="ghost-btn compact-btn" type="button">Ajouter un item de l’inventaire</button>
+              <button id="addExperimentCustomItemBtn" class="ghost-btn compact-btn" type="button">Ajouter un item libre</button>
+            </div>
           </div>
           <div id="experimentItemsList" class="experiment-items-list"></div>
         </section>
@@ -996,6 +995,77 @@
             <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
             <button class="primary-btn" id="saveExperimentBtn" type="button">Enregistrer</button>
           </div>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="saveProtocolTemplateDialog" class="modal">
+      <form id="saveProtocolTemplateForm" method="dialog">
+        <div class="modal-header">
+          <h3 id="saveProtocolTemplateTitle">Enregistrer le protocole</h3>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
+        </div>
+
+        <input type="hidden" id="saveProtocolTemplateMode" value="create" />
+        <input type="hidden" id="saveProtocolTemplateId" />
+        <input type="hidden" id="saveProtocolTemplateExperimentId" />
+
+        <label>
+          <span>Nom du protocole <span class="required-star">*</span></span>
+          <input id="saveProtocolTemplateName" required />
+        </label>
+
+        <label class="full-label">
+          <span>Notes</span>
+          <textarea id="saveProtocolTemplateNotes" rows="2"></textarea>
+        </label>
+
+        <div class="full-label">
+          <span>Quantité de chaque item pour 1 réplica</span>
+          <div id="saveProtocolTemplateItems" class="save-protocol-template-items"></div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
+          <button class="primary-btn" id="confirmSaveProtocolTemplateBtn" type="button">Enregistrer le protocole</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="manageProtocolTemplatesDialog" class="modal">
+      <form id="manageProtocolTemplatesForm" method="dialog">
+        <div class="modal-header">
+          <h3>Gérer les protocoles</h3>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
+        </div>
+
+        <div id="manageProtocolTemplatesList" class="manage-protocol-templates-list"></div>
+
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Fermer</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="consumeExperimentDialog" class="modal">
+      <form id="consumeExperimentForm" method="dialog">
+        <div class="modal-header">
+          <h3>Consommer le stock</h3>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
+        </div>
+
+        <input type="hidden" id="consumeExperimentId" />
+
+        <p class="consume-experiment-intro">Vérifiez les quantités qui seront retirées du stock. Modifiez une quantité ou retirez un item si nécessaire.</p>
+
+        <div id="consumeExperimentItems" class="consume-experiment-items"></div>
+
+        <p id="consumeExperimentSkippedNote" class="consume-experiment-skipped-note hidden"></p>
+        <p id="consumeExperimentError" class="confirmation-modal-error hidden" role="alert"></p>
+
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
+          <button class="primary-btn" id="confirmConsumeExperimentBtn" type="button">Consommer le stock</button>
         </div>
       </form>
     </dialog>

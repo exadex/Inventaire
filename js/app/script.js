@@ -57,6 +57,9 @@ let stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.sto
 let clientSamples = migrateClientSamples(sharedState.clientSamples);
 let clients = migrateClients(sharedState.clients, clientSamples);
 let supplierContacts = migrateSupplierContacts(sharedState.supplierContacts);
+// protocoles "Nouveau protocole" enregistrés par les utilisateurs, en plus des protocoles intégrés (protocols.js)
+let customProtocolTemplates = Array.isArray(sharedState.customProtocolTemplates) ? sharedState.customProtocolTemplates : [];
+let protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
 
 const sharedDataReady = hydrateSharedData();
 
@@ -82,6 +85,7 @@ let historyPageSize = 50;
 const expandedHistoryEntries = new Set();
 let selectedExperimentId = null;
 let selectedItemId = null;
+const stockJournalOpenByItem = new Map();
 let selectedSampleId = null;
 let selectedSampleGroupId = null;
 let sampleEditContext = { scope: "new", groupId: null, sampleId: null };
@@ -138,7 +142,8 @@ const addClientStudyBtn = document.querySelector("#addClientStudyBtn");
 const sampleDialog = document.querySelector("#sampleDialog");
 const sampleForm = document.querySelector("#sampleForm");
 const experimentSearchInput = document.querySelector("#experimentSearchInput");
-const experimentStatusFilter = document.querySelector("#experimentStatusFilter");
+const experimentSortSelect = document.querySelector("#experimentSortSelect");
+const resetExperimentSearchBtn = document.querySelector("#resetExperimentSearchBtn");
 const dialog = document.querySelector("#itemDialog");
 const form = document.querySelector("#itemForm");
 const stockDialog = document.querySelector("#stockDialog");
@@ -147,7 +152,13 @@ const stockMigrationDialog = document.querySelector("#stockMigrationDialog");
 const stockMigrationForm = document.querySelector("#stockMigrationForm");
 const experimentDialog = document.querySelector("#experimentDialog");
 const experimentForm = document.querySelector("#experimentForm");
+const saveProtocolTemplateDialog = document.querySelector("#saveProtocolTemplateDialog");
+const saveProtocolTemplateForm = document.querySelector("#saveProtocolTemplateForm");
+const manageProtocolTemplatesDialog = document.querySelector("#manageProtocolTemplatesDialog");
+const consumeExperimentDialog = document.querySelector("#consumeExperimentDialog");
 const experimentItemsList = document.querySelector("#experimentItemsList");
+const FREE_PROTOCOL_ID = "custom-protocol";
+let previousExperimentTemplateId = FREE_PROTOCOL_ID;
 const orderDialog = document.querySelector("#orderDialog");
 const orderForm = document.querySelector("#orderForm");
 const confirmDeleteDialog = document.querySelector("#confirmDeleteDialog");
@@ -234,6 +245,7 @@ const experimentFields = [
   "experimentId",
   "experimentTemplate",
   "experimentName",
+  "experimentClientCode",
   "experimentConditions",
   "experimentReplicates",
   "experimentStatus",
@@ -348,6 +360,16 @@ trackingFields.trackingUnitKey?.addEventListener("change", updatePackagingPrevie
 trackingFields.packagingLevels?.addEventListener("click", event => { if (event.target.closest("[data-remove-packaging]")) { event.target.closest(".packaging-level-row")?.remove(); updatePackagingPreview(); } });
 document.querySelector("#addExperimentBtn").addEventListener("click", openExperimentModal);
 document.querySelector("#saveExperimentBtn").addEventListener("click", saveExperiment);
+document.querySelector("#confirmSaveProtocolTemplateBtn")?.addEventListener("click", confirmSaveProtocolTemplate);
+document.querySelector("#manageProtocolTemplatesBtn")?.addEventListener("click", openManageProtocolTemplatesDialog);
+document.querySelector("#confirmConsumeExperimentBtn")?.addEventListener("click", confirmConsumeExperiment);
+document.querySelector("#consumeExperimentItems")?.addEventListener("input", event => {
+  if (event.target.classList.contains("consume-experiment-item-quantity")) updateConsumeExperimentItemStates();
+});
+document.querySelector("#consumeExperimentItems")?.addEventListener("click", event => {
+  const removeBtn = event.target.closest("[data-remove-consume-item]");
+  if (removeBtn) removeBtn.closest(".consume-experiment-item")?.remove();
+});
 
 const deleteExperimentBtn = document.querySelector("#deleteExperimentBtn");
 if (deleteExperimentBtn) {
@@ -358,9 +380,8 @@ dialog.addEventListener("close", () => {
   pendingOrderInventoryLink = null;
 });
 
-document.querySelector("#addExperimentItemBtn").addEventListener("click", () =>
-  addExperimentItemRow({}, { showInventorySelect: true })
-);
+document.querySelector("#addExperimentInventoryItemBtn").addEventListener("click", () => addExperimentItemRow({ type:"inventory", inventoryItemId:"", quantity:"", unit:"" }));
+document.querySelector("#addExperimentCustomItemBtn").addEventListener("click", () => addExperimentItemRow({ type:"custom", name:"", quantity:"", unit:"" }));
 addSecondaryReferenceBtn.addEventListener("click", () => addSecondaryReferenceRow());
 document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal);
 document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
@@ -434,15 +455,20 @@ sampleFields.sampleArnQiazol.addEventListener("change", () => {
 });
 sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
 experimentSearchInput.addEventListener("input", renderExperiments);
-experimentStatusFilter.addEventListener("change", renderExperiments);
+experimentSortSelect?.addEventListener("change", renderExperiments);
+resetExperimentSearchBtn?.addEventListener("click", () => { experimentSearchInput.value = ""; if (experimentSortSelect) experimentSortSelect.value = EXPERIMENT_DEFAULT_SORT; renderExperiments(); experimentSearchInput.focus(); });
 experimentDialog.addEventListener("close", () => {
   experimentFields.experimentTemplate.disabled = false;
 });
 experimentFields.experimentTemplate.addEventListener("change", () => {
+  const nextId=experimentFields.experimentTemplate.value;
+  if(experimentDraftHasUserData()&&!window.confirm("Changer de protocole remplacera les informations et les items actuellement saisis. Continuer ?")){experimentFields.experimentTemplate.value=previousExperimentTemplateId;return;}
+  previousExperimentTemplateId=nextId;
   const template = protocolTemplates.find(
-    entry => entry.id === experimentFields.experimentTemplate.value
+    entry => entry.id === nextId
   );
-
+  if(!template){activateFreeProtocol({clear:true});return;}
+  syncExperimentTemplateNotesVisibility(false);
   syncRtQpcrConfigVisibility(template);
   setDefaultExperimentName(template, true);
   buildExperimentItemsFromTemplate();
@@ -468,7 +494,8 @@ experimentItemsList.addEventListener("input", updateExperimentModalStock);
 });
 experimentItemsList.addEventListener("change", (event) => {
   if (event.target.classList.contains("experiment-item-select")) {
-    hydrateExperimentItemRow(event.target.closest(".experiment-item-row"), event.target.value);
+    const row=event.target.closest(".experiment-item-row");
+    if(!row.dataset.lineType)hydrateExperimentItemRow(row, event.target.value);
   }
   updateExperimentModalStock();
 });
@@ -621,7 +648,7 @@ function createSharedState(rawState = null, options = {}) {
   const source = rawState && typeof rawState === "object" ? rawState : {};
   const bootstrap = includeBootstrap ? createBootstrapSharedState() : null;
 
-  return {
+  const normalized = {
     version: 2,
     locationCatalog: normalizeLocationCatalog(source.locationCatalog || bootstrap?.locationCatalog),
     inventoryItems: migrateItems(
@@ -649,8 +676,16 @@ function createSharedState(rawState = null, options = {}) {
     stockMovements: Array.isArray(source.stockMovements) ? source.stockMovements : [],
     stockOperations: Array.isArray(source.stockOperations) ? source.stockOperations : [],
     agentOperations: Array.isArray(source.agentOperations) ? source.agentOperations : [],
+    customProtocolTemplates: Array.isArray(source.customProtocolTemplates) ? source.customProtocolTemplates : bootstrap?.customProtocolTemplates || [],
     updatedAt: source.updatedAt || bootstrap?.updatedAt || ""
   };
+  return repairHistoricalZeroContainers(normalized);
+}
+
+function repairHistoricalZeroContainers(state) {
+  if (!window.StockTracking?.repairZeroRemainingContainers) return state;
+  const movements=[...(state.stockMovements||[])],items=state.inventoryItems.map(item=>{const repair=StockTracking.repairZeroRemainingContainers(item,movements);if(repair.events.length)movements.push(...repair.events);return repair.item});
+  return {...state,inventoryItems:items,stockMovements:movements};
 }
 
 function hasSharedDataPayload(data) {
@@ -689,6 +724,8 @@ Object.defineProperties(window, {
   clients: { configurable: true, get: () => JSON.parse(JSON.stringify(clients)) },
   supplierContacts: { configurable: true, get: () => JSON.parse(JSON.stringify(supplierContacts)) },
   applicationHistory: { configurable: true, get: () => JSON.parse(JSON.stringify(history)) },
+  applicationExperiments: { configurable: true, get: () => JSON.parse(JSON.stringify(experiments)) },
+  experimentDialog: { configurable: true, get: () => document.querySelector("#experimentDialog") },
   inventoryLocationCatalog: { configurable: true, get: () => JSON.parse(JSON.stringify({ rooms: FIXED_INVENTORY_ROOMS, ...normalizeLocationCatalog(sharedState.locationCatalog) })) },
   applicationUsers: { configurable: true, get: () => Object.entries(userIcons).map(([name, emoji]) => ({ id: name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\W+/g, "-"), name, emoji })) },
   inventoryLocations: { configurable: true, get: () => [...inventoryLocations] },
@@ -840,6 +877,7 @@ function syncRuntimeStateFromShared() {
   sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
   sharedState.stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
   sharedState.agentOperations = Array.isArray(sharedState.agentOperations) ? sharedState.agentOperations : [];
+  sharedState.customProtocolTemplates = Array.isArray(sharedState.customProtocolTemplates) ? sharedState.customProtocolTemplates : [];
 
   items = buildItems();
   orders = sharedState.orders;
@@ -849,6 +887,8 @@ function syncRuntimeStateFromShared() {
   supplierContacts = sharedState.supplierContacts;
   history = sharedState.history;
   stockMovements = sharedState.stockMovements;
+  customProtocolTemplates = sharedState.customProtocolTemplates;
+  protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
 }
 
 function syncSharedStateFromRuntime() {
@@ -1171,8 +1211,18 @@ function statusLabel(status) {
   return { ok: "Stock sain", warning: "Attention", critical: "Critique", undefined: "Seuil non défini" }[status] || "Seuil non défini";
 }
 
+function stockSummaryStatusLabel(stockStatus) {
+  if (stockStatus.currentStock <= 0) return "Stock épuisé";
+  return { ok:"Stock sain", warning:"Stock faible", critical:"Stock critique", undefined:"Seuil non défini" }[stockStatus.status] || "Seuil non défini";
+}
+
 function statusLabelExperiment(status) {
-  return { draft: "Draft", running: "Running", completed: "Completed" }[status] || status;
+  return { draft: "Brouillon", running: "En cours", completed: "Terminé" }[normalizeExperimentStatus(status)] || status || "—";
+}
+
+function normalizeExperimentStatus(status) {
+  const value = normalizeSearch(status || "").replace(/\s+/g, "_");
+  return { draft:"draft", brouillon:"draft", running:"running", in_progress:"running", en_cours:"running", completed:"completed", complete:"completed", termine:"completed" }[value] || status;
 }
 
 function render() {
@@ -1235,7 +1285,7 @@ function renderSampleOptions() {
 }
 
 function renderTemplateOptions() {
-  experimentFields.experimentTemplate.innerHTML = protocolTemplates
+  experimentFields.experimentTemplate.innerHTML = `<option value="${FREE_PROTOCOL_ID}">Nouveau protocole</option>` + protocolTemplates
     .map(template => `<option value="${escapeHtml(template.id)}">${escapeHtml(template.name)}</option>`)
     .join("");
 }
@@ -1453,6 +1503,7 @@ function renderInventory() {
   document.querySelector("#inventoryDetail").innerHTML = detail
     ? renderInventoryDetail(detail)
     : "";
+  syncStockJournalAccessibility(document.querySelector("#inventoryDetail"));
 
   controlBar.classList.toggle("hidden", activeView !== "inventory" || Boolean(detail));
   document.querySelector("#inventoryGrid").classList.toggle("hidden", Boolean(detail));
@@ -2606,6 +2657,7 @@ function warnMissingSampleViewRefs(refs) {
 
 function syncAppViewMode() {
   app.classList.toggle("history-mode", activeView === "history");
+  app.classList.toggle("experiments-mode", activeView === "experiments");
   app.classList.toggle("samples-mode", activeView === "samples");
   app.classList.toggle("locations-mode", activeView === "locations");
   app.classList.toggle("orders-mode", activeView === "orders");
@@ -4650,42 +4702,113 @@ function toggleOrderModeFields() {
 
 function renderExperiments() {
   const query = normalizeSearch(experimentSearchInput.value);
-  const status = experimentStatusFilter.value;
-  const filtered = experiments.filter(experiment => {
-    const haystack = normalizeSearch([experiment.name, experiment.templateName, experiment.createdBy, experiment.status].join(" "));
-    return (!query || haystack.includes(query))
-      && (status === "all" || experiment.status === status);
-  });
+  const filtered = getFilteredSortedExperiments(experiments, query, clients, clientSamples, experimentSortSelect?.value || EXPERIMENT_DEFAULT_SORT);
 
   const detail = selectedExperimentId ? experiments.find(experiment => experiment.id === selectedExperimentId) : null;
   document.querySelector("#experimentDetail").innerHTML = detail ? renderExperimentDetail(detail) : "";
   document.querySelector("#experimentGrid").classList.toggle("hidden", Boolean(detail));
+  document.querySelector("#experimentsView")?.classList.toggle("experiments-detail-mode", Boolean(detail));
+  const resultCount = document.querySelector("#experimentResultCount");
+  if (resultCount) resultCount.textContent = `${filtered.length} expérience${filtered.length > 1 ? "s" : ""}`;
+  renderExperimentMetrics();
+  const body = document.querySelector("#experimentTableBody");
+  if (body) body.innerHTML = filtered.length ? filtered.map(renderExperimentTableRow).join("") : `<tr><td colspan="6" class="empty-table-cell">${experiments.length ? "Aucune expérience ne correspond à votre recherche." : "Aucune expérience enregistrée."}</td></tr>`;
+}
 
-  const lists = {
-    draft: document.querySelector("#draftExperimentList"),
-    running: document.querySelector("#runningExperimentList"),
-    completed: document.querySelector("#completedExperimentList")
-  };
-
-  const counts = {
-    draft: document.querySelector("#draftExperimentCount"),
-    running: document.querySelector("#runningExperimentCount"),
-    completed: document.querySelector("#completedExperimentCount")
-  };
-
-  Object.values(lists).forEach(list => {
-    if (list) list.innerHTML = "";
+function getExperimentClientCodes(experiment, clientList = clients, sampleList = clientSamples) {
+  const ids = [experiment?.clientId, ...(Array.isArray(experiment?.clientIds) ? experiment.clientIds : [])].filter(Boolean);
+  const sampleIds = [experiment?.clientSampleId, ...(Array.isArray(experiment?.clientSampleIds) ? experiment.clientSampleIds : [])].filter(Boolean);
+  const codes = sampleList.filter(sample => sampleIds.includes(sample.id) || ids.includes(sample.clientId)).map(sample => {
+    const client = clientList.find(entry => entry.id === sample.clientId);
+    return client?.canonicalCode || sample.canonicalClientCode || normalizeClientCode(sample.clientCode).canonicalCode;
   });
-
-  ["draft", "running", "completed"].forEach(state => {
-    const stateExperiments = filtered.filter(experiment => experiment.status === state);
-    if (counts[state]) counts[state].textContent = `(${stateExperiments.length})`;
-    if (!lists[state]) return;
-
-    lists[state].innerHTML = stateExperiments.length
-      ? stateExperiments.map(renderExperimentCard).join("")
-      : `<div class="empty-room">Aucune experience.</div>`;
+  ids.forEach(id => { const client = clientList.find(entry => entry.id === id); if (client?.canonicalCode) codes.push(client.canonicalCode); });
+  [experiment?.clientCode, ...(Array.isArray(experiment?.clientCodes) ? experiment.clientCodes : [])].filter(Boolean).forEach(code => {
+    const normalized = normalizeClientCode(code);
+    if (normalized.canonicalCode) codes.push(normalized.canonicalCode);
   });
+  return [...new Set(codes.filter(code => code && code !== "Client inconnu"))];
+}
+
+function getExperimentStatusDate(experiment) {
+  if (experiment?.statusChangedAt && parseHistoryDate(experiment.statusChangedAt)) return experiment.statusChangedAt;
+  if (normalizeExperimentStatus(experiment?.status) === "draft" && experiment?.createdAt && parseHistoryDate(experiment.createdAt)) return experiment.createdAt;
+  return null;
+}
+
+function formatExperimentStatusDate(experiment) {
+  const value = getExperimentStatusDate(experiment);
+  return value ? formatDateTimeFrench(value, "—").split(" · ")[0] : "—";
+}
+
+function getExperimentAvailabilityCounts(experiment, inventoryList = items) {
+  const counts = (experiment?.items || []).reduce((counts, line) => {
+    if (line?.type === "custom") return counts;
+    const stableId = line?.inventoryItemId || line?.itemId;
+    const inventoryItem = stableId ? inventoryList.find(item => item.id === stableId) : (inventoryList === items ? findInventoryItem(line) : null);
+    const quantity = StockTracking.parseLocalizedNumber(line?.quantity);
+    if (!inventoryItem || !Number.isFinite(quantity) || quantity <= 0 || !line?.unit) return counts;
+    const availability = getExperimentItemAvailability(inventoryItem, quantity, line.unit);
+    if (availability.kind === "ok") counts.sufficient += 1;
+    else if (availability.kind === "low") counts.insufficient += 1;
+    return counts;
+  }, { sufficient: 0, insufficient: 0 });
+  counts.total = (experiment?.items || []).length;
+  return counts;
+}
+
+// orden de las tarjetas KPI (Brouillons, En cours, Terminées) para que el tri "Statut" siga la misma secuencia
+const EXPERIMENT_STATUS_ORDER = { draft: 0, running: 1, completed: 2 };
+const EXPERIMENT_DEFAULT_SORT = "az";
+
+function compareExperimentNames(a, b) {
+  return String(a?.name || "").localeCompare(String(b?.name || ""), "fr", { sensitivity: "base", numeric: true });
+}
+
+// las expériences sin code client se quedan al final para no ensuciar el principio de la lista
+function getExperimentSortClientCode(experiment, clientList, sampleList) {
+  return getExperimentClientCodes(experiment, clientList, sampleList).slice().sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base", numeric: true }))[0] || "";
+}
+
+function compareExperimentsBySort(a, b, sort, clientList, sampleList) {
+  if (sort === "az") return compareExperimentNames(a, b);
+  if (sort === "za") return compareExperimentNames(b, a);
+  if (sort === "client") {
+    const codeA = getExperimentSortClientCode(a, clientList, sampleList);
+    const codeB = getExperimentSortClientCode(b, clientList, sampleList);
+    if (!codeA !== !codeB) return codeA ? -1 : 1;
+    return codeA.localeCompare(codeB, "fr", { sensitivity: "base", numeric: true }) || compareExperimentNames(a, b);
+  }
+  if (sort === "status") {
+    const rankA = EXPERIMENT_STATUS_ORDER[normalizeExperimentStatus(a?.status)] ?? Number.MAX_SAFE_INTEGER;
+    const rankB = EXPERIMENT_STATUS_ORDER[normalizeExperimentStatus(b?.status)] ?? Number.MAX_SAFE_INTEGER;
+    return (rankA - rankB) || compareExperimentNames(a, b);
+  }
+  const statusDelta = (parseHistoryDate(getExperimentStatusDate(b))?.getTime() || 0) - (parseHistoryDate(getExperimentStatusDate(a))?.getTime() || 0);
+  const createdDelta = (parseHistoryDate(b.createdAt)?.getTime() || 0) - (parseHistoryDate(a.createdAt)?.getTime() || 0);
+  return statusDelta || createdDelta || compareExperimentNames(a, b);
+}
+
+function getFilteredSortedExperiments(source, query = "", clientList = clients, sampleList = clientSamples, sort = EXPERIMENT_DEFAULT_SORT) {
+  return source.filter(experiment => {
+    const haystack = normalizeSearch([...getExperimentClientCodes(experiment, clientList, sampleList), experiment.name, experiment.templateName, experiment.status, statusLabelExperiment(experiment.status)].join(" "));
+    const compactQuery = query.replace(/[\s._\-\/\\]+/g, "");
+    const compactHaystack = haystack.replace(/[\s._\-\/\\]+/g, "");
+    return !query || haystack.includes(query) || (compactQuery && compactHaystack.includes(compactQuery));
+  }).slice().sort((a, b) => compareExperimentsBySort(a, b, sort, clientList, sampleList));
+}
+
+function renderExperimentMetrics() {
+  const metrics = document.querySelector("#experimentMetrics");
+  if (!metrics) return;
+  const counts = experiments.reduce((result, experiment) => { const status = normalizeExperimentStatus(experiment.status); if (status in result) result[status] += 1; return result; }, { draft:0, running:0, completed:0 });
+  metrics.innerHTML = [["draft","Brouillons","○"],["running","En cours","↻"],["completed","Terminées","✓"]].map(([status,label,icon]) => `<article class="client-kpi-card experiment-kpi-card ${status}"><span class="client-kpi-icon" aria-hidden="true">${icon}</span><div><span>${label}</span><strong>${counts[status]}</strong></div></article>`).join("");
+}
+
+function renderExperimentTableRow(experiment) {
+  const codes = getExperimentClientCodes(experiment), availability = getExperimentAvailabilityCounts(experiment), status = normalizeExperimentStatus(experiment.status);
+  const template = experiment.templateId === FREE_PROTOCOL_ID ? "Nouveau protocole" : experiment.templateName;
+  return `<tr class="experiment-list-row" data-experiment-id="${escapeHtml(experiment.id)}" tabindex="0" onclick="selectExperiment('${escapeHtml(experiment.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectExperiment('${escapeHtml(experiment.id)}')}"><td data-label="Code client">${codes.length ? codes.map(code => `<span class="result-pill experiment-client-code">${escapeHtml(code)}</span>`).join(" ") : "—"}</td><td data-label="Nom"><strong class="experiment-list-name">${escapeHtml(experiment.name || "—")}</strong>${template ? `<span class="table-subtext">${escapeHtml(template)}</span>` : ""}</td><td data-label="Date du statut">${escapeHtml(formatExperimentStatusDate(experiment))}</td><td data-label="Statut"><span class="experiment-status ${escapeHtml(status)}">${escapeHtml(statusLabelExperiment(status))}</span></td><td data-label="Items suffisants" class="experiment-count-cell"><span class="stock-pill ok" title="Les items libres et indéterminés ne sont pas inclus.">${availability.sufficient}/${availability.total}</span></td><td data-label="Items insuffisants" class="experiment-count-cell"><span class="stock-pill ${availability.insufficient ? "alert" : "neutral"}" title="Les items libres et indéterminés ne sont pas inclus.">${availability.insufficient}/${availability.total}</span></td></tr>`;
 }
 
 function renderExperimentCard(experiment) {
@@ -4729,33 +4852,40 @@ function renderExperimentCard(experiment) {
   `;
 }
 
-function getExperimentTemplateNotes(experiment) {
-  const template = protocolTemplates.find(entry => entry.id === experiment.templateId);
-  return template?.notes || experiment.templateNotes || "";
-}
-
 function renderExperimentDetail(experiment) {
   const totalConditions = experiment.conditions * experiment.replicates;
-  const templateNotes = getExperimentTemplateNotes(experiment);
-  const rows = getMergedExperimentLines(experiment.items).map(line => {
+  const status = normalizeExperimentStatus(experiment.status);
+  const detailLines=experiment.templateId===FREE_PROTOCOL_ID?(experiment.items||[]):getMergedExperimentLines(experiment.items);
+  const consumedIds = getExperimentConsumedItemIds(experiment);
+  const rows = detailLines.map(line => {
     const inventoryItem = findInventoryItem(line);
-    const available = Number(inventoryItem?.quantity ?? 0);
     const needed = Number(line.quantity || 0);
-    const comparable = inventoryItem && inventoryItem.unit === line.unit;
-    const enough = comparable && available >= needed;
-    const lowStock = comparable && (!enough || itemStatus(inventoryItem) !== "ok");
-    const stateLabel = !inventoryItem
-      ? "Manquant"
-      : !comparable
-        ? "Unite differente"
-        : lowStock
-          ? "Stock bas"
-          : "Connecte";
-    const stateClass = !inventoryItem || !comparable
-      ? "alert"
-      : lowStock
-        ? "warning"
-        : "ok";
+    const availability = getExperimentLineAvailability(inventoryItem, needed, line.unit);
+    const isConsumed = Boolean(inventoryItem) && consumedIds.has(inventoryItem.id);
+    const stateLabel = isConsumed
+      ? "Consommé"
+      : !inventoryItem
+        ? "Manquant"
+        : !availability.compatible
+          ? "Unité incompatible"
+          : availability.kind !== "ok"
+            ? "Stock bas"
+            : availability.converted
+              ? "Connecté (converti)"
+              : "Connecté";
+    const stateClass = isConsumed
+      ? "neutral"
+      : !inventoryItem || !availability.compatible
+        ? "alert"
+        : availability.kind !== "ok"
+          ? "warning"
+          : "ok";
+    const stockDisplay = !inventoryItem
+      ? "Non connecte"
+      : !availability.compatible
+        ? `${StockTracking.format(inventoryItem.quantity)} ${escapeHtml(inventoryItem.unit)} · attendu ${escapeHtml(availability.referenceUnit.plural)}`
+        : `${StockTracking.format(availability.availableInReferenceUnit)} ${escapeHtml(StockTracking.plural(availability.availableInReferenceUnit, availability.referenceUnit.singular, availability.referenceUnit.plural))}`;
+    const displayName = line.name || inventoryItem?.name || "Item";
     return `
       <tr>
       <td>
@@ -4766,56 +4896,58 @@ function renderExperimentDetail(experiment) {
                 type="button"
                 onclick="openItemDetail('${escapeHtml(inventoryItem.id)}', { view: 'experiments', experimentId: '${escapeHtml(experiment.id)}' })"
               >
-                ${escapeHtml(line.name)}
+                ${escapeHtml(displayName)}
               </button>`
-            : `<strong>${escapeHtml(line.name)}</strong>`
+            : `<strong>${escapeHtml(displayName)}</strong>`
         }
         <br>
         <span>${escapeHtml(line.notes || "")}</span>
       </td>
         <td>${formatQuantity(needed, line.unit)}</td>
-        <td>${inventoryItem ? `${inventoryItem.quantity} ${escapeHtml(inventoryItem.unit)}` : "Non connecte"}</td>
+        <td>${stockDisplay}</td>
         <td><span class="stock-pill ${stateClass}">${stateLabel}</span></td>
       </tr>
     `;
   }).join("");
-  const canConsume = experiment.status !== "completed" && experimentStockSummary(experiment).ok;
+  const canConsume = experiment.status !== "completed" && experimentHasConsumableItems(experiment);
 
   return `
     <section class="experiment-detail-panel">
-      <div class="detail-topline">
+      <div class="experiment-detail-return-row">
         <button
-          class="room-exit-btn"
+          class="ghost-btn experiment-back-btn"
           type="button"
           onclick="selectExperiment(null)"
-          aria-label="Retour"
-          title="Retour"
+          aria-label="Retour aux expériences"
         >
-          ↩️
+          <span aria-hidden="true">←</span>
+          Retour
         </button>
-        <div class="detail-actions">
-          <button class="ghost-btn compact-btn" type="button" onclick="openExperimentModal('${experiment.id}')">Modifier</button>
-          <button class="primary-btn compact-btn" type="button" onclick="consumeExperimentStock('${experiment.id}')" ${canConsume ? "" : "disabled"}>Consommer le stock</button>
-        </div>
       </div>
-      <div class="experiment-detail-head">
-        <div>
-          <span class="experiment-status ${escapeHtml(experiment.status)}">${escapeHtml(statusLabelExperiment(experiment.status))}</span>
+
+      <div class="experiment-detail-header">
+        <div class="experiment-detail-title">
+          <div class="experiment-detail-badges">
+            <span class="experiment-status ${escapeHtml(status)}">${escapeHtml(statusLabelExperiment(experiment.status))}</span>
+          </div>
           <h3>${escapeHtml(experiment.name)}</h3>
-          <p>${escapeHtml(experiment.templateName)} - ${experiment.conditions} conditions x ${experiment.replicates} replicats = ${totalConditions} conditions totales</p>
+          <div class="experiment-detail-meta">
+            <span>${escapeHtml(experiment.templateName)}</span>
+            <span>${experiment.conditions} conditions × ${experiment.replicates} réplicats = ${totalConditions} conditions totales</span>
+          </div>
+          <small class="experiment-detail-footnote">Mis à jour par ${escapeHtml(experiment.createdBy)} · ${escapeHtml(experiment.updatedAt)}</small>
         </div>
-        <small>Mis a jour par ${escapeHtml(experiment.createdBy)} - ${escapeHtml(experiment.updatedAt)}</small>
+
+        <div class="detail-actions experiment-detail-actions">
+          <button class="ghost-btn compact-btn" type="button" onclick="openExperimentModal('${experiment.id}')">Modifier</button>
+          ${experiment.templateId === FREE_PROTOCOL_ID ? `<button class="ghost-btn compact-btn" type="button" onclick="openSaveProtocolTemplateDialog('${experiment.id}')">Enregistrer le protocole</button>` : ""}
+          <button class="primary-btn compact-btn" type="button" onclick="openConsumeExperimentDialog('${experiment.id}')" ${canConsume ? "" : "disabled"}>Consommer le stock</button>
+        </div>
       </div>
-      <div class="experiment-notes-grid">
-        <div>
-          <h4>Template Notes</h4>
-          <p class="multiline-text">${escapeHtml(templateNotes || "Aucune note de template")}</p>
-        </div>
-        <div>
-          <h4>Experience Notes</h4>
-          <p class="multiline-text">${escapeHtml(experiment.notes || "Aucune note")}</p>
-        </div>
-      </div>
+      ${experiment.notes ? `<div class="experiment-notes-compact">
+        <h4>Notes</h4>
+        <p class="multiline-text">${escapeHtml(experiment.notes)}</p>
+      </div>` : ""}
       <div class="sample-table-wrap">
         <table class="sample-table experiment-table">
           <thead>
@@ -5066,6 +5198,7 @@ function openItemDetail(id, context = {}) {
     scrollY: getPageScrollY()
   };
 
+  if (selectedItemId !== id) stockJournalOpenByItem.set(id, false);
   selectedItemId = id;
   activeView = "inventory";
 
@@ -5882,10 +6015,30 @@ function renderAdvancedStockDetail(item) {
   const movements = stockMovements.filter(row => row?.itemId === item.id).slice().sort((a,b) => stockMovementTime(b) - stockMovementTime(a)).slice(0,10);
   const distributionModule = showDistribution ? `<details open><summary>Répartition du stock</summary><div class="advanced-stock-block stock-distribution"><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock fermé</strong><span>${closedCount} ${escapeHtml(StockTracking.plural(closedCount, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${closed || "<p class=\"stock-distribution-empty\">Aucun contenant fermé.</p>"}</div></section><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock ouvert</strong><span>${openContainers.length} ${escapeHtml(StockTracking.plural(openContainers.length, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${opened || "<p class=\"stock-distribution-empty\">Aucun contenant ouvert.</p>"}</div></section></div></details>` : "";
   const preparationsModule = showPreparations ? `<details open><summary>Préparations et aliquotes</summary><div class="advanced-stock-block">${preparations || `<div class="stock-distribution-empty"><p>Aucune préparation active.</p><button class="ghost-btn compact-btn" type="button" onclick="openStockManager('${escapeHtml(item.id)}',{action:'aliquots_prepared'})">Préparer des aliquotes</button></div>`}</div></details>` : "";
-  const journalModule = showJournal ? `<details><summary>Journal des mouvements</summary><div class="advanced-stock-block movement-list">${movements.length ? movements.map(renderStockMovementSafely).join("") : "<p>Aucun mouvement enregistré.</p>"}</div></details>` : "";
+  const journalOpen = stockJournalOpenByItem.get(item.id) === true;
+  const journalModule = showJournal ? `<details class="stock-movement-journal" data-stock-journal-item="${escapeHtml(item.id)}"${journalOpen ? " open" : ""} ontoggle="handleStockJournalToggle(event)"><summary aria-expanded="${journalOpen}"><span class="stock-journal-indicator" aria-hidden="true">${journalOpen ? "▼" : "▶"}</span><span>Journal des mouvements</span></summary><div class="advanced-stock-block movement-list">${movements.length ? movements.map(renderStockMovementSafely).join("") : "<p>Aucun mouvement enregistré.</p>"}</div></details>` : "";
   const stockStatus = getStockStatus(item);
-  const overview = showDistribution ? `<div class="advanced-stock-kpis"><strong>${escapeHtml(StockTracking.summary(item))}</strong><span>Équivalent total : ${StockTracking.format(stockStatus.currentStock)} ${escapeHtml(tracking.packagingLevels[0].plural)}</span><span>Minimum : ${stockStatus.minimum === null ? "Non défini" : StockTracking.format(stockStatus.minimum)} · ${escapeHtml(statusLabel(stockStatus.status))}</span></div>` : "";
+  const equivalentLevels = StockTracking.equivalentLevels(item, stockStatus.currentStock);
+  const equivalentText = equivalentLevels.map(level => `<span class="advanced-stock-equivalent-value">${StockTracking.format(level.value)}&nbsp;${escapeHtml(StockTracking.plural(level.value, level.singular, level.plural))}</span>`).join('<span class="advanced-stock-kpi-separator" aria-hidden="true">·</span>');
+  const overview = showDistribution ? `<div class="advanced-stock-kpis"><strong class="advanced-stock-physical-summary">${escapeHtml(StockTracking.summary(item))}</strong><span class="advanced-stock-equivalent-summary"><span>Équivalence :</span>${equivalentText ? `<span class="advanced-stock-equivalent-list">${equivalentText}</span><span class="advanced-stock-kpi-separator" aria-hidden="true">·</span>` : ""}<span>${escapeHtml(stockSummaryStatusLabel(stockStatus))}</span></span></div>` : "";
   return `<section class="advanced-stock-overview">${overview}${distributionModule}${preparationsModule}${journalModule}</section>`;
+}
+
+function handleStockJournalToggle(event) {
+  const journal = event.currentTarget;
+  if (!journal?.matches?.("details.stock-movement-journal")) return;
+  stockJournalOpenByItem.set(journal.dataset.stockJournalItem, journal.open);
+  const summary = journal.querySelector(":scope > summary");
+  summary?.setAttribute("aria-expanded", String(journal.open));
+  const indicator = summary?.querySelector(".stock-journal-indicator");
+  if (indicator) indicator.textContent = journal.open ? "▼" : "▶";
+}
+
+function syncStockJournalAccessibility(root = document) {
+  root?.querySelectorAll?.("details.stock-movement-journal").forEach(journal => {
+    const summary = journal.querySelector(":scope > summary");
+    summary?.setAttribute("aria-expanded", String(journal.open));
+  });
 }
 
 function formatOpenContainerDisplayTitle(label, fallbackUnit) {
@@ -5933,11 +6086,15 @@ function renderStockMovementSafely(entry) {
 }
 
 function renderStockMovement(entry = {}) {
-  const labels = { received:"Réception", order_received:"Réception de commande", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Comptage / Ajustement", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Comptage", preparation_finished:"Préparation terminée", corrected:"Correction", configuration_changed:"Configuration" };
-  return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")} · ${escapeHtml(entry.userName || "Utilisateur")}</strong><small>${escapeHtml(formatDateTimeFrench(getStockMovementDate(entry)))}</small><p class="multiline-text">${formatStockMovementDescription(entry)}</p></div></article>`;
+  const labels = { received:"Réception", order_received:"Réception de commande", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Mise à jour du stock", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Mise à jour du stock", corrected:"Mise à jour du stock", configuration_changed:"Configuration", automatic_repair:"Régularisation automatique" };
+  const formattedDate = formatDateTimeFrench(getStockMovementDate(entry));
+  const [date, time] = formattedDate.includes(" · ") ? formattedDate.split(" · ") : [formattedDate, ""];
+  const reason = String(entry.comment || "").trim();
+  return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}" aria-hidden="true">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div class="movement-entry-content"><div class="movement-heading"><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")}</strong><span class="movement-meta">${escapeHtml(entry.userName || "Utilisateur")}</span><time class="movement-meta">${escapeHtml(date)}</time>${time ? `<time class="movement-meta">${escapeHtml(time)}</time>` : ""}</div><div class="movement-detail"><span class="movement-change multiline-text">${formatStockMovementDescription({...entry, comment:""})}</span>${reason ? `<span class="movement-reason"><strong>Motif :</strong> <span>${escapeHtml(reason)}</span></span>` : `<span class="movement-reason movement-reason--missing">Motif non renseigné</span>`}</div></div></article>`;
 }
 
 function formatStockMovementDescription(entry) {
+  if(entry.type==="automatic_repair"){const status={open:"Ouvert",closed:"Fermé",finished:"Terminé"};return `${escapeHtml(formatStockMovementContainerLabel(entry.containerLabel||entry.containerId||"Contenant"))} : statut ${status[entry.containerStatusBefore]||escapeHtml(entry.containerStatusBefore)} → Terminé · Quantité déjà enregistrée : 0 ${escapeHtml(entry.unit||"")}`;}
   if(entry.type==="received"&&entry.entityType==="container"){const status=entry.containerStatusAfter==="open"?"ouvert":"fermé",capacity=entry.afterCapacity??entry.after?.capacity;return `Ajout du contenant ${status} ${escapeHtml(entry.containerLabel||entry.containerId)} : ${StockTracking.format(entry.afterQuantity??entry.quantity)} ${escapeHtml(entry.unitAfter||entry.unit||"")} disponibles${capacity!==null&&capacity!==undefined?` sur une capacité de ${StockTracking.format(capacity)} ${escapeHtml(entry.unitAfter||entry.unit||"")}`:""}${entry.toLocation?` dans ${escapeHtml(entry.toLocation)}`:""}.`;}
   if(entry.type==="recounted"&&entry.entityType==="item"){const before=entry.beforeQuantity??entry.before??0,after=entry.afterQuantity??entry.after??0,difference=entry.difference??after-before;return `Stock précédent : ${StockTracking.format(before)} ${escapeHtml(entry.unit||"")} · Stock compté : ${StockTracking.format(after)} ${escapeHtml(entry.unit||"")} · Écart : ${difference>0?"+":""}${StockTracking.format(difference)} ${escapeHtml(entry.unit||"")}.${entry.comment?` Note : ${escapeHtml(entry.comment)}`:""}`;}
   if (Array.isArray(entry.containerTransitions) && entry.containerTransitions.length) {
@@ -5950,18 +6107,20 @@ function formatStockMovementDescription(entry) {
   }
   if (entry.type === "consumed" && entry.entityType === "container") {
     const before=entry.beforeQuantity ?? entry.before?.remaining ?? entry.before,after=entry.afterQuantity ?? entry.after?.remaining ?? entry.after;
-    return `${escapeHtml(entry.containerLabel || entry.containerId || "Contenant")} : ${StockTracking.format(before)} → ${StockTracking.format(after)} ${escapeHtml(entry.unit || "")} (${entry.difference>0?"+":""}${StockTracking.format(entry.difference ?? after-before)}).${entry.automaticFinish?" Terminé automatiquement.":""}`;
+    const status=entry.containerStatusBefore&&entry.containerStatusAfter&&entry.containerStatusBefore!==entry.containerStatusAfter?` · Statut : ${entry.containerStatusBefore==="open"?"Ouvert":"Fermé"} → Terminé`:"";
+    return `${escapeHtml(formatStockMovementContainerLabel(entry.containerLabel || entry.containerId || "Contenant"))} : ${StockTracking.format(before)} ${escapeHtml(entry.unit || "")} → ${StockTracking.format(after)} ${escapeHtml(entry.unit || "")} (${formatStockMovementDifference(entry.difference ?? after-before)})${status}`;
   }
   if (entry.type === "recounted" && ["container","closed"].includes(entry.entityType)) {
     const rawBefore=entry.beforeQuantity ?? (entry.entityType==="closed"?entry.before?.quantity:entry.before?.remaining),rawAfter=entry.afterQuantity ?? (entry.entityType==="closed"?entry.after?.quantity:entry.after?.remaining);
     const beforeUnit=entry.unitBefore||entry.unit,afterUnit=entry.unitAfter||entry.unit,changes=[];
     if(beforeUnit!==afterUnit)changes.push(`unité ${escapeHtml(beforeUnit||"—")} → ${escapeHtml(afterUnit||"—")}`);
-    if(rawBefore!==rawAfter||beforeUnit!==afterUnit)changes.push(`quantité ${StockTracking.format(rawBefore)} ${escapeHtml(beforeUnit||"")} → ${StockTracking.format(rawAfter)} ${escapeHtml(afterUnit||"")}${beforeUnit===afterUnit?` (${entry.difference>0?"+":""}${StockTracking.format(entry.difference??rawAfter-rawBefore)})`:""}`);
+    if(rawBefore!==rawAfter||beforeUnit!==afterUnit)changes.push(`${StockTracking.format(rawBefore)} ${escapeHtml(beforeUnit||"")} → ${StockTracking.format(rawAfter)} ${escapeHtml(afterUnit||"")}${beforeUnit===afterUnit?` (${formatStockMovementDifference(entry.difference??rawAfter-rawBefore)})`:""}`);
     const capacityBefore=entry.beforeCapacity??entry.before?.capacity,capacityAfter=entry.afterCapacity??entry.after?.capacity;
     if(capacityBefore!==null&&capacityAfter!==null&&capacityBefore!==undefined&&capacityAfter!==undefined&&(capacityBefore!==capacityAfter||beforeUnit!==afterUnit))changes.push(`capacité ${StockTracking.format(capacityBefore)} ${escapeHtml(beforeUnit||"")} → ${StockTracking.format(capacityAfter)} ${escapeHtml(afterUnit||"")}`);
     if(entry.fromLocation&&entry.toLocation&&entry.fromLocation!==entry.toLocation)changes.push(`localisation ${escapeHtml(entry.fromLocation)} → ${escapeHtml(entry.toLocation)}`);
-    if(entry.containerStatusBefore&&entry.containerStatusAfter&&entry.containerStatusBefore!==entry.containerStatusAfter){const labels={closed:"Fermé",open:"Ouvert",finished:"Terminé"};changes.push(`statut ${labels[entry.containerStatusBefore]||escapeHtml(entry.containerStatusBefore)} → ${labels[entry.containerStatusAfter]||escapeHtml(entry.containerStatusAfter)}`);}
-    return `Comptage du contenant ${escapeHtml(entry.containerLabel||entry.containerId||"")}: ${changes.join(" · ")||"informations corrigées"}.`;
+    if(entry.containerStatusBefore&&entry.containerStatusAfter&&entry.containerStatusBefore!==entry.containerStatusAfter){const labels={closed:"Fermé",open:"Ouvert",finished:"Terminé"};changes.push(`Statut : ${labels[entry.containerStatusBefore]||escapeHtml(entry.containerStatusBefore)} → ${labels[entry.containerStatusAfter]||escapeHtml(entry.containerStatusAfter)}`);}
+    const rawLabel = entry.entityType === "closed" ? (entry.containerLabel || "Stock simple") : (entry.containerLabel || entry.containerId || "Contenant");
+    return `${escapeHtml(formatStockMovementContainerLabel(rawLabel))} : ${changes.join(" · ")||"informations corrigées"}`;
   }
   if (entry.type === "container_opened") {
     const label=escapeHtml(entry.containerLabel || entry.after?.label || entry.containerId || "Contenant"),from=entry.fromLocation||entry.before?.location,to=entry.toLocation||entry.after?.location;
@@ -5973,6 +6132,17 @@ function formatStockMovementDescription(entry) {
   if (entry.type === "open_aliquot_moved") return `${escapeHtml(entry.before?.label || "Aliquote")} déplacée de ${escapeHtml(entry.fromLocation || "—")} vers ${escapeHtml(entry.toLocation || "—")}.`;
   if (entry.type === "open_aliquot_discarded") return `${StockTracking.format(entry.quantity)} ${escapeHtml(entry.unit)} jetés. Motif : ${escapeHtml(entry.correctionReason || "—")}.`;
   return `${entry.quantity ? `${StockTracking.format(entry.quantity)} ${escapeHtml(entry.unit || "")}. ` : ""}${entry.fromLocation ? `${escapeHtml(entry.fromLocation)} → ` : ""}${escapeHtml(entry.toLocation || "")}${entry.comment ? ` · ${escapeHtml(entry.comment)}` : ""}`;
+}
+
+function formatStockMovementDifference(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return escapeHtml(value ?? "—");
+  return `${number < 0 ? "−" : number > 0 ? "+" : ""}${StockTracking.format(Math.abs(number))}`;
+}
+
+function formatStockMovementContainerLabel(value) {
+  const label = String(value || "Contenant").trim().replace(/n[º°o]\s*(\d+)/i, "n° $1");
+  return `${label.charAt(0).toLocaleUpperCase("fr-FR")}${label.slice(1)}`;
 }
 
 function ensureStockManagerDialog() {
@@ -6462,9 +6632,10 @@ async function saveStockUpdate() {
 }
 
 function openExperimentModal(id) {
+  renderTemplateOptions();
   const experiment = experiments.find(entry => entry.id === id);
   const template = protocolTemplates.find(
-    entry => entry.id === (experiment?.templateId || protocolTemplates[0].id)
+    entry => entry.id === experiment?.templateId
   );
 
   experimentForm.reset();
@@ -6478,12 +6649,14 @@ function openExperimentModal(id) {
   }
 
   experimentFields.experimentId.value = experiment?.id || "";
-  experimentFields.experimentTemplate.value = experiment?.templateId || template.id;
+  experimentFields.experimentTemplate.value = experiment?.templateId || FREE_PROTOCOL_ID;
+  previousExperimentTemplateId = experimentFields.experimentTemplate.value;
   experimentFields.experimentName.value = experiment?.name || "";
+  experimentFields.experimentClientCode.value = experiment?.clientCode || "";
   experimentFields.experimentConditions.value = experiment?.conditions || 1;
   experimentFields.experimentReplicates.value = experiment?.replicates || 1;
   experimentFields.experimentStatus.value = experiment?.status || "draft";
-  experimentFields.experimentTemplateNotes.value = template?.notes || "";
+  experimentFields.experimentTemplateNotes.value = template?.notes || experiment?.templateNotes || "";
   experimentFields.experimentNotes.value = experiment?.notes || "";
   experimentFields.experimentTemplate.disabled = Boolean(experiment);
 
@@ -6492,6 +6665,7 @@ function openExperimentModal(id) {
   const rtqpcrConfigData = experiment?.rtqpcrConfig || {};
 
   syncRtQpcrConfigVisibility(template);
+  syncExperimentTemplateNotesVisibility(!template);
 
   if (isRtQpcr) {
     experimentFields.rtqpcrPartRT.checked = rtqpcrConfigData.parts?.rt ?? true;
@@ -6526,14 +6700,33 @@ function openExperimentModal(id) {
   experimentItemsList.innerHTML = "";
 
   if (experiment) {
-    getMergedExperimentLines(experiment.items).forEach(line => addExperimentItemRow(line));
-  } else {
+    const isFree=experiment.templateId===FREE_PROTOCOL_ID,restored=isFree?(experiment.items||[]):getMergedExperimentLines(experiment.items);
+    restored.forEach(line => addExperimentItemRow(isFree?normalizeExperimentConsumedLine(line):line));
+  } else if (template) {
     buildExperimentItemsFromTemplate();
+  } else {
+    activateFreeProtocol({clear:true});
   }
 
   updateExperimentTotalConditions();
   updateExperimentModalStock();
   experimentDialog.showModal();
+}
+
+function syncExperimentTemplateNotesVisibility(hidden) {
+  document.querySelector("#experimentTemplateNotesField")?.classList.toggle("hidden", hidden);
+  if(hidden) experimentFields.experimentTemplateNotes.value="";
+}
+
+function experimentDraftHasUserData() {
+  return Boolean(experimentFields.experimentName.value.trim()||experimentFields.experimentClientCode.value.trim()||experimentFields.experimentNotes.value.trim()||experimentItemsList.children.length);
+}
+
+function activateFreeProtocol({clear=false}={}) {
+  syncRtQpcrConfigVisibility(null);
+  syncExperimentTemplateNotesVisibility(true);
+  if(clear){experimentFields.experimentName.value="";experimentItemsList.innerHTML="";}
+  updateExperimentTotalConditions();updateExperimentModalStock();
 }
 
 function syncRtQpcrConfigVisibility(template) {
@@ -6587,6 +6780,11 @@ function buildExperimentItemsFromTemplate() {
   getMergedExperimentLines(templateLines).forEach(line => addExperimentItemRow(line));
 
   updateExperimentModalStock();
+}
+
+function normalizeExperimentConsumedLine(line={}) {
+  if(line.type==="inventory"||line.type==="custom")return{...line,inventoryItemId:line.inventoryItemId||line.itemId||""};
+  return line.itemId?{...line,type:"inventory",inventoryItemId:line.itemId}:{...line,type:"custom"};
 }
 
 function buildRtQpcrItemsFromTemplate(template) {
@@ -6678,7 +6876,7 @@ function recalculateExperimentTemplateQuantities() {
   const template = protocolTemplates.find(
     entry => entry.id === experimentFields.experimentTemplate.value
   );
-  if (!template) return;
+  if (!template) { updateExperimentTotalConditions(); updateExperimentModalStock(); return; }
 
   if (template.mode === "rtqpcr") {
     const rtqpcrQPCRBlock = document.querySelector("#rtqpcrQPCRBlock");
@@ -6755,7 +6953,7 @@ function getMergedExperimentLines(lines = []) {
   lines.forEach(line => {
     const unit = line.unit || "";
     const name = line.name || "";
-    const itemKey = line.itemId || "";
+    const itemKey = line.inventoryItemId || line.itemId || "";
     const key = `${normalizeSearch(name)}|${normalizeSearch(unit)}|${itemKey}`;
     const quantity = Number(line.quantity || 0);
     const quantityMin = line.quantityMin !== undefined
@@ -6815,6 +7013,7 @@ function getMergedExperimentLines(lines = []) {
 
 // items de experimentos no vinculados con items del inventarios por ahora
 function addExperimentItemRow(line = {}, options = {}) {
+  if(line.type==="inventory"||line.type==="custom"){addFreeExperimentItemRow(line);return;}
   const isManual =
     line.isManual === true ||
     line.manualLinkOnly === true ||
@@ -6935,17 +7134,65 @@ function addExperimentItemRow(line = {}, options = {}) {
   updateExperimentModalStock();
 }
 
+function getExperimentItemUnits(item) {
+  if(!item)return[];
+  const equivalents=StockTracking.equivalentLevels(item,StockTracking.available(item));
+  return equivalents.slice().reverse().map(level=>({key:level.key,singular:level.singular,plural:level.plural,value:level.value}));
+}
+
+function addFreeExperimentItemRow(line={}) {
+  const type=line.type==="custom"?"custom":"inventory",row=document.createElement("div");row.className="experiment-item-row";row.dataset.lineType=type;
+  if(type==="inventory"){
+    const selectedId=line.inventoryItemId||line.itemId||"",selected=items.find(item=>item.id===selectedId),units=getExperimentItemUnits(selected),unit=line.unit||units[0]?.key||"";
+    row.innerHTML=`<label class="experiment-item-field"><span>Item de l’inventaire</span><select class="experiment-item-select" aria-label="Item de l’inventaire"><option value="">Choisir un item de l’inventaire</option>${items.map(item=>`<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`).join("")}</select></label><label class="experiment-item-field"><span>Quantité</span><input class="experiment-item-quantity" inputmode="decimal" placeholder="Quantité" value="${escapeHtml(line.quantity??"")}"></label><label class="experiment-item-field"><span>Unité</span><select class="experiment-item-unit" aria-label="Unité">${renderExperimentUnitOptions(units,unit)}</select></label><span class="experiment-stock-state stock-neutral" role="status">À compléter</span><button class="ghost-btn compact-btn experiment-remove-line" type="button" aria-label="Retirer cet item de l’expérience">Retirer</button><p class="experiment-line-error hidden" role="alert"></p>`;
+    row.querySelector(".experiment-item-select").value=selectedId;
+    row.addEventListener("change",event=>{if(event.target.matches(".experiment-item-select"))hydrateFreeExperimentInventoryRow(row,event.target.value);updateExperimentModalStock()});row.addEventListener("input",updateExperimentModalStock);
+  }else{
+    row.innerHTML=`<label class="experiment-item-field"><span>Nom de l’item libre</span><input class="experiment-custom-name" placeholder="Nom de l’item" value="${escapeHtml(line.name||"")}"></label><label class="experiment-item-field"><span>Quantité</span><input class="experiment-item-quantity" inputmode="decimal" placeholder="Quantité" value="${escapeHtml(line.quantity??"")}"></label><label class="experiment-item-field"><span>Unité</span><input class="experiment-item-unit" placeholder="Unité" value="${escapeHtml(line.unit||"")}"></label><span class="experiment-stock-state stock-neutral" role="status">Item libre · Non connecté</span><button class="ghost-btn compact-btn experiment-remove-line" type="button" aria-label="Retirer cet item libre de l’expérience">Retirer</button><p class="experiment-line-error hidden" role="alert"></p>`;
+  }
+  row.querySelector(".experiment-remove-line").addEventListener("click",()=>{row.remove();updateExperimentModalStock()});experimentItemsList.append(row);updateExperimentModalStock();
+}
+
+function renderExperimentUnitOptions(units,selected="") {
+  if(!units.length)return'<option value="">Sélectionnez d’abord un item</option>';
+  return units.map(unit=>`<option value="${escapeHtml(unit.key)}"${unit.key===selected?" selected":""}>${escapeHtml(unit.plural||unit.singular)}</option>`).join("");
+}
+
+function hydrateFreeExperimentInventoryRow(row,itemId) {
+  const item=items.find(entry=>entry.id===itemId),units=getExperimentItemUnits(item),select=row.querySelector(".experiment-item-unit");select.innerHTML=renderExperimentUnitOptions(units,units[0]?.key||"");
+}
+
+function parseExperimentQuantity(value) { return StockTracking.parseLocalizedNumber(value); }
+
+function getExperimentInventoryAvailability(itemId,quantity,unitKey) {
+  return getExperimentItemAvailability(items.find(entry=>entry.id===itemId),quantity,unitKey);
+}
+
+function getExperimentItemAvailability(item,quantity,unitKey) {
+  if(!item||!unitKey||!Number.isFinite(quantity)||quantity<=0)return{kind:"neutral",label:"À compléter"};
+  const equivalent=StockTracking.equivalentLevels(item,StockTracking.available(item)).find(level=>level.key===unitKey);if(!equivalent)return{kind:"warning",label:"Conversion impossible"};
+  if(equivalent.value<=0)return{kind:"low",label:"Stock épuisé"};
+  if(equivalent.value+1e-8>=quantity)return{kind:"ok",label:`Stock suffisant · ${StockTracking.format(equivalent.value)} ${StockTracking.plural(equivalent.value,equivalent.singular,equivalent.plural)} disponibles`};
+  return{kind:"low",label:`Stock insuffisant · Il manque ${StockTracking.format(quantity-equivalent.value)} ${StockTracking.plural(quantity-equivalent.value,equivalent.singular,equivalent.plural)}`};
+}
+
 function hydrateExperimentItemRow(row, itemId) {
   if (!row) return;
 
   const item = items.find(entry => entry.id === itemId);
   row.dataset.itemId = item?.id || "";
-  row.querySelector(".experiment-item-unit").value = item?.unit || "";
+  // l'unité du protocole reste la référence à comparer ; on ne l'écrase que si elle est vide
+  const unitField = row.querySelector(".experiment-item-unit");
+  if (!unitField.value.trim()) unitField.value = item?.unit || "";
   updateExperimentModalStock();
 }
 
 function updateExperimentModalStock() {
   experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row => {
+    if(row.dataset.lineType==="custom"){const state=row.querySelector(".experiment-stock-state");state.className="experiment-stock-state stock-neutral";state.textContent="Item libre · Non connecté";return;}
+    if(row.dataset.lineType==="inventory"){
+      const availability=getExperimentInventoryAvailability(row.querySelector(".experiment-item-select").value,parseExperimentQuantity(row.querySelector(".experiment-item-quantity").value),row.querySelector(".experiment-item-unit").value),state=row.querySelector(".experiment-stock-state");state.className=`experiment-stock-state ${availability.kind==="ok"?"stock-ok":availability.kind==="low"?"stock-low":availability.kind==="warning"?"stock-warning":"stock-neutral"}`;state.textContent=availability.label;return;
+    }
     const item = getExperimentRowItem(row);
     const needed = Number(row.querySelector(".experiment-item-quantity").value || 0);
     const unit = row.querySelector(".experiment-item-unit").value.trim();
@@ -6957,22 +7204,30 @@ function updateExperimentModalStock() {
       return;
     }
 
-    if (unit !== item.unit || !unit) {
+    if (!unit) {
       state.className = "experiment-stock-state stock-missing";
-      state.textContent = `${item.quantity} ${item.unit} - unite differente`;
+      state.textContent = `${item.quantity} ${item.unit} - unité manquante`;
       return;
     }
 
-    const ok = Number(item.quantity) >= needed;
-    const lowStock = !ok || itemStatus(item) !== "ok";
+    const availability = getExperimentLineAvailability(item, needed, unit);
+    if (!availability.compatible) {
+      state.className = "experiment-stock-state stock-missing";
+      state.textContent = `${item.quantity} ${item.unit} - unité incompatible (attendu ${availability.referenceUnit.plural})`;
+      return;
+    }
+
+    const lowStock = availability.kind !== "ok" || itemStatus(item) !== "ok";
     state.className = `experiment-stock-state ${lowStock ? "stock-low" : "stock-ok"}`;
-    state.textContent = `${lowStock ? "Stock bas" : "Connecte"} · ${item.quantity} ${item.unit}`;
+    state.textContent = `${lowStock ? "Stock bas" : "Connecte"} · ${StockTracking.format(availability.availableInReferenceUnit)} ${availability.referenceUnit.plural}${availability.converted ? ` (converti depuis ${unit})` : ""}`;
   });
 }
 
 function getExperimentRows() {
   return [...experimentItemsList.querySelectorAll(".experiment-item-row")]
     .map(row => {
+      if(row.dataset.lineType==="inventory")return{type:"inventory",inventoryItemId:row.querySelector(".experiment-item-select").value,quantity:parseExperimentQuantity(row.querySelector(".experiment-item-quantity").value),unit:row.querySelector(".experiment-item-unit").value};
+      if(row.dataset.lineType==="custom")return{type:"custom",name:row.querySelector(".experiment-custom-name").value.trim(),quantity:parseExperimentQuantity(row.querySelector(".experiment-item-quantity").value),unit:row.querySelector(".experiment-item-unit").value.trim()};
       const item = getExperimentRowItem(row);
       const isManual = row.dataset.rowMode === "manual";
 
@@ -6994,6 +7249,7 @@ function getExperimentRows() {
     .filter(line =>
       line.name ||
       line.itemId ||
+      line.inventoryItemId ||
       line.quantity > 0 ||
       line.quantityDisplay
     );
@@ -7011,8 +7267,13 @@ function getExperimentRowItem(row) {
     : null;
 }
 
+function validateExperimentConsumedRows() {
+  let valid=true;experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row=>{const error=row.querySelector(".experiment-line-error");if(!error)return;let message="";const quantity=parseExperimentQuantity(row.querySelector(".experiment-item-quantity")?.value);if(row.dataset.lineType==="inventory"){const id=row.querySelector(".experiment-item-select").value,item=items.find(entry=>entry.id===id),units=getExperimentItemUnits(item);if(!item)message="Sélectionnez un item de l’inventaire.";else if(!Number.isFinite(quantity)||quantity<=0)message="Saisissez une quantité strictement positive.";else if(!units.some(unit=>unit.key===row.querySelector(".experiment-item-unit").value))message="Sélectionnez une unité configurée pour cet item.";}else if(row.dataset.lineType==="custom"){if(!row.querySelector(".experiment-custom-name").value.trim())message="Saisissez le nom de l’item libre.";else if(!Number.isFinite(quantity)||quantity<=0)message="Saisissez une quantité strictement positive.";else if(!row.querySelector(".experiment-item-unit").value.trim())message="Saisissez l’unité de l’item libre.";}error.textContent=message;error.classList.toggle("hidden",!message);if(message)valid=false;});return valid;
+}
+
 function saveExperiment() {
   if (!experimentForm.reportValidity()) return;
+  if (!validateExperimentConsumedRows()) return;
 
   if (
     isRtQpcrTemplate() &&
@@ -7030,17 +7291,47 @@ function saveExperiment() {
 
   const id = experimentFields.experimentId.value || `exp-${Date.now()}`;
 
-  const experiment = {
+  const index = experiments.findIndex(entry => entry.id === id);
+  const previousExperiment = index >= 0 ? experiments[index] : null;
+  const experiment = serializeExperimentDraft(id, template, previousExperiment);
+
+  if (index >= 0) {
+    experiment.createdBy = experiments[index].createdBy || currentName;
+    experiments[index] = experiment;
+    addHistory("Experience modifiée", `${currentName} a modifié ${experiment.name}.`);
+  } else {
+    experiments.unshift(experiment);
+    addHistory("Experience créée", `${currentName} a créé ${experiment.name} depuis ${experiment.templateName}.`);
+  }
+
+  persist();
+  selectedExperimentId = id;
+  experimentFields.experimentTemplate.disabled = false;
+  experimentDialog.close();
+  renderExperiments();
+  renderHistory();
+}
+
+function serializeExperimentDraft(id,template=protocolTemplates.find(entry=>entry.id===experimentFields.experimentTemplate.value),previousExperiment=null) {
+  const now = new Date().toISOString();
+  const status = normalizeExperimentStatus(experimentFields.experimentStatus.value);
+  const createdAt = previousExperiment?.createdAt || now;
+  return {
     id,
     name: experimentFields.experimentName.value.trim(),
+    clientCode: experimentFields.experimentClientCode.value.trim(),
     templateId: experimentFields.experimentTemplate.value,
-    templateName: template?.name || "Template inconnu",
+    templateName: template?.name || "Nouveau protocole",
 
     conditions: Number(experimentFields.experimentConditions.value || 1),
 
     replicates: Number(experimentFields.experimentReplicates.value || 1),
 
-    status: experimentFields.experimentStatus.value,
+    status,
+    createdAt,
+    statusChangedAt: previousExperiment && normalizeExperimentStatus(previousExperiment.status) === status
+      ? (previousExperiment.statusChangedAt || (status === "draft" ? createdAt : null))
+      : now,
     notes: normalizeMultilineText(experimentFields.experimentNotes.value),
 
     rtqpcrConfig: isRtQpcrTemplate()
@@ -7066,26 +7357,9 @@ function saveExperiment() {
     }).format(new Date()),
 
     templateNotes: normalizeMultilineText(experimentFields.experimentTemplateNotes.value),
-    items: getMergedExperimentLines(getExperimentRows())
+    items: experimentFields.experimentTemplate.value===FREE_PROTOCOL_ID?getExperimentRows():getMergedExperimentLines(getExperimentRows()),
+    consumedItems: Array.isArray(previousExperiment?.consumedItems) ? previousExperiment.consumedItems : []
   };
-
-  const index = experiments.findIndex(entry => entry.id === id);
-
-  if (index >= 0) {
-    experiment.createdBy = experiments[index].createdBy || currentName;
-    experiments[index] = experiment;
-    addHistory("Experience modifiée", `${currentName} a modifié ${experiment.name}.`);
-  } else {
-    experiments.unshift(experiment);
-    addHistory("Experience créée", `${currentName} a créé ${experiment.name} depuis ${experiment.templateName}.`);
-  }
-
-  persist();
-  selectedExperimentId = id;
-  experimentFields.experimentTemplate.disabled = false;
-  experimentDialog.close();
-  renderExperiments();
-  renderHistory();
 }
 
 function requestExperimentDeletion() {
@@ -7120,41 +7394,393 @@ function deleteExperiment(id) {
   renderHistory();
 }
 
-function consumeExperimentStock(id) {
+// une expérience peut être consommée dès qu'au moins un item est connecté, dans une unité compatible,
+// et pas déjà consommé pour cette expérience — un produit ne peut être consommé qu'une seule fois par expérience
+function getExperimentConsumedItemIds(experiment) {
+  return new Set((Array.isArray(experiment?.consumedItems) ? experiment.consumedItems : []).map(entry => entry.itemId));
+}
+
+function experimentHasConsumableItems(experiment) {
+  const consumedIds = getExperimentConsumedItemIds(experiment);
+  return getMergedExperimentLines(experiment.items).some(line => {
+    if (line?.type === "custom") return false;
+    const item = findInventoryItem(line);
+    if (!item || consumedIds.has(item.id)) return false;
+    return resolveExperimentLineUnitMatch(item, line.quantity, line.unit).compatible;
+  });
+}
+
+// construit l'opération de stock native (simple ou containers) équivalente à la quantité déjà validée pour la ligne du protocole
+function buildExperimentConsumeOperation(item, quantity, unit, comment) {
+  const match = resolveExperimentLineUnitMatch(item, quantity, unit);
+  if (!match.compatible) throw new Error(`Unité incompatible pour « ${item.name} ».`);
+  const tracking = StockTracking.normalizeTracking(item);
+  const quantityInTrackingUnit = StockTracking.fromBaseQuantity(match.neededInReferenceUnit, tracking);
+  return {
+    operationId: StockTracking.id("operation"),
+    type: "consumed",
+    entityType: tracking.mode === "containers" ? "containers_auto" : "item",
+    quantity: quantityInTrackingUnit,
+    comment
+  };
+}
+
+function openConsumeExperimentDialog(id) {
+  const experiment = experiments.find(entry => entry.id === id);
+  if (!experiment || experiment.status === "completed") return;
+
+  const consumedIds = getExperimentConsumedItemIds(experiment);
+  const mergedLines = getMergedExperimentLines(experiment.items);
+  const consumable = [];
+  let skippedCount = 0;
+  let alreadyConsumedCount = 0;
+
+  mergedLines.forEach(line => {
+    if (line.type === "custom") { skippedCount += 1; return; }
+    const item = findInventoryItem(line);
+    if (item && consumedIds.has(item.id)) { alreadyConsumedCount += 1; return; }
+    const match = item ? resolveExperimentLineUnitMatch(item, line.quantity, line.unit) : null;
+    if (!item || !match.compatible) { skippedCount += 1; return; }
+    consumable.push({ item, line });
+  });
+
+  if (!consumable.length) {
+    window.alert(alreadyConsumedCount
+      ? "Tous les items compatibles de cette expérience ont déjà été consommés."
+      : "Aucun item connecté et compatible à consommer pour cette expérience.");
+    return;
+  }
+
+  document.querySelector("#consumeExperimentId").value = experiment.id;
+  const errorBox = document.querySelector("#consumeExperimentError");
+  errorBox.textContent = "";
+  errorBox.classList.add("hidden");
+
+  const skippedNote = document.querySelector("#consumeExperimentSkippedNote");
+  const notes = [];
+  if (alreadyConsumedCount) notes.push(`${alreadyConsumedCount} item${alreadyConsumedCount > 1 ? "s" : ""} déjà consommé${alreadyConsumedCount > 1 ? "s" : ""} pour cette expérience — non modifiable.`);
+  if (skippedCount) notes.push(`${skippedCount} item${skippedCount > 1 ? "s" : ""} ignoré${skippedCount > 1 ? "s" : ""} (item libre, manquant ou unité incompatible).`);
+  if (notes.length) {
+    skippedNote.textContent = notes.join(" ");
+    skippedNote.classList.remove("hidden");
+  } else {
+    skippedNote.classList.add("hidden");
+  }
+
+  document.querySelector("#consumeExperimentItems").innerHTML = consumable.map(({ item, line }) => {
+    const displayName = line.name || item.name;
+    return `
+      <div class="consume-experiment-item" data-item-id="${escapeHtml(item.id)}" data-unit="${escapeHtml(line.unit || "")}" data-name="${escapeHtml(displayName)}">
+        <div class="consume-experiment-item-info">
+          <strong>${escapeHtml(displayName)}</strong>
+          <span class="consume-experiment-item-state"></span>
+        </div>
+        <div class="consume-experiment-item-qty">
+          <input type="number" min="0" step="any" class="consume-experiment-item-quantity" value="${Number(line.quantity || 0)}">
+          <span class="consume-experiment-item-unit">${escapeHtml(line.unit || "")}</span>
+        </div>
+        <button class="ghost-btn compact-btn" type="button" data-remove-consume-item aria-label="Retirer ${escapeHtml(displayName)} de la consommation">Retirer</button>
+      </div>
+    `;
+  }).join("");
+
+  updateConsumeExperimentItemStates();
+  consumeExperimentDialog.showModal();
+}
+
+function updateConsumeExperimentItemStates() {
+  document.querySelectorAll("#consumeExperimentItems .consume-experiment-item").forEach(row => {
+    const item = items.find(entry => entry.id === row.dataset.itemId);
+    const unit = row.dataset.unit;
+    const quantity = StockTracking.parseLocalizedNumber(row.querySelector(".consume-experiment-item-quantity").value);
+    const state = row.querySelector(".consume-experiment-item-state");
+
+    if (!item || !Number.isFinite(quantity) || quantity <= 0) {
+      state.textContent = "Quantité invalide";
+      state.className = "consume-experiment-item-state alert";
+      return;
+    }
+
+    const availability = getExperimentLineAvailability(item, quantity, unit);
+    if (!availability.compatible) {
+      state.textContent = "Unité incompatible";
+      state.className = "consume-experiment-item-state alert";
+      return;
+    }
+    if (availability.kind !== "ok") {
+      state.textContent = `Stock insuffisant · ${StockTracking.format(availability.availableInReferenceUnit)} ${availability.referenceUnit.plural} disponibles`;
+      state.className = "consume-experiment-item-state alert";
+      return;
+    }
+
+    state.textContent = "Stock suffisant";
+    state.className = "consume-experiment-item-state ok";
+  });
+}
+
+async function confirmConsumeExperiment() {
+  const id = document.querySelector("#consumeExperimentId").value;
+  const errorBox = document.querySelector("#consumeExperimentError");
+  errorBox.textContent = "";
+  errorBox.classList.add("hidden");
+
   const experiment = experiments.find(entry => entry.id === id);
   if (!experiment) return;
-  if (experiment.status === "completed") return;
 
-  const summary = experimentStockSummary(experiment);
-  if (!summary.ok) {
-    addHistory("Consommation bloquée", `${currentName} a tente de consommer ${experiment.name}, mais le stock est insuffisant.`);
-    window.alert("Stock insuffisant ou unité différente: consommation bloquée.");
+  const rows = [...document.querySelectorAll("#consumeExperimentItems .consume-experiment-item")];
+  if (!rows.length) {
+    errorBox.textContent = "Ajoutez au moins un item à consommer, ou fermez cette fenêtre.";
+    errorBox.classList.remove("hidden");
+    return;
+  }
+
+  // validation à froid de toutes les lignes avant de lancer la moindre opération réseau
+  const plan = [];
+  for (const row of rows) {
+    const item = items.find(entry => entry.id === row.dataset.itemId);
+    const unit = row.dataset.unit;
+    const name = row.dataset.name;
+    const quantity = StockTracking.parseLocalizedNumber(row.querySelector(".consume-experiment-item-quantity").value);
+
+    if (!item || !Number.isFinite(quantity) || quantity <= 0) {
+      errorBox.textContent = `Quantité invalide pour « ${name} ».`;
+      errorBox.classList.remove("hidden");
+      return;
+    }
+    const availability = getExperimentLineAvailability(item, quantity, unit);
+    if (!availability.compatible) {
+      errorBox.textContent = `Unité incompatible pour « ${name} ».`;
+      errorBox.classList.remove("hidden");
+      return;
+    }
+    if (availability.kind !== "ok") {
+      errorBox.textContent = `Stock insuffisant pour « ${name} ».`;
+      errorBox.classList.remove("hidden");
+      return;
+    }
+
+    plan.push({ itemId: item.id, unit, name, quantity });
+  }
+
+  const confirmBtn = document.querySelector("#confirmConsumeExperimentBtn");
+  confirmBtn.disabled = true;
+
+  try {
+    for (const entry of plan) {
+      const item = items.find(row => row.id === entry.itemId);
+      if (!item) throw new Error(`« ${entry.name} » n’existe plus dans l’inventaire.`);
+
+      const operation = buildExperimentConsumeOperation(item, entry.quantity, entry.unit, `Item consommé par expérience « ${experiment.name} »`);
+      await executeAtomicStockOperation(item.id, operation);
+
+      const liveExperiment = experiments.find(row => row.id === id);
+      if (!liveExperiment) throw new Error("Cette expérience n’existe plus.");
+      liveExperiment.consumedItems = Array.isArray(liveExperiment.consumedItems) ? liveExperiment.consumedItems : [];
+      liveExperiment.consumedItems.push({
+        itemId: entry.itemId,
+        name: entry.name,
+        quantity: entry.quantity,
+        unit: entry.unit,
+        consumedAt: new Date().toISOString(),
+        consumedBy: currentName
+      });
+      addHistory("Item consommé", `${currentName} a consommé ${entry.name} pour l’expérience ${liveExperiment.name}.`);
+      persist();
+
+      document.querySelectorAll("#consumeExperimentItems .consume-experiment-item").forEach(row => {
+        if (row.dataset.itemId === entry.itemId) row.remove();
+      });
+    }
+  } catch (error) {
+    errorBox.textContent = error.message || String(error);
+    errorBox.classList.remove("hidden");
+    confirmBtn.disabled = false;
+    render();
+    return;
+  }
+
+  confirmBtn.disabled = false;
+  render();
+  if (!document.querySelectorAll("#consumeExperimentItems .consume-experiment-item").length) {
+    consumeExperimentDialog.close();
+  }
+}
+
+function renderSaveProtocolTemplateItemRow(item) {
+  return `
+    <div class="save-protocol-template-item" data-item-id="${escapeHtml(item.itemId || "")}" data-name="${escapeHtml(item.name || "")}" data-unit="${escapeHtml(item.unit || "")}">
+      <span class="save-protocol-template-item-name">${escapeHtml(item.name || "")}</span>
+      <div class="save-protocol-template-item-qty">
+        <input type="number" min="0" step="any" class="save-protocol-template-item-quantity" value="${Number(item.perConditionQuantity || 0)}">
+        <span class="save-protocol-template-item-unit">${escapeHtml(item.unit || "")}</span>
+      </div>
+    </div>
+  `;
+}
+
+// transforme une expérience "Nouveau protocole" en protocol template réutilisable : les quantités sont ramenées à 1 réplica
+function openSaveProtocolTemplateDialog(id) {
+  const experiment = experiments.find(entry => entry.id === id);
+  if (!experiment || experiment.templateId !== FREE_PROTOCOL_ID) return;
+
+  const lines = (experiment.items || []).filter(line => line?.type === "inventory" || line?.type === "custom");
+  if (!lines.length) {
+    window.alert("Ajoutez au moins un item à l'expérience avant d'enregistrer un protocole.");
+    return;
+  }
+
+  const totalConditions = Math.max(1, Number(experiment.conditions || 1)) * Math.max(1, Number(experiment.replicates || 1));
+
+  document.querySelector("#saveProtocolTemplateMode").value = "create";
+  document.querySelector("#saveProtocolTemplateId").value = "";
+  document.querySelector("#saveProtocolTemplateExperimentId").value = experiment.id;
+  document.querySelector("#saveProtocolTemplateTitle").textContent = "Enregistrer le protocole";
+  document.querySelector("#confirmSaveProtocolTemplateBtn").textContent = "Enregistrer le protocole";
+  document.querySelector("#saveProtocolTemplateName").value = experiment.name || "";
+  document.querySelector("#saveProtocolTemplateNotes").value = "";
+
+  document.querySelector("#saveProtocolTemplateItems").innerHTML = lines.map(line => {
+    const inventoryItem = line.type === "inventory" ? items.find(item => item.id === line.inventoryItemId) : null;
+    const name = line.type === "inventory" ? (inventoryItem?.name || "Item introuvable") : line.name;
+    const perReplica = Number((Number(line.quantity || 0) / totalConditions).toFixed(3));
+    return renderSaveProtocolTemplateItemRow({
+      itemId: line.type === "inventory" ? (line.inventoryItemId || "") : "",
+      name,
+      unit: line.unit || "",
+      perConditionQuantity: perReplica
+    });
+  }).join("");
+
+  saveProtocolTemplateDialog.showModal();
+}
+
+// ouvre le meme dialogue en mode edition pour un protocole personnalise deja enregistre
+function openEditProtocolTemplateDialog(templateId) {
+  const template = customProtocolTemplates.find(entry => entry.id === templateId);
+  if (!template) return;
+
+  document.querySelector("#saveProtocolTemplateMode").value = "edit";
+  document.querySelector("#saveProtocolTemplateId").value = template.id;
+  document.querySelector("#saveProtocolTemplateExperimentId").value = "";
+  document.querySelector("#saveProtocolTemplateTitle").textContent = "Modifier le protocole";
+  document.querySelector("#confirmSaveProtocolTemplateBtn").textContent = "Enregistrer les modifications";
+  document.querySelector("#saveProtocolTemplateName").value = template.name || "";
+  document.querySelector("#saveProtocolTemplateNotes").value = template.notes || "";
+
+  document.querySelector("#saveProtocolTemplateItems").innerHTML = (template.items || [])
+    .map(renderSaveProtocolTemplateItemRow)
+    .join("");
+
+  saveProtocolTemplateDialog.showModal();
+}
+
+function confirmSaveProtocolTemplate() {
+  if (!saveProtocolTemplateForm.reportValidity()) return;
+
+  const name = document.querySelector("#saveProtocolTemplateName").value.trim();
+  const notes = normalizeMultilineText(document.querySelector("#saveProtocolTemplateNotes").value);
+  const templateItems = [...document.querySelectorAll("#saveProtocolTemplateItems .save-protocol-template-item")].map(row => {
+    const itemId = row.dataset.itemId || "";
+    const quantity = StockTracking.parseLocalizedNumber(row.querySelector(".save-protocol-template-item-quantity").value);
+    return {
+      name: row.dataset.name,
+      unit: row.dataset.unit,
+      perConditionQuantity: Number.isFinite(quantity) ? quantity : 0,
+      notes: "",
+      quantityEditable: true,
+      manualLinkOnly: !itemId,
+      ...(itemId ? { itemId } : {})
+    };
+  });
+
+  if (document.querySelector("#saveProtocolTemplateMode").value === "edit") {
+    const template = customProtocolTemplates.find(entry => entry.id === document.querySelector("#saveProtocolTemplateId").value);
+    if (!template) return;
+    template.name = name;
+    template.notes = notes;
+    template.items = templateItems;
+    template.updatedBy = currentName;
+    template.updatedAt = new Date().toISOString();
+    protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
+
+    addHistory("Protocole modifié", `${currentName} a modifié le protocole « ${template.name} ».`);
+    persist();
+    saveProtocolTemplateDialog.close();
+    renderManageProtocolTemplates();
     renderHistory();
     return;
   }
 
-  for (const line of getMergedExperimentLines(experiment.items)) {
-    const item = findInventoryItem(line);
-    if (!item) continue;
+  const experimentId = document.querySelector("#saveProtocolTemplateExperimentId").value;
+  const experiment = experiments.find(entry => entry.id === experimentId);
+  if (!experiment) return;
 
-    const nextQuantity = Number(
-      (Number(item.quantity) - Number(line.quantity || 0)).toFixed(3)
-    );
+  const template = {
+    id: `custom-tpl-${Date.now()}`,
+    name,
+    notes,
+    source: "custom",
+    createdBy: currentName,
+    createdAt: new Date().toISOString(),
+    items: templateItems
+  };
 
-    patchStoredItem(item.id, {
-      quantity: nextQuantity
-    });
-  }
+  customProtocolTemplates.push(template);
+  protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
 
-  experiment.status = "completed";
-  experiment.updatedAt = new Intl.DateTimeFormat("fr-FR", {
-    dateStyle: "short",
-    timeStyle: "short"
-  }).format(new Date());
-
-  addHistory("Experience consommée", `${currentName} a consommé le stock pour ${experiment.name}.`);
+  addHistory("Protocole enregistré", `${currentName} a enregistré le protocole « ${template.name} » depuis ${experiment.name}.`);
   persist();
-  render();
+  saveProtocolTemplateDialog.close();
+  renderHistory();
+}
+
+function openManageProtocolTemplatesDialog() {
+  renderManageProtocolTemplates();
+  manageProtocolTemplatesDialog.showModal();
+}
+
+function renderManageProtocolTemplates() {
+  const list = document.querySelector("#manageProtocolTemplatesList");
+  if (!list) return;
+  if (!customProtocolTemplates.length) {
+    list.innerHTML = `<p class="manage-protocol-templates-empty">Aucun protocole personnalisé enregistré pour le moment. Ouvrez une expérience "Nouveau protocole" et utilisez "Enregistrer le protocole".</p>`;
+    return;
+  }
+  list.innerHTML = customProtocolTemplates.map(template => `
+    <div class="manage-protocol-template-row">
+      <div class="manage-protocol-template-info">
+        <strong>${escapeHtml(template.name)}</strong>
+        <span class="table-subtext">${template.items.length} item${template.items.length > 1 ? "s" : ""} · ajouté par ${escapeHtml(template.createdBy || "—")}</span>
+      </div>
+      <div class="manage-protocol-template-actions">
+        <button class="ghost-btn compact-btn" type="button" onclick="openEditProtocolTemplateDialog('${escapeHtml(template.id)}')">Modifier</button>
+        <button class="danger-btn compact-btn" type="button" onclick="requestProtocolTemplateDeletion('${escapeHtml(template.id)}')">Supprimer</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function requestProtocolTemplateDeletion(templateId) {
+  const template = customProtocolTemplates.find(entry => entry.id === templateId);
+  if (!template) return;
+
+  openDeleteConfirmation({
+    message: `Êtes-vous sûr de vouloir supprimer le protocole "${template.name}" ? Cette action est irréversible.`,
+    onConfirm: () => deleteProtocolTemplate(templateId)
+  });
+}
+
+function deleteProtocolTemplate(templateId) {
+  const template = customProtocolTemplates.find(entry => entry.id === templateId);
+  if (!template) throw new Error("Ce protocole n’existe plus.");
+
+  customProtocolTemplates = customProtocolTemplates.filter(entry => entry.id !== templateId);
+  protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
+
+  addHistory("Protocole supprimé", `${currentName} a supprimé le protocole "${template.name}".`);
+  persist();
+  renderManageProtocolTemplates();
+  renderHistory();
 }
 
 function openOrderModal() {
@@ -8110,7 +8736,8 @@ function migrateExperiments(experimentList) {
       : "draft",
     conditions: Math.max(1, Number(experiment?.conditions || 1)),
     replicates: Math.max(1, Number(experiment?.replicates || 1)),
-    items: Array.isArray(experiment?.items) ? experiment.items : []
+    items: Array.isArray(experiment?.items) ? experiment.items : [],
+    consumedItems: Array.isArray(experiment?.consumedItems) ? experiment.consumedItems : []
   }));
 }
 
@@ -8487,10 +9114,12 @@ function formatDisplayDateFrench(value) {
 }
 
 function findInventoryItem(line) {
-  if (line?.itemId) {
-    return items.find(item => item.id === line.itemId) || null;
+  if(line?.type==="custom")return null;
+  const stableId=line?.inventoryItemId||line?.itemId;
+  if (stableId) {
+    return items.find(item => item.id === stableId) || null;
   }
-
+  if(line?.type==="inventory")return null;
   return findInventoryItemByProtocolName(line?.name);
 }
 
@@ -8520,10 +9149,44 @@ function normalizeProtocolMatchText(value) {
   return normalizeSearch(value).replace(/[^a-z0-9]+/g, "");
 }
 
+// compare l'unité écrite dans le protocole à l'unité de référence réelle de l'item (dernier niveau de conditionnement),
+// avec conversion métrique automatique si compatible (ex. uL vs mL) ; incompatible sinon (ex. mg vs tube)
+function resolveExperimentLineUnitMatch(item, quantity, rawUnit) {
+  const referenceUnit = StockTracking.referenceUnit(item);
+  const protocolUnit = StockTracking.normalizeUnitLabel(rawUnit);
+  const needed = Number(quantity || 0);
+  if (protocolUnit.key === referenceUnit.key) {
+    return { compatible: true, referenceUnit, protocolUnit, neededInReferenceUnit: needed, converted: false };
+  }
+  const factor = StockTracking.metricConversionFactor(protocolUnit.key, referenceUnit.key);
+  if (factor === null) return { compatible: false, referenceUnit, protocolUnit };
+  return { compatible: true, referenceUnit, protocolUnit, neededInReferenceUnit: needed * factor, converted: true };
+}
+
+function getExperimentLineAvailability(item, quantity, rawUnit) {
+  if (!item) return { connected: false, compatible: false, kind: "missing" };
+  const match = resolveExperimentLineUnitMatch(item, quantity, rawUnit);
+  if (!match.compatible) return { connected: true, compatible: false, kind: "incompatible", referenceUnit: match.referenceUnit, protocolUnit: match.protocolUnit };
+  const equivalent = StockTracking.equivalentLevels(item, StockTracking.available(item)).find(level => level.key === match.referenceUnit.key);
+  const availableInReferenceUnit = equivalent ? equivalent.value : 0;
+  const enough = availableInReferenceUnit + 1e-8 >= match.neededInReferenceUnit;
+  return {
+    connected: true,
+    compatible: true,
+    kind: enough ? "ok" : "low",
+    referenceUnit: match.referenceUnit,
+    availableInReferenceUnit,
+    neededInReferenceUnit: match.neededInReferenceUnit,
+    converted: match.converted
+  };
+}
+
 function experimentStockSummary(experiment) {
   const missing = getMergedExperimentLines(experiment.items).filter(line => {
+    if(line.type==="custom")return false;
     const item = findInventoryItem(line);
-    return !item || item.unit !== line.unit || Number(item.quantity) < Number(line.quantity || 0);
+    const availability = getExperimentLineAvailability(item, line.quantity, line.unit);
+    return availability.kind !== "ok";
   }).length;
   return { ok: missing === 0, missing };
 }

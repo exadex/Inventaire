@@ -1,4 +1,4 @@
-const protocolTemplates = [
+const builtInProtocolTemplates = [
   {
     id: "tpl-rna-extraction",
     name: "Extraction d'ARN",

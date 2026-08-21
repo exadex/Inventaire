@@ -20055,13 +20055,13 @@
       "templateName": "Nouveau protocole",
       "conditions": 1,
       "replicates": 1,
-      "status": "draft",
+      "status": "running",
       "createdAt": "2026-08-21T08:27:56.926Z",
-      "statusChangedAt": "2026-08-21T08:27:56.926Z",
+      "statusChangedAt": "2026-08-21T08:28:31.822Z",
       "notes": "",
       "rtqpcrConfig": null,
       "createdBy": "Elina",
-      "updatedAt": "21/08/2026 10:27",
+      "updatedAt": "21/08/2026 10:28",
       "templateNotes": "",
       "items": [
         {
@@ -24446,6 +24446,12 @@
     }
   ],
   "history": [
+    {
+      "date": "21/08/2026 10:28",
+      "user": "Elina",
+      "action": "Experience modifiée",
+      "detail": "Elina a modifié Test."
+    },
     {
       "date": "21/08/2026 10:27",
       "user": "Elina",
@@ -31953,5 +31959,5 @@
     }
   ],
   "customProtocolTemplates": [],
-  "updatedAt": "2026-08-21T08:27:56.929Z"
+  "updatedAt": "2026-08-21T08:28:31.824Z"
 }

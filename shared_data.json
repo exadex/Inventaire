@@ -578,9 +578,7 @@
         "closedByLocation": [
           {
             "location": "-20°C 1 salle -80",
-            "quantity": 44,
-            "updatedAt": "",
-            "updatedBy": ""
+            "quantity": 44
           }
         ],
         "closedContainers": [
@@ -1165,7 +1163,7 @@
             "remaining": 0,
             "capacity": 500,
             "unitKey": "mL",
-            "status": "open",
+            "status": "finished",
             "createdAt": "2026-08-11T12:51:01.628Z",
             "updatedAt": "2026-08-11T12:54:50.303Z",
             "updatedBy": "caroline",
@@ -1176,7 +1174,8 @@
               "userName": "Caroline",
               "userEmoji": "🧪",
               "userInitials": ""
-            }
+            },
+            "finishedAt": "2026-08-11T12:54:50.303Z"
           }
         ]
       },
@@ -20156,6 +20155,42 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-created-1787300516047-bf9s59",
+      "type": "created_sample",
+      "clientCode": "T0&T14",
+      "rawClientCode": "T0 & T14",
+      "normalizedClientKey": "T0&T14",
+      "clientId": "client-T0&T14",
+      "canonicalClientCode": "T0&T14",
+      "location": "-20°C blanc labo",
+      "notes": "",
+      "createdAtRaw": "2026-08-21T08:21:56.046Z",
+      "createdAt": "21/08/2026 10:21",
+      "baseName": "P236 T0",
+      "category": "ARN",
+      "arnQiazol": true,
+      "arnBead": true,
+      "creationDate": "2026-08-20",
+      "measureValue": 120,
+      "measureUnit": "mg",
+      "quantity": 120,
+      "unit": "mg",
+      "arrivalDate": "",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "replicaId": "sample-created-1787300516047-bf9s59",
+      "groupId": "",
+      "name": "P236 T0",
+      "replicaNumber": null,
+      "replicaCount": 1,
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      }
+    },
+    {
       "id": "sample-client-1785334383674-6py1lh",
       "type": "client_product",
       "clientCode": "APHM003",
@@ -23911,6 +23946,17 @@
       ],
       "createdAtRaw": "2026-07-13T13:43:34.075Z",
       "updatedAtRaw": "2026-07-13T13:43:34.075Z"
+    },
+    {
+      "id": "client-T0&T14",
+      "normalizedKey": "T0&T14",
+      "canonicalCode": "T0&T14",
+      "rawCodes": [
+        "T0 & T14",
+        "T0&T14"
+      ],
+      "createdAtRaw": "2026-08-21T08:21:56.046Z",
+      "updatedAtRaw": "2026-08-21T08:21:56.046Z"
     }
   ],
   "supplierContacts": [
@@ -24301,6 +24347,12 @@
     }
   ],
   "history": [
+    {
+      "date": "21/08/2026 10:21",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a ajouté 1 échantillon P236 T0 pour T0&T14."
+    },
     {
       "id": "history-operation-mt0528i8-606394158-2464700243",
       "operationId": "operation-mt0528i8-606394158-2464700243",
@@ -31548,6 +31600,85 @@
       "toLocation": "Réserve",
       "comment": "Pour hmads",
       "correctionReason": ""
+    },
+    {
+      "id": "repair-zero-web-1786452661627-closed-web-1786452661627-20-c-1-salle-80-1",
+      "operationId": "repair-zero-web-1786452661627-closed-web-1786452661627-20-c-1-salle-80-1",
+      "itemId": "web-1786452661627",
+      "timestamp": "2026-08-11T12:54:50.303Z",
+      "userId": "system",
+      "userName": "Système",
+      "userEmoji": "",
+      "userInitials": "SY",
+      "type": "automatic_repair",
+      "entityType": "container",
+      "entityId": "closed-web-1786452661627-20-c-1-salle-80-1",
+      "containerId": "closed-web-1786452661627-20-c-1-salle-80-1",
+      "containerLabel": "bouteille fermé nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 0,
+      "afterQuantity": 0,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": true,
+      "automaticOpen": false,
+      "automaticFinish": true,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1786452661627-20-c-1-salle-80-1",
+        "label": "bouteille fermé nº1",
+        "location": "-20°C 1 salle -80",
+        "remaining": 0,
+        "capacity": 500,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-08-11T12:51:01.628Z",
+        "updatedAt": "2026-08-11T12:54:50.303Z",
+        "updatedBy": "caroline",
+        "version": 6,
+        "openedAt": "2026-08-11T12:51:52.348Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "finishedAt": "2026-08-11T12:54:50.303Z"
+      },
+      "after": {
+        "id": "closed-web-1786452661627-20-c-1-salle-80-1",
+        "label": "bouteille fermé nº1",
+        "location": "-20°C 1 salle -80",
+        "remaining": 0,
+        "capacity": 500,
+        "unitKey": "mL",
+        "status": "finished",
+        "createdAt": "2026-08-11T12:51:01.628Z",
+        "updatedAt": "2026-08-11T12:54:50.303Z",
+        "updatedBy": "caroline",
+        "version": 6,
+        "openedAt": "2026-08-11T12:51:52.348Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "finishedAt": "2026-08-11T12:54:50.303Z"
+      },
+      "quantity": 0,
+      "difference": null,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -31704,5 +31835,6 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "updatedAt": "2026-08-19T13:40:01.254Z"
+  "customProtocolTemplates": [],
+  "updatedAt": "2026-08-21T08:21:56.049Z"
 }

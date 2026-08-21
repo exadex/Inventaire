@@ -2072,43 +2072,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0013",
-      "name": "0,5",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0.5,
-      "unit": "mL",
-      "minStock": 0,
-      "location": "Culture L2",
-      "locations": [
-        "Culture L2"
-      ],
-      "tags": [
-        "Antibiotique"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Life tech",
-          "reference": "15710064",
-          "link": "",
-          "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
-          "price": "16,11",
-          "unitPrice": "1,5",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1lcd4r3",
-          "roomId": "room-culture-l2",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0014",
       "name": "Amphotéricine B, MP Biomedicals",
       "category": "Procédé ExAdEx L2",
@@ -24424,6 +24387,12 @@
   ],
   "history": [
     {
+      "date": "21/08/2026 11:36",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé 0,5 de l'inventaire."
+    },
+    {
       "date": "21/08/2026 10:45",
       "user": "Elina",
       "action": "Item modifié",
@@ -31986,5 +31955,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-21T08:45:10.241Z"
+  "updatedAt": "2026-08-21T09:36:27.168Z"
 }

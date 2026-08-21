@@ -24447,6 +24447,12 @@
   ],
   "history": [
     {
+      "date": "21/08/2026 10:29",
+      "user": "Elina",
+      "action": "Protocole enregistré",
+      "detail": "Elina a enregistré le protocole « Test » depuis Test."
+    },
+    {
       "date": "21/08/2026 10:28",
       "user": "Elina",
       "action": "Experience modifiée",
@@ -31958,6 +31964,26 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "customProtocolTemplates": [],
-  "updatedAt": "2026-08-21T08:28:31.824Z"
+  "customProtocolTemplates": [
+    {
+      "id": "custom-tpl-1787300959270",
+      "name": "Test",
+      "notes": "",
+      "source": "custom",
+      "createdBy": "Elina",
+      "createdAt": "2026-08-21T08:29:19.270Z",
+      "items": [
+        {
+          "name": "Fetal Bovine Serum (FBS)",
+          "unit": "mL",
+          "perConditionQuantity": 150,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": false,
+          "itemId": "web-1786452661627"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-08-21T08:29:19.272Z"
 }

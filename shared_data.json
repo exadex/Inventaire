@@ -1993,10 +1993,10 @@
     },
     {
       "id": "itm-CSV-0012",
-      "name": "Gibco™ Gentamicine (50 mg/ml)",
+      "name": "Gentamicine (10 mg/ml)",
       "category": "Procédé ExAdEx L2",
       "quantity": 2,
-      "unit": "mL",
+      "unit": "Bouteilles",
       "minStock": 0,
       "location": "Culture L1",
       "locations": [
@@ -2010,14 +2010,19 @@
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
-          "reference": "11520506",
-          "link": "https://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506",
+          "reference": "15710064",
+          "link": "https://www.thermofisher.com/order/catalog/product/15710064?SID=srch-srp-15710064",
           "notes": "NA76 Antibiotiques Pour Culture Cellulaire",
-          "price": "220",
-          "unitPrice": "11",
+          "price": "18",
+          "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "Gibco™ Gentamicine (50 mg/ml)",
+            "notes": "Thermo Fischer - Ref 11520506\nhttps://www.fishersci.fr/shop/products/gentamicin-50-mg-ml-4/11520506"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -2043,6 +2048,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -24418,6 +24424,12 @@
   ],
   "history": [
     {
+      "date": "21/08/2026 10:45",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gentamicine (10 mg/ml)."
+    },
+    {
       "date": "21/08/2026 10:37",
       "user": "Elina",
       "action": "Item modifié",
@@ -31974,5 +31986,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-21T08:37:50.353Z"
+  "updatedAt": "2026-08-21T08:45:10.241Z"
 }

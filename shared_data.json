@@ -20155,6 +20155,42 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-created-1787300671270-t0ammt",
+      "type": "created_sample",
+      "clientCode": "T0&T14",
+      "rawClientCode": "T0&T14",
+      "normalizedClientKey": "T0&T14",
+      "clientId": "client-T0&T14",
+      "canonicalClientCode": "T0&T14",
+      "location": "-20°C blanc labo",
+      "notes": "100mg de tissu",
+      "createdAtRaw": "2026-08-21T08:24:31.270Z",
+      "createdAt": "21/08/2026 10:24",
+      "baseName": "P236 T0",
+      "category": "Sécrétion",
+      "arnQiazol": null,
+      "arnBead": null,
+      "creationDate": "2026-08-20",
+      "measureValue": 1,
+      "measureUnit": "mL",
+      "quantity": 1,
+      "unit": "mL",
+      "arrivalDate": "",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "replicaId": "sample-created-1787300671270-t0ammt",
+      "groupId": "",
+      "name": "P236 T0",
+      "replicaNumber": null,
+      "replicaCount": 1,
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": "100mg de tissu"
+      }
+    },
+    {
       "id": "sample-created-1787300593430-0xkd08",
       "type": "created_sample",
       "clientCode": "T0&T14",
@@ -24383,6 +24419,12 @@
     }
   ],
   "history": [
+    {
+      "date": "21/08/2026 10:24",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a ajouté 1 échantillon P236 T0 pour T0&T14."
+    },
     {
       "date": "21/08/2026 10:23",
       "user": "Elina",
@@ -31878,5 +31920,5 @@
     }
   ],
   "customProtocolTemplates": [],
-  "updatedAt": "2026-08-21T08:23:13.432Z"
+  "updatedAt": "2026-08-21T08:24:31.273Z"
 }

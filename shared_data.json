@@ -20046,7 +20046,34 @@
       ]
     }
   ],
-  "experiments": [],
+  "experiments": [
+    {
+      "id": "exp-1787300876926",
+      "name": "Test",
+      "clientCode": "Test",
+      "templateId": "custom-protocol",
+      "templateName": "Nouveau protocole",
+      "conditions": 1,
+      "replicates": 1,
+      "status": "draft",
+      "createdAt": "2026-08-21T08:27:56.926Z",
+      "statusChangedAt": "2026-08-21T08:27:56.926Z",
+      "notes": "",
+      "rtqpcrConfig": null,
+      "createdBy": "Elina",
+      "updatedAt": "21/08/2026 10:27",
+      "templateNotes": "",
+      "items": [
+        {
+          "type": "inventory",
+          "inventoryItemId": "web-1786452661627",
+          "quantity": 150,
+          "unit": "mL"
+        }
+      ],
+      "consumedItems": []
+    }
+  ],
   "orders": [
     {
       "id": "ord-1785233419378",
@@ -24419,6 +24446,12 @@
     }
   ],
   "history": [
+    {
+      "date": "21/08/2026 10:27",
+      "user": "Elina",
+      "action": "Experience créée",
+      "detail": "Elina a créé Test depuis Nouveau protocole."
+    },
     {
       "date": "21/08/2026 10:24",
       "user": "Elina",
@@ -31920,5 +31953,5 @@
     }
   ],
   "customProtocolTemplates": [],
-  "updatedAt": "2026-08-21T08:24:31.273Z"
+  "updatedAt": "2026-08-21T08:27:56.929Z"
 }

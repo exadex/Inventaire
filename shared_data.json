@@ -13473,7 +13473,7 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "routine",
+      "usageProfile": "normal",
       "supplierContactId": "contact-1785238690509-eg8ax0",
       "createdAtRaw": "2026-08-10T15:57:54.639Z",
       "createdAt": "10/08/2026 17:57",
@@ -13506,9 +13506,7 @@
         "closedByLocation": [
           {
             "location": "-80°C",
-            "quantity": 1,
-            "updatedAt": "",
-            "updatedBy": ""
+            "quantity": 1
           }
         ],
         "closedContainers": [
@@ -24420,6 +24418,12 @@
   ],
   "history": [
     {
+      "date": "21/08/2026 10:37",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Glucose Uptake-Glo™ Assay."
+    },
+    {
       "date": "21/08/2026 10:29",
       "user": "Elina",
       "action": "Experience supprimee",
@@ -31970,5 +31974,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-21T08:29:52.888Z"
+  "updatedAt": "2026-08-21T08:37:50.353Z"
 }

@@ -24449,6 +24449,12 @@
     {
       "date": "21/08/2026 10:29",
       "user": "Elina",
+      "action": "Protocole supprimé",
+      "detail": "Elina a supprimé le protocole \"Test\"."
+    },
+    {
+      "date": "21/08/2026 10:29",
+      "user": "Elina",
       "action": "Protocole enregistré",
       "detail": "Elina a enregistré le protocole « Test » depuis Test."
     },
@@ -31985,5 +31991,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-21T08:29:19.272Z"
+  "updatedAt": "2026-08-21T08:29:37.192Z"
 }

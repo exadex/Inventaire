@@ -20155,6 +20155,42 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-created-1787300593430-0xkd08",
+      "type": "created_sample",
+      "clientCode": "T0&T14",
+      "rawClientCode": "T0&T14",
+      "normalizedClientKey": "T0&T14",
+      "clientId": "client-T0&T14",
+      "canonicalClientCode": "T0&T14",
+      "location": "Frigo labo",
+      "notes": "",
+      "createdAtRaw": "2026-08-21T08:23:13.430Z",
+      "createdAt": "21/08/2026 10:23",
+      "baseName": "P236 T0",
+      "category": "Fixation (tissu)",
+      "arnQiazol": null,
+      "arnBead": null,
+      "creationDate": "2026-08-20",
+      "measureValue": 500,
+      "measureUnit": "mg",
+      "quantity": 500,
+      "unit": "mg",
+      "arrivalDate": "",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "replicaId": "sample-created-1787300593430-0xkd08",
+      "groupId": "",
+      "name": "P236 T0",
+      "replicaNumber": null,
+      "replicaCount": 1,
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      }
+    },
+    {
       "id": "sample-created-1787300516047-bf9s59",
       "type": "created_sample",
       "clientCode": "T0&T14",
@@ -24347,6 +24383,12 @@
     }
   ],
   "history": [
+    {
+      "date": "21/08/2026 10:23",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a ajouté 1 échantillon P236 T0 pour T0&T14."
+    },
     {
       "date": "21/08/2026 10:21",
       "user": "Elina",
@@ -31836,5 +31878,5 @@
     }
   ],
   "customProtocolTemplates": [],
-  "updatedAt": "2026-08-21T08:21:56.049Z"
+  "updatedAt": "2026-08-21T08:23:13.432Z"
 }

@@ -3280,24 +3280,24 @@ td { font-size: 14px; }
 .consume-experiment-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   padding: 8px 10px;
   border: 1px solid var(--line);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.7);
 }
-.consume-experiment-item-info { display: grid; gap: 2px; min-width: 0; }
+.consume-experiment-item-info { flex: 1 1 auto; display: grid; gap: 2px; min-width: 0; }
 .consume-experiment-item-state { font-size: 12px; color: var(--muted); }
 .consume-experiment-item-state.ok { color: var(--green); }
 .consume-experiment-item-state.alert { color: var(--red); }
 .consume-experiment-item-qty {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 6px;
-  flex: 0 0 auto;
+  flex: 0 0 160px;
 }
-.consume-experiment-item-quantity { width: 90px; }
+.consume-experiment-item-quantity { width: 90px; flex: 0 0 90px; }
 .consume-experiment-item-unit { color: var(--muted); font-size: 13px; }
 .consume-experiment-skipped-note { color: var(--muted); font-size: 12px; margin-top: 10px; }
 .reference-section {
@@ -3760,7 +3760,9 @@ td { font-size: 14px; }
   display: grid;
   gap: 10px;
 }
-.experiment-item-add-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.experiment-item-add-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.experiment-add-item-link { border: 0; background: transparent; padding: 3px 2px; color: var(--green); font-weight: 800; font-size: 15px; cursor: pointer; }
+.experiment-add-item-link:hover { text-decoration: underline; }
 .experiment-item-row[data-line-type="custom"] { background: #fbfaf5; border-style: dashed; }
 .experiment-item-field { min-width: 0; }
 .experiment-item-field > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -3768,6 +3770,24 @@ td { font-size: 14px; }
 .experiment-stock-state.stock-neutral { color: var(--muted); background: #eef0ed; }
 .experiment-stock-state.stock-warning { color: #875b17; background: #fff0d5; }
 .experiment-line-error { grid-column: 1 / -1; margin: 0; color: #a23931; font-size: 12px; font-weight: 700; }
+.experiment-item-row[draggable="true"] { cursor: move; }
+.experiment-item-row[draggable="true"] input,
+.experiment-item-row[draggable="true"] select,
+.experiment-item-row[draggable="true"] .order-combobox { cursor: auto; }
+.experiment-item-row[draggable="true"] button { cursor: pointer; }
+.experiment-item-row.dragging { opacity: .45; }
+.experiment-theoretical-stock-field { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.experiment-theoretical-stock-field input.experiment-theoretical-stock {
+  width: 150px;
+  flex: 0 0 auto;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+.experiment-theoretical-stock-field .experiment-stock-state { flex: 0 1 auto; min-width: 0; }
+.experiment-item-row .order-combobox > input[type="search"] { padding: 12px 34px 12px 14px; }
+.experiment-item-row .order-combobox-clear { width: 24px; height: 24px; right: 6px; }
+.experiment-item-row .order-combobox input[type="search"]::-webkit-search-cancel-button { display: none; }
 .experiment-item-row {
   background: #f8faf6;
   border: 1px solid var(--line);

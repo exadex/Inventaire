@@ -85,6 +85,7 @@ let historyCurrentPage = 1;
 let historyPageSize = 50;
 const expandedHistoryEntries = new Set();
 let selectedExperimentId = null;
+let experimentDragSourceRow = null;
 let selectedSourcingPatientId = null;
 let selectedItemId = null;
 const stockJournalOpenByItem = new Map();
@@ -441,6 +442,9 @@ dialog.addEventListener("close", () => {
 
 document.querySelector("#addExperimentInventoryItemBtn").addEventListener("click", () => addExperimentItemRow({ type:"inventory", inventoryItemId:"", quantity:"", unit:"" }));
 document.querySelector("#addExperimentCustomItemBtn").addEventListener("click", () => addExperimentItemRow({ type:"custom", name:"", quantity:"", unit:"" }));
+document.addEventListener("click", handleExperimentComboboxOutsideClick);
+experimentItemsList.addEventListener("dragover", handleExperimentItemDragOver);
+experimentItemsList.addEventListener("drop", event => event.preventDefault());
 addSecondaryReferenceBtn.addEventListener("click", () => addSecondaryReferenceRow());
 document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal);
 document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
@@ -3193,28 +3197,48 @@ function deleteReplicaFamily(groupKey) {
   });
 }
 
-function performReplicaFamilyDeletion(groupKey) {
+async function performReplicaFamilyDeletion(groupKey) {
   const familySamples = clientSamples.filter(sample => getReplicaFamilyKey(sample) === groupKey);
   if (!familySamples.length) throw new Error("Ce groupe de réplicats n’existe plus.");
 
   const deletedIds = new Set(familySamples.map(sample => sample.id));
   const baseName = getReplicaBaseName(familySamples[0]) || familySamples[0].name;
-  clientSamples = clientSamples.filter(sample => !deletedIds.has(sample.id));
 
-  addHistory(
-    "Échantillons clients supprimés",
-    `${currentName} a supprimé ${familySamples.length} réplicat${familySamples.length > 1 ? "s" : ""} ${baseName} des études clients.`
-  );
-
-  if (selectedSampleId && deletedIds.has(selectedSampleId)) {
-    selectedSampleId = null;
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer ces réplicats.");
   }
-  if (selectedSampleGroupId === groupKey) {
-    selectedSampleGroupId = null;
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    const result = await storage.mutateSharedData(`sample-family-delete-${groupKey}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.clientSamples = (Array.isArray(state.clientSamples) ? state.clientSamples : []).filter(sample => !deletedIds.has(sample.id));
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Échantillons clients supprimés",
+        detail: `${currentName} a supprimé ${familySamples.length} réplicat${familySamples.length > 1 ? "s" : ""} ${baseName} des études clients.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    if (selectedSampleId && deletedIds.has(selectedSampleId)) selectedSampleId = null;
+    if (selectedSampleGroupId === groupKey) selectedSampleGroupId = null;
+    render();
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
   }
-
-  persist();
-  render();
 }
 
 function deleteSampleFromDetail(id) {
@@ -3230,17 +3254,45 @@ function deleteSampleFromDetail(id) {
   });
 }
 
-function performSampleDeletion(id, options = {}) {
+async function performSampleDeletion(id, options = {}) {
   const sample = clientSamples.find(entry => entry.id === id);
   if (!sample) throw new Error("Ce produit ou échantillon n’existe plus.");
 
-  clientSamples = clientSamples.filter(entry => entry.id !== id);
-
-  addHistory("Produit client supprimé", `${currentName} a supprimé ${sample.name} des études clients.`);
-  selectedSampleId = null;
-  persist();
-  if (options.closeModal) sampleDialog.close();
-  render();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer ce produit.");
+  }
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    const result = await storage.mutateSharedData(`sample-delete-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.clientSamples = (Array.isArray(state.clientSamples) ? state.clientSamples : []).filter(entry => entry.id !== id);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Produit client supprimé",
+        detail: `${currentName} a supprimé ${sample.name} des études clients.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    selectedSampleId = null;
+    if (options.closeModal) sampleDialog.close();
+    render();
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 function formatReplicaFamilyQuantity(samples) {
@@ -4935,33 +4987,59 @@ function renderExperimentDetail(experiment) {
   const detailLines=experiment.templateId===FREE_PROTOCOL_ID?(experiment.items||[]):getMergedExperimentLines(experiment.items);
   const consumedIds = getExperimentConsumedItemIds(experiment);
   const rows = detailLines.map(line => {
-    const inventoryItem = findInventoryItem(line);
+    const isTheoreticalFree = line.type === "custom";
+    const inventoryItem = isTheoreticalFree ? null : findInventoryItem(line);
     const needed = Number(line.quantity || 0);
-    const availability = getExperimentLineAvailability(inventoryItem, needed, line.unit);
-    const isConsumed = Boolean(inventoryItem) && consumedIds.has(inventoryItem.id);
-    const stateLabel = isConsumed
-      ? "Consommé"
-      : !inventoryItem
-        ? "Manquant"
-        : !availability.compatible
-          ? "Unité incompatible"
+    let stateLabel, stateClass, stockDisplay, isConsumed = false;
+
+    if (isTheoreticalFree) {
+      const theoreticalRaw = line.theoreticalStock;
+      const hasTheoretical = theoreticalRaw !== undefined && theoreticalRaw !== null && theoreticalRaw !== "" && Number.isFinite(Number(theoreticalRaw));
+      const theoretical = hasTheoretical ? Number(theoreticalRaw) : null;
+      stockDisplay = hasTheoretical
+        ? `${StockTracking.format(theoretical)} ${escapeHtml(line.unit || "")} (théorique)`
+        : "Non connecté";
+      stateLabel = !hasTheoretical
+        ? "Non connecté"
+        : needed < theoretical
+          ? "Stock suffisant"
+          : needed > theoretical
+            ? "Stock insuffisant"
+            : "Stock juste";
+      stateClass = !hasTheoretical
+        ? "neutral"
+        : needed < theoretical
+          ? "ok"
+          : needed > theoretical
+            ? "alert"
+            : "warning";
+    } else {
+      const availability = getExperimentLineAvailability(inventoryItem, needed, line.unit);
+      isConsumed = Boolean(inventoryItem) && consumedIds.has(inventoryItem.id);
+      stateLabel = isConsumed
+        ? "Consommé"
+        : !inventoryItem
+          ? "Manquant"
+          : !availability.compatible
+            ? "Unité incompatible"
+            : availability.kind !== "ok"
+              ? "Stock bas"
+              : availability.converted
+                ? "Connecté (converti)"
+                : "Connecté";
+      stateClass = isConsumed
+        ? "neutral"
+        : !inventoryItem || !availability.compatible
+          ? "alert"
           : availability.kind !== "ok"
-            ? "Stock bas"
-            : availability.converted
-              ? "Connecté (converti)"
-              : "Connecté";
-    const stateClass = isConsumed
-      ? "neutral"
-      : !inventoryItem || !availability.compatible
-        ? "alert"
-        : availability.kind !== "ok"
-          ? "warning"
-          : "ok";
-    const stockDisplay = !inventoryItem
-      ? "Non connecte"
-      : !availability.compatible
-        ? `${StockTracking.format(inventoryItem.quantity)} ${escapeHtml(inventoryItem.unit)} · attendu ${escapeHtml(availability.referenceUnit.plural)}`
-        : `${StockTracking.format(availability.availableInReferenceUnit)} ${escapeHtml(StockTracking.plural(availability.availableInReferenceUnit, availability.referenceUnit.singular, availability.referenceUnit.plural))}`;
+            ? "warning"
+            : "ok";
+      stockDisplay = !inventoryItem
+        ? "Non connecte"
+        : !availability.compatible
+          ? `${StockTracking.format(inventoryItem.quantity)} ${escapeHtml(inventoryItem.unit)} · attendu ${escapeHtml(availability.referenceUnit.plural)}`
+          : `${StockTracking.format(availability.availableInReferenceUnit)} ${escapeHtml(StockTracking.plural(availability.availableInReferenceUnit, availability.referenceUnit.singular, availability.referenceUnit.plural))}`;
+    }
     const displayName = line.name || inventoryItem?.name || "Item";
     return `
       <tr>
@@ -5338,7 +5416,7 @@ function openSourcingModal(id) {
   sourcingDialog.showModal();
 }
 
-function saveSourcingPatient() {
+async function saveSourcingPatient() {
   if (!sourcingForm.reportValidity()) return;
   const errorBox = document.querySelector("#sourcingError");
   errorBox?.classList.add("hidden");
@@ -5360,6 +5438,7 @@ function saveSourcingPatient() {
   const previousPatient = existingIndex >= 0 ? sourcingPatients[existingIndex] : null;
   const now = new Date();
   const displayNow = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(now);
+  const isNew = existingIndex < 0;
 
   const patient = { id: existingId || createSafeItemId("pat"), source: "web" };
   Object.keys(sourcingFields).forEach(key => {
@@ -5373,19 +5452,56 @@ function saveSourcingPatient() {
   patient.createdAt = previousPatient?.createdAt || displayNow;
   patient.updatedAt = displayNow;
 
-  if (existingIndex >= 0) {
-    sourcingPatients[existingIndex] = patient;
-    addHistory("Patient sourcing modifié", `${currentName} a modifié le patient ${patient.patientNumber}.`);
-  } else {
-    sourcingPatients.unshift(patient);
-    addHistory("Patient sourcing créé", `${currentName} a créé le patient ${patient.patientNumber}.`);
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    if (errorBox) { errorBox.textContent = "La sauvegarde GitHub en écriture est requise pour enregistrer ce patient."; errorBox.classList.remove("hidden"); }
+    return;
   }
 
-  persist();
-  selectedSourcingPatientId = patient.id;
-  sourcingDialog.close();
-  renderSourcing();
-  renderHistory();
+  const button = document.querySelector("#saveSourcingPatientBtn");
+  button.disabled = true;
+  const originalLabel = button.textContent;
+  button.textContent = "Enregistrement…";
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`sourcing-save-${patient.id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.sourcingPatients = Array.isArray(state.sourcingPatients) ? state.sourcingPatients : [];
+      const at = state.sourcingPatients.findIndex(entry => entry.id === patient.id);
+      if (at >= 0) state.sourcingPatients[at] = patient; else state.sourcingPatients.unshift(patient);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: isNew ? "Patient sourcing créé" : "Patient sourcing modifié",
+        detail: isNew
+          ? `${currentName} a créé le patient ${patient.patientNumber}.`
+          : `${currentName} a modifié le patient ${patient.patientNumber}.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    selectedSourcingPatientId = patient.id;
+    sourcingDialog.close();
+    renderSourcing();
+    renderHistory();
+  } catch (error) {
+    if (errorBox) { errorBox.textContent = error.message || String(error); errorBox.classList.remove("hidden"); }
+  } finally {
+    sharedDataIsSaving = false;
+    button.disabled = false;
+    button.textContent = originalLabel;
+    renderAlerts();
+  }
 }
 
 function requestSourcingPatientDeletion() {
@@ -5398,16 +5514,46 @@ function requestSourcingPatientDeletion() {
   });
 }
 
-function deleteSourcingPatient(id) {
+async function deleteSourcingPatient(id) {
   const patient = sourcingPatients.find(entry => entry.id === id);
   if (!patient) throw new Error("Ce patient n’existe plus.");
-  sourcingPatients = sourcingPatients.filter(entry => entry.id !== id);
-  addHistory("Patient sourcing supprimé", `${currentName} a supprimé le patient ${patient.patientNumber}.`);
-  if (selectedSourcingPatientId === id) selectedSourcingPatientId = null;
-  sourcingDialog.close();
-  persist();
-  renderSourcing();
-  renderHistory();
+
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer ce patient.");
+  }
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    const result = await storage.mutateSharedData(`sourcing-delete-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.sourcingPatients = (Array.isArray(state.sourcingPatients) ? state.sourcingPatients : []).filter(entry => entry.id !== id);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Patient sourcing supprimé",
+        detail: `${currentName} a supprimé le patient ${patient.patientNumber}.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    if (selectedSourcingPatientId === id) selectedSourcingPatientId = null;
+    sourcingDialog.close();
+    renderSourcing();
+    renderHistory();
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 function getItemLocations(item) {
@@ -6968,21 +7114,45 @@ function requestItemDeletionById(id, options = {}) {
   });
 }
 
-function deleteItem(id) {
+async function deleteItem(id) {
   const item = items.find(entry => entry.id === id);
   if (!item) throw new Error("Cet item n’existe plus.");
 
-  items = items.filter(entry => entry.id !== id);
-
-  addHistory("Item supprimé", `${currentName} a supprimé ${item.name} de l'inventaire.`);
-  persist();
-  dialog.close();
-
-  if (selectedItemId === id) {
-    selectedItemId = null;
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer un item.");
   }
-
-  render();
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    const result = await storage.mutateSharedData(`item-delete-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.inventoryItems = (Array.isArray(state.inventoryItems) ? state.inventoryItems : []).filter(entry => entry.id !== id);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Item supprimé",
+        detail: `${currentName} a supprimé ${item.name} de l'inventaire.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    dialog.close();
+    if (selectedItemId === id) selectedItemId = null;
+    render();
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 function patchStoredItem(id, patch) {
@@ -7592,15 +7762,190 @@ function getExperimentItemUnits(item) {
 
 function addFreeExperimentItemRow(line={}) {
   const type=line.type==="custom"?"custom":"inventory",row=document.createElement("div");row.className="experiment-item-row";row.dataset.lineType=type;
+  row.setAttribute("draggable","true");
   if(type==="inventory"){
     const selectedId=line.inventoryItemId||line.itemId||"",selected=items.find(item=>item.id===selectedId),units=getExperimentItemUnits(selected),unit=line.unit||units[0]?.key||"";
-    row.innerHTML=`<label class="experiment-item-field"><span>Item de l’inventaire</span><select class="experiment-item-select" aria-label="Item de l’inventaire"><option value="">Choisir un item de l’inventaire</option>${items.map(item=>`<option value="${escapeHtml(item.id)}">${escapeHtml(item.name)}</option>`).join("")}</select></label><label class="experiment-item-field"><span>Quantité</span><input class="experiment-item-quantity" inputmode="decimal" placeholder="Quantité" value="${escapeHtml(line.quantity??"")}"></label><label class="experiment-item-field"><span>Unité</span><select class="experiment-item-unit" aria-label="Unité">${renderExperimentUnitOptions(units,unit)}</select></label><span class="experiment-stock-state stock-neutral" role="status">À compléter</span><button class="ghost-btn compact-btn experiment-remove-line" type="button" aria-label="Retirer cet item de l’expérience">Retirer</button><p class="experiment-line-error hidden" role="alert"></p>`;
+    row.innerHTML=`<label class="experiment-item-field"><span>Item de l’inventaire</span><div class="order-combobox experiment-item-combobox"><input type="search" class="experiment-item-search" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" placeholder="Rechercher un item…"><button type="button" class="order-combobox-clear experiment-item-clear hidden" aria-label="Effacer l’item sélectionné">&times;</button><div class="order-combobox-options experiment-item-options hidden" role="listbox"></div><input type="hidden" class="experiment-item-select"></div></label><label class="experiment-item-field"><span>Quantité</span><input class="experiment-item-quantity" inputmode="decimal" placeholder="Quantité" value="${escapeHtml(line.quantity??"")}"></label><label class="experiment-item-field"><span>Unité</span><select class="experiment-item-unit" aria-label="Unité">${renderExperimentUnitOptions(units,unit)}</select></label><span class="experiment-stock-state stock-neutral" role="status">À compléter</span><button class="movement-entry-delete experiment-remove-line" type="button" aria-label="Retirer cet item de l’expérience">−</button><p class="experiment-line-error hidden" role="alert"></p>`;
     row.querySelector(".experiment-item-select").value=selectedId;
-    row.addEventListener("change",event=>{if(event.target.matches(".experiment-item-select"))hydrateFreeExperimentInventoryRow(row,event.target.value);updateExperimentModalStock()});row.addEventListener("input",updateExperimentModalStock);
+    if(selected)row.querySelector(".experiment-item-search").value=selected.name;
+    bindExperimentComboboxEvents(row);
+    row.addEventListener("input",updateExperimentModalStock);
   }else{
-    row.innerHTML=`<label class="experiment-item-field"><span>Nom de l’item libre</span><input class="experiment-custom-name" placeholder="Nom de l’item" value="${escapeHtml(line.name||"")}"></label><label class="experiment-item-field"><span>Quantité</span><input class="experiment-item-quantity" inputmode="decimal" placeholder="Quantité" value="${escapeHtml(line.quantity??"")}"></label><label class="experiment-item-field"><span>Unité</span><input class="experiment-item-unit" placeholder="Unité" value="${escapeHtml(line.unit||"")}"></label><span class="experiment-stock-state stock-neutral" role="status">Item libre · Non connecté</span><button class="ghost-btn compact-btn experiment-remove-line" type="button" aria-label="Retirer cet item libre de l’expérience">Retirer</button><p class="experiment-line-error hidden" role="alert"></p>`;
+    row.innerHTML=`<label class="experiment-item-field"><span>Nom de l’item libre</span><input class="experiment-custom-name" placeholder="Nom de l’item" value="${escapeHtml(line.name||"")}"></label><label class="experiment-item-field"><span>Quantité</span><input class="experiment-item-quantity" inputmode="decimal" placeholder="Quantité" value="${escapeHtml(line.quantity??"")}"></label><label class="experiment-item-field"><span>Unité</span><input class="experiment-item-unit" placeholder="Unité" value="${escapeHtml(line.unit||"")}"></label><div class="experiment-theoretical-stock-field"><input type="number" class="experiment-theoretical-stock" min="0" step="any" inputmode="decimal" placeholder="Stock théorique" aria-label="Stock théorique disponible (non suivi dans l’inventaire)" value="${escapeHtml(line.theoreticalStock??"")}"><span class="experiment-stock-state stock-neutral" role="status">À renseigner</span></div><button class="movement-entry-delete experiment-remove-line" type="button" aria-label="Retirer cet item libre de l’expérience">−</button><p class="experiment-line-error hidden" role="alert"></p>`;
+    row.addEventListener("input",updateExperimentModalStock);
   }
-  row.querySelector(".experiment-remove-line").addEventListener("click",()=>{row.remove();updateExperimentModalStock()});experimentItemsList.append(row);updateExperimentModalStock();
+  row.querySelector(".experiment-remove-line").addEventListener("click",()=>{row.remove();updateExperimentModalStock()});
+  bindExperimentItemDragEvents(row);
+  experimentItemsList.append(row);updateExperimentModalStock();
+}
+
+function disableDragOnFormControls(root) {
+  root.querySelectorAll("input, select, textarea, button").forEach(el => el.setAttribute("draggable", "false"));
+}
+
+function bindExperimentItemDragEvents(row) {
+  disableDragOnFormControls(row);
+  // draggable="false" sur les champs ne suffit pas toujours à empêcher le navigateur
+  // de démarrer un drag de la ligne pendant une sélection de texte : on désactive donc
+  // aussi le drag de la ligne elle-même dès qu'un geste démarre sur un champ interactif.
+  row.addEventListener("mousedown", event => {
+    row.draggable = !event.target.closest("input, select, textarea, button, .order-combobox");
+  });
+  row.addEventListener("mouseup", () => { row.draggable = true; });
+  row.addEventListener("dragstart", () => {
+    experimentDragSourceRow = row;
+    row.classList.add("dragging");
+  });
+  row.addEventListener("dragend", () => {
+    row.classList.remove("dragging");
+    experimentDragSourceRow = null;
+    row.draggable = true;
+  });
+}
+
+function handleExperimentItemDragOver(event) {
+  if (!experimentDragSourceRow) return;
+  event.preventDefault();
+  const afterRow = getExperimentDragAfterRow(experimentItemsList, event.clientY);
+  if (afterRow == null) experimentItemsList.appendChild(experimentDragSourceRow);
+  else if (afterRow !== experimentDragSourceRow) experimentItemsList.insertBefore(experimentDragSourceRow, afterRow);
+}
+
+function getExperimentDragAfterRow(container, y) {
+  const rows = [...container.querySelectorAll(".experiment-item-row:not(.dragging)")];
+  return rows.reduce((closest, candidate) => {
+    const box = candidate.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) return { offset, element: candidate };
+    return closest;
+  }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
+}
+
+function bindExperimentComboboxEvents(row) {
+  const search = row.querySelector(".experiment-item-search");
+  const clearBtn = row.querySelector(".experiment-item-clear");
+  search.addEventListener("input", () => {
+    row.querySelector(".experiment-item-select").value = "";
+    clearBtn.classList.add("hidden");
+    search.setCustomValidity("");
+    renderExperimentItemComboboxOptions(row, { open: true });
+    updateExperimentModalStock();
+  });
+  search.addEventListener("focus", () => renderExperimentItemComboboxOptions(row, { open: true }));
+  search.addEventListener("keydown", event => handleExperimentComboboxKeydown(row, event));
+  clearBtn.addEventListener("click", () => clearExperimentInventorySelection(row));
+}
+
+function renderExperimentItemComboboxOptions(row, options = {}) {
+  const list = row.querySelector(".experiment-item-options");
+  if (!list) return;
+  const selectValue = row.querySelector(".experiment-item-select").value;
+  const query = normalizeSearch(row.querySelector(".experiment-item-search")?.value || "");
+  const sorted = items.slice().sort((a, b) => String(a.name || "").localeCompare(String(b.name || ""), "fr", { sensitivity: "base" }));
+  const filtered = sorted.filter(item => {
+    const haystack = normalizeSearch([item.name, item.category, ...getItemLocations(item), ...item.tags].join(" "));
+    return !query || haystack.includes(query);
+  });
+
+  list.innerHTML = filtered.length
+    ? filtered.map(item => `
+        <button
+          type="button"
+          role="option"
+          class="order-combobox-option"
+          data-experiment-item-id="${escapeHtml(item.id)}"
+          aria-selected="${selectValue === item.id ? "true" : "false"}"
+        >
+          <strong>${escapeHtml(item.name)}</strong>
+          <span>${escapeHtml([item.category, formatLocations(item)].filter(Boolean).join(" · "))}</span>
+        </button>
+      `).join("")
+    : `<p class="order-combobox-empty">Aucun item trouvé</p>`;
+  disableDragOnFormControls(list);
+
+  list.querySelectorAll("[data-experiment-item-id]").forEach(option => {
+    option.addEventListener("click", () => selectExperimentInventoryItem(row, option.dataset.experimentItemId));
+    option.addEventListener("keydown", event => {
+      const optionButtons = [...list.querySelectorAll("[data-experiment-item-id]")];
+      const index = optionButtons.indexOf(option);
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+        event.preventDefault();
+        const next = event.key === "ArrowDown"
+          ? Math.min(index + 1, optionButtons.length - 1)
+          : Math.max(index - 1, 0);
+        optionButtons[next]?.focus();
+      } else if (event.key === "Escape") {
+        event.preventDefault();
+        closeExperimentComboboxOptions(row);
+        row.querySelector(".experiment-item-search").focus();
+      }
+    });
+  });
+
+  if (options.open) {
+    list.classList.remove("hidden");
+    row.querySelector(".experiment-item-search").setAttribute("aria-expanded", "true");
+  }
+}
+
+function selectExperimentInventoryItem(row, id) {
+  const item = items.find(entry => entry.id === id);
+  if (!item) return;
+  row.querySelector(".experiment-item-select").value = item.id;
+  row.querySelector(".experiment-item-search").value = item.name;
+  row.querySelector(".experiment-item-search").setCustomValidity("");
+  row.querySelector(".experiment-item-clear")?.classList.remove("hidden");
+  closeExperimentComboboxOptions(row);
+  hydrateFreeExperimentInventoryRow(row, item.id);
+  updateExperimentModalStock();
+}
+
+function clearExperimentInventorySelection(row) {
+  row.querySelector(".experiment-item-select").value = "";
+  row.querySelector(".experiment-item-search").value = "";
+  row.querySelector(".experiment-item-clear")?.classList.add("hidden");
+  renderExperimentItemComboboxOptions(row, { open: true });
+  row.querySelector(".experiment-item-search").focus();
+  updateExperimentModalStock();
+}
+
+function handleExperimentComboboxKeydown(row, event) {
+  const list = row.querySelector(".experiment-item-options");
+  const options = [...(list?.querySelectorAll("[data-experiment-item-id]") || [])];
+  const activeIndex = options.indexOf(document.activeElement);
+  if (event.key === "Escape") {
+    closeExperimentComboboxOptions(row);
+    return;
+  }
+  if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    event.preventDefault();
+    if (list?.classList.contains("hidden")) renderExperimentItemComboboxOptions(row, { open: true });
+    const nextIndex = event.key === "ArrowDown"
+      ? Math.min(activeIndex + 1, options.length - 1)
+      : Math.max(activeIndex < 0 ? options.length - 1 : activeIndex - 1, 0);
+    options[nextIndex]?.focus();
+    return;
+  }
+  if (event.key === "Enter" && options.length === 1) {
+    event.preventDefault();
+    selectExperimentInventoryItem(row, options[0].dataset.experimentItemId);
+  }
+}
+
+function closeExperimentComboboxOptions(row) {
+  row.querySelector(".experiment-item-options")?.classList.add("hidden");
+  row.querySelector(".experiment-item-search")?.setAttribute("aria-expanded", "false");
+}
+
+function handleExperimentComboboxOutsideClick(event) {
+  document.querySelectorAll(".experiment-item-combobox").forEach(combobox => {
+    if (combobox.contains(event.target)) return;
+    const list = combobox.querySelector(".experiment-item-options");
+    if (list && !list.classList.contains("hidden")) {
+      list.classList.add("hidden");
+      combobox.querySelector(".experiment-item-search")?.setAttribute("aria-expanded", "false");
+    }
+  });
 }
 
 function renderExperimentUnitOptions(units,selected="") {
@@ -7639,7 +7984,21 @@ function hydrateExperimentItemRow(row, itemId) {
 
 function updateExperimentModalStock() {
   experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row => {
-    if(row.dataset.lineType==="custom"){const state=row.querySelector(".experiment-stock-state");state.className="experiment-stock-state stock-neutral";state.textContent="Item libre · Non connecté";return;}
+    if(row.dataset.lineType==="custom"){
+      const state=row.querySelector(".experiment-stock-state");
+      const needed=parseExperimentQuantity(row.querySelector(".experiment-item-quantity")?.value);
+      const theoretical=parseExperimentQuantity(row.querySelector(".experiment-theoretical-stock")?.value);
+      if(!Number.isFinite(theoretical)||!Number.isFinite(needed)||needed<=0){
+        state.className="experiment-stock-state stock-neutral";state.textContent="À renseigner";
+      }else if(needed<theoretical){
+        state.className="experiment-stock-state stock-ok";state.textContent="Stock suffisant";
+      }else if(needed>theoretical){
+        state.className="experiment-stock-state stock-missing";state.textContent="Stock insuffisant";
+      }else{
+        state.className="experiment-stock-state stock-warning";state.textContent="Stock juste";
+      }
+      return;
+    }
     if(row.dataset.lineType==="inventory"){
       const availability=getExperimentInventoryAvailability(row.querySelector(".experiment-item-select").value,parseExperimentQuantity(row.querySelector(".experiment-item-quantity").value),row.querySelector(".experiment-item-unit").value),state=row.querySelector(".experiment-stock-state");state.className=`experiment-stock-state ${availability.kind==="ok"?"stock-ok":availability.kind==="low"?"stock-low":availability.kind==="warning"?"stock-warning":"stock-neutral"}`;state.textContent=availability.label;return;
     }
@@ -7677,7 +8036,7 @@ function getExperimentRows() {
   return [...experimentItemsList.querySelectorAll(".experiment-item-row")]
     .map(row => {
       if(row.dataset.lineType==="inventory")return{type:"inventory",inventoryItemId:row.querySelector(".experiment-item-select").value,quantity:parseExperimentQuantity(row.querySelector(".experiment-item-quantity").value),unit:row.querySelector(".experiment-item-unit").value};
-      if(row.dataset.lineType==="custom")return{type:"custom",name:row.querySelector(".experiment-custom-name").value.trim(),quantity:parseExperimentQuantity(row.querySelector(".experiment-item-quantity").value),unit:row.querySelector(".experiment-item-unit").value.trim()};
+      if(row.dataset.lineType==="custom")return{type:"custom",name:row.querySelector(".experiment-custom-name").value.trim(),quantity:parseExperimentQuantity(row.querySelector(".experiment-item-quantity").value),unit:row.querySelector(".experiment-item-unit").value.trim(),theoreticalStock:parseExperimentQuantity(row.querySelector(".experiment-theoretical-stock")?.value)};
       const item = getExperimentRowItem(row);
       const isManual = row.dataset.rowMode === "manual";
 
@@ -7721,7 +8080,7 @@ function validateExperimentConsumedRows() {
   let valid=true;experimentItemsList.querySelectorAll(".experiment-item-row").forEach(row=>{const error=row.querySelector(".experiment-line-error");if(!error)return;let message="";const quantity=parseExperimentQuantity(row.querySelector(".experiment-item-quantity")?.value);if(row.dataset.lineType==="inventory"){const id=row.querySelector(".experiment-item-select").value,item=items.find(entry=>entry.id===id),units=getExperimentItemUnits(item);if(!item)message="Sélectionnez un item de l’inventaire.";else if(!Number.isFinite(quantity)||quantity<=0)message="Saisissez une quantité strictement positive.";else if(!units.some(unit=>unit.key===row.querySelector(".experiment-item-unit").value))message="Sélectionnez une unité configurée pour cet item.";}else if(row.dataset.lineType==="custom"){if(!row.querySelector(".experiment-custom-name").value.trim())message="Saisissez le nom de l’item libre.";else if(!Number.isFinite(quantity)||quantity<=0)message="Saisissez une quantité strictement positive.";else if(!row.querySelector(".experiment-item-unit").value.trim())message="Saisissez l’unité de l’item libre.";}error.textContent=message;error.classList.toggle("hidden",!message);if(message)valid=false;});return valid;
 }
 
-function saveExperiment() {
+async function saveExperiment() {
   if (!experimentForm.reportValidity()) return;
   if (!validateExperimentConsumedRows()) return;
 
@@ -7740,26 +8099,65 @@ function saveExperiment() {
   );
 
   const id = experimentFields.experimentId.value || `exp-${Date.now()}`;
-
   const index = experiments.findIndex(entry => entry.id === id);
   const previousExperiment = index >= 0 ? experiments[index] : null;
   const experiment = serializeExperimentDraft(id, template, previousExperiment);
+  const isNew = index < 0;
+  if (!isNew) experiment.createdBy = previousExperiment.createdBy || currentName;
 
-  if (index >= 0) {
-    experiment.createdBy = experiments[index].createdBy || currentName;
-    experiments[index] = experiment;
-    addHistory("Experience modifiée", `${currentName} a modifié ${experiment.name}.`);
-  } else {
-    experiments.unshift(experiment);
-    addHistory("Experience créée", `${currentName} a créé ${experiment.name} depuis ${experiment.templateName}.`);
+  const errorBox = document.querySelector("#experimentSaveError");
+  errorBox?.classList.add("hidden");
+  const button = document.querySelector("#saveExperimentBtn");
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    if (errorBox) { errorBox.textContent = "La sauvegarde GitHub en écriture est requise pour enregistrer une expérience."; errorBox.classList.remove("hidden"); }
+    return;
   }
 
-  persist();
-  selectedExperimentId = id;
-  experimentFields.experimentTemplate.disabled = false;
-  experimentDialog.close();
-  renderExperiments();
-  renderHistory();
+  button.disabled = true;
+  const originalLabel = button.textContent;
+  button.textContent = "Enregistrement…";
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`experiment-save-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.experiments = Array.isArray(state.experiments) ? state.experiments : [];
+      const at = state.experiments.findIndex(entry => entry.id === id);
+      if (at >= 0) state.experiments[at] = experiment; else state.experiments.unshift(experiment);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: isNew ? "Experience créée" : "Experience modifiée",
+        detail: isNew
+          ? `${currentName} a créé ${experiment.name} depuis ${experiment.templateName}.`
+          : `${currentName} a modifié ${experiment.name}.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    selectedExperimentId = id;
+    experimentFields.experimentTemplate.disabled = false;
+    experimentDialog.close();
+    renderExperiments();
+    renderHistory();
+  } catch (error) {
+    if (errorBox) { errorBox.textContent = error.message || String(error); errorBox.classList.remove("hidden"); }
+  } finally {
+    sharedDataIsSaving = false;
+    button.disabled = false;
+    button.textContent = originalLabel;
+    renderAlerts();
+  }
 }
 
 function serializeExperimentDraft(id,template=protocolTemplates.find(entry=>entry.id===experimentFields.experimentTemplate.value),previousExperiment=null) {
@@ -7823,25 +8221,47 @@ function requestExperimentDeletion() {
   });
 }
 
-function deleteExperiment(id) {
+async function deleteExperiment(id) {
   const experiment = experiments.find(entry => entry.id === id);
   if (!experiment) throw new Error("Cette expérience n’existe plus.");
-  experiments = experiments.filter(entry => entry.id !== id);
 
-  addHistory(
-    "Experience supprimee",
-    `${currentName} a supprime ${experiment.name}.`
-  );
-
-  if (selectedExperimentId === id) {
-    selectedExperimentId = null;
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer cette expérience.");
   }
-
-  experimentFields.experimentTemplate.disabled = false;
-  experimentDialog.close();
-  persist();
-  renderExperiments();
-  renderHistory();
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    const result = await storage.mutateSharedData(`experiment-delete-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.experiments = (Array.isArray(state.experiments) ? state.experiments : []).filter(entry => entry.id !== id);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Experience supprimee",
+        detail: `${currentName} a supprime ${experiment.name}.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    if (selectedExperimentId === id) selectedExperimentId = null;
+    experimentFields.experimentTemplate.disabled = false;
+    experimentDialog.close();
+    renderExperiments();
+    renderHistory();
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 // une expérience peut être consommée dès qu'au moins un item est connecté, dans une unité compatible,
@@ -8023,19 +8443,48 @@ async function confirmConsumeExperiment() {
       const operation = buildExperimentConsumeOperation(item, entry.quantity, entry.unit, `Item consommé par expérience « ${experiment.name} »`);
       await executeAtomicStockOperation(item.id, operation);
 
-      const liveExperiment = experiments.find(row => row.id === id);
-      if (!liveExperiment) throw new Error("Cette expérience n’existe plus.");
-      liveExperiment.consumedItems = Array.isArray(liveExperiment.consumedItems) ? liveExperiment.consumedItems : [];
-      liveExperiment.consumedItems.push({
-        itemId: entry.itemId,
-        name: entry.name,
-        quantity: entry.quantity,
-        unit: entry.unit,
-        consumedAt: new Date().toISOString(),
-        consumedBy: currentName
-      });
-      addHistory("Item consommé", `${currentName} a consommé ${entry.name} pour l’expérience ${liveExperiment.name}.`);
-      persist();
+      const storage = window.ExadexGithubStorage;
+      const config = storage?.getConfig?.();
+      if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+        throw new Error("La sauvegarde GitHub en écriture est requise pour finaliser cette consommation.");
+      }
+      await flushPendingSharedDataBeforeAtomicOperation();
+      sharedDataIsSaving = true;
+      renderAlerts();
+      try {
+        const result = await storage.mutateSharedData(`experiment-consume-${id}-${entry.itemId}-${Date.now()}`, latest => {
+          const state = createSharedState(latest, { includeBootstrap: false });
+          const target = (state.experiments || []).find(row => row.id === id);
+          if (!target) throw new Error("Cette expérience n’existe plus.");
+          target.consumedItems = Array.isArray(target.consumedItems) ? target.consumedItems : [];
+          target.consumedItems.push({
+            itemId: entry.itemId,
+            name: entry.name,
+            quantity: entry.quantity,
+            unit: entry.unit,
+            consumedAt: new Date().toISOString(),
+            consumedBy: currentName
+          });
+          state.history = Array.isArray(state.history) ? state.history : [];
+          state.history.unshift({
+            date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+            user: currentName,
+            action: "Item consommé",
+            detail: `${currentName} a consommé ${entry.name} pour l’expérience ${target.name}.`
+          });
+          return state;
+        });
+        sharedDataSha = result.sha;
+        sharedDataMode = "github-write";
+        sharedDataHasUnsavedChanges = false;
+        sharedDataRemoteReady = true;
+        sharedDataLastError = "";
+        applySharedState(result.data);
+        initializeSharedSaveCoordinator(result.data, result.sha);
+      } finally {
+        sharedDataIsSaving = false;
+        renderAlerts();
+      }
 
       document.querySelectorAll("#consumeExperimentItems .consume-experiment-item").forEach(row => {
         if (row.dataset.itemId === entry.itemId) row.remove();
@@ -8124,7 +8573,7 @@ function openEditProtocolTemplateDialog(templateId) {
   saveProtocolTemplateDialog.showModal();
 }
 
-function confirmSaveProtocolTemplate() {
+async function confirmSaveProtocolTemplate() {
   if (!saveProtocolTemplateForm.reportValidity()) return;
 
   const name = document.querySelector("#saveProtocolTemplateName").value.trim();
@@ -8143,45 +8592,92 @@ function confirmSaveProtocolTemplate() {
     };
   });
 
-  if (document.querySelector("#saveProtocolTemplateMode").value === "edit") {
-    const template = customProtocolTemplates.find(entry => entry.id === document.querySelector("#saveProtocolTemplateId").value);
-    if (!template) return;
-    template.name = name;
-    template.notes = notes;
-    template.items = templateItems;
-    template.updatedBy = currentName;
-    template.updatedAt = new Date().toISOString();
-    protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
+  const errorBox = document.querySelector("#saveProtocolTemplateError");
+  errorBox?.classList.add("hidden");
+  const isEdit = document.querySelector("#saveProtocolTemplateMode").value === "edit";
 
-    addHistory("Protocole modifié", `${currentName} a modifié le protocole « ${template.name} ».`);
-    persist();
-    saveProtocolTemplateDialog.close();
-    renderManageProtocolTemplates();
-    renderHistory();
+  let templateId, historyAction, historyDetail;
+  if (isEdit) {
+    templateId = document.querySelector("#saveProtocolTemplateId").value;
+    const template = customProtocolTemplates.find(entry => entry.id === templateId);
+    if (!template) return;
+    historyAction = "Protocole modifié";
+    historyDetail = `${currentName} a modifié le protocole « ${name} ».`;
+  } else {
+    const experimentId = document.querySelector("#saveProtocolTemplateExperimentId").value;
+    const experiment = experiments.find(entry => entry.id === experimentId);
+    if (!experiment) return;
+    templateId = `custom-tpl-${Date.now()}`;
+    historyAction = "Protocole enregistré";
+    historyDetail = `${currentName} a enregistré le protocole « ${name} » depuis ${experiment.name}.`;
+  }
+
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    if (errorBox) { errorBox.textContent = "La sauvegarde GitHub en écriture est requise pour enregistrer ce protocole."; errorBox.classList.remove("hidden"); }
     return;
   }
 
-  const experimentId = document.querySelector("#saveProtocolTemplateExperimentId").value;
-  const experiment = experiments.find(entry => entry.id === experimentId);
-  if (!experiment) return;
-
-  const template = {
-    id: `custom-tpl-${Date.now()}`,
-    name,
-    notes,
-    source: "custom",
-    createdBy: currentName,
-    createdAt: new Date().toISOString(),
-    items: templateItems
-  };
-
-  customProtocolTemplates.push(template);
-  protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
-
-  addHistory("Protocole enregistré", `${currentName} a enregistré le protocole « ${template.name} » depuis ${experiment.name}.`);
-  persist();
-  saveProtocolTemplateDialog.close();
-  renderHistory();
+  const button = document.querySelector("#confirmSaveProtocolTemplateBtn");
+  button.disabled = true;
+  const originalLabel = button.textContent;
+  button.textContent = "Enregistrement…";
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`protocol-save-${templateId}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.customProtocolTemplates = Array.isArray(state.customProtocolTemplates) ? state.customProtocolTemplates : [];
+      const at = state.customProtocolTemplates.findIndex(entry => entry.id === templateId);
+      if (at >= 0) {
+        state.customProtocolTemplates[at] = {
+          ...state.customProtocolTemplates[at],
+          name,
+          notes,
+          items: templateItems,
+          updatedBy: currentName,
+          updatedAt: new Date().toISOString()
+        };
+      } else {
+        state.customProtocolTemplates.push({
+          id: templateId,
+          name,
+          notes,
+          source: "custom",
+          createdBy: currentName,
+          createdAt: new Date().toISOString(),
+          items: templateItems
+        });
+      }
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: historyAction,
+        detail: historyDetail
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    saveProtocolTemplateDialog.close();
+    if (isEdit) renderManageProtocolTemplates();
+    renderHistory();
+  } catch (error) {
+    if (errorBox) { errorBox.textContent = error.message || String(error); errorBox.classList.remove("hidden"); }
+  } finally {
+    sharedDataIsSaving = false;
+    button.disabled = false;
+    button.textContent = originalLabel;
+    renderAlerts();
+  }
 }
 
 function openManageProtocolTemplatesDialog() {
@@ -8220,17 +8716,44 @@ function requestProtocolTemplateDeletion(templateId) {
   });
 }
 
-function deleteProtocolTemplate(templateId) {
+async function deleteProtocolTemplate(templateId) {
   const template = customProtocolTemplates.find(entry => entry.id === templateId);
   if (!template) throw new Error("Ce protocole n’existe plus.");
 
-  customProtocolTemplates = customProtocolTemplates.filter(entry => entry.id !== templateId);
-  protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
-
-  addHistory("Protocole supprimé", `${currentName} a supprimé le protocole "${template.name}".`);
-  persist();
-  renderManageProtocolTemplates();
-  renderHistory();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer ce protocole.");
+  }
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    const result = await storage.mutateSharedData(`protocol-delete-${templateId}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.customProtocolTemplates = (Array.isArray(state.customProtocolTemplates) ? state.customProtocolTemplates : []).filter(entry => entry.id !== templateId);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Protocole supprimé",
+        detail: `${currentName} a supprimé le protocole "${template.name}".`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    renderManageProtocolTemplates();
+    renderHistory();
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 function openOrderModal() {
@@ -8246,13 +8769,16 @@ function openOrderModal() {
   orderDialog.showModal();
 }
 
-function saveOrder() {
+async function saveOrder() {
   if (orderFields.orderItemMode.value === "existing" && !orderFields.orderInventoryItem.value) {
     orderFields.orderInventorySearch.setCustomValidity("Veuillez sélectionner un item dans la liste.");
   } else {
     orderFields.orderInventorySearch.setCustomValidity("");
   }
   if (!orderForm.reportValidity()) return;
+
+  const errorBox = document.querySelector("#saveOrderError");
+  errorBox?.classList.add("hidden");
 
   const itemMode = orderFields.orderItemMode.value;
 
@@ -8311,74 +8837,246 @@ function saveOrder() {
     };
   }
 
-  orders.unshift(order);
-  addHistory("Demande créée", `${currentName} a créé une demande pour ${order.itemName}.`);
-  persist();
-  orderDialog.close();
-  renderOrders();
-  renderHistory();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    if (errorBox) { errorBox.textContent = "La sauvegarde GitHub en écriture est requise pour créer cette demande."; errorBox.classList.remove("hidden"); }
+    return;
+  }
+
+  const button = document.querySelector("#saveOrderBtn");
+  button.disabled = true;
+  const originalLabel = button.textContent;
+  button.textContent = "Enregistrement…";
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`order-save-${order.id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.orders = Array.isArray(state.orders) ? state.orders : [];
+      state.orders.unshift(order);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Demande créée",
+        detail: `${currentName} a créé une demande pour ${order.itemName}.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    orderDialog.close();
+    renderOrders();
+    renderHistory();
+  } catch (error) {
+    if (errorBox) { errorBox.textContent = error.message || String(error); errorBox.classList.remove("hidden"); }
+  } finally {
+    sharedDataIsSaving = false;
+    button.disabled = false;
+    button.textContent = originalLabel;
+    renderAlerts();
+  }
 }
 
-function moveOrderToOrdered(id) {
+async function moveOrderToOrdered(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || normalizeOrderStatus(order.status) !== "requested") return;
 
-  order.status = "ordered";
-  order.orderedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
-  order.orderedAtRaw = new Date().toISOString();
-  order.orderedBy = currentName;
-
-  addHistory("Commande effectuée", `${currentName} a marqué ${order.itemName} comme commandé.`);
-  persist();
-  renderOrders();
-  renderHistory();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    window.alert("La sauvegarde GitHub en écriture est requise pour marquer cette demande comme commandée.");
+    return;
+  }
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`order-ordered-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      const target = (state.orders || []).find(entry => entry.id === id);
+      if (!target || normalizeOrderStatus(target.status) !== "requested") throw new Error("Cette demande n’est plus au statut attendu.");
+      target.status = "ordered";
+      target.orderedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
+      target.orderedAtRaw = new Date().toISOString();
+      target.orderedBy = currentName;
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Commande effectuée",
+        detail: `${currentName} a marqué ${target.itemName} comme commandé.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    renderOrders();
+    renderHistory();
+  } catch (error) {
+    window.alert(error.message || String(error));
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
-function moveOrderToReceived(id) {
+async function moveOrderToReceived(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || order.status !== "ordered") return;
 
-  order.status = "received";
-  order.receivedQuantity = getOrderRequestedNumericQuantity(order);
-  order.receivedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
-  order.receivedAtRaw = new Date().toISOString();
-  order.receivedBy = currentName;
-
-  addHistory("Commande reçue", `${currentName} a marqué ${order.itemName} comme arrivé.`);
-  persist();
-  renderOrders();
-  renderHistory();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    window.alert("La sauvegarde GitHub en écriture est requise pour marquer cette demande comme arrivée.");
+    return;
+  }
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`order-received-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      const target = (state.orders || []).find(entry => entry.id === id);
+      if (!target || target.status !== "ordered") throw new Error("Cette demande n’est plus au statut attendu.");
+      target.status = "received";
+      target.receivedQuantity = getOrderRequestedNumericQuantity(target);
+      target.receivedAt = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date());
+      target.receivedAtRaw = new Date().toISOString();
+      target.receivedBy = currentName;
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Commande reçue",
+        detail: `${currentName} a marqué ${target.itemName} comme arrivé.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    renderOrders();
+    renderHistory();
+  } catch (error) {
+    window.alert(error.message || String(error));
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
-function moveOrderBackToRequested(id) {
+async function moveOrderBackToRequested(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || order.status !== "ordered") return;
 
-  order.status = "requested";
-  order.orderedAt = "";
-  order.orderedAtRaw = "";
-  order.orderedBy = "";
-
-  addHistory("Commande rouverte", `${currentName} a renvoyé ${order.itemName} vers "À demander".`);
-  persist();
-  renderOrders();
-  renderHistory();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    window.alert("La sauvegarde GitHub en écriture est requise pour rouvrir cette demande.");
+    return;
+  }
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`order-back-requested-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      const target = (state.orders || []).find(entry => entry.id === id);
+      if (!target || target.status !== "ordered") throw new Error("Cette demande n’est plus au statut attendu.");
+      target.status = "requested";
+      target.orderedAt = "";
+      target.orderedAtRaw = "";
+      target.orderedBy = "";
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Commande rouverte",
+        detail: `${currentName} a renvoyé ${target.itemName} vers "À demander".`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    renderOrders();
+    renderHistory();
+  } catch (error) {
+    window.alert(error.message || String(error));
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
-function moveOrderBackToOrdered(id) {
+async function moveOrderBackToOrdered(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || order.status !== "received" || order.addedToInventory) return;
 
-  order.status = "ordered";
-  order.receivedQuantity = 0;
-  order.receivedAt = "";
-  order.receivedAtRaw = "";
-  order.receivedBy = "";
-
-  addHistory("Réception annulée", `${currentName} a renvoyé ${order.itemName} vers "Commandé".`);
-  persist();
-  renderOrders();
-  renderHistory();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    window.alert("La sauvegarde GitHub en écriture est requise pour annuler cette réception.");
+    return;
+  }
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`order-back-ordered-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      const target = (state.orders || []).find(entry => entry.id === id);
+      if (!target || target.status !== "received" || target.addedToInventory) throw new Error("Cette demande n’est plus au statut attendu.");
+      target.status = "ordered";
+      target.receivedQuantity = 0;
+      target.receivedAt = "";
+      target.receivedAtRaw = "";
+      target.receivedBy = "";
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Réception annulée",
+        detail: `${currentName} a renvoyé ${target.itemName} vers "Commandé".`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    renderOrders();
+    renderHistory();
+  } catch (error) {
+    window.alert(error.message || String(error));
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 // Funcion para confirmar la cantidad recibida antes de agregarla al inventario, en lugar de asumir que es igual a la cantidad solicitada
@@ -8817,19 +9515,44 @@ function markOrderDone(id) {
   });
 }
 
-function deleteOrder(id) {
+async function deleteOrder(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order) throw new Error("Cette demande de commande n’existe plus.");
-  orders = orders.filter(entry => entry.id !== id);
 
-  addHistory(
-    "Demande supprimée",
-    `${currentName} a supprimé la demande pour ${order.itemName}.`
-  );
-
-  persist();
-  renderOrders();
-  renderHistory();
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer cette demande.");
+  }
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving = true;
+  renderAlerts();
+  try {
+    const result = await storage.mutateSharedData(`order-delete-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      state.orders = (Array.isArray(state.orders) ? state.orders : []).filter(entry => entry.id !== id);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Demande supprimée",
+        detail: `${currentName} a supprimé la demande pour ${order.itemName}.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    renderOrders();
+    renderHistory();
+  } finally {
+    sharedDataIsSaving = false;
+    renderAlerts();
+  }
 }
 
 function normalizeCompanyName(value) {
@@ -9029,9 +9752,10 @@ function similarCompanyContact(company,excludeId=""){
   return supplierContacts.find(contact=>contact.id!==excludeId&&contactNames(contact).some(name=>name===key||(Math.min(name.length,key.length)>=6&&distance(name,key)<=1)));
 }
 
-function saveContact(event){
+async function saveContact(event){
   event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;
   const id=document.querySelector("#contactId").value,company=document.querySelector("#contactCompany").value.trim(),warning=document.querySelector("#contactDuplicateWarning");
+  warning.classList.add("hidden");
   if(!company){warning.textContent="La société est obligatoire.";warning.classList.remove("hidden");document.querySelector("#contactCompany").focus();return;}
   const duplicate=similarCompanyContact(company,id);
   if(duplicate&&form.dataset.duplicateConfirmed!==normalizeCompanyName(company)){warning.textContent=`Une fiche « ${duplicate.company} » existe déjà. Vérifiez-la avant de confirmer une seconde fois.`;warning.classList.remove("hidden");form.dataset.duplicateConfirmed=normalizeCompanyName(company);return;}
@@ -9039,13 +9763,56 @@ function saveContact(event){
   if(previous&&normalizeCompanyName(previous.company)!==normalizeCompanyName(company)&&!aliases.some(alias=>normalizeCompanyName(alias)===normalizeCompanyName(previous.company)))aliases.push(previous.company);
   const coordinates=[...document.querySelectorAll(".contact-coordinate-editor")].map((row,index)=>({id:row.dataset.coordinateId||`coordinate-${Date.now()}-${index}`,label:row.querySelector("[data-coordinate-label]").value.trim(),type:row.querySelector("[data-coordinate-type]").value,value:normalizeMultilineText(row.querySelector("[data-coordinate-value]").value)})).filter(row=>row.value);
   const contact={id:previous?.id||`contact-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,company,salesRepresentative:document.querySelector("#contactSalesRepresentative").value.trim(),afterSalesService:document.querySelector("#contactAfterSalesService").value.trim(),customerService:document.querySelector("#contactCustomerService").value.trim(),salesAndQuotes:document.querySelector("#contactSalesAndQuotes").value.trim(),phone:document.querySelector("#contactPhone").value.trim(),notes:normalizeMultilineText(document.querySelector("#contactNotes").value),aliases:[...new Set(aliases)],coordinates};
-  if(previous)supplierContacts=supplierContacts.map(row=>row.id===contact.id?contact:row);else supplierContacts.push(contact);
-  supplierContacts=migrateSupplierContacts(supplierContacts);addHistory(previous?"Contact modifié":"Contact ajouté",`${currentName} a ${previous?"modifié":"ajouté"} le contact ${contact.company}.`);persist();document.querySelector("#contactDialog").close();selectedContactId=contact.id;renderContacts();renderHistory();hydrateSupplierContactOptions();
+
+  const storage=window.ExadexGithubStorage,config=storage?.getConfig?.();
+  if(!storage?.mutateSharedData||!config?.owner||!config?.repo||!config?.token){warning.textContent="La sauvegarde GitHub en écriture est requise pour enregistrer ce contact.";warning.classList.remove("hidden");return;}
+
+  const button=document.querySelector("#saveContactBtn");button.disabled=true;const originalLabel=button.textContent;button.textContent="Enregistrement…";
+  try{
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving=true;renderAlerts();
+    const result=await storage.mutateSharedData(`contact-save-${contact.id}-${Date.now()}`, latest => {
+      const state=createSharedState(latest,{includeBootstrap:false});
+      state.supplierContacts=Array.isArray(state.supplierContacts)?state.supplierContacts:[];
+      const exists=state.supplierContacts.some(row=>row.id===contact.id);
+      state.supplierContacts=exists?state.supplierContacts.map(row=>row.id===contact.id?contact:row):[...state.supplierContacts,contact];
+      state.supplierContacts=migrateSupplierContacts(state.supplierContacts);
+      state.history=Array.isArray(state.history)?state.history:[];
+      state.history.unshift({date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date()),user:currentName,action:previous?"Contact modifié":"Contact ajouté",detail:`${currentName} a ${previous?"modifié":"ajouté"} le contact ${contact.company}.`});
+      return state;
+    });
+    sharedDataSha=result.sha;sharedDataMode="github-write";sharedDataHasUnsavedChanges=false;sharedDataRemoteReady=true;sharedDataLastError="";
+    applySharedState(result.data);initializeSharedSaveCoordinator(result.data,result.sha);
+    document.querySelector("#contactDialog").close();selectedContactId=contact.id;renderContacts();renderHistory();hydrateSupplierContactOptions();
+  }catch(error){
+    warning.textContent=error.message||String(error);warning.classList.remove("hidden");
+  }finally{
+    sharedDataIsSaving=false;button.disabled=false;button.textContent=originalLabel;renderAlerts();
+  }
 }
 
 function requestContactDeletion(id,trigger){
   const contact=supplierContacts.find(row=>row.id===id);if(!contact)return;const count=getContactItems(contact).length;
-  openDeleteConfirmation({title:`Supprimer définitivement le contact « ${contact.company} » ?`,message:`${count?`${count} item(s) sont associés à cette société. `:""}Les items ne seront pas supprimés et conserveront leur fournisseur sous forme de texte, mais le lien vers cette fiche disparaîtra.`,confirmText:"Supprimer le contact",trigger,onConfirm:()=>{supplierContacts=supplierContacts.filter(row=>row.id!==id);addHistory("Contact supprimé",`${currentName} a supprimé le contact ${contact.company}.`);persist();selectedContactId=null;hydrateSupplierContactOptions();renderContacts();renderHistory();}});
+  openDeleteConfirmation({title:`Supprimer définitivement le contact « ${contact.company} » ?`,message:`${count?`${count} item(s) sont associés à cette société. `:""}Les items ne seront pas supprimés et conserveront leur fournisseur sous forme de texte, mais le lien vers cette fiche disparaîtra.`,confirmText:"Supprimer le contact",trigger,onConfirm:async()=>{
+    const storage=window.ExadexGithubStorage,config=storage?.getConfig?.();
+    if(!storage?.mutateSharedData||!config?.owner||!config?.repo||!config?.token)throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer ce contact.");
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving=true;renderAlerts();
+    try{
+      const result=await storage.mutateSharedData(`contact-delete-${id}-${Date.now()}`, latest => {
+        const state=createSharedState(latest,{includeBootstrap:false});
+        state.supplierContacts=(Array.isArray(state.supplierContacts)?state.supplierContacts:[]).filter(row=>row.id!==id);
+        state.history=Array.isArray(state.history)?state.history:[];
+        state.history.unshift({date:new Intl.DateTimeFormat("fr-FR",{dateStyle:"short",timeStyle:"short"}).format(new Date()),user:currentName,action:"Contact supprimé",detail:`${currentName} a supprimé le contact ${contact.company}.`});
+        return state;
+      });
+      sharedDataSha=result.sha;sharedDataMode="github-write";sharedDataHasUnsavedChanges=false;sharedDataRemoteReady=true;sharedDataLastError="";
+      applySharedState(result.data);initializeSharedSaveCoordinator(result.data,result.sha);
+      selectedContactId=null;hydrateSupplierContactOptions();renderContacts();renderHistory();
+    }finally{
+      sharedDataIsSaving=false;renderAlerts();
+    }
+  }});
 }
 
 function hydrateSupplierContactOptions(){

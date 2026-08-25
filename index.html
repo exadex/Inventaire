@@ -709,7 +709,7 @@
         <p id="contactDuplicateWarning" class="field-validation-message hidden" role="alert"></p>
         <div class="modal-actions">
           <button id="cancelContactBtn" class="ghost-btn" type="button">Annuler</button>
-          <button class="primary-btn" type="submit">Enregistrer</button>
+          <button class="primary-btn" id="saveContactBtn" type="submit">Enregistrer</button>
         </div>
       </form>
     </dialog>
@@ -1033,12 +1033,14 @@
           <div class="reference-heading">
             <h4>Items consommés</h4>
             <div class="experiment-item-add-actions">
-              <button id="addExperimentInventoryItemBtn" class="ghost-btn compact-btn" type="button">Ajouter un item de l’inventaire</button>
-              <button id="addExperimentCustomItemBtn" class="ghost-btn compact-btn" type="button">Ajouter un item libre</button>
+              <button id="addExperimentInventoryItemBtn" class="experiment-add-item-link" type="button">+ Item de l’inventaire</button>
+              <button id="addExperimentCustomItemBtn" class="experiment-add-item-link" type="button">+ Item libre</button>
             </div>
           </div>
           <div id="experimentItemsList" class="experiment-items-list"></div>
         </section>
+
+        <p id="experimentSaveError" class="confirmation-modal-error hidden" role="alert"></p>
 
         <div class="modal-actions">
           <button type="button" class="danger-btn" id="deleteExperimentBtn">Supprimer</button>
@@ -1076,6 +1078,8 @@
           <span>Quantité de chaque item pour 1 réplica</span>
           <div id="saveProtocolTemplateItems" class="save-protocol-template-items"></div>
         </div>
+
+        <p id="saveProtocolTemplateError" class="confirmation-modal-error hidden" role="alert"></p>
 
         <div class="modal-actions">
           <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
@@ -1319,6 +1323,8 @@
 
         <p class="required-legend"><span class="required-star">*</span> champs obligatoires</p>
 
+        <p id="saveOrderError" class="confirmation-modal-error hidden" role="alert"></p>
+
         <div class="modal-actions">
           <button class="ghost-btn" type="button" id="cancelOrderBtn">Annuler</button>
           <button class="primary-btn" id="saveOrderBtn" type="button">Ajouter à la liste</button>
@@ -1438,6 +1444,12 @@
     <script src="js/app/const.js"></script>
     <script src="js/app/seed_items.js"></script>
     <script src="js/app/protocols.js"></script>
+    <script>
+      // Dépôt GitHub partagé par défaut — ces valeurs ne sont pas secrètes (dépôt public).
+      // Permet à n'importe quel navigateur de LIRE les données partagées sans configuration manuelle.
+      // Le token (nécessaire pour ÉCRIRE) reste propre à chaque utilisateur, via localStorage — voir README.md.
+      window.EXADEX_GITHUB_STORAGE = { owner: "exadex", repo: "Inventaire", branch: "main", path: "shared_data.json" };
+    </script>
     <script src="js/storage/github_storage.js?v=20260811-4"></script>
     <script src="js/storage/shared_sync.js?v=20260811-2"></script>
     <script src="js/storage/recovery_storage.js?v=20260811-1"></script>

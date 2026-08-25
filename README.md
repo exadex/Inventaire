@@ -82,6 +82,14 @@ Le navigateur lit et ecrit `shared_data.json` avec l'API GitHub Contents via `js
 
 Configuration runtime:
 
+`owner`, `repo`, `branch` et `path` sont desormais definis par defaut dans `index.html` (`window.EXADEX_GITHUB_STORAGE`), donc tout navigateur peut LIRE les donnees partagees sans configuration manuelle (le depot est public). Seul le token, propre a chaque utilisateur, doit encore etre configure pour pouvoir ECRIRE:
+
+```js
+localStorage.setItem("exadex_github_token", "GITHUB_FINE_GRAINED_TOKEN");
+```
+
+Il reste possible de surcharger `owner`/`repo`/`branch`/`path` par navigateur si besoin (ex. pour tester sur un autre depot):
+
 ```js
 localStorage.setItem("exadex_github_storage_config", JSON.stringify({
   owner: "ORGANISATION_OU_USER",
@@ -89,11 +97,9 @@ localStorage.setItem("exadex_github_storage_config", JSON.stringify({
   branch: "main",
   path: "shared_data.json"
 }));
-
-localStorage.setItem("exadex_github_token", "GITHUB_FINE_GRAINED_TOKEN");
 ```
 
-Le token doit avoir le droit Contents read/write sur ce depot. Sans token, l'application peut lire les donnees publiques configurees mais ne peut pas sauvegarder les modifications. Pour une mise en production robuste, preferer un petit backend/proxy afin de ne pas exposer de token GitHub dans le navigateur.
+Le token doit avoir le droit Contents read/write sur ce depot. Sans token, l'application peut lire les donnees mais ne peut pas sauvegarder les modifications. Pour une mise en production robuste, preferer un petit backend/proxy afin de ne pas exposer de token GitHub dans le navigateur.
 
 Migration:
 

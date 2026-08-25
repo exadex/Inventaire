@@ -108,7 +108,7 @@
   "inventoryItems": [
     {
       "id": "web-1787650829308",
-      "name": "Plaque 48 puits",
+      "name": "Plaque 48 puits - Thermo",
       "category": "Procédé ExAdEx L2",
       "quantity": 1,
       "unit": "cartons",
@@ -174,9 +174,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-08-25T09:40:29.309Z",
-            "updatedBy": "Caroline"
+            "quantity": 1
           }
         ],
         "closedContainers": [
@@ -24577,6 +24575,12 @@
       "date": "25/08/2026 11:41",
       "user": "Caroline",
       "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 48 puits - Thermo."
+    },
+    {
+      "date": "25/08/2026 11:41",
+      "user": "Caroline",
+      "action": "Item modifié",
       "detail": "Caroline a modifié Plaque 48 puits."
     },
     {
@@ -32477,5 +32481,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:41:28.272Z"
+  "updatedAt": "2026-08-25T09:41:59.583Z"
 }

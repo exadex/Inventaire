@@ -8879,17 +8879,17 @@
       "id": "itm-web-1783931436295-ookfph",
       "name": "Plaque 12 Puits",
       "category": "Culture Cell",
-      "quantity": 2.5,
+      "quantity": 2.6,
       "unit": "Carton",
       "minStock": 1,
-      "location": "Laboratoire",
+      "location": "Réserve",
       "locations": [
-        "Laboratoire"
+        "Réserve"
       ],
       "tags": [
         "Plaque 12"
       ],
-      "notes": "Conditionnement : 50 plaques/cartons \n\nAu 16/07/2026 : 1 ouvert - reste 30 - 1 fermé\n+ 1 carton hybride avec la ref secondaire ~70 plaques",
+      "notes": "\n+ 1 carton hybride avec la ref secondaire ~70 plaques",
       "references": {
         "primary": {
           "supplier": "Sarstedt",
@@ -8916,11 +8916,73 @@
       "placements": [
         {
           "id": "placement-legacy-1glzigs",
-          "roomId": "room-laboratoire",
+          "roomId": "room-reserve",
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 50
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 2,
+            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": [
+          {
+            "id": "container-mt8hqfb2-3994904150-2502477266",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 30,
+            "capacity": 50,
+            "status": "open",
+            "openedAt": "2026-08-25T09:56:53.630Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-xj2mx3",
@@ -24819,6 +24881,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:56",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 12 Puits."
+    },
+    {
       "id": "history-operation-mt8hkj6t-3707057913-1107687542",
       "operationId": "operation-mt8hkj6t-3707057913-1107687542",
       "date": "25/08/2026 11:52",
@@ -32721,6 +32789,48 @@
       "toLocation": "Réserve",
       "comment": "Comptage",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mt8hqfb4-3543392556-2526125895",
+      "operationId": "migration-mt8hqfb4-3803796069-2996084070",
+      "itemId": "itm-web-1783931436295-ookfph",
+      "timestamp": "2026-08-25T09:56:53.632Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-ookfph",
+      "before": {
+        "mode": "simple",
+        "quantity": 2.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 2.6,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 2,
+            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mt8hqfb2-3994904150-2502477266",
+            "location": "Réserve",
+            "remaining": 30
+          }
+        ]
+      },
+      "quantity": 5.000000000000004,
+      "unit": "plaques",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
   "stockOperations": [
@@ -32934,5 +33044,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:52:20.617Z"
+  "updatedAt": "2026-08-25T09:56:53.634Z"
 }

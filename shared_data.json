@@ -11776,7 +11776,7 @@
       "id": "itm-CSV-0106",
       "name": "Plaque 24 puits - companion 6,3µm",
       "category": "Culture Cell",
-      "quantity": 0,
+      "quantity": 0.34,
       "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -11854,6 +11854,35 @@
             "locationId": "",
             "sublocationId": "",
             "finishedAt": "2026-08-25T09:33:51.407Z"
+          },
+          {
+            "id": "closed-container-mt8gy59e-1796474744-2212059214",
+            "label": "carton ouvert",
+            "location": "Réserve",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "remaining": 17,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "open",
+            "createdAt": "2026-08-25T09:34:54.242Z",
+            "createdBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-25T09:34:54.242Z",
+            "updatedBy": "caroline",
+            "version": 1,
+            "openedAt": "2026-08-25T09:34:54.242Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
           }
         ]
       },
@@ -24448,6 +24477,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mt8gy4k4-606530164-3719788734",
+      "operationId": "operation-mt8gy4k4-606530164-3719788734",
+      "date": "25/08/2026 11:34",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Plaque 24 puits - companion 6,3µm · Stock précédent : 0 cartons · Stock compté : 0,34 cartons · Écart : +0,34 cartons · Note : Comptage",
+      "user": "Caroline",
+      "itemId": "itm-CSV-0106",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 0.34,
+      "difference": 0.34,
+      "unit": "cartons",
+      "note": "Comptage"
+    },
+    {
       "date": "25/08/2026 11:34",
       "user": "Caroline",
       "action": "Item modifié",
@@ -32056,6 +32100,73 @@
       "toLocation": "Réserve",
       "comment": "comptage",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mt8gy59e-1924324946-1328755739",
+      "operationId": "operation-mt8gy4k4-606530164-3719788734-closed-container-mt8gy59e-1796474744-2212059214",
+      "itemId": "itm-CSV-0106",
+      "timestamp": "2026-08-25T09:34:54.242Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mt8gy59e-1796474744-2212059214",
+      "containerId": "closed-container-mt8gy59e-1796474744-2212059214",
+      "containerLabel": "carton ouvert",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 0,
+      "afterQuantity": 17,
+      "beforeCapacity": 0,
+      "afterCapacity": 50,
+      "unitBefore": "",
+      "unitAfter": "plaques",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mt8gy59e-1796474744-2212059214",
+        "label": "carton ouvert",
+        "location": "Réserve",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "remaining": 17,
+        "capacity": 50,
+        "unitKey": "plaque",
+        "status": "open",
+        "createdAt": "2026-08-25T09:34:54.242Z",
+        "createdBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-25T09:34:54.242Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "openedAt": "2026-08-25T09:34:54.242Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 17,
+      "difference": 17,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Comptage",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -32220,6 +32331,12 @@
       "itemId": "itm-CSV-0106",
       "at": "2026-08-25T09:33:51.407Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mt8gy4k4-606530164-3719788734",
+      "itemId": "itm-CSV-0106",
+      "at": "2026-08-25T09:34:54.242Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -32251,5 +32368,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:34:26.117Z"
+  "updatedAt": "2026-08-25T09:34:54.242Z"
 }

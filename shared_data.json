@@ -6545,7 +6545,7 @@
       "name": "Acide ascorbique",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "unités",
+      "unit": "vial",
       "minStock": 0,
       "location": "Culture L1",
       "locations": [
@@ -6574,24 +6574,39 @@
       "createdAt": "10/08/2026 13:29",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
+        "mode": "containers",
         "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
+            "key": "custom-vial",
+            "singular": "vial",
+            "plural": "vials",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
             "key": "g",
             "singular": "g",
             "plural": "g",
             "kind": "continuous",
-            "contains": 1
+            "contains": 100
           }
         ],
         "trackingUnitKey": "g",
         "trackingUnit": "g",
         "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "precision": 6,
+        "closedByLocation": [
+          {
+            "location": "Culture L1",
+            "quantity": 1,
+            "updatedAt": "2026-08-25T13:23:50.071Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -24907,6 +24922,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 15:23",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Acide ascorbique."
+    },
+    {
       "date": "25/08/2026 15:18",
       "user": "Caroline",
       "action": "Item modifié",
@@ -33095,5 +33116,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T13:18:53.531Z"
+  "updatedAt": "2026-08-25T13:23:50.072Z"
 }

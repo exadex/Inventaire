@@ -11776,7 +11776,7 @@
       "id": "itm-CSV-0106",
       "name": "Plaque companion 24 puits 6,3µm",
       "category": "Culture Cell",
-      "quantity": 0.34,
+      "quantity": 0,
       "unit": "Carton",
       "minStock": 0,
       "location": "Réserve",
@@ -11838,14 +11838,15 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": [
           {
             "id": "container-mrvwga1s-4033889391-2351231607",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 17,
+            "remaining": 0,
             "capacity": 50,
-            "status": "open",
+            "status": "finished",
             "openedAt": "2026-07-22T09:48:11.872Z",
             "openedBy": {
               "userId": "caroline",
@@ -11853,9 +11854,14 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-22T09:48:11.872Z",
+            "updatedAt": "2026-08-25T09:33:51.407Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 2,
+            "unitKey": "sachet",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "finishedAt": "2026-08-25T09:33:51.407Z"
           }
         ]
       },
@@ -24449,6 +24455,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mt8gwr84-2112483494-2811782618",
+      "operationId": "operation-mt8gwr84-2112483494-2811782618",
+      "date": "25/08/2026 11:33",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Plaque companion 24 puits 6,3µm · Stock précédent : 0,34 cartons · Stock compté : 0 cartons · Écart : -0,34 cartons · Note : comptage",
+      "user": "Caroline",
+      "itemId": "itm-CSV-0106",
+      "type": "recounted",
+      "previousQuantity": 0.34,
+      "countedQuantity": 0,
+      "difference": -0.34,
+      "unit": "cartons",
+      "note": "comptage"
+    },
+    {
       "date": "25/08/2026 11:29",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31957,6 +31978,85 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mt8gwsrz-2381071978-2109631222",
+      "operationId": "operation-mt8gwr84-2112483494-2811782618-container-mrvwga1s-4033889391-2351231607",
+      "itemId": "itm-CSV-0106",
+      "timestamp": "2026-08-25T09:33:51.407Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrvwga1s-4033889391-2351231607",
+      "containerId": "container-mrvwga1s-4033889391-2351231607",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 17,
+      "afterQuantity": 0,
+      "beforeCapacity": 50,
+      "afterCapacity": 50,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mrvwga1s-4033889391-2351231607",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 17,
+        "capacity": 50,
+        "status": "open",
+        "openedAt": "2026-07-22T09:48:11.872Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-22T09:48:11.872Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "unitKey": "sachet"
+      },
+      "after": {
+        "id": "container-mrvwga1s-4033889391-2351231607",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 0,
+        "capacity": 50,
+        "status": "finished",
+        "openedAt": "2026-07-22T09:48:11.872Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-25T09:33:51.407Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "unitKey": "sachet",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "finishedAt": "2026-08-25T09:33:51.407Z"
+      },
+      "quantity": 0,
+      "difference": -17,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "comptage",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -32115,6 +32215,12 @@
       "itemId": "web-1786540743486",
       "at": "2026-08-25T09:11:28.842Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mt8gwr84-2112483494-2811782618",
+      "itemId": "itm-CSV-0106",
+      "at": "2026-08-25T09:33:51.407Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -32146,5 +32252,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:29:40.610Z"
+  "updatedAt": "2026-08-25T09:33:51.407Z"
 }

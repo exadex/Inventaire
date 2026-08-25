@@ -24387,6 +24387,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mt8g406d-2553637025-3370688591",
+      "operationId": "operation-mt8g406d-2553637025-3370688591",
+      "date": "25/08/2026 11:11",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Luminex® Multiplex Assay Customization Tool · Stock précédent : 0 kit · Stock compté : 0 kit · Écart : 0 kit · Note : IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip",
+      "user": "Caroline",
+      "itemId": "web-1786540743486",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 0,
+      "difference": 0,
+      "unit": "kit",
+      "note": "IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip"
+    },
+    {
       "date": "25/08/2026 11:10",
       "user": "Caroline",
       "action": "Item modifié",
@@ -31793,6 +31808,45 @@
       "toLocation": "",
       "comment": "",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mt8g40ui-2122017949-1402868495",
+      "operationId": "operation-mt8g406d-2553637025-3370688591",
+      "itemId": "web-1786540743486",
+      "timestamp": "2026-08-25T09:11:28.842Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 0,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 0,
+      "quantity": 0,
+      "difference": 0,
+      "unit": "kits",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -31945,6 +31999,12 @@
       "itemId": "web-1786540743486",
       "at": "2026-08-25T09:10:02.320Z",
       "type": "consumed"
+    },
+    {
+      "operationId": "operation-mt8g406d-2553637025-3370688591",
+      "itemId": "web-1786540743486",
+      "at": "2026-08-25T09:11:28.842Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -31976,5 +32036,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:10:18.863Z"
+  "updatedAt": "2026-08-25T09:11:28.842Z"
 }

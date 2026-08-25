@@ -107,6 +107,89 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1787650829308",
+      "name": "Plaque 48 puits",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "cartons",
+      "minStock": 1,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-2816e5fd-c3bc-4db7-b39b-afbdde42fa26",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [
+        "plaque 48"
+      ],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Thermo Fischer",
+          "reference": "150687",
+          "link": "https://www.thermofisher.com/order/catalog/product/150687",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-08-25T09:40:29.308Z",
+      "createdAt": "25/08/2026 11:40",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 75
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-08-25T09:40:29.309Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1786540743486",
       "name": "Luminex® Multiplex Assay Customization Tool",
       "category": "Procédé ExAdEx L2",
@@ -24477,6 +24560,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:40",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Plaque 48 puits dans Procédé ExAdEx L2."
+    },
+    {
       "id": "history-operation-mt8gy4k4-606530164-3719788734",
       "operationId": "operation-mt8gy4k4-606530164-3719788734",
       "date": "25/08/2026 11:34",
@@ -32368,5 +32457,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:34:54.242Z"
+  "updatedAt": "2026-08-25T09:40:29.311Z"
 }

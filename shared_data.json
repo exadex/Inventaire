@@ -8654,9 +8654,9 @@
     },
     {
       "id": "itm-web-1783931436295-xj2mx3",
-      "name": "Plaque 24W fond plat",
+      "name": "Plaque 24 puits",
       "category": "Culture Cell",
-      "quantity": 1.5,
+      "quantity": 1.92,
       "unit": "Carton",
       "minStock": 0,
       "location": "Réserve",
@@ -8666,7 +8666,7 @@
       "tags": [
         "Plaque 24"
       ],
-      "notes": "Conditionnement : 50 plaques/cartons\n\nAu 16/07/2026 : 1 ouvert - reste 17 - 1 fermé",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "Sarstedt",
@@ -8690,7 +8690,69 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 50
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-08-25T09:29:40.605Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": [
+          {
+            "id": "container-mt8grf99-3024833973-3259982001",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 46,
+            "capacity": 50,
+            "status": "open",
+            "openedAt": "2026-08-25T09:29:40.605Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-25T09:29:40.605Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-tm3qnv",
@@ -24387,6 +24449,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:29",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 24 puits."
+    },
+    {
       "id": "history-operation-mt8g406d-2553637025-3370688591",
       "operationId": "operation-mt8g406d-2553637025-3370688591",
       "date": "25/08/2026 11:11",
@@ -31847,6 +31915,48 @@
       "toLocation": "",
       "comment": "IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mt8grf9c-3419028183-464735512",
+      "operationId": "migration-mt8grf9c-2788497520-470634139",
+      "itemId": "itm-web-1783931436295-xj2mx3",
+      "timestamp": "2026-08-25T09:29:40.608Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-xj2mx3",
+      "before": {
+        "mode": "simple",
+        "quantity": 1.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 1.92,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-08-25T09:29:40.605Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mt8grf99-3024833973-3259982001",
+            "location": "Réserve",
+            "remaining": 46
+          }
+        ]
+      },
+      "quantity": 20.999999999999996,
+      "unit": "plaques",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
   "stockOperations": [
@@ -32036,5 +32146,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:11:28.842Z"
+  "updatedAt": "2026-08-25T09:29:40.610Z"
 }

@@ -107,6 +107,89 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1787650981533",
+      "name": "Plaque 48 puits - Dutscher",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 2,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-2fdd62c4-e332-4b91-a057-ac18995e9b27",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [
+        "plaque 48"
+      ],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Dutscher",
+          "reference": "353078",
+          "link": "https://www.dutscher.com/article/353078",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-08-25T09:43:01.533Z",
+      "createdAt": "25/08/2026 11:43",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 50
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 2,
+            "updatedAt": "2026-08-25T09:43:01.533Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1787650829308",
       "name": "Plaque 48 puits - Thermo",
       "category": "Procédé ExAdEx L2",
@@ -24572,6 +24655,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:43",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Plaque 48 puits - Dutscher dans Procédé ExAdEx L2."
+    },
+    {
       "date": "25/08/2026 11:41",
       "user": "Caroline",
       "action": "Item modifié",
@@ -32481,5 +32570,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:41:59.583Z"
+  "updatedAt": "2026-08-25T09:43:01.535Z"
 }

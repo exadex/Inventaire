@@ -20613,7 +20613,7 @@
       "notes": "48h de culture\n57 puits, plaques 24p",
       "rtqpcrConfig": null,
       "createdBy": "Caroline",
-      "updatedAt": "25/08/2026 15:35",
+      "updatedAt": "25/08/2026 17:08",
       "templateNotes": "",
       "items": [
         {
@@ -25034,6 +25034,12 @@
     }
   ],
   "history": [
+    {
+      "date": "25/08/2026 17:08",
+      "user": "Caroline",
+      "action": "Experience modifiée",
+      "detail": "Caroline a modifié Test APHM."
+    },
     {
       "date": "25/08/2026 15:35",
       "user": "Caroline",
@@ -33295,5 +33301,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T13:35:39.756Z"
+  "updatedAt": "2026-08-25T15:08:53.786Z"
 }

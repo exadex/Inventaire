@@ -11774,10 +11774,10 @@
     },
     {
       "id": "itm-CSV-0106",
-      "name": "Plaque companion 24 puits 6,3µm",
+      "name": "Plaque 24 puits - companion 6,3µm",
       "category": "Culture Cell",
       "quantity": 0,
-      "unit": "Carton",
+      "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -11790,7 +11790,7 @@
       "references": {
         "primary": {
           "supplier": "Dutscher",
-          "reference": "353595",
+          "reference": "353504",
           "link": "",
           "notes": "110",
           "price": "110",
@@ -11806,7 +11806,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "containers",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -11818,23 +11818,15 @@
           },
           {
             "id": "level-2",
-            "key": "sachet",
-            "singular": "sachet",
-            "plural": "sachets",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
             "kind": "discrete",
             "contains": 50
-          },
-          {
-            "id": "level-3",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
           }
         ],
-        "trackingUnitKey": "sachet",
-        "trackingUnit": "sachets",
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -11877,7 +11869,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785226360650-wy85d7"
     },
     {
       "id": "itm-CSV-0107",
@@ -24455,6 +24448,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:34",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 24 puits - companion 6,3µm."
+    },
+    {
       "id": "history-operation-mt8gwr84-2112483494-2811782618",
       "operationId": "operation-mt8gwr84-2112483494-2811782618",
       "date": "25/08/2026 11:33",
@@ -32252,5 +32251,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:33:51.407Z"
+  "updatedAt": "2026-08-25T09:34:26.117Z"
 }

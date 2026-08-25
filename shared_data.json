@@ -110,7 +110,7 @@
       "id": "web-1786540743486",
       "name": "Luminex® Multiplex Assay Customization Tool",
       "category": "Procédé ExAdEx L2",
-      "quantity": 1,
+      "quantity": 0,
       "unit": "kit",
       "minStock": 0,
       "usageProfile": "normal",
@@ -24387,6 +24387,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mt8g25mb-3546539726-801908872",
+      "operationId": "operation-mt8g25mb-3546539726-801908872",
+      "date": "25/08/2026 11:10",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · consumed · Luminex® Multiplex Assay Customization Tool · IEB001 · Reste 1 vial de chaque standard, 1 vial de diluent RD6-52 et assez de wash buffer pour une manip supplémentaire. Du reste il n'en reste pas assez pour une manip",
+      "user": "Caroline",
+      "itemId": "web-1786540743486"
+    },
+    {
       "date": "21/08/2026 11:36",
       "user": "Elina",
       "action": "Item supprimé",
@@ -31924,6 +31933,12 @@
       "itemId": "itm-web-1783931436294-6j33l2",
       "at": "2026-08-19T13:40:01.254Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mt8g25mb-3546539726-801908872",
+      "itemId": "web-1786540743486",
+      "at": "2026-08-25T09:10:02.320Z",
+      "type": "consumed"
     }
   ],
   "agentOperations": [
@@ -31955,5 +31970,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-21T09:36:27.168Z"
+  "updatedAt": "2026-08-25T09:10:02.320Z"
 }

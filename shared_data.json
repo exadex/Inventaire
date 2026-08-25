@@ -6542,7 +6542,7 @@
     },
     {
       "id": "itm-web-1783931436294-1cbqkj",
-      "name": "(+)-Sodium L-ascorbate",
+      "name": "Acide ascorbique",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -6554,7 +6554,7 @@
       "tags": [
         "Acide Ascorbique"
       ],
-      "notes": "Conditionnement : 100g",
+      "notes": "Conditionnement : 100g\n(+)-Sodium L-ascorbate",
       "references": {
         "primary": {
           "supplier": "Merck",
@@ -6575,7 +6575,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -24907,6 +24907,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 15:18",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Acide ascorbique."
+    },
+    {
       "date": "25/08/2026 15:16",
       "user": "Caroline",
       "action": "Protocole supprimé",
@@ -33089,5 +33095,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T13:16:01.482Z"
+  "updatedAt": "2026-08-25T13:18:53.531Z"
 }

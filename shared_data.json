@@ -3950,11 +3950,11 @@
     },
     {
       "id": "itm-CSV-0047",
-      "name": "Seringue BD 3P 20 ml Cone luer Lock",
+      "name": "Seringue 20mL - BD 3P Cone luer Lock",
       "category": "Procédé ExAdEx L2",
       "quantity": 2.5,
-      "unit": "mL",
-      "minStock": 3,
+      "unit": "carton",
+      "minStock": 0,
       "location": "Bureau",
       "locations": [
         "Bureau",
@@ -3963,7 +3963,7 @@
       "tags": [
         "Seringue luer lock"
       ],
-      "notes": "120",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "Aesthetic Group",
@@ -3988,24 +3988,59 @@
       "createdAt": "28/07/2026 14:59",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "custom-seringue",
+            "singular": "seringue",
+            "plural": "seringues",
+            "kind": "discrete",
+            "contains": 120
           }
         ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
+        "trackingUnitKey": "custom-seringue",
+        "trackingUnit": "seringues",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 2,
+            "updatedAt": "2026-08-25T13:27:30.217Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": [
+          {
+            "id": "container-mt8p99rd-1584791175-1124322460",
+            "label": "carton ouvert nº1",
+            "location": "Bureau",
+            "remaining": 60,
+            "capacity": 120,
+            "status": "open",
+            "openedAt": "2026-08-25T13:27:30.217Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-08-25T13:27:30.217Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -24922,6 +24957,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 15:27",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Seringue 20mL - BD 3P Cone luer Lock."
+    },
+    {
       "date": "25/08/2026 15:25",
       "user": "Caroline",
       "action": "Item modifié",
@@ -32908,6 +32949,48 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mt8p99rg-44133160-609876621",
+      "operationId": "migration-mt8p99rg-2114469484-821197728",
+      "itemId": "itm-CSV-0047",
+      "timestamp": "2026-08-25T13:27:30.220Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "configuration_changed",
+      "entityType": "item",
+      "entityId": "itm-CSV-0047",
+      "before": {
+        "mode": "simple",
+        "quantity": 2.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 2.5,
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 2,
+            "updatedAt": "2026-08-25T13:27:30.217Z",
+            "updatedBy": "caroline"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mt8p99rd-1584791175-1124322460",
+            "location": "Bureau",
+            "remaining": 60
+          }
+        ]
+      },
+      "quantity": 0,
+      "unit": "cartons",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -33122,5 +33205,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T13:25:35.145Z"
+  "updatedAt": "2026-08-25T13:27:30.222Z"
 }

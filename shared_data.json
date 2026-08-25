@@ -8877,7 +8877,7 @@
     },
     {
       "id": "itm-web-1783931436295-ookfph",
-      "name": "Plaque 12 Puits",
+      "name": "Plaque 12 puits - Sarstedt",
       "category": "Culture Cell",
       "quantity": 2.6,
       "unit": "Carton",
@@ -8889,7 +8889,7 @@
       "tags": [
         "Plaque 12"
       ],
-      "notes": "\n+ 1 carton hybride avec la ref secondaire ~70 plaques",
+      "notes": "+ 1 carton hybride avec la ref secondaire ~70 plaques",
       "references": {
         "primary": {
           "supplier": "Sarstedt",
@@ -8956,7 +8956,34 @@
             "updatedBy": "caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-ookfph-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:56:53.630Z",
+            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "updatedBy": "caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-ookfph-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:56:53.630Z",
+            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mt8hqfb2-3994904150-2502477266",
@@ -8974,7 +9001,8 @@
             },
             "updatedAt": "2026-08-25T09:56:53.630Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 1,
+            "unitKey": "plaque"
           }
         ]
       },
@@ -24881,6 +24909,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:57",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 12 puits - Sarstedt."
+    },
+    {
       "date": "25/08/2026 11:56",
       "user": "Caroline",
       "action": "Item modifié",
@@ -33044,5 +33078,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:56:53.634Z"
+  "updatedAt": "2026-08-25T09:57:22.432Z"
 }

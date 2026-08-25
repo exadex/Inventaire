@@ -24907,6 +24907,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 15:16",
+      "user": "Caroline",
+      "action": "Protocole supprimé",
+      "detail": "Caroline a supprimé le protocole \"Test\"."
+    },
+    {
       "date": "25/08/2026 11:58",
       "user": "Caroline",
       "action": "Item modifié",
@@ -32871,6 +32877,7 @@
       "correctionReason": "Correction après comptage"
     }
   ],
+  "sourcingPatients": [],
   "stockOperations": [
     {
       "operationId": "operation-msonteo4-2269600931-2147599603",
@@ -33082,5 +33089,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:58:15.687Z"
+  "updatedAt": "2026-08-25T13:16:01.482Z"
 }

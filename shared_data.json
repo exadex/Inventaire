@@ -20613,9 +20613,16 @@
       "notes": "48h de culture\n57 puits, plaques 24p",
       "rtqpcrConfig": null,
       "createdBy": "Caroline",
-      "updatedAt": "25/08/2026 17:08",
+      "updatedAt": "25/08/2026 17:53",
       "templateNotes": "",
       "items": [
+        {
+          "type": "custom",
+          "name": "Tissu",
+          "quantity": 3,
+          "unit": "mg",
+          "theoreticalStock": 6
+        },
         {
           "type": "inventory",
           "inventoryItemId": "itm-CSV-0018",
@@ -20632,31 +20639,28 @@
           "type": "custom",
           "name": "Ascorbic acid",
           "quantity": 140,
-          "unit": "µL"
+          "unit": "µL",
+          "theoreticalStock": null
         },
         {
           "type": "custom",
           "name": "Heparine",
           "quantity": 1.575,
-          "unit": "mL"
+          "unit": "mL",
+          "theoreticalStock": null
         },
         {
           "type": "custom",
           "name": "Seringue 1mL",
           "quantity": 20,
-          "unit": "seringues"
+          "unit": "seringues",
+          "theoreticalStock": null
         },
         {
           "type": "inventory",
           "inventoryItemId": "itm-web-1783931436295-xj2mx3",
           "quantity": 3,
           "unit": "plaque"
-        },
-        {
-          "type": "custom",
-          "name": "Tissu",
-          "quantity": 3,
-          "unit": "mg"
         }
       ],
       "consumedItems": []
@@ -25034,6 +25038,12 @@
     }
   ],
   "history": [
+    {
+      "date": "25/08/2026 17:54",
+      "user": "Caroline",
+      "action": "Experience modifiée",
+      "detail": "Caroline a modifié Test APHM."
+    },
     {
       "date": "25/08/2026 17:08",
       "user": "Caroline",

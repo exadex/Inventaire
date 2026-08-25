@@ -8903,7 +8903,7 @@
         "secondary": [
           {
             "reference": "353043",
-            "notes": ""
+            "notes": "Dutscher"
           }
         ]
       },
@@ -8951,9 +8951,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 2,
-            "updatedAt": "2026-08-25T09:56:53.630Z",
-            "updatedBy": "caroline"
+            "quantity": 2
           }
         ],
         "closedContainers": [
@@ -24909,6 +24907,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:58",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 12 puits - Sarstedt."
+    },
+    {
       "date": "25/08/2026 11:57",
       "user": "Caroline",
       "action": "Item modifié",
@@ -33078,5 +33082,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:57:22.432Z"
+  "updatedAt": "2026-08-25T09:58:15.687Z"
 }

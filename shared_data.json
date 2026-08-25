@@ -8983,7 +8983,7 @@
       "id": "itm-web-1783931436295-bcmh1a",
       "name": "Plaque 96 puits - Sarstedt fond plat",
       "category": "Culture Cell",
-      "quantity": 3,
+      "quantity": 2.8,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -9048,13 +9048,62 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 3,
-            "updatedAt": "2026-08-25T09:49:30.269Z",
-            "updatedBy": "Caroline"
+            "quantity": 2
           }
         ],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-bcmh1a-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:49:30.269Z",
+            "updatedAt": "2026-08-25T09:49:30.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-bcmh1a-reserve-3",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:49:30.269Z",
+            "updatedAt": "2026-08-25T09:49:30.269Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-bcmh1a-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 80,
+            "capacity": 100,
+            "unitKey": "sachet",
+            "status": "open",
+            "createdAt": "2026-08-25T09:49:30.269Z",
+            "updatedAt": "2026-08-25T09:49:50.058Z",
+            "updatedBy": "caroline",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-08-25T09:49:50.058Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -24678,6 +24727,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mt8hhazy-38246948-2619667606",
+      "operationId": "operation-mt8hhazy-38246948-2619667606",
+      "date": "25/08/2026 11:49",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Plaque 96 puits - Sarstedt fond plat · Stock précédent : 3 cartons · Stock compté : 2,8 cartons · Écart : -0,2 cartons · Note : Comptage",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-bcmh1a",
+      "type": "recounted",
+      "previousQuantity": 3,
+      "countedQuantity": 2.8,
+      "difference": -0.2,
+      "unit": "cartons",
+      "note": "Comptage"
+    },
+    {
       "date": "25/08/2026 11:49",
       "user": "Caroline",
       "action": "Item modifié",
@@ -32398,6 +32462,79 @@
       "toLocation": "Réserve",
       "comment": "Comptage",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mt8hhch6-1336686127-1956142787",
+      "operationId": "operation-mt8hhazy-38246948-2619667606-closed-itm-web-1783931436295-bcmh1a-reserve-1",
+      "itemId": "itm-web-1783931436295-bcmh1a",
+      "timestamp": "2026-08-25T09:49:50.058Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-web-1783931436295-bcmh1a-reserve-1",
+      "containerId": "closed-itm-web-1783931436295-bcmh1a-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 20,
+      "afterQuantity": 16,
+      "beforeCapacity": 20,
+      "afterCapacity": 20,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-web-1783931436295-bcmh1a-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-08-25T09:49:30.269Z",
+        "updatedAt": "2026-08-25T09:49:30.269Z",
+        "updatedBy": "Caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-web-1783931436295-bcmh1a-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 80,
+        "capacity": 100,
+        "unitKey": "sachet",
+        "status": "open",
+        "createdAt": "2026-08-25T09:49:30.269Z",
+        "updatedAt": "2026-08-25T09:49:50.058Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-08-25T09:49:50.058Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 16,
+      "difference": -4,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Comptage",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -32568,6 +32705,12 @@
       "itemId": "itm-CSV-0106",
       "at": "2026-08-25T09:34:54.242Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mt8hhazy-38246948-2619667606",
+      "itemId": "itm-web-1783931436295-bcmh1a",
+      "at": "2026-08-25T09:49:50.058Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -32599,5 +32742,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:49:30.272Z"
+  "updatedAt": "2026-08-25T09:49:50.058Z"
 }

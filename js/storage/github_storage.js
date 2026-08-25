@@ -176,7 +176,8 @@
       "clients",
       "supplierContacts",
       "history",
-      "stockMovements"
+      "stockMovements",
+      "sourcingPatients"
     ];
     const catastrophicLosses = protectedCollections.flatMap(key => {
       const before = Array.isArray(current.data?.[key]) ? current.data[key].length : 0;
@@ -242,6 +243,7 @@
       clientSamples: Array.isArray(data?.clientSamples) ? data.clientSamples.length : 0,
       locations: Array.isArray(data?.locationCatalog?.locations) ? data.locationCatalog.locations.length : 0,
       experiments: Array.isArray(data?.experiments) ? data.experiments.length : 0,
+      sourcingPatients: Array.isArray(data?.sourcingPatients) ? data.sourcingPatients.length : 0,
       orders: Array.isArray(data?.orders) ? data.orders.length : 0,
       contacts: Array.isArray(data?.supplierContacts) ? data.supplierContacts.length : 0,
       history: Array.isArray(data?.history) ? data.history.length : 0

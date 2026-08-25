@@ -54,6 +54,7 @@ let orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
 let experiments = migrateExperiments(sharedState.experiments);
 let history = Array.isArray(sharedState.history) ? sharedState.history : [];
 let stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
+let sourcingPatients = Array.isArray(sharedState.sourcingPatients) ? sharedState.sourcingPatients : [];
 let clientSamples = migrateClientSamples(sharedState.clientSamples);
 let clients = migrateClients(sharedState.clients, clientSamples);
 let supplierContacts = migrateSupplierContacts(sharedState.supplierContacts);
@@ -84,6 +85,7 @@ let historyCurrentPage = 1;
 let historyPageSize = 50;
 const expandedHistoryEntries = new Set();
 let selectedExperimentId = null;
+let selectedSourcingPatientId = null;
 let selectedItemId = null;
 const stockJournalOpenByItem = new Map();
 let selectedSampleId = null;
@@ -144,6 +146,10 @@ const sampleForm = document.querySelector("#sampleForm");
 const experimentSearchInput = document.querySelector("#experimentSearchInput");
 const experimentSortSelect = document.querySelector("#experimentSortSelect");
 const resetExperimentSearchBtn = document.querySelector("#resetExperimentSearchBtn");
+const sourcingSearchInput = document.querySelector("#sourcingSearchInput");
+const sourcingSortSelect = document.querySelector("#sourcingSortSelect");
+const sourcingDialog = document.querySelector("#sourcingDialog");
+const sourcingForm = document.querySelector("#sourcingForm");
 const dialog = document.querySelector("#itemDialog");
 const form = document.querySelector("#itemForm");
 const stockDialog = document.querySelector("#stockDialog");
@@ -214,7 +220,7 @@ const fields = [
 
 const stockFields = ["stockItemId", "stockItemName", "stockCurrentQuantity", "stockTitle", "stockAction", "stockAmount", "stockUnit", "stockNotes"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-const trackingFields = ["stockTrackingMode", "traceabilityMode", "detailedPackagingEnabled", "detailedTraceabilityEnabled", "traceabilityExplanation", "aliquotTrackingEnabled", "aliquotTrackingExplanation", "trackingOptionError", "packagingConfig", "packagingLevels", "trackingUnitField", "trackingUnitKey", "packagingPreview"]
+const trackingFields = ["stockTrackingMode", "detailedPackagingEnabled", "aliquotTrackingEnabled", "aliquotTrackingExplanation", "trackingOptionError", "packagingConfig", "packagingLevels", "trackingUnitField", "trackingUnitKey", "packagingPreview"]
   .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 const sampleFields = [
@@ -265,6 +271,60 @@ const experimentFields = [
   ...acc,
   [id]: document.querySelector(`#${id}`)
 }), {});
+
+const sourcingFields = [
+  "sourcingPatientId",
+  "patientNumber",
+  "patientType",
+  "patientReceptionDate",
+  "patientCultureWeeks",
+  "patientStartQuantity",
+  "patientWellsCount",
+  "patientLotValidationDate",
+  "patientStudyAssignment",
+  "patientCessionTo",
+  "patientCessionDate",
+  "patientUsageStorage",
+  "patientLotEndDate",
+  "patientInitials",
+  "patientCollectionSite",
+  "patientGender",
+  "patientAge",
+  "patientHeight",
+  "patientWeight",
+  "patientBmi",
+  "patientTechnique",
+  "patientSurgeon",
+  "patientCharacteristic",
+  "patientNash",
+  "patientSleepApnea",
+  "patientT2d",
+  "patientOtherComorbidity",
+  "patientIntervention",
+  "patientBmiMax",
+  "patientIntentionTreatment",
+  "patientQcMyco",
+  "patientQcBacteria",
+  "patientQcYeast",
+  "patientQcXtt",
+  "patientQcCollagenase",
+  "patientQcAsc",
+  "patientQcRemarks",
+  "patientArnExplantT0",
+  "patientArnWatT14",
+  "patientArnBatT14",
+  "patientArnPrebatAmpc",
+  "patientArnInducibleBat",
+  "patientSecretionsT0",
+  "patientSecretionsT14",
+  "patientSecretionsBatT14",
+  "patientFixationT0",
+  "patientFixationT14",
+  "patientFreezing",
+  "patientFreezingQuantity",
+  "patientFreezingThaw",
+  "patientGeneralRemark"
+].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
 
 const orderFields = [
   "orderItemMode",
@@ -352,7 +412,6 @@ document.querySelector("#closeStockMigrationBtn")?.addEventListener("click", clo
 document.querySelector("#cancelStockMigrationBtn")?.addEventListener("click", closeStockMigration);
 stockMigrationDialog?.addEventListener("cancel", event => { event.preventDefault(); closeStockMigration(); });
 trackingFields.detailedPackagingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("packaging"));
-trackingFields.detailedTraceabilityEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("traceability"));
 trackingFields.aliquotTrackingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("aliquots"));
 document.querySelector("#addPackagingLevelBtn")?.addEventListener("click", () => { if (trackingFields.packagingLevels.children.length < 3) { trackingFields.packagingLevels.insertAdjacentHTML("beforeend", renderPackagingLevelRow({}, trackingFields.packagingLevels.children.length)); updatePackagingPreview(); } });
 trackingFields.packagingLevels?.addEventListener("input", updatePackagingPreview);
@@ -457,6 +516,14 @@ sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
 experimentSearchInput.addEventListener("input", renderExperiments);
 experimentSortSelect?.addEventListener("change", renderExperiments);
 resetExperimentSearchBtn?.addEventListener("click", () => { experimentSearchInput.value = ""; if (experimentSortSelect) experimentSortSelect.value = EXPERIMENT_DEFAULT_SORT; renderExperiments(); experimentSearchInput.focus(); });
+document.querySelector("#addSourcingPatientBtn")?.addEventListener("click", () => openSourcingModal());
+document.querySelector("#saveSourcingPatientBtn")?.addEventListener("click", saveSourcingPatient);
+document.querySelector("#deleteSourcingPatientBtn")?.addEventListener("click", requestSourcingPatientDeletion);
+sourcingSearchInput?.addEventListener("input", renderSourcing);
+sourcingSortSelect?.addEventListener("change", renderSourcing);
+sourcingFields.patientHeight?.addEventListener("input", recalculatePatientBmi);
+sourcingFields.patientWeight?.addEventListener("input", recalculatePatientBmi);
+sourcingFields.patientBmi?.addEventListener("input", () => { sourcingFields.patientBmi.dataset.manual = "true"; });
 experimentDialog.addEventListener("close", () => {
   experimentFields.experimentTemplate.disabled = false;
 });
@@ -516,6 +583,7 @@ document.querySelectorAll(".nav-item").forEach((button) => {
     selectedItemId = null;
     selectedSampleId = null;
     selectedExperimentId = null;
+    selectedSourcingPatientId = null;
     selectedLocation = null;
     selectedRoomId = null;
     selectedLocationId = null;
@@ -542,6 +610,8 @@ document.querySelectorAll(".nav-item").forEach((button) => {
       renderInventory();
     } else if (activeView === "experiments") {
       renderExperiments();
+    } else if (activeView === "sourcing") {
+      renderSourcing();
     } else if (activeView === "locations") {
       renderLocations();
     } else if (activeView === "orders") {
@@ -674,6 +744,7 @@ function createSharedState(rawState = null, options = {}) {
       ? source.history
       : bootstrap?.history || [],
     stockMovements: Array.isArray(source.stockMovements) ? source.stockMovements : [],
+    sourcingPatients: Array.isArray(source.sourcingPatients) ? source.sourcingPatients : bootstrap?.sourcingPatients || [],
     stockOperations: Array.isArray(source.stockOperations) ? source.stockOperations : [],
     agentOperations: Array.isArray(source.agentOperations) ? source.agentOperations : [],
     customProtocolTemplates: Array.isArray(source.customProtocolTemplates) ? source.customProtocolTemplates : bootstrap?.customProtocolTemplates || [],
@@ -700,6 +771,7 @@ function hasSharedDataPayload(data) {
     data.supplierContacts,
     data.history
     ,data.stockMovements
+    ,data.sourcingPatients
   ].some(value => Array.isArray(value)) || Boolean(data.updatedAt);
 }
 
@@ -876,6 +948,7 @@ function syncRuntimeStateFromShared() {
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(sharedState.history) ? sharedState.history : [];
   sharedState.stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
+  sharedState.sourcingPatients = Array.isArray(sharedState.sourcingPatients) ? sharedState.sourcingPatients : [];
   sharedState.agentOperations = Array.isArray(sharedState.agentOperations) ? sharedState.agentOperations : [];
   sharedState.customProtocolTemplates = Array.isArray(sharedState.customProtocolTemplates) ? sharedState.customProtocolTemplates : [];
 
@@ -887,6 +960,7 @@ function syncRuntimeStateFromShared() {
   supplierContacts = sharedState.supplierContacts;
   history = sharedState.history;
   stockMovements = sharedState.stockMovements;
+  sourcingPatients = sharedState.sourcingPatients;
   customProtocolTemplates = sharedState.customProtocolTemplates;
   protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
 }
@@ -902,6 +976,7 @@ function syncSharedStateFromRuntime() {
   sharedState.clientSamples = hydrateClientIdentityForSamples(sharedState.clientSamples, sharedState.clients);
   sharedState.history = Array.isArray(history) ? history : [];
   sharedState.stockMovements = Array.isArray(stockMovements) ? stockMovements : [];
+  sharedState.sourcingPatients = Array.isArray(sourcingPatients) ? sourcingPatients : [];
   sharedState.agentOperations = Array.isArray(sharedState.agentOperations) ? sharedState.agentOperations : [];
   sharedState.updatedAt = new Date().toISOString();
 }
@@ -1076,7 +1151,7 @@ function persist(options = {}) {
 }
 
 function backupSummaryMarkup(summary = {}) {
-  return [["Items",summary.inventoryItems],["Études clients",summary.clientSamples],["Localisations",summary.locations],["Expériences",summary.experiments],["Commandes",summary.orders],["Contacts",summary.contacts],["Historique",summary.history]]
+  return [["Items",summary.inventoryItems],["Études clients",summary.clientSamples],["Localisations",summary.locations],["Expériences",summary.experiments],["Sourcing",summary.sourcingPatients],["Commandes",summary.orders],["Contacts",summary.contacts],["Historique",summary.history]]
     .map(([label,value])=>`<span><strong>${Number(value||0)}</strong> ${escapeHtml(label)}</span>`).join(" · ");
 }
 
@@ -1235,6 +1310,7 @@ function render() {
   renderLocations();
   renderOrders();
   renderExperiments();
+  renderSourcing();
   renderContacts();
 }
 
@@ -2658,6 +2734,7 @@ function warnMissingSampleViewRefs(refs) {
 function syncAppViewMode() {
   app.classList.toggle("history-mode", activeView === "history");
   app.classList.toggle("experiments-mode", activeView === "experiments");
+  app.classList.toggle("sourcing-mode", activeView === "sourcing");
   app.classList.toggle("samples-mode", activeView === "samples");
   app.classList.toggle("locations-mode", activeView === "locations");
   app.classList.toggle("orders-mode", activeView === "orders");
@@ -4086,11 +4163,11 @@ function compareLocationGroups(a, b, sort = "name") {
 }
 
 function handleQuantityStepKeydown(event) {
-  const input = event.target.closest?.('input[type="number"][data-quantity-step="1"]');
+  const input = event.target.closest?.('input[data-quantity-step="1"]');
   if (!input || (event.key !== "ArrowUp" && event.key !== "ArrowDown")) return;
 
   event.preventDefault();
-  const current = input.value === "" ? 0 : Number(input.value);
+  const current = input.value === "" ? 0 : StockTracking.parseLocalizedNumber(input.value);
   if (!Number.isFinite(current)) return;
 
   const direction = event.key === "ArrowUp" ? 1 : -1;
@@ -4968,7 +5045,7 @@ function renderExperimentDetail(experiment) {
 // funcion para ocultar filas vacias o con datos no relevantes en el detalle del item
 function renderDetailRow(label, value) {
   if (!value || !String(value).trim()) return "";
-  const isMultiline = /note|comment|description|justification|motif|raison/i.test(String(label));
+  const isMultiline = /note|comment|description|justification|motif|raison|remarque/i.test(String(label));
   return `
     <div class="item-detail-row">
       <span class="item-detail-label">${escapeHtml(label)}</span>
@@ -4979,6 +5056,358 @@ function renderDetailRow(label, value) {
 
 function normalizeMultilineText(value) {
   return String(value ?? "").replace(/\r\n?/g, "\n");
+}
+
+// ============ Sourcing (patients / prélèvements) ============
+
+const SOURCING_PATIENT_NUMBER_FLOOR = 236;
+
+function suggestNextPatientNumber() {
+  const max = sourcingPatients.reduce((best, patient) => {
+    const match = String(patient.patientNumber || "").trim().match(/^P(\d+)$/i);
+    return match ? Math.max(best, Number(match[1])) : best;
+  }, SOURCING_PATIENT_NUMBER_FLOOR);
+  return `P${max + 1}`;
+}
+
+function normalizePatientNumber(value) {
+  const trimmed = String(value || "").trim();
+  const match = trimmed.match(/^P?\s*(\d+)$/i);
+  return match ? `P${match[1]}` : trimmed;
+}
+
+function getPatientAssignmentStatus(patient) {
+  const assignment = String(patient.patientStudyAssignment || "").trim();
+  if (assignment) return { done: true, eliminated: false, label: `Assigné : ${assignment}`, date: patient.patientLotValidationDate || patient.patientCessionDate || "" };
+  const lotEndDate = String(patient.patientLotEndDate || "").trim();
+  if (lotEndDate) return { done: true, eliminated: true, label: "Éliminé", date: lotEndDate };
+  return { done: false, eliminated: false, label: "En attente d’assignation", date: "" };
+}
+
+function getPatientCheckpointStage(patient) {
+  const assignment = getPatientAssignmentStatus(patient);
+  if (assignment.done) return assignment.eliminated ? "Éliminé" : "Assigné";
+  if (String(patient.patientReceptionDate || "").trim()) return "En culture";
+  return "Non démarré";
+}
+
+function sourcingStagePillMarkup(stage) {
+  const map = {
+    "Non démarré": "stock-pill neutral",
+    "En culture": "experiment-status running",
+    "Assigné": "experiment-status completed",
+    "Éliminé": "stock-pill alert"
+  };
+  return `<span class="${map[stage] || "stock-pill neutral"}">${escapeHtml(stage)}</span>`;
+}
+
+function getFilteredSortedPatients(source, query = "", sort = "recent") {
+  const normalizedQuery = normalizeSearch(query);
+  return source.filter(patient => {
+    const haystack = normalizeSearch([patient.patientNumber, patient.patientInitials, patient.patientStudyAssignment, patient.patientType, patient.patientGender, patient.patientCollectionSite].join(" "));
+    return !normalizedQuery || haystack.includes(normalizedQuery);
+  }).slice().sort((a, b) => comparePatientsBySort(a, b, sort));
+}
+
+function comparePatientsBySort(a, b, sort) {
+  if (sort === "number-asc" || sort === "number-desc") {
+    const numA = Number(String(a.patientNumber || "").replace(/\D/g, "")) || 0;
+    const numB = Number(String(b.patientNumber || "").replace(/\D/g, "")) || 0;
+    return sort === "number-asc" ? numA - numB : numB - numA;
+  }
+  const createdDelta = (parseHistoryDate(b.createdAtRaw)?.getTime() || 0) - (parseHistoryDate(a.createdAtRaw)?.getTime() || 0);
+  return sort === "oldest" ? -createdDelta : createdDelta;
+}
+
+function renderSourcingMetrics() {
+  const metrics = document.querySelector("#sourcingMetrics");
+  if (!metrics) return;
+  let assigned = 0, eliminated = 0, inProgress = 0;
+  sourcingPatients.forEach(patient => {
+    const assignment = getPatientAssignmentStatus(patient);
+    if (assignment.done && assignment.eliminated) eliminated += 1;
+    else if (assignment.done) assigned += 1;
+    else inProgress += 1;
+  });
+  metrics.innerHTML = [
+    ["◐", "Total patients", sourcingPatients.length],
+    ["↻", "En cours de culture", inProgress],
+    ["✓", "Assignés à une étude", assigned],
+    ["○", "Éliminés", eliminated]
+  ].map(([icon, label, value]) => `<article class="client-kpi-card sourcing-kpi-card"><span class="client-kpi-icon" aria-hidden="true">${icon}</span><div><span>${label}</span><strong>${value}</strong></div></article>`).join("");
+}
+
+function renderSourcingTableRow(patient) {
+  const stage = getPatientCheckpointStage(patient);
+  return `<tr class="sourcing-list-row" data-patient-id="${escapeHtml(patient.id)}" tabindex="0" onclick="selectSourcingPatient('${escapeHtml(patient.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectSourcingPatient('${escapeHtml(patient.id)}')}"><td data-label="N° patient"><strong>${escapeHtml(patient.patientNumber || "—")}</strong></td><td data-label="Genre">${escapeHtml(patient.patientGender || "—")}</td><td data-label="Âge">${escapeHtml(patient.patientAge || "—")}</td><td data-label="Type">${escapeHtml(patient.patientType || "—")}</td><td data-label="Date de réception">${patient.patientReceptionDate ? escapeHtml(formatDisplayDateFrench(patient.patientReceptionDate)) : "—"}</td><td data-label="Temps de culture">${patient.patientCultureWeeks ? `${escapeHtml(patient.patientCultureWeeks)} sem.` : "—"}</td><td data-label="Assignation étude">${escapeHtml(patient.patientStudyAssignment || "—")}</td><td data-label="Checkpoint">${sourcingStagePillMarkup(stage)}</td></tr>`;
+}
+
+function renderSourcingDetail(patient) {
+  const stage = getPatientCheckpointStage(patient);
+  return `
+    <section class="sourcing-detail-panel">
+      <div class="sourcing-detail-return-row">
+        <button class="ghost-btn sourcing-back-btn" type="button" onclick="selectSourcingPatient(null)" aria-label="Retour aux patients">
+          <span aria-hidden="true">←</span>
+          Retour
+        </button>
+      </div>
+
+      <div class="sourcing-detail-header">
+        <div class="sourcing-detail-title">
+          <div class="sourcing-detail-badges">
+            ${sourcingStagePillMarkup(stage)}
+            ${patient.patientType ? `<span class="result-pill">${escapeHtml(patient.patientType)}</span>` : ""}
+          </div>
+          <h3>${escapeHtml(patient.patientNumber || "Patient")}</h3>
+          <div class="sourcing-detail-meta">
+            ${patient.patientInitials ? `<span>${escapeHtml(patient.patientInitials)}</span>` : ""}
+            ${patient.patientGender ? `<span>${escapeHtml(patient.patientGender)}</span>` : ""}
+            ${patient.patientAge ? `<span>${escapeHtml(patient.patientAge)} ans</span>` : ""}
+          </div>
+        </div>
+        <div class="detail-actions sourcing-detail-actions">
+          <button class="ghost-btn compact-btn" type="button" onclick="openSourcingModal('${escapeHtml(patient.id)}')">Modifier</button>
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Informations de réception</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Type", patient.patientType)}
+          ${renderDetailRow("Date de réception", patient.patientReceptionDate ? formatDisplayDateFrench(patient.patientReceptionDate) : "")}
+          ${renderDetailRow("Temps de culture", patient.patientCultureWeeks ? `${patient.patientCultureWeeks} semaines` : "")}
+          ${renderDetailRow("Quantité de départ", patient.patientStartQuantity)}
+          ${renderDetailRow("Nombre de puits réalisés", patient.patientWellsCount)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Information du lot</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Date de validation du lot", patient.patientLotValidationDate ? formatDisplayDateFrench(patient.patientLotValidationDate) : "")}
+          ${renderDetailRow("Assignation étude", patient.patientStudyAssignment)}
+          ${renderDetailRow("Cession — à qui", patient.patientCessionTo)}
+          ${renderDetailRow("Cession — quand", patient.patientCessionDate ? formatDisplayDateFrench(patient.patientCessionDate) : "")}
+          ${renderDetailRow("Utilisation et stockage", patient.patientUsageStorage)}
+          ${renderDetailRow("Date fin de lot et élimination", patient.patientLotEndDate ? formatDisplayDateFrench(patient.patientLotEndDate) : "")}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Informations Patient</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Initiales", patient.patientInitials)}
+          ${renderDetailRow("Site du prélèvement", patient.patientCollectionSite)}
+          ${renderDetailRow("Genre", patient.patientGender)}
+          ${renderDetailRow("Âge", patient.patientAge)}
+          ${renderDetailRow("Taille", patient.patientHeight ? `${patient.patientHeight} cm` : "")}
+          ${renderDetailRow("Poids", patient.patientWeight ? `${patient.patientWeight} kg` : "")}
+          ${renderDetailRow("IMC", patient.patientBmi)}
+          ${renderDetailRow("Technique", patient.patientTechnique)}
+          ${renderDetailRow("Chirurgien", patient.patientSurgeon)}
+          ${renderDetailRow("Caractéristique patient", patient.patientCharacteristic)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Co-morbidité / si obèse</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("NASH", patient.patientNash)}
+          ${renderDetailRow("Apnée du sommeil", patient.patientSleepApnea)}
+          ${renderDetailRow("DT2", patient.patientT2d)}
+          ${renderDetailRow("Autre", patient.patientOtherComorbidity)}
+          ${renderDetailRow("Intervention", patient.patientIntervention)}
+          ${renderDetailRow("IMC MAX", patient.patientBmiMax)}
+          ${renderDetailRow("Traitement d'intention", patient.patientIntentionTreatment)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Contrôle Qualité</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Myco", patient.patientQcMyco)}
+          ${renderDetailRow("Bactéries", patient.patientQcBacteria)}
+          ${renderDetailRow("Levures", patient.patientQcYeast)}
+          ${renderDetailRow("XTT", patient.patientQcXtt)}
+          ${renderDetailRow("Collagénase", patient.patientQcCollagenase)}
+          ${renderDetailRow("ASC", patient.patientQcAsc)}
+          ${renderDetailRow("Remarques", patient.patientQcRemarks)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>ARN</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Explant T0", patient.patientArnExplantT0)}
+          ${renderDetailRow("WAT T14", patient.patientArnWatT14)}
+          ${renderDetailRow("BAT T14", patient.patientArnBatT14)}
+          ${renderDetailRow("Prebat ± AMPc", patient.patientArnPrebatAmpc)}
+          ${renderDetailRow("Inductible en BAT (qPCR UCP1 positif)", patient.patientArnInducibleBat)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Milieu conditionné (sécrétions)</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Sécrétions T0", patient.patientSecretionsT0)}
+          ${renderDetailRow("Sécrétions T14", patient.patientSecretionsT14)}
+          ${renderDetailRow("Sécrétions BAT T14", patient.patientSecretionsBatT14)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Fixation</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Fixation T0", patient.patientFixationT0)}
+          ${renderDetailRow("Fixation T14", patient.patientFixationT14)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Congélation</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Congélation", patient.patientFreezing)}
+          ${renderDetailRow("Quantité", patient.patientFreezingQuantity)}
+          ${renderDetailRow("Décongélation", patient.patientFreezingThaw)}
+        </div>
+      </div>
+
+      <div class="client-detail-section">
+        <h4>Remarque générale</h4>
+        <div class="item-detail-stack">
+          ${renderDetailRow("Remarque générale", patient.patientGeneralRemark)}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderSourcing() {
+  const query = sourcingSearchInput ? sourcingSearchInput.value : "";
+  const filtered = getFilteredSortedPatients(sourcingPatients, query, sourcingSortSelect?.value || "recent");
+
+  const detail = selectedSourcingPatientId ? sourcingPatients.find(patient => patient.id === selectedSourcingPatientId) : null;
+  const detailHost = document.querySelector("#sourcingDetail");
+  if (detailHost) detailHost.innerHTML = detail ? renderSourcingDetail(detail) : "";
+  document.querySelector("#sourcingGrid")?.classList.toggle("hidden", Boolean(detail));
+  document.querySelector("#sourcingView")?.classList.toggle("sourcing-detail-mode", Boolean(detail));
+
+  const resultCount = document.querySelector("#sourcingResultCount");
+  if (resultCount) resultCount.textContent = `${filtered.length} patient${filtered.length > 1 ? "s" : ""}`;
+
+  renderSourcingMetrics();
+
+  const body = document.querySelector("#sourcingTableBody");
+  if (body) body.innerHTML = filtered.length ? filtered.map(renderSourcingTableRow).join("") : `<tr><td colspan="8" class="empty-table-cell">${sourcingPatients.length ? "Aucun patient ne correspond à votre recherche." : "Aucun patient enregistré."}</td></tr>`;
+}
+
+function selectSourcingPatient(id) {
+  selectedSourcingPatientId = id;
+  renderSourcing();
+}
+
+function recalculatePatientBmi() {
+  const bmiField = sourcingFields.patientBmi;
+  if (!bmiField || bmiField.dataset.manual === "true") return;
+  const height = StockTracking.parseLocalizedNumber(sourcingFields.patientHeight.value);
+  const weight = StockTracking.parseLocalizedNumber(sourcingFields.patientWeight.value);
+  if (!(height > 0) || !(weight > 0)) return;
+  bmiField.value = Number((weight / ((height / 100) ** 2)).toFixed(1));
+}
+
+function hydrateSourcingForm(patient) {
+  Object.keys(sourcingFields).forEach(key => {
+    if (key === "sourcingPatientId") return;
+    const field = sourcingFields[key];
+    if (!field) return;
+    field.value = key === "patientNumber" ? (patient?.patientNumber || suggestNextPatientNumber()) : (patient?.[key] || "");
+  });
+}
+
+function openSourcingModal(id) {
+  const patient = id ? sourcingPatients.find(entry => entry.id === id) : null;
+  sourcingForm.reset();
+  document.querySelector("#sourcingModalTitle").textContent = patient ? "Modifier le patient" : "Nouveau patient";
+  document.querySelector("#sourcingError")?.classList.add("hidden");
+  const deleteBtn = document.querySelector("#deleteSourcingPatientBtn");
+  if (deleteBtn) deleteBtn.style.display = patient ? "inline-flex" : "none";
+  sourcingFields.sourcingPatientId.value = patient?.id || "";
+  hydrateSourcingForm(patient);
+  sourcingFields.patientBmi.dataset.manual = patient?.patientBmi ? "true" : "false";
+  sourcingDialog.showModal();
+}
+
+function saveSourcingPatient() {
+  if (!sourcingForm.reportValidity()) return;
+  const errorBox = document.querySelector("#sourcingError");
+  errorBox?.classList.add("hidden");
+
+  const patientNumber = normalizePatientNumber(sourcingFields.patientNumber.value);
+  if (!patientNumber) {
+    if (errorBox) { errorBox.textContent = "Le n° de patient est obligatoire."; errorBox.classList.remove("hidden"); }
+    return;
+  }
+
+  const existingId = sourcingFields.sourcingPatientId.value;
+  const duplicate = sourcingPatients.find(entry => entry.id !== existingId && normalizePatientNumber(entry.patientNumber).toLowerCase() === patientNumber.toLowerCase());
+  if (duplicate) {
+    if (errorBox) { errorBox.textContent = `Le n° de patient ${patientNumber} est déjà utilisé.`; errorBox.classList.remove("hidden"); }
+    return;
+  }
+
+  const existingIndex = sourcingPatients.findIndex(entry => entry.id === existingId);
+  const previousPatient = existingIndex >= 0 ? sourcingPatients[existingIndex] : null;
+  const now = new Date();
+  const displayNow = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(now);
+
+  const patient = { id: existingId || createSafeItemId("pat"), source: "web" };
+  Object.keys(sourcingFields).forEach(key => {
+    if (key === "sourcingPatientId") return;
+    const field = sourcingFields[key];
+    if (!field) return;
+    patient[key] = /remark/i.test(key) ? normalizeMultilineText(field.value) : field.value.trim();
+  });
+  patient.patientNumber = patientNumber;
+  patient.createdAtRaw = previousPatient?.createdAtRaw || now.toISOString();
+  patient.createdAt = previousPatient?.createdAt || displayNow;
+  patient.updatedAt = displayNow;
+
+  if (existingIndex >= 0) {
+    sourcingPatients[existingIndex] = patient;
+    addHistory("Patient sourcing modifié", `${currentName} a modifié le patient ${patient.patientNumber}.`);
+  } else {
+    sourcingPatients.unshift(patient);
+    addHistory("Patient sourcing créé", `${currentName} a créé le patient ${patient.patientNumber}.`);
+  }
+
+  persist();
+  selectedSourcingPatientId = patient.id;
+  sourcingDialog.close();
+  renderSourcing();
+  renderHistory();
+}
+
+function requestSourcingPatientDeletion() {
+  const id = sourcingFields.sourcingPatientId.value;
+  const patient = sourcingPatients.find(entry => entry.id === id);
+  if (!patient) return;
+  openDeleteConfirmation({
+    message: `Êtes-vous sûr de vouloir supprimer le patient ${patient.patientNumber || ""} ? Cette action est irréversible.`,
+    onConfirm: () => deleteSourcingPatient(id)
+  });
+}
+
+function deleteSourcingPatient(id) {
+  const patient = sourcingPatients.find(entry => entry.id === id);
+  if (!patient) throw new Error("Ce patient n’existe plus.");
+  sourcingPatients = sourcingPatients.filter(entry => entry.id !== id);
+  addHistory("Patient sourcing supprimé", `${currentName} a supprimé le patient ${patient.patientNumber}.`);
+  if (selectedSourcingPatientId === id) selectedSourcingPatientId = null;
+  sourcingDialog.close();
+  persist();
+  renderSourcing();
+  renderHistory();
 }
 
 function getItemLocations(item) {
@@ -5610,13 +6039,13 @@ function saveItem() {
   const existingItem = existingId
     ? items.find(entry => entry.id === existingId)
     : null;
-  const actionManagedStock = Boolean(existingItem && (trackingFields.detailedPackagingEnabled.checked || trackingFields.detailedTraceabilityEnabled.checked || trackingFields.aliquotTrackingEnabled.checked));
+  const actionManagedStock = Boolean(existingItem);
 
   const item = {
     id: existingId || `web-${Date.now()}`,
     name: fields.name.value.trim(),
     category: fields.category.value.trim(),
-    quantity: actionManagedStock ? Number(existingItem.quantity) : Number(fields.quantity.value),
+    quantity: actionManagedStock ? Number(existingItem.quantity) : StockTracking.parseLocalizedNumber(fields.quantity.value),
     unit: fields.unit.value.trim(),
     minStock: parseStockMinimum(fields.minStock.value),
     usageProfile: normalizeUsageProfile(fields.usageProfile.value),
@@ -5691,11 +6120,9 @@ function hydrateTrackingForm(item) {
   const tracking = StockTracking.normalizeTracking(item || {});
   const aliquots = StockTracking.normalizeAliquots(item || {});
   trackingFields.stockTrackingMode.value = tracking.mode;
-  trackingFields.traceabilityMode.value = tracking.traceabilityMode;
   trackingFields.detailedPackagingEnabled.checked = tracking.mode === "containers";
-  trackingFields.detailedTraceabilityEnabled.checked = tracking.traceabilityMode === "detailed";
   trackingFields.aliquotTrackingEnabled.checked = aliquots.enabled;
-  fields.quantity.readOnly = Boolean(item && (tracking.mode === "containers" || tracking.traceabilityMode === "detailed" || aliquots.enabled));
+  fields.quantity.readOnly = Boolean(item);
   fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Mettre à jour le stock » pour modifier cette quantité de manière tracée." : "";
   trackingFields.packagingLevels.innerHTML = tracking.packagingLevels.map(renderPackagingLevelRow).join("");
   syncTrackingConfigVisibility(); updateTrackingUnitOptions(tracking.trackingUnitKey); updatePackagingPreview();
@@ -5709,28 +6136,22 @@ function syncTrackingOptionCheckboxes(changedOption = "") {
     trackingFields.detailedPackagingEnabled.checked = true;
     message = "Le suivi détaillé ne peut pas être désactivé tant que les contenants actifs n’ont pas été consolidés proprement.";
   }
-  if (changedOption === "packaging" && trackingFields.detailedPackagingEnabled.checked && previousTracking.mode !== "containers") {
-    trackingFields.detailedTraceabilityEnabled.checked = true;
-  }
   const hasAliquotHistory = existingItem && stockMovements.some(event => event.itemId === existingItem.id && String(event.type || "").includes("aliquot"));
   if (changedOption === "aliquots" && !trackingFields.aliquotTrackingEnabled.checked && (previousAliquots.preparations.length > 0 || hasAliquotHistory)) {
     trackingFields.aliquotTrackingEnabled.checked = true;
     message = "Cette option ne peut pas être désactivée tant que des préparations, des aliquotes actives ou un historique associé existent.";
   }
   trackingFields.stockTrackingMode.value = trackingFields.detailedPackagingEnabled.checked ? "containers" : "simple";
-  trackingFields.traceabilityMode.value = trackingFields.detailedTraceabilityEnabled.checked ? "detailed" : "periodic";
-  trackingFields.traceabilityExplanation.classList.toggle("hidden", !trackingFields.detailedTraceabilityEnabled.checked);
   trackingFields.aliquotTrackingExplanation.classList.toggle("hidden", !trackingFields.aliquotTrackingEnabled.checked);
   trackingFields.aliquotTrackingExplanation.textContent = trackingFields.detailedPackagingEnabled.checked ? "Vous pourrez sélectionner le contenant utilisé pour chaque préparation." : "Les préparations utiliseront directement le stock global de l’item.";
   trackingFields.trackingOptionError.textContent = message;
   trackingFields.trackingOptionError.classList.toggle("hidden", !message);
-  if (existingItem) { fields.quantity.readOnly = trackingFields.detailedPackagingEnabled.checked || trackingFields.detailedTraceabilityEnabled.checked || trackingFields.aliquotTrackingEnabled.checked; fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Mettre à jour le stock » pour modifier cette quantité de manière tracée." : ""; }
+  if (existingItem) { fields.quantity.readOnly = true; fields.quantity.title = "Utilisez « Mettre à jour le stock » pour modifier cette quantité de manière tracée."; }
   syncTrackingConfigVisibility();
 }
 
 function syncTrackingConfigVisibility() {
   trackingFields.stockTrackingMode.value = trackingFields.detailedPackagingEnabled?.checked ? "containers" : "simple";
-  trackingFields.traceabilityMode.value = trackingFields.detailedTraceabilityEnabled?.checked ? "detailed" : "periodic";
   const advancedMode = trackingFields.stockTrackingMode?.value === "containers";
   trackingFields.packagingConfig?.classList.toggle("hidden", !advancedMode);
   trackingFields.packagingConfig?.querySelectorAll("input, select").forEach(control => {
@@ -5738,7 +6159,6 @@ function syncTrackingConfigVisibility() {
   });
   const hasInteriorLevel = Boolean(trackingFields.packagingLevels?.querySelectorAll(".packaging-level-row").length > 1);
   trackingFields.trackingUnitField?.classList.toggle("hidden", !advancedMode || !hasInteriorLevel);
-  trackingFields.traceabilityExplanation?.classList.toggle("hidden", !trackingFields.detailedTraceabilityEnabled?.checked);
   if (trackingFields.aliquotTrackingExplanation) {
     trackingFields.aliquotTrackingExplanation.classList.toggle("hidden", !trackingFields.aliquotTrackingEnabled?.checked);
     trackingFields.aliquotTrackingExplanation.textContent = advancedMode ? "Vous pourrez sélectionner le contenant utilisé pour chaque préparation." : "Les préparations utiliseront directement le stock global de l’item.";
@@ -5829,7 +6249,7 @@ function readTrackingForm(existingItem) {
   const now = new Date().toISOString();
   let closedByLocation = previous.closedByLocation, closedContainers = previous.closedContainers, openContainers = previous.openContainers;
   if (previous.mode === "simple" && mode === "containers" && !closedByLocation.length && !openContainers.length) {
-    const quantity = Number(existingItem?.quantity || fields.quantity.value || 0);
+    const quantity = existingItem?.quantity || StockTracking.parseLocalizedNumber(fields.quantity.value) || 0;
     if (!Number.isInteger(quantity)) {
       const migration = pendingStockMigration?.confirmed && pendingStockMigration.itemId === existingItem.id ? pendingStockMigration : null;
       if (!migration) {
@@ -5843,14 +6263,14 @@ function readTrackingForm(existingItem) {
       openContainers = migration.openContainers;
       const migrationEvent = createStockMigrationEvent(existingItem, migration);
       pendingStockMigration = null;
-      return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit.key, trackingUnit: selectedTrackingUnit.plural, quantityStep: 1, precision: selectedTrackingUnit.kind === "continuous" ? 6 : 0, closedByLocation, closedContainers, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked }, migrationEvent };
+      return { stockTracking: { version: 1, mode, traceabilityMode: "detailed", packagingLevels: levels, trackingUnitKey: selectedTrackingUnit.key, trackingUnit: selectedTrackingUnit.plural, quantityStep: 1, precision: selectedTrackingUnit.kind === "continuous" ? 6 : 0, closedByLocation, closedContainers, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked }, migrationEvent };
     }
     const locations = getSelectedLocations();
     if (locations.length !== 1 && quantity > 0) throw new Error("Pour la migration initiale, sélectionnez une seule localisation. Vous pourrez ensuite déplacer les contenants de façon tracée.");
     closedByLocation = quantity ? [{ location: locations[0], quantity, updatedAt: now, updatedBy: currentName }] : [];
     closedContainers = null;
   }
-  return { stockTracking: { version: 1, mode, traceabilityMode: trackingFields.traceabilityMode.value, packagingLevels: levels, trackingUnitKey: selectedTrackingUnit?.key || previous.trackingUnitKey, trackingUnit: selectedTrackingUnit?.plural || previous.trackingUnit, quantityStep: 1, precision: selectedTrackingUnit?.kind === "continuous" ? 6 : 0, closedByLocation, closedContainers, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked } };
+  return { stockTracking: { version: 1, mode, traceabilityMode: "detailed", packagingLevels: levels, trackingUnitKey: selectedTrackingUnit?.key || previous.trackingUnitKey, trackingUnit: selectedTrackingUnit?.plural || previous.trackingUnit, quantityStep: 1, precision: selectedTrackingUnit?.kind === "continuous" ? 6 : 0, closedByLocation, closedContainers, openContainers }, aliquotTracking: { ...StockTracking.normalizeAliquots(existingItem || {}), enabled: trackingFields.aliquotTrackingEnabled.checked } };
 }
 
 function openStockMigrationAssistant(item, levels) {
@@ -5887,7 +6307,7 @@ function renderMigrationOpenRows() {
   const capacity = pendingStockMigration.trackingCapacity, unit = pendingStockMigration.trackingUnit, outer = pendingStockMigration.levels[0];
   const theoretical = count === 1 ? (pendingStockMigration.oldQuantity - Math.floor(pendingStockMigration.oldQuantity)) * capacity : NaN;
   const defaultRemaining = Number.isFinite(theoretical) && (unit.kind === "continuous" || Number.isInteger(theoretical)) ? StockTracking.format(theoretical, 6).replace(/\s/g, "").replace(",", ".") : "";
-  list.innerHTML = Array.from({ length: count }, (_, index) => `<div class="migration-open-row"><strong>${escapeHtml(capitalizeFrenchLabel(outer.singular))} nº${index + 1}</strong><div class="migration-open-fields"><label>Contenu restant — ${escapeHtml(unit.plural)}<input data-migration-remaining type="number" inputmode="decimal" min="0" max="${capacity}" step="${unit.kind === "continuous" ? "any" : "1"}" data-quantity-step="1" required value="${escapeHtml(previous[index]?.remaining || (index === 0 ? defaultRemaining : ""))}"><small data-migration-remaining-help></small></label><label>Localisation<select data-migration-location required>${inventoryLocations.map(location => `<option value="${escapeHtml(location)}" ${location === (previous[index]?.location || getSelectedLocations()[0]) ? "selected" : ""}>${escapeHtml(location)}</option>`).join("")}</select></label></div></div>`).join("");
+  list.innerHTML = Array.from({ length: count }, (_, index) => `<div class="migration-open-row"><strong>${escapeHtml(capitalizeFrenchLabel(outer.singular))} nº${index + 1}</strong><div class="migration-open-fields"><label>Contenu restant — ${escapeHtml(unit.plural)}<input data-migration-remaining type="text" inputmode="decimal" pattern="\\d+([.,]\\d+)?" data-quantity-step="1" required value="${escapeHtml(previous[index]?.remaining || (index === 0 ? defaultRemaining : ""))}"><small data-migration-remaining-help></small></label><label>Localisation<select data-migration-location required>${inventoryLocations.map(location => `<option value="${escapeHtml(location)}" ${location === (previous[index]?.location || getSelectedLocations()[0]) ? "selected" : ""}>${escapeHtml(location)}</option>`).join("")}</select></label></div></div>`).join("");
   updateStockMigrationComparison();
 }
 
@@ -6004,7 +6424,8 @@ function syncSimpleStockActionFields() {
 
 function renderAdvancedStockDetail(item) {
   const tracking = StockTracking.normalizeTracking(item), aliquots = StockTracking.normalizeAliquots(item);
-  const showDistribution = tracking.mode === "containers", showPreparations = aliquots.enabled, showJournal = tracking.traceabilityMode === "detailed";
+  const movements = stockMovements.filter(row => row?.itemId === item.id).slice().sort((a,b) => stockMovementTime(b) - stockMovementTime(a)).slice(0,10);
+  const showDistribution = tracking.mode === "containers", showPreparations = aliquots.enabled, showJournal = movements.length > 0;
   if (!showDistribution && !showPreparations && !showJournal) return "";
   const outerUnit = tracking.packagingLevels[0], closedCount = tracking.closedByLocation.reduce((sum, row) => sum + row.quantity, 0);
   const closed = tracking.closedByLocation.map(row => `<article class="stock-distribution-card stock-distribution-card--closed"><div class="stock-distribution-card-head"><div><strong class="stock-distribution-primary">${row.quantity} ${escapeHtml(StockTracking.plural(row.quantity, outerUnit.singular, outerUnit.plural))} fermé${row.quantity > 1 ? "s" : ""}</strong><span class="stock-distribution-location"><span aria-hidden="true">⌖</span>${escapeHtml(row.location || "—")}</span></div><span class="stock-distribution-badge stock-distribution-badge--closed">Fermé</span></div></article>`).join("");
@@ -6012,11 +6433,10 @@ function renderAdvancedStockDetail(item) {
   const openContainers = tracking.openContainers.filter(row => row.status === "open");
   const opened = openContainers.map(row => { const remaining = StockTracking.fromBaseQuantity(row.remaining, tracking), capacity = StockTracking.fromBaseQuantity(row.capacity, tracking), title = formatOpenContainerDisplayTitle(row.label, outerUnit.singular), identity = getOpenedContainerIdentity(row.openedBy), openedDate = formatDateTimeFrench(row.openedAt).replace(" · ", " à "); return `<article class="stock-distribution-card stock-distribution-card--open" id="stock-${escapeHtml(row.id)}"><div class="stock-distribution-open-head"><div class="stock-distribution-title-group"><strong>${escapeHtml(title)}</strong><span class="stock-distribution-badge stock-distribution-badge--open">Ouvert</span></div><span class="stock-distribution-location"><span aria-hidden="true">⌖</span>${escapeHtml(row.location || "—")}</span></div><div class="stock-distribution-quantity-row"><strong>${StockTracking.format(remaining)} ${escapeHtml(StockTracking.plural(remaining, openUnit.singular, openUnit.plural))} restants</strong><span>${StockTracking.format(remaining)} sur ${StockTracking.format(capacity)}</span></div><progress max="${capacity}" value="${remaining}"></progress><div class="stock-distribution-meta"><span>Ouvert par</span><span class="history-user-avatar ${identity.type}" aria-hidden="true">${escapeHtml(identity.value)}</span><strong>${escapeHtml(identity.name)}</strong><span aria-hidden="true">·</span><time>${escapeHtml(openedDate)}</time></div></article>`; }).join("");
   const preparations = activePreparationViews(item).map(view => renderPreparationStockCard(item, view.preparation, view.label)).join("");
-  const movements = stockMovements.filter(row => row?.itemId === item.id).slice().sort((a,b) => stockMovementTime(b) - stockMovementTime(a)).slice(0,10);
   const distributionModule = showDistribution ? `<details open><summary>Répartition du stock</summary><div class="advanced-stock-block stock-distribution"><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock fermé</strong><span>${closedCount} ${escapeHtml(StockTracking.plural(closedCount, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${closed || "<p class=\"stock-distribution-empty\">Aucun contenant fermé.</p>"}</div></section><section class="stock-distribution-section"><div class="stock-distribution-section-title"><strong>Stock ouvert</strong><span>${openContainers.length} ${escapeHtml(StockTracking.plural(openContainers.length, outerUnit.singular, outerUnit.plural))}</span></div><div class="stock-distribution-list">${opened || "<p class=\"stock-distribution-empty\">Aucun contenant ouvert.</p>"}</div></section></div></details>` : "";
   const preparationsModule = showPreparations ? `<details open><summary>Préparations et aliquotes</summary><div class="advanced-stock-block">${preparations || `<div class="stock-distribution-empty"><p>Aucune préparation active.</p><button class="ghost-btn compact-btn" type="button" onclick="openStockManager('${escapeHtml(item.id)}',{action:'aliquots_prepared'})">Préparer des aliquotes</button></div>`}</div></details>` : "";
   const journalOpen = stockJournalOpenByItem.get(item.id) === true;
-  const journalModule = showJournal ? `<details class="stock-movement-journal" data-stock-journal-item="${escapeHtml(item.id)}"${journalOpen ? " open" : ""} ontoggle="handleStockJournalToggle(event)"><summary aria-expanded="${journalOpen}"><span class="stock-journal-indicator" aria-hidden="true">${journalOpen ? "▼" : "▶"}</span><span>Journal des mouvements</span></summary><div class="advanced-stock-block movement-list">${movements.length ? movements.map(renderStockMovementSafely).join("") : "<p>Aucun mouvement enregistré.</p>"}</div></details>` : "";
+  const journalModule = showJournal ? `<details class="stock-movement-journal" data-stock-journal-item="${escapeHtml(item.id)}"${journalOpen ? " open" : ""} ontoggle="handleStockJournalToggle(event)"><summary aria-expanded="${journalOpen}"><span class="stock-journal-indicator" aria-hidden="true">${journalOpen ? "▼" : "▶"}</span><span>Journal des mouvements</span></summary><div class="advanced-stock-block movement-list">${movements.map(renderStockMovementSafely).join("")}</div></details>` : "";
   const stockStatus = getStockStatus(item);
   const equivalentLevels = StockTracking.equivalentLevels(item, stockStatus.currentStock);
   const equivalentText = equivalentLevels.map(level => `<span class="advanced-stock-equivalent-value">${StockTracking.format(level.value)}&nbsp;${escapeHtml(StockTracking.plural(level.value, level.singular, level.plural))}</span>`).join('<span class="advanced-stock-kpi-separator" aria-hidden="true">·</span>');
@@ -6085,12 +6505,42 @@ function renderStockMovementSafely(entry) {
   }
 }
 
+const STOCK_MOVEMENT_TYPE_LABELS = { received:"Réception", order_received:"Réception de commande", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Mise à jour du stock", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Mise à jour du stock", corrected:"Mise à jour du stock", configuration_changed:"Configuration", automatic_repair:"Régularisation automatique" };
+function stockMovementTypeLabel(type) { return STOCK_MOVEMENT_TYPE_LABELS[type] || type || "Mouvement de stock"; }
+
 function renderStockMovement(entry = {}) {
-  const labels = { received:"Réception", order_received:"Réception de commande", container_opened:"Ouverture", consumed:"Utilisation", recounted:"Mise à jour du stock", moved:"Déplacement", container_finished:"Contenant terminé", aliquots_prepared:"Préparation", aliquots_consumed:"Aliquotes utilisées", aliquots_moved:"Aliquotes déplacées", aliquot_opened:"Aliquote ouverte", open_aliquot_consumed:"Aliquote ouverte utilisée", open_aliquot_moved:"Aliquote ouverte déplacée", open_aliquot_discarded:"Reliquat jeté", preparation_recounted:"Mise à jour du stock", corrected:"Mise à jour du stock", configuration_changed:"Configuration", automatic_repair:"Régularisation automatique" };
   const formattedDate = formatDateTimeFrench(getStockMovementDate(entry));
   const [date, time] = formattedDate.includes(" · ") ? formattedDate.split(" · ") : [formattedDate, ""];
   const reason = String(entry.comment || "").trim();
-  return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}" aria-hidden="true">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div class="movement-entry-content"><div class="movement-heading"><strong>${escapeHtml(labels[entry.type] || entry.type || "Mouvement de stock")}</strong><span class="movement-meta">${escapeHtml(entry.userName || "Utilisateur")}</span><time class="movement-meta">${escapeHtml(date)}</time>${time ? `<time class="movement-meta">${escapeHtml(time)}</time>` : ""}</div><div class="movement-detail"><span class="movement-change multiline-text">${formatStockMovementDescription({...entry, comment:""})}</span>${reason ? `<span class="movement-reason"><strong>Motif :</strong> <span>${escapeHtml(reason)}</span></span>` : `<span class="movement-reason movement-reason--missing">Motif non renseigné</span>`}</div></div></article>`;
+  const deleteBtn = entry.id ? `<button class="movement-entry-delete" type="button" title="Supprimer cette entrée" aria-label="Supprimer cette entrée du journal" onclick="requestStockMovementDeletion('${escapeHtml(entry.id)}', this)">−</button>` : "";
+  return `<article class="movement-entry"><span class="history-user-avatar ${entry.userEmoji ? "emoji" : ""}" aria-hidden="true">${escapeHtml(entry.userEmoji || entry.userInitials || "?")}</span><div class="movement-entry-content"><div class="movement-heading"><strong>${escapeHtml(stockMovementTypeLabel(entry.type))}</strong><span class="movement-meta">${escapeHtml(entry.userName || "Utilisateur")}</span><time class="movement-meta">${escapeHtml(date)}</time>${time ? `<time class="movement-meta">${escapeHtml(time)}</time>` : ""}</div><div class="movement-detail"><span class="movement-change multiline-text">${formatStockMovementDescription({...entry, comment:""})}</span>${reason ? `<span class="movement-reason multiline-text"><strong>Motif :</strong> ${escapeHtml(reason)}</span>` : `<span class="movement-reason movement-reason--missing">Motif non renseigné</span>`}</div></div>${deleteBtn}</article>`;
+}
+
+function requestStockMovementDeletion(movementId, trigger) {
+  const movement = stockMovements.find(row => row?.id === movementId);
+  if (!movement) return;
+  openDeleteConfirmation({
+    title: "Supprimer cette entrée du journal ?",
+    message: `« ${stockMovementTypeLabel(movement.type)} » du ${formatDateTimeFrench(getStockMovementDate(movement))} sera définitivement retirée du journal des mouvements. Le stock actuel de l’item ne sera pas modifié.`,
+    confirmText: "Supprimer",
+    trigger,
+    onConfirm: async () => { await deleteStockMovement(movementId); render(); }
+  });
+}
+
+async function deleteStockMovement(movementId) {
+  const storage=window.ExadexGithubStorage, config=storage?.getConfig?.();
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) throw new Error("La sauvegarde GitHub en écriture est requise pour supprimer un mouvement de stock.");
+  await flushPendingSharedDataBeforeAtomicOperation();
+  sharedDataIsSaving=true; renderAlerts();
+  try {
+    const result=await storage.mutateSharedData(StockTracking.id("operation"), latest => {
+      const state=createSharedState(latest,{includeBootstrap:false});
+      state.stockMovements=(Array.isArray(state.stockMovements)?state.stockMovements:[]).filter(row=>row?.id!==movementId);
+      return state;
+    });
+    sharedDataSha=result.sha; sharedDataMode="github-write"; sharedDataHasUnsavedChanges=false; sharedDataRemoteReady=true; sharedDataLastError=""; applySharedState(result.data); initializeSharedSaveCoordinator(result.data,result.sha);
+  } finally { sharedDataIsSaving=false; renderAlerts(); }
 }
 
 function formatStockMovementDescription(entry) {
@@ -6177,7 +6627,7 @@ function openStockManager(itemId, options = {}) {
 }
 
 function stockSelect(id, label, values, extra="") { return `<label><span>${label}</span><select id="${id}" required>${values.map(([value,text]) => `<option value="${escapeHtml(value)}">${escapeHtml(text)}</option>`).join("")}</select>${extra}</label>`; }
-function stockNumber(id,label,step="1",max="") { return `<label><span>${label}</span><input id="${id}" type="number" min="0" step="${step}" data-quantity-step="1" ${max !== "" ? `max="${max}"` : ""} required></label>`; }
+function stockNumber(id,label,max="") { return `<label><span>${label}</span><input id="${id}" type="text" inputmode="decimal" pattern="\\d+([.,]\\d+)?" data-quantity-step="1" ${max !== "" ? `max="${max}"` : ""} required></label>`; }
 
 function hierarchyPathForIds(roomId,locationId,sublocationId){const room=hierarchyRoom(roomId),location=hierarchyLocation(locationId),sub=hierarchySublocation(sublocationId);return[room?.name,location?.name,sub?.name].filter(Boolean).join(" → ");}
 function hierarchySelectorsHtml(prefix,values={}){
@@ -6201,7 +6651,7 @@ function renderContainerRecountRow(container, tracking, locations, options = {})
   return `<section class="container-recount-row" data-container-id="${escapeHtml(container.id)}" data-version="${Number(container.version||0)}" data-original-status="${isNew?"":escapeHtml(container.status)}" data-original-unit="${isNew?"":escapeHtml(unitKey)}" data-current-unit="${escapeHtml(unitKey)}" data-capacity-base="${Number(container.capacity||0)}" data-original-location="${isNew?"":escapeHtml(container.location||"")}" data-original-quantity="${isNew?"":quantity}" data-new-container="${isNew?"true":"false"}">
     <header><strong data-container-display-title>${escapeHtml(container.label||container.id)}</strong>${isNew?`<span class="stock-distribution-badge">Nouveau</span>`:""}<button class="container-recount-remove" type="button" data-remove-container>${isNew?"Supprimer":"Retirer"}</button><span class="stock-distribution-badge stock-distribution-badge--${container.status==="closed"?"closed":"open"}">${container.status==="closed"?"Fermé":"Ouvert"}</span></header>
     <label><span>Statut</span><select data-recount-status><option value="closed" ${container.status==="closed"?"selected":""}>Fermé</option><option value="open" ${container.status==="open"?"selected":""}>Ouvert</option>${isNew?"":`<option value="finished">Terminé</option>`}</select></label>
-    <label><span data-recount-quantity-label>${container.status==="open"?"Quantité restante":"Quantité actuelle"}</span><input data-recount-quantity type="number" min="0" step="any" value="${quantity}" required></label>
+    <label><span data-recount-quantity-label>${container.status==="open"?"Quantité restante":"Quantité actuelle"}</span><input data-recount-quantity type="text" inputmode="decimal" pattern="\\d+([.,]\\d+)?" value="${quantity}" required></label>
     <label><span>Unité</span><select data-recount-unit>${units.map(([value,label])=>`<option value="${escapeHtml(value)}" ${value===unitKey?"selected":""}>${escapeHtml(label)}</option>`).join("")}</select></label>
     ${hierarchySelectorsHtml(`container-${container.id}`,container)}<input type="hidden" data-recount-location value="${escapeHtml(container.location||"")}">
   </section>`;
@@ -6258,12 +6708,12 @@ function getAliquotPreparationSources(item) {
 }
 
 function renderAliquotPreparationFields(item, locations) {
-  const sourceState = getAliquotPreparationSources(item), unit = sourceState.unit, inputStep = unit.kind === "continuous" ? "any" : "1";
+  const sourceState = getAliquotPreparationSources(item), unit = sourceState.unit;
   if (!sourceState.groups.length) return `<div class="stock-source-empty"><strong>Aucun stock disponible pour préparer des aliquotes.</strong><button class="ghost-btn compact-btn" type="button" data-empty-stock-action>${sourceState.mode === "containers" ? "Réceptionner du stock" : "Réceptionner du stock"}</button></div>`;
   const sources=sourceState.groups.flatMap(group=>group.sources.map(source=>({...source,type:group.type}))),sourceOptions=sources.map(source=>`<option value="${escapeHtml(`${source.type}|${source.id}`)}">${escapeHtml(source.label||`${source.location} · ${StockTracking.format(source.quantity)} ${unit.plural}`)}</option>`).join("");
   const sourceControls=`<label><span>Stock source <b class="required-star">*</b></span><select id="smStockSource" required>${sourceOptions}</select></label><input id="smSourceType" type="hidden"><input id="smSourceId" type="hidden">`;
   const initialMax = sourceState.mode === "simple" ? sourceState.quantity : "";
-  return `<div class="aliquot-preparation-grid">${sourceControls}<label><span>Nombre d’aliquotes <b class="required-star">*</b></span><input id="smCreated" type="number" min="1" step="1" required></label><label><span>Volume d’une aliquote <b class="required-star">*</b></span><input id="smVolume" type="number" min="0" step="any" required></label><label><span>Unité de volume <b class="required-star">*</b></span><input id="smVolumeUnit" value="µL" required></label><label><span>Concentration d’une aliquote <b class="required-star">*</b></span><input id="smConcentration" type="number" min="0" step="any" required></label><label><span>Unité de concentration <b class="required-star">*</b></span><input id="smConcentrationUnit" value="mM" required></label><label class="full-label"><span id="smSourceQuantityLabel">Quantité source utilisée — ${escapeHtml(unit.plural)} <b class="required-star">*</b></span><input id="smSourceQuantity" type="number" min="0" step="${inputStep}" ${initialMax!==""?`max="${initialMax}"`:""} required><small id="smSourceQuantityNotice"></small></label><div class="aliquot-preparation-location">${hierarchySelectorsHtml("aliquot-preparation",{})}<input id="smTo" type="hidden" data-recount-location></div><label><span>Nombre d’aliquotes dans cette localisation <b class="required-star">*</b></span><input id="smLocationQuantity" type="number" min="1" step="1" required></label></div>`;
+  return `<div class="aliquot-preparation-grid">${sourceControls}<label><span>Nombre d’aliquotes <b class="required-star">*</b></span><input id="smCreated" type="number" min="1" step="1" required></label><label><span>Volume d’une aliquote <b class="required-star">*</b></span><input id="smVolume" type="number" min="0" step="any" required></label><label><span>Unité de volume <b class="required-star">*</b></span><input id="smVolumeUnit" value="µL" required></label><label><span>Concentration d’une aliquote <b class="required-star">*</b></span><input id="smConcentration" type="number" min="0" step="any" required></label><label><span>Unité de concentration <b class="required-star">*</b></span><input id="smConcentrationUnit" value="mM" required></label><label class="full-label"><span id="smSourceQuantityLabel">Quantité source utilisée — ${escapeHtml(unit.plural)} <b class="required-star">*</b></span><input id="smSourceQuantity" type="text" inputmode="decimal" pattern="\\d+([.,]\\d+)?" ${initialMax!==""?`max="${initialMax}"`:""} required><small id="smSourceQuantityNotice"></small></label><div class="aliquot-preparation-location">${hierarchySelectorsHtml("aliquot-preparation",{})}<input id="smTo" type="hidden" data-recount-location></div><label><span>Nombre d’aliquotes dans cette localisation <b class="required-star">*</b></span><input id="smLocationQuantity" type="number" min="1" step="1" required></label></div>`;
 }
 
 function setAdditionalAliquotLocationVisible(modal, visible, values = {}) {
@@ -6352,8 +6802,8 @@ function syncAliquotUseFields(modal, item) {
   const host = modal.querySelector("#smAliquotUseFields"), mode = modal.querySelector("#smAliquotUseMode")?.value, aliquots = StockTracking.normalizeAliquots(item); if (!host || !mode) return;
   const unopened = aliquots.preparations.filter(prep => prep.status === "active" && StockTracking.remainingAliquots(prep) > 0), partial = unopened.filter(prep => prep.volume > 0 && prep.volumeUnit), opened = getActiveOpenAliquots(aliquots);
   if (mode === "whole") host.innerHTML = stockSelect("smEntity", "Préparation concernée", unopened.map(prep => [prep.id, formatPreparationOption(prep)])) + `<div id="smAliquotLocationField"></div>` + stockNumber("smQuantity", "Nombre d’aliquotes utilisées");
-  else if (mode === "open_new") host.innerHTML = stockSelect("smEntity", "Préparation", partial.map(prep => [prep.id, formatPreparationOption(prep)])) + `<div id="smAliquotLocationField"></div>` + stockNumber("smQuantity", `Volume utilisé`, "any");
-  else host.innerHTML = stockSelect("smEntity", "Aliquote ouverte", opened.map(({ prep, open }) => [open.id, `${open.label} · ${StockTracking.format(open.remainingVolume)} ${open.volumeUnit} restants · ${open.location || "—"} · ${prep.label}`])) + stockNumber("smQuantity", "Volume utilisé", "any");
+  else if (mode === "open_new") host.innerHTML = stockSelect("smEntity", "Préparation", partial.map(prep => [prep.id, formatPreparationOption(prep)])) + `<div id="smAliquotLocationField"></div>` + stockNumber("smQuantity", `Volume utilisé`);
+  else host.innerHTML = stockSelect("smEntity", "Aliquote ouverte", opened.map(({ prep, open }) => [open.id, `${open.label} · ${StockTracking.format(open.remainingVolume)} ${open.volumeUnit} restants · ${open.location || "—"} · ${prep.label}`])) + stockNumber("smQuantity", "Volume utilisé");
   const preferred = modal.dataset.entityId; if (preferred && Array.from(host.querySelector("#smEntity")?.options || []).some(option => option.value === preferred)) host.querySelector("#smEntity").value = preferred;
   const syncLocation = () => { const prep = aliquots.preparations.find(row => row.id === host.querySelector("#smEntity")?.value), locationHost = host.querySelector("#smAliquotLocationField"); if (!locationHost || !prep) return; locationHost.innerHTML = stockSelect("smFrom", "Localisation source", prep.locations.filter(row => row.quantity > 0).map(row => [row.location, `${row.location} · ${row.quantity} disponible${row.quantity > 1 ? "s" : ""}`])); const quantity = host.querySelector("#smQuantity"); if (quantity && mode === "open_new") { quantity.max = prep.volume; quantity.closest("label")?.querySelector("span")?.replaceChildren(`Volume utilisé — ${prep.volumeUnit}`); } };
   const syncOpenLimit = () => { if(mode!=="open_existing")return;const pair=opened.find(({open})=>open.id===host.querySelector("#smEntity")?.value),quantity=host.querySelector("#smQuantity");if(pair&&quantity){quantity.max=pair.open.remainingVolume;quantity.closest("label")?.querySelector("span")?.replaceChildren(`Volume utilisé — ${pair.open.volumeUnit}`);} };
@@ -6375,12 +6825,12 @@ function syncAliquotOpeningLocations(modal, item) {
 }
 function renderStockManagerFields() {
   const modal = document.querySelector("#stockManagerDialog"), item = items.find(row => row.id === modal.querySelector("#stockManagerItemId").value); if (!item) return;
-  const action = modal.querySelector("#stockManagerAction").value, tracking = StockTracking.normalizeTracking(item), openUnit = StockTracking.trackingLevel(tracking), inputStep = openUnit.kind === "continuous" ? "any" : "1", aliquots = StockTracking.normalizeAliquots(item), locations = inventoryLocations.map(place => [place,place]), containers = tracking.openContainers.filter(row => row.status === "open").map(row => { const remaining=StockTracking.fromBaseQuantity(row.remaining,tracking); return [row.id,`${row.label} · ${row.location} · ${StockTracking.format(remaining)} ${StockTracking.plural(remaining,openUnit.singular,openUnit.plural)}`]; }), preps = aliquots.preparations.filter(row => row.status === "active").map(row => [row.id,`${row.label} · ${StockTracking.remainingAliquots(row)} restantes`]); let html="";
-  if (action === "received") html = tracking.mode === "simple" ? stockNumber("smQuantity",`Quantité reçue — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1") : stockSelect("smTo","Localisation",locations)+stockNumber("smQuantity","Nombre de contenants fermés");
+  const action = modal.querySelector("#stockManagerAction").value, tracking = StockTracking.normalizeTracking(item), openUnit = StockTracking.trackingLevel(tracking), aliquots = StockTracking.normalizeAliquots(item), locations = inventoryLocations.map(place => [place,place]), containers = tracking.openContainers.filter(row => row.status === "open").map(row => { const remaining=StockTracking.fromBaseQuantity(row.remaining,tracking); return [row.id,`${row.label} · ${row.location} · ${StockTracking.format(remaining)} ${StockTracking.plural(remaining,openUnit.singular,openUnit.plural)}`]; }), preps = aliquots.preparations.filter(row => row.status === "active").map(row => [row.id,`${row.label} · ${StockTracking.remainingAliquots(row)} restantes`]); let html="";
+  if (action === "received") html = tracking.mode === "simple" ? stockNumber("smQuantity",`Quantité reçue — ${item.unit}`) : stockSelect("smTo","Localisation",locations)+stockNumber("smQuantity","Nombre de contenants fermés");
   else if (action === "container_opened") html = stockSelect("smFrom","Localisation du contenant fermé",tracking.closedByLocation.filter(row=>row.quantity).map(row=>[row.location,`${row.location} (${row.quantity})`]));
-  else if (action === "consumed" && tracking.mode === "simple") html = stockNumber("smQuantity",`Quantité utilisée — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1",StockTracking.simpleRawAvailable(item));
-  else if (action === "consumed") html = (containers.length ? stockSelect("smEntity","Contenant à utiliser en premier",containers) : `<input id="smEntity" type="hidden" value="">`)+stockNumber("smQuantity",`Quantité utilisée — ${openUnit.plural}`,inputStep);
-  else if (action === "stock_recounted" && tracking.mode === "simple") html=`<div class="stock-source-summary"><span>Stock enregistré</span><strong>${StockTracking.format(item.quantity)} ${escapeHtml(item.unit)}</strong><small>La quantité saisie remplacera le stock enregistré.</small></div>${stockNumber("smQuantity",`Stock physique compté — ${item.unit}`,StockTracking.normalizeUnitLabel(item.unit).kind === "continuous" ? "any" : "1")}`;
+  else if (action === "consumed" && tracking.mode === "simple") html = stockNumber("smQuantity",`Quantité utilisée — ${item.unit}`,StockTracking.simpleRawAvailable(item));
+  else if (action === "consumed") html = (containers.length ? stockSelect("smEntity","Contenant à utiliser en premier",containers) : `<input id="smEntity" type="hidden" value="">`)+stockNumber("smQuantity",`Quantité utilisée — ${openUnit.plural}`);
+  else if (action === "stock_recounted" && tracking.mode === "simple") html=`<div class="stock-source-summary"><span>Stock enregistré</span><strong>${StockTracking.format(item.quantity)} ${escapeHtml(item.unit)}</strong><small>La quantité saisie remplacera le stock enregistré.</small></div>${stockNumber("smQuantity",`Stock physique compté — ${item.unit}`)}`;
   else if (action === "stock_recounted") { const recountLocations=Array.from(new Set([item.location,...getItemLocations(item),...tracking.closedByLocation.map(row=>row.location),...inventoryLocations].filter(Boolean))),outer=tracking.packagingLevels[0],feminine=isLikelyFeminineUnit(outer.singular),closed=feminine?"fermées":"fermés",registered=feminine?"enregistrées":"enregistrés",counted=feminine?"comptées":"comptés";html=`<div class="stock-source-summary"><span>Comptage absolu</span><strong>${StockTracking.totalClosed(tracking)} ${escapeHtml(outer.plural)} ${closed} ${registered}</strong><small>Le nombre saisi remplacera uniquement les contenants ${closed} de la localisation choisie. Les contenants ouverts resteront inchangés.</small></div>${stockSelect("smFrom","Localisation",recountLocations.map(place=>{const current=tracking.closedByLocation.find(row=>row.location===place)?.quantity||0;return[place,`${place} — ${current} ${outer.plural} ${closed}`]}))}${stockNumber("smQuantity",`Nombre de ${outer.plural} ${closed} ${counted}`)}`; }
   else if (action === "recounted") html=renderContainerRecountFields(item);
   else if (action === "moved") html = stockSelect("smEntityType","Type",[["closed","Contenant fermé"],["container","Contenant ouvert"]])+stockSelect("smFrom","Origine",locations)+stockSelect("smTo","Destination",locations)+stockNumber("smQuantity","Quantité (1 pour un contenant ouvert)");
@@ -6482,7 +6932,7 @@ async function executeAtomicStockOperation(itemId, operation) {
       const sourceItem=state.inventoryItems[index],previousQuantity=StockTracking.available(sourceItem),applied=StockTracking.apply(sourceItem,{...operation},{name:currentName,emoji:userIcons[currentName]||""}),events=applied.events||[applied.event],isRecount=["recounted","containers_recounted"].includes(operation.type),currentQuantity=StockTracking.available(applied.item),historyUnit=StockTracking.normalizeTracking(applied.item).mode==="containers"?StockTracking.normalizeTracking(applied.item).packagingLevels[0].plural:applied.item.unit,difference=Number((currentQuantity-previousQuantity).toFixed(6)),note=normalizeMultilineText(operation.comment||"");
       state.inventoryItems[index]={...sourceItem,quantity:applied.item.quantity,stockTracking:applied.item.stockTracking,aliquotTracking:applied.item.aliquotTracking,locations:applied.item.locations,location:applied.item.location};
       state.stockMovements=Array.isArray(state.stockMovements)?state.stockMovements:[];
-      if(StockTracking.normalizeTracking(applied.item).traceabilityMode==="detailed"||isRecount)state.stockMovements.push(...events);
+      state.stockMovements.push(...events);
       state.stockOperations=Array.isArray(state.stockOperations)?state.stockOperations:[];
       state.stockOperations.push({operationId:operation.operationId,itemId,at:applied.event.timestamp,type:operation.type});
       state.history=Array.isArray(state.history)?state.history:[];
@@ -8004,7 +8454,7 @@ async function confirmReceiveInventory() {
     return;
   }
 
-  const confirmedQuantity = Number(receiveInventoryFields.receiveQuantity.value);
+  const confirmedQuantity = StockTracking.parseLocalizedNumber(receiveInventoryFields.receiveQuantity.value);
   const unit = receiveInventoryFields.receiveUnit.value || "";
 
   if (!Number.isFinite(confirmedQuantity) || confirmedQuantity < 0) {
@@ -9382,7 +9832,7 @@ function renderLocations() {
 
 function renderExplorerColumn(number,title,content,type){const canAdd=(type==="location"&&selectedRoomId)||(type==="sublocation"&&selectedLocationId),addLabel=type==="location"?"Localisation":"Sous-localisation";return `<section class="location-explorer-column"><header><span class="location-step">${number}</span><strong>${title}</strong>${type!=="room"?`<button class="text-btn location-column-add" type="button" data-add-hierarchy="${type}" ${canAdd?"":"disabled"}>+ ${addLabel}</button>`:""}</header><div class="location-explorer-panel"><div class="location-explorer-list" role="listbox">${content&&content.startsWith("<")?content:`<p class="location-column-empty">${escapeHtml(content)}</p>`}</div></div></section>`;}
 function renderLocationPathBar(){const room=hierarchyRoom(selectedRoomId),location=hierarchyLocation(selectedLocationId),sub=hierarchySublocation(selectedSublocationId),segments=[];if(room)segments.push(`<button type="button" data-breadcrumb-level="room"><span aria-hidden="true">${room.icon||"📍"}</span>${escapeHtml(room.name)}</button>`);if(location)segments.push(`<button type="button" data-breadcrumb-level="location"><span aria-hidden="true">${location.icon||"📍"}</span>${escapeHtml(location.name)}</button>`);if(sub)segments.push(`<strong><span class="location-path-sublocation-marker" aria-hidden="true"></span>${escapeHtml(sub.name)}</strong>`);return `<div class="location-path-bar"><nav class="location-path" aria-label="Chemin sélectionné">${segments.length?segments.join('<span class="location-path-chevron" aria-hidden="true">›</span>'):`<span class="location-path-empty">Sélectionnez une salle pour commencer</span>`}</nav><div class="location-path-actions"><button class="primary-btn compact-btn" type="button" data-add-hierarchy="item" ${room?"":"disabled"}>+ Ajouter un item</button></div></div>`;}
-function renderHierarchyContent(){if(!selectedRoomId)return `<section class="location-content-welcome"><span aria-hidden="true">📍</span><p>Sélectionnez une salle pour explorer ses localisations et ses items.</p></section>`;const room=hierarchyRoom(selectedRoomId),location=hierarchyLocation(selectedLocationId),sub=hierarchySublocation(selectedSublocationId);let title=room.name,meta=`Salle · ${formatLocationCount(uniqueEntryCount(roomEntries(room.id)),"item")}`,entries=roomEntries(room.id,true),sectionTitle="Items directement dans cette salle",empty="Aucun item directement dans cette salle.",hide=true,actions=allItemsButton();if(location){title=location.name;meta=`Localisation dans ${room.name} · ${formatLocationCount(uniqueEntryCount(locationEntries(location.id)),"item")}`;entries=locationEntries(location.id,true);sectionTitle="Items directement dans cette localisation";empty="Aucun item directement dans cette localisation.";hide=false;}if(sub){title=sub.name;meta=`Sous-localisation dans ${location.name} · ${formatLocationCount(uniqueEntryCount(sublocationEntries(sub.id)),"item")}`;entries=sublocationEntries(sub.id);sectionTitle="Items dans cette sous-localisation";empty="Aucun item dans cette sous-localisation.";actions="";}else if(location&&locationScopeMode==="all"){entries=locationEntries(location.id);sectionTitle="Tous les items de la localisation";}else if(!location&&locationScopeMode==="all"){entries=roomEntries(room.id);sectionTitle="Tous les items de la salle";hide=false;}return `<section class="location-active-content"><header><div><h3>${escapeHtml(title)}</h3><p>${escapeHtml(meta)}</p></div><div class="location-content-actions">${actions}</div></header>${directItemsSection(entries,sectionTitle,empty,hide)}</section>`;}
+function renderHierarchyContent(){if(!selectedRoomId)return `<section class="location-content-welcome"><span aria-hidden="true">📍</span><p>Sélectionnez une salle pour explorer ses localisations et ses items.</p></section>`;const room=hierarchyRoom(selectedRoomId),location=hierarchyLocation(selectedLocationId),sub=hierarchySublocation(selectedSublocationId);let title=room.name,meta=`Salle · ${formatLocationCount(uniqueEntryCount(roomEntries(room.id)),"item")}`,entries=roomEntries(room.id,true),sectionTitle="Items directement dans cette salle",empty="Aucun item directement dans cette salle.",hide=true,actions=allItemsButton();if(location){title=location.name;meta=`Localisation dans ${room.name} · ${formatLocationCount(uniqueEntryCount(locationEntries(location.id)),"item")}`;entries=locationEntries(location.id,true);sectionTitle="Items directement dans cette localisation";empty="Aucun item directement dans cette localisation.";hide=false;}if(sub){title=sub.name;meta=`Sous-localisation dans ${location.name} · ${formatLocationCount(uniqueEntryCount(sublocationEntries(sub.id)),"item")}`;entries=sublocationEntries(sub.id);sectionTitle="Items dans cette sous-localisation";empty="Aucun item dans cette sous-localisation.";actions="";}else if(location&&locationScopeMode==="all"){entries=locationEntries(location.id);sectionTitle="Tous les items de la localisation";}else if(!location&&locationScopeMode==="all"){entries=roomEntries(room.id);sectionTitle="Tous les items de la salle";hide=false;}const printScope=sub?"sublocation":location?"location":"room",printId=sub?sub.id:location?location.id:room.id;actions+=renderLocationPrintButton(printScope,printId);return `<section class="location-active-content"><header><div><h3>${escapeHtml(title)}</h3><p>${escapeHtml(meta)}</p></div><div class="location-content-actions">${actions}</div></header>${directItemsSection(entries,sectionTitle,empty,hide)}</section>`;}
 
 function hierarchyHeader(title, icon, meta, backLabel, backAction, addLabel = "", addType = "") {
   return `<div class="inventory-detail-return-row"><button class="ghost-btn inventory-back-btn" type="button" data-hierarchy-back><span aria-hidden="true">←</span> ${escapeHtml(backLabel)}</button></div><header class="inventory-detail-header"><div class="inventory-detail-title location-detail-title">${icon ? `<span class="room-icon" aria-hidden="true">${icon}</span>` : ""}<div class="location-detail-title-text"><h3>${escapeHtml(title)}</h3><div class="inventory-detail-meta"><span>${escapeHtml(meta)}</span></div></div></div>${addLabel ? `<div class="detail-actions inventory-detail-actions"><button class="primary-btn compact-btn" type="button" data-add-hierarchy="${addType}">${escapeHtml(addLabel)}</button></div>` : ""}</header>`;
@@ -9390,6 +9840,80 @@ function hierarchyHeader(title, icon, meta, backLabel, backAction, addLabel = ""
 function directItemsSection(entries, title, emptyText, hidePathColumns = false) { return `<section class="hierarchy-direct-items"><h4>${escapeHtml(title)}</h4>${entries.length ? renderLocationDetailTable(entries,{hidePathColumns}) : `<div class="location-detail-empty"><p>${escapeHtml(emptyText)}</p></div>`}</section>`; }
 function allItemsButton() { return `<button class="ghost-btn hierarchy-all-items" type="button" data-show-all-items>${locationScopeMode === "all" ? "Afficher uniquement les items directs" : "Afficher tous les items"}</button>`; }
 
+function renderLocationPrintButton(scope, id) {
+  return `<button class="ghost-btn hierarchy-print-btn" type="button" onclick="printLocationInventory('${escapeHtml(scope)}','${escapeHtml(id)}')"><span aria-hidden="true">🖨️</span> Imprimer</button>`;
+}
+
+function resolveHierarchyPrintTarget(scope, id) {
+  if (scope === "room") { const room = hierarchyRoom(id); return { room, location: null, sub: null, entries: room ? roomEntries(id) : [] }; }
+  if (scope === "location") { const location = hierarchyLocation(id), room = hierarchyRoom(location?.roomId); return { room, location, sub: null, entries: location ? locationEntries(id) : [] }; }
+  const sub = hierarchySublocation(id), location = hierarchyLocation(sub?.locationId), room = hierarchyRoom(location?.roomId);
+  return { room, location, sub, entries: sub ? sublocationEntries(id) : [] };
+}
+
+function printPlacementLocationParts(placement, scope) {
+  const location = placement?.locationId ? hierarchyLocation(placement.locationId) : null;
+  const sub = placement?.sublocationId ? hierarchySublocation(placement.sublocationId) : null;
+  if (scope === "room") return [location?.name, sub?.name].filter(Boolean);
+  if (scope === "location") return [sub?.name].filter(Boolean);
+  return [];
+}
+
+function printQuantityLabel(record) {
+  const tracking = StockTracking.normalizeTracking(record);
+  if (tracking.mode !== "containers") return formatInventoryCardQuantity(record.quantity, record.unit);
+  const outer = tracking.packagingLevels[0];
+  const aliquots = StockTracking.normalizeAliquots(record);
+  const closed = tracking.closedByLocation.reduce((sum, row) => sum + row.quantity, 0);
+  const opened = tracking.openContainers.filter(row => row.status === "open");
+  const aliquotCount = aliquots.preparations.filter(row => row.status === "active").reduce((sum, prep) => sum + prep.locations.reduce((n, row) => n + row.quantity, 0), 0);
+  const parts = [];
+  if (closed) parts.push(`${closed} ${StockTracking.plural(closed, outer.singular, outer.plural)} fermé${closed > 1 ? "s" : ""}`);
+  if (opened.length) {
+    const unit = StockTracking.trackingLevel(tracking), remaining = StockTracking.fromBaseQuantity(opened.reduce((sum, row) => sum + row.remaining, 0), tracking);
+    parts.push(`${opened.length} ${StockTracking.plural(opened.length, outer.singular, outer.plural)} ouvert${opened.length > 1 ? "s" : ""} (${StockTracking.format(remaining)} ${StockTracking.plural(remaining, unit.singular, unit.plural)} restants)`);
+  }
+  if (aliquotCount) parts.push(`${aliquotCount} aliquote${aliquotCount > 1 ? "s" : ""}`);
+  return escapeHtml(parts.join(" · ") || "Aucun stock");
+}
+
+function printLocationInventory(scope, id) {
+  const printArea = document.querySelector("#printArea");
+  const target = resolveHierarchyPrintTarget(scope, id);
+  if (!printArea || !target.room) return;
+  const path = [target.room.name, target.location?.name, target.sub?.name].filter(Boolean);
+  const locationEligible = scope !== "sublocation";
+  const itemRows = new Map();
+  target.entries.forEach(entry => {
+    const key = entry.record.id;
+    if (!itemRows.has(key)) itemRows.set(key, { record: entry.record, locations: new Set() });
+    const parts = locationEligible ? printPlacementLocationParts(entry.placement, scope) : [];
+    itemRows.get(key).locations.add(parts.join("\n") || "—");
+  });
+  const sortedRows = Array.from(itemRows.values()).sort((a, b) => String(a.record.name || "").localeCompare(String(b.record.name || ""), "fr", { sensitivity: "base" }));
+  const rowsWithLocationText = sortedRows.map(row => ({ ...row, locationText: Array.from(row.locations).join("\n\n") }));
+  const distinctLocations = new Set(rowsWithLocationText.map(row => row.locationText));
+  const showLocationColumn = locationEligible && distinctLocations.size > 1;
+  const columnCount = showLocationColumn ? 6 : 5;
+  const rows = rowsWithLocationText
+    .map(({ record, locationText }) => {
+      const references = normalizeReferences(record.references);
+      const quantity = printQuantityLabel(record);
+      const locationCell = showLocationColumn ? `<td>${escapeHtml(locationText).replace(/\n/g, "<br>")}</td>` : "";
+      return `<tr><td>${escapeHtml(record.name || "")}</td>${locationCell}<td>${escapeHtml(references.primary.reference || "—")}<br>${escapeHtml(references.primary.supplier || "—")}</td><td>${quantity}</td><td class="print-blank-cell"></td><td class="print-blank-cell"></td></tr>`;
+    }).join("");
+  printArea.innerHTML = `
+    <header class="print-header">
+      <h1>${escapeHtml(path.join(" → "))}</h1>
+      <p>Inventaire imprimé le ${escapeHtml(new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeStyle: "short" }).format(new Date()))} par ${escapeHtml(currentName)}</p>
+    </header>
+    <table class="print-table">
+      <thead><tr><th>Nom de l’item</th>${showLocationColumn ? "<th>Localisation</th>" : ""}<th>Référence</th><th>Quantité</th><th>Quantité réelle</th><th>Remarques</th></tr></thead>
+      <tbody>${rows || `<tr><td colspan="${columnCount}">Aucun item enregistré à cet emplacement.</td></tr>`}</tbody>
+    </table>
+  `;
+  window.print();
+}
 
 let hierarchyCreationPending = false;
 let hierarchyEntityContext = null;

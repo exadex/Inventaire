@@ -121,7 +121,7 @@
       orderId: order.id
     });
 
-    if (normalized.traceabilityMode === "detailed") state.stockMovements.push(event);
+    state.stockMovements.push(event);
     state.history.unshift({
       date: order.addedToInventoryAt,
       action: "Réception de commande",

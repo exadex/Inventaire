@@ -83,7 +83,7 @@
     const normalized = {
       version: VERSION,
       mode: raw.mode === "containers" ? "containers" : "simple",
-      traceabilityMode: raw.traceabilityMode === "detailed" ? "detailed" : "periodic",
+      traceabilityMode: "detailed",
       packagingLevels: levels,
       trackingUnitKey: trackingLevel.key,
       trackingUnit: trackingLevel.plural,
@@ -130,7 +130,6 @@
   function validateUnitQuantity(value, unit) {
     const parsed = parseLocalizedNumber(value);
     if (!Number.isFinite(parsed) || parsed < 0) throw new Error("Saisissez une quantité positive valide.");
-    if ((unit?.kind || "discrete") === "discrete" && !Number.isInteger(parsed)) throw new Error(`${unit?.plural || "Cette unité"} se compte uniquement en nombres entiers.`);
     return round(parsed);
   }
   function packagingPreview(levelsInput, trackingUnitKey) {

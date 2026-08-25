@@ -57,6 +57,7 @@
           <button class="nav-item" data-view="samples">&Eacute;tudes clients</button>
           <button class="nav-item" data-view="locations">Localisations</button>
           <button class="nav-item" data-view="experiments">Expériences</button>
+          <button class="nav-item" data-view="sourcing">Sourcing</button>
           <button class="nav-item" data-view="orders">&Agrave; commander</button>
           <button class="nav-item" data-view="contacts">Contacts</button>
           <button class="nav-item" data-view="agents"><span aria-hidden="true">✦</span> Agents</button>
@@ -291,6 +292,58 @@
           </div>
         </section>
 
+        <section class="view" id="sourcingView">
+          <div class="client-studies-header sourcing-page-header">
+            <div><p class="eyebrow">BIOBANQUE ET PRÉLÈVEMENTS</p><div class="client-studies-title-row"><h3>Sourcing</h3></div></div>
+            <div class="orders-header-actions">
+              <button id="addSourcingPatientBtn" class="primary-btn" type="button">Nouveau patient</button>
+            </div>
+          </div>
+
+          <section class="client-study-controls orders-controls sourcing-controls" aria-label="Recherche des patients">
+            <label class="client-study-search order-control-field" for="sourcingSearchInput">
+              <span>Rechercher</span>
+              <input
+                id="sourcingSearchInput"
+                type="search"
+                placeholder="N° patient, initiales, étude…"
+              />
+              <strong class="client-study-result-count" id="sourcingResultCount" aria-live="polite"></strong>
+            </label>
+            <label class="order-control-field" for="sourcingSortSelect">
+              <span>Tri</span>
+              <select class="select" id="sourcingSortSelect">
+                <option value="recent">Plus récents</option>
+                <option value="oldest">Plus anciens</option>
+                <option value="number-asc">N° patient croissant</option>
+                <option value="number-desc">N° patient décroissant</option>
+              </select>
+              <span class="order-control-secondary" aria-hidden="true"></span>
+            </label>
+          </section>
+
+          <div class="client-study-kpis" id="sourcingMetrics"></div>
+
+          <div id="sourcingDetail"></div>
+          <div class="sample-table-wrap sourcing-table-wrap" id="sourcingGrid">
+            <table class="sample-table sourcing-list-table">
+              <thead>
+                <tr>
+                  <th scope="col">N° patient</th>
+                  <th scope="col">Genre</th>
+                  <th scope="col">Âge</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Date de réception</th>
+                  <th scope="col">Temps de culture</th>
+                  <th scope="col">Assignation étude</th>
+                  <th scope="col">Checkpoint</th>
+                </tr>
+              </thead>
+              <tbody id="sourcingTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
         <section class="view" id="ordersView">
           <div class="client-studies-header orders-page-header">
             <div>
@@ -479,6 +532,8 @@
       </main>
     </div>
 
+    <div id="printArea" class="print-only" aria-hidden="true"></div>
+
     <dialog id="restoreBackupDialog" class="modal backup-restore-modal">
       <form id="restoreBackupForm">
         <div class="modal-header">
@@ -539,7 +594,7 @@
           <div class="form-grid">
             <label><span>Nom <span class="required-star">*</span></span><input id="name" required /></label>
             <label><span>Catégorie <span class="required-star">*</span></span><select id="category" required></select></label>
-            <label><span>Quantité <span class="required-star">*</span></span><input id="quantity" type="number" min="0" step="any" data-quantity-step="1" required /></label>
+            <label><span>Quantité <span class="required-star">*</span></span><input id="quantity" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" data-quantity-step="1" required /></label>
             <label><span>Unité <span class="required-star">*</span></span><input id="unit" required /></label>
             <label><span>Seuil minimum <span class="required-star">*</span></span><input id="minStock" type="number" min="0" step="any" data-quantity-step="1" required /></label>
             <section class="placement-editor full-width" aria-labelledby="placementsLegend">
@@ -574,7 +629,6 @@
           <summary>Suivi du stock</summary>
           <div class="stock-tracking-config-body">
             <input id="stockTrackingMode" type="hidden" value="simple">
-            <input id="traceabilityMode" type="hidden" value="periodic">
             <div class="tracking-option-stack">
               <label class="tracking-option-card"><input id="detailedPackagingEnabled" type="checkbox"><span><strong>Suivi détaillé du conditionnement</strong><small>Ajoute une répartition détaillée des contenants fermés et ouverts, de leur contenu et de leur localisation.</small><em>Module ajouté dans la fiche : Répartition du stock</em></span></label>
               <div id="packagingConfig" class="packaging-config hidden">
@@ -583,8 +637,6 @@
                 <label id="trackingUnitField" class="hidden"><span>Unité de comptage des contenants ouverts</span><select id="trackingUnitKey"></select><small>Choisissez l’unité réellement utilisée lors des comptages.</small><small id="trackingUnitError" class="field-validation-message hidden" aria-live="polite"></small></label>
                 <p id="packagingPreview" class="packaging-preview"></p>
               </div>
-              <label class="tracking-option-card"><input id="detailedTraceabilityEnabled" type="checkbox"><span><strong>Traçabilité de chaque mouvement</strong><small>Chaque utilisation doit être enregistrée avec la quantité, l’utilisateur et la date.</small><em>Module ajouté dans la fiche : Journal des mouvements</em></span></label>
-              <div id="traceabilityExplanation" class="tracking-option-explanation hidden"><span>Caroline a utilisé 2 aliquotes le 17 juillet 2026 à 10:42.</span><span>Julien a utilisé 0,1 mg de produit pour l’expérience X.</span></div>
               <label class="tracking-option-card"><input id="aliquotTrackingEnabled" type="checkbox"><span><strong>Préparations et aliquotes</strong><small>Permet de préparer, localiser, ouvrir, déplacer et consommer des aliquotes rattachées à cet item.</small><em>Module ajouté dans la fiche : Préparations et aliquotes</em></span></label>
               <p id="aliquotTrackingExplanation" class="tracking-option-explanation hidden"></p>
               <p id="trackingOptionError" class="field-validation-message hidden" role="alert"></p>
@@ -851,7 +903,7 @@
 
           <label>
             <span id="stockAmountLabel">Quantité</span>
-            <input id="stockAmount" type="number" min="0" step="any" data-quantity-step="1" required />
+            <input id="stockAmount" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" data-quantity-step="1" required />
           </label>
 
           <label>
@@ -1070,6 +1122,136 @@
       </form>
     </dialog>
 
+    <dialog id="sourcingDialog" class="modal sourcing-modal">
+      <form id="sourcingForm" method="dialog" novalidate>
+        <div class="modal-header">
+          <h3 id="sourcingModalTitle">Nouveau patient</h3>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
+        </div>
+
+        <input type="hidden" id="sourcingPatientId" />
+
+        <details class="migration-section sourcing-form-section" open>
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Informations de réception</summary>
+          <div class="form-grid">
+            <label><span>N° de patient <span class="required-star">*</span></span><input id="patientNumber" required /></label>
+            <label><span>Type</span><select id="patientType"><option value=""></option><option value="Lean">Lean</option><option value="Surpoids">Surpoids</option><option value="Obèse">Obèse</option></select></label>
+            <label><span>Date de réception</span><input id="patientReceptionDate" type="date" /></label>
+            <label><span>Temps de culture (semaines)</span><input id="patientCultureWeeks" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
+            <label><span>Quantité de départ</span><input id="patientStartQuantity" placeholder="ex. 9 mL" /></label>
+            <label><span>Nombre de puits réalisés</span><input id="patientWellsCount" placeholder="ex. 4 puits (P6)" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Information du lot</summary>
+          <div class="form-grid">
+            <label><span>Date de validation du lot</span><input id="patientLotValidationDate" type="date" /></label>
+            <label><span>Assignation étude</span><input id="patientStudyAssignment" placeholder="ex. MIB-002 &amp; ASH-001" /></label>
+            <label><span>Si cession — à qui</span><input id="patientCessionTo" /></label>
+            <label><span>Si cession — quand</span><input id="patientCessionDate" type="date" /></label>
+            <label><span>Utilisation et stockage</span><input id="patientUsageStorage" /></label>
+            <label><span>Date fin de lot et élimination</span><input id="patientLotEndDate" type="date" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Informations Patient</summary>
+          <div class="form-grid">
+            <label><span>Initiales</span><input id="patientInitials" /></label>
+            <label><span>Site du prélèvement</span><input id="patientCollectionSite" /></label>
+            <label><span>Genre</span><input id="patientGender" /></label>
+            <label><span>Âge</span><input id="patientAge" type="text" inputmode="numeric" pattern="\d*" /></label>
+            <label><span>Taille (cm)</span><input id="patientHeight" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
+            <label><span>Poids (kg)</span><input id="patientWeight" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
+            <label><span>IMC</span><input id="patientBmi" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
+            <label><span>Technique</span><input id="patientTechnique" /></label>
+            <label><span>Chirurgien</span><input id="patientSurgeon" /></label>
+            <label><span>Caractéristique patient</span><input id="patientCharacteristic" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Co-morbidité / si obèse</summary>
+          <div class="form-grid">
+            <label><span>NASH</span><select id="patientNash"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
+            <label><span>Apnée du sommeil</span><select id="patientSleepApnea"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
+            <label><span>DT2</span><select id="patientT2d"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
+            <label><span>Autre</span><input id="patientOtherComorbidity" /></label>
+            <label><span>Intervention</span><input id="patientIntervention" /></label>
+            <label><span>IMC MAX</span><input id="patientBmiMax" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
+            <label><span>Traitement d'intention</span><input id="patientIntentionTreatment" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Contrôle Qualité</summary>
+          <div class="form-grid">
+            <label><span>Myco</span><input id="patientQcMyco" /></label>
+            <label><span>Bactéries</span><input id="patientQcBacteria" /></label>
+            <label><span>Levures</span><input id="patientQcYeast" /></label>
+            <label><span>XTT</span><input id="patientQcXtt" /></label>
+            <label><span>Collagénase</span><input id="patientQcCollagenase" /></label>
+            <label><span>ASC</span><input id="patientQcAsc" /></label>
+            <label class="full-label"><span>Remarques</span><textarea id="patientQcRemarks" rows="3"></textarea></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>ARN</summary>
+          <div class="form-grid">
+            <label><span>Explant T0</span><input id="patientArnExplantT0" /></label>
+            <label><span>WAT T14</span><input id="patientArnWatT14" /></label>
+            <label><span>BAT T14</span><input id="patientArnBatT14" /></label>
+            <label><span>Prebat ± AMPc</span><input id="patientArnPrebatAmpc" /></label>
+            <label><span>Inductible en BAT (qPCR UCP1 positif)</span><input id="patientArnInducibleBat" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Milieu conditionné (sécrétions)</summary>
+          <div class="form-grid">
+            <label><span>Sécrétions T0</span><input id="patientSecretionsT0" /></label>
+            <label><span>Sécrétions T14</span><input id="patientSecretionsT14" /></label>
+            <label><span>Sécrétions BAT T14</span><input id="patientSecretionsBatT14" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Fixation</summary>
+          <div class="form-grid">
+            <label><span>Fixation T0</span><input id="patientFixationT0" /></label>
+            <label><span>Fixation T14</span><input id="patientFixationT14" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Congélation</summary>
+          <div class="form-grid">
+            <label><span>Congélation</span><select id="patientFreezing"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
+            <label><span>Quantité</span><input id="patientFreezingQuantity" /></label>
+            <label><span>Décongélation</span><input id="patientFreezingThaw" /></label>
+          </div>
+        </details>
+
+        <details class="migration-section sourcing-form-section">
+          <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Remarque générale</summary>
+          <label class="full-label"><span>Remarque générale</span><textarea id="patientGeneralRemark" rows="3"></textarea></label>
+        </details>
+
+        <p id="sourcingError" class="confirmation-modal-error hidden" role="alert"></p>
+
+        <div class="modal-actions">
+          <button type="button" class="danger-btn" id="deleteSourcingPatientBtn">Supprimer</button>
+
+          <div class="modal-actions-right">
+            <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
+            <button class="primary-btn" id="saveSourcingPatientBtn" type="button">Enregistrer</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
     <dialog id="orderDialog" class="modal">
       <form id="orderForm" method="dialog">
         <div class="modal-header">
@@ -1217,7 +1399,7 @@
         <div class="form-grid">
           <label>
             Quantité à ajouter
-            <input id="receiveQuantity" type="number" min="0" step="any" data-quantity-step="1" required />
+            <input id="receiveQuantity" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" data-quantity-step="1" required />
           </label>
 
           <label>

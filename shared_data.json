@@ -20598,7 +20598,70 @@
       ]
     }
   ],
-  "experiments": [],
+  "experiments": [
+    {
+      "id": "exp-1787664939753",
+      "name": "Test APHM",
+      "clientCode": "APHM003",
+      "templateId": "custom-protocol",
+      "templateName": "Nouveau protocole",
+      "conditions": 1,
+      "replicates": 1,
+      "status": "draft",
+      "createdAt": "2026-08-25T13:35:39.753Z",
+      "statusChangedAt": "2026-08-25T13:35:39.753Z",
+      "notes": "48h de culture\n57 puits, plaques 24p",
+      "rtqpcrConfig": null,
+      "createdBy": "Caroline",
+      "updatedAt": "25/08/2026 15:35",
+      "templateNotes": "",
+      "items": [
+        {
+          "type": "inventory",
+          "inventoryItemId": "itm-CSV-0018",
+          "quantity": 140,
+          "unit": "mL"
+        },
+        {
+          "type": "inventory",
+          "inventoryItemId": "web-1786452661627",
+          "quantity": 0.28,
+          "unit": "mL"
+        },
+        {
+          "type": "custom",
+          "name": "Ascorbic acid",
+          "quantity": 140,
+          "unit": "µL"
+        },
+        {
+          "type": "custom",
+          "name": "Heparine",
+          "quantity": 1.575,
+          "unit": "mL"
+        },
+        {
+          "type": "custom",
+          "name": "Seringue 1mL",
+          "quantity": 20,
+          "unit": "seringues"
+        },
+        {
+          "type": "inventory",
+          "inventoryItemId": "itm-web-1783931436295-xj2mx3",
+          "quantity": 3,
+          "unit": "plaque"
+        },
+        {
+          "type": "custom",
+          "name": "Tissu",
+          "quantity": 3,
+          "unit": "mg"
+        }
+      ],
+      "consumedItems": []
+    }
+  ],
   "orders": [
     {
       "id": "ord-1785233419378",
@@ -24971,6 +25034,12 @@
     }
   ],
   "history": [
+    {
+      "date": "25/08/2026 15:35",
+      "user": "Caroline",
+      "action": "Experience créée",
+      "detail": "Caroline a créé Test APHM depuis Nouveau protocole."
+    },
     {
       "date": "25/08/2026 15:30",
       "user": "Caroline",
@@ -33226,5 +33295,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T13:30:04.339Z"
+  "updatedAt": "2026-08-25T13:35:39.756Z"
 }

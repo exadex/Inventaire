@@ -4185,11 +4185,11 @@
     },
     {
       "id": "itm-CSV-0051",
-      "name": "Seringue luer lock 50 mL",
+      "name": "Seringue 50mL - luer lock",
       "category": "Procédé ExAdEx L2",
       "quantity": 1,
-      "unit": "mL",
-      "minStock": 1,
+      "unit": "cartons",
+      "minStock": 0,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -4197,7 +4197,7 @@
       "tags": [
         "Seringue luer lock"
       ],
-      "notes": "25",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -4222,24 +4222,39 @@
       "createdAt": "28/07/2026 14:59",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "custom-seringue",
+            "singular": "seringue",
+            "plural": "seringues",
+            "kind": "discrete",
+            "contains": 25
           }
         ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
+        "trackingUnitKey": "custom-seringue",
+        "trackingUnit": "seringues",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-08-25T13:30:04.336Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -24957,6 +24972,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 15:30",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Seringue 50mL - luer lock."
+    },
+    {
       "date": "25/08/2026 15:27",
       "user": "Caroline",
       "action": "Item modifié",
@@ -33205,5 +33226,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T13:27:30.222Z"
+  "updatedAt": "2026-08-25T13:30:04.339Z"
 }

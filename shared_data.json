@@ -148,7 +148,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -24387,6 +24387,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:10",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Luminex® Multiplex Assay Customization Tool."
+    },
+    {
       "id": "history-operation-mt8g25mb-3546539726-801908872",
       "operationId": "operation-mt8g25mb-3546539726-801908872",
       "date": "25/08/2026 11:10",
@@ -31970,5 +31976,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:10:02.320Z"
+  "updatedAt": "2026-08-25T09:10:18.863Z"
 }

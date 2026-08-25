@@ -8745,7 +8745,7 @@
       "id": "itm-web-1783931436295-cgioxi",
       "name": "Plaque 6 puits - Sarstedt fond plat",
       "category": "Culture Cell",
-      "quantity": 3,
+      "quantity": 2.54,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -8812,13 +8812,62 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 3,
-            "updatedAt": "2026-08-25T09:52:07.005Z",
-            "updatedBy": "Caroline"
+            "quantity": 2
           }
         ],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-cgioxi-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:52:07.005Z",
+            "updatedAt": "2026-08-25T09:52:07.005Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-cgioxi-reserve-3",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:52:07.005Z",
+            "updatedAt": "2026-08-25T09:52:07.005Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-cgioxi-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 27,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "open",
+            "createdAt": "2026-08-25T09:52:07.005Z",
+            "updatedAt": "2026-08-25T09:52:20.617Z",
+            "updatedBy": "caroline",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-08-25T09:52:20.617Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -24770,6 +24819,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mt8hkj6t-3707057913-1107687542",
+      "operationId": "operation-mt8hkj6t-3707057913-1107687542",
+      "date": "25/08/2026 11:52",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Plaque 6 puits - Sarstedt fond plat · Stock précédent : 3 cartons · Stock compté : 2,54 cartons · Écart : -0,46 cartons · Note : Comptage",
+      "user": "Caroline",
+      "itemId": "itm-web-1783931436295-cgioxi",
+      "type": "recounted",
+      "previousQuantity": 3,
+      "countedQuantity": 2.54,
+      "difference": -0.46,
+      "unit": "cartons",
+      "note": "Comptage"
+    },
+    {
       "date": "25/08/2026 11:52",
       "user": "Caroline",
       "action": "Item modifié",
@@ -32584,6 +32648,79 @@
       "toLocation": "Réserve",
       "comment": "Comptage",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mt8hkknd-2802757253-34655955",
+      "operationId": "operation-mt8hkj6t-3707057913-1107687542-closed-itm-web-1783931436295-cgioxi-reserve-1",
+      "itemId": "itm-web-1783931436295-cgioxi",
+      "timestamp": "2026-08-25T09:52:20.617Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-web-1783931436295-cgioxi-reserve-1",
+      "containerId": "closed-itm-web-1783931436295-cgioxi-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 50,
+      "afterQuantity": 27,
+      "beforeCapacity": 50,
+      "afterCapacity": 50,
+      "unitBefore": "plaques",
+      "unitAfter": "plaques",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-web-1783931436295-cgioxi-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 50,
+        "capacity": 50,
+        "unitKey": "plaque",
+        "status": "closed",
+        "createdAt": "2026-08-25T09:52:07.005Z",
+        "updatedAt": "2026-08-25T09:52:07.005Z",
+        "updatedBy": "Caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-web-1783931436295-cgioxi-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 27,
+        "capacity": 50,
+        "unitKey": "plaque",
+        "status": "open",
+        "createdAt": "2026-08-25T09:52:07.005Z",
+        "updatedAt": "2026-08-25T09:52:20.617Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-08-25T09:52:20.617Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "quantity": 27,
+      "difference": -23,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Comptage",
+      "correctionReason": ""
     }
   ],
   "stockOperations": [
@@ -32760,6 +32897,12 @@
       "itemId": "itm-web-1783931436295-bcmh1a",
       "at": "2026-08-25T09:49:50.058Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mt8hkj6t-3707057913-1107687542",
+      "itemId": "itm-web-1783931436295-cgioxi",
+      "at": "2026-08-25T09:52:20.617Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -32791,5 +32934,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:52:07.007Z"
+  "updatedAt": "2026-08-25T09:52:20.617Z"
 }

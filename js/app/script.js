@@ -4872,11 +4872,20 @@ function formatExperimentStatusDate(experiment) {
 
 function getExperimentAvailabilityCounts(experiment, inventoryList = items) {
   const counts = (experiment?.items || []).reduce((counts, line) => {
-    if (line?.type === "custom") return counts;
+    const quantity = StockTracking.parseLocalizedNumber(line?.quantity);
+    if (!Number.isFinite(quantity) || quantity <= 0) return counts;
+
+    if (line?.type === "custom") {
+      const theoreticalRaw = line?.theoreticalStock;
+      const hasTheoretical = theoreticalRaw !== undefined && theoreticalRaw !== null && theoreticalRaw !== "" && Number.isFinite(Number(theoreticalRaw));
+      if (!hasTheoretical || quantity > Number(theoreticalRaw)) counts.insufficient += 1;
+      else counts.sufficient += 1;
+      return counts;
+    }
+
     const stableId = line?.inventoryItemId || line?.itemId;
     const inventoryItem = stableId ? inventoryList.find(item => item.id === stableId) : (inventoryList === items ? findInventoryItem(line) : null);
-    const quantity = StockTracking.parseLocalizedNumber(line?.quantity);
-    if (!inventoryItem || !Number.isFinite(quantity) || quantity <= 0 || !line?.unit) return counts;
+    if (!inventoryItem || !line?.unit) return counts;
     const availability = getExperimentItemAvailability(inventoryItem, quantity, line.unit);
     if (availability.kind === "ok") counts.sufficient += 1;
     else if (availability.kind === "low") counts.insufficient += 1;
@@ -4937,7 +4946,7 @@ function renderExperimentMetrics() {
 function renderExperimentTableRow(experiment) {
   const codes = getExperimentClientCodes(experiment), availability = getExperimentAvailabilityCounts(experiment), status = normalizeExperimentStatus(experiment.status);
   const template = experiment.templateId === FREE_PROTOCOL_ID ? "Nouveau protocole" : experiment.templateName;
-  return `<tr class="experiment-list-row" data-experiment-id="${escapeHtml(experiment.id)}" tabindex="0" onclick="selectExperiment('${escapeHtml(experiment.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectExperiment('${escapeHtml(experiment.id)}')}"><td data-label="Code client">${codes.length ? codes.map(code => `<span class="result-pill experiment-client-code">${escapeHtml(code)}</span>`).join(" ") : "—"}</td><td data-label="Nom"><strong class="experiment-list-name">${escapeHtml(experiment.name || "—")}</strong>${template ? `<span class="table-subtext">${escapeHtml(template)}</span>` : ""}</td><td data-label="Date du statut">${escapeHtml(formatExperimentStatusDate(experiment))}</td><td data-label="Statut"><span class="experiment-status ${escapeHtml(status)}">${escapeHtml(statusLabelExperiment(status))}</span></td><td data-label="Items suffisants" class="experiment-count-cell"><span class="stock-pill ok" title="Les items libres et indéterminés ne sont pas inclus.">${availability.sufficient}/${availability.total}</span></td><td data-label="Items insuffisants" class="experiment-count-cell"><span class="stock-pill ${availability.insufficient ? "alert" : "neutral"}" title="Les items libres et indéterminés ne sont pas inclus.">${availability.insufficient}/${availability.total}</span></td></tr>`;
+  return `<tr class="experiment-list-row" data-experiment-id="${escapeHtml(experiment.id)}" tabindex="0" onclick="selectExperiment('${escapeHtml(experiment.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectExperiment('${escapeHtml(experiment.id)}')}"><td data-label="Code client">${codes.length ? codes.map(code => `<span class="result-pill experiment-client-code">${escapeHtml(code)}</span>`).join(" ") : "—"}</td><td data-label="Nom"><strong class="experiment-list-name">${escapeHtml(experiment.name || "—")}</strong>${template ? `<span class="table-subtext">${escapeHtml(template)}</span>` : ""}</td><td data-label="Date du statut">${escapeHtml(formatExperimentStatusDate(experiment))}</td><td data-label="Statut"><span class="experiment-status ${escapeHtml(status)}">${escapeHtml(statusLabelExperiment(status))}</span></td><td data-label="Items suffisants" class="experiment-count-cell"><span class="stock-pill ok" title="Les lignes incomplètes (quantité ou item manquant) ne sont pas incluses.">${availability.sufficient}/${availability.total}</span></td><td data-label="Items insuffisants" class="experiment-count-cell"><span class="stock-pill ${availability.insufficient ? "alert" : "neutral"}" title="Les lignes incomplètes (quantité ou item manquant) ne sont pas incluses.">${availability.insufficient}/${availability.total}</span></td></tr>`;
 }
 
 function renderExperimentCard(experiment) {

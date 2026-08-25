@@ -8743,10 +8743,10 @@
     },
     {
       "id": "itm-web-1783931436295-cgioxi",
-      "name": "Plaque 6 puits, standard, fond plat",
+      "name": "Plaque 6 puits - Sarstedt fond plat",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "Carton",
+      "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -8755,7 +8755,7 @@
       "tags": [
         "Plaque 6"
       ],
-      "notes": "Conditionnement : 50 plaques/cartons\n\nAu 16/07/2026 : 1 ouvert - reste 27 sachets - 2 fermés",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "Sarstedt",
@@ -8781,7 +8781,50 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 50
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-08-25T09:52:07.005Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-ookfph",
@@ -24727,6 +24770,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:52",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 6 puits - Sarstedt fond plat."
+    },
+    {
       "id": "history-operation-mt8hhazy-38246948-2619667606",
       "operationId": "operation-mt8hhazy-38246948-2619667606",
       "date": "25/08/2026 11:49",
@@ -32742,5 +32791,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:49:50.058Z"
+  "updatedAt": "2026-08-25T09:52:07.007Z"
 }

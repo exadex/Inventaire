@@ -3773,7 +3773,7 @@
     },
     {
       "id": "itm-CSV-0043",
-      "name": "Seringue non luer lock",
+      "name": "Seringue 20mL non luer lock",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
       "unit": "seringues",
@@ -3814,7 +3814,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -24922,6 +24922,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 15:25",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Seringue 20mL non luer lock."
+    },
+    {
       "date": "25/08/2026 15:23",
       "user": "Caroline",
       "action": "Item modifié",
@@ -33116,5 +33122,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T13:23:50.072Z"
+  "updatedAt": "2026-08-25T13:25:35.145Z"
 }

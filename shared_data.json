@@ -8981,10 +8981,10 @@
     },
     {
       "id": "itm-web-1783931436295-bcmh1a",
-      "name": "Plaque 96 puits Standard, fond plat",
+      "name": "Plaque 96 puits - Sarstedt fond plat",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "Carton",
+      "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -8993,10 +8993,10 @@
       "tags": [
         "Plaque 96"
       ],
-      "notes": "Conditionnement : 100 plaques/cartons - 20 sachets/carton - 5 plaques/sachet\n\nAu 16/07/2026 : 1 ouvert - reste 16 sachets - 2 fermés",
+      "notes": "",
       "references": {
         "primary": {
-          "supplier": "Sarsdest",
+          "supplier": "Sarstedt",
           "reference": "83.3924",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3924/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -9013,8 +9013,8 @@
       "supplierContactId": "contact-1785239153980-6o71tv",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -9023,14 +9023,37 @@
             "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 20
+          },
+          {
+            "id": "level-3",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 5
           }
         ],
-        "trackingUnitKey": "carton",
-        "trackingUnit": "Carton",
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-08-25T09:49:30.269Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -24655,6 +24678,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:49",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 96 puits - Sarstedt fond plat."
+    },
+    {
       "date": "25/08/2026 11:43",
       "user": "Caroline",
       "action": "Item ajouté",
@@ -32570,5 +32599,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:43:01.535Z"
+  "updatedAt": "2026-08-25T09:49:30.272Z"
 }

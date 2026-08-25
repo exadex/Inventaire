@@ -112,7 +112,7 @@
       "category": "Procédé ExAdEx L2",
       "quantity": 1,
       "unit": "cartons",
-      "minStock": 1,
+      "minStock": 0,
       "usageProfile": "normal",
       "placements": [
         {
@@ -179,7 +179,21 @@
             "updatedBy": "Caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-web-1787650829308-reserve-1",
+            "label": "unité fermé nº1",
+            "location": "Réserve",
+            "remaining": 75,
+            "capacity": 75,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:40:29.309Z",
+            "updatedAt": "2026-08-25T09:40:29.309Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -24560,6 +24574,12 @@
   ],
   "history": [
     {
+      "date": "25/08/2026 11:41",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Plaque 48 puits."
+    },
+    {
       "date": "25/08/2026 11:40",
       "user": "Caroline",
       "action": "Item ajouté",
@@ -32457,5 +32477,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T09:40:29.311Z"
+  "updatedAt": "2026-08-25T09:41:28.272Z"
 }

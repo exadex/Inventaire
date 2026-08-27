@@ -138,7 +138,7 @@ const inventorySortSelect = document.querySelector("#inventorySortSelect");
 const inventoryUsageFilter = document.querySelector("#inventoryUsageFilter");
 const sampleSearchInput = document.querySelector("#sampleSearchInput");
 const sampleTypeFilter = document.querySelector("#sampleTypeFilter");
-const sampleCategoryFilter = document.querySelector("#sampleCategoryFilter");
+const sampleStudyTypeFilter = document.querySelector("#sampleStudyTypeFilter");
 const sampleClientFilter = document.querySelector("#sampleClientFilter");
 const sampleSortSelect = document.querySelector("#sampleSortSelect");
 const addClientStudyBtn = document.querySelector("#addClientStudyBtn");
@@ -149,6 +149,7 @@ const experimentSortSelect = document.querySelector("#experimentSortSelect");
 const resetExperimentSearchBtn = document.querySelector("#resetExperimentSearchBtn");
 const sourcingSearchInput = document.querySelector("#sourcingSearchInput");
 const sourcingSortSelect = document.querySelector("#sourcingSortSelect");
+const sourcingCategoryFilter = document.querySelector("#sourcingCategoryFilter");
 const sourcingDialog = document.querySelector("#sourcingDialog");
 const sourcingForm = document.querySelector("#sourcingForm");
 const dialog = document.querySelector("#itemDialog");
@@ -227,6 +228,8 @@ const trackingFields = ["stockTrackingMode", "detailedPackagingEnabled", "aliquo
 const sampleFields = [
   "sampleId",
   "sampleType",
+  "sampleStudyTypeClient",
+  "sampleStudyTypeRd",
   "sampleClientCode",
   "sampleProductName",
   "sampleBaseName",
@@ -273,6 +276,24 @@ const experimentFields = [
   [id]: document.querySelector(`#${id}`)
 }), {});
 
+const SOURCING_YES_NO_FIELDS = ["patientNash", "patientSleepApnea", "patientT2d", "patientFreezing"];
+const SOURCING_YES_NO_OPTION_MAP = [["Yes", "Oui"], ["No", "Non"]];
+const SOURCING_STATUS_OPTION_MAP = [["Yes", "Oui"], ["No", "Non"], ["Fill", "À remplir"]];
+const SOURCING_STATUS_DATE_FIELDS = [
+  { base: "patientArnExplantT0", prefill: "reception", label: "Explant T0", section: "arn" },
+  { base: "patientArnWatT14", prefill: "reception+14", label: "WAT T14", section: "arn" },
+  { base: "patientArnBatT14", prefill: "reception+14", label: "BAT T14", section: "arn" },
+  { base: "patientArnPrebatAmpc", prefill: null, label: "Prebat ± AMPc", section: "arn" },
+  { base: "patientArnInducibleBat", prefill: null, label: "Inductible en BAT (qPCR UCP1 positif)", section: "arn" },
+  { base: "patientSecretionsT0", prefill: "reception", label: "Sécrétions T0", section: "secretions" },
+  { base: "patientSecretionsT14", prefill: "reception+14", label: "Sécrétions T14", section: "secretions" },
+  { base: "patientSecretionsBatT14", prefill: "reception+14", label: "Sécrétions BAT T14", section: "secretions" },
+  { base: "patientFixationT0", prefill: "reception", label: "Fixation T0", section: "fixation" },
+  { base: "patientFixationT14", prefill: "reception+14", label: "Fixation T14", section: "fixation" }
+];
+const SOURCING_QC_TESTS = ["Myco", "Bacteria", "Yeast", "Xtt", "Collagenase", "Asc"];
+const SOURCING_QC_TEST_LABELS = { Myco: "Myco", Bacteria: "Bactéries", Yeast: "Levures", Xtt: "XTT", Collagenase: "Collagénase", Asc: "ASC" };
+
 const sourcingFields = [
   "sourcingPatientId",
   "patientNumber",
@@ -297,35 +318,18 @@ const sourcingFields = [
   "patientTechnique",
   "patientSurgeon",
   "patientCharacteristic",
-  "patientNash",
-  "patientSleepApnea",
-  "patientT2d",
   "patientOtherComorbidity",
   "patientIntervention",
   "patientBmiMax",
   "patientIntentionTreatment",
-  "patientQcMyco",
-  "patientQcBacteria",
-  "patientQcYeast",
-  "patientQcXtt",
-  "patientQcCollagenase",
-  "patientQcAsc",
-  "patientQcRemarks",
-  "patientArnExplantT0",
-  "patientArnWatT14",
-  "patientArnBatT14",
-  "patientArnPrebatAmpc",
-  "patientArnInducibleBat",
-  "patientSecretionsT0",
-  "patientSecretionsT14",
-  "patientSecretionsBatT14",
-  "patientFixationT0",
-  "patientFixationT14",
-  "patientFreezing",
+  ...SOURCING_QC_TESTS.flatMap(test => [`patientQc${test}Result`, `patientQc${test}Date`, `patientQc${test}Tx`, `patientQc${test}Remarks`]),
+  ...SOURCING_STATUS_DATE_FIELDS.flatMap(({ base }) => [`${base}Date`]),
   "patientFreezingQuantity",
   "patientFreezingThaw",
   "patientGeneralRemark"
 ].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
+
+const SOURCING_GENERIC_LOOP_EXCLUDED_KEYS = new Set(["sourcingPatientId"]);
 
 const orderFields = [
   "orderItemMode",
@@ -467,7 +471,7 @@ document.querySelector("#usageProfileRoutine")?.addEventListener("click", () => 
 document.querySelector("#usageProfileBackup")?.addEventListener("click", () => toggleUsageProfile("backup"));
 sampleSearchInput?.addEventListener("input", resetSamplePagination);
 sampleTypeFilter?.addEventListener("change", resetSamplePagination);
-sampleCategoryFilter?.addEventListener("change", resetSamplePagination);
+sampleStudyTypeFilter?.addEventListener("change", resetSamplePagination);
 sampleClientFilter?.addEventListener("change", resetSamplePagination);
 sampleSortSelect?.addEventListener("change", resetSamplePagination);
 locationSearchInput?.addEventListener("input", renderLocations);
@@ -517,6 +521,8 @@ sampleFields.sampleArnQiazol.addEventListener("change", () => {
   syncSampleMeasureLabel({ clearOnUnitChange: true });
 });
 sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
+sampleFields.sampleStudyTypeClient.addEventListener("change", syncSampleStudyTypeUI);
+sampleFields.sampleStudyTypeRd.addEventListener("change", syncSampleStudyTypeUI);
 experimentSearchInput.addEventListener("input", renderExperiments);
 experimentSortSelect?.addEventListener("change", renderExperiments);
 resetExperimentSearchBtn?.addEventListener("click", () => { experimentSearchInput.value = ""; if (experimentSortSelect) experimentSortSelect.value = EXPERIMENT_DEFAULT_SORT; renderExperiments(); experimentSearchInput.focus(); });
@@ -525,9 +531,14 @@ document.querySelector("#saveSourcingPatientBtn")?.addEventListener("click", sav
 document.querySelector("#deleteSourcingPatientBtn")?.addEventListener("click", requestSourcingPatientDeletion);
 sourcingSearchInput?.addEventListener("input", renderSourcing);
 sourcingSortSelect?.addEventListener("change", renderSourcing);
+sourcingCategoryFilter?.addEventListener("change", renderSourcing);
 sourcingFields.patientHeight?.addEventListener("input", recalculatePatientBmi);
 sourcingFields.patientWeight?.addEventListener("input", recalculatePatientBmi);
 sourcingFields.patientBmi?.addEventListener("input", () => { sourcingFields.patientBmi.dataset.manual = "true"; });
+sourcingFields.patientType?.addEventListener("change", syncSourcingComorbiditySection);
+sourcingFields.patientReceptionDate?.addEventListener("input", syncSourcingPrefillDates);
+SOURCING_YES_NO_FIELDS.forEach(field => wireSourcingExclusiveCheckboxGroup(field, SOURCING_YES_NO_OPTION_MAP));
+SOURCING_STATUS_DATE_FIELDS.forEach(({ base }) => wireSourcingExclusiveCheckboxGroup(`${base}Status`, SOURCING_STATUS_OPTION_MAP));
 experimentDialog.addEventListener("close", () => {
   experimentFields.experimentTemplate.disabled = false;
 });
@@ -1353,12 +1364,6 @@ function renderSampleOptions() {
     sampleFields.sampleLocation.innerHTML = inventoryLocations
       .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
       .join("");
-  }
-
-  if (sampleCategoryFilter) {
-    sampleCategoryFilter.innerHTML = `<option value="all">Toutes categories</option>${clientSampleCategories
-      .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
-      .join("")}`;
   }
 
   renderClientFilterOptions();
@@ -2622,7 +2627,7 @@ function renderSamples() {
 
   const query = normalizeSearch(sampleSearchInput?.value || "");
   const type = sampleTypeFilter?.value || "all";
-  const category = sampleCategoryFilter?.value || "all";
+  const studyType = sampleStudyTypeFilter?.value || "all";
   const client = sampleClientFilter?.value || "all";
   const sort = sampleSortSelect?.value || "recent";
 
@@ -2651,7 +2656,7 @@ function renderSamples() {
 
       return (!query || haystack.includes(query)) &&
         (type === "all" || sample.type === type) &&
-        (category === "all" || sample.category === category) &&
+        (studyType === "all" || getSampleStudyType(sample) === studyType) &&
         (
           client === "all" ||
           sample.clientId === client ||
@@ -2752,6 +2757,7 @@ function syncAppViewMode() {
 function renderSampleDetail(sample) {
   const clientRecord = getClientForSample(sample);
   const clientCode = getSampleCanonicalClientCode(sample);
+  const studyTypeLabel = getStudyTypeLabel(sample);
   const sampleSubtitle = getClientSampleCategoryLabel(sample) || getClientSampleSubLabel(sample);
 
   return `
@@ -2759,7 +2765,7 @@ function renderSampleDetail(sample) {
       <div>
         <div class="client-detail-meta">
           <span class="client-type-badge ${escapeHtml(sample.type)}">${escapeHtml(clientSampleTypes[sample.type] || sample.type)}</span>
-          <span class="result-pill">Client : ${escapeHtml(clientCode)}</span>
+          <span class="result-pill">${escapeHtml(studyTypeLabel)} : ${escapeHtml(clientCode)}</span>
         </div>
         <h3>${escapeHtml(sample.name)}</h3>
         <p class="category">${escapeHtml(sampleSubtitle)}</p>
@@ -2769,7 +2775,7 @@ function renderSampleDetail(sample) {
     <div class="client-detail-section">
       <h4>Informations</h4>
       <div class="item-detail-stack">
-        ${renderDetailRow("Client", clientCode)}
+        ${renderDetailRow(studyTypeLabel, clientCode)}
         ${renderDetailRow("Date", formatDisplayDateFrench(formatClientSampleDate(sample)))}
         ${renderDetailRow("Quantité / format", formatSampleDisplayQuantity(sample))}
         ${renderDetailRow("Localisation", sample.location)}
@@ -2815,14 +2821,24 @@ function renderClientStudyKpis(samples) {
 
   const productCount = samples.filter(sample => sample.type === "client_product").length;
   const createdCount = samples.filter(sample => sample.type === "created_sample").length;
-  const activeClients = new Set(samples.map(sample => sample.clientId || sample.normalizedClientKey).filter(Boolean)).size;
-  const usedLocations = new Set(samples.map(sample => sample.location).filter(Boolean)).size;
+  const rdStudyCount = new Set(
+    samples
+      .filter(sample => getSampleStudyType(sample) === "rd")
+      .map(sample => sample.clientId || sample.normalizedClientKey)
+      .filter(Boolean)
+  ).size;
+  const clientStudyCount = new Set(
+    samples
+      .filter(sample => getSampleStudyType(sample) === "client")
+      .map(sample => sample.clientId || sample.normalizedClientKey)
+      .filter(Boolean)
+  ).size;
 
   const kpis = [
+    ["🔬", "Études R&D", rdStudyCount],
+    ["🏷️", "Études clients", clientStudyCount],
     ["📦", "Produits", productCount],
-    ["🧪", "Échantillons", createdCount],
-    ["🏷️", "Clients actifs", activeClients],
-    ["📍", "Localisations", usedLocations]
+    ["🧪", "Échantillons", createdCount]
   ];
 
   kpiContainer.innerHTML = kpis.map(([icon, label, value]) => `
@@ -2844,7 +2860,7 @@ function renderClientFilterOptions(selectedValue = sampleClientFilter?.value || 
   );
 
   sampleClientFilter.innerHTML = `
-    <option value="all">Tous clients</option>
+    <option value="all">Tous codes</option>
     ${sortedClients.map(client => `
       <option value="${escapeHtml(client.id)}">${escapeHtml(client.canonicalCode)}</option>
     `).join("")}
@@ -2918,6 +2934,7 @@ function createSingleSampleUnit(sample) {
     key: `sample-${sample.id}`,
     clientGroupKey,
     clientCode: getSampleCanonicalClientCode(sample),
+    studyTypeLabel: getStudyTypeLabel(sample),
     sample,
     count: 1
   };
@@ -2933,6 +2950,7 @@ function createReplicaFamilyUnit(familyKey, samples) {
     key: familyKey,
     clientGroupKey,
     clientCode: getSampleCanonicalClientCode(firstSample),
+    studyTypeLabel: getStudyTypeLabel(firstSample),
     baseName: getReplicaBaseName(firstSample),
     samples,
     count: samples.length
@@ -2986,6 +3004,7 @@ function renderClientSampleGroups(units) {
     if (!groups.has(groupKey)) {
       groups.set(groupKey, {
         code: unit.clientCode,
+        studyTypeLabel: unit.studyTypeLabel,
         units: [],
         sampleCount: 0
       });
@@ -3002,12 +3021,12 @@ function renderClientSampleGroups(units) {
           class="client-group-header"
           type="button"
           aria-expanded="${isCollapsed ? "false" : "true"}"
-          aria-label="${isCollapsed ? "Déplier" : "Replier"} le client ${escapeHtml(group.code)}"
+          aria-label="${isCollapsed ? "Déplier" : "Replier"} ${escapeHtml(group.code)}"
           onclick="toggleClientGroup('${escapeHtml(groupKey)}')"
         >
           <span class="client-group-title">
             <span class="client-group-chevron" aria-hidden="true">›</span>
-            <span class="client-group-label">Client</span>
+            <span class="client-group-label">${escapeHtml(group.studyTypeLabel)}</span>
             <strong>${escapeHtml(group.code)}</strong>
           </span>
           <span>${group.sampleCount} élément${group.sampleCount > 1 ? "s" : ""}</span>
@@ -4696,7 +4715,7 @@ function renderReplicaGroupDetail(groupId, samples) {
     <div class="client-detail-section">
       <h4>Informations générales</h4>
       <div class="item-detail-stack">
-        ${renderDetailRow("Client", getSampleCanonicalClientCode(sample))}
+        ${renderDetailRow(getStudyTypeLabel(sample), getSampleCanonicalClientCode(sample))}
         ${renderDetailRow("Date", formatDisplayDateFrench(sample.creationDate))}
         ${renderDetailRow("Quantité / format", formatSampleDisplayQuantity(sample))}
         ${renderDetailRow("Localisation", sample.location)}
@@ -5188,9 +5207,10 @@ function sourcingStagePillMarkup(stage) {
   return `<span class="${map[stage] || "stock-pill neutral"}">${escapeHtml(stage)}</span>`;
 }
 
-function getFilteredSortedPatients(source, query = "", sort = "recent") {
+function getFilteredSortedPatients(source, query = "", sort = "recent", category = "") {
   const normalizedQuery = normalizeSearch(query);
   return source.filter(patient => {
+    if (category && patient.patientType !== category) return false;
     const haystack = normalizeSearch([patient.patientNumber, patient.patientInitials, patient.patientStudyAssignment, patient.patientType, patient.patientGender, patient.patientCollectionSite].join(" "));
     return !normalizedQuery || haystack.includes(normalizedQuery);
   }).slice().sort((a, b) => comparePatientsBySort(a, b, sort));
@@ -5201,6 +5221,15 @@ function comparePatientsBySort(a, b, sort) {
     const numA = Number(String(a.patientNumber || "").replace(/\D/g, "")) || 0;
     const numB = Number(String(b.patientNumber || "").replace(/\D/g, "")) || 0;
     return sort === "number-asc" ? numA - numB : numB - numA;
+  }
+  if (sort === "bmi-asc" || sort === "age-asc") {
+    const key = sort === "bmi-asc" ? "patientBmi" : "patientAge";
+    const valueA = StockTracking.parseLocalizedNumber(a[key]);
+    const valueB = StockTracking.parseLocalizedNumber(b[key]);
+    const hasA = valueA > 0, hasB = valueB > 0;
+    if (hasA !== hasB) return hasA ? -1 : 1;
+    if (!hasA) return 0;
+    return valueA - valueB;
   }
   const createdDelta = (parseHistoryDate(b.createdAtRaw)?.getTime() || 0) - (parseHistoryDate(a.createdAtRaw)?.getTime() || 0);
   return sort === "oldest" ? -createdDelta : createdDelta;
@@ -5227,6 +5256,30 @@ function renderSourcingMetrics() {
 function renderSourcingTableRow(patient) {
   const stage = getPatientCheckpointStage(patient);
   return `<tr class="sourcing-list-row" data-patient-id="${escapeHtml(patient.id)}" tabindex="0" onclick="selectSourcingPatient('${escapeHtml(patient.id)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectSourcingPatient('${escapeHtml(patient.id)}')}"><td data-label="N° patient"><strong>${escapeHtml(patient.patientNumber || "—")}</strong></td><td data-label="Genre">${escapeHtml(patient.patientGender || "—")}</td><td data-label="Âge">${escapeHtml(patient.patientAge || "—")}</td><td data-label="Type">${escapeHtml(patient.patientType || "—")}</td><td data-label="Date de réception">${patient.patientReceptionDate ? escapeHtml(formatDisplayDateFrench(patient.patientReceptionDate)) : "—"}</td><td data-label="Temps de culture">${patient.patientCultureWeeks ? `${escapeHtml(patient.patientCultureWeeks)} sem.` : "—"}</td><td data-label="Assignation étude">${escapeHtml(patient.patientStudyAssignment || "—")}</td><td data-label="Checkpoint">${sourcingStagePillMarkup(stage)}</td></tr>`;
+}
+
+function renderSourcingStatusDateDetail(patient, field) {
+  const status = patient[`${field.base}Status`];
+  const date = patient[`${field.base}Date`];
+  return `${renderDetailRow(field.label, status)}${renderDetailRow(`${field.label} — Date`, date ? formatDisplayDateFrench(date) : "")}`;
+}
+
+function renderSourcingQcDetailTable(patient) {
+  const rows = SOURCING_QC_TESTS.map(key => {
+    const result = patient[`patientQc${key}Result`];
+    const date = patient[`patientQc${key}Date`];
+    const tx = patient[`patientQc${key}Tx`];
+    const remarks = patient[`patientQc${key}Remarks`];
+    return `<tr><th scope="row">${escapeHtml(SOURCING_QC_TEST_LABELS[key])}</th><td>${result ? escapeHtml(result) : "—"}</td><td>${date ? escapeHtml(formatDisplayDateFrench(date)) : "—"}</td><td>${tx ? escapeHtml(tx) : "—"}</td><td>${remarks ? escapeHtml(remarks) : "—"}</td></tr>`;
+  }).join("");
+  return `
+    <div class="sample-table-wrap sourcing-qc-table-wrap">
+      <table class="sample-table sourcing-qc-table">
+        <thead><tr><th scope="col">Test</th><th scope="col">Résultat</th><th scope="col">Date</th><th scope="col">Tx</th><th scope="col">Remarques</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
 }
 
 function renderSourcingDetail(patient) {
@@ -5297,6 +5350,7 @@ function renderSourcingDetail(patient) {
         </div>
       </div>
 
+      ${patient.patientType === "Obèse" ? `
       <div class="client-detail-section">
         <h4>Co-morbidité / si obèse</h4>
         <div class="item-detail-stack">
@@ -5309,45 +5363,31 @@ function renderSourcingDetail(patient) {
           ${renderDetailRow("Traitement d'intention", patient.patientIntentionTreatment)}
         </div>
       </div>
+      ` : ""}
 
       <div class="client-detail-section">
         <h4>Contrôle Qualité</h4>
-        <div class="item-detail-stack">
-          ${renderDetailRow("Myco", patient.patientQcMyco)}
-          ${renderDetailRow("Bactéries", patient.patientQcBacteria)}
-          ${renderDetailRow("Levures", patient.patientQcYeast)}
-          ${renderDetailRow("XTT", patient.patientQcXtt)}
-          ${renderDetailRow("Collagénase", patient.patientQcCollagenase)}
-          ${renderDetailRow("ASC", patient.patientQcAsc)}
-          ${renderDetailRow("Remarques", patient.patientQcRemarks)}
-        </div>
+        ${renderSourcingQcDetailTable(patient)}
       </div>
 
       <div class="client-detail-section">
         <h4>ARN</h4>
         <div class="item-detail-stack">
-          ${renderDetailRow("Explant T0", patient.patientArnExplantT0)}
-          ${renderDetailRow("WAT T14", patient.patientArnWatT14)}
-          ${renderDetailRow("BAT T14", patient.patientArnBatT14)}
-          ${renderDetailRow("Prebat ± AMPc", patient.patientArnPrebatAmpc)}
-          ${renderDetailRow("Inductible en BAT (qPCR UCP1 positif)", patient.patientArnInducibleBat)}
+          ${SOURCING_STATUS_DATE_FIELDS.filter(field => field.section === "arn").map(field => renderSourcingStatusDateDetail(patient, field)).join("")}
         </div>
       </div>
 
       <div class="client-detail-section">
         <h4>Milieu conditionné (sécrétions)</h4>
         <div class="item-detail-stack">
-          ${renderDetailRow("Sécrétions T0", patient.patientSecretionsT0)}
-          ${renderDetailRow("Sécrétions T14", patient.patientSecretionsT14)}
-          ${renderDetailRow("Sécrétions BAT T14", patient.patientSecretionsBatT14)}
+          ${SOURCING_STATUS_DATE_FIELDS.filter(field => field.section === "secretions").map(field => renderSourcingStatusDateDetail(patient, field)).join("")}
         </div>
       </div>
 
       <div class="client-detail-section">
         <h4>Fixation</h4>
         <div class="item-detail-stack">
-          ${renderDetailRow("Fixation T0", patient.patientFixationT0)}
-          ${renderDetailRow("Fixation T14", patient.patientFixationT14)}
+          ${SOURCING_STATUS_DATE_FIELDS.filter(field => field.section === "fixation").map(field => renderSourcingStatusDateDetail(patient, field)).join("")}
         </div>
       </div>
 
@@ -5372,7 +5412,7 @@ function renderSourcingDetail(patient) {
 
 function renderSourcing() {
   const query = sourcingSearchInput ? sourcingSearchInput.value : "";
-  const filtered = getFilteredSortedPatients(sourcingPatients, query, sourcingSortSelect?.value || "recent");
+  const filtered = getFilteredSortedPatients(sourcingPatients, query, sourcingSortSelect?.value || "recent", sourcingCategoryFilter?.value || "");
 
   const detail = selectedSourcingPatientId ? sourcingPatients.find(patient => patient.id === selectedSourcingPatientId) : null;
   const detailHost = document.querySelector("#sourcingDetail");
@@ -5403,13 +5443,66 @@ function recalculatePatientBmi() {
   bmiField.value = Number((weight / ((height / 100) ** 2)).toFixed(1));
 }
 
+function syncSourcingComorbiditySection() {
+  const section = document.querySelector("#patientComorbiditySection");
+  if (!section) return;
+  section.classList.toggle("hidden", sourcingFields.patientType?.value !== "Obèse");
+}
+
+function wireSourcingExclusiveCheckboxGroup(baseId, optionMap) {
+  const boxes = optionMap.map(([suffix]) => document.querySelector(`#${baseId}${suffix}`));
+  boxes.forEach((box, index) => {
+    box?.addEventListener("change", () => {
+      if (box.checked) boxes.forEach((other, otherIndex) => { if (otherIndex !== index && other) other.checked = false; });
+    });
+  });
+}
+
+function hydrateSourcingExclusiveCheckboxGroup(patient, baseId, optionMap) {
+  const value = patient?.[baseId] || "";
+  optionMap.forEach(([suffix, optionValue]) => {
+    const box = document.querySelector(`#${baseId}${suffix}`);
+    if (box) box.checked = value === optionValue;
+  });
+}
+
+function readSourcingExclusiveCheckboxGroup(baseId, optionMap) {
+  for (const [suffix, optionValue] of optionMap) {
+    if (document.querySelector(`#${baseId}${suffix}`)?.checked) return optionValue;
+  }
+  return "";
+}
+
+function computeSourcingPrefillDate(kind, receptionDateValue) {
+  if (!kind || !receptionDateValue) return "";
+  const date = new Date(`${receptionDateValue}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return "";
+  if (kind === "reception+14") date.setDate(date.getDate() + 14);
+  return date.toISOString().slice(0, 10);
+}
+
+function syncSourcingPrefillDates() {
+  const receptionDateValue = sourcingFields.patientReceptionDate?.value || "";
+  SOURCING_STATUS_DATE_FIELDS.forEach(({ base, prefill }) => {
+    if (!prefill) return;
+    const dateField = sourcingFields[`${base}Date`];
+    if (!dateField || dateField.value) return;
+    const prefillDate = computeSourcingPrefillDate(prefill, receptionDateValue);
+    if (prefillDate) dateField.value = prefillDate;
+  });
+}
+
 function hydrateSourcingForm(patient) {
   Object.keys(sourcingFields).forEach(key => {
-    if (key === "sourcingPatientId") return;
+    if (SOURCING_GENERIC_LOOP_EXCLUDED_KEYS.has(key)) return;
     const field = sourcingFields[key];
     if (!field) return;
     field.value = key === "patientNumber" ? (patient?.patientNumber || suggestNextPatientNumber()) : (patient?.[key] || "");
   });
+  SOURCING_YES_NO_FIELDS.forEach(field => hydrateSourcingExclusiveCheckboxGroup(patient, field, SOURCING_YES_NO_OPTION_MAP));
+  SOURCING_STATUS_DATE_FIELDS.forEach(({ base }) => hydrateSourcingExclusiveCheckboxGroup(patient, `${base}Status`, SOURCING_STATUS_OPTION_MAP));
+  syncSourcingComorbiditySection();
+  syncSourcingPrefillDates();
 }
 
 function openSourcingModal(id) {
@@ -5451,10 +5544,16 @@ async function saveSourcingPatient() {
 
   const patient = { id: existingId || createSafeItemId("pat"), source: "web" };
   Object.keys(sourcingFields).forEach(key => {
-    if (key === "sourcingPatientId") return;
+    if (SOURCING_GENERIC_LOOP_EXCLUDED_KEYS.has(key)) return;
     const field = sourcingFields[key];
     if (!field) return;
     patient[key] = /remark/i.test(key) ? normalizeMultilineText(field.value) : field.value.trim();
+  });
+  SOURCING_YES_NO_FIELDS.forEach(field => {
+    patient[field] = readSourcingExclusiveCheckboxGroup(field, SOURCING_YES_NO_OPTION_MAP);
+  });
+  SOURCING_STATUS_DATE_FIELDS.forEach(({ base }) => {
+    patient[`${base}Status`] = readSourcingExclusiveCheckboxGroup(`${base}Status`, SOURCING_STATUS_OPTION_MAP);
   });
   patient.patientNumber = patientNumber;
   patient.createdAtRaw = previousPatient?.createdAtRaw || now.toISOString();
@@ -5864,12 +5963,15 @@ function openSampleModal(id, options = {}) {
     : storedSample?.replicaNumber
       ? `Modifier uniquement le réplicat ${storedSample.replicaNumber}`
       : sample
-        ? "Modifier produit / échantillon client"
-        : "Nouveau produit / échantillon client";
+        ? "Modifier produit / échantillon"
+        : "Nouveau produit / échantillon";
   document.querySelector("#deleteSampleBtn").style.display = storedSample ? "inline-block" : "none";
 
   sampleFields.sampleId.value = storedSample?.id || "";
   sampleFields.sampleType.value = sample?.type || "client_product";
+  const sampleStudyType = sample ? getSampleStudyType(sample) : "client";
+  sampleFields.sampleStudyTypeClient.checked = sampleStudyType !== "rd";
+  sampleFields.sampleStudyTypeRd.checked = sampleStudyType === "rd";
   sampleFields.sampleClientCode.value = sample?.rawClientCode || sampleClientCode;
   sampleFields.sampleProductName.value = sample?.type === "client_product" ? sample.name : "";
   sampleFields.sampleBaseName.value = sample?.baseName || (sample?.type === "created_sample" ? sample.name : "");
@@ -5895,7 +5997,7 @@ function openSampleModal(id, options = {}) {
     : sample?.notes || "";
 
   syncSampleFormVisibility();
-  updateClientCodeHint();
+  syncSampleStudyTypeUI();
   sampleDialog.showModal();
 }
 
@@ -5964,16 +6066,18 @@ function saveSample() {
     : null;
 
   const type = sampleFields.sampleType.value;
+  const studyType = getSelectedSampleStudyType();
   const now = new Date();
-  const clientInfo = ensureClientForCode(sampleFields.sampleClientCode.value.trim());
+  const clientInfo = ensureClientForCode(sampleFields.sampleClientCode.value.trim(), studyType);
   if (!clientInfo.normalizedKey) {
-    window.alert("Merci d'entrer un code client valide.");
+    window.alert("Merci d'entrer un code valide.");
     return;
   }
 
   const base = {
     id: existingId || "",
     type,
+    studyType: clientInfo.studyType,
     clientCode: clientInfo.canonicalCode,
     rawClientCode: clientInfo.rawCode,
     normalizedClientKey: clientInfo.normalizedKey,
@@ -6021,6 +6125,7 @@ function saveSample() {
     const measureValue = Number(sampleFields.sampleMeasureValue.value);
     const editableData = {
       type,
+      studyType: base.studyType,
       clientCode: base.clientCode,
       rawClientCode: base.rawClientCode,
       normalizedClientKey: base.normalizedClientKey,
@@ -10013,6 +10118,7 @@ function createClientRecordFromCode(code, existing = {}) {
     id: existing.id || `client-${normalizedKey || createSafeItemId("unknown-client")}`,
     normalizedKey,
     canonicalCode,
+    studyType: existing.studyType === "rd" ? "rd" : "client",
     rawCodes: Array.from(new Set([
       ...(Array.isArray(existing.rawCodes) ? existing.rawCodes : []),
       existing.rawCode,
@@ -10045,6 +10151,7 @@ function migrateClients(clientList = [], sampleList = []) {
       ...(existing || {}),
       normalizedKey: normalized.normalizedKey,
       canonicalCode: existing?.canonicalCode || normalized.canonicalCode,
+      studyType: existing?.studyType || (sample?.studyType === "rd" ? "rd" : "client"),
       rawCodes: [
         ...(existing?.rawCodes || []),
         sample?.rawClientCode,
@@ -10065,14 +10172,16 @@ function getClientByNormalizedKey(normalizedKey) {
   return clients.find(client => client.normalizedKey === normalizedKey) || null;
 }
 
-function ensureClientForCode(code) {
+function ensureClientForCode(code, studyType = "client") {
+  const normalizedStudyType = studyType === "rd" ? "rd" : "client";
   const normalized = normalizeClientCode(code);
   if (!normalized.normalizedKey) {
     return {
       id: "",
       rawCode: normalized.raw,
       normalizedKey: "",
-      canonicalCode: ""
+      canonicalCode: "",
+      studyType: normalizedStudyType
     };
   }
 
@@ -10082,16 +10191,21 @@ function ensureClientForCode(code) {
       existing.rawCodes = [...(existing.rawCodes || []), normalized.raw];
       existing.updatedAtRaw = new Date().toISOString();
     }
+    if (existing.studyType !== normalizedStudyType) {
+      existing.studyType = normalizedStudyType;
+      existing.updatedAtRaw = new Date().toISOString();
+    }
 
     return {
       id: existing.id,
       rawCode: normalized.raw,
       normalizedKey: existing.normalizedKey,
-      canonicalCode: existing.canonicalCode
+      canonicalCode: existing.canonicalCode,
+      studyType: existing.studyType
     };
   }
 
-  const created = createClientRecordFromCode(normalized.raw || normalized.canonicalCode);
+  const created = createClientRecordFromCode(normalized.raw || normalized.canonicalCode, { studyType: normalizedStudyType });
   clients = [...clients, created].sort((a, b) =>
     String(a.canonicalCode || "").localeCompare(String(b.canonicalCode || ""), "fr")
   );
@@ -10100,7 +10214,8 @@ function ensureClientForCode(code) {
     id: created.id,
     rawCode: normalized.raw,
     normalizedKey: created.normalizedKey,
-    canonicalCode: created.canonicalCode
+    canonicalCode: created.canonicalCode,
+    studyType: created.studyType
   };
 }
 
@@ -10110,6 +10225,16 @@ function getClientForSample(sample) {
     getClientByNormalizedKey(sample.normalizedClientKey) ||
     getClientByNormalizedKey(normalizeClientCode(sample.clientCode).normalizedKey) ||
     null;
+}
+
+function getSampleStudyType(sample) {
+  const client = getClientForSample(sample);
+  if (client?.studyType) return client.studyType;
+  return sample?.studyType === "rd" ? "rd" : "client";
+}
+
+function getStudyTypeLabel(sample) {
+  return getSampleStudyType(sample) === "rd" ? "R&D" : "Client";
 }
 
 function hydrateClientIdentityForSamples(sampleList, clientList) {
@@ -10159,6 +10284,18 @@ function getSimilarClientSuggestion(rawCode) {
   return similar?.canonicalCode || "";
 }
 
+function getSelectedSampleStudyType() {
+  return document.querySelector('input[name="sampleStudyType"]:checked')?.value === "rd" ? "rd" : "client";
+}
+
+function syncSampleStudyTypeUI() {
+  const studyType = getSelectedSampleStudyType();
+  const label = studyType === "rd" ? "Code R&D" : "Code client";
+  const labelEl = document.querySelector("#sampleClientCodeLabel");
+  if (labelEl) labelEl.textContent = label;
+  updateClientCodeHint();
+}
+
 function updateClientCodeHint() {
   const hint = document.querySelector("#sampleClientCodeHint");
   if (!hint) return;
@@ -10169,16 +10306,22 @@ function updateClientCodeHint() {
     return;
   }
 
+  const selectedStudyType = getSelectedSampleStudyType();
   const existing = getClientByNormalizedKey(normalized.normalizedKey);
   if (existing) {
-    hint.textContent = `Client reconnu : ${existing.canonicalCode}`;
+    if (existing.studyType && existing.studyType !== selectedStudyType) {
+      const existingLabel = existing.studyType === "rd" ? "R&D" : "client";
+      hint.textContent = `Attention : ${existing.canonicalCode} est déjà utilisé comme étude ${existingLabel}.`;
+      return;
+    }
+    hint.textContent = `Code reconnu : ${existing.canonicalCode}`;
     return;
   }
 
   const suggestion = getSimilarClientSuggestion(sampleFields.sampleClientCode.value);
   hint.textContent = suggestion
-    ? `Nouveau client. Code proche existant : ${suggestion}`
-    : `Nouveau client : ${normalized.canonicalCode}`;
+    ? `Nouveau code. Code proche existant : ${suggestion}`
+    : `Nouveau code : ${normalized.canonicalCode}`;
 }
 
 function migrateClientSamples(sampleList) {
@@ -10248,6 +10391,7 @@ function migrateClientSamples(sampleList) {
       ...sample,
       id,
       type,
+      studyType: sample?.studyType === "rd" ? "rd" : "client",
       name: String(sample?.name || sample?.baseName || "").trim(),
       baseName: String(sample?.baseName || sample?.name || "").trim(),
       clientCode: canonicalClientCode,

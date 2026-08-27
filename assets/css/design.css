@@ -23,6 +23,7 @@ body {
   background:
     radial-gradient(circle at 80% 5%, rgba(133, 212, 208, 0.24), transparent 32rem),
     linear-gradient(135deg, #fbfbf8 0%, var(--bg) 55%, #edf1e7 100%);
+  background-attachment: fixed;
   color: var(--ink);
   min-height: 100vh;
 }
@@ -2117,6 +2118,43 @@ textarea[readonly] {
 .sourcing-form-section > label.full-label { margin-top: 12px; }
 .sourcing-form-chevron { display: inline-flex; transition: transform 140ms ease; color: var(--muted); }
 .sourcing-form-section[open] > summary .sourcing-form-chevron { transform: rotate(90deg); }
+.sourcing-form-section .sourcing-qc-table-wrap { margin-top: 12px; }
+.sourcing-qc-table { min-width: 640px; table-layout: fixed; }
+.sourcing-qc-table th:first-child { width: 16%; }
+.sourcing-qc-table th:nth-child(2) { width: 18%; }
+.sourcing-qc-table th:nth-child(3) { width: 18%; }
+.sourcing-qc-table th:nth-child(4) { width: 14%; text-transform: none; }
+.sourcing-qc-table th:nth-child(5) { width: 34%; }
+.sourcing-qc-table td { vertical-align: middle; padding: 8px 10px; }
+.sourcing-qc-table tbody th[scope="row"] { white-space: nowrap; }
+.sourcing-qc-table input,
+.sourcing-qc-table select { width: 100%; min-width: 0; height: 38px; }
+.sourcing-yesno-field { display: grid; gap: 7px; min-width: 0; align-self: start; }
+.sourcing-yesno-field > span:first-child { color: var(--muted); font-size: 13px; font-weight: 650; }
+.sourcing-yesno-options { display: flex; align-items: center; gap: 18px; min-height: 40px; }
+.sourcing-yesno-option { display: flex; flex-direction: row; align-items: center; gap: 6px; color: var(--ink); font-size: 14px; font-weight: 650; cursor: pointer; }
+.sourcing-yesno-option input[type="checkbox"] { width: 18px; height: 18px; margin: 0; cursor: pointer; }
+.sourcing-freezing-grid { grid-template-columns: 1fr; max-width: 320px; }
+.sourcing-status-date-list { display: grid; gap: 10px; margin-top: 12px; }
+.sourcing-status-date-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.6);
+}
+.sourcing-status-date-label { flex: 1 1 220px; min-width: 180px; color: var(--ink); font-size: 14px; font-weight: 700; }
+.sourcing-status-date-options { display: flex; align-items: center; gap: 16px; flex: 0 0 auto; }
+.sourcing-status-date-input { flex: 0 0 auto; width: 150px; min-width: 0; height: 38px; }
+@media (max-width: 700px) {
+  .sourcing-status-date-row { flex-direction: column; align-items: stretch; }
+  .sourcing-status-date-options { flex-wrap: wrap; }
+  .sourcing-status-date-input { width: 100%; }
+}
+.sourcing-modal .modal-actions { justify-content: space-between; }
 .client-sample-table tbody tr { cursor: pointer; }
 .client-sample-table tbody tr:hover { background: rgba(56, 104, 140, 0.07); }
 .table-subtext {
@@ -2163,8 +2201,8 @@ td { font-size: 14px; }
 }
 /* la barre des expériences n'a qu'un tri : elle doit surcharger la grille des commandes */
 .experiments-controls { grid-template-columns: minmax(300px, 1.8fr) minmax(160px, 0.8fr) auto; }
-/* la barre du sourcing n'a ni réinitialiser ni colonnes supplémentaires : recherche et tri se partagent toute la largeur */
-.sourcing-controls { grid-template-columns: minmax(0, 1.8fr) minmax(0, 0.8fr); }
+/* la barre du sourcing n'a pas de réinitialiser : recherche, tri et filtre de catégorie se partagent toute la largeur */
+.sourcing-controls { grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.75fr) minmax(0, 0.75fr); }
 .history-control-field,
 .order-control-field {
   display: grid;
@@ -2974,6 +3012,39 @@ td { font-size: 14px; }
 .form-field > .order-combobox {
   width: 100%;
   min-height: 58px;
+}
+.sample-study-type-field { grid-column: 1 / -1; }
+.sample-study-type-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+  gap: 10px;
+}
+.sample-study-type-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(220, 223, 213, 0.95);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.85);
+  cursor: pointer;
+  font-weight: 780;
+  color: var(--ink);
+  transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+.sample-study-type-option:has(input:checked) {
+  border-color: var(--green);
+  background: #eef5e9;
+  color: #315b1d;
+}
+.sample-study-type-option input[type="radio"] {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--green);
 }
 .order-mode-fields {
   display: grid;

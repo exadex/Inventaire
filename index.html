@@ -54,7 +54,7 @@
         </div>
         <nav class="nav">
           <button class="nav-item active" data-view="inventory">Inventaire</button>
-          <button class="nav-item" data-view="samples">&Eacute;tudes clients</button>
+          <button class="nav-item" data-view="samples">&Eacute;tudes</button>
           <button class="nav-item" data-view="locations">Localisations</button>
           <button class="nav-item" data-view="experiments">Expériences</button>
           <button class="nav-item" data-view="sourcing">Sourcing</button>
@@ -148,7 +148,7 @@
             <div>
               <p class="eyebrow">Produits et &eacute;chantillons</p>
               <div class="client-studies-title-row">
-                <h3>&Eacute;tudes clients</h3>
+                <h3>&Eacute;tudes</h3>
               </div>
             </div>
             <button class="primary-btn" type="button" id="addClientStudyBtn">Ajouter un produit</button>
@@ -166,7 +166,23 @@
             </label>
 
             <label>
-              <span>Type</span>
+              <span>Type d'&eacute;tude</span>
+              <select id="sampleStudyTypeFilter" class="select">
+                <option value="all">Tous types d'&eacute;tude</option>
+                <option value="client">&Eacute;tude client</option>
+                <option value="rd">&Eacute;tude R&amp;D</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Code &eacute;tude</span>
+              <select id="sampleClientFilter" class="select">
+                <option value="all">Tous codes</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Type de produit</span>
               <select id="sampleTypeFilter" class="select">
                 <option value="all">Tous types</option>
                 <option value="client_product">Produit re&ccedil;u du client</option>
@@ -175,26 +191,12 @@
             </label>
 
             <label>
-              <span>Client</span>
-              <select id="sampleClientFilter" class="select">
-                <option value="all">Tous clients</option>
-              </select>
-            </label>
-
-            <label>
-              <span>Cat&eacute;gorie</span>
-              <select id="sampleCategoryFilter" class="select">
-                <option value="all">Toutes cat&eacute;gories</option>
-              </select>
-            </label>
-
-            <label>
               <span>Tri</span>
               <select id="sampleSortSelect" class="select">
                 <option value="recent">Plus r&eacute;cents</option>
                 <option value="oldest">Plus anciens</option>
-                <option value="client-az">Code client A-Z</option>
-                <option value="client-za">Code client Z-A</option>
+                <option value="client-az">Code &eacute;tude A-Z</option>
+                <option value="client-za">Code &eacute;tude Z-A</option>
               </select>
             </label>
           </section>
@@ -317,6 +319,18 @@
                 <option value="oldest">Plus anciens</option>
                 <option value="number-asc">N° patient croissant</option>
                 <option value="number-desc">N° patient décroissant</option>
+                <option value="bmi-asc">IMC croissant</option>
+                <option value="age-asc">Âge croissant</option>
+              </select>
+              <span class="order-control-secondary" aria-hidden="true"></span>
+            </label>
+            <label class="order-control-field" for="sourcingCategoryFilter">
+              <span>Catégorie</span>
+              <select class="select" id="sourcingCategoryFilter">
+                <option value="">Toutes les catégories</option>
+                <option value="Lean">Lean uniquement</option>
+                <option value="Surpoids">Surpoids uniquement</option>
+                <option value="Obèse">Obèse uniquement</option>
               </select>
               <span class="order-control-secondary" aria-hidden="true"></span>
             </label>
@@ -519,10 +533,10 @@
             <div>
               <p class="eyebrow">PROTECTION DES DONNÉES</p>
               <div class="client-studies-title-row"><h3 id="backupsTitle">Sauvegardes et restauration</h3></div>
-              <p class="location-page-description">Une copie des items est créée chaque lundi à 06:00, et une copie complète le premier jour de chaque mois à 06:00.</p>
+              <p class="location-page-description">Une copie des items est créée chaque lundi à 06h, et une copie complète le premier jour de chaque mois à 06h.</p>
             </div>
             <div class="orders-header-actions">
-              <small class="backup-local-scope-note">Accès propre à ce navigateur : les autres utilisateurs ne verront pas cette copie sans configurer leur propre accès, même si votre token est actif ici.</small>
+              <small class="backup-local-scope-note">Les autres utilisateurs ne verront pas cette copie crée manuellement, même si votre token est actif.</small>
               <button class="primary-btn" id="createFullBackupBtn" type="button">Créer une copie complète</button>
             </div>
           </div>
@@ -752,13 +766,27 @@
     <dialog id="sampleDialog" class="modal">
       <form id="sampleForm" method="dialog" novalidate>
         <div class="modal-header">
-          <h3 id="sampleModalTitle">Nouveau produit / &eacute;chantillon client</h3>
+          <h3 id="sampleModalTitle">Nouveau produit / &eacute;chantillon</h3>
           <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
         </div>
 
         <input type="hidden" id="sampleId" />
 
         <div class="form-grid">
+          <div class="form-field sample-study-type-field">
+            <span>Type d'&eacute;tude <span class="required-star">*</span></span>
+            <div class="sample-study-type-options" role="radiogroup" aria-label="Type d'&eacute;tude">
+              <label class="sample-study-type-option" for="sampleStudyTypeClient">
+                <input type="radio" id="sampleStudyTypeClient" name="sampleStudyType" value="client" required>
+                <span>&Eacute;tude client</span>
+              </label>
+              <label class="sample-study-type-option" for="sampleStudyTypeRd">
+                <input type="radio" id="sampleStudyTypeRd" name="sampleStudyType" value="rd" required>
+                <span>&Eacute;tude R&amp;D</span>
+              </label>
+            </div>
+          </div>
+
           <label class="form-field">
             <span>Type <span class="required-star">*</span></span>
             <select id="sampleType" required>
@@ -768,7 +796,7 @@
           </label>
 
           <label class="form-field">
-            <span>Code client <span class="required-star">*</span></span>
+            <span><span id="sampleClientCodeLabel">Code client</span> <span class="required-star">*</span></span>
             <input id="sampleClientCode" required />
             <small id="sampleClientCodeHint" class="client-code-hint"></small>
           </label>
@@ -1139,8 +1167,8 @@
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Informations de réception</summary>
           <div class="form-grid">
             <label><span>N° de patient <span class="required-star">*</span></span><input id="patientNumber" required /></label>
-            <label><span>Type</span><select id="patientType"><option value=""></option><option value="Lean">Lean</option><option value="Surpoids">Surpoids</option><option value="Obèse">Obèse</option></select></label>
-            <label><span>Date de réception</span><input id="patientReceptionDate" type="date" /></label>
+            <label><span>Type <span class="required-star">*</span></span><select id="patientType" required><option value="Lean">Lean</option><option value="Obèse">Obèse</option><option value="Surpoids">Surpoids</option></select></label>
+            <label><span>Date de réception <span class="required-star">*</span></span><input id="patientReceptionDate" type="date" required /></label>
             <label><span>Temps de culture (semaines)</span><input id="patientCultureWeeks" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
             <label><span>Quantité de départ</span><input id="patientStartQuantity" placeholder="ex. 9 mL" /></label>
             <label><span>Nombre de puits réalisés</span><input id="patientWellsCount" placeholder="ex. 4 puits (P6)" /></label>
@@ -1163,24 +1191,68 @@
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Informations Patient</summary>
           <div class="form-grid">
             <label><span>Initiales</span><input id="patientInitials" /></label>
-            <label><span>Site du prélèvement</span><input id="patientCollectionSite" /></label>
-            <label><span>Genre</span><input id="patientGender" /></label>
+            <label><span>Site du prélèvement</span><input id="patientCollectionSite" list="patientCollectionSiteOptions" autocomplete="off" /></label>
+            <datalist id="patientCollectionSiteOptions">
+              <option value="Abdo"></option>
+              <option value="Bras"></option>
+              <option value="Cou"></option>
+              <option value="Cuisse"></option>
+              <option value="Hanche"></option>
+              <option value="Obèse sous cutané"></option>
+              <option value="Ventre"></option>
+              <option value="Visage"></option>
+              <option value="Visage (menton)"></option>
+            </datalist>
+            <label><span>Genre</span><input id="patientGender" list="patientGenderOptions" autocomplete="off" /></label>
+            <datalist id="patientGenderOptions">
+              <option value="Femme"></option>
+              <option value="Homme"></option>
+            </datalist>
             <label><span>Âge</span><input id="patientAge" type="text" inputmode="numeric" pattern="\d*" /></label>
             <label><span>Taille (cm)</span><input id="patientHeight" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
             <label><span>Poids (kg)</span><input id="patientWeight" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
             <label><span>IMC</span><input id="patientBmi" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
-            <label><span>Technique</span><input id="patientTechnique" /></label>
-            <label><span>Chirurgien</span><input id="patientSurgeon" /></label>
+            <label><span>Technique</span><input id="patientTechnique" list="patientTechniqueOptions" autocomplete="off" /></label>
+            <datalist id="patientTechniqueOptions">
+              <option value="Abdominoplastie"></option>
+              <option value="Dermolipectomie"></option>
+              <option value="Lipo"></option>
+              <option value="Lipo manuelle"></option>
+              <option value="Lipo mécanique"></option>
+              <option value="Liposuccion lipomatic"></option>
+              <option value="Liposuccion sans infiltration"></option>
+              <option value="Lipoaspiration"></option>
+              <option value="Lipofilling"></option>
+              <option value="Manuel"></option>
+              <option value="Sous cutané abdo"></option>
+            </datalist>
+            <label><span>Chirurgien</span><input id="patientSurgeon" list="patientSurgeonOptions" autocomplete="off" /></label>
+            <datalist id="patientSurgeonOptions">
+              <option value="Alphenyx"></option>
+              <option value="Biopredict"></option>
+              <option value="BSC"></option>
+              <option value="I.BA"></option>
+              <option value="PL"></option>
+            </datalist>
             <label><span>Caractéristique patient</span><input id="patientCharacteristic" /></label>
           </div>
         </details>
 
-        <details class="migration-section sourcing-form-section">
+        <details class="migration-section sourcing-form-section" id="patientComorbiditySection">
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Co-morbidité / si obèse</summary>
           <div class="form-grid">
-            <label><span>NASH</span><select id="patientNash"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
-            <label><span>Apnée du sommeil</span><select id="patientSleepApnea"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
-            <label><span>DT2</span><select id="patientT2d"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
+            <div class="sourcing-yesno-field"><span>NASH</span><div class="sourcing-yesno-options">
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientNashYes" /> Oui</label>
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientNashNo" /> Non</label>
+            </div></div>
+            <div class="sourcing-yesno-field"><span>Apnée du sommeil</span><div class="sourcing-yesno-options">
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientSleepApneaYes" /> Oui</label>
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientSleepApneaNo" /> Non</label>
+            </div></div>
+            <div class="sourcing-yesno-field"><span>DT2</span><div class="sourcing-yesno-options">
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientT2dYes" /> Oui</label>
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientT2dNo" /> Non</label>
+            </div></div>
             <label><span>Autre</span><input id="patientOtherComorbidity" /></label>
             <label><span>Intervention</span><input id="patientIntervention" /></label>
             <label><span>IMC MAX</span><input id="patientBmiMax" type="text" inputmode="decimal" pattern="\d+([.,]\d+)?" /></label>
@@ -1190,49 +1262,178 @@
 
         <details class="migration-section sourcing-form-section">
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Contrôle Qualité</summary>
-          <div class="form-grid">
-            <label><span>Myco</span><input id="patientQcMyco" /></label>
-            <label><span>Bactéries</span><input id="patientQcBacteria" /></label>
-            <label><span>Levures</span><input id="patientQcYeast" /></label>
-            <label><span>XTT</span><input id="patientQcXtt" /></label>
-            <label><span>Collagénase</span><input id="patientQcCollagenase" /></label>
-            <label><span>ASC</span><input id="patientQcAsc" /></label>
-            <label class="full-label"><span>Remarques</span><textarea id="patientQcRemarks" rows="3"></textarea></label>
+          <datalist id="sourcingQcResultOptions">
+            <option value="Négatif"></option>
+            <option value="Positif"></option>
+          </datalist>
+          <div class="sample-table-wrap sourcing-qc-table-wrap">
+            <table class="sample-table sourcing-qc-table">
+              <thead>
+                <tr><th scope="col">Test</th><th scope="col">Résultat</th><th scope="col">Date</th><th scope="col">Tx</th><th scope="col">Remarques</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Myco</th>
+                  <td><input id="patientQcMycoResult" list="sourcingQcResultOptions" autocomplete="off" /></td>
+                  <td><input id="patientQcMycoDate" type="date" /></td>
+                  <td><input id="patientQcMycoTx" placeholder="ex. T0" /></td>
+                  <td><input id="patientQcMycoRemarks" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">Bactéries</th>
+                  <td><input id="patientQcBacteriaResult" list="sourcingQcResultOptions" autocomplete="off" /></td>
+                  <td><input id="patientQcBacteriaDate" type="date" /></td>
+                  <td><input id="patientQcBacteriaTx" placeholder="ex. T0" /></td>
+                  <td><input id="patientQcBacteriaRemarks" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">Levures</th>
+                  <td><input id="patientQcYeastResult" list="sourcingQcResultOptions" autocomplete="off" /></td>
+                  <td><input id="patientQcYeastDate" type="date" /></td>
+                  <td><input id="patientQcYeastTx" placeholder="ex. T0" /></td>
+                  <td><input id="patientQcYeastRemarks" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">XTT</th>
+                  <td><input id="patientQcXttResult" placeholder="ex. 0.235" /></td>
+                  <td><input id="patientQcXttDate" type="date" /></td>
+                  <td><input id="patientQcXttTx" placeholder="ex. T0" /></td>
+                  <td><input id="patientQcXttRemarks" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">Collagénase</th>
+                  <td><input id="patientQcCollagenaseResult" list="sourcingQcResultOptions" autocomplete="off" /></td>
+                  <td><input id="patientQcCollagenaseDate" type="date" /></td>
+                  <td><input id="patientQcCollagenaseTx" placeholder="ex. T0" /></td>
+                  <td><input id="patientQcCollagenaseRemarks" /></td>
+                </tr>
+                <tr>
+                  <th scope="row">ASC</th>
+                  <td><input id="patientQcAscResult" list="sourcingQcResultOptions" autocomplete="off" /></td>
+                  <td><input id="patientQcAscDate" type="date" /></td>
+                  <td><input id="patientQcAscTx" placeholder="ex. T0" /></td>
+                  <td><input id="patientQcAscRemarks" /></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </details>
 
         <details class="migration-section sourcing-form-section">
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>ARN</summary>
-          <div class="form-grid">
-            <label><span>Explant T0</span><input id="patientArnExplantT0" /></label>
-            <label><span>WAT T14</span><input id="patientArnWatT14" /></label>
-            <label><span>BAT T14</span><input id="patientArnBatT14" /></label>
-            <label><span>Prebat ± AMPc</span><input id="patientArnPrebatAmpc" /></label>
-            <label><span>Inductible en BAT (qPCR UCP1 positif)</span><input id="patientArnInducibleBat" /></label>
+          <div class="sourcing-status-date-list">
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Explant T0</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnExplantT0StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnExplantT0StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnExplantT0StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientArnExplantT0Date" />
+            </div>
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">WAT T14</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnWatT14StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnWatT14StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnWatT14StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientArnWatT14Date" />
+            </div>
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">BAT T14</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnBatT14StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnBatT14StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnBatT14StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientArnBatT14Date" />
+            </div>
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Prebat ± AMPc</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnPrebatAmpcStatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnPrebatAmpcStatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnPrebatAmpcStatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientArnPrebatAmpcDate" />
+            </div>
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Inductible en BAT (qPCR UCP1 positif)</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnInducibleBatStatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnInducibleBatStatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientArnInducibleBatStatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientArnInducibleBatDate" />
+            </div>
           </div>
         </details>
 
         <details class="migration-section sourcing-form-section">
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Milieu conditionné (sécrétions)</summary>
-          <div class="form-grid">
-            <label><span>Sécrétions T0</span><input id="patientSecretionsT0" /></label>
-            <label><span>Sécrétions T14</span><input id="patientSecretionsT14" /></label>
-            <label><span>Sécrétions BAT T14</span><input id="patientSecretionsBatT14" /></label>
+          <div class="sourcing-status-date-list">
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Sécrétions T0</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsT0StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsT0StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsT0StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientSecretionsT0Date" />
+            </div>
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Sécrétions T14</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsT14StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsT14StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsT14StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientSecretionsT14Date" />
+            </div>
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Sécrétions BAT T14</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsBatT14StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsBatT14StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientSecretionsBatT14StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientSecretionsBatT14Date" />
+            </div>
           </div>
         </details>
 
         <details class="migration-section sourcing-form-section">
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Fixation</summary>
-          <div class="form-grid">
-            <label><span>Fixation T0</span><input id="patientFixationT0" /></label>
-            <label><span>Fixation T14</span><input id="patientFixationT14" /></label>
+          <div class="sourcing-status-date-list">
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Fixation T0</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientFixationT0StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientFixationT0StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientFixationT0StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientFixationT0Date" />
+            </div>
+            <div class="sourcing-status-date-row">
+              <span class="sourcing-status-date-label">Fixation T14</span>
+              <div class="sourcing-status-date-options">
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientFixationT14StatusYes" /> Oui</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientFixationT14StatusNo" /> Non</label>
+                <label class="sourcing-yesno-option"><input type="checkbox" id="patientFixationT14StatusFill" /> À remplir</label>
+              </div>
+              <input type="date" class="sourcing-status-date-input" id="patientFixationT14Date" />
+            </div>
           </div>
         </details>
 
         <details class="migration-section sourcing-form-section">
           <summary><span class="sourcing-form-chevron" aria-hidden="true">›</span>Congélation</summary>
-          <div class="form-grid">
-            <label><span>Congélation</span><select id="patientFreezing"><option value=""></option><option value="Oui">Oui</option><option value="Non">Non</option></select></label>
+          <div class="form-grid sourcing-freezing-grid">
+            <div class="sourcing-yesno-field"><span>Congélation</span><div class="sourcing-yesno-options">
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientFreezingYes" /> Oui</label>
+              <label class="sourcing-yesno-option"><input type="checkbox" id="patientFreezingNo" /> Non</label>
+            </div></div>
             <label><span>Quantité</span><input id="patientFreezingQuantity" /></label>
             <label><span>Décongélation</span><input id="patientFreezingThaw" /></label>
           </div>

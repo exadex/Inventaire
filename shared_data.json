@@ -291,7 +291,7 @@
       "quantity": 0,
       "unit": "kit",
       "minStock": 0,
-      "usageProfile": "normal",
+      "usageProfile": "backup",
       "placements": [
         {
           "id": "placement-bd3776b6-43c8-40ce-9d80-6ae4c0645b47",
@@ -25133,6 +25133,12 @@
   ],
   "history": [
     {
+      "date": "31/08/2026 15:22",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Luminex® Multiplex Assay Customization Tool."
+    },
+    {
       "date": "31/08/2026 15:17",
       "user": "Elina",
       "action": "Item modifié",
@@ -33423,5 +33429,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-31T13:17:43.868Z"
+  "updatedAt": "2026-08-31T13:22:51.449Z"
 }

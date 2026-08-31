@@ -696,7 +696,7 @@
       "quantity": 45.08,
       "unit": "bouteilles",
       "minStock": 1,
-      "usageProfile": "routine",
+      "usageProfile": "normal",
       "placements": [
         {
           "id": "placement-5de43ceb-9124-4a47-96e2-32d290a84df1",
@@ -1374,7 +1374,10 @@
             "locations": [
               {
                 "location": "-20°C 2 salle -80",
-                "quantity": 6
+                "quantity": 6,
+                "roomId": "",
+                "locationId": "",
+                "sublocationId": ""
               }
             ],
             "openAliquots": [],
@@ -1404,7 +1407,10 @@
             "locations": [
               {
                 "location": "-20°C 2 salle -80",
-                "quantity": 30
+                "quantity": 30,
+                "roomId": "",
+                "locationId": "",
+                "sublocationId": ""
               }
             ],
             "openAliquots": [],
@@ -20807,7 +20813,8 @@
       },
       "specificData": {
         "notes": "100mg de tissu"
-      }
+      },
+      "studyType": "client"
     },
     {
       "id": "sample-created-1787300593430-0xkd08",
@@ -20843,7 +20850,8 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "studyType": "client"
     },
     {
       "id": "sample-created-1787300516047-bf9s59",
@@ -20879,7 +20887,8 @@
       },
       "specificData": {
         "notes": ""
-      }
+      },
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785334383674-6py1lh",
@@ -20911,7 +20920,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785334321234-km1r6a",
@@ -20943,7 +20953,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785334245359-g7pjk3",
@@ -20975,7 +20986,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785334188625-hr3ivu",
@@ -21007,7 +21019,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785334027130-p8t9wm",
@@ -21039,7 +21052,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333971706-akhe8p",
@@ -21071,7 +21085,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333925114-7l0ver",
@@ -21103,7 +21118,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333883106-p2ek3k",
@@ -21135,7 +21151,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333850466-v4hn6c",
@@ -21167,7 +21184,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333413850-jt7thw",
@@ -21199,7 +21217,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333368201-thbnb4",
@@ -21231,7 +21250,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333324706-97ep83",
@@ -21263,7 +21283,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333260785-6eioi4",
@@ -21295,7 +21316,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333145138-r7j3xq",
@@ -21327,7 +21349,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333083146-5obwcp",
@@ -21359,7 +21382,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785333028122-5wa151",
@@ -21391,7 +21415,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785332951729-xe4lv2",
@@ -21423,7 +21448,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1785332700841-1eq8m1",
@@ -21455,7 +21481,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292414504-5mazev",
@@ -21508,7 +21535,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292414504-7zzgbm",
@@ -21561,7 +21589,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292414504-ia3nqr",
@@ -21614,7 +21643,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292414504-4vbjxr",
@@ -21667,7 +21697,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292317584-gypec8",
@@ -21720,7 +21751,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292317584-7l4soq",
@@ -21773,7 +21805,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292317584-w1yk5j",
@@ -21826,7 +21859,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292033065-sj4s3n",
@@ -21879,7 +21913,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292033065-j0pxir",
@@ -21932,7 +21967,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292033065-awpce9",
@@ -21985,7 +22021,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784292033065-onje51",
@@ -22038,7 +22075,8 @@
         "notes": ""
       },
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105357936-y5mu0n",
@@ -22091,7 +22129,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105357936-y5mu0n",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105357936-hgf3qi",
@@ -22144,7 +22183,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105357936-hgf3qi",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105357936-wkds13",
@@ -22197,7 +22237,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105357936-wkds13",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105357936-otbt8i",
@@ -22250,7 +22291,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105357936-otbt8i",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105357936-uodwq5",
@@ -22303,7 +22345,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105357936-uodwq5",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105335232-p09kdp",
@@ -22356,7 +22399,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105335232-p09kdp",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105335232-pp69rg",
@@ -22409,7 +22453,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105335232-pp69rg",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105335232-ugm6ts",
@@ -22462,7 +22507,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105335232-ugm6ts",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105335232-x9t91h",
@@ -22515,7 +22561,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105335232-x9t91h",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105335232-kwgzly",
@@ -22568,7 +22615,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105335232-kwgzly",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105335232-n5wrqw",
@@ -22621,7 +22669,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105335232-n5wrqw",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105304265-pxdsud",
@@ -22674,7 +22723,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105304265-pxdsud",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105304265-jsfy2m",
@@ -22727,7 +22777,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105304265-jsfy2m",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105304265-ukqzzl",
@@ -22780,7 +22831,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105304265-ukqzzl",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105304265-u7krjs",
@@ -22833,7 +22885,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105304265-u7krjs",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105304265-4jtnsd",
@@ -22886,7 +22939,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105304265-4jtnsd",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105304265-52orti",
@@ -22939,7 +22993,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105304265-52orti",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105304265-0ysqgf",
@@ -22992,7 +23047,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105304265-0ysqgf",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105072456-24xr8z",
@@ -23045,7 +23101,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105072456-24xr8z",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105072456-enk3wq",
@@ -23098,7 +23155,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105072456-enk3wq",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105072456-fdvxgs",
@@ -23151,7 +23209,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105072456-fdvxgs",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105072456-kob742",
@@ -23204,7 +23263,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105072456-kob742",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105072456-ynzb9r",
@@ -23257,7 +23317,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105072456-ynzb9r",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784105072456-ajzf9i",
@@ -23310,7 +23371,8 @@
       "groupId": "sample-group-legacy-mib2-p234-j0-control-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784105072456-ajzf9i",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104932352-0tu0wb",
@@ -23363,7 +23425,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104932352-0tu0wb",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104932352-jj4bl3",
@@ -23416,7 +23479,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104932352-jj4bl3",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104932352-3jsep1",
@@ -23469,7 +23533,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104932352-3jsep1",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104932352-gfi9l8",
@@ -23522,7 +23587,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104932352-gfi9l8",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104932352-i8z01q",
@@ -23575,7 +23641,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104932352-i8z01q",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104932352-zbcbrs",
@@ -23628,7 +23695,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104932352-zbcbrs",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104932352-z754pu",
@@ -23681,7 +23749,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-vehicle-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104932352-z754pu",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104837903-ifrzie",
@@ -23734,7 +23803,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104837903-ifrzie",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104837903-2o21en",
@@ -23787,7 +23857,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104837903-2o21en",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104837903-a11pwb",
@@ -23840,7 +23911,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104837903-a11pwb",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104837903-1mol74",
@@ -23893,7 +23965,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104837903-1mol74",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104837903-hkdken",
@@ -23946,7 +24019,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104837903-hkdken",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104837903-qc50ng",
@@ -23999,7 +24073,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104837903-qc50ng",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104837903-b3veox",
@@ -24052,7 +24127,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-low-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104837903-b3veox",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104807567-lrga23",
@@ -24105,7 +24181,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104807567-lrga23",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104807567-jtmcla",
@@ -24158,7 +24235,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104807567-jtmcla",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104807567-gqtkv5",
@@ -24211,7 +24289,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104807567-gqtkv5",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104807567-92uvi2",
@@ -24264,7 +24343,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104807567-92uvi2",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104807567-az2u71",
@@ -24317,7 +24397,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104807567-az2u71",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104807567-nu0dxz",
@@ -24370,7 +24451,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104807567-nu0dxz",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-created-1784104807567-f5qel7",
@@ -24423,7 +24505,8 @@
       "groupId": "sample-group-legacy-ash1-p234-j0-high-dose-2026-07-10-secretion-20-c-blanc-labo",
       "replicaId": "sample-created-1784104807567-f5qel7",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1783950365570-f20i8q",
@@ -24455,7 +24538,8 @@
       "replicaNumber": null,
       "replicaCount": 1,
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1783950236643-fro2wp",
@@ -24487,7 +24571,8 @@
       "groupId": "",
       "replicaId": "sample-client-1783950236643-fro2wp",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1783950214076-ma4inn",
@@ -24519,7 +24604,8 @@
       "groupId": "",
       "replicaId": "sample-client-1783950214076-ma4inn",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1783950114371-9vaw87",
@@ -24551,7 +24637,8 @@
       "groupId": "",
       "replicaId": "sample-client-1783950114371-9vaw87",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     },
     {
       "id": "sample-client-1783950067755-qnq4at",
@@ -24583,7 +24670,8 @@
       "groupId": "",
       "replicaId": "sample-client-1783950067755-qnq4at",
       "arnQiazol": null,
-      "arnBead": null
+      "arnBead": null,
+      "studyType": "client"
     }
   ],
   "clients": [
@@ -24595,7 +24683,8 @@
         "APHM"
       ],
       "createdAtRaw": "2026-07-13T13:46:05.570Z",
-      "updatedAtRaw": "2026-07-13T13:46:05.570Z"
+      "updatedAtRaw": "2026-07-13T13:46:05.570Z",
+      "studyType": "client"
     },
     {
       "id": "client-APHM3",
@@ -24605,7 +24694,8 @@
         "APHM003"
       ],
       "createdAtRaw": "2026-07-29T13:46:22.099Z",
-      "updatedAtRaw": "2026-07-29T13:46:22.099Z"
+      "updatedAtRaw": "2026-07-29T13:46:22.099Z",
+      "studyType": "client"
     },
     {
       "normalizedKey": "ASH1",
@@ -24615,7 +24705,8 @@
       ],
       "id": "client-ASH1",
       "createdAtRaw": "2026-07-13T13:38:57.192Z",
-      "updatedAtRaw": "2026-07-13T13:38:57.192Z"
+      "updatedAtRaw": "2026-07-13T13:38:57.192Z",
+      "studyType": "client"
     },
     {
       "id": "client-LUB1",
@@ -24626,7 +24717,8 @@
         "LUB001"
       ],
       "createdAtRaw": "2026-07-29T13:45:00.841Z",
-      "updatedAtRaw": "2026-07-29T13:45:00.841Z"
+      "updatedAtRaw": "2026-07-29T13:45:00.841Z",
+      "studyType": "client"
     },
     {
       "id": "client-MIB2",
@@ -24636,7 +24728,8 @@
         "MIB002"
       ],
       "createdAtRaw": "2026-07-13T13:43:34.075Z",
-      "updatedAtRaw": "2026-07-13T13:43:34.075Z"
+      "updatedAtRaw": "2026-07-13T13:43:34.075Z",
+      "studyType": "client"
     },
     {
       "id": "client-T0&T14",
@@ -24647,7 +24740,8 @@
         "T0&T14"
       ],
       "createdAtRaw": "2026-08-21T08:21:56.046Z",
-      "updatedAtRaw": "2026-08-21T08:21:56.046Z"
+      "updatedAtRaw": "2026-08-21T08:21:56.046Z",
+      "studyType": "client"
     }
   ],
   "supplierContacts": [
@@ -25038,6 +25132,12 @@
     }
   ],
   "history": [
+    {
+      "date": "31/08/2026 15:17",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Fetal Bovine Serum (FBS)."
+    },
     {
       "date": "26/08/2026 15:51",
       "user": "Caroline",
@@ -33323,5 +33423,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-25T15:08:53.786Z"
+  "updatedAt": "2026-08-31T13:17:43.868Z"
 }

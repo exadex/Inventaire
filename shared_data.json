@@ -3746,7 +3746,7 @@
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
       "unit": "seringues",
-      "minStock": 3,
+      "minStock": 1,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -3775,7 +3775,37 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-09-02T15:30:11.279Z",
+      "createdAt": "02/09/2026 17:30",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "custom-seringue",
+            "singular": "seringue",
+            "plural": "seringues",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "custom-seringue",
+        "trackingUnit": "seringues",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0043",
@@ -25061,6 +25091,12 @@
   ],
   "history": [
     {
+      "date": "02/09/2026 17:30",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Seringue 1ml soft jet."
+    },
+    {
       "date": "02/09/2026 09:58",
       "user": "Elina",
       "action": "Item supprimé",
@@ -33363,5 +33399,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-08-31T13:22:51.449Z"
+  "updatedAt": "2026-09-02T15:30:11.282Z"
 }

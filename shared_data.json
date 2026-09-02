@@ -20530,78 +20530,6 @@
         "enabled": false,
         "preparations": []
       }
-    },
-    {
-      "id": "itm-CSV-0193",
-      "name": "Cones non-filtrés 1000µL",
-      "category": "Cones pipettes",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 1,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "pointes"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "70.3050.255",
-          "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3050.255/",
-          "notes": "113,28",
-          "price": "113,28",
-          "unitPrice": "0,059",
-          "leadTime": ""
-        },
-        "secondary": [
-          {
-            "reference": "70.3050.205",
-            "notes": "Sarsdest. Prix 84,64€ prix unitaire 0,04€"
-          }
-        ]
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T09:43:27.173Z",
-      "createdAt": "10/08/2026 11:43",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-wk64o4",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
     }
   ],
   "experiments": [
@@ -25132,6 +25060,12 @@
     }
   ],
   "history": [
+    {
+      "date": "02/09/2026 09:58",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Cones non-filtrés 1000µL de l'inventaire."
+    },
     {
       "date": "31/08/2026 15:22",
       "user": "Elina",

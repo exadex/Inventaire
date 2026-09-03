@@ -107,6 +107,90 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1788424502969",
+      "name": "Heparine",
+      "category": "Culture Cell",
+      "quantity": 1,
+      "unit": "vial",
+      "minStock": 1,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-a8c676ca-fcf5-4703-ab62-e5c953b8f35f",
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
+          "sublocationId": "sublocation-a82f2ba1-6482-4d6c-8ea8-f589a1486d4a"
+        }
+      ],
+      "locations": [
+        "-20°C 2 salle -80"
+      ],
+      "location": "-20°C 2 salle -80",
+      "tags": [
+        "culture",
+        "ex vivo"
+      ],
+      "notes": "Heparin sodium salt from porcine intestinal mucosa",
+      "references": {
+        "primary": {
+          "supplier": "Merck",
+          "reference": "H3393",
+          "link": "https://www.sigmaaldrich.com/UA/en/product/sial/h3393?srsltid=AfmBOor4RQIb1ttncls_c2Ud4BOdcVS8c-hLwLkAQU1_J31ne3Xx0-PZ",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785225250289-lwwcas",
+      "createdAtRaw": "2026-09-03T08:35:02.969Z",
+      "createdAt": "03/09/2026 10:35",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "custom-aliquot",
+            "singular": "aliquot",
+            "plural": "aliquots",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 10000
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Tiroir n°1",
+            "quantity": 1,
+            "updatedAt": "2026-09-03T08:35:02.970Z",
+            "updatedBy": "Caroline"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": true,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1787650981533",
       "name": "Plaque 48 puits - Dutscher",
       "category": "Procédé ExAdEx L2",
@@ -25091,6 +25175,12 @@
   ],
   "history": [
     {
+      "date": "03/09/2026 10:35",
+      "user": "Caroline",
+      "action": "Item ajouté",
+      "detail": "Caroline a ajouté Heparine dans Culture Cell."
+    },
+    {
       "date": "02/09/2026 17:30",
       "user": "Caroline",
       "action": "Item modifié",
@@ -33399,5 +33489,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-02T15:30:11.282Z"
+  "updatedAt": "2026-09-03T08:35:02.972Z"
 }

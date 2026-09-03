@@ -20887,7 +20887,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:33:20.828Z",
       "createdAt": "03/09/2026 15:33",
-      "baseName": "P236_APHM003_24h Contrôle positif Dex",
+      "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -20901,7 +20901,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442400829-8cg0ve",
       "groupId": "sample-group-1788442400829-xl8c2f",
-      "name": "P236_APHM003_24h Contrôle positif Dex 1",
+      "name": "P236_APHM003_24h Contrôle positif Anti-inflammatoire 1",
       "replicaNumber": 1,
       "replicaCount": 3,
       "generalData": {
@@ -20913,7 +20913,7 @@
         "clientId": "client-APHM3",
         "canonicalClientCode": "APHM003",
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h Contrôle positif Dex",
+        "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -20944,7 +20944,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:33:20.828Z",
       "createdAt": "03/09/2026 15:33",
-      "baseName": "P236_APHM003_24h Contrôle positif Dex",
+      "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -20958,7 +20958,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442400829-rhiyuq",
       "groupId": "sample-group-1788442400829-xl8c2f",
-      "name": "P236_APHM003_24h Contrôle positif Dex 2",
+      "name": "P236_APHM003_24h Contrôle positif Anti-inflammatoire 2",
       "replicaNumber": 2,
       "replicaCount": 3,
       "generalData": {
@@ -20970,7 +20970,7 @@
         "clientId": "client-APHM3",
         "canonicalClientCode": "APHM003",
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h Contrôle positif Dex",
+        "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -21001,7 +21001,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:33:20.828Z",
       "createdAt": "03/09/2026 15:33",
-      "baseName": "P236_APHM003_24h Contrôle positif Dex",
+      "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -21015,7 +21015,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442400829-0oko7e",
       "groupId": "sample-group-1788442400829-xl8c2f",
-      "name": "P236_APHM003_24h Contrôle positif Dex 3",
+      "name": "P236_APHM003_24h Contrôle positif Anti-inflammatoire 3",
       "replicaNumber": 3,
       "replicaCount": 3,
       "generalData": {
@@ -21027,7 +21027,7 @@
         "clientId": "client-APHM3",
         "canonicalClientCode": "APHM003",
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h Contrôle positif Dex",
+        "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -28818,6 +28818,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 15:33",
+      "user": "Caroline",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Caroline a modifié 3 échantillons P236_APHM003_24h Contrôle positif Anti-inflammatoire pour APHM003."
+    },
     {
       "date": "03/09/2026 15:33",
       "user": "Caroline",
@@ -37691,5 +37697,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T13:33:47.599Z"
+  "updatedAt": "2026-09-03T13:33:55.182Z"
 }

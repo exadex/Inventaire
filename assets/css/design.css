@@ -122,7 +122,7 @@ input:focus, select:focus, textarea:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(55, 103, 215, 0.16);
 }
-textarea[readonly] {
+input[readonly], textarea[readonly] {
   background: #f7f9f4;
   color: var(--muted);
   cursor: default;

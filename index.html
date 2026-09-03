@@ -648,6 +648,7 @@
               <div id="packagingConfig" class="packaging-config hidden">
                 <div class="packaging-heading"><strong>Conditionnement (1 à 3 niveaux)</strong><button id="addPackagingLevelBtn" class="ghost-btn compact-btn" type="button">Ajouter un niveau de contenu</button></div>
                 <div id="packagingLevels"></div>
+                <p id="packagingUnitMismatchWarning" class="field-validation-message hidden" role="alert"></p>
                 <label id="trackingUnitField" class="hidden"><span>Unité de comptage des contenants ouverts</span><select id="trackingUnitKey"></select><small>Choisissez l’unité réellement utilisée lors des comptages.</small><small id="trackingUnitError" class="field-validation-message hidden" aria-live="polite"></small></label>
                 <p id="packagingPreview" class="packaging-preview"></p>
               </div>
@@ -1531,6 +1532,39 @@
         <div class="modal-actions">
           <button class="ghost-btn" type="button" id="cancelOrderBtn">Annuler</button>
           <button class="primary-btn" id="saveOrderBtn" type="button">Ajouter à la liste</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="orderDatesDialog" class="modal">
+      <form id="orderDatesForm" method="dialog">
+        <div class="modal-header">
+          <h3>Modifier les dates</h3>
+          <button class="icon-btn" value="cancel" type="submit" formnovalidate>&times;</button>
+        </div>
+
+        <input type="hidden" id="orderDatesOrderId" />
+
+        <div class="form-grid">
+          <label>
+            <span>Date de la demande</span>
+            <input id="orderDatesRequested" type="date" />
+          </label>
+          <label>
+            <span>Date de la commande</span>
+            <input id="orderDatesOrdered" type="date" />
+          </label>
+          <label>
+            <span>Date d'arrivée</span>
+            <input id="orderDatesReceived" type="date" />
+          </label>
+        </div>
+
+        <p id="saveOrderDatesError" class="confirmation-modal-error hidden" role="alert"></p>
+
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="submit" formnovalidate>Annuler</button>
+          <button class="primary-btn" id="saveOrderDatesBtn" type="button">Enregistrer</button>
         </div>
       </form>
     </dialog>

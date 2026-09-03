@@ -20,9 +20,13 @@ catch { $parisZone = [System.TimeZoneInfo]::FindSystemTimeZoneById("Romance Stan
 
 $utc = if ($NowUtc.Kind -eq [DateTimeKind]::Utc) { $NowUtc } else { $NowUtc.ToUniversalTime() }
 $parisNow = [System.TimeZoneInfo]::ConvertTimeFromUtc($utc, $parisZone)
-$inScheduledWindow = $parisNow.Hour -ge 6 -and $parisNow.Hour -le 10
-$makeWeekly = $ForceWeekly -or ($inScheduledWindow -and $parisNow.DayOfWeek -eq [DayOfWeek]::Monday)
-$makeMonthly = $ForceMonthly -or ($inScheduledWindow -and $parisNow.Day -eq 1)
+# Pas de fenêtre horaire stricte : GitHub Actions peut livrer le déclenchement "schedule"
+# plusieurs heures en retard, donc on se base uniquement sur le jour Europe/Paris.
+# Write-Backup déduplique déjà par date, un déclenchement tardif ou répété le même jour
+# ne crée donc pas de doublon.
+$isSunday = $parisNow.DayOfWeek -eq [DayOfWeek]::Sunday
+$makeWeekly = $ForceWeekly -or $isSunday
+$makeMonthly = $ForceMonthly -or ($isSunday -and $parisNow.Day -le 7)
 
 if (-not $makeWeekly -and -not $makeMonthly) {
   Write-Output "No backup scheduled for $($parisNow.ToString('yyyy-MM-dd HH:mm')) Europe/Paris."

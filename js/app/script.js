@@ -416,6 +416,7 @@ stockMigrationForm?.addEventListener("submit", confirmStockMigration);
 document.querySelector("#closeStockMigrationBtn")?.addEventListener("click", closeStockMigration);
 document.querySelector("#cancelStockMigrationBtn")?.addEventListener("click", closeStockMigration);
 stockMigrationDialog?.addEventListener("cancel", event => { event.preventDefault(); closeStockMigration(); });
+fields.unit?.addEventListener("input", syncPackagingLevelZeroUnit);
 trackingFields.detailedPackagingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("packaging"));
 trackingFields.aliquotTrackingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("aliquots"));
 document.querySelector("#addPackagingLevelBtn")?.addEventListener("click", () => { if (trackingFields.packagingLevels.children.length < 3) { trackingFields.packagingLevels.insertAdjacentHTML("beforeend", renderPackagingLevelRow({}, trackingFields.packagingLevels.children.length)); updatePackagingPreview(); } });
@@ -454,6 +455,7 @@ document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal)
 document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
 document.querySelector("#closeOrderDialogBtn").addEventListener("click", () => orderDialog.close());
 document.querySelector("#cancelOrderBtn").addEventListener("click", () => orderDialog.close());
+document.querySelector("#saveOrderDatesBtn")?.addEventListener("click", saveOrderDates);
 orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
 orderFields.orderInventorySearch.addEventListener("input", handleOrderComboboxInput);
 orderFields.orderInventorySearch.addEventListener("keydown", handleOrderComboboxKeydown);
@@ -4250,6 +4252,12 @@ function normalizeOrderStatus(status) {
   return "requested";
 }
 
+function isRecentlyReceivedOrder(order, days = 7) {
+  const date = parseHistoryDate(order.receivedAtRaw || order.receivedAt);
+  if (!date) return true;
+  return Date.now() - date.getTime() <= days * 86400000;
+}
+
 function getOrdersByStatus(allOrders = orders) {
   const source = Array.isArray(allOrders) ? allOrders : [];
   return {
@@ -4278,13 +4286,14 @@ function renderOrderDetail(order) {
   const avatar = getHistoryUserAvatar(order.requestedBy);
   const unit = getOrderUnit(order);
   const references = item ? normalizeReferences(item.references) : normalizeReferences({});
-  const headerActions = status === "requested"
+  const primaryHeaderAction = status === "requested"
     ? `<button class="primary-btn compact-btn" type="button" onclick="moveOrderToOrdered('${escapeHtml(order.id)}')">Marquer comme commandée</button>`
     : status === "ordered"
       ? `<button class="primary-btn compact-btn" type="button" onclick="moveOrderToReceived('${escapeHtml(order.id)}')">Marquer comme arrivée</button>`
       : status === "received" && !order.addedToInventory
         ? `<button class="primary-btn compact-btn" type="button" onclick="openReceiveInventoryDialog('${escapeHtml(order.id)}')">Ajouter l’item à l’inventaire</button>`
         : "";
+  const headerActions = `${primaryHeaderAction}<button class="ghost-btn compact-btn" type="button" onclick="openOrderDatesModal('${escapeHtml(order.id)}')">Modifier les dates</button>`;
 
   return `
     <section class="inventory-detail-panel order-detail-view">
@@ -4397,6 +4406,7 @@ function renderOrders() {
   renderOrderBoardRequesterOptions(visibleOrders);
   const filteredOrders = visibleOrders
     .filter(order => orderMatchesBoardFilters(order))
+    .filter(order => normalizeOrderStatus(order.status) !== "received" || isRecentlyReceivedOrder(order))
     .sort(compareOrderBoardEntries);
   const groupedOrders = getOrdersByStatus(filteredOrders);
   const requested = groupedOrders.requested;
@@ -6435,15 +6445,36 @@ function saveItem() {
 }
 
 function renderPackagingLevelRow(level = {}, index = 0) {
-  const unit = level.singular || "";
+  const unit = index === 0 ? (fields.unit.value.trim() || level.singular || "") : (level.singular || "");
   return `<section class="packaging-level-row" data-level-index="${index}">
     <div class="packaging-level-heading"><strong>${index === 0 ? "Contenant principal fermé" : "Contenu"}</strong><span aria-hidden="true">—</span><small>${index === 0 ? "Il s’agit du contenant que vous recevez et stockez fermé." : "Définissez ce que contient le niveau précédent."}</small></div>
     <div class="packaging-level-fields">
-      <label>Unité<input data-packaging-unit required placeholder="${index === 0 ? "carton" : index === 1 ? "sachet" : "tube"}" value="${escapeHtml(unit)}"></label>
+      <label>Unité<input data-packaging-unit ${index === 0 ? `readonly title="Synchronisée avec l’unité de l’item ci-dessus."` : ""} required placeholder="${index === 0 ? "carton" : index === 1 ? "sachet" : "tube"}" value="${escapeHtml(unit)}"></label>
       ${index ? `<label data-contains-label>Quantité contenue<input data-packaging-contains type="number" min="1" step="1" required value="${Number(level.contains || 1)}"></label>` : `<span class="packaging-empty-field" aria-hidden="true"></span>`}
       <button class="icon-btn" type="button" data-remove-packaging aria-label="Supprimer ce niveau" ${index === 0 ? "disabled" : ""}>×</button>
     </div>
   </section>`;
+}
+
+function syncPackagingLevelZeroUnit() {
+  const input = trackingFields.packagingLevels?.querySelector('.packaging-level-row[data-level-index="0"] [data-packaging-unit]');
+  if (!input) return;
+  input.value = fields.unit.value.trim();
+  updatePackagingPreview();
+}
+
+function syncPackagingUnitMismatchWarning(item, tracking) {
+  const warning = document.querySelector("#packagingUnitMismatchWarning");
+  if (!warning) return;
+  const itemUnit = fields.unit.value.trim();
+  const outer = tracking.packagingLevels[0];
+  const outerKey = outer.key || StockTracking.normalizeUnitLabel(outer.singular || outer.plural || "").key;
+  const expectedKey = StockTracking.normalizeUnitLabel(itemUnit || "unité").key;
+  const mismatch = Boolean(item) && itemUnit && outerKey !== expectedKey;
+  warning.classList.toggle("hidden", !mismatch);
+  warning.textContent = mismatch
+    ? `Incohérence détectée sur cet item : le « Contenant principal fermé » était enregistré en « ${outer.singular} » alors que l’unité de l’item est « ${itemUnit} ». Il a été aligné automatiquement sur « ${itemUnit} » ci-dessus — vérifiez que c’est correct puis cliquez sur Enregistrer pour corriger définitivement cet item.`
+    : "";
 }
 
 function hydrateTrackingForm(item) {
@@ -6456,6 +6487,7 @@ function hydrateTrackingForm(item) {
   fields.quantity.title = fields.quantity.readOnly ? "Utilisez « Mettre à jour le stock » pour modifier cette quantité de manière tracée." : "";
   trackingFields.packagingLevels.innerHTML = tracking.packagingLevels.map(renderPackagingLevelRow).join("");
   syncTrackingConfigVisibility(); updateTrackingUnitOptions(tracking.trackingUnitKey); updatePackagingPreview();
+  syncPackagingUnitMismatchWarning(item, tracking);
 }
 
 function syncTrackingOptionCheckboxes(changedOption = "") {
@@ -9065,6 +9097,102 @@ async function saveOrder() {
     sharedDataIsSaving = false;
     button.disabled = false;
     button.textContent = originalLabel;
+    renderAlerts();
+  }
+}
+
+function orderDateToInputValue(raw) {
+  const date = parseHistoryDate(raw);
+  if (!date) return "";
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function openOrderDatesModal(id) {
+  const order = orders.find(entry => entry.id === id);
+  if (!order) return;
+  const errorBox = document.querySelector("#saveOrderDatesError");
+  if (errorBox) { errorBox.textContent = ""; errorBox.classList.add("hidden"); }
+  document.querySelector("#orderDatesOrderId").value = order.id;
+  document.querySelector("#orderDatesRequested").value = orderDateToInputValue(order.requestedAtRaw || order.requestedAt);
+  document.querySelector("#orderDatesOrdered").value = orderDateToInputValue(order.orderedAtRaw || order.orderedAt);
+  document.querySelector("#orderDatesReceived").value = orderDateToInputValue(order.receivedAtRaw || order.receivedAt);
+  document.querySelector("#orderDatesDialog").showModal();
+}
+
+function applyOrderDateEdit(target, atKey, rawKey, inputValue) {
+  if (!inputValue) {
+    target[atKey] = "";
+    target[rawKey] = "";
+    return;
+  }
+  const existing = parseHistoryDate(target[rawKey] || target[atKey]);
+  const [year, month, day] = inputValue.split("-").map(Number);
+  const hours = existing ? existing.getHours() : 12;
+  const minutes = existing ? existing.getMinutes() : 0;
+  const next = new Date(year, month - 1, day, hours, minutes);
+  target[atKey] = new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(next);
+  target[rawKey] = next.toISOString();
+}
+
+async function saveOrderDates() {
+  const id = document.querySelector("#orderDatesOrderId").value;
+  const order = orders.find(entry => entry.id === id);
+  if (!order) return;
+
+  const requestedInput = document.querySelector("#orderDatesRequested").value;
+  const orderedInput = document.querySelector("#orderDatesOrdered").value;
+  const receivedInput = document.querySelector("#orderDatesReceived").value;
+
+  const storage = window.ExadexGithubStorage;
+  const config = storage?.getConfig?.();
+  const errorBox = document.querySelector("#saveOrderDatesError");
+  if (errorBox) { errorBox.textContent = ""; errorBox.classList.add("hidden"); }
+  if (!storage?.mutateSharedData || !config?.owner || !config?.repo || !config?.token) {
+    window.alert("La sauvegarde GitHub en écriture est requise pour modifier ces dates.");
+    return;
+  }
+
+  const saveBtn = document.querySelector("#saveOrderDatesBtn");
+  try {
+    await flushPendingSharedDataBeforeAtomicOperation();
+    sharedDataIsSaving = true;
+    if (saveBtn) saveBtn.disabled = true;
+    renderAlerts();
+    const result = await storage.mutateSharedData(`order-dates-${id}-${Date.now()}`, latest => {
+      const state = createSharedState(latest, { includeBootstrap: false });
+      const target = (state.orders || []).find(entry => entry.id === id);
+      if (!target) throw new Error("Cette demande n’existe plus.");
+      applyOrderDateEdit(target, "requestedAt", "requestedAtRaw", requestedInput);
+      applyOrderDateEdit(target, "orderedAt", "orderedAtRaw", orderedInput);
+      applyOrderDateEdit(target, "receivedAt", "receivedAtRaw", receivedInput);
+      state.history = Array.isArray(state.history) ? state.history : [];
+      state.history.unshift({
+        date: new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "short" }).format(new Date()),
+        user: currentName,
+        action: "Dates de la demande modifiées",
+        detail: `${currentName} a corrigé les dates de ${target.itemName}.`
+      });
+      return state;
+    });
+    sharedDataSha = result.sha;
+    sharedDataMode = "github-write";
+    sharedDataHasUnsavedChanges = false;
+    sharedDataRemoteReady = true;
+    sharedDataLastError = "";
+    applySharedState(result.data);
+    initializeSharedSaveCoordinator(result.data, result.sha);
+    document.querySelector("#orderDatesDialog").close();
+    renderOrders();
+    renderHistory();
+  } catch (error) {
+    if (errorBox) { errorBox.textContent = error.message || String(error); errorBox.classList.remove("hidden"); }
+    else window.alert(error.message || String(error));
+  } finally {
+    sharedDataIsSaving = false;
+    if (saveBtn) saveBtn.disabled = false;
     renderAlerts();
   }
 }

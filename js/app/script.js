@@ -1360,12 +1360,6 @@ function renderLocationOptions() {
 }
 
 function renderSampleOptions() {
-  if (sampleFields.sampleLocation) {
-    sampleFields.sampleLocation.innerHTML = inventoryLocations
-      .map(location => `<option value="${escapeHtml(location)}">${escapeHtml(location)}</option>`)
-      .join("");
-  }
-
   renderClientFilterOptions();
 }
 
@@ -2778,7 +2772,7 @@ function renderSampleDetail(sample) {
         ${renderDetailRow(studyTypeLabel, clientCode)}
         ${renderDetailRow("Date", formatDisplayDateFrench(formatClientSampleDate(sample)))}
         ${renderDetailRow("Quantité / format", formatSampleDisplayQuantity(sample))}
-        ${renderDetailRow("Localisation", sample.location)}
+        ${renderDetailRow("Emplacement", placementFullPathDisplayName(getSamplePlacement(sample)) || sample.location)}
         ${renderDetailRow("Identifiant client", clientRecord?.id)}
       </div>
     </div>
@@ -2980,7 +2974,7 @@ function getReplicaBaseName(sample) {
   const explicitBaseName = String(sample?.baseName || "").trim();
   if (explicitBaseName && explicitBaseName !== sampleName) return explicitBaseName;
 
-  return (explicitBaseName || sampleName).replace(/\s+\d+$/, "").trim();
+  return (explicitBaseName || sampleName).replace(/[\s_]+\d+$/, "").trim();
 }
 
 function compareReplicaSamples(a, b) {
@@ -4718,7 +4712,7 @@ function renderReplicaGroupDetail(groupId, samples) {
         ${renderDetailRow(getStudyTypeLabel(sample), getSampleCanonicalClientCode(sample))}
         ${renderDetailRow("Date", formatDisplayDateFrench(sample.creationDate))}
         ${renderDetailRow("Quantité / format", formatSampleDisplayQuantity(sample))}
-        ${renderDetailRow("Localisation", sample.location)}
+        ${renderDetailRow("Emplacement", placementFullPathDisplayName(getSamplePlacement(sample)) || sample.location)}
       </div>
     </div>
     ${sample.generalNotes ? `<div class="client-detail-section"><h4>Notes générales</h4><p>${escapeHtml(sample.generalNotes)}</p></div>` : ""}
@@ -5780,6 +5774,74 @@ document.querySelector("#addPlacementBtn")?.addEventListener("click", event => {
   event.currentTarget.disabled = false;
 });
 
+function getSamplePlacement(sample) {
+  return {
+    roomId: sample?.roomId || null,
+    locationId: sample?.locationId || null,
+    sublocationId: sample?.sublocationId || null
+  };
+}
+
+function readSamplePlacement() {
+  const row = document.querySelector("#samplePlacementRow [data-sample-placement-row]");
+  return {
+    roomId: row?.querySelector("[data-sample-placement-room]")?.value || null,
+    locationId: row?.querySelector("[data-sample-placement-location]")?.value || null,
+    sublocationId: row?.querySelector("[data-sample-placement-sublocation]")?.value || null
+  };
+}
+
+function validateSamplePlacement(placement, options = {}) {
+  const error = document.querySelector("#samplePlacementError");
+  if (error) { error.textContent = ""; error.classList.add("hidden"); }
+
+  if (!placement.roomId) {
+    const message = "Veuillez sélectionner une salle.";
+    if (options.onSubmit && error) { error.textContent = message; error.classList.remove("hidden"); }
+    return false;
+  }
+
+  const catalog = normalizeLocationCatalog(sharedState.locationCatalog);
+  const location = placement.locationId && catalog.locations.find(row => row.id === placement.locationId);
+  const sublocation = placement.sublocationId && catalog.sublocations.find(row => row.id === placement.sublocationId);
+  const invalid = !FIXED_INVENTORY_ROOMS.some(row => row.id === placement.roomId) ||
+    (placement.locationId && (!location || location.roomId !== placement.roomId)) ||
+    (placement.sublocationId && (!placement.locationId || !sublocation || sublocation.locationId !== placement.locationId));
+
+  const message = invalid ? "Un emplacement contient une hiérarchie incohérente." : "";
+  if (error) { error.textContent = message; error.classList.toggle("hidden", !message); }
+  return !invalid;
+}
+
+function renderSamplePlacementEditor(placement = readSamplePlacement()) {
+  const container = document.querySelector("#samplePlacementRow");
+  if (!container) return;
+
+  const catalog = normalizeLocationCatalog(sharedState.locationCatalog);
+  const roomLocations = catalog.locations.filter(row => row.roomId === placement.roomId);
+  const sublocations = catalog.sublocations.filter(row => row.locationId === placement.locationId);
+
+  container.innerHTML = `<div class="placement-row" data-sample-placement-row>
+    <label>Salle<select data-sample-placement-room required><option value="">Sélectionner une salle</option>${FIXED_INVENTORY_ROOMS.map(room => `<option value="${room.id}" ${room.id === placement.roomId ? "selected" : ""}>${escapeHtml(room.name)}</option>`).join("")}</select></label>
+    ${roomLocations.length ? `<label>Localisation<select data-sample-placement-location><option value="">Aucune — directement dans la salle</option>${roomLocations.map(location => `<option value="${location.id}" ${location.id === placement.locationId ? "selected" : ""}>${escapeHtml(location.name)}</option>`).join("")}</select></label>` : ""}
+    ${sublocations.length ? `<label>Sous-localisation<select data-sample-placement-sublocation><option value="">Aucune — directement dans la localisation</option>${sublocations.map(sub => `<option value="${sub.id}" ${sub.id === placement.sublocationId ? "selected" : ""}>${escapeHtml(sub.name)}</option>`).join("")}</select></label>` : ""}
+  </div>`;
+
+  sampleFields.sampleLocation.value = placement.roomId ? "valid" : "";
+
+  container.querySelector("[data-sample-placement-room]")?.addEventListener("change", event => {
+    renderSamplePlacementEditor({ roomId: event.target.value || null, locationId: null, sublocationId: null });
+  });
+  container.querySelector("[data-sample-placement-location]")?.addEventListener("change", event => {
+    renderSamplePlacementEditor({ roomId: placement.roomId, locationId: event.target.value || null, sublocationId: null });
+  });
+  container.querySelector("[data-sample-placement-sublocation]")?.addEventListener("change", () => {
+    validateSamplePlacement(readSamplePlacement());
+  });
+
+  validateSamplePlacement(readSamplePlacement());
+}
+
 function selectItem(id) {
   selectedItemId = id;
   renderInventory();
@@ -5989,7 +6051,7 @@ function openSampleModal(id, options = {}) {
   sampleFields.sampleMeasureValue.value = sample?.measureValue ?? "";
   sampleFields.sampleReplicaCount.value = "1";
   sampleFields.sampleReplicaCount.disabled = Boolean(sample);
-  sampleFields.sampleLocation.value = sample?.location || inventoryLocations[0];
+  renderSamplePlacementEditor(getSamplePlacement(sample));
   sampleFields.sampleReferenceNumber.value = sample?.referenceNumber || "";
   sampleFields.sampleLotNumber.value = sample?.lotNumber || "";
   sampleFields.sampleNotes.value = sampleEditContext.scope === "group"
@@ -6058,6 +6120,8 @@ window.ExadexClientSampleRules = {
 
 function saveSample() {
   syncSampleFormVisibility();
+  const placement = readSamplePlacement();
+  if (!validateSamplePlacement(placement, { onSubmit: true })) return;
   if (!sampleForm.reportValidity()) return;
 
   const existingId = sampleFields.sampleId.value.trim();
@@ -6083,7 +6147,10 @@ function saveSample() {
     normalizedClientKey: clientInfo.normalizedKey,
     clientId: clientInfo.id,
     canonicalClientCode: clientInfo.canonicalCode,
-    location: sampleFields.sampleLocation.value,
+    roomId: placement.roomId,
+    locationId: placement.locationId,
+    sublocationId: placement.sublocationId,
+    location: placementDisplayName(placement),
     notes: normalizeMultilineText(sampleFields.sampleNotes.value),
     createdAtRaw: existingSample?.createdAtRaw || now.toISOString(),
     createdAt: existingSample?.createdAt || new Intl.DateTimeFormat("fr-FR", {
@@ -6131,6 +6198,9 @@ function saveSample() {
       normalizedClientKey: base.normalizedClientKey,
       clientId: base.clientId,
       canonicalClientCode: base.canonicalClientCode,
+      roomId: base.roomId,
+      locationId: base.locationId,
+      sublocationId: base.sublocationId,
       location: base.location,
       baseName,
       category,
@@ -6159,7 +6229,7 @@ function saveSample() {
           groupId: sampleEditContext.groupId,
           replicaNumber: sample.replicaNumber,
           replicaCount: groupSamples.length,
-          name: `${effective.baseName || baseName} ${sample.replicaNumber}`,
+          name: `${effective.baseName || baseName}_${sample.replicaNumber}`,
           generalData,
           specificData: sample.specificData || {}
         };
@@ -6176,7 +6246,7 @@ function saveSample() {
         groupId: existingSample.groupId || sampleEditContext.groupId,
         replicaNumber: existingSample.replicaNumber,
         replicaCount: existingSample.replicaCount,
-        name: `${baseName} ${existingSample.replicaNumber}`,
+        name: `${baseName}_${existingSample.replicaNumber}`,
         generalData: existingSample.generalData || {},
         specificData
       };
@@ -6185,7 +6255,7 @@ function saveSample() {
       const generalData = { ...editableData, notes: normalizeMultilineText(sampleFields.sampleNotes.value) };
       const samplesToSave = Array.from({ length: replicaCount }, (_, index) => {
       const replicaNumber = index + 1;
-      const name = replicaCount > 1 ? `${baseName} ${replicaNumber}` : baseName;
+      const name = replicaCount > 1 ? `${baseName}_${replicaNumber}` : baseName;
       const id = existingId || createSafeItemId("sample-created");
 
       return {
@@ -10348,9 +10418,27 @@ function migrateClientSamples(sampleList) {
     const measureUnit = type === "created_sample"
       ? (historicalUnit || getCreatedSampleUnit(category, legacyArnQiazol !== false))
       : (sample?.unit || "");
-    const location = inventoryLocations.includes(sample?.location)
+    const canonicalLocation = inventoryLocations.includes(sample?.location)
       ? sample.location
       : legacyLocationMap[sample?.location] || inventoryLocations[0];
+    const existingPlacement = sample?.roomId
+      ? {
+          roomId: String(sample.roomId),
+          locationId: sample.locationId ? String(sample.locationId) : null,
+          sublocationId: sample.sublocationId ? String(sample.sublocationId) : null
+        }
+      : null;
+    const mappedPlacement = LEGACY_PLACEMENT_MAP[canonicalLocation];
+    const placement = existingPlacement || (mappedPlacement
+      ? { roomId: mappedPlacement[0], locationId: mappedPlacement[1], sublocationId: null }
+      : { roomId: null, locationId: null, sublocationId: null });
+    // existingPlacement provient d'un enregistrement déjà migré : son "location" a été
+    // résolu via placementDisplayName au moment de la sauvegarde, donc pas besoin de
+    // relire le catalogue ici (createSharedState appelle cette fonction avant que la
+    // variable globale sharedState ne soit initialisée).
+    const location = existingPlacement
+      ? (String(sample?.location || "").trim() || canonicalLocation)
+      : canonicalLocation;
     const rawClientCode = String(
       sample?.rawClientCode ||
       sample?.clientCode ||
@@ -10368,7 +10456,7 @@ function migrateClientSamples(sampleList) {
       ? [
           "sample-group-legacy",
           normalizedClient.normalizedKey || "client",
-          sample?.baseName || String(sample?.name || "").replace(/\s+\d+$/, ""),
+          sample?.baseName || String(sample?.name || "").replace(/[\s_]+\d+$/, ""),
           sample?.creationDate || "date",
           sample?.category || "category",
           sample?.location || "location"
@@ -10402,6 +10490,9 @@ function migrateClientSamples(sampleList) {
       category,
       arnQiazol: legacyArnQiazol,
       arnBead: legacyArnBead,
+      roomId: placement.roomId,
+      locationId: placement.locationId,
+      sublocationId: placement.sublocationId,
       location,
       arrivalDate: sample?.arrivalDate || "",
       creationDate: sample?.creationDate || "",

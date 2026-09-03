@@ -863,10 +863,12 @@
             <input id="sampleReplicaCount" type="number" min="1" step="1" value="1" />
           </label>
 
-          <label>
-            <span>Localisation <span class="required-star">*</span></span>
-            <select id="sampleLocation" required></select>
-          </label>
+          <section class="placement-editor full-width" aria-labelledby="samplePlacementLegend">
+            <span id="samplePlacementLegend">Emplacement <span class="required-star">*</span></span>
+            <div id="samplePlacementRow" class="placement-list"></div>
+            <input id="sampleLocation" type="hidden" required />
+            <small id="samplePlacementError" class="field-validation-message hidden" aria-live="polite"></small>
+          </section>
 
           <label class="sample-client-product-field">
             <span>R&eacute;f&eacute;rence produit</span>

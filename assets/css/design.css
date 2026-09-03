@@ -2797,6 +2797,7 @@ td { font-size: 14px; }
 .placement-editor { display: grid; gap: 10px; }
 .placement-editor-heading, .placement-row-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .placement-editor-heading > span { font-weight: 750; }
+.placement-editor > span { color: var(--muted); font-size: 13px; font-weight: 650; }
 .placement-list { display: grid; gap: 14px; }
 .placement-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 4px 0 14px; border: 0; border-bottom: 1px solid rgba(31,37,34,0.09); border-radius: 0; background: transparent; box-shadow: none; }
 .placement-row:last-child { padding-bottom: 4px; border-bottom: 0; }

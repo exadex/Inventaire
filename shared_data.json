@@ -110,7 +110,7 @@
       "id": "web-1788424502969",
       "name": "Heparine",
       "category": "Culture Cell",
-      "quantity": 1,
+      "quantity": 0.0012,
       "unit": "vial",
       "minStock": 1,
       "usageProfile": "normal",
@@ -179,21 +179,25 @@
             "id": "closed-web-1788424502969-tiroir-n-1-1",
             "label": "aliquot fermé nº1",
             "location": "Tiroir n°1",
-            "remaining": 9988,
+            "remaining": 0,
             "capacity": 10000,
             "unitKey": "unite",
-            "status": "open",
+            "status": "finished",
             "createdAt": "2026-09-03T08:35:02.970Z",
-            "updatedAt": "2026-09-03T08:36:22.842Z",
+            "updatedAt": "2026-09-03T11:13:24.813Z",
             "updatedBy": "caroline",
-            "version": 3,
+            "version": 4,
             "openedAt": "2026-09-03T08:36:22.842Z",
             "openedBy": {
               "userId": "caroline",
               "userName": "Caroline",
               "userEmoji": "🧪",
               "userInitials": ""
-            }
+            },
+            "roomId": "room-piece-80",
+            "locationId": "location-20-2-salle-80",
+            "sublocationId": "sublocation-a82f2ba1-6482-4d6c-8ea8-f589a1486d4a",
+            "finishedAt": "2026-09-03T11:13:24.813Z"
           }
         ]
       },
@@ -25224,6 +25228,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mtlffcey-4054715575-1946513272",
+      "operationId": "operation-mtlffcey-4054715575-1946513272",
+      "date": "03/09/2026 13:13",
+      "action": "Comptage / Ajustement",
+      "detail": "Caroline · Heparine · Stock précédent : 1 aliquots · Stock compté : 0,001 aliquots · Écart : -0,999 aliquots · Note : Je n'ai pas trouvé de vial stock, que les aliquotes",
+      "user": "Caroline",
+      "itemId": "web-1788424502969",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 0.0012,
+      "difference": -0.9988,
+      "unit": "aliquots",
+      "note": "Je n'ai pas trouvé de vial stock, que les aliquotes"
+    },
+    {
       "date": "03/09/2026 10:38",
       "user": "Caroline",
       "action": "Item modifié",
@@ -33408,6 +33427,87 @@
       "toLocation": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°1",
       "comment": "Aliquots déjà préparé, je ne connais pas la quantité de source utilisée",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mtlffhvx-3430179191-409555395",
+      "operationId": "operation-mtlffcey-4054715575-1946513272-closed-web-1788424502969-tiroir-n-1-1",
+      "itemId": "web-1788424502969",
+      "timestamp": "2026-09-03T11:13:24.813Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-web-1788424502969-tiroir-n-1-1",
+      "containerId": "closed-web-1788424502969-tiroir-n-1-1",
+      "containerLabel": "aliquot fermé nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 9988,
+      "afterQuantity": 0,
+      "beforeCapacity": 10000,
+      "afterCapacity": 10000,
+      "unitBefore": "unités",
+      "unitAfter": "unités",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1788424502969-tiroir-n-1-1",
+        "label": "aliquot fermé nº1",
+        "location": "Tiroir n°1",
+        "remaining": 9988,
+        "capacity": 10000,
+        "unitKey": "unite",
+        "status": "open",
+        "createdAt": "2026-09-03T08:35:02.970Z",
+        "updatedAt": "2026-09-03T08:36:22.842Z",
+        "updatedBy": "caroline",
+        "version": 3,
+        "openedAt": "2026-09-03T08:36:22.842Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        }
+      },
+      "after": {
+        "id": "closed-web-1788424502969-tiroir-n-1-1",
+        "label": "aliquot fermé nº1",
+        "location": "Tiroir n°1",
+        "remaining": 0,
+        "capacity": 10000,
+        "unitKey": "unite",
+        "status": "finished",
+        "createdAt": "2026-09-03T08:35:02.970Z",
+        "updatedAt": "2026-09-03T11:13:24.813Z",
+        "updatedBy": "caroline",
+        "version": 4,
+        "openedAt": "2026-09-03T08:36:22.842Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "roomId": "room-piece-80",
+        "locationId": "location-20-2-salle-80",
+        "sublocationId": "sublocation-a82f2ba1-6482-4d6c-8ea8-f589a1486d4a",
+        "finishedAt": "2026-09-03T11:13:24.813Z"
+      },
+      "quantity": 0,
+      "difference": -9988,
+      "unit": "unités",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Tiroir n°1",
+      "toLocation": "Tiroir n°1",
+      "comment": "Je n'ai pas trouvé de vial stock, que les aliquotes",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -33597,6 +33697,12 @@
       "itemId": "web-1788424502969",
       "at": "2026-09-03T08:36:22.843Z",
       "type": "aliquots_prepared"
+    },
+    {
+      "operationId": "operation-mtlffcey-4054715575-1946513272",
+      "itemId": "web-1788424502969",
+      "at": "2026-09-03T11:13:24.813Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -33628,5 +33734,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T08:38:02.826Z"
+  "updatedAt": "2026-09-03T11:13:24.813Z"
 }

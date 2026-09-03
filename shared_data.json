@@ -21462,8 +21462,8 @@
       "createdAt": "29/07/2026 15:51",
       "name": "APHM003_produit n°3",
       "arrivalDate": "2026-07-29",
-      "quantity": 1,
-      "unit": "tube",
+      "quantity": 2.94,
+      "unit": "mL",
       "referenceNumber": "",
       "lotNumber": "",
       "category": "",
@@ -21471,8 +21471,8 @@
       "arnQiazol": null,
       "arnBead": null,
       "creationDate": "",
-      "measureValue": 1,
-      "measureUnit": "tube",
+      "measureValue": 2.94,
+      "measureUnit": "mL",
       "generalData": {},
       "specificData": {},
       "groupId": "",
@@ -25227,6 +25227,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 13:48",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°3 pour APHM003."
+    },
     {
       "date": "03/09/2026 13:48",
       "user": "Caroline",
@@ -33926,5 +33932,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T11:48:04.093Z"
+  "updatedAt": "2026-09-03T11:48:12.637Z"
 }

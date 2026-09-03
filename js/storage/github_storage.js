@@ -78,10 +78,26 @@
     const content = String(payload.content || "").replace(/\s/g, "");
     latestSha = payload.sha || null;
 
-    return {
-      data: readJson(decodeBase64Utf8(content), null),
-      sha: latestSha
-    };
+    if (content) {
+      return {
+        data: readJson(decodeBase64Utf8(content), null),
+        sha: latestSha
+      };
+    }
+
+    // Au-delà d'environ 1 Mo, l'API "contents" ne renvoie plus le contenu encodé en
+    // base64 (content vide) : on retombe sur le contenu brut, sans limite de taille.
+    if (payload.download_url) {
+      const rawUrl = `${payload.download_url}${payload.download_url.includes("?") ? "&" : "?"}t=${Date.now()}`;
+      const rawResponse = await fetch(rawUrl, { cache: "no-store" });
+      if (!rawResponse.ok) {
+        throw new Error(`GitHub raw read failed: ${rawResponse.status}`);
+      }
+      const text = await rawResponse.text();
+      return { data: readJson(text, null), sha: latestSha };
+    }
+
+    return { data: null, sha: latestSha };
   }
 
   async function requestPublicJson(config, options = {}) {

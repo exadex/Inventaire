@@ -1037,7 +1037,8 @@ async function hydrateSharedData() {
       if (!app.classList.contains("hidden")) {
         render();
       }
-    } else {
+    } else if (!result.sha) {
+      // Aucun fichier distant (404) : premier démarrage, on amorce avec les données de base.
       sharedState = createSharedState(null, { includeBootstrap: true });
       syncRuntimeStateFromShared();
       cacheSharedState();
@@ -1046,6 +1047,17 @@ async function hydrateSharedData() {
         initializeSharedSaveCoordinator(result.data, result.sha);
         scheduleSharedSave({ allowInitialSeed: true });
       }
+    } else {
+      // Le fichier distant existe (sha présent) mais son contenu n'a pas pu être lu
+      // correctement : ne jamais écraser les données partagées avec un état vide,
+      // on retombe sur le cache local sans déclencher de sauvegarde.
+      sharedDataMode = "cache-fallback";
+      sharedDataLastError = "Impossible de lire les données partagées reçues de GitHub (contenu vide ou illisible).";
+      sharedDataRemoteReady = false;
+      console.warn("Shared data read returned no usable payload despite an existing remote file; keeping local cache to avoid overwriting it.", result);
+      syncRuntimeStateFromShared();
+      cacheSharedState();
+      renderAlerts();
     }
   } catch (error) {
     sharedDataMode = "cache-fallback";

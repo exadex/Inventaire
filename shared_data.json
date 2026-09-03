@@ -21001,7 +21001,7 @@
       "name": "APHM003_produit n°20",
       "arrivalDate": "2026-07-29",
       "quantity": 0,
-      "unit": "eppendorf",
+      "unit": "mL",
       "referenceNumber": "",
       "lotNumber": "",
       "category": "",
@@ -21010,7 +21010,7 @@
       "arnBead": null,
       "creationDate": "",
       "measureValue": 0,
-      "measureUnit": "eppendorf",
+      "measureUnit": "mL",
       "generalData": {},
       "specificData": {},
       "groupId": "",
@@ -25227,6 +25227,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 13:48",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°20 pour APHM003."
+    },
     {
       "date": "03/09/2026 13:48",
       "user": "Caroline",
@@ -33950,5 +33956,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T11:48:37.804Z"
+  "updatedAt": "2026-09-03T11:48:48.509Z"
 }

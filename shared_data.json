@@ -21450,13 +21450,14 @@
     {
       "id": "sample-client-1785333083146-5obwcp",
       "type": "client_product",
+      "studyType": "client",
       "clientCode": "APHM003",
       "rawClientCode": "APHM003",
       "normalizedClientKey": "APHM3",
       "clientId": "client-APHM3",
       "canonicalClientCode": "APHM003",
-      "location": "Culture L1",
-      "notes": "Poudre lyophilisée\nReconstituer dans 5mL\nStérile\nStocker à RT",
+      "location": "Frigo culture L1",
+      "notes": "Poudre lyophilisée, stérile, stocker à RT\nReconstitué le 02/09/2026 dans 3mL EBM (injecté 60µL, reste 2940µL). Stocké à 4°C (falcon 15)",
       "createdAtRaw": "2026-07-29T13:51:23.146Z",
       "createdAt": "29/07/2026 15:51",
       "name": "APHM003_produit n°3",
@@ -21467,6 +21468,8 @@
       "lotNumber": "",
       "category": "",
       "baseName": "APHM003_produit n°3",
+      "arnQiazol": null,
+      "arnBead": null,
       "creationDate": "",
       "measureValue": 1,
       "measureUnit": "tube",
@@ -21475,10 +21478,7 @@
       "groupId": "",
       "replicaId": "sample-client-1785333083146-5obwcp",
       "replicaNumber": null,
-      "replicaCount": 1,
-      "arnQiazol": null,
-      "arnBead": null,
-      "studyType": "client"
+      "replicaCount": 1
     },
     {
       "id": "sample-client-1785333028122-5wa151",
@@ -25227,6 +25227,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 13:42",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°3 pour APHM003."
+    },
     {
       "date": "03/09/2026 13:41",
       "user": "Caroline",
@@ -33830,5 +33836,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T11:41:29.461Z"
+  "updatedAt": "2026-09-03T11:42:00.693Z"
 }

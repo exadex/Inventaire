@@ -123,15 +123,14 @@
         }
       ],
       "locations": [
-        "Tiroir n°1",
-        "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°1"
+        "-20°C 2 salle -80"
       ],
-      "location": "Tiroir n°1",
+      "location": "-20°C 2 salle -80",
       "tags": [
         "culture",
         "ex vivo"
       ],
-      "notes": "Heparin sodium salt from porcine intestinal mucosa",
+      "notes": "Heparin sodium salt from porcine intestinal mucosa\nIl faudra modifier les unités par les correctes",
       "references": {
         "primary": {
           "supplier": "Merck",
@@ -215,7 +214,10 @@
             "locations": [
               {
                 "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°1",
-                "quantity": 12
+                "quantity": 12,
+                "roomId": "",
+                "locationId": "",
+                "sublocationId": ""
               }
             ],
             "openAliquots": [],
@@ -25222,6 +25224,12 @@
   ],
   "history": [
     {
+      "date": "03/09/2026 10:38",
+      "user": "Caroline",
+      "action": "Item modifié",
+      "detail": "Caroline a modifié Heparine."
+    },
+    {
       "id": "history-operation-mtl9tj2a-2971038193-3718728346",
       "operationId": "operation-mtl9tj2a-2971038193-3718728346",
       "date": "03/09/2026 10:36",
@@ -33620,5 +33628,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T08:36:22.843Z"
+  "updatedAt": "2026-09-03T08:38:02.826Z"
 }

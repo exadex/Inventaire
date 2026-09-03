@@ -21058,7 +21058,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:32:51.557Z",
       "createdAt": "03/09/2026 15:32",
-      "baseName": "P236_APHM003_24h Contrôle positif NAC",
+      "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -21072,7 +21072,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442371557-u4q0ra",
       "groupId": "sample-group-1788442371557-56keg1",
-      "name": "P236_APHM003_24h Contrôle positif NAC 1",
+      "name": "P236_APHM003_24h Contrôle positif Anti-inflammatoire 1",
       "replicaNumber": 1,
       "replicaCount": 3,
       "generalData": {
@@ -21084,7 +21084,7 @@
         "clientId": "client-APHM3",
         "canonicalClientCode": "APHM003",
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h Contrôle positif NAC",
+        "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -21115,7 +21115,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:32:51.557Z",
       "createdAt": "03/09/2026 15:32",
-      "baseName": "P236_APHM003_24h Contrôle positif NAC",
+      "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -21129,7 +21129,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442371557-ei207o",
       "groupId": "sample-group-1788442371557-56keg1",
-      "name": "P236_APHM003_24h Contrôle positif NAC 2",
+      "name": "P236_APHM003_24h Contrôle positif Anti-inflammatoire 2",
       "replicaNumber": 2,
       "replicaCount": 3,
       "generalData": {
@@ -21141,7 +21141,7 @@
         "clientId": "client-APHM3",
         "canonicalClientCode": "APHM003",
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h Contrôle positif NAC",
+        "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -21172,7 +21172,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:32:51.557Z",
       "createdAt": "03/09/2026 15:32",
-      "baseName": "P236_APHM003_24h Contrôle positif NAC",
+      "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -21186,7 +21186,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442371557-mrhog3",
       "groupId": "sample-group-1788442371557-56keg1",
-      "name": "P236_APHM003_24h Contrôle positif NAC 3",
+      "name": "P236_APHM003_24h Contrôle positif Anti-inflammatoire 3",
       "replicaNumber": 3,
       "replicaCount": 3,
       "generalData": {
@@ -21198,7 +21198,7 @@
         "clientId": "client-APHM3",
         "canonicalClientCode": "APHM003",
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h Contrôle positif NAC",
+        "baseName": "P236_APHM003_24h Contrôle positif Anti-inflammatoire",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -28818,6 +28818,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 15:33",
+      "user": "Caroline",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Caroline a modifié 3 échantillons P236_APHM003_24h Contrôle positif Anti-inflammatoire pour APHM003."
+    },
     {
       "date": "03/09/2026 15:33",
       "user": "Caroline",
@@ -37679,5 +37685,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T13:33:20.831Z"
+  "updatedAt": "2026-09-03T13:33:38.878Z"
 }

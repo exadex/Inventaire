@@ -20995,12 +20995,12 @@
       "clientId": "client-APHM3",
       "canonicalClientCode": "APHM003",
       "location": "Frigo culture L1",
-      "notes": "Liquide, stérile, stocker à -80°C\nReconstitué le 02/09/2026 dans 5mL EBM (injecté 60µL, reste 4940µL). Stocké à 4°C (falcon 15)",
+      "notes": "Liquide, stérile, stocker à -80°C\nInjecté 60µL le 02/09/2026, eppendorf vide : poubelle",
       "createdAtRaw": "2026-07-29T14:13:03.674Z",
       "createdAt": "29/07/2026 16:13",
       "name": "APHM003_produit n°20",
       "arrivalDate": "2026-07-29",
-      "quantity": 1,
+      "quantity": 0,
       "unit": "eppendorf",
       "referenceNumber": "",
       "lotNumber": "",
@@ -21009,7 +21009,7 @@
       "arnQiazol": null,
       "arnBead": null,
       "creationDate": "",
-      "measureValue": 1,
+      "measureValue": 0,
       "measureUnit": "eppendorf",
       "generalData": {},
       "specificData": {},
@@ -25227,6 +25227,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 13:32",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°20 pour APHM003."
+    },
     {
       "date": "03/09/2026 13:31",
       "user": "Caroline",
@@ -33740,5 +33746,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T11:31:24.421Z"
+  "updatedAt": "2026-09-03T11:32:56.580Z"
 }

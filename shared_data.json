@@ -21061,13 +21061,13 @@
       "clientId": "client-APHM3",
       "canonicalClientCode": "APHM003",
       "location": "Frigo culture L1",
-      "notes": "Liquide, non-stérile, stocker à RT\nInjecté 60µL le 02/09/2026, reste environ 100µL. Stocké à 4°C (epp 1.5)",
+      "notes": "Liquide, non-stérile, stocker à RT\nInjecté 60µL le 02/09/2026, reste environ 50µL. Stocké à 4°C (epp 1.5)",
       "createdAtRaw": "2026-07-29T14:10:45.359Z",
       "createdAt": "29/07/2026 16:10",
       "name": "APHM003_produit n°18",
       "arrivalDate": "2026-07-29",
-      "quantity": 1,
-      "unit": "tube",
+      "quantity": 50,
+      "unit": "µL",
       "referenceNumber": "",
       "lotNumber": "",
       "category": "",
@@ -21075,8 +21075,8 @@
       "arnQiazol": null,
       "arnBead": null,
       "creationDate": "",
-      "measureValue": 1,
-      "measureUnit": "tube",
+      "measureValue": 50,
+      "measureUnit": "µL",
       "generalData": {},
       "specificData": {},
       "groupId": "",
@@ -25227,6 +25227,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 13:46",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°18 pour APHM003."
+    },
     {
       "date": "03/09/2026 13:43",
       "user": "Caroline",
@@ -33854,5 +33860,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T11:43:35.788Z"
+  "updatedAt": "2026-09-03T11:46:12.917Z"
 }

@@ -21054,13 +21054,14 @@
     {
       "id": "sample-client-1785334245359-g7pjk3",
       "type": "client_product",
+      "studyType": "client",
       "clientCode": "APHM003",
       "rawClientCode": "APHM003",
       "normalizedClientKey": "APHM3",
       "clientId": "client-APHM3",
       "canonicalClientCode": "APHM003",
-      "location": "Culture L1",
-      "notes": "Liquide\nNon-stérile\nStocker à RT",
+      "location": "Frigo culture L1",
+      "notes": "Liquide, non-stérile, stocker à RT\nInjecté 60µL le 02/09/2026, reste environ 100µL. Stocké à 4°C (epp 1.5)",
       "createdAtRaw": "2026-07-29T14:10:45.359Z",
       "createdAt": "29/07/2026 16:10",
       "name": "APHM003_produit n°18",
@@ -21071,6 +21072,8 @@
       "lotNumber": "",
       "category": "",
       "baseName": "APHM003_produit n°18",
+      "arnQiazol": null,
+      "arnBead": null,
       "creationDate": "",
       "measureValue": 1,
       "measureUnit": "tube",
@@ -21079,10 +21082,7 @@
       "groupId": "",
       "replicaId": "sample-client-1785334245359-g7pjk3",
       "replicaNumber": null,
-      "replicaCount": 1,
-      "arnQiazol": null,
-      "arnBead": null,
-      "studyType": "client"
+      "replicaCount": 1
     },
     {
       "id": "sample-client-1785334188625-hr3ivu",
@@ -25227,6 +25227,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/09/2026 13:35",
+      "user": "Caroline",
+      "action": "Produit client modifié",
+      "detail": "Caroline a modifié APHM003_produit n°18 pour APHM003."
+    },
     {
       "date": "03/09/2026 13:34",
       "user": "Caroline",
@@ -33752,5 +33758,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T11:34:00.605Z"
+  "updatedAt": "2026-09-03T11:35:17.325Z"
 }

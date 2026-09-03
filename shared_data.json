@@ -123,9 +123,10 @@
         }
       ],
       "locations": [
-        "-20°C 2 salle -80"
+        "Tiroir n°1",
+        "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°1"
       ],
-      "location": "-20°C 2 salle -80",
+      "location": "Tiroir n°1",
       "tags": [
         "culture",
         "ex vivo"
@@ -172,21 +173,67 @@
         "trackingUnit": "unités",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [
           {
+            "id": "closed-web-1788424502969-tiroir-n-1-1",
+            "label": "aliquot fermé nº1",
             "location": "Tiroir n°1",
-            "quantity": 1,
-            "updatedAt": "2026-09-03T08:35:02.970Z",
-            "updatedBy": "Caroline"
+            "remaining": 9988,
+            "capacity": 10000,
+            "unitKey": "unite",
+            "status": "open",
+            "createdAt": "2026-09-03T08:35:02.970Z",
+            "updatedAt": "2026-09-03T08:36:22.842Z",
+            "updatedBy": "caroline",
+            "version": 3,
+            "openedAt": "2026-09-03T08:36:22.842Z",
+            "openedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            }
           }
-        ],
-        "closedContainers": null,
-        "openContainers": []
+        ]
       },
       "aliquotTracking": {
         "version": 1,
         "enabled": true,
-        "preparations": []
+        "preparations": [
+          {
+            "id": "preparation-mtl9tjui-1753635941-886041544",
+            "label": "Préparation nº1",
+            "createdCount": 12,
+            "representedSourceQuantity": 12,
+            "sourceUnit": "unités",
+            "volume": 1,
+            "volumeUnit": "mL",
+            "concentration": 2,
+            "concentrationUnit": "mg/mL",
+            "locations": [
+              {
+                "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°1",
+                "quantity": 12
+              }
+            ],
+            "openAliquots": [],
+            "preparedAt": "2026-09-03T08:36:21.826Z",
+            "preparedBy": {
+              "userId": "caroline",
+              "userName": "Caroline",
+              "userEmoji": "🧪",
+              "userInitials": ""
+            },
+            "sourceContainerId": "closed-web-1788424502969-tiroir-n-1-1",
+            "note": "Aliquots déjà préparé, je ne connais pas la quantité de source utilisée",
+            "status": "active",
+            "updatedAt": "2026-09-03T08:36:22.842Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ]
       },
       "source": "web"
     },
@@ -25175,6 +25222,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mtl9tj2a-2971038193-3718728346",
+      "operationId": "operation-mtl9tj2a-2971038193-3718728346",
+      "date": "03/09/2026 10:36",
+      "action": "Stock mis à jour",
+      "detail": "Caroline · aliquots_prepared · Heparine · Aliquots déjà préparé, je ne connais pas la quantité de source utilisée",
+      "user": "Caroline",
+      "itemId": "web-1788424502969"
+    },
+    {
       "date": "03/09/2026 10:35",
       "user": "Caroline",
       "action": "Item ajouté",
@@ -33275,6 +33331,75 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mtl9tjuj-869496058-3912502642",
+      "operationId": "operation-mtl9tj2a-2971038193-3718728346",
+      "itemId": "web-1788424502969",
+      "timestamp": "2026-09-03T08:36:22.843Z",
+      "userId": "caroline",
+      "userName": "Caroline",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "aliquots_prepared",
+      "entityType": "preparation",
+      "entityId": "preparation-mtl9tjui-1753635941-886041544",
+      "containerId": "preparation-mtl9tjui-1753635941-886041544",
+      "containerLabel": "",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "preparation-mtl9tjui-1753635941-886041544",
+        "label": "Préparation nº1",
+        "createdCount": 12,
+        "representedSourceQuantity": 12,
+        "sourceUnit": "unités",
+        "volume": 1,
+        "volumeUnit": "mL",
+        "concentration": 2,
+        "concentrationUnit": "mg/mL",
+        "locations": [
+          {
+            "location": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°1",
+            "quantity": 12
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-09-03T08:36:21.826Z",
+        "preparedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "sourceContainerId": "closed-web-1788424502969-tiroir-n-1-1",
+        "note": "Aliquots déjà préparé, je ne connais pas la quantité de source utilisée",
+        "status": "active",
+        "updatedAt": "2026-09-03T08:36:22.842Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "quantity": 12,
+      "difference": null,
+      "unit": "aliquotes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "unités",
+      "fromLocation": "",
+      "toLocation": "Pièce -80°C → -20°C 2 salle -80 → Tiroir n°1",
+      "comment": "Aliquots déjà préparé, je ne connais pas la quantité de source utilisée",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -33458,6 +33583,12 @@
       "itemId": "itm-web-1783931436295-cgioxi",
       "at": "2026-08-25T09:52:20.617Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mtl9tj2a-2971038193-3718728346",
+      "itemId": "web-1788424502969",
+      "at": "2026-09-03T08:36:22.843Z",
+      "type": "aliquots_prepared"
     }
   ],
   "agentOperations": [
@@ -33489,5 +33620,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-03T08:35:02.972Z"
+  "updatedAt": "2026-09-03T08:36:22.843Z"
 }

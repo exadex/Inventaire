@@ -2,9 +2,11 @@ name: Sauvegardes planifiées
 
 on:
   schedule:
-    # Déclenché tous les jours (matin Europe/Paris) ; le script décide lui-même si
-    # on est dimanche (sauvegarde hebdomadaire) ou premier dimanche du mois (mensuelle).
-    # Le déclenchement quotidien laisse une marge si GitHub retarde l'exécution du dimanche.
+    # Déclenché tous les jours (matin Europe/Paris) ; le script décide lui-même si on
+    # est samedi (archivage de l'historique), dimanche (sauvegarde hebdomadaire) ou
+    # premier dimanche du mois (mensuelle). Samedi/dimanche pour ne jamais faire
+    # l'archivage et les sauvegardes le même jour. Le déclenchement quotidien laisse
+    # une marge si GitHub retarde l'exécution du jour visé.
     - cron: "0 4,5 * * *"
   workflow_dispatch:
 
@@ -22,19 +24,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Créer les sauvegardes du dimanche (hebdo + mensuelle si applicable)
+      - name: Sauvegardes du dimanche + archivage du samedi
         shell: pwsh
         run: ./scripts/create_scheduled_backup.ps1
-      - name: Publier uniquement si une copie a été créée
+      - name: Publier uniquement si une copie ou un archivage a été créé
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- backups)" ]; then
-            echo "Aucune sauvegarde à publier."
+          if [ -z "$(git status --porcelain -- backups archive shared_data.json)" ]; then
+            echo "Aucune sauvegarde ni archivage à publier."
             exit 0
           fi
           git config user.name "ExAdEx Backup"
           git config user.email "contact@exadex-innov.com"
-          git add backups
+          git add backups archive shared_data.json
           git commit -m "Sauvegarde automatique $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git pull --rebase origin main
           git push

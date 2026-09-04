@@ -1,4 +1,4 @@
-// hacer esto en la consola cada vez que actualizas los seedItems
+// à exécuter dans la console à chaque mise à jour de seedItems
 // localStorage.removeItem("exadex_items");
 // localStorage.removeItem("adipovault_items");
 // location.reload();

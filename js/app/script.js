@@ -1,669 +1,3 @@
-﻿// Estructura de datos:
-// seedBaseItems viene del repositorio y solo sirve como bootstrap/default.
-// sharedState contiene los datos vivos: inventario, experimentos, pedidos, muestras e historial.
-// GitHub shared_data.json es la fuente compartida; localStorage solo sirve como cache/fallback.
-
-const clientSampleTypes = {
-  client_product: "Produit reçu du client",
-  created_sample: "Échantillon créé"
-};
-
-const clientSampleCategories = ["Fixation (galette)", "Fixation (tissu)", "ARN", "cDNA", "Sécrétion"];
-const clientSampleCategoryAliases = {
-  "Galette agarose": "Fixation (galette)",
-  "Tissu": "Fixation (tissu)",
-  "Secretion": "Sécrétion"
-};
-const INITIAL_SUPPLIER_CONTACTS = [
-  { id:"contact-abcam", company:"Abcam", salesRepresentative:"", afterSalesService:"", customerService:"orders@abcam.com", salesAndQuotes:"", phone:"08 01 84 05 42", notes:"", aliases:[] },
-  { id:"contact-bd-biosciences", company:"BD Biosciences", salesRepresentative:"Loras Damien", afterSalesService:"", customerService:"serviceclientbdf@europe.bd.com", salesAndQuotes:"devis@bd.com", phone:"06 31 75 07 07", notes:"", aliases:["BD","Becton Dickinson","BD France"] },
-  { id:"contact-bexen-medical", company:"Bexen Medical", salesRepresentative:"", afterSalesService:"", customerService:"info@bexenmedical.com", salesAndQuotes:"brangerieau@bexenmedical.com", phone:"", notes:"", aliases:[] }
-];
-
-const seedBaseItems = migrateItems(seedItems).map(item => ({
-  ...item,
-  source: "seed"
-}));
-
-let sharedDataSha = null;
-let sharedDataMode = "loading";
-let sharedDataSaveTimer = null;
-let sharedDataLastError = "";
-let sharedDataRemoteReady = false;
-let sharedDataHasUnsavedChanges = false;
-let sharedDataIsSaving = false;
-let sharedDataSyncStatus = "loading";
-let sharedDataSaveCoordinator = null;
-let sharedDataConflict = null;
-let sharedDataRecovery = null;
-let sharedState = createSharedState(readCachedSharedState(), { includeBootstrap: false });
-
-
-// no mover esta funcion
-function buildItems() {
-  return migrateItems(sharedState.inventoryItems).map(item => ({
-    ...item,
-    source: item.source || (isSeedItemId(item.id) ? "seed" : "web")
-  }));
-}
-
-// dejar despues de function(buildItems)
-let items = buildItems();
-
-let orders = Array.isArray(sharedState.orders) ? sharedState.orders : [];
-let experiments = migrateExperiments(sharedState.experiments);
-let history = Array.isArray(sharedState.history) ? sharedState.history : [];
-let stockMovements = Array.isArray(sharedState.stockMovements) ? sharedState.stockMovements : [];
-let sourcingPatients = Array.isArray(sharedState.sourcingPatients) ? sharedState.sourcingPatients : [];
-let clientSamples = migrateClientSamples(sharedState.clientSamples);
-let clients = migrateClients(sharedState.clients, clientSamples);
-let supplierContacts = migrateSupplierContacts(sharedState.supplierContacts);
-// protocoles "Nouveau protocole" enregistrés par les utilisateurs, en plus des protocoles intégrés (protocols.js)
-let customProtocolTemplates = Array.isArray(sharedState.customProtocolTemplates) ? sharedState.customProtocolTemplates : [];
-let protocolTemplates = [...builtInProtocolTemplates, ...customProtocolTemplates];
-
-const sharedDataReady = hydrateSharedData();
-
-let statusFilter = "all";
-let inventoryUsageFilterValue = "active";
-let activeView = "inventory";
-let currentName = "Caroline";
-let alertsExpanded = false;
-let selectedLocation = null;
-let selectedRoomId = null;
-let selectedLocationId = null;
-let selectedSublocationId = null;
-let locationScopeMode = "direct";
-let locationDetailSearch = "";
-let locationDetailStatus = "all";
-let locationDetailFacet = "all";
-let locationDetailSort = "name-asc";
-let locationDetailPage = 1;
-let locationDetailPageSize = 50;
-let selectedLocationEntry = null;
-let historyCurrentPage = 1;
-let historyPageSize = 50;
-const expandedHistoryEntries = new Set();
-let selectedExperimentId = null;
-let experimentDragSourceRow = null;
-let selectedSourcingPatientId = null;
-let selectedItemId = null;
-const stockJournalOpenByItem = new Map();
-let selectedSampleId = null;
-let selectedSampleGroupId = null;
-let sampleEditContext = { scope: "new", groupId: null, sampleId: null };
-let itemReturnContext = { view: "inventory", experimentId: null, location: null, scrollY: 0 };
-let sampleReturnContext = { view: "samples", location: null, scrollY: 0 };
-let viewReturnScrollY = { experiments: 0, locations: 0 };
-let selectedOrderId = null;
-let selectedContactId = null;
-let contactsSearchValue = "";
-let contactsFilterValue = "all";
-let contactsSortValue = "company-asc";
-let contactsLetterValue = "";
-let contactProductsSearchValue = "";
-let contactProductsCategoryValue = "all";
-let contactProductsSortValue = "name-asc";
-let pendingStockMigration = null;
-let ordersMode = "board";
-let orderHistorySearch = "";
-let orderHistoryStatus = "all";
-let orderHistoryRequester = "all";
-let orderHistoryPeriod = "all";
-let orderHistorySort = "newest";
-let orderHistoryPage = 1;
-let orderHistoryPageSize = 50;
-let pendingOrderInventoryLink = null;
-let backupsLoaded = false;
-let pendingBackupExport = null;
-const collapsedClientGroups = new Set();
-const expandedReplicaGroups = new Set();
-const SAMPLE_PAGE_SIZE = 50;
-let sampleCurrentPage = 1;
-let samplesDomWarningShown = false;
-const QUANTITY_STEP = 1;
-
-const auth = document.querySelector("#auth");
-const app = document.querySelector("#app");
-const loginForm = document.querySelector("#loginForm");
-const nameInput = document.querySelector("#nameInput");
-const currentUser = document.querySelector("#currentUser");
-const currentUserName = document.querySelector("#currentUserName");
-const sidebarUser = document.querySelector("#sidebarUser");
-const sidebarUserName = document.querySelector("#sidebarUserName");
-const searchInput = document.querySelector("#searchInput");
-const controlBar = document.querySelector(".control-bar");
-const categoryFilter = document.querySelector("#categoryFilter");
-const inventorySortSelect = document.querySelector("#inventorySortSelect");
-const inventoryUsageFilter = document.querySelector("#inventoryUsageFilter");
-const sampleSearchInput = document.querySelector("#sampleSearchInput");
-const sampleTypeFilter = document.querySelector("#sampleTypeFilter");
-const sampleStudyTypeFilter = document.querySelector("#sampleStudyTypeFilter");
-const sampleClientFilter = document.querySelector("#sampleClientFilter");
-const sampleSortSelect = document.querySelector("#sampleSortSelect");
-const addClientStudyBtn = document.querySelector("#addClientStudyBtn");
-const sampleDialog = document.querySelector("#sampleDialog");
-const sampleForm = document.querySelector("#sampleForm");
-const experimentSearchInput = document.querySelector("#experimentSearchInput");
-const experimentSortSelect = document.querySelector("#experimentSortSelect");
-const resetExperimentSearchBtn = document.querySelector("#resetExperimentSearchBtn");
-const sourcingSearchInput = document.querySelector("#sourcingSearchInput");
-const sourcingSortSelect = document.querySelector("#sourcingSortSelect");
-const sourcingCategoryFilter = document.querySelector("#sourcingCategoryFilter");
-const sourcingDialog = document.querySelector("#sourcingDialog");
-const sourcingForm = document.querySelector("#sourcingForm");
-const dialog = document.querySelector("#itemDialog");
-const form = document.querySelector("#itemForm");
-const stockDialog = document.querySelector("#stockDialog");
-const stockForm = document.querySelector("#stockForm");
-const stockMigrationDialog = document.querySelector("#stockMigrationDialog");
-const stockMigrationForm = document.querySelector("#stockMigrationForm");
-const experimentDialog = document.querySelector("#experimentDialog");
-const experimentForm = document.querySelector("#experimentForm");
-const saveProtocolTemplateDialog = document.querySelector("#saveProtocolTemplateDialog");
-const saveProtocolTemplateForm = document.querySelector("#saveProtocolTemplateForm");
-const manageProtocolTemplatesDialog = document.querySelector("#manageProtocolTemplatesDialog");
-const consumeExperimentDialog = document.querySelector("#consumeExperimentDialog");
-const experimentItemsList = document.querySelector("#experimentItemsList");
-const FREE_PROTOCOL_ID = "custom-protocol";
-let previousExperimentTemplateId = FREE_PROTOCOL_ID;
-const orderDialog = document.querySelector("#orderDialog");
-const orderForm = document.querySelector("#orderForm");
-const confirmDeleteDialog = document.querySelector("#confirmDeleteDialog");
-const confirmDeleteForm = document.querySelector("#confirmDeleteForm");
-const confirmDeleteTitle = document.querySelector("#confirmDeleteTitle");
-const confirmDeleteMessage = document.querySelector("#confirmDeleteMessage");
-const confirmDeleteError = document.querySelector("#confirmDeleteError");
-const confirmDeleteBtn = document.querySelector("#confirmDeleteBtn");
-const cancelConfirmDeleteBtn = document.querySelector("#cancelConfirmDeleteBtn");
-const closeConfirmDeleteBtn = document.querySelector("#closeConfirmDeleteBtn");
-let deleteConfirmationAction = null;
-let deleteConfirmationTrigger = null;
-let deleteConfirmationPending = false;
-const secondaryReferencesList = document.querySelector("#secondaryReferencesList");
-const addSecondaryReferenceBtn = document.querySelector("#addSecondaryReferenceBtn");
-const placementsList = document.querySelector("#placementsList");
-const placementsError = document.querySelector("#placementsError");
-const locationSearchInput = document.querySelector("#locationSearchInput");
-const locationSortSelect = document.querySelector("#locationSortSelect");
-const historySearchInput = document.querySelector("#historySearchInput");
-const historyActionFilter = document.querySelector("#historyActionFilter");
-const historyUserFilter = document.querySelector("#historyUserFilter");
-const historyPeriodFilter = document.querySelector("#historyPeriodFilter");
-const historyDateStart = document.querySelector("#historyDateStart");
-const historyDateEnd = document.querySelector("#historyDateEnd");
-const historyCustomDates = document.querySelector("#historyCustomDates");
-const historyPageSizeSelect = document.querySelector("#historyPageSize");
-const orderBoardSearchInput = document.querySelector("#orderBoardSearchInput");
-const orderBoardPriorityFilter = document.querySelector("#orderBoardPriorityFilter");
-const orderBoardRequesterFilter = document.querySelector("#orderBoardRequesterFilter");
-const orderBoardSortSelect = document.querySelector("#orderBoardSortSelect");
-
-const fields = [
-  "itemId",
-  "name",
-  "category",
-  "quantity",
-  "unit",
-  "minStock",
-  "usageProfile",
-  "location",
-  "tags",
-  "notes",
-  "primarySupplier",
-  "primarySupplierContactId",
-  "primaryReference",
-  "primaryLink",
-  "primaryReferenceNotes",
-  "primaryPrice",
-  "primaryUnitPrice",
-  "primaryLeadTime"
-].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-
-const stockFields = ["stockItemId", "stockItemName", "stockCurrentQuantity", "stockTitle", "stockAction", "stockAmount", "stockUnit", "stockNotes"]
-  .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-const trackingFields = ["stockTrackingMode", "detailedPackagingEnabled", "aliquotTrackingEnabled", "aliquotTrackingExplanation", "trackingOptionError", "packagingConfig", "packagingLevels", "trackingUnitField", "trackingUnitKey", "packagingPreview"]
-  .reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-
-const sampleFields = [
-  "sampleId",
-  "sampleType",
-  "sampleStudyTypeClient",
-  "sampleStudyTypeRd",
-  "sampleClientCode",
-  "sampleProductName",
-  "sampleBaseName",
-  "sampleCategory",
-  "sampleArnOptions",
-  "sampleArnQiazol",
-  "sampleArnBead",
-  "sampleArnNotesHint",
-  "sampleArrivalDate",
-  "sampleCreationDate",
-  "sampleQuantity",
-  "sampleUnit",
-  "sampleMeasureLabel",
-  "sampleMeasureValue",
-  "sampleReplicaCount",
-  "sampleLocation",
-  "sampleReferenceNumber",
-  "sampleLotNumber",
-  "sampleNotes"
-].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-
-const experimentFields = [
-  "experimentId",
-  "experimentTemplate",
-  "experimentName",
-  "experimentClientCode",
-  "experimentConditions",
-  "experimentReplicates",
-  "experimentStatus",
-  "experimentTotalConditions",
-  "experimentTemplateNotes",
-  "experimentNotes",
-  "rtqpcrPartRT",
-  "rtqpcrPartDilution",
-  "rtqpcrPartQPCR",
-  "rtqpcrSampleConditions",
-  "rtqpcrSampleReplicates",
-  "rtqpcrQpcrConditions",
-  "rtqpcrPrimerCount",
-  "rtqpcrQpcrReplicates",
-  "rtqpcrDeadVolumeConditions"
-].reduce((acc, id) => ({
-  ...acc,
-  [id]: document.querySelector(`#${id}`)
-}), {});
-
-const SOURCING_YES_NO_FIELDS = ["patientNash", "patientSleepApnea", "patientT2d", "patientFreezing"];
-const SOURCING_YES_NO_OPTION_MAP = [["Yes", "Oui"], ["No", "Non"]];
-const SOURCING_STATUS_OPTION_MAP = [["Yes", "Oui"], ["No", "Non"], ["Fill", "À remplir"]];
-const SOURCING_STATUS_DATE_FIELDS = [
-  { base: "patientArnExplantT0", prefill: "reception", label: "Explant T0", section: "arn" },
-  { base: "patientArnWatT14", prefill: "reception+14", label: "WAT T14", section: "arn" },
-  { base: "patientArnBatT14", prefill: "reception+14", label: "BAT T14", section: "arn" },
-  { base: "patientArnPrebatAmpc", prefill: null, label: "Prebat ± AMPc", section: "arn" },
-  { base: "patientArnInducibleBat", prefill: null, label: "Inductible en BAT (qPCR UCP1 positif)", section: "arn" },
-  { base: "patientSecretionsT0", prefill: "reception", label: "Sécrétions T0", section: "secretions" },
-  { base: "patientSecretionsT14", prefill: "reception+14", label: "Sécrétions T14", section: "secretions" },
-  { base: "patientSecretionsBatT14", prefill: "reception+14", label: "Sécrétions BAT T14", section: "secretions" },
-  { base: "patientFixationT0", prefill: "reception", label: "Fixation T0", section: "fixation" },
-  { base: "patientFixationT14", prefill: "reception+14", label: "Fixation T14", section: "fixation" }
-];
-const SOURCING_QC_TESTS = ["Myco", "Bacteria", "Yeast", "Xtt", "Collagenase", "Asc"];
-const SOURCING_QC_TEST_LABELS = { Myco: "Myco", Bacteria: "Bactéries", Yeast: "Levures", Xtt: "XTT", Collagenase: "Collagénase", Asc: "ASC" };
-
-const sourcingFields = [
-  "sourcingPatientId",
-  "patientNumber",
-  "patientType",
-  "patientReceptionDate",
-  "patientCultureWeeks",
-  "patientStartQuantity",
-  "patientWellsCount",
-  "patientLotValidationDate",
-  "patientStudyAssignment",
-  "patientCessionTo",
-  "patientCessionDate",
-  "patientUsageStorage",
-  "patientLotEndDate",
-  "patientInitials",
-  "patientCollectionSite",
-  "patientGender",
-  "patientAge",
-  "patientHeight",
-  "patientWeight",
-  "patientBmi",
-  "patientTechnique",
-  "patientSurgeon",
-  "patientCharacteristic",
-  "patientOtherComorbidity",
-  "patientIntervention",
-  "patientBmiMax",
-  "patientIntentionTreatment",
-  ...SOURCING_QC_TESTS.flatMap(test => [`patientQc${test}Result`, `patientQc${test}Date`, `patientQc${test}Tx`, `patientQc${test}Remarks`]),
-  ...SOURCING_STATUS_DATE_FIELDS.flatMap(({ base }) => [`${base}Date`]),
-  "patientFreezingQuantity",
-  "patientFreezingThaw",
-  "patientGeneralRemark"
-].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-
-const SOURCING_GENERIC_LOOP_EXCLUDED_KEYS = new Set(["sourcingPatientId"]);
-
-const orderFields = [
-  "orderItemMode",
-  "orderInventorySearch",
-  "orderInventoryItem",
-  "orderQuantity",
-  "orderPriority",
-  "orderNotes",
-  "orderNewName"
-].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-
-renderCategoryOptions();
-renderLocationOptions();
-renderSampleOptions();
-renderTemplateOptions();
-
-// Dialog para confirmar la cantidad a anadir al inventario al recibir una orden
-const receiveInventoryDialog = document.querySelector("#receiveInventoryDialog");
-const receiveInventoryForm = document.querySelector("#receiveInventoryForm");
-const receiveInventoryFields = [
-  "receiveOrderId",
-  "receiveInventoryItemName",
-  "receiveInventoryRequestedText",
-  "receiveQuantity",
-  "receiveUnit"
-].reduce((acc, id) => ({ ...acc, [id]: document.querySelector(`#${id}`) }), {});
-
-// animacion de inicio
-const loginLoader = document.querySelector("#loginLoader");
-const authPanel = document.querySelector(".auth-panel");
-
-loginForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  currentName = nameInput.value.trim();
-  if (!currentName) return;
-
-  const submitBtn = loginForm.querySelector('button[type="submit"]');
-  submitBtn.disabled = true;
-
-  updateUserIdentity();
-
-  authPanel?.classList.add("is-loading");
-  loginLoader.classList.add("is-visible");
-
-  const loginDelay = new Promise(resolve => setTimeout(resolve, 3000));
-
-  Promise.allSettled([sharedDataReady, loginDelay]).then(() => {
-    auth.classList.add("hidden");
-    app.classList.remove("hidden");
-    cacheSharedState();
-    render();
-
-    loginLoader.classList.remove("is-visible");
-    authPanel?.classList.remove("is-loading");
-    submitBtn.disabled = false;
-  });
-});
-
-document.querySelector("#logoutBtn").addEventListener("click", () => {
-  cacheSharedState();
-  app.classList.add("hidden");
-  auth.classList.remove("hidden");
-});
-
-document.querySelector("#addItemBtn").addEventListener("click", () => {
-  if (activeView === "samples") {
-    openSampleModal();
-    return;
-  }
-
-  openModal();
-});
-addClientStudyBtn?.addEventListener("click", () => openSampleModal());
-document.querySelector("#saveItemBtn").addEventListener("click", saveItem);
-document.querySelector("#deleteItemBtn").addEventListener("click", requestItemDeletion);
-document.querySelector("#saveSampleBtn").addEventListener("click", saveSample);
-document.querySelector("#deleteSampleBtn").addEventListener("click", requestSampleDeletionFromModal);
-document.querySelector("#saveStockBtn").addEventListener("click", saveStockUpdate);
-stockFields.stockAction?.addEventListener("change", syncSimpleStockActionFields);
-document.querySelector("#migrationOpenCount")?.addEventListener("input", renderMigrationOpenRows);
-stockMigrationForm?.addEventListener("input", updateStockMigrationComparison);
-document.querySelector("#migrationReason")?.addEventListener("change", syncMigrationReasonFields);
-stockMigrationForm?.addEventListener("submit", confirmStockMigration);
-document.querySelector("#closeStockMigrationBtn")?.addEventListener("click", closeStockMigration);
-document.querySelector("#cancelStockMigrationBtn")?.addEventListener("click", closeStockMigration);
-stockMigrationDialog?.addEventListener("cancel", event => { event.preventDefault(); closeStockMigration(); });
-fields.unit?.addEventListener("input", syncPackagingLevelZeroUnit);
-trackingFields.detailedPackagingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("packaging"));
-trackingFields.aliquotTrackingEnabled?.addEventListener("change", () => syncTrackingOptionCheckboxes("aliquots"));
-document.querySelector("#addPackagingLevelBtn")?.addEventListener("click", () => { if (trackingFields.packagingLevels.children.length < 3) { trackingFields.packagingLevels.insertAdjacentHTML("beforeend", renderPackagingLevelRow({}, trackingFields.packagingLevels.children.length)); updatePackagingPreview(); } });
-trackingFields.packagingLevels?.addEventListener("input", updatePackagingPreview);
-trackingFields.trackingUnitKey?.addEventListener("change", updatePackagingPreview);
-trackingFields.packagingLevels?.addEventListener("click", event => { if (event.target.closest("[data-remove-packaging]")) { event.target.closest(".packaging-level-row")?.remove(); updatePackagingPreview(); } });
-document.querySelector("#addExperimentBtn").addEventListener("click", openExperimentModal);
-document.querySelector("#saveExperimentBtn").addEventListener("click", saveExperiment);
-document.querySelector("#confirmSaveProtocolTemplateBtn")?.addEventListener("click", confirmSaveProtocolTemplate);
-document.querySelector("#manageProtocolTemplatesBtn")?.addEventListener("click", openManageProtocolTemplatesDialog);
-document.querySelector("#confirmConsumeExperimentBtn")?.addEventListener("click", confirmConsumeExperiment);
-document.querySelector("#consumeExperimentItems")?.addEventListener("input", event => {
-  if (event.target.classList.contains("consume-experiment-item-quantity")) updateConsumeExperimentItemStates();
-});
-document.querySelector("#consumeExperimentItems")?.addEventListener("click", event => {
-  const removeBtn = event.target.closest("[data-remove-consume-item]");
-  if (removeBtn) removeBtn.closest(".consume-experiment-item")?.remove();
-});
-
-const deleteExperimentBtn = document.querySelector("#deleteExperimentBtn");
-if (deleteExperimentBtn) {
-  deleteExperimentBtn.addEventListener("click", requestExperimentDeletion);
-}
-
-dialog.addEventListener("close", () => {
-  pendingOrderInventoryLink = null;
-});
-
-document.querySelector("#addExperimentInventoryItemBtn").addEventListener("click", () => addExperimentItemRow({ type:"inventory", inventoryItemId:"", quantity:"", unit:"" }));
-document.querySelector("#addExperimentCustomItemBtn").addEventListener("click", () => addExperimentItemRow({ type:"custom", name:"", quantity:"", unit:"" }));
-document.addEventListener("click", handleExperimentComboboxOutsideClick);
-experimentItemsList.addEventListener("dragover", handleExperimentItemDragOver);
-experimentItemsList.addEventListener("drop", event => event.preventDefault());
-addSecondaryReferenceBtn.addEventListener("click", () => addSecondaryReferenceRow());
-document.querySelector("#addOrderBtn").addEventListener("click", openOrderModal);
-document.querySelector("#saveOrderBtn").addEventListener("click", saveOrder);
-document.querySelector("#closeOrderDialogBtn").addEventListener("click", () => orderDialog.close());
-document.querySelector("#cancelOrderBtn").addEventListener("click", () => orderDialog.close());
-document.querySelector("#saveOrderDatesBtn")?.addEventListener("click", saveOrderDates);
-orderFields.orderItemMode.addEventListener("change", toggleOrderModeFields);
-orderFields.orderInventorySearch.addEventListener("input", handleOrderComboboxInput);
-orderFields.orderInventorySearch.addEventListener("keydown", handleOrderComboboxKeydown);
-orderFields.orderInventorySearch.addEventListener("focus", () => renderOrderItemOptions({ open: true }));
-document.querySelector("#clearOrderInventoryItem")?.addEventListener("click", clearOrderInventorySelection);
-document.addEventListener("click", handleOrderComboboxOutsideClick);
-searchInput.addEventListener("input", renderInventory);
-categoryFilter.addEventListener("change", renderInventory);
-inventorySortSelect?.addEventListener("change", renderInventory);
-inventoryUsageFilter?.addEventListener("change", () => {
-  inventoryUsageFilterValue = inventoryUsageFilter.value;
-  renderInventory();
-});
-document.querySelector("#usageProfileRoutine")?.addEventListener("click", () => toggleUsageProfile("routine"));
-document.querySelector("#usageProfileBackup")?.addEventListener("click", () => toggleUsageProfile("backup"));
-sampleSearchInput?.addEventListener("input", resetSamplePagination);
-sampleTypeFilter?.addEventListener("change", resetSamplePagination);
-sampleStudyTypeFilter?.addEventListener("change", resetSamplePagination);
-sampleClientFilter?.addEventListener("change", resetSamplePagination);
-sampleSortSelect?.addEventListener("change", resetSamplePagination);
-locationSearchInput?.addEventListener("input", renderLocations);
-locationSortSelect?.addEventListener("change", renderLocations);
-historySearchInput?.addEventListener("input", resetHistoryPagination);
-historyActionFilter?.addEventListener("change", resetHistoryPagination);
-historyUserFilter?.addEventListener("change", resetHistoryPagination);
-historyPeriodFilter?.addEventListener("change", () => {
-  syncHistoryCustomDates();
-  resetHistoryPagination();
-});
-historyDateStart?.addEventListener("change", resetHistoryPagination);
-historyDateEnd?.addEventListener("change", resetHistoryPagination);
-historyPageSizeSelect?.addEventListener("change", () => {
-  historyPageSize = Number(historyPageSizeSelect.value) || 50;
-  historyCurrentPage = 1;
-  renderHistory();
-});
-document.querySelector("#resetHistoryFiltersBtn")?.addEventListener("click", resetHistoryFilters);
-document.querySelector("#historyPreviousPage")?.addEventListener("click", () => {
-  historyCurrentPage = Math.max(1, historyCurrentPage - 1);
-  renderHistory();
-});
-document.querySelector("#historyNextPage")?.addEventListener("click", () => {
-  historyCurrentPage += 1;
-  renderHistory();
-});
-orderBoardSearchInput?.addEventListener("input", renderOrders);
-orderBoardPriorityFilter?.addEventListener("change", renderOrders);
-orderBoardRequesterFilter?.addEventListener("change", renderOrders);
-orderBoardSortSelect?.addEventListener("change", renderOrders);
-document.querySelector("#resetOrderBoardFiltersBtn")?.addEventListener("click", resetOrderBoardFilters);
-document.addEventListener("keydown", handleQuantityStepKeydown);
-cancelConfirmDeleteBtn?.addEventListener("click", closeDeleteConfirmation);
-closeConfirmDeleteBtn?.addEventListener("click", closeDeleteConfirmation);
-confirmDeleteBtn?.addEventListener("click", confirmDeleteAction);
-confirmDeleteForm?.addEventListener("submit", event => event.preventDefault());
-confirmDeleteDialog?.addEventListener("cancel", event => {
-  event.preventDefault();
-  if (!deleteConfirmationPending) closeDeleteConfirmation();
-});
-confirmDeleteDialog?.addEventListener("close", restoreDeleteConfirmationFocus);
-sampleFields.sampleType.addEventListener("change", syncSampleFormVisibility);
-sampleFields.sampleCategory.addEventListener("change", () => syncSampleMeasureLabel({ clearOnUnitChange: true }));
-sampleFields.sampleArnQiazol.addEventListener("change", () => {
-  if (!sampleFields.sampleArnQiazol.checked) sampleFields.sampleArnBead.checked = false;
-  syncSampleMeasureLabel({ clearOnUnitChange: true });
-});
-sampleFields.sampleClientCode.addEventListener("input", updateClientCodeHint);
-sampleFields.sampleStudyTypeClient.addEventListener("change", syncSampleStudyTypeUI);
-sampleFields.sampleStudyTypeRd.addEventListener("change", syncSampleStudyTypeUI);
-experimentSearchInput.addEventListener("input", renderExperiments);
-experimentSortSelect?.addEventListener("change", renderExperiments);
-resetExperimentSearchBtn?.addEventListener("click", () => { experimentSearchInput.value = ""; if (experimentSortSelect) experimentSortSelect.value = EXPERIMENT_DEFAULT_SORT; renderExperiments(); experimentSearchInput.focus(); });
-document.querySelector("#addSourcingPatientBtn")?.addEventListener("click", () => openSourcingModal());
-document.querySelector("#saveSourcingPatientBtn")?.addEventListener("click", saveSourcingPatient);
-document.querySelector("#deleteSourcingPatientBtn")?.addEventListener("click", requestSourcingPatientDeletion);
-sourcingSearchInput?.addEventListener("input", renderSourcing);
-sourcingSortSelect?.addEventListener("change", renderSourcing);
-sourcingCategoryFilter?.addEventListener("change", renderSourcing);
-sourcingFields.patientHeight?.addEventListener("input", recalculatePatientBmi);
-sourcingFields.patientWeight?.addEventListener("input", recalculatePatientBmi);
-sourcingFields.patientBmi?.addEventListener("input", () => { sourcingFields.patientBmi.dataset.manual = "true"; });
-sourcingFields.patientType?.addEventListener("change", syncSourcingComorbiditySection);
-sourcingFields.patientReceptionDate?.addEventListener("input", syncSourcingPrefillDates);
-SOURCING_YES_NO_FIELDS.forEach(field => wireSourcingExclusiveCheckboxGroup(field, SOURCING_YES_NO_OPTION_MAP));
-SOURCING_STATUS_DATE_FIELDS.forEach(({ base }) => wireSourcingExclusiveCheckboxGroup(`${base}Status`, SOURCING_STATUS_OPTION_MAP));
-experimentDialog.addEventListener("close", () => {
-  experimentFields.experimentTemplate.disabled = false;
-});
-experimentFields.experimentTemplate.addEventListener("change", () => {
-  const nextId=experimentFields.experimentTemplate.value;
-  if(experimentDraftHasUserData()&&!window.confirm("Changer de protocole remplacera les informations et les items actuellement saisis. Continuer ?")){experimentFields.experimentTemplate.value=previousExperimentTemplateId;return;}
-  previousExperimentTemplateId=nextId;
-  const template = protocolTemplates.find(
-    entry => entry.id === nextId
-  );
-  if(!template){activateFreeProtocol({clear:true});return;}
-  syncExperimentTemplateNotesVisibility(false);
-  syncRtQpcrConfigVisibility(template);
-  setDefaultExperimentName(template, true);
-  buildExperimentItemsFromTemplate();
-});
-experimentFields.experimentConditions.addEventListener("input", recalculateExperimentTemplateQuantities);
-experimentFields.experimentReplicates.addEventListener("input", recalculateExperimentTemplateQuantities);
-experimentItemsList.addEventListener("input", updateExperimentModalStock);
-[
-  "rtqpcrPartRT",
-  "rtqpcrPartDilution",
-  "rtqpcrPartQPCR",
-  "rtqpcrSampleConditions",
-  "rtqpcrSampleReplicates",
-  "rtqpcrQpcrConditions",
-  "rtqpcrPrimerCount",
-  "rtqpcrQpcrReplicates",
-  "rtqpcrDeadVolumeConditions"
-].forEach((key) => {
-  const field = experimentFields[key];
-  if (!field) return;
-  field.addEventListener("input", recalculateExperimentTemplateQuantities);
-  field.addEventListener("change", recalculateExperimentTemplateQuantities);
-});
-experimentItemsList.addEventListener("change", (event) => {
-  if (event.target.classList.contains("experiment-item-select")) {
-    const row=event.target.closest(".experiment-item-row");
-    if(!row.dataset.lineType)hydrateExperimentItemRow(row, event.target.value);
-  }
-  updateExperimentModalStock();
-});
-
-document.querySelectorAll(".chip").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".chip").forEach(chip => chip.classList.remove("active"));
-    button.classList.add("active");
-    statusFilter = button.dataset.status;
-    renderInventory();
-  });
-});
-
-document.querySelectorAll(".nav-item").forEach((button) => {
-  button.addEventListener("click", () => {
-    activeView = button.dataset.view;
-
-    selectedItemId = null;
-    selectedSampleId = null;
-    selectedExperimentId = null;
-    selectedSourcingPatientId = null;
-    selectedLocation = null;
-    selectedRoomId = null;
-    selectedLocationId = null;
-    selectedSublocationId = null;
-    locationScopeMode = "direct";
-    selectedContactId = null;
-    itemReturnContext = { view: activeView, experimentId: null };
-
-    document.querySelectorAll(".nav-item").forEach((item) => {
-      item.classList.toggle("active", item === button);
-    });
-
-    document.querySelectorAll(".view").forEach((view) => {
-      view.classList.remove("active");
-    });
-
-    document.querySelector(`#${activeView}View`)?.classList.add("active");
-
-    controlBar?.classList.toggle("hidden", activeView !== "inventory");
-    syncAppViewMode();
-    renderAlerts();
-
-    if (activeView === "inventory") {
-      renderInventory();
-    } else if (activeView === "experiments") {
-      renderExperiments();
-    } else if (activeView === "sourcing") {
-      renderSourcing();
-    } else if (activeView === "locations") {
-      renderLocations();
-    } else if (activeView === "orders") {
-      renderOrders();
-    } else if (activeView === "history") {
-      renderHistory();
-    } else if (activeView === "samples") {
-      renderSamples();
-    } else if (activeView === "contacts") {
-      renderContacts();
-    } else if (activeView === "agents") {
-      renderAgents();
-    } else if (activeView === "backups") {
-      renderBackups();
-    }
-  });
-});
-
-document.querySelector("#createFullBackupBtn")?.addEventListener("click", createManualFullBackup);
-document.querySelectorAll("[data-close-backup-restore]").forEach(button => button.addEventListener("click", () => document.querySelector("#restoreBackupDialog")?.close()));
-document.querySelector("#restoreBackupForm")?.addEventListener("submit", restoreSelectedBackup);
-document.querySelectorAll("[data-close-backup-delete]").forEach(button => button.addEventListener("click", () => document.querySelector("#deleteBackupDialog")?.close()));
-document.querySelector("#deleteBackupForm")?.addEventListener("submit", deleteSelectedBackup);
-document.querySelectorAll("[data-close-backup-export]").forEach(button => button.addEventListener("click", closeBackupExportDialog));
-document.querySelector("#exportBackupForm")?.addEventListener("submit", confirmBackupExport);
-
-// Listeners para dialogo de recepcion de inventario al recibir una orden
-document.querySelector("#confirmReceiveInventoryBtn").addEventListener("click", confirmReceiveInventory);
-document.querySelector("#closeReceiveInventoryDialogBtn").addEventListener("click", () => receiveInventoryDialog.close());
-document.querySelector("#cancelReceiveInventoryBtn").addEventListener("click", () => receiveInventoryDialog.close());
-document.querySelector("#contactForm")?.addEventListener("submit", saveContact);
-document.querySelector("#closeContactDialogBtn")?.addEventListener("click",()=>document.querySelector("#contactDialog").close());
-document.querySelector("#cancelContactBtn")?.addEventListener("click",()=>document.querySelector("#contactDialog").close());
-fields.primarySupplier?.addEventListener("input",syncPrimarySupplierContact);
-fields.primarySupplier?.addEventListener("blur",syncPrimarySupplierContact);
 
 function load(key, fallback) {
   try {
@@ -1159,7 +493,7 @@ async function flushPendingSharedDataBeforeAtomicOperation() {
   sharedDataLastError="";
 }
 
-// guarda una copia cache local y publica el estado compartido en GitHub cuando esta configurado
+// enregistre une copie en cache local et publie l'état partagé sur GitHub quand il est configuré
 function persist(options = {}) {
   syncSharedStateFromRuntime();
   cacheSharedState();
@@ -2416,7 +1750,7 @@ function renderGenericStockVisual(percent) {
   `;
 }
 
-// Funcion para formatear precios con simbolo de euro, asegurando que el simbolo no se duplique si ya esta presente
+// Fonction pour formater les prix avec le symbole euro, en évitant de le dupliquer s'il est déjà présent
 function formatPriceEuro(value) {
   const raw = String(value || "").trim();
   if (!raw) return "";
@@ -4830,7 +4164,7 @@ function handleOrderComboboxOutsideClick(event) {
   if (combobox && !combobox.contains(event.target)) closeOrderInventoryOptions();
 }
 
-// funcion para la fecha que aparece en las tarjetas de ordenes, para mostrarla en formato DD/MM/YY o devolver "—" si no hay fecha o si el formato no se reconoce
+// fonction pour la date affichée sur les cartes de commandes : format JJ/MM/AA, ou « — » si la date est absente ou non reconnue
 function formatOrderDate(value) {
   if (!value) return "—";
 
@@ -4930,7 +4264,7 @@ function getExperimentAvailabilityCounts(experiment, inventoryList = items) {
   return counts;
 }
 
-// orden de las tarjetas KPI (Brouillons, En cours, Terminées) para que el tri "Statut" siga la misma secuencia
+// ordre des cartes KPI (Brouillons, En cours, Terminées) pour que le tri « Statut » suive la même séquence
 const EXPERIMENT_STATUS_ORDER = { draft: 0, running: 1, completed: 2 };
 const EXPERIMENT_DEFAULT_SORT = "az";
 
@@ -4938,7 +4272,7 @@ function compareExperimentNames(a, b) {
   return String(a?.name || "").localeCompare(String(b?.name || ""), "fr", { sensitivity: "base", numeric: true });
 }
 
-// las expériences sin code client se quedan al final para no ensuciar el principio de la lista
+// les expériences sans code client restent à la fin pour ne pas encombrer le début de la liste
 function getExperimentSortClientCode(experiment, clientList, sampleList) {
   return getExperimentClientCodes(experiment, clientList, sampleList).slice().sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base", numeric: true }))[0] || "";
 }
@@ -5164,7 +4498,7 @@ function renderExperimentDetail(experiment) {
   `;
 }
 
-// funcion para ocultar filas vacias o con datos no relevantes en el detalle del item
+// fonction pour masquer les lignes vides ou sans donnée pertinente dans le détail de l'item
 function renderDetailRow(label, value) {
   if (!value || !String(value).trim()) return "";
   const isMultiline = /note|comment|description|justification|motif|raison|remarque/i.test(String(label));
@@ -7420,7 +6754,7 @@ function patchStoredItem(id, patch) {
   return items.find(entry => entry.id === id) || null;
 }
 
-// funcion para crear un nuevo item dentro del inventario compartido, sin pasar por el formulario
+// fonction pour créer un nouvel item dans l'inventaire partagé, sans passer par le formulaire
 function createStoredItem(itemData) {
   const now = new Date();
 
@@ -7766,7 +7100,7 @@ function syncRtQpcrSampleFields() {
   }
 }
 
-//funciones para el protocolo qPCR
+// fonctions pour le protocole qPCR
 function isRtQpcrTemplate(templateId = experimentFields.experimentTemplate.value) {
   const template = protocolTemplates.find(entry => entry.id === templateId);
   return template?.mode === "rtqpcr";
@@ -9403,7 +8737,7 @@ async function moveOrderBackToOrdered(id) {
   }
 }
 
-// Funcion para confirmar la cantidad recibida antes de agregarla al inventario, en lugar de asumir que es igual a la cantidad solicitada
+// Fonction pour confirmer la quantité reçue avant de l'ajouter à l'inventaire, au lieu de supposer qu'elle est égale à la quantité demandée
 function openReceiveInventoryDialog(id) {
   const order = orders.find(entry => entry.id === id);
   if (!order || normalizeOrderStatus(order.status) !== "received") return;
@@ -10251,7 +9585,7 @@ function migrateItems(itemList) {
   });
 }
 
-// funcion para conservar both los items que yo genero en VS como los items que cualquiera anade a github
+// fonction pour conserver à la fois les items générés localement et ceux ajoutés par d'autres sur GitHub
 function mergeItems(baseItems, storedItems) {
   const merged = new Map();
 

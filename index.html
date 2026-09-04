@@ -1700,7 +1700,11 @@
     <script src="js/agents/assistant_data_sources.js?v=20260813-1"></script>
     <script src="js/agents/transversal_assistant.js?v=20260813-1"></script>
     <script src="js/agents/agents_ui.js?v=20260813-1"></script>
-    <script src="js/app/script.js?v=20260903-1"></script>
+    <!-- Ordre obligatoire : state.js déclare les variables, script.js les fonctions,
+         bootstrap.js démarre l'application une fois que tout le reste existe. -->
+    <script src="js/app/state.js?v=20260904-1"></script>
+    <script src="js/app/script.js?v=20260904-1"></script>
+    <script src="js/app/bootstrap.js?v=20260904-1"></script>
     <script>
       if (new URLSearchParams(location.search).has("clientSampleTests")) {
         const testScript = document.createElement("script");

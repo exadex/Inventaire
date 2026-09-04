@@ -32,13 +32,32 @@ app/
 Structure déjà présente dans ce MVP:
 
 ```txt
-index.html          Interface applicative ExAdEx Inventaire
-assets/css/design.css Design system et responsive
-js/app/script.js      Données mockées, filtres, CRUD, historique
-database/schema.sql Schéma SQL cible SQLite/PostgreSQL
-Dockerfile          Image statique nginx
-docker-compose.yml  Lancement conteneur local
+index.html                     Interface applicative ExAdEx Inventaire
+assets/css/design.css          Design system et responsive
+
+js/app/state.js                Variables partagées et références DOM (chargé en 1er)
+js/app/utils.js                Fonctions utilitaires et migrations de données
+js/app/sync.js                 Synchronisation GitHub et sauvegardes
+js/app/navigation.js           Rendu général, alertes et navigation entre vues
+js/sections/inventaire.js      Section Inventaire
+js/sections/localisations.js   Section Localisations
+js/sections/etudes-clients.js  Section Études clients
+js/sections/a-commander.js     Section À commander
+js/sections/experiences.js     Section Expériences
+js/sections/sourcing.js        Section Sourcing
+js/sections/contacts.js        Section Contacts fournisseurs
+js/sections/historique.js      Section Historique
+js/app/bootstrap.js            Démarrage et listeners (chargé en dernier)
+
+database/schema.sql            Schéma SQL cible SQLite/PostgreSQL
+Dockerfile                     Image statique nginx
+docker-compose.yml             Lancement conteneur local
 ```
+
+Les fichiers de section ne contiennent que des fonctions. Tout ce qui s'exécute au
+chargement (initialisation des données, listeners, APIs exposées) est regroupé dans
+`bootstrap.js`, chargé en dernier. L'ordre des balises `<script>` dans `index.html`
+ne doit pas être modifié.
 
 ## Modèle de données recommandé
 

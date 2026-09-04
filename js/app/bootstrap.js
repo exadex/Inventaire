@@ -331,3 +331,119 @@ document.querySelector("#closeContactDialogBtn")?.addEventListener("click",()=>d
 document.querySelector("#cancelContactBtn")?.addEventListener("click",()=>document.querySelector("#contactDialog").close());
 fields.primarySupplier?.addEventListener("input",syncPrimarySupplierContact);
 fields.primarySupplier?.addEventListener("blur",syncPrimarySupplierContact);
+
+// Code d'initialisation qui se trouvait auparavant au milieu de script.js :
+// APIs exposees aux agents et listeners des sections. Ordre d'origine conserve.
+Object.defineProperties(window, {
+  items: { configurable: true, get: () => JSON.parse(JSON.stringify(items)) },
+  orders: { configurable: true, get: () => JSON.parse(JSON.stringify(orders)) },
+  clientSamples: { configurable: true, get: () => JSON.parse(JSON.stringify(clientSamples)) },
+  clients: { configurable: true, get: () => JSON.parse(JSON.stringify(clients)) },
+  supplierContacts: { configurable: true, get: () => JSON.parse(JSON.stringify(supplierContacts)) },
+  applicationHistory: { configurable: true, get: () => JSON.parse(JSON.stringify(history)) },
+  applicationExperiments: { configurable: true, get: () => JSON.parse(JSON.stringify(experiments)) },
+  experimentDialog: { configurable: true, get: () => document.querySelector("#experimentDialog") },
+  inventoryLocationCatalog: { configurable: true, get: () => JSON.parse(JSON.stringify({ rooms: FIXED_INVENTORY_ROOMS, ...normalizeLocationCatalog(sharedState.locationCatalog) })) },
+  applicationUsers: { configurable: true, get: () => Object.entries(userIcons).map(([name, emoji]) => ({ id: name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\W+/g, "-"), name, emoji })) },
+  inventoryLocations: { configurable: true, get: () => [...inventoryLocations] },
+  inventoryCategories: { configurable: true, get: () => [...inventoryCategories] },
+  currentName: { configurable: true, get: () => currentName }
+});
+
+window.ExadexAssistantNavigation = {
+  item: id => openItemDetail(id, { view: "agents" }),
+  clientProduct: id => openSampleDetail(id, { view: "agents" }),
+  clientStudy: id => { const sample=clientSamples.find(row=>row.clientId===id); if(sample)openSampleDetail(sample.id,{view:"agents"}); else document.querySelector('[data-view="samples"]')?.click(); },
+  supplier: id => openSupplierContact(id),
+  order: id => { document.querySelector('[data-view="orders"]')?.click(); selectedOrderId=id; renderOrders(); },
+  orders: query => { document.querySelector('[data-view="orders"]')?.click(); ordersMode="history"; orderHistorySearch=String(query||""); selectedOrderId=null; renderOrders(); },
+  location: () => document.querySelector('[data-view="locations"]')?.click(),
+  history: () => document.querySelector('[data-view="history"]')?.click()
+};
+
+window.ExadexInventoryAgent = {
+  async applyBulkChanges(request) {
+    const storage = window.ExadexGithubStorage;
+    const config = storage?.getConfig?.();
+    const remoteWritable = Boolean(storage?.mutateSharedData && (!storage.getConfig || (config?.owner && config?.repo && config?.path && config?.token)));
+    if (remoteWritable) {
+      let mutationResult = null;
+      const result = await storage.mutateSharedData(request.operationId, latest => {
+        mutationResult = buildAgentBulkMutation(latest, request);
+        return mutationResult.state;
+      }, { maxAttempts: 3 });
+      if (!mutationResult && result?.duplicate) return { applied: 0, conflicts: 0, errors: 0, duplicate: true, mode: "remote", data: result.data };
+      applySharedState(result.data);
+      return { applied: mutationResult.applied, conflicts: 0, errors: 0, duplicate: mutationResult.duplicate, mode: "remote", data: result.data };
+    }
+    const mutation = buildAgentBulkMutation(sharedState, request);
+    if (mutation.duplicate) return { applied: 0, conflicts: 0, errors: 0, duplicate: true, mode: "local-cache", data: mutation.state };
+    sharedState = mutation.state;
+    syncRuntimeStateFromShared();
+    persist();
+    render();
+    return { applied: mutation.applied, conflicts: 0, errors: 0, duplicate: false, mode: "local-cache", data: sharedState };
+  }
+};
+
+window.addEventListener("focus", refreshSharedStateFromGithub);
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    refreshSharedStateFromGithub();
+  }
+});
+
+setInterval(refreshSharedStateFromGithub, 30000);
+
+window.addEventListener("beforeunload", event => {
+  if (!sharedDataHasUnsavedChanges && sharedDataSyncStatus !== "conflict") return;
+  event.preventDefault();
+  event.returnValue = "";
+});
+
+document.querySelector("#addPlacementBtn")?.addEventListener("click", event => {
+  event.currentTarget.disabled = true;
+  const next = readPlacementEditor(); next.push({ id: newStableId("placement"), roomId: "", locationId: null, sublocationId: null }); renderPlacementEditor(next);
+  event.currentTarget.disabled = false;
+});
+
+window.ExadexClientSampleRules = {
+  getCreatedSampleUnit,
+  getClientSampleCategoryLabel,
+  migrateClientSamples,
+  syncSampleMeasureLabel,
+  fields: sampleFields
+};
+
+document.querySelector("#addContactCoordinateBtn")?.addEventListener("click",()=>{
+  const list=document.querySelector("#contactCoordinatesList"),wrapper=document.createElement("div");wrapper.innerHTML=`<div class="contact-coordinate-editor"><label>Libellé<input data-coordinate-label placeholder="Ex. Support technique"></label><label>Type<select data-coordinate-type><option value="email">E-mail</option><option value="phone">Téléphone</option><option value="other">Autre</option></select></label><label>Valeur<textarea data-coordinate-value rows="2" placeholder="Coordonnée ou information libre"></textarea></label><button class="icon-btn" type="button" data-remove-coordinate aria-label="Supprimer cette coordonnée" title="Supprimer">×</button></div>`;const row=wrapper.firstElementChild;list.append(row);row.querySelector("[data-remove-coordinate]").onclick=()=>row.remove();row.querySelector("input").focus();
+});
+
+window.ExadexContacts={
+  normalizeCompanyName,
+  migrateSupplierContacts,
+  findForItem:item=>findSupplierContactForItem(item),
+  getAll:()=>JSON.parse(JSON.stringify(supplierContacts)),
+  getAssociatedItems:id=>{const contact=supplierContacts.find(row=>row.id===id);return contact?JSON.parse(JSON.stringify(getContactItems(contact))):[];},
+  exactMatches:(value,contacts=supplierContacts)=>JSON.parse(JSON.stringify(exactSupplierContacts(value,contacts))),
+  resolveExact:(value,contacts=supplierContacts)=>JSON.parse(JSON.stringify(resolveExactSupplierContact(value,"",contacts))),
+  open:openSupplierContact
+};
+
+document.querySelector("#hierarchyEntityForm")?.addEventListener("submit",saveHierarchyEntity);
+document.querySelectorAll("[data-close-hierarchy-entity]").forEach(button=>button.addEventListener("click",closeHierarchyEntityModal));
+
+document.querySelector("#sublocationItemSearch")?.addEventListener("input",renderSublocationItemResults);
+document.querySelector("#clearSublocationItemSearch")?.addEventListener("click",()=>{const input=document.querySelector("#sublocationItemSearch");input.value="";renderSublocationItemResults();input.focus();});
+document.querySelectorAll("[data-close-sublocation-item]").forEach(button=>button.addEventListener("click",()=>document.querySelector("#sublocationItemDialog")?.close()));
+window.ExadexLocations = {
+  rooms: () => JSON.parse(JSON.stringify(FIXED_INVENTORY_ROOMS)),
+  catalog: () => JSON.parse(JSON.stringify(hierarchyCatalog())),
+  migratePlacements: item => JSON.parse(JSON.stringify(migrateItemPlacements(item || {}, String(item?.id || "test-item")))),
+  validatePlacement: placement => {
+    const catalog=hierarchyCatalog(), location=placement?.locationId&&catalog.locations.find(row=>row.id===placement.locationId), sub=placement?.sublocationId&&catalog.sublocations.find(row=>row.id===placement.sublocationId);
+    return Boolean(placement?.roomId&&hierarchyRoom(placement.roomId)&&(!placement.locationId||location?.roomId===placement.roomId)&&(!placement.sublocationId||sub?.locationId===placement.locationId));
+  },
+  uniqueCount: entries => uniqueEntryCount(entries || [])
+};

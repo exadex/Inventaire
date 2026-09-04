@@ -1,0 +1,89 @@
+{
+    "generatedAt":  "2026-08-10T18:24:58.9253312+02:00",
+    "baseSha":  "189315606418feac0fa04cb62d6e9fcc6b5b2122",
+    "remoteRef":  "origin/main",
+    "remoteBlobSha":  "f585103edff3e0ee046ad0164f4ff163865c99d2",
+    "localUpdatedAt":  "2026-08-10T16:15:59.512Z",
+    "remoteUpdatedAt":  "2026-08-10T15:23:42.232Z",
+    "counts":  {
+                   "baseItems":  359,
+                   "localItems":  357,
+                   "remoteItems":  359,
+                   "mergedItems":  357,
+                   "localChangedItems":  47,
+                   "remoteChangedItems":  1,
+                   "localAddedItems":  0,
+                   "remoteAddedItems":  0,
+                   "localDeletedItems":  2,
+                   "remoteDeletedItems":  0,
+                   "localHistoryAdditions":  55,
+                   "remoteHistoryAdditions":  1,
+                   "mergedHistory":  552,
+                   "conflicts":  0
+               },
+    "localDeletedItems":  [
+                              {
+                                  "id":  "itm-CSV-0189",
+                                  "name":  "Cones non-filtrés 200µL"
+                              },
+                              {
+                                  "id":  "itm-CSV-0191",
+                                  "name":  "Pipette tip, 200 µl, transparent, PCR Performance Tested, 96 piece(s)/box"
+                              }
+                          ],
+    "localChangedItemIds":  [
+                                "itm-CSV-0023",
+                                "itm-CSV-0043",
+                                "itm-CSV-0114",
+                                "itm-CSV-0116",
+                                "itm-CSV-0117",
+                                "itm-CSV-0123",
+                                "itm-CSV-0124",
+                                "itm-CSV-0127",
+                                "itm-CSV-0129",
+                                "itm-CSV-0131",
+                                "itm-CSV-0133",
+                                "itm-CSV-0134",
+                                "itm-CSV-0135",
+                                "itm-CSV-0138",
+                                "itm-CSV-0140",
+                                "itm-CSV-0141",
+                                "itm-CSV-0142",
+                                "itm-CSV-0143",
+                                "itm-CSV-0147",
+                                "itm-CSV-0148",
+                                "itm-CSV-0151",
+                                "itm-CSV-0176",
+                                "itm-CSV-0184",
+                                "itm-CSV-0192",
+                                "itm-web-1783931436295-005quu",
+                                "itm-web-1783931436295-0hdzoo",
+                                "itm-web-1783931436295-0te4tf",
+                                "itm-web-1783931436295-13ahe9",
+                                "itm-web-1783931436295-20id4b",
+                                "itm-web-1783931436295-2tzybk",
+                                "itm-web-1783931436295-3v7r95",
+                                "itm-web-1783931436295-4d1j08",
+                                "itm-web-1783931436295-4j5ehf",
+                                "itm-web-1783931436295-4tpbeo",
+                                "itm-web-1783931436295-4zddf9",
+                                "itm-web-1783931436295-68gr3m",
+                                "itm-web-1783931436295-71mz7l",
+                                "itm-web-1783931436295-7i2b02",
+                                "itm-web-1783931436295-90ljaj",
+                                "itm-web-1783931436295-9q0nut",
+                                "itm-web-1783931436295-9ujt1f",
+                                "itm-web-1783931436295-c7hi53",
+                                "itm-web-1783931436295-fbdpyh",
+                                "itm-web-1783931436295-osftkk",
+                                "itm-web-1783931436295-riizb7",
+                                "itm-web-1783931436295-vcgdft",
+                                "itm-web-1783931436295-xpwlf5"
+                            ],
+    "remoteChangedItemIds":  [
+                                 "itm-CSV-0109"
+                             ],
+    "conflicts":  [
+
+                  ]
+}

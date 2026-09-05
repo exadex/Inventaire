@@ -183,7 +183,7 @@
             "capacity": 10000,
             "unitKey": "unite",
             "status": "finished",
-            "createdAt": "2026-09-03T08:35:02.970Z",
+            "createdAt": "2026-09-03T08:35:02.97Z",
             "updatedAt": "2026-09-03T11:13:24.813Z",
             "updatedBy": "caroline",
             "version": 4,
@@ -3026,7 +3026,7 @@
       "source": "seed",
       "usageProfile": "normal",
       "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-07-28T12:58:35.940Z",
+      "createdAtRaw": "2026-07-28T12:58:35.94Z",
       "createdAt": "28/07/2026 14:58",
       "stockTracking": {
         "version": 1,
@@ -4560,7 +4560,7 @@
         }
       ],
       "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T15:14:00.430Z",
+      "createdAtRaw": "2026-08-10T15:14:00.43Z",
       "createdAt": "10/08/2026 17:14",
       "stockTracking": {
         "version": 1,
@@ -4695,7 +4695,7 @@
       },
       "source": "seed",
       "usageProfile": "backup",
-      "createdAtRaw": "2026-07-16T13:08:08.060Z",
+      "createdAtRaw": "2026-07-16T13:08:08.06Z",
       "createdAt": "16/07/2026 15:08",
       "placements": [
         {
@@ -6249,7 +6249,7 @@
       "source": "seed",
       "usageProfile": "normal",
       "supplierContactId": "contact-1785225250289-lwwcas",
-      "createdAtRaw": "2026-07-28T13:05:45.980Z",
+      "createdAtRaw": "2026-07-28T13:05:45.98Z",
       "createdAt": "28/07/2026 15:05",
       "stockTracking": {
         "version": 1,
@@ -7566,7 +7566,7 @@
       "source": "seed",
       "usageProfile": "normal",
       "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-07-28T13:07:41.700Z",
+      "createdAtRaw": "2026-07-28T13:07:41.7Z",
       "createdAt": "28/07/2026 15:07",
       "stockTracking": {
         "version": 1,
@@ -7670,7 +7670,7 @@
           {
             "location": "Frigo labo",
             "quantity": 24,
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline"
           }
         ],
@@ -7683,8 +7683,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7696,8 +7696,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7709,8 +7709,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7722,8 +7722,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7735,8 +7735,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7748,8 +7748,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7761,8 +7761,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7774,8 +7774,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7787,8 +7787,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7800,8 +7800,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7813,8 +7813,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7826,8 +7826,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7839,8 +7839,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7852,8 +7852,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7865,8 +7865,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7878,8 +7878,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7891,8 +7891,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7904,8 +7904,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7917,8 +7917,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7930,8 +7930,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7943,8 +7943,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7956,8 +7956,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7969,8 +7969,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           },
@@ -7982,8 +7982,8 @@
             "capacity": 500,
             "unitKey": "mL",
             "status": "closed",
-            "createdAt": "2026-08-12T07:40:21.500Z",
-            "updatedAt": "2026-08-12T07:40:21.500Z",
+            "createdAt": "2026-08-12T07:40:21.5Z",
+            "updatedAt": "2026-08-12T07:40:21.5Z",
             "updatedBy": "Caroline",
             "version": 1
           }
@@ -8624,7 +8624,7 @@
       },
       "source": "seed",
       "usageProfile": "backup",
-      "createdAtRaw": "2026-07-16T12:24:43.380Z",
+      "createdAtRaw": "2026-07-16T12:24:43.38Z",
       "createdAt": "16/07/2026 14:24",
       "supplierContactId": "contact-1785239153980-6o71tv",
       "stockTracking": {
@@ -8760,7 +8760,7 @@
       },
       "source": "seed",
       "usageProfile": "routine",
-      "createdAtRaw": "2026-07-16T15:17:03.860Z",
+      "createdAtRaw": "2026-07-16T15:17:03.86Z",
       "createdAt": "16/07/2026 17:17",
       "stockTracking": {
         "version": 1,
@@ -9201,8 +9201,8 @@
             "capacity": 50,
             "unitKey": "plaque",
             "status": "closed",
-            "createdAt": "2026-08-25T09:56:53.630Z",
-            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "createdAt": "2026-08-25T09:56:53.63Z",
+            "updatedAt": "2026-08-25T09:56:53.63Z",
             "updatedBy": "caroline",
             "version": 1
           },
@@ -9214,8 +9214,8 @@
             "capacity": 50,
             "unitKey": "plaque",
             "status": "closed",
-            "createdAt": "2026-08-25T09:56:53.630Z",
-            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "createdAt": "2026-08-25T09:56:53.63Z",
+            "updatedAt": "2026-08-25T09:56:53.63Z",
             "updatedBy": "caroline",
             "version": 1
           }
@@ -9228,14 +9228,14 @@
             "remaining": 30,
             "capacity": 50,
             "status": "open",
-            "openedAt": "2026-08-25T09:56:53.630Z",
+            "openedAt": "2026-08-25T09:56:53.63Z",
             "openedBy": {
               "userId": "caroline",
               "userName": "Caroline",
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "updatedAt": "2026-08-25T09:56:53.63Z",
             "updatedBy": "caroline",
             "version": 1,
             "unitKey": "plaque"
@@ -9892,7 +9892,7 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:51:54.500Z",
+            "updatedAt": "2026-07-17T14:51:54.5Z",
             "updatedBy": "caroline",
             "version": 2,
             "unitKey": "sachet"
@@ -10241,10 +10241,10 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T15:10:47.380Z",
+            "updatedAt": "2026-07-17T15:10:47.38Z",
             "updatedBy": "caroline",
             "version": 2,
-            "finishedAt": "2026-07-17T15:10:47.380Z",
+            "finishedAt": "2026-07-17T15:10:47.38Z",
             "unitKey": "custom-sous-carton"
           },
           {
@@ -10421,7 +10421,7 @@
       },
       "source": "seed",
       "usageProfile": "routine",
-      "createdAtRaw": "2026-07-16T15:00:18.310Z",
+      "createdAtRaw": "2026-07-16T15:00:18.31Z",
       "createdAt": "16/07/2026 17:00",
       "stockTracking": {
         "version": 1,
@@ -10831,7 +10831,7 @@
       },
       "source": "seed",
       "usageProfile": "normal",
-      "createdAtRaw": "2026-07-28T13:01:02.620Z",
+      "createdAtRaw": "2026-07-28T13:01:02.62Z",
       "createdAt": "28/07/2026 15:01",
       "stockTracking": {
         "version": 1,
@@ -11511,7 +11511,7 @@
       },
       "source": "seed",
       "usageProfile": "backup",
-      "createdAtRaw": "2026-07-16T13:08:48.420Z",
+      "createdAtRaw": "2026-07-16T13:08:48.42Z",
       "createdAt": "16/07/2026 15:08",
       "supplierContactId": "contact-1785225250289-lwwcas",
       "stockTracking": {
@@ -12704,7 +12704,7 @@
       "source": "seed",
       "usageProfile": "normal",
       "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-07-28T13:03:48.140Z",
+      "createdAtRaw": "2026-07-28T13:03:48.14Z",
       "createdAt": "28/07/2026 15:03",
       "stockTracking": {
         "version": 1,
@@ -13255,7 +13255,7 @@
       ],
       "usageProfile": "normal",
       "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-08-10T15:56:11.840Z",
+      "createdAtRaw": "2026-08-10T15:56:11.84Z",
       "createdAt": "10/08/2026 17:56",
       "stockTracking": {
         "version": 1,
@@ -14637,7 +14637,7 @@
       ],
       "usageProfile": "normal",
       "supplierContactId": "contact-1785239611213-9k274h",
-      "createdAtRaw": "2026-08-10T16:01:06.510Z",
+      "createdAtRaw": "2026-08-10T16:01:06.51Z",
       "createdAt": "10/08/2026 18:01",
       "stockTracking": {
         "version": 1,
@@ -15252,7 +15252,7 @@
         }
       ],
       "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T16:02:08.910Z",
+      "createdAtRaw": "2026-08-10T16:02:08.91Z",
       "createdAt": "10/08/2026 18:02",
       "stockTracking": {
         "version": 1,
@@ -16378,7 +16378,7 @@
       ],
       "usageProfile": "normal",
       "supplierContactId": "contact-abcam",
-      "createdAtRaw": "2026-08-10T16:04:18.630Z",
+      "createdAtRaw": "2026-08-10T16:04:18.63Z",
       "createdAt": "10/08/2026 18:04",
       "stockTracking": {
         "version": 1,
@@ -16545,7 +16545,7 @@
       ],
       "usageProfile": "normal",
       "supplierContactId": "contact-abcam",
-      "createdAtRaw": "2026-08-10T15:29:00.750Z",
+      "createdAtRaw": "2026-08-10T15:29:00.75Z",
       "createdAt": "10/08/2026 17:29",
       "stockTracking": {
         "version": 1,
@@ -17166,7 +17166,7 @@
         }
       ],
       "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T16:07:00.710Z",
+      "createdAtRaw": "2026-08-10T16:07:00.71Z",
       "createdAt": "10/08/2026 18:07",
       "stockTracking": {
         "version": 1,
@@ -17338,7 +17338,7 @@
       ],
       "usageProfile": "normal",
       "supplierContactId": "contact-1785225250289-lwwcas",
-      "createdAtRaw": "2026-08-10T15:32:03.630Z",
+      "createdAtRaw": "2026-08-10T15:32:03.63Z",
       "createdAt": "10/08/2026 17:32",
       "stockTracking": {
         "version": 1,
@@ -18249,7 +18249,7 @@
         }
       ],
       "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T15:41:01.590Z",
+      "createdAtRaw": "2026-08-10T15:41:01.59Z",
       "createdAt": "10/08/2026 17:41",
       "stockTracking": {
         "version": 1,
@@ -18684,7 +18684,7 @@
       ],
       "usageProfile": "normal",
       "supplierContactId": "contact-bd-biosciences",
-      "createdAtRaw": "2026-08-10T15:45:19.190Z",
+      "createdAtRaw": "2026-08-10T15:45:19.19Z",
       "createdAt": "10/08/2026 17:45",
       "stockTracking": {
         "version": 1,
@@ -20857,7 +20857,7 @@
       "notes": "https://www.bio-techne.com/luminex-assay-customization-tool\nPour IEB/IFF-001. A l'attente du devis par le commercial, on devrait avoir -20% sur la première commande\nLuminex sur :\nPro-Collagen I alpha 1\nAdiponectin/Acrp30,\nIL-6, \nIL-8/CXCL8, \nIL-15, \nBDNF, \nFollistatin-like 1/FSTL1, \nLIF",
       "requestedBy": "Caroline",
       "requestedAt": "22/07/2026 09:33",
-      "requestedAtRaw": "2026-07-22T07:33:48.710Z",
+      "requestedAtRaw": "2026-07-22T07:33:48.71Z",
       "orderedBy": "Caroline",
       "orderedAt": "28/07/2026 12:59",
       "orderedAtRaw": "2026-07-28T10:59:08.267Z",
@@ -21965,7 +21965,7 @@
       "canonicalClientCode": "APHM003",
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-09-03T13:30:42.140Z",
+      "createdAtRaw": "2026-09-03T13:30:42.14Z",
       "createdAt": "03/09/2026 15:30",
       "baseName": "P236_APHM003_24h produit n°16",
       "category": "Sécrétion",
@@ -22025,7 +22025,7 @@
       "canonicalClientCode": "APHM003",
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-09-03T13:30:42.140Z",
+      "createdAtRaw": "2026-09-03T13:30:42.14Z",
       "createdAt": "03/09/2026 15:30",
       "baseName": "P236_APHM003_24h produit n°16",
       "category": "Sécrétion",
@@ -22085,7 +22085,7 @@
       "canonicalClientCode": "APHM003",
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-09-03T13:30:42.140Z",
+      "createdAtRaw": "2026-09-03T13:30:42.14Z",
       "createdAt": "03/09/2026 15:30",
       "baseName": "P236_APHM003_24h produit n°16",
       "category": "Sécrétion",
@@ -23225,7 +23225,7 @@
       "canonicalClientCode": "APHM003",
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-09-03T13:28:00.300Z",
+      "createdAtRaw": "2026-09-03T13:28:00.3Z",
       "createdAt": "03/09/2026 15:28",
       "baseName": "P236_APHM003_24h produit n°8",
       "category": "Sécrétion",
@@ -23285,7 +23285,7 @@
       "canonicalClientCode": "APHM003",
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-09-03T13:28:00.300Z",
+      "createdAtRaw": "2026-09-03T13:28:00.3Z",
       "createdAt": "03/09/2026 15:28",
       "baseName": "P236_APHM003_24h produit n°8",
       "category": "Sécrétion",
@@ -23345,7 +23345,7 @@
       "canonicalClientCode": "APHM003",
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-09-03T13:28:00.300Z",
+      "createdAtRaw": "2026-09-03T13:28:00.3Z",
       "createdAt": "03/09/2026 15:28",
       "baseName": "P236_APHM003_24h produit n°8",
       "category": "Sécrétion",
@@ -24664,7 +24664,7 @@
       "canonicalClientCode": "T0&T14",
       "location": "-20°C blanc labo",
       "notes": "100mg de tissu",
-      "createdAtRaw": "2026-08-21T08:24:31.270Z",
+      "createdAtRaw": "2026-08-21T08:24:31.27Z",
       "createdAt": "21/08/2026 10:24",
       "baseName": "P236 T0",
       "category": "Sécrétion",
@@ -24704,7 +24704,7 @@
       "canonicalClientCode": "T0&T14",
       "location": "Frigo labo",
       "notes": "",
-      "createdAtRaw": "2026-08-21T08:23:13.430Z",
+      "createdAtRaw": "2026-08-21T08:23:13.43Z",
       "createdAt": "21/08/2026 10:23",
       "baseName": "P236 T0",
       "category": "Fixation (tissu)",
@@ -28625,7 +28625,7 @@
       "canonicalClientCode": "APHM003",
       "location": "Frigo culture L1",
       "notes": "Liquide, stérile, conserver à RT\nInjecté 60µL le 02/09/2026, reste environ >2mL. Stocké à 4°C (falcon 15)",
-      "createdAtRaw": "2026-07-13T13:46:05.570Z",
+      "createdAtRaw": "2026-07-13T13:46:05.57Z",
       "createdAt": "13/07/2026 15:46",
       "name": "APHM003_produit n°13",
       "arrivalDate": "2026-07-02",
@@ -28803,8 +28803,8 @@
       "rawCodes": [
         "APHM"
       ],
-      "createdAtRaw": "2026-07-13T13:46:05.570Z",
-      "updatedAtRaw": "2026-07-13T13:46:05.570Z",
+      "createdAtRaw": "2026-07-13T13:46:05.57Z",
+      "updatedAtRaw": "2026-07-13T13:46:05.57Z",
       "studyType": "client"
     },
     {
@@ -33810,264 +33810,6 @@
       "detail": "Caroline a ajouté Test4 dans Procédé ExAdEx L2."
     },
     {
-      "date": "04/06/2026 15:51",
-      "user": "Caroline",
-      "action": "Experience supprimee",
-      "detail": "Caroline a supprime Adiponectine secretion pilot."
-    },
-    {
-      "date": "26/05/2026 09:40",
-      "user": "Caroline",
-      "action": "Stock mis à jour",
-      "detail": "Caroline a pris 0.5 mL pour Invivogen FUNGIN 75 MG (10 MG/ML) (). Stock: 1.5 -> 1 mL."
-    },
-    {
-      "date": "21/05/2026 17:39",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Direct Zol RNA MicroPrep."
-    },
-    {
-      "date": "21/05/2026 10:06",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Direct Zol RNA MicroPrep dans Biomol."
-    },
-    {
-      "date": "21/05/2026 10:05",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps."
-    },
-    {
-      "date": "21/05/2026 10:04",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Kit ARN dans Biomol."
-    },
-    {
-      "date": "21/05/2026 10:03",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Cryotubes 2 mL steriles de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Kit ELISA Adiponectine de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Plaques 24 puits low attachment de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Insuline humaine recombinante de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Primer PPARG humain de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Anti-Perilipin A de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé DMEM/F12 + GlutaMAX de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Collagenase type I de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item supprimé",
-      "detail": "Caroline a supprimé Test de l'inventaire."
-    },
-    {
-      "date": "21/05/2026 10:02",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Stainless steel beads 5mm dans Biomol."
-    },
-    {
-      "date": "21/05/2026 10:01",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "21/05/2026 09:57",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "21/05/2026 09:57",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "21/05/2026 09:55",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:03",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:01",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 18:01",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 17:41",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 12:03",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 12:02",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 12:01",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Qiazol."
-    },
-    {
-      "date": "20/05/2026 12:01",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Qiazol dans Biomol."
-    },
-    {
-      "date": "19/05/2026 18:10",
-      "user": "Caroline",
-      "action": "Item ajoute",
-      "detail": "Caroline a ajoute Test dans Procédé ExAdEx L2."
-    },
-    {
-      "date": "19/05/2026 16:35",
-      "user": "Caroline",
-      "action": "Connexion",
-      "detail": "Caroline a ouvert une session."
-    },
-    {
-      "date": "19/05/2026 16:35",
-      "user": "Caroline",
-      "action": "Deconnexion",
-      "detail": "Caroline a ferme sa session."
-    },
-    {
-      "date": "19/05/2026 16:35",
-      "user": "Caroline",
-      "action": "Connexion",
-      "detail": "Caroline a ouvert une session."
-    },
-    {
-      "date": "19/05/2026 16:32",
-      "user": "Caroline",
-      "action": "Deconnexion",
-      "detail": "Caroline a ferme sa session."
-    },
-    {
-      "date": "19/05/2026 16:32",
-      "user": "Caroline",
-      "action": "Connexion",
-      "detail": "Caroline a ouvert une session."
-    },
-    {
-      "date": "19/05/2026 16:31",
-      "user": "Caroline",
-      "action": "Deconnexion",
-      "detail": "Caroline a ferme sa session."
-    },
-    {
-      "date": "19/05/2026 16:31",
-      "user": "Caroline",
-      "action": "Connexion",
-      "detail": "Caroline a ouvert une session."
-    },
-    {
       "date": "Aujourd'hui 09:12",
       "user": "Caroline",
       "action": "Stock ajuste",
@@ -34669,7 +34411,7 @@
       "id": "movement-mrp23ldw-786642500-18545465",
       "operationId": "operation-mrp23l0q-807182168-527355515",
       "itemId": "itm-web-1783931436295-wncvj7",
-      "timestamp": "2026-07-17T14:51:54.500Z",
+      "timestamp": "2026-07-17T14:51:54.5Z",
       "userId": "caroline",
       "userName": "Caroline",
       "userEmoji": "🧪",
@@ -34710,7 +34452,7 @@
           "userEmoji": "🧪",
           "userInitials": ""
         },
-        "updatedAt": "2026-07-17T14:51:54.500Z",
+        "updatedAt": "2026-07-17T14:51:54.5Z",
         "updatedBy": "caroline",
         "version": 2
       },
@@ -34868,7 +34610,7 @@
       "id": "movement-mrp2rvis-1575244390-151797768",
       "operationId": "operation-mrp2ruxu-1125942519-1979422925",
       "itemId": "itm-web-1783931436295-1dofvn",
-      "timestamp": "2026-07-17T15:10:47.380Z",
+      "timestamp": "2026-07-17T15:10:47.38Z",
       "userId": "caroline",
       "userName": "Caroline",
       "userEmoji": "🧪",
@@ -34909,10 +34651,10 @@
           "userEmoji": "🧪",
           "userInitials": ""
         },
-        "updatedAt": "2026-07-17T15:10:47.380Z",
+        "updatedAt": "2026-07-17T15:10:47.38Z",
         "updatedBy": "caroline",
         "version": 2,
-        "finishedAt": "2026-07-17T15:10:47.380Z"
+        "finishedAt": "2026-07-17T15:10:47.38Z"
       },
       "quantity": 0,
       "unit": "",
@@ -35435,7 +35177,7 @@
       "id": "movement-ms30zujs-2724466271-3602893238",
       "operationId": "operation-ms30zu37-194219126-2301665816",
       "itemId": "itm-CSV-0018",
-      "timestamp": "2026-07-27T09:29:46.600Z",
+      "timestamp": "2026-07-27T09:29:46.6Z",
       "userId": "elina",
       "userName": "Elina",
       "userEmoji": "🔬",
@@ -35493,7 +35235,7 @@
       "id": "movement-ms78pxie-679614577-2478730672",
       "operationId": "operation-ms78pwsw-2521949515-4117346298",
       "itemId": "itm-CSV-0018",
-      "timestamp": "2026-07-30T08:17:05.510Z",
+      "timestamp": "2026-07-30T08:17:05.51Z",
       "userId": "elina",
       "userName": "Elina",
       "userEmoji": "🔬",
@@ -35534,7 +35276,7 @@
           "userEmoji": "🔬",
           "userInitials": ""
         },
-        "updatedAt": "2026-07-30T08:17:05.510Z",
+        "updatedAt": "2026-07-30T08:17:05.51Z",
         "updatedBy": "elina",
         "version": 3
       },
@@ -35574,7 +35316,7 @@
           "userEmoji": "🔬",
           "userInitials": ""
         },
-        "updatedAt": "2026-07-30T08:17:05.510Z",
+        "updatedAt": "2026-07-30T08:17:05.51Z",
         "updatedBy": "elina",
         "version": 3
       },
@@ -36448,7 +36190,7 @@
       "id": "movement-mspurqny-4134289111-4206972202",
       "operationId": "operation-mspurq2m-998990495-3188420953",
       "itemId": "itm-CSV-0100",
-      "timestamp": "2026-08-12T08:54:12.670Z",
+      "timestamp": "2026-08-12T08:54:12.67Z",
       "userId": "caroline",
       "userName": "Caroline",
       "userEmoji": "🧪",
@@ -36498,7 +36240,7 @@
         },
         "note": "Tiroir n°3",
         "status": "active",
-        "updatedAt": "2026-08-12T08:54:12.670Z",
+        "updatedAt": "2026-08-12T08:54:12.67Z",
         "updatedBy": "caroline",
         "version": 1
       },
@@ -36554,7 +36296,7 @@
           "userEmoji": "🧪",
           "userInitials": ""
         },
-        "updatedAt": "2026-08-12T08:54:12.670Z",
+        "updatedAt": "2026-08-12T08:54:12.67Z",
         "updatedBy": "caroline",
         "version": 2,
         "openedAt": "2026-08-12T08:53:26.175Z",
@@ -36606,7 +36348,7 @@
       "id": "movement-mspyx0gc-3265561202-1328994313",
       "operationId": "operation-mspywzw5-2356249267-1971838932",
       "itemId": "web-1786531739181",
-      "timestamp": "2026-08-12T10:50:17.100Z",
+      "timestamp": "2026-08-12T10:50:17.1Z",
       "userId": "caroline",
       "userName": "Caroline",
       "userEmoji": "🧪",
@@ -37068,7 +36810,7 @@
       "id": "movement-msyepxzo-4234162537-3002977754",
       "operationId": "operation-msyepxjz-3606349863-1056042320",
       "itemId": "itm-CSV-0100",
-      "timestamp": "2026-08-18T08:34:50.580Z",
+      "timestamp": "2026-08-18T08:34:50.58Z",
       "userId": "caroline",
       "userName": "Caroline",
       "userEmoji": "🧪",
@@ -37120,7 +36862,7 @@
         },
         "note": "Tiroir n°3",
         "status": "active",
-        "updatedAt": "2026-08-12T08:54:12.670Z",
+        "updatedAt": "2026-08-12T08:54:12.67Z",
         "updatedBy": "caroline",
         "version": 1
       },
@@ -37720,7 +37462,7 @@
           {
             "location": "Réserve",
             "quantity": 2,
-            "updatedAt": "2026-08-25T09:56:53.630Z",
+            "updatedAt": "2026-08-25T09:56:53.63Z",
             "updatedBy": "caroline"
           }
         ],
@@ -37743,7 +37485,7 @@
       "id": "movement-mt8p99rg-44133160-609876621",
       "operationId": "migration-mt8p99rg-2114469484-821197728",
       "itemId": "itm-CSV-0047",
-      "timestamp": "2026-08-25T13:27:30.220Z",
+      "timestamp": "2026-08-25T13:27:30.22Z",
       "userId": "caroline",
       "userName": "Caroline",
       "userEmoji": "🧪",
@@ -37885,7 +37627,7 @@
         "capacity": 10000,
         "unitKey": "unite",
         "status": "open",
-        "createdAt": "2026-09-03T08:35:02.970Z",
+        "createdAt": "2026-09-03T08:35:02.97Z",
         "updatedAt": "2026-09-03T08:36:22.842Z",
         "updatedBy": "caroline",
         "version": 3,
@@ -37905,7 +37647,7 @@
         "capacity": 10000,
         "unitKey": "unite",
         "status": "finished",
-        "createdAt": "2026-09-03T08:35:02.970Z",
+        "createdAt": "2026-09-03T08:35:02.97Z",
         "updatedAt": "2026-09-03T11:13:24.813Z",
         "updatedBy": "caroline",
         "version": 4,
@@ -37997,7 +37739,7 @@
     {
       "operationId": "operation-mspurq2m-998990495-3188420953",
       "itemId": "itm-CSV-0100",
-      "at": "2026-08-12T08:54:12.670Z",
+      "at": "2026-08-12T08:54:12.67Z",
       "type": "aliquots_prepared"
     },
     {
@@ -38009,7 +37751,7 @@
     {
       "operationId": "operation-mspv6szh-2513779669-228185987",
       "itemId": "itm-web-1783931436295-0nt8ah",
-      "at": "2026-08-12T09:05:56.030Z",
+      "at": "2026-08-12T09:05:56.03Z",
       "type": "received"
     },
     {
@@ -38027,7 +37769,7 @@
     {
       "operationId": "operation-mspywzw5-2356249267-1971838932",
       "itemId": "web-1786531739181",
-      "at": "2026-08-12T10:50:17.100Z",
+      "at": "2026-08-12T10:50:17.1Z",
       "type": "recounted"
     },
     {
@@ -38069,7 +37811,7 @@
     {
       "operationId": "operation-msyepxjz-3606349863-1056042320",
       "itemId": "itm-CSV-0100",
-      "at": "2026-08-18T08:34:50.580Z",
+      "at": "2026-08-18T08:34:50.58Z",
       "type": "preparation_corrected"
     },
     {
@@ -38081,7 +37823,7 @@
     {
       "operationId": "operation-mt8g25mb-3546539726-801908872",
       "itemId": "web-1786540743486",
-      "at": "2026-08-25T09:10:02.320Z",
+      "at": "2026-08-25T09:10:02.32Z",
       "type": "consumed"
     },
     {

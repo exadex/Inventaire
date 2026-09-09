@@ -45,14 +45,14 @@
         "roomId": "room-piece-80",
         "name": "-20°C 1 salle -80",
         "icon": "1️⃣",
-        "order": 1
+        "order": 0
       },
       {
         "id": "location-20-2-salle-80",
         "roomId": "room-piece-80",
         "name": "-20°C 2 salle -80",
         "icon": "2️⃣",
-        "order": 0
+        "order": 1
       },
       {
         "id": "location-20-3-salle-80",
@@ -29364,6 +29364,12 @@
       "detail": "Caroline a déplacé -20°C 2 salle -80."
     },
     {
+      "date": "09/09/2026 11:28",
+      "user": "Caroline",
+      "action": "Ordre des emplacements modifié",
+      "detail": "Caroline a déplacé -20°C 2 salle -80."
+    },
+    {
       "date": "09/09/2026 11:15",
       "user": "Caroline",
       "action": "Commande reçue",
@@ -37942,5 +37948,5 @@
     }
   ],
   "customProtocolTemplates": [],
-  "updatedAt": "2026-09-09T09:28:01.089Z"
+  "updatedAt": "2026-09-09T09:28:05.575Z"
 }

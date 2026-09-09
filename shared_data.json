@@ -8145,7 +8145,7 @@
       "category": "Culture Cell",
       "quantity": 5,
       "unit": "bouteilles",
-      "minStock": 2,
+      "minStock": 1,
       "location": "Frigo labo",
       "locations": [
         "Frigo labo"
@@ -8205,7 +8205,73 @@
             "updatedBy": "Caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-1",
+            "label": "bouteille fermé nº1",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:43:29.299Z",
+            "updatedAt": "2026-08-12T07:43:29.299Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-2",
+            "label": "bouteille fermé nº2",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:43:29.299Z",
+            "updatedAt": "2026-08-12T07:43:29.299Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-3",
+            "label": "bouteille fermé nº3",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:43:29.299Z",
+            "updatedAt": "2026-08-12T07:43:29.299Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-4",
+            "label": "bouteille fermé nº4",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:43:29.299Z",
+            "updatedAt": "2026-08-12T07:43:29.299Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-5",
+            "label": "bouteille fermé nº5",
+            "location": "Frigo labo",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-08-12T07:43:29.299Z",
+            "updatedAt": "2026-08-12T07:43:29.299Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -29266,6 +29332,12 @@
   ],
   "history": [
     {
+      "date": "09/09/2026 10:27",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié PBS."
+    },
+    {
       "date": "04/09/2026 17:52",
       "user": "Caroline",
       "action": "Protocole supprimé",
@@ -37878,5 +37950,5 @@
     }
   ],
   "customProtocolTemplates": [],
-  "updatedAt": "2026-09-03T13:33:55.182Z"
+  "updatedAt": "2026-09-09T08:27:37.558Z"
 }

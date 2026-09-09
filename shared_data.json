@@ -20836,7 +20836,7 @@
   "orders": [
     {
       "id": "ord-1788943923687",
-      "status": "requested",
+      "status": "ordered",
       "itemMode": "existing",
       "inventoryItemId": "web-1788424502969",
       "inventoryUnit": "vial",
@@ -20848,9 +20848,9 @@
       "requestedBy": "Elina",
       "requestedAt": "09/09/2026 10:52",
       "requestedAtRaw": "2026-09-09T08:52:03.687Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
+      "orderedBy": "Caroline",
+      "orderedAt": "09/09/2026 11:14",
+      "orderedAtRaw": "2026-09-09T09:14:08.378Z",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -29353,6 +29353,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/09/2026 11:14",
+      "user": "Caroline",
+      "action": "Commande effectuée",
+      "detail": "Caroline a marqué Heparine comme commandé."
+    },
     {
       "date": "09/09/2026 10:52",
       "user": "Elina",

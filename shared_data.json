@@ -44,25 +44,29 @@
         "id": "location-20-1-salle-80",
         "roomId": "room-piece-80",
         "name": "-20°C 1 salle -80",
-        "icon": "1️⃣"
+        "icon": "1️⃣",
+        "order": 1
       },
       {
         "id": "location-20-2-salle-80",
         "roomId": "room-piece-80",
         "name": "-20°C 2 salle -80",
-        "icon": "2️⃣"
+        "icon": "2️⃣",
+        "order": 0
       },
       {
         "id": "location-20-3-salle-80",
         "roomId": "room-piece-80",
         "name": "-20°C 3 salle -80",
-        "icon": "3️⃣"
+        "icon": "3️⃣",
+        "order": 2
       },
       {
         "id": "location-80",
         "roomId": "room-piece-80",
         "name": "-80°C",
-        "icon": "🧊"
+        "icon": "🧊",
+        "order": 3
       },
       {
         "id": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
@@ -29354,6 +29358,12 @@
   ],
   "history": [
     {
+      "date": "09/09/2026 11:28",
+      "user": "Caroline",
+      "action": "Ordre des emplacements modifié",
+      "detail": "Caroline a déplacé -20°C 2 salle -80."
+    },
+    {
       "date": "09/09/2026 11:15",
       "user": "Caroline",
       "action": "Commande reçue",
@@ -37932,5 +37942,5 @@
     }
   ],
   "customProtocolTemplates": [],
-  "updatedAt": "2026-09-09T08:27:37.558Z"
+  "updatedAt": "2026-09-09T09:28:01.089Z"
 }

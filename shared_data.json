@@ -20835,7 +20835,7 @@
   ],
   "orders": [
     {
-      "id": "ord-1788943895878",
+      "id": "ord-1788943923687",
       "status": "requested",
       "itemMode": "existing",
       "inventoryItemId": "web-1788424502969",
@@ -20846,8 +20846,8 @@
       "priority": "critique",
       "notes": "",
       "requestedBy": "Elina",
-      "requestedAt": "09/09/2026 10:51",
-      "requestedAtRaw": "2026-09-09T08:51:35.878Z",
+      "requestedAt": "09/09/2026 10:52",
+      "requestedAtRaw": "2026-09-09T08:52:03.687Z",
       "orderedBy": "",
       "orderedAt": "",
       "orderedAtRaw": "",
@@ -29354,7 +29354,7 @@
   ],
   "history": [
     {
-      "date": "09/09/2026 10:51",
+      "date": "09/09/2026 10:52",
       "user": "Elina",
       "action": "Demande créée",
       "detail": "Elina a créé une demande pour Heparine."

@@ -29358,6 +29358,12 @@
   ],
   "history": [
     {
+      "date": "09/09/2026 11:34",
+      "user": "Caroline",
+      "action": "Protocole enregistré",
+      "detail": "Caroline a enregistré le protocole « Test APHM » depuis Test APHM."
+    },
+    {
       "date": "09/09/2026 11:28",
       "user": "Caroline",
       "action": "Ordre des emplacements modifié",
@@ -37947,6 +37953,76 @@
       "at": "2026-08-10T11:45:29.112Z"
     }
   ],
-  "customProtocolTemplates": [],
+  "customProtocolTemplates": [
+    {
+      "id": "custom-tpl-1788946454912",
+      "name": "Test APHM",
+      "notes": "",
+      "source": "custom",
+      "createdBy": "Caroline",
+      "createdAt": "2026-09-09T09:34:15.393Z",
+      "items": [
+        {
+          "name": "Tissu",
+          "unit": "mg",
+          "perConditionQuantity": 3,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": true
+        },
+        {
+          "name": "Endothelial Cell Growth Medium 2",
+          "unit": "mL",
+          "perConditionQuantity": 140,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": false,
+          "itemId": "itm-CSV-0018"
+        },
+        {
+          "name": "Fetal Bovine Serum (FBS)",
+          "unit": "mL",
+          "perConditionQuantity": 0.28,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": false,
+          "itemId": "web-1786452661627"
+        },
+        {
+          "name": "Ascorbic acid",
+          "unit": "µL",
+          "perConditionQuantity": 140,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": true
+        },
+        {
+          "name": "Heparine",
+          "unit": "mL",
+          "perConditionQuantity": 1.575,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": true
+        },
+        {
+          "name": "Seringue 1mL",
+          "unit": "seringues",
+          "perConditionQuantity": 20,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": true
+        },
+        {
+          "name": "Plaque 24 puits",
+          "unit": "plaque",
+          "perConditionQuantity": 3,
+          "notes": "",
+          "quantityEditable": true,
+          "manualLinkOnly": false,
+          "itemId": "itm-web-1783931436295-xj2mx3"
+        }
+      ]
+    }
+  ],
   "updatedAt": "2026-09-09T09:28:05.575Z"
 }

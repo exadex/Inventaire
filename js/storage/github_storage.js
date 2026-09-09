@@ -86,18 +86,37 @@
     }
 
     // Au-delà d'environ 1 Mo, l'API "contents" ne renvoie plus le contenu encodé en
-    // base64 (content vide) : on retombe sur le contenu brut, sans limite de taille.
-    if (payload.download_url) {
-      const rawUrl = `${payload.download_url}${payload.download_url.includes("?") ? "&" : "?"}t=${Date.now()}`;
-      const rawResponse = await fetch(rawUrl, { cache: "no-store" });
-      if (!rawResponse.ok) {
-        throw new Error(`GitHub raw read failed: ${rawResponse.status}`);
-      }
-      const text = await rawResponse.text();
+    // base64 (content vide) : on lit le blob directement par son sha (Git Data API,
+    // jusqu'à 100 Mo). On évite volontairement payload.download_url : cette URL passe
+    // par le CDN raw.githubusercontent.com, qui met le contenu en cache jusqu'à 5 minutes
+    // et ignore le paramètre anti-cache "?t=", ce qui pouvait renvoyer une version
+    // périmée juste après un enregistrement (une demande créée disparaissait quelques
+    // secondes plus tard). Un blob est identifié par le hash de son contenu : le lire
+    // par sha ne peut donc jamais renvoyer une version obsolète, même en cache.
+    if (payload.sha) {
+      const text = await requestBlobContent(config, payload.sha);
       return { data: readJson(text, null), sha: latestSha };
     }
 
     return { data: null, sha: latestSha };
+  }
+
+  async function requestBlobContent(config, sha) {
+    const url = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/git/blobs/${encodeURIComponent(sha)}`;
+    const headers = {
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+    if (config.token) {
+      headers.Authorization = `Bearer ${config.token}`;
+    }
+    const response = await fetch(url, { headers, cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`GitHub blob read failed: ${response.status}`);
+    }
+    const payload = await response.json();
+    const content = String(payload.content || "").replace(/\s/g, "");
+    return content ? decodeBase64Utf8(content) : "";
   }
 
   async function requestPublicJson(config, options = {}) {

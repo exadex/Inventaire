@@ -20835,6 +20835,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1788943814740",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "web-1788424502969",
+      "inventoryUnit": "vial",
+      "itemName": "Heparine",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "09/09/2026 10:50",
+      "requestedAtRaw": "2026-09-09T08:50:14.740Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1785233419378",
       "status": "received",
       "itemMode": "existing",
@@ -29331,6 +29353,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/09/2026 10:50",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Heparine."
+    },
     {
       "date": "09/09/2026 10:27",
       "user": "Elina",

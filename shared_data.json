@@ -11647,73 +11647,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0080",
-      "name": "cones filtrés 20µL",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 2,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Pointes"
-      ],
-      "notes": "Conditionnement : 5000",
-      "references": {
-        "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "11963466",
-          "link": "https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-1/11963466",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "555",
-          "unitPrice": "0,111",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-07-28T13:01:19.924Z",
-      "createdAt": "28/07/2026 15:01",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-weqk75",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0081",
       "name": "Cones non-filtrés 10µL",
       "category": "Culture Cell",
@@ -30048,6 +29981,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/10/2026 15:27",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé cones filtrés 20µL de l'inventaire."
+    },
     {
       "id": "history-operation-mv5adxnf-2368443830-3419466556",
       "operationId": "operation-mv5adxnf-2368443830-3419466556",

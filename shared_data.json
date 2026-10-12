@@ -18054,72 +18054,6 @@
       }
     },
     {
-      "id": "itm-CSV-0124",
-      "name": "XTT Assay Kit prêt à l'emplois",
-      "category": "Qualité",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Abcam",
-          "reference": "ab232856",
-          "link": "https://www.abcam.com/products/assay-kits/xtt-assay-kit-ab232856.html",
-          "notes": "",
-          "price": "",
-          "unitPrice": "1,666666667",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-17jj4k6",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-abcam",
-      "createdAtRaw": "2026-08-10T15:39:40.919Z",
-      "createdAt": "10/08/2026 17:39",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-CSV-0125",
       "name": "bacterio diam 90 mm avec ou sans ergot sterile",
       "category": "Qualité",
@@ -29362,6 +29296,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/10/2026 13:33",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé XTT Assay Kit prêt à l'emplois de l'inventaire."
+    },
     {
       "date": "12/10/2026 13:33",
       "user": "Elina",

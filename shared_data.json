@@ -11080,14 +11080,14 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "backup",
       "supplierContactId": "contact-1785239459565-7t6yfo",
       "createdAtRaw": "2026-08-10T09:38:38.517Z",
       "createdAt": "10/08/2026 11:38",
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -29897,6 +29897,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:19",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 1000µL Thermo."
+    },
+    {
       "date": "12/10/2026 15:18",
       "user": "Elina",
       "action": "Item ajouté",
@@ -36069,5 +36075,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:18:20.572Z"
+  "updatedAt": "2026-10-12T13:19:34.424Z"
 }

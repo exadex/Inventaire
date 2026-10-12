@@ -20695,72 +20695,6 @@
       }
     },
     {
-      "id": "itm-CSV-0186",
-      "name": "Filter tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box",
-      "category": "Cones pipettes",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "70.3010.255",
-          "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3010.255/",
-          "notes": "81,6",
-          "price": "81,6",
-          "unitPrice": "0,0425",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-08-10T09:42:40.197Z",
-      "createdAt": "10/08/2026 11:42",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-dwgo0a",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0192",
       "name": "Cones non-filtrés 1000µL",
       "category": "Cones pipettes",
@@ -20769,8 +20703,7 @@
       "minStock": 2,
       "location": "Laboratoire",
       "locations": [
-        "Laboratoire",
-        "Réserve"
+        "Laboratoire"
       ],
       "tags": [
         "pointes"
@@ -29479,6 +29412,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/10/2026 14:50",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Filter tip, 10 µl, transparent, Biosphere® plus, 96 piece(s)/box de l'inventaire."
+    },
     {
       "id": "history-operation-mv592goy-270819557-1480906531",
       "operationId": "operation-mv592goy-270819557-1480906531",

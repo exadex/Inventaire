@@ -10467,12 +10467,13 @@
       "id": "itm-web-1783931436295-cwj79e",
       "name": "Falcon 50",
       "category": "Culture Cell",
-      "quantity": 1.666667,
+      "quantity": 3.666667,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
-        "Réserve"
+        "Réserve",
+        "Culture L1 → -20°C culture L1"
       ],
       "tags": [
         "Falcon 50"
@@ -10531,9 +10532,70 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1,
+            "quantity": 1
+          },
+          {
+            "location": "Culture L1 → -20°C culture L1",
+            "quantity": 2
+          }
+        ],
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-cwj79e-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 300,
+            "capacity": 300,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-07-17T14:48:12.729Z",
             "updatedAt": "2026-07-17T14:48:12.729Z",
-            "updatedBy": "Caroline"
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mv58isuo-2202655831-1349138090",
+            "label": "carton fermé",
+            "location": "Culture L1 → -20°C culture L1",
+            "roomId": "room-culture-l1",
+            "locationId": "location-20-culture-l1",
+            "sublocationId": "",
+            "remaining": 300,
+            "capacity": 300,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-12T12:35:07.536Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-12T12:35:07.536Z",
+            "updatedBy": "elina",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mv58isup-120323281-886889129",
+            "label": "carton fermé",
+            "location": "Culture L1 → -20°C culture L1",
+            "roomId": "room-culture-l1",
+            "locationId": "location-20-culture-l1",
+            "sublocationId": "",
+            "remaining": 300,
+            "capacity": 300,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-12T12:35:07.536Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-12T12:35:07.536Z",
+            "updatedBy": "elina",
+            "version": 1
           }
         ],
         "openContainers": [
@@ -10554,7 +10616,8 @@
             "updatedAt": "2026-07-17T14:49:58.131Z",
             "updatedBy": "caroline",
             "version": 3,
-            "finishedAt": "2026-07-17T14:49:58.131Z"
+            "finishedAt": "2026-07-17T14:49:58.131Z",
+            "unitKey": "sachet"
           },
           {
             "id": "container-mrp21m9y-1325205844-2936280207",
@@ -10572,7 +10635,8 @@
             },
             "updatedAt": "2026-07-24T08:38:18.424Z",
             "updatedBy": "elina",
-            "version": 3
+            "version": 3,
+            "unitKey": "sachet"
           }
         ]
       },
@@ -29321,6 +29385,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv58is1i-64230190-827204059",
+      "operationId": "operation-mv58is1i-64230190-827204059",
+      "date": "12/10/2026 14:35",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Falcon 50 · Stock précédent : 1,667 cartons · Stock compté : 3,667 cartons · Écart : +2 cartons · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "type": "recounted",
+      "previousQuantity": 1.666667,
+      "countedQuantity": 3.666667,
+      "difference": 2,
+      "unit": "cartons",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "id": "history-operation-mv58f78i-1787159412-1993492904",
       "operationId": "operation-mv58f78i-1787159412-1993492904",
       "date": "12/10/2026 14:32",
@@ -33277,6 +33356,126 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv58isup-2167190986-819263676",
+      "operationId": "operation-mv58is1i-64230190-827204059-closed-container-mv58isuo-2202655831-1349138090",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "timestamp": "2026-10-12T12:35:07.537Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv58isuo-2202655831-1349138090",
+      "containerId": "closed-container-mv58isuo-2202655831-1349138090",
+      "containerLabel": "carton fermé",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 12,
+      "beforeCapacity": 0,
+      "afterCapacity": 12,
+      "unitBefore": "",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv58isuo-2202655831-1349138090",
+        "label": "carton fermé",
+        "location": "Culture L1 → -20°C culture L1",
+        "roomId": "room-culture-l1",
+        "locationId": "location-20-culture-l1",
+        "sublocationId": "",
+        "remaining": 300,
+        "capacity": 300,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-10-12T12:35:07.536Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:35:07.536Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 12,
+      "difference": 12,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Culture L1 → -20°C culture L1",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mv58isup-2476475569-3872623114",
+      "operationId": "operation-mv58is1i-64230190-827204059-closed-container-mv58isup-120323281-886889129",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "timestamp": "2026-10-12T12:35:07.537Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv58isup-120323281-886889129",
+      "containerId": "closed-container-mv58isup-120323281-886889129",
+      "containerLabel": "carton fermé",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 12,
+      "beforeCapacity": 0,
+      "afterCapacity": 12,
+      "unitBefore": "",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv58isup-120323281-886889129",
+        "label": "carton fermé",
+        "location": "Culture L1 → -20°C culture L1",
+        "roomId": "room-culture-l1",
+        "locationId": "location-20-culture-l1",
+        "sublocationId": "",
+        "remaining": 300,
+        "capacity": 300,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-10-12T12:35:07.536Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:35:07.536Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 12,
+      "difference": 12,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Culture L1 → -20°C culture L1",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -33484,6 +33683,12 @@
       "itemId": "itm-web-1783931436295-wncvj7",
       "at": "2026-10-12T12:32:21.359Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv58is1i-64230190-827204059",
+      "itemId": "itm-web-1783931436295-cwj79e",
+      "at": "2026-10-12T12:35:07.537Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -33565,5 +33770,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:32:21.359Z"
+  "updatedAt": "2026-10-12T12:35:07.537Z"
 }

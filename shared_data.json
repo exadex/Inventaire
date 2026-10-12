@@ -11291,7 +11291,7 @@
       "id": "itm-web-1783931436295-kwjv0i",
       "name": "Cones filtrés 1000µL Sarstedt",
       "category": "Culture Cell",
-      "quantity": 1.5,
+      "quantity": 0.75,
       "unit": "Cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -11349,21 +11349,32 @@
         "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
+        "closedByLocation": [],
+        "closedContainers": [
           {
+            "id": "closed-itm-web-1783931436295-kwjv0i-reserve-1",
+            "label": "carton fermé nº1",
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-10-12T13:21:20.897Z",
-            "updatedBy": "elina"
+            "remaining": 0,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "finished",
+            "createdAt": "2026-10-12T13:21:20.897Z",
+            "updatedAt": "2026-10-12T13:21:47.296Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "finishedAt": "2026-10-12T13:21:47.296Z"
           }
         ],
-        "closedContainers": null,
         "openContainers": [
           {
             "id": "container-mv5a68sh-2691474303-1404370166",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 2,
+            "remaining": 3,
             "capacity": 4,
             "status": "open",
             "openedAt": "2026-10-12T13:21:20.897Z",
@@ -11373,9 +11384,13 @@
               "userEmoji": "🔬",
               "userInitials": ""
             },
-            "updatedAt": "2026-10-12T13:21:20.897Z",
+            "updatedAt": "2026-10-12T13:21:47.296Z",
             "updatedBy": "elina",
-            "version": 1
+            "version": 2,
+            "unitKey": "boite",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": ""
           }
         ]
       },
@@ -29936,6 +29951,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv5a6qb2-303592108-3168518824",
+      "operationId": "operation-mv5a6qb2-303592108-3168518824",
+      "date": "12/10/2026 15:21",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Cones filtrés 1000µL Sarstedt · Stock précédent : 1,5 cartons · Stock compté : 0,75 cartons · Écart : -0,75 cartons · Note : 11973466",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "type": "recounted",
+      "previousQuantity": 1.5,
+      "countedQuantity": 0.75,
+      "difference": -0.75,
+      "unit": "cartons",
+      "note": "11973466"
+    },
+    {
       "date": "12/10/2026 15:21",
       "user": "Elina",
       "action": "Item modifié",
@@ -35802,6 +35832,151 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5a6t5s-470565153-3840561842",
+      "operationId": "operation-mv5a6qb2-303592108-3168518824-container-mv5a68sh-2691474303-1404370166",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "timestamp": "2026-10-12T13:21:47.296Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mv5a68sh-2691474303-1404370166",
+      "containerId": "container-mv5a68sh-2691474303-1404370166",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 2,
+      "afterQuantity": 3,
+      "beforeCapacity": 4,
+      "afterCapacity": 4,
+      "unitBefore": "boîtes",
+      "unitAfter": "boîtes",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mv5a68sh-2691474303-1404370166",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 2,
+        "capacity": 4,
+        "status": "open",
+        "openedAt": "2026-10-12T13:21:20.897Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T13:21:20.897Z",
+        "updatedBy": "elina",
+        "version": 1,
+        "unitKey": "boite"
+      },
+      "after": {
+        "id": "container-mv5a68sh-2691474303-1404370166",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 3,
+        "capacity": 4,
+        "status": "open",
+        "openedAt": "2026-10-12T13:21:20.897Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T13:21:47.296Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "unitKey": "boite",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 3,
+      "difference": 1,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "11973466",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5a6t5t-4252252416-3099751788",
+      "operationId": "operation-mv5a6qb2-303592108-3168518824-closed-itm-web-1783931436295-kwjv0i-reserve-1",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "timestamp": "2026-10-12T13:21:47.297Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-web-1783931436295-kwjv0i-reserve-1",
+      "containerId": "closed-itm-web-1783931436295-kwjv0i-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 4,
+      "afterQuantity": 0,
+      "beforeCapacity": 4,
+      "afterCapacity": 4,
+      "unitBefore": "boîtes",
+      "unitAfter": "boîtes",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-web-1783931436295-kwjv0i-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 4,
+        "capacity": 4,
+        "unitKey": "boite",
+        "status": "closed",
+        "createdAt": "2026-10-12T13:21:20.897Z",
+        "updatedAt": "2026-10-12T13:21:20.897Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-web-1783931436295-kwjv0i-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 0,
+        "capacity": 4,
+        "unitKey": "boite",
+        "status": "finished",
+        "createdAt": "2026-10-12T13:21:20.897Z",
+        "updatedAt": "2026-10-12T13:21:47.296Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "finishedAt": "2026-10-12T13:21:47.296Z"
+      },
+      "quantity": 0,
+      "difference": -4,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "11973466",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -36087,6 +36262,12 @@
       "itemId": "web-1791810854422",
       "at": "2026-10-12T13:14:54.279Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv5a6qb2-303592108-3168518824",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "at": "2026-10-12T13:21:47.297Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -36168,5 +36349,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:21:20.910Z"
+  "updatedAt": "2026-10-12T13:21:47.297Z"
 }

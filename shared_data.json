@@ -9863,7 +9863,7 @@
       "id": "itm-web-1783931436295-wncvj7",
       "name": "Microtube 1,5mL",
       "category": "Culture Cell",
-      "quantity": 1.4,
+      "quantity": 1.3,
       "unit": "cartons",
       "minStock": 0.5,
       "location": "Réserve",
@@ -9927,9 +9927,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-07-17T14:51:40.242Z",
-            "updatedBy": "Caroline"
+            "quantity": 1
           }
         ],
         "closedContainers": [
@@ -9952,7 +9950,7 @@
             "id": "container-mrp23eel-2257530651-1161088923",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 2000,
+            "remaining": 1500,
             "capacity": 5000,
             "status": "open",
             "openedAt": "2026-07-17T14:51:45.453Z",
@@ -9962,10 +9960,13 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:51:54.5Z",
-            "updatedBy": "caroline",
-            "version": 2,
-            "unitKey": "sachet"
+            "updatedAt": "2026-10-12T12:32:21.358Z",
+            "updatedBy": "elina",
+            "version": 3,
+            "unitKey": "sachet",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": ""
           }
         ]
       },
@@ -29320,6 +29321,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv58f78i-1787159412-1993492904",
+      "operationId": "operation-mv58f78i-1787159412-1993492904",
+      "date": "12/10/2026 14:32",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Microtube 1,5mL · Stock précédent : 1,4 cartons · Stock compté : 1,3 cartons · Écart : -0,1 cartons · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-wncvj7",
+      "type": "recounted",
+      "previousQuantity": 1.4,
+      "countedQuantity": 1.3,
+      "difference": -0.1,
+      "unit": "cartons",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "date": "12/10/2026 13:41",
       "user": "Elina",
       "action": "Item modifié",
@@ -33183,6 +33199,84 @@
       "toLocation": "",
       "comment": "Compté le 12/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv58f8mn-2093089630-3559472703",
+      "operationId": "operation-mv58f78i-1787159412-1993492904-container-mrp23eel-2257530651-1161088923",
+      "itemId": "itm-web-1783931436295-wncvj7",
+      "timestamp": "2026-10-12T12:32:21.359Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp23eel-2257530651-1161088923",
+      "containerId": "container-mrp23eel-2257530651-1161088923",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 4,
+      "afterQuantity": 3,
+      "beforeCapacity": 10,
+      "afterCapacity": 10,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp23eel-2257530651-1161088923",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 2000,
+        "capacity": 5000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:51:45.453Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:51:54.5Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "unitKey": "sachet"
+      },
+      "after": {
+        "id": "container-mrp23eel-2257530651-1161088923",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 1500,
+        "capacity": 5000,
+        "status": "open",
+        "openedAt": "2026-07-17T14:51:45.453Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:32:21.358Z",
+        "updatedBy": "elina",
+        "version": 3,
+        "unitKey": "sachet",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 3,
+      "difference": -1,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -33384,6 +33478,12 @@
       "itemId": "itm-CSV-0123",
       "at": "2026-10-12T11:31:16.944Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv58f78i-1787159412-1993492904",
+      "itemId": "itm-web-1783931436295-wncvj7",
+      "at": "2026-10-12T12:32:21.359Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -33465,5 +33565,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T11:41:36.644Z"
+  "updatedAt": "2026-10-12T12:32:21.359Z"
 }

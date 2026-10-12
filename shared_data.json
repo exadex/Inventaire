@@ -20541,7 +20541,7 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
+      "usageProfile": "backup",
       "supplierContactId": "contact-1785239459565-7t6yfo",
       "createdAtRaw": "2026-08-10T15:52:36.366Z",
       "createdAt": "10/08/2026 17:52",
@@ -29326,6 +29326,12 @@
       "detail": "Elina a modifié Blouse L2."
     },
     {
+      "date": "12/10/2026 13:41",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Blouse L2."
+    },
+    {
       "date": "12/10/2026 13:40",
       "user": "Elina",
       "action": "Demande créée",
@@ -33459,5 +33465,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T11:41:23.796Z"
+  "updatedAt": "2026-10-12T11:41:36.644Z"
 }

@@ -117,6 +117,87 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791811954343",
+      "name": "boites carrées",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "backup",
+      "placements": [
+        {
+          "id": "placement-9833727b-b91a-4b80-8d7b-2080bb1eed8b",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Sarstedt",
+          "reference": "82.9923.422",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-10-12T13:32:34.344Z",
+      "createdAt": "12/10/2026 15:32",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 40
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-10-12T13:32:34.346Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791811100561",
       "name": "Microtubes 0.5mL",
       "category": "Procédé ExAdEx L2",
@@ -30039,6 +30120,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:32",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté boites carrées dans Procédé ExAdEx L2."
+    },
+    {
       "id": "history-operation-mv5agar6-1274258230-300119619",
       "operationId": "operation-mv5agar6-1274258230-300119619",
       "date": "12/10/2026 15:29",
@@ -37010,5 +37097,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:29:13.970Z"
+  "updatedAt": "2026-10-12T13:32:34.353Z"
 }

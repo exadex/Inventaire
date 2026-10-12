@@ -11413,7 +11413,7 @@
       "name": "Cones filtrés 200µL",
       "category": "Culture Cell",
       "quantity": 3.5,
-      "unit": "unités",
+      "unit": "Cartons",
       "minStock": 2,
       "location": "Réserve",
       "locations": [
@@ -11425,47 +11425,76 @@
       "notes": "960/b",
       "references": {
         "primary": {
-          "supplier": "Dutscher",
-          "reference": "14220",
-          "link": "https://www.dutscher.com/article/014220",
+          "supplier": "Sarstedt",
+          "reference": "70.3031.355",
+          "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "155",
+          "price": "",
           "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": [
-          {
-            "reference": "70.3031.355",
-            "notes": "Fournisseur : Sarstedt. Prix 85,44 €, prix unitaire 0,04 €"
-          }
-        ]
+        "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785226360650-wy85d7",
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-07-30T09:20:23.705Z",
       "createdAt": "30/07/2026 11:20",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
+        "mode": "containers",
         "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 4
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-10-12T13:25:28.013Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": [
+          {
+            "id": "container-mv5abjgu-627824513-449920618",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 2,
+            "capacity": 4,
+            "status": "open",
+            "openedAt": "2026-10-12T13:25:28.013Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-12T13:25:28.013Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -29951,6 +29980,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:25",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 200µL."
+    },
+    {
       "date": "12/10/2026 15:24",
       "user": "Elina",
       "action": "Item modifié",
@@ -36175,6 +36210,48 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5abjgy-3749294216-1252140863",
+      "operationId": "migration-mv5abjgz-1473601050-2294847510",
+      "itemId": "itm-CSV-0077",
+      "timestamp": "2026-10-12T13:25:28.018Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "configuration_changed",
+      "entityType": "item",
+      "entityId": "itm-CSV-0077",
+      "before": {
+        "mode": "simple",
+        "quantity": 3.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 3.5,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-10-12T13:25:28.013Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mv5abjgu-627824513-449920618",
+            "location": "Réserve",
+            "remaining": 2
+          }
+        ]
+      },
+      "quantity": 0,
+      "unit": "cartons",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -36559,5 +36636,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:24:00.408Z"
+  "updatedAt": "2026-10-12T13:25:28.023Z"
 }

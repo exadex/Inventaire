@@ -8544,7 +8544,7 @@
       "id": "itm-web-1783931436295-ytshf4",
       "name": "Pipette stérile Pasteur 3 ml (a commander de preference)",
       "category": "Culture Cell",
-      "quantity": 0.5,
+      "quantity": 1,
       "unit": "Sac",
       "minStock": 0.5,
       "location": "Réserve",
@@ -8574,7 +8574,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "containers",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -8598,12 +8598,13 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": [
           {
             "id": "container-mrp35jh7-3207295670-3353019737",
             "label": "sac ouvert nº1",
             "location": "Réserve",
-            "remaining": 500,
+            "remaining": 1000,
             "capacity": 1000,
             "status": "open",
             "openedAt": "2026-07-17T15:21:24.955Z",
@@ -8613,9 +8614,13 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T15:21:24.955Z",
-            "updatedBy": "caroline",
-            "version": 1
+            "updatedAt": "2026-10-12T12:47:42.164Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "unitKey": "custom-pipette",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": ""
           }
         ]
       },
@@ -29436,6 +29441,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv58ywyu-1003421030-1099599205",
+      "operationId": "operation-mv58ywyu-1003421030-1099599205",
+      "date": "12/10/2026 14:47",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Pipette stérile Pasteur 3 ml (a commander de preference) · Stock précédent : 0,5 sacs · Stock compté : 1 sacs · Écart : +0,5 sacs · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-ytshf4",
+      "type": "recounted",
+      "previousQuantity": 0.5,
+      "countedQuantity": 1,
+      "difference": 0.5,
+      "unit": "sacs",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "id": "history-operation-mv58uze9-3051510568-1084991838",
       "operationId": "operation-mv58uze9-3051510568-1084991838",
       "date": "12/10/2026 14:44",
@@ -34150,6 +34170,84 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv58yz4k-1240528071-4149104534",
+      "operationId": "operation-mv58ywyu-1003421030-1099599205-container-mrp35jh7-3207295670-3353019737",
+      "itemId": "itm-web-1783931436295-ytshf4",
+      "timestamp": "2026-10-12T12:47:42.164Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp35jh7-3207295670-3353019737",
+      "containerId": "container-mrp35jh7-3207295670-3353019737",
+      "containerLabel": "sac ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 500,
+      "afterQuantity": 1000,
+      "beforeCapacity": 1000,
+      "afterCapacity": 1000,
+      "unitBefore": "pipettes",
+      "unitAfter": "pipettes",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp35jh7-3207295670-3353019737",
+        "label": "sac ouvert nº1",
+        "location": "Réserve",
+        "remaining": 500,
+        "capacity": 1000,
+        "status": "open",
+        "openedAt": "2026-07-17T15:21:24.955Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T15:21:24.955Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "unitKey": "custom-pipette"
+      },
+      "after": {
+        "id": "container-mrp35jh7-3207295670-3353019737",
+        "label": "sac ouvert nº1",
+        "location": "Réserve",
+        "remaining": 1000,
+        "capacity": 1000,
+        "status": "open",
+        "openedAt": "2026-07-17T15:21:24.955Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:47:42.164Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "unitKey": "custom-pipette",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 1000,
+      "difference": 500,
+      "unit": "pipettes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -34387,6 +34485,12 @@
       "itemId": "itm-web-1783931436294-6j33l2",
       "at": "2026-10-12T12:44:40.470Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv58ywyu-1003421030-1099599205",
+      "itemId": "itm-web-1783931436295-ytshf4",
+      "at": "2026-10-12T12:47:42.164Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -34468,5 +34572,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:44:40.470Z"
+  "updatedAt": "2026-10-12T12:47:42.164Z"
 }

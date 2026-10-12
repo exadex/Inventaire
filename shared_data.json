@@ -10785,8 +10785,8 @@
       "name": "Cones non filtrés 200µL",
       "category": "Culture Cell",
       "quantity": 5,
-      "unit": "unités",
-      "minStock": 2,
+      "unit": "Cartons",
+      "minStock": 1,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -10813,30 +10813,45 @@
         ]
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-08-10T09:44:51.756Z",
       "createdAt": "10/08/2026 11:44",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 5,
+            "updatedAt": "2026-10-12T12:53:14.313Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -29463,6 +29478,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 14:53",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones non filtrés 200µL."
+    },
+    {
       "id": "history-operation-mv594ky2-2764555558-1833402828",
       "operationId": "operation-mv594ky2-2764555558-1833402828",
       "date": "12/10/2026 14:52",
@@ -34861,5 +34882,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:52:09.305Z"
+  "updatedAt": "2026-10-12T12:53:14.318Z"
 }

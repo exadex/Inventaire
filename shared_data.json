@@ -18008,7 +18008,7 @@
         "secondary": [
           {
             "reference": "ab232856",
-            "notes": "Fournisseur : Abcam"
+            "notes": "Kit XTT prêt à l'emploi\nFournisseur : Abcam\nhttps://www.abcam.com/products/assay-kits/xtt-assay-kit-ab232856.html"
           }
         ]
       },
@@ -29363,6 +29363,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 13:33",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié XTT Cell Proliferation Kit II."
+    },
+    {
       "date": "12/10/2026 13:32",
       "user": "Elina",
       "action": "Item modifié",
@@ -33478,5 +33484,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T11:32:32.973Z"
+  "updatedAt": "2026-10-12T11:33:20.736Z"
 }

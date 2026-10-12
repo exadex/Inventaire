@@ -21620,6 +21620,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791812789383",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0192",
+      "inventoryUnit": "carton",
+      "itemName": "Cones non-filtrés 1000µL",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "12/10/2026 15:46",
+      "requestedAtRaw": "2026-10-12T13:46:29.383Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791812704751",
       "status": "requested",
       "itemMode": "existing",
@@ -30183,6 +30205,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/10/2026 15:46",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Cones non-filtrés 1000µL."
+    },
     {
       "date": "12/10/2026 15:45",
       "user": "Elina",

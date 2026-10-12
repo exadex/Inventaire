@@ -11291,7 +11291,7 @@
       "id": "itm-web-1783931436295-kwjv0i",
       "name": "Cones filtrés 1000µL Sarstedt",
       "category": "Culture Cell",
-      "quantity": 0.5,
+      "quantity": 0.75,
       "unit": "Cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -11374,7 +11374,7 @@
             "id": "container-mv5a68sh-2691474303-1404370166",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 2,
+            "remaining": 3,
             "capacity": 4,
             "status": "open",
             "openedAt": "2026-10-12T13:21:20.897Z",
@@ -11384,9 +11384,9 @@
               "userEmoji": "🔬",
               "userInitials": ""
             },
-            "updatedAt": "2026-10-12T13:22:42.084Z",
+            "updatedAt": "2026-10-12T13:23:06.642Z",
             "updatedBy": "elina",
-            "version": 3,
+            "version": 4,
             "unitKey": "boite",
             "roomId": "room-reserve",
             "locationId": "",
@@ -29951,6 +29951,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv5a8gnz-1052685852-1619562817",
+      "operationId": "operation-mv5a8gnz-1052685852-1619562817",
+      "date": "12/10/2026 15:23",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Cones filtrés 1000µL Sarstedt · Stock précédent : 0,5 cartons · Stock compté : 0,75 cartons · Écart : +0,25 cartons · Note : Inventaire 12/10/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "type": "recounted",
+      "previousQuantity": 0.5,
+      "countedQuantity": 0.75,
+      "difference": 0.25,
+      "unit": "cartons",
+      "note": "Inventaire 12/10/2026"
+    },
+    {
       "id": "history-operation-mv5a7y48-3307254416-2052143403",
       "operationId": "operation-mv5a7y48-3307254416-2052143403",
       "date": "12/10/2026 15:22",
@@ -36073,6 +36088,87 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5a8idu-2863394461-1236643876",
+      "operationId": "operation-mv5a8gnz-1052685852-1619562817-container-mv5a68sh-2691474303-1404370166",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "timestamp": "2026-10-12T13:23:06.642Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mv5a68sh-2691474303-1404370166",
+      "containerId": "container-mv5a68sh-2691474303-1404370166",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 2,
+      "afterQuantity": 3,
+      "beforeCapacity": 4,
+      "afterCapacity": 4,
+      "unitBefore": "boîtes",
+      "unitAfter": "boîtes",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mv5a68sh-2691474303-1404370166",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 2,
+        "capacity": 4,
+        "status": "open",
+        "openedAt": "2026-10-12T13:21:20.897Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T13:22:42.084Z",
+        "updatedBy": "elina",
+        "version": 3,
+        "unitKey": "boite",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "after": {
+        "id": "container-mv5a68sh-2691474303-1404370166",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 3,
+        "capacity": 4,
+        "status": "open",
+        "openedAt": "2026-10-12T13:21:20.897Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T13:23:06.642Z",
+        "updatedBy": "elina",
+        "version": 4,
+        "unitKey": "boite",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 3,
+      "difference": 1,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -36370,6 +36466,12 @@
       "itemId": "itm-web-1783931436295-kwjv0i",
       "at": "2026-10-12T13:22:42.084Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv5a8gnz-1052685852-1619562817",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "at": "2026-10-12T13:23:06.642Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -36451,5 +36553,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:22:42.084Z"
+  "updatedAt": "2026-10-12T13:23:06.642Z"
 }

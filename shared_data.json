@@ -20548,7 +20548,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -29320,6 +29320,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 13:41",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Blouse L2."
+    },
+    {
       "date": "12/10/2026 13:40",
       "user": "Elina",
       "action": "Demande créée",
@@ -33453,5 +33459,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T11:33:20.736Z"
+  "updatedAt": "2026-10-12T11:41:23.796Z"
 }

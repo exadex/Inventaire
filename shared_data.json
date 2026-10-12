@@ -20778,6 +20778,29 @@
   ],
   "orders": [
     {
+      "id": "ord-1791805203962",
+      "status": "requested",
+      "itemMode": "new",
+      "inventoryItemId": null,
+      "itemName": "Primer TBP Fw",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "12/10/2026 13:40",
+      "requestedAtRaw": "2026-10-12T11:40:03.963Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": {
+        "name": "Primer TBP Fw"
+      }
+    },
+    {
       "id": "ord-1788943923687",
       "status": "received",
       "itemMode": "existing",
@@ -29296,6 +29319,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/10/2026 13:40",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Primer TBP Fw."
+    },
     {
       "date": "12/10/2026 13:33",
       "user": "Elina",

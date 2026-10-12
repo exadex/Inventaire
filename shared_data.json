@@ -5672,7 +5672,7 @@
         ]
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "backup",
       "createdAtRaw": "2026-07-17T08:01:30.963Z",
       "createdAt": "17/07/2026 10:01",
       "stockTracking": {
@@ -5741,7 +5741,6 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "placements": [
         {
           "id": "placement-legacy-17currz",
@@ -29573,6 +29572,12 @@
       "date": "12/10/2026 14:58",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié boite ø 60."
+    },
+    {
+      "date": "12/10/2026 14:58",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié boite ø 150."
     },
     {
@@ -35240,5 +35245,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:58:11.179Z"
+  "updatedAt": "2026-10-12T12:58:46.517Z"
 }

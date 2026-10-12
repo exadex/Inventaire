@@ -11448,7 +11448,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -29951,6 +29951,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:24",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 200µL."
+    },
+    {
       "id": "history-operation-mv5a8gnz-1052685852-1619562817",
       "operationId": "operation-mv5a8gnz-1052685852-1619562817",
       "date": "12/10/2026 15:23",
@@ -36553,5 +36559,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:23:06.642Z"
+  "updatedAt": "2026-10-12T13:24:00.408Z"
 }

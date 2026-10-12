@@ -18005,7 +18005,12 @@
           "unitPrice": "0,2",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "ab232856",
+            "notes": "Fournisseur : Abcam"
+          }
+        ]
       },
       "source": "seed",
       "placements": [
@@ -29358,6 +29363,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 13:32",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié XTT Cell Proliferation Kit II."
+    },
+    {
       "id": "history-operation-mv568opw-2275685234-3956581351",
       "operationId": "operation-mv568opw-2275685234-3956581351",
       "date": "12/10/2026 13:31",
@@ -33467,5 +33478,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T11:31:16.944Z"
+  "updatedAt": "2026-10-12T11:32:32.973Z"
 }

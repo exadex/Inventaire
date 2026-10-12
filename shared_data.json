@@ -11584,7 +11584,7 @@
       "name": "Cones filtrés 20uL",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "unités",
+      "unit": "Cartons",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -11607,29 +11607,44 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "createdAtRaw": "2026-07-28T13:01:02.62Z",
       "createdAt": "28/07/2026 15:01",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 4
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-10-12T13:28:51.406Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -29982,6 +29997,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:28",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 20uL."
+    },
+    {
       "date": "12/10/2026 15:27",
       "user": "Elina",
       "action": "Item supprimé",
@@ -36859,5 +36880,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:27:22.952Z"
+  "updatedAt": "2026-10-12T13:28:51.411Z"
 }

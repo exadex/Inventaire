@@ -5643,7 +5643,7 @@
       "id": "itm-web-1783931436294-qxduy0",
       "name": "boite ø 60",
       "category": "Culture Cell",
-      "quantity": 0.714286,
+      "quantity": 1.428571,
       "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -5709,14 +5709,42 @@
         "trackingUnit": "sachets",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1
+          }
+        ],
+        "closedContainers": [
+          {
+            "id": "closed-container-mv59gq8p-2937741506-4006568531",
+            "label": "carton fermé",
+            "location": "Réserve",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "remaining": 560,
+            "capacity": 560,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-12T13:01:30.456Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-12T13:01:30.456Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mrp2yarn-2137398917-50219244",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 400,
+            "remaining": 240,
             "capacity": 560,
             "status": "open",
             "openedAt": "2026-07-17T15:15:47.075Z",
@@ -5726,9 +5754,9 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-10-12T12:56:13.902Z",
+            "updatedAt": "2026-10-12T13:01:30.456Z",
             "updatedBy": "elina",
-            "version": 2,
+            "version": 3,
             "unitKey": "sachet",
             "roomId": "room-reserve",
             "locationId": "",
@@ -29569,6 +29597,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv59gnth-1166043185-1786816457",
+      "operationId": "operation-mv59gnth-1166043185-1786816457",
+      "date": "12/10/2026 15:01",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · boite ø 60 · Stock précédent : 0,714 cartons · Stock compté : 1,429 cartons · Écart : +0,714 cartons · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436294-qxduy0",
+      "type": "recounted",
+      "previousQuantity": 0.714286,
+      "countedQuantity": 1.428571,
+      "difference": 0.714285,
+      "unit": "cartons",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "date": "12/10/2026 14:58",
       "user": "Elina",
       "action": "Item modifié",
@@ -34897,6 +34940,147 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv59gq8p-1464599725-102311017",
+      "operationId": "operation-mv59gnth-1166043185-1786816457-container-mrp2yarn-2137398917-50219244",
+      "itemId": "itm-web-1783931436294-qxduy0",
+      "timestamp": "2026-10-12T13:01:30.457Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp2yarn-2137398917-50219244",
+      "containerId": "container-mrp2yarn-2137398917-50219244",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 20,
+      "afterQuantity": 12,
+      "beforeCapacity": 28,
+      "afterCapacity": 28,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp2yarn-2137398917-50219244",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 400,
+        "capacity": 560,
+        "status": "open",
+        "openedAt": "2026-07-17T15:15:47.075Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:56:13.902Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "unitKey": "sachet",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "after": {
+        "id": "container-mrp2yarn-2137398917-50219244",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 240,
+        "capacity": 560,
+        "status": "open",
+        "openedAt": "2026-07-17T15:15:47.075Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T13:01:30.456Z",
+        "updatedBy": "elina",
+        "version": 3,
+        "unitKey": "sachet",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 12,
+      "difference": -8,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mv59gq8q-4223318532-2681458632",
+      "operationId": "operation-mv59gnth-1166043185-1786816457-closed-container-mv59gq8p-2937741506-4006568531",
+      "itemId": "itm-web-1783931436294-qxduy0",
+      "timestamp": "2026-10-12T13:01:30.458Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv59gq8p-2937741506-4006568531",
+      "containerId": "closed-container-mv59gq8p-2937741506-4006568531",
+      "containerLabel": "carton fermé",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 28,
+      "beforeCapacity": 0,
+      "afterCapacity": 28,
+      "unitBefore": "",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv59gq8p-2937741506-4006568531",
+        "label": "carton fermé",
+        "location": "Réserve",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "remaining": 560,
+        "capacity": 560,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-10-12T13:01:30.456Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T13:01:30.456Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 28,
+      "difference": 28,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -35164,6 +35348,12 @@
       "itemId": "itm-web-1783931436294-qxduy0",
       "at": "2026-10-12T12:56:13.902Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv59gnth-1166043185-1786816457",
+      "itemId": "itm-web-1783931436294-qxduy0",
+      "at": "2026-10-12T13:01:30.458Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -35245,5 +35435,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:58:46.517Z"
+  "updatedAt": "2026-10-12T13:01:30.458Z"
 }

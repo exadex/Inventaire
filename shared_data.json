@@ -11132,7 +11132,7 @@
       "name": "Cones non-filtrés 10µL",
       "category": "Culture Cell",
       "quantity": 2,
-      "unit": "unités",
+      "unit": "Cartons",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -11169,24 +11169,39 @@
       "createdAt": "28/07/2026 15:01",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 2,
+            "updatedAt": "2026-10-12T12:51:37.608Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -29413,6 +29428,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 14:51",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones non-filtrés 10µL."
+    },
+    {
       "date": "12/10/2026 14:50",
       "user": "Elina",
       "action": "Item supprimé",
@@ -34644,5 +34665,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:50:26.984Z"
+  "updatedAt": "2026-10-12T12:51:37.612Z"
 }

@@ -117,6 +117,71 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791810530207",
+      "name": "qPcr tubes 8 strip",
+      "category": "Biomol",
+      "quantity": 3,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "backup",
+      "placements": [
+        {
+          "id": "placement-bc751c54-0afd-4835-9390-db18c281fdb4",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Biologix",
+          "reference": "60-0088",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-10-12T13:08:50.208Z",
+      "createdAt": "12/10/2026 15:08",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "carton",
+        "trackingUnit": "cartons",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1788424502969",
       "name": "Heparine",
       "category": "Culture Cell",
@@ -29625,6 +29690,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:08",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté qPcr tubes 8 strip dans Biomol."
+    },
+    {
       "id": "history-operation-mv59jyqg-2596156197-961625230",
       "operationId": "operation-mv59jyqg-2596156197-961625230",
       "date": "12/10/2026 15:04",
@@ -35625,5 +35696,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:04:04.185Z"
+  "updatedAt": "2026-10-12T13:08:50.221Z"
 }

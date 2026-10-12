@@ -117,6 +117,87 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791810854422",
+      "name": "cônes 10uL filtrés",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "routine",
+      "placements": [
+        {
+          "id": "placement-9ed8ac4a-c9b9-48ec-928e-1b374e6e2f88",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Sarstedt",
+          "reference": "70.3010.255",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-10-12T13:14:14.422Z",
+      "createdAt": "12/10/2026 15:14",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 4
+          }
+        ],
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-10-12T13:14:14.424Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791810530207",
       "name": "qPcr tubes 8 strip",
       "category": "Biomol",
@@ -29690,6 +29771,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:14",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté cônes 10uL filtrés dans Procédé ExAdEx L2."
+    },
+    {
       "date": "12/10/2026 15:08",
       "user": "Elina",
       "action": "Item ajouté",
@@ -35696,5 +35783,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:08:50.221Z"
+  "updatedAt": "2026-10-12T13:14:14.430Z"
 }

@@ -74,6 +74,12 @@
         "name": "Frigo culture L1 à l'entré",
         "icon": "📍",
         "order": 0
+      },
+      {
+        "id": "location-393c2f65-430c-41a3-b9be-8fdfaf9b9eef",
+        "roomId": "room-culture-l1",
+        "name": "Salle culture L1",
+        "icon": "📍"
       }
     ],
     "sublocations": [
@@ -10472,8 +10478,7 @@
       "minStock": 1,
       "location": "Réserve",
       "locations": [
-        "Réserve",
-        "Culture L1 → -20°C culture L1"
+        "Réserve"
       ],
       "tags": [
         "Falcon 50"
@@ -29385,6 +29390,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 14:35",
+      "user": "Elina",
+      "action": "Localisation ajoutée",
+      "detail": "Elina a ajouté Salle culture L1."
+    },
+    {
       "id": "history-operation-mv58is1i-64230190-827204059",
       "operationId": "operation-mv58is1i-64230190-827204059",
       "date": "12/10/2026 14:35",
@@ -33770,5 +33781,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:35:07.537Z"
+  "updatedAt": "2026-10-12T12:35:35.835Z"
 }

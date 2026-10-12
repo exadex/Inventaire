@@ -11289,7 +11289,7 @@
     },
     {
       "id": "itm-web-1783931436295-kwjv0i",
-      "name": "Cones filtrés 1000µL Sarstedt (UGAP)",
+      "name": "Cones filtrés 1000µL Sarstedt",
       "category": "Culture Cell",
       "quantity": 1.5,
       "unit": "unités",
@@ -11312,7 +11312,12 @@
           "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "11973466",
+            "notes": "thermo"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -11321,7 +11326,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -29897,6 +29902,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:20",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 1000µL Sarstedt."
+    },
+    {
       "date": "12/10/2026 15:19",
       "user": "Elina",
       "action": "Item modifié",
@@ -36075,5 +36086,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:19:34.424Z"
+  "updatedAt": "2026-10-12T13:20:04.691Z"
 }

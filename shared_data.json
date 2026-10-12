@@ -20765,7 +20765,7 @@
       "name": "Cones non-filtrés 1000µL",
       "category": "Cones pipettes",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "carton",
       "minStock": 2,
       "location": "Laboratoire",
       "locations": [
@@ -20802,24 +20802,32 @@
       "createdAt": "10/08/2026 17:53",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
-        "closedContainers": [],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -29441,6 +29449,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 14:50",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones non-filtrés 1000µL."
+    },
+    {
       "id": "history-operation-mv58ywyu-1003421030-1099599205",
       "operationId": "operation-mv58ywyu-1003421030-1099599205",
       "date": "12/10/2026 14:47",
@@ -34572,5 +34586,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:47:42.164Z"
+  "updatedAt": "2026-10-12T12:50:06.811Z"
 }

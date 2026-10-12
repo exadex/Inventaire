@@ -8811,7 +8811,7 @@
       "id": "itm-web-1783931436295-7pfrox",
       "name": "Pipette 5 ml",
       "category": "Culture Cell",
-      "quantity": 2.3,
+      "quantity": 1.8,
       "unit": "cartons",
       "minStock": 0.5,
       "location": "Réserve",
@@ -8875,25 +8875,10 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 2,
-            "updatedAt": "2026-07-17T14:41:40.818Z",
-            "updatedBy": "Caroline"
+            "quantity": 1
           }
         ],
         "closedContainers": [
-          {
-            "id": "closed-itm-web-1783931436295-7pfrox-reserve-1",
-            "label": "carton fermé nº1",
-            "location": "Réserve",
-            "remaining": 500,
-            "capacity": 500,
-            "unitKey": "sachet",
-            "status": "closed",
-            "createdAt": "2026-07-17T14:41:40.818Z",
-            "updatedAt": "2026-07-17T14:41:40.818Z",
-            "updatedBy": "Caroline",
-            "version": 1
-          },
           {
             "id": "closed-itm-web-1783931436295-7pfrox-reserve-2",
             "label": "carton fermé nº2",
@@ -8910,12 +8895,35 @@
         ],
         "openContainers": [
           {
+            "id": "closed-itm-web-1783931436295-7pfrox-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 400,
+            "capacity": 500,
+            "unitKey": "sachet",
+            "status": "open",
+            "createdAt": "2026-07-17T14:41:40.818Z",
+            "updatedAt": "2026-10-12T12:41:19.559Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-12T12:41:19.559Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
+          },
+          {
             "id": "container-mrp1qoh0-2934017318-887767080",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 150,
+            "remaining": 0,
             "capacity": 500,
-            "status": "open",
+            "status": "finished",
             "openedAt": "2026-07-17T14:41:51.972Z",
             "openedBy": {
               "userId": "caroline",
@@ -8923,10 +8931,14 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:44:02.684Z",
-            "updatedBy": "caroline",
-            "version": 3,
-            "unitKey": "sachet"
+            "updatedAt": "2026-10-12T12:41:19.559Z",
+            "updatedBy": "elina",
+            "version": 4,
+            "unitKey": "sachet",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "finishedAt": "2026-10-12T12:41:19.559Z"
           }
         ]
       },
@@ -29423,6 +29435,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv58qis1-980445440-1951094139",
+      "operationId": "operation-mv58qis1-980445440-1951094139",
+      "date": "12/10/2026 14:41",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Pipette 5 ml · Stock précédent : 2,3 cartons · Stock compté : 1,8 cartons · Écart : -0,5 cartons · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-7pfrox",
+      "type": "recounted",
+      "previousQuantity": 2.3,
+      "countedQuantity": 1.8,
+      "difference": -0.5,
+      "unit": "cartons",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "id": "history-operation-mv58oznx-834860325-464544206",
       "operationId": "operation-mv58oznx-834860325-464544206",
       "date": "12/10/2026 14:39",
@@ -33868,6 +33895,158 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv58qrwn-4189674728-2954569343",
+      "operationId": "operation-mv58qis1-980445440-1951094139-closed-itm-web-1783931436295-7pfrox-reserve-1",
+      "itemId": "itm-web-1783931436295-7pfrox",
+      "timestamp": "2026-10-12T12:41:19.559Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-web-1783931436295-7pfrox-reserve-1",
+      "containerId": "closed-itm-web-1783931436295-7pfrox-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 10,
+      "afterQuantity": 8,
+      "beforeCapacity": 10,
+      "afterCapacity": 10,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-web-1783931436295-7pfrox-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 500,
+        "capacity": 500,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-07-17T14:41:40.818Z",
+        "updatedAt": "2026-07-17T14:41:40.818Z",
+        "updatedBy": "Caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-web-1783931436295-7pfrox-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 400,
+        "capacity": 500,
+        "unitKey": "sachet",
+        "status": "open",
+        "createdAt": "2026-07-17T14:41:40.818Z",
+        "updatedAt": "2026-10-12T12:41:19.559Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-12T12:41:19.559Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 8,
+      "difference": -2,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mv58qrwn-2068678916-3594516375",
+      "operationId": "operation-mv58qis1-980445440-1951094139-container-mrp1qoh0-2934017318-887767080",
+      "itemId": "itm-web-1783931436295-7pfrox",
+      "timestamp": "2026-10-12T12:41:19.559Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp1qoh0-2934017318-887767080",
+      "containerId": "container-mrp1qoh0-2934017318-887767080",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 3,
+      "afterQuantity": 0,
+      "beforeCapacity": 10,
+      "afterCapacity": 10,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp1qoh0-2934017318-887767080",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 150,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T14:41:51.972Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:44:02.684Z",
+        "updatedBy": "caroline",
+        "version": 3,
+        "unitKey": "sachet"
+      },
+      "after": {
+        "id": "container-mrp1qoh0-2934017318-887767080",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 0,
+        "capacity": 500,
+        "status": "finished",
+        "openedAt": "2026-07-17T14:41:51.972Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:41:19.559Z",
+        "updatedBy": "elina",
+        "version": 4,
+        "unitKey": "sachet",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "finishedAt": "2026-10-12T12:41:19.559Z"
+      },
+      "quantity": 0,
+      "difference": -3,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -34093,6 +34272,12 @@
       "itemId": "itm-web-1783931436295-yln0s3",
       "at": "2026-10-12T12:39:57.270Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv58qis1-980445440-1951094139",
+      "itemId": "itm-web-1783931436295-7pfrox",
+      "at": "2026-10-12T12:41:19.559Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -34174,5 +34359,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:39:57.270Z"
+  "updatedAt": "2026-10-12T12:41:19.559Z"
 }

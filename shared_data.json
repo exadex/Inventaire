@@ -11583,7 +11583,7 @@
       "id": "itm-CSV-0078",
       "name": "Cones filtrés 20uL",
       "category": "Culture Cell",
-      "quantity": 3,
+      "quantity": 2,
       "unit": "Cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -11639,12 +11639,54 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 3,
-            "updatedAt": "2026-10-12T13:28:51.406Z",
-            "updatedBy": "Elina"
+            "quantity": 2
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-csv-0078-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-10-12T13:28:51.406Z",
+            "updatedAt": "2026-10-12T13:28:51.406Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0078-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-10-12T13:28:51.406Z",
+            "updatedAt": "2026-10-12T13:28:51.406Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0078-reserve-3",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 0,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "finished",
+            "createdAt": "2026-10-12T13:28:51.406Z",
+            "updatedAt": "2026-10-12T13:29:13.970Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "finishedAt": "2026-10-12T13:29:13.970Z"
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -29997,6 +30039,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv5agar6-1274258230-300119619",
+      "operationId": "operation-mv5agar6-1274258230-300119619",
+      "date": "12/10/2026 15:29",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Cones filtrés 20uL · Stock précédent : 3 cartons · Stock compté : 2 cartons · Écart : -1 cartons · Note : Inventaire 12/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0078",
+      "type": "recounted",
+      "previousQuantity": 3,
+      "countedQuantity": 2,
+      "difference": -1,
+      "unit": "cartons",
+      "note": "Inventaire 12/10/2026"
+    },
+    {
       "date": "12/10/2026 15:28",
       "user": "Elina",
       "action": "Item modifié",
@@ -36490,6 +36547,73 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5agdte-2574371166-2834443327",
+      "operationId": "operation-mv5agar6-1274258230-300119619-closed-itm-csv-0078-reserve-3",
+      "itemId": "itm-CSV-0078",
+      "timestamp": "2026-10-12T13:29:13.970Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-csv-0078-reserve-3",
+      "containerId": "closed-itm-csv-0078-reserve-3",
+      "containerLabel": "carton fermé nº3",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 4,
+      "afterQuantity": 0,
+      "beforeCapacity": 4,
+      "afterCapacity": 4,
+      "unitBefore": "boîtes",
+      "unitAfter": "boîtes",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-csv-0078-reserve-3",
+        "label": "carton fermé nº3",
+        "location": "Réserve",
+        "remaining": 4,
+        "capacity": 4,
+        "unitKey": "boite",
+        "status": "closed",
+        "createdAt": "2026-10-12T13:28:51.406Z",
+        "updatedAt": "2026-10-12T13:28:51.406Z",
+        "updatedBy": "Elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-csv-0078-reserve-3",
+        "label": "carton fermé nº3",
+        "location": "Réserve",
+        "remaining": 0,
+        "capacity": 4,
+        "unitKey": "boite",
+        "status": "finished",
+        "createdAt": "2026-10-12T13:28:51.406Z",
+        "updatedAt": "2026-10-12T13:29:13.970Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "finishedAt": "2026-10-12T13:29:13.970Z"
+      },
+      "quantity": 0,
+      "difference": -4,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -36799,6 +36923,12 @@
       "itemId": "itm-CSV-0077",
       "at": "2026-10-12T13:27:22.952Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv5agar6-1274258230-300119619",
+      "itemId": "itm-CSV-0078",
+      "at": "2026-10-12T13:29:13.970Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -36880,5 +37010,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:28:51.411Z"
+  "updatedAt": "2026-10-12T13:29:13.970Z"
 }

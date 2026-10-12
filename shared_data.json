@@ -17986,7 +17986,7 @@
       "id": "itm-CSV-0123",
       "name": "XTT Cell Proliferation Kit II",
       "category": "Qualité",
-      "quantity": 0,
+      "quantity": 2,
       "unit": "unités",
       "minStock": 0,
       "location": "-20°C blanc labo",
@@ -18023,7 +18023,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -29358,6 +29358,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv568opw-2275685234-3956581351",
+      "operationId": "operation-mv568opw-2275685234-3956581351",
+      "date": "12/10/2026 13:31",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · XTT Cell Proliferation Kit II · Stock précédent : 0 unités · Stock compté : 2 unités · Écart : +2 unités · Note : Compté le 12/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0123",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 2,
+      "difference": 2,
+      "unit": "unités",
+      "note": "Compté le 12/10/2026"
+    },
+    {
       "date": "09/09/2026 11:34",
       "user": "Caroline",
       "action": "Protocole enregistré",
@@ -33131,6 +33146,45 @@
       "toLocation": "Tiroir n°1",
       "comment": "Je n'ai pas trouvé de vial stock, que les aliquotes",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv568p5c-2194392784-252757152",
+      "operationId": "operation-mv568opw-2275685234-3956581351",
+      "itemId": "itm-CSV-0123",
+      "timestamp": "2026-10-12T11:31:16.944Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 2,
+      "quantity": 2,
+      "difference": 2,
+      "unit": "unités",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Compté le 12/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -33326,6 +33380,12 @@
       "itemId": "web-1788424502969",
       "at": "2026-09-03T11:13:24.813Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv568opw-2275685234-3956581351",
+      "itemId": "itm-CSV-0123",
+      "at": "2026-10-12T11:31:16.944Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -33407,5 +33467,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-09T09:28:05.575Z"
+  "updatedAt": "2026-10-12T11:31:16.944Z"
 }

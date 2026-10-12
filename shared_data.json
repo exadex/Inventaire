@@ -10784,7 +10784,7 @@
       "id": "itm-web-1783931436295-osftkk",
       "name": "Cones non filtrés 200µL",
       "category": "Culture Cell",
-      "quantity": 5,
+      "quantity": 3.6,
       "unit": "Cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -10846,13 +10846,92 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 5,
-            "updatedAt": "2026-10-12T12:53:14.313Z",
-            "updatedBy": "Elina"
+            "quantity": 3
           }
         ],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-osftkk-reserve-3",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-12T12:53:14.313Z",
+            "updatedAt": "2026-10-12T12:53:14.313Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-osftkk-reserve-4",
+            "label": "carton fermé nº4",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-12T12:53:14.313Z",
+            "updatedAt": "2026-10-12T12:53:14.313Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-osftkk-reserve-5",
+            "label": "carton fermé nº5",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-12T12:53:14.313Z",
+            "updatedAt": "2026-10-12T12:53:14.313Z",
+            "updatedBy": "Elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-osftkk-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 0,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "finished",
+            "createdAt": "2026-10-12T12:53:14.313Z",
+            "updatedAt": "2026-10-12T12:54:08.699Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "finishedAt": "2026-10-12T12:54:08.699Z"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-osftkk-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 6,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "open",
+            "createdAt": "2026-10-12T12:53:14.313Z",
+            "updatedAt": "2026-10-12T12:54:08.699Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-12T12:54:08.699Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -29478,6 +29557,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv5976dv-1740197054-1806785552",
+      "operationId": "operation-mv5976dv-1740197054-1806785552",
+      "date": "12/10/2026 14:54",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Cones non filtrés 200µL · Stock précédent : 5 cartons · Stock compté : 3,6 cartons · Écart : -1,4 cartons · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-osftkk",
+      "type": "recounted",
+      "previousQuantity": 5,
+      "countedQuantity": 3.6,
+      "difference": -1.4,
+      "unit": "cartons",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "date": "12/10/2026 14:53",
       "user": "Elina",
       "action": "Item modifié",
@@ -34546,6 +34640,146 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5979dn-3154544881-2407720944",
+      "operationId": "operation-mv5976dv-1740197054-1806785552-closed-itm-web-1783931436295-osftkk-reserve-1",
+      "itemId": "itm-web-1783931436295-osftkk",
+      "timestamp": "2026-10-12T12:54:08.699Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-web-1783931436295-osftkk-reserve-1",
+      "containerId": "closed-itm-web-1783931436295-osftkk-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 10,
+      "afterQuantity": 6,
+      "beforeCapacity": 10,
+      "afterCapacity": 10,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-web-1783931436295-osftkk-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 10,
+        "capacity": 10,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-10-12T12:53:14.313Z",
+        "updatedAt": "2026-10-12T12:53:14.313Z",
+        "updatedBy": "Elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-web-1783931436295-osftkk-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 6,
+        "capacity": 10,
+        "unitKey": "sachet",
+        "status": "open",
+        "createdAt": "2026-10-12T12:53:14.313Z",
+        "updatedAt": "2026-10-12T12:54:08.699Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-12T12:54:08.699Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 6,
+      "difference": -4,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5979dn-3278199652-3058052756",
+      "operationId": "operation-mv5976dv-1740197054-1806785552-closed-itm-web-1783931436295-osftkk-reserve-2",
+      "itemId": "itm-web-1783931436295-osftkk",
+      "timestamp": "2026-10-12T12:54:08.699Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-web-1783931436295-osftkk-reserve-2",
+      "containerId": "closed-itm-web-1783931436295-osftkk-reserve-2",
+      "containerLabel": "carton fermé nº2",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 10,
+      "afterQuantity": 0,
+      "beforeCapacity": 10,
+      "afterCapacity": 10,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-web-1783931436295-osftkk-reserve-2",
+        "label": "carton fermé nº2",
+        "location": "Réserve",
+        "remaining": 10,
+        "capacity": 10,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-10-12T12:53:14.313Z",
+        "updatedAt": "2026-10-12T12:53:14.313Z",
+        "updatedBy": "Elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-web-1783931436295-osftkk-reserve-2",
+        "label": "carton fermé nº2",
+        "location": "Réserve",
+        "remaining": 0,
+        "capacity": 10,
+        "unitKey": "sachet",
+        "status": "finished",
+        "createdAt": "2026-10-12T12:53:14.313Z",
+        "updatedAt": "2026-10-12T12:54:08.699Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "finishedAt": "2026-10-12T12:54:08.699Z"
+      },
+      "quantity": 0,
+      "difference": -10,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -34801,6 +35035,12 @@
       "itemId": "itm-CSV-0081",
       "at": "2026-10-12T12:52:09.305Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv5976dv-1740197054-1806785552",
+      "itemId": "itm-web-1783931436295-osftkk",
+      "at": "2026-10-12T12:54:08.699Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -34882,5 +35122,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:53:14.318Z"
+  "updatedAt": "2026-10-12T12:54:08.699Z"
 }

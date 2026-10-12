@@ -117,6 +117,87 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791811100561",
+      "name": "Microtubes 0.5mL",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 3,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "routine",
+      "placements": [
+        {
+          "id": "placement-94a7f9f0-db95-4c30-8f3e-ac2805727b61",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Sarstedt",
+          "reference": "72.699",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-10-12T13:18:20.561Z",
+      "createdAt": "12/10/2026 15:18",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 5
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 3,
+            "updatedAt": "2026-10-12T13:18:20.564Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791810854422",
       "name": "cônes 10uL filtrés",
       "category": "Procédé ExAdEx L2",
@@ -29816,6 +29897,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:18",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté Microtubes 0.5mL dans Procédé ExAdEx L2."
+    },
+    {
       "id": "history-operation-mv59xwh9-273032846-452396557",
       "operationId": "operation-mv59xwh9-273032846-452396557",
       "date": "12/10/2026 15:14",
@@ -35982,5 +36069,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:14:54.279Z"
+  "updatedAt": "2026-10-12T13:18:20.572Z"
 }

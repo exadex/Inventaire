@@ -21620,6 +21620,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791812704751",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-kwjv0i",
+      "inventoryUnit": "Cartons",
+      "itemName": "Cones filtrés 1000µL Sarstedt",
+      "requestedQuantity": 3,
+      "receivedQuantity": 0,
+      "priority": "tres urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "12/10/2026 15:45",
+      "requestedAtRaw": "2026-10-12T13:45:04.752Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791805203962",
       "status": "requested",
       "itemMode": "new",
@@ -30161,6 +30183,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/10/2026 15:45",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Cones filtrés 1000µL Sarstedt."
+    },
     {
       "date": "12/10/2026 15:41",
       "user": "Elina",

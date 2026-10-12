@@ -11537,7 +11537,7 @@
       "category": "Culture Cell",
       "quantity": 2.5,
       "unit": "Cartons",
-      "minStock": 2,
+      "minStock": 1,
       "location": "Réserve",
       "locations": [
         "Réserve"
@@ -30162,6 +30162,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:41",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 200µL."
+    },
+    {
       "id": "history-operation-mv5alnz3-482217684-3468586370",
       "operationId": "operation-mv5alnz3-482217684-3468586370",
       "date": "12/10/2026 15:33",
@@ -37227,5 +37233,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:33:21.972Z"
+  "updatedAt": "2026-10-12T13:41:59.132Z"
 }

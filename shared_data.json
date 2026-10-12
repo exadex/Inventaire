@@ -120,7 +120,7 @@
       "id": "web-1791811954343",
       "name": "boites carrées",
       "category": "Procédé ExAdEx L2",
-      "quantity": 1,
+      "quantity": 1.475,
       "unit": "cartons",
       "minStock": 0,
       "usageProfile": "backup",
@@ -182,13 +182,55 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-10-12T13:32:34.346Z",
-            "updatedBy": "Elina"
+            "quantity": 1
           }
         ],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [
+          {
+            "id": "closed-web-1791811954343-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 40,
+            "capacity": 40,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-12T13:32:34.346Z",
+            "updatedAt": "2026-10-12T13:32:34.346Z",
+            "updatedBy": "Elina",
+            "version": 1
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-container-mv5alp6c-2540677222-4125848497",
+            "label": "carton ouvert",
+            "location": "Réserve",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "remaining": 19,
+            "capacity": 40,
+            "unitKey": "sachet",
+            "status": "open",
+            "createdAt": "2026-10-12T13:33:21.971Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-12T13:33:21.971Z",
+            "updatedBy": "elina",
+            "version": 1,
+            "openedAt": "2026-10-12T13:33:21.971Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -30120,6 +30162,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv5alnz3-482217684-3468586370",
+      "operationId": "operation-mv5alnz3-482217684-3468586370",
+      "date": "12/10/2026 15:33",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · boites carrées · Stock précédent : 1 cartons · Stock compté : 1,475 cartons · Écart : +0,475 cartons · Note : Inventaire 12/10/2026",
+      "user": "Elina",
+      "itemId": "web-1791811954343",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 1.475,
+      "difference": 0.475,
+      "unit": "cartons",
+      "note": "Inventaire 12/10/2026"
+    },
+    {
       "date": "12/10/2026 15:32",
       "user": "Elina",
       "action": "Item ajouté",
@@ -36701,6 +36758,73 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5alp6c-3258314211-363659544",
+      "operationId": "operation-mv5alnz3-482217684-3468586370-closed-container-mv5alp6c-2540677222-4125848497",
+      "itemId": "web-1791811954343",
+      "timestamp": "2026-10-12T13:33:21.972Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv5alp6c-2540677222-4125848497",
+      "containerId": "closed-container-mv5alp6c-2540677222-4125848497",
+      "containerLabel": "carton ouvert",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 0,
+      "afterQuantity": 19,
+      "beforeCapacity": 0,
+      "afterCapacity": 40,
+      "unitBefore": "",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv5alp6c-2540677222-4125848497",
+        "label": "carton ouvert",
+        "location": "Réserve",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "remaining": 19,
+        "capacity": 40,
+        "unitKey": "sachet",
+        "status": "open",
+        "createdAt": "2026-10-12T13:33:21.971Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T13:33:21.971Z",
+        "updatedBy": "elina",
+        "version": 1,
+        "openedAt": "2026-10-12T13:33:21.971Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 19,
+      "difference": 19,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -37016,6 +37140,12 @@
       "itemId": "itm-CSV-0078",
       "at": "2026-10-12T13:29:13.970Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv5alnz3-482217684-3468586370",
+      "itemId": "web-1791811954343",
+      "at": "2026-10-12T13:33:21.972Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -37097,5 +37227,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:32:34.353Z"
+  "updatedAt": "2026-10-12T13:33:21.972Z"
 }

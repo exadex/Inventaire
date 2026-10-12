@@ -11292,7 +11292,7 @@
       "name": "Cones filtrés 1000µL Sarstedt",
       "category": "Culture Cell",
       "quantity": 1.5,
-      "unit": "unités",
+      "unit": "Cartons",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -11320,30 +11320,64 @@
         ]
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "createdAtRaw": "2026-08-10T09:38:13.309Z",
       "createdAt": "10/08/2026 11:38",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
+        "mode": "containers",
         "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 4
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-10-12T13:21:20.897Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": [
+          {
+            "id": "container-mv5a68sh-2691474303-1404370166",
+            "label": "carton ouvert nº1",
+            "location": "Réserve",
+            "remaining": 2,
+            "capacity": 4,
+            "status": "open",
+            "openedAt": "2026-10-12T13:21:20.897Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-12T13:21:20.897Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -29902,6 +29936,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 15:21",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 1000µL Sarstedt."
+    },
+    {
       "date": "12/10/2026 15:20",
       "user": "Elina",
       "action": "Item modifié",
@@ -35720,6 +35760,48 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv5a68sp-4049198367-2566848241",
+      "operationId": "migration-mv5a68sp-3651508048-718800049",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "timestamp": "2026-10-12T13:21:20.905Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "configuration_changed",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-kwjv0i",
+      "before": {
+        "mode": "simple",
+        "quantity": 1.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 1.5,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-10-12T13:21:20.897Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mv5a68sh-2691474303-1404370166",
+            "location": "Réserve",
+            "remaining": 2
+          }
+        ]
+      },
+      "quantity": 0,
+      "unit": "cartons",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -36086,5 +36168,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:20:04.691Z"
+  "updatedAt": "2026-10-12T13:21:20.910Z"
 }

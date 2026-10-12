@@ -5947,7 +5947,7 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "backup",
       "createdAtRaw": "2026-07-17T07:57:50.012Z",
       "createdAt": "17/07/2026 09:57",
       "stockTracking": {
@@ -5985,6 +5985,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": [
           {
             "id": "container-mrp323oj-3202627513-861175292",
@@ -6002,7 +6003,8 @@
             },
             "updatedAt": "2026-07-17T15:18:44.515Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 1,
+            "unitKey": "sachet"
           }
         ]
       },
@@ -6011,7 +6013,6 @@
         "enabled": false,
         "preparations": []
       },
-      "supplierContactId": "contact-1785239153980-6o71tv",
       "placements": [
         {
           "id": "placement-legacy-1pzid7p",
@@ -29435,6 +29436,12 @@
   ],
   "history": [
     {
+      "date": "12/10/2026 14:42",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié boite ø 35."
+    },
+    {
       "id": "history-operation-mv58qis1-980445440-1951094139",
       "operationId": "operation-mv58qis1-980445440-1951094139",
       "date": "12/10/2026 14:41",
@@ -34359,5 +34366,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:41:19.559Z"
+  "updatedAt": "2026-10-12T12:42:09.230Z"
 }

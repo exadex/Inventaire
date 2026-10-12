@@ -8949,7 +8949,7 @@
       "id": "itm-web-1783931436295-yln0s3",
       "name": "Pipette 10 ml",
       "category": "Culture Cell",
-      "quantity": 2.8,
+      "quantity": 2.5,
       "unit": "cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -9013,9 +9013,35 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 2,
+            "quantity": 2
+          }
+        ],
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-yln0s3-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-07-17T14:45:04.441Z",
             "updatedAt": "2026-07-17T14:45:04.441Z",
-            "updatedBy": "Caroline"
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-yln0s3-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 500,
+            "capacity": 500,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-07-17T14:45:04.441Z",
+            "updatedAt": "2026-07-17T14:45:04.441Z",
+            "updatedBy": "Caroline",
+            "version": 1
           }
         ],
         "openContainers": [
@@ -9023,7 +9049,7 @@
             "id": "container-mrp1v0yq-3343416398-2940505528",
             "label": "carton ouvert nº1",
             "location": "Réserve",
-            "remaining": 400,
+            "remaining": 250,
             "capacity": 500,
             "status": "open",
             "openedAt": "2026-07-17T14:45:14.786Z",
@@ -9033,9 +9059,13 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-07-17T14:45:28.628Z",
-            "updatedBy": "caroline",
-            "version": 2
+            "updatedAt": "2026-10-12T12:39:57.269Z",
+            "updatedBy": "elina",
+            "version": 3,
+            "unitKey": "sachet",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": ""
           }
         ]
       },
@@ -10478,8 +10508,7 @@
       "minStock": 1,
       "location": "Réserve",
       "locations": [
-        "Réserve",
-        "Culture L1 → Salle culture L1"
+        "Réserve"
       ],
       "tags": [
         "Falcon 50"
@@ -29394,6 +29423,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv58oznx-834860325-464544206",
+      "operationId": "operation-mv58oznx-834860325-464544206",
+      "date": "12/10/2026 14:39",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Pipette 10 ml · Stock précédent : 2,8 cartons · Stock compté : 2,5 cartons · Écart : -0,3 cartons · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-yln0s3",
+      "type": "recounted",
+      "previousQuantity": 2.8,
+      "countedQuantity": 2.5,
+      "difference": -0.3,
+      "unit": "cartons",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "id": "history-operation-mv58k3qg-1462156848-3286015560",
       "operationId": "operation-mv58k3qg-1462156848-3286015560",
       "date": "12/10/2026 14:36",
@@ -33746,6 +33790,84 @@
       "toLocation": "Culture L1 → Salle culture L1",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv58p0eu-686266658-411512712",
+      "operationId": "operation-mv58oznx-834860325-464544206-container-mrp1v0yq-3343416398-2940505528",
+      "itemId": "itm-web-1783931436295-yln0s3",
+      "timestamp": "2026-10-12T12:39:57.270Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mrp1v0yq-3343416398-2940505528",
+      "containerId": "container-mrp1v0yq-3343416398-2940505528",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 8,
+      "afterQuantity": 5,
+      "beforeCapacity": 10,
+      "afterCapacity": 10,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mrp1v0yq-3343416398-2940505528",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 400,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T14:45:14.786Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-07-17T14:45:28.628Z",
+        "updatedBy": "caroline",
+        "version": 2,
+        "unitKey": "sachet"
+      },
+      "after": {
+        "id": "container-mrp1v0yq-3343416398-2940505528",
+        "label": "carton ouvert nº1",
+        "location": "Réserve",
+        "remaining": 250,
+        "capacity": 500,
+        "status": "open",
+        "openedAt": "2026-07-17T14:45:14.786Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:39:57.269Z",
+        "updatedBy": "elina",
+        "version": 3,
+        "unitKey": "sachet",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 5,
+      "difference": -3,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -33965,6 +34087,12 @@
       "itemId": "itm-web-1783931436295-cwj79e",
       "at": "2026-10-12T12:36:09.071Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv58oznx-834860325-464544206",
+      "itemId": "itm-web-1783931436295-yln0s3",
+      "at": "2026-10-12T12:39:57.270Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -34046,5 +34174,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:36:09.071Z"
+  "updatedAt": "2026-10-12T12:39:57.270Z"
 }

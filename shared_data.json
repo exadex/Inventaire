@@ -20764,12 +20764,13 @@
       "id": "itm-CSV-0192",
       "name": "Cones non-filtrés 1000µL",
       "category": "Cones pipettes",
-      "quantity": 0,
+      "quantity": 0.5,
       "unit": "carton",
       "minStock": 2,
       "location": "Laboratoire",
       "locations": [
-        "Laboratoire"
+        "Laboratoire",
+        "Réserve"
       ],
       "tags": [
         "pointes"
@@ -20827,8 +20828,38 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [],
+        "openContainers": [
+          {
+            "id": "closed-container-mv592iaw-2557803474-920111857",
+            "label": "carton ouvert",
+            "location": "Réserve",
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "remaining": 5,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "open",
+            "createdAt": "2026-10-12T12:50:26.984Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-12T12:50:26.984Z",
+            "updatedBy": "elina",
+            "version": 1,
+            "openedAt": "2026-10-12T12:50:26.984Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -29449,6 +29480,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv592goy-270819557-1480906531",
+      "operationId": "operation-mv592goy-270819557-1480906531",
+      "date": "12/10/2026 14:50",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Cones non-filtrés 1000µL · Stock précédent : 0 cartons · Stock compté : 0,5 cartons · Écart : +0,5 cartons · Note : Inventaire 12/09/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0192",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 0.5,
+      "difference": 0.5,
+      "unit": "cartons",
+      "note": "Inventaire 12/09/2026"
+    },
+    {
       "date": "12/10/2026 14:50",
       "user": "Elina",
       "action": "Item modifié",
@@ -34262,6 +34308,73 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/09/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv592iaw-3272657876-2097522308",
+      "operationId": "operation-mv592goy-270819557-1480906531-closed-container-mv592iaw-2557803474-920111857",
+      "itemId": "itm-CSV-0192",
+      "timestamp": "2026-10-12T12:50:26.984Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv592iaw-2557803474-920111857",
+      "containerId": "closed-container-mv592iaw-2557803474-920111857",
+      "containerLabel": "carton ouvert",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 0,
+      "afterQuantity": 5,
+      "beforeCapacity": 0,
+      "afterCapacity": 10,
+      "unitBefore": "",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv592iaw-2557803474-920111857",
+        "label": "carton ouvert",
+        "location": "Réserve",
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "remaining": 5,
+        "capacity": 10,
+        "unitKey": "sachet",
+        "status": "open",
+        "createdAt": "2026-10-12T12:50:26.984Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-12T12:50:26.984Z",
+        "updatedBy": "elina",
+        "version": 1,
+        "openedAt": "2026-10-12T12:50:26.984Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 5,
+      "difference": 5,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Inventaire 12/09/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -34505,6 +34618,12 @@
       "itemId": "itm-web-1783931436295-ytshf4",
       "at": "2026-10-12T12:47:42.164Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv592goy-270819557-1480906531",
+      "itemId": "itm-CSV-0192",
+      "at": "2026-10-12T12:50:26.984Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -34586,5 +34705,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T12:50:06.811Z"
+  "updatedAt": "2026-10-12T12:50:26.984Z"
 }

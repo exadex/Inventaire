@@ -5538,7 +5538,7 @@
       "name": "Gants L2 - taille M",
       "category": "Procédé ExAdEx L2",
       "quantity": 1,
-      "unit": "unités",
+      "unit": "Boites",
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
@@ -5568,7 +5568,37 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-13T09:09:06.551Z",
+      "createdAt": "13/10/2026 11:09",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0068",
@@ -30414,6 +30444,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:09",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - taille M."
+    },
+    {
       "date": "13/10/2026 11:08",
       "user": "Elina",
       "action": "Item modifié",
@@ -38576,5 +38612,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:08:35.584Z"
+  "updatedAt": "2026-10-13T09:09:06.554Z"
 }

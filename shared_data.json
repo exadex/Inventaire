@@ -117,6 +117,75 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791882314778",
+      "name": "Gants chimiques - M",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 0.5,
+      "unit": "Boite",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-8a46768a-3043-447f-a53e-813c01114f9a",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [
+        "Gants violets",
+        "oranges",
+        "rouges"
+      ],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Shieldskin",
+          "reference": "676253",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-10-13T09:05:14.778Z",
+      "createdAt": "13/10/2026 11:05",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "boite",
+        "trackingUnit": "Boite",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791882238060",
       "name": "Gants Chimiques - L",
       "category": "Procédé ExAdEx L2",
@@ -30310,6 +30379,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:05",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté Gants chimiques - M dans Procédé ExAdEx L2."
+    },
+    {
       "date": "13/10/2026 11:03",
       "user": "Elina",
       "action": "Item ajouté",
@@ -38382,5 +38457,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:03:58.062Z"
+  "updatedAt": "2026-10-13T09:05:14.780Z"
 }

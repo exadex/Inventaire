@@ -21585,6 +21585,29 @@
   ],
   "orders": [
     {
+      "id": "ord-1791877479777",
+      "status": "requested",
+      "itemMode": "new",
+      "inventoryItemId": null,
+      "itemName": "Réservoir à réactifs",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "Fournisseur : Dutscher\nRef : 713159\nPrix : 65.30€\n50mL de capacité. Fond en V",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 09:44",
+      "requestedAtRaw": "2026-10-13T07:44:39.777Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": {
+        "name": "Réservoir à réactifs"
+      }
+    },
+    {
       "id": "ord-1791877088684",
       "status": "requested",
       "itemMode": "new",
@@ -30260,6 +30283,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 09:44",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Réservoir à réactifs."
+    },
     {
       "date": "13/10/2026 09:42",
       "user": "Elina",

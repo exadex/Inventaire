@@ -3809,7 +3809,7 @@
     },
     {
       "id": "itm-CSV-0025",
-      "name": "sdv",
+      "name": "cell disques",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
       "unit": "unités",
@@ -3842,7 +3842,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "backup",
+      "supplierContactId": "contact-1785239645718-kyl2xz",
+      "createdAtRaw": "2026-10-13T12:24:32.896Z",
+      "createdAt": "13/10/2026 14:24",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0026",
@@ -30649,6 +30680,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 14:24",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié cell disques."
+    },
+    {
       "id": "history-operation-mv6ikn1j-570075378-2672737788",
       "operationId": "operation-mv6ikn1j-570075378-2672737788",
       "date": "13/10/2026 12:04",
@@ -40074,5 +40111,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T10:04:16.900Z"
+  "updatedAt": "2026-10-13T12:24:32.901Z"
 }

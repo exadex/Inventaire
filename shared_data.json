@@ -5077,43 +5077,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0052",
-      "name": "Seringues 3 pièces Luer Lock Euromedis*50",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "seringues",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Seringue luer lock"
-      ],
-      "notes": "10",
-      "references": {
-        "primary": {
-          "supplier": "materiel medical",
-          "reference": "12713MED / 90357MED",
-          "link": "https://www.materielmedical.fr/4727-seringues-3-pieces-luer-lock-euromedis.html",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "50",
-          "unitPrice": "5",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1fwe6vg",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0053",
       "name": "Filtre - tamis cellulaire Pluristrainer. Porosité 60",
       "category": "Procédé ExAdEx L2",
@@ -30894,6 +30857,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:49",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Seringues 3 pièces Luer Lock Euromedis*50 de l'inventaire."
+    },
     {
       "date": "13/10/2026 11:48",
       "user": "Elina",

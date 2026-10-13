@@ -21720,6 +21720,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791882625653",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0068",
+      "inventoryUnit": "Boites",
+      "itemName": "Gants L2 - S",
+      "requestedQuantity": 5,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 11:10",
+      "requestedAtRaw": "2026-10-13T09:10:25.654Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791880070568",
       "status": "requested",
       "itemMode": "existing",
@@ -30474,6 +30496,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:10",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Gants L2 - S."
+    },
     {
       "date": "13/10/2026 11:09",
       "user": "Elina",

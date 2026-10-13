@@ -18704,41 +18704,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-0w8lsr",
-      "name": "Galls microfibre filtre 2,5 cm",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "122,2",
-          "price": "122,2",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-14a5pln",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0113",
       "name": "oct componoun tissue",
       "category": "Microscopie",
@@ -30733,6 +30698,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:55",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Galls microfibre filtre 2,5 cm de l'inventaire."
+    },
     {
       "date": "13/10/2026 11:54",
       "user": "Elina",

@@ -1977,7 +1977,7 @@
       "id": "web-1785252073452",
       "name": "REDUCTEUR SU 1.2MM",
       "category": "Procédé ExAdEx L2",
-      "quantity": 3,
+      "quantity": 4,
       "unit": "boites",
       "minStock": 1,
       "usageProfile": "routine",
@@ -29938,6 +29938,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6fm85z-2417839007-1807516572",
+      "operationId": "operation-mv6fm85z-2417839007-1807516572",
+      "date": "13/10/2026 10:41",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · REDUCTEUR SU 1.2MM · Stock précédent : 3 boites · Stock compté : 4 boites · Écart : +1 boites · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "web-1785252073452",
+      "type": "recounted",
+      "previousQuantity": 3,
+      "countedQuantity": 4,
+      "difference": 1,
+      "unit": "boites",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "id": "history-operation-mv6flces-3160888040-143946130",
       "operationId": "operation-mv6flces-3160888040-143946130",
       "date": "13/10/2026 10:40",
@@ -36961,6 +36976,45 @@
       "toLocation": "",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6fm91f-2328441374-1265628165",
+      "operationId": "operation-mv6fm85z-2417839007-1807516572",
+      "itemId": "web-1785252073452",
+      "timestamp": "2026-10-13T08:41:31.971Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 3,
+      "afterQuantity": 4,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 3,
+      "after": 4,
+      "quantity": 4,
+      "difference": 1,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -37300,6 +37354,12 @@
       "itemId": "itm-CSV-0005",
       "at": "2026-10-13T08:40:51.145Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv6fm85z-2417839007-1807516572",
+      "itemId": "web-1785252073452",
+      "at": "2026-10-13T08:41:31.971Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -37381,5 +37441,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:40:51.145Z"
+  "updatedAt": "2026-10-13T08:41:31.971Z"
 }

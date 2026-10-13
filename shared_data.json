@@ -3270,73 +3270,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0021",
-      "name": "BD Luer-Lok™ cap with membrane latex-free",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Bouchon"
-      ],
-      "notes": "100",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "394074",
-          "link": "https://www.dutscher.com/article/394074",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "34",
-          "unitPrice": "0,34",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785226360650-wy85d7",
-      "createdAtRaw": "2026-07-28T12:58:23.476Z",
-      "createdAt": "28/07/2026 14:58",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-88zrsm",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0022",
       "name": "Bouchon ler lock st",
       "category": "Procédé ExAdEx L2",
@@ -30144,6 +30077,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 10:09",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé BD Luer-Lok™ cap with membrane latex-free de l'inventaire."
+    },
     {
       "date": "13/10/2026 10:04",
       "user": "Elina",

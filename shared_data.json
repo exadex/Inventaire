@@ -11069,74 +11069,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-p4bim9",
-      "name": "Cones filtrés 1000µL Thermo",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Pointes"
-      ],
-      "notes": "500*5000",
-      "references": {
-        "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "11973466",
-          "link": "https://www.fishersci.fr/shop/products/sureone-aerosol-barrier-pipette-tips-2/11973466?tab=document#tab12",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "45",
-          "unitPrice": "",
-          "leadTime": "rapide"
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "backup",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-08-10T09:38:38.517Z",
-      "createdAt": "10/08/2026 11:38",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "detailed",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-1pippym",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-osftkk",
       "name": "Cones non filtrés 200µL",
       "category": "Culture Cell",
@@ -30200,6 +30132,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 10:02",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Cones filtrés 1000µL Thermo de l'inventaire."
+    },
     {
       "date": "13/10/2026 10:01",
       "user": "Elina",

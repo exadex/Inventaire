@@ -4801,43 +4801,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0048",
-      "name": "SERINGUE BD PLASTIPAK 3 PCS 20ml LUER LOCK STERILE GAMMA x192",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "seringues",
-      "minStock": 3,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Seringue luer lock"
-      ],
-      "notes": "192",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "302830",
-          "link": "https://www.dutscher.com/article/302830",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "121",
-          "unitPrice": "0,630208333",
-          "leadTime": "1 mois"
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1l4lyld",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0049",
       "name": "Seringue Enfit 20 ml Luer lock",
       "category": "Procédé ExAdEx L2",
@@ -30770,6 +30733,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:54",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé SERINGUE BD PLASTIPAK 3 PCS 20ml LUER LOCK STERILE GAMMA x192 de l'inventaire."
+    },
     {
       "date": "13/10/2026 11:53",
       "user": "Elina",

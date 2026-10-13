@@ -1993,10 +1993,10 @@
         "primary": {
           "supplier": "Aesthetic Group",
           "reference": "FD0000000-LLF12",
-          "link": "",
-          "notes": "46",
-          "price": "46",
-          "unitPrice": "",
+          "link": "https://www.aestheticgroup.fr/fr/raccords/641-raccord-femelle-luer-lock-oint-12mm.html",
+          "notes": "",
+          "price": "90",
+          "unitPrice": "0.9",
           "leadTime": ""
         },
         "secondary": [
@@ -2012,13 +2012,13 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
           },
@@ -2036,6 +2036,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -30308,6 +30309,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 09:53",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 1.2MM."
+    },
+    {
       "date": "13/10/2026 09:51",
       "user": "Elina",
       "action": "Item modifié",
@@ -37463,5 +37470,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T07:51:17.380Z"
+  "updatedAt": "2026-10-13T07:53:49.711Z"
 }

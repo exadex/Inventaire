@@ -5675,9 +5675,9 @@
       "quantity": 4,
       "unit": "unités",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Bureau",
       "locations": [
-        "Laboratoire"
+        "Bureau"
       ],
       "tags": [
         "Gants L2 verts"
@@ -5699,11 +5699,42 @@
       "placements": [
         {
           "id": "placement-legacy-17a5wya",
-          "roomId": "room-laboratoire",
+          "roomId": "room-bureau",
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-13T09:10:51.626Z",
+      "createdAt": "13/10/2026 11:10",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0070",
@@ -30499,6 +30530,12 @@
     {
       "date": "13/10/2026 11:10",
       "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - XS."
+    },
+    {
+      "date": "13/10/2026 11:10",
+      "user": "Elina",
       "action": "Demande créée",
       "detail": "Elina a créé une demande pour Gants L2 - S."
     },
@@ -38743,5 +38780,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:09:53.830Z"
+  "updatedAt": "2026-10-13T09:10:51.628Z"
 }

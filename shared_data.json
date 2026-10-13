@@ -4598,8 +4598,8 @@
       "notes": "100",
       "references": {
         "primary": {
-          "supplier": "Honke sass Wolf - Soft ject",
-          "reference": "5100-000v0",
+          "supplier": "Terumo",
+          "reference": "SS+10ES1",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "",
@@ -4646,7 +4646,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239326837-r987ag"
     },
     {
       "id": "itm-CSV-0047",
@@ -30648,6 +30649,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 12:03",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 10ml."
+    },
+    {
       "id": "history-operation-mv6iickd-3257263245-2419482389",
       "operationId": "operation-mv6iickd-3257263245-2419482389",
       "date": "13/10/2026 12:02",
@@ -40007,5 +40014,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T10:02:30.779Z"
+  "updatedAt": "2026-10-13T10:03:50.907Z"
 }

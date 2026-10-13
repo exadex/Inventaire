@@ -22014,6 +22014,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791884786074",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-xpwlf5",
+      "inventoryUnit": "unités",
+      "itemName": "Falcon fac 15 mL",
+      "requestedQuantity": 4,
+      "receivedQuantity": 0,
+      "priority": "tres urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 11:46",
+      "requestedAtRaw": "2026-10-13T09:46:26.075Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791884513820",
       "status": "requested",
       "itemMode": "existing",
@@ -30811,6 +30833,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:46",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Falcon fac 15 mL."
+    },
     {
       "date": "13/10/2026 11:45",
       "user": "Elina",

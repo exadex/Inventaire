@@ -117,6 +117,71 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791883386469",
+      "name": "Essuie-tout",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 4,
+      "unit": "Rouleaux",
+      "minStock": 0,
+      "usageProfile": "routine",
+      "placements": [
+        {
+          "id": "placement-b3829941-2fe6-4d33-8317-824424d274ee",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "",
+          "reference": "",
+          "link": "",
+          "notes": "Peu importe le fournisseur",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-10-13T09:23:06.469Z",
+      "createdAt": "13/10/2026 11:23",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "rouleau",
+            "singular": "rouleau",
+            "plural": "rouleaux",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "rouleau",
+        "trackingUnit": "Rouleaux",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791882314778",
       "name": "Gants chimiques - M",
       "category": "Procédé ExAdEx L2",
@@ -30701,6 +30766,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:23",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté Essuie-tout dans Procédé ExAdEx L2."
+    },
+    {
       "id": "history-operation-mv6gziv5-325679021-2155403029",
       "operationId": "operation-mv6gziv5-325679021-2155403029",
       "date": "13/10/2026 11:19",
@@ -39484,5 +39555,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:19:51.931Z"
+  "updatedAt": "2026-10-13T09:23:06.471Z"
 }

@@ -21183,6 +21183,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791880070568",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-56643c",
+      "inventoryUnit": "flacons",
+      "itemName": "SupplementPack containing all media supplements as individual vials",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 10:27",
+      "requestedAtRaw": "2026-10-13T08:27:50.569Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791877766582",
       "status": "requested",
       "itemMode": "existing",
@@ -29915,6 +29937,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 10:27",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour SupplementPack containing all media supplements as individual vials."
+    },
     {
       "date": "13/10/2026 10:15",
       "user": "Elina",

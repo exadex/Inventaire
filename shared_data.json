@@ -5605,11 +5605,11 @@
       "name": "Gants L2 - S",
       "category": "Procédé ExAdEx L2",
       "quantity": 3,
-      "unit": "unités",
+      "unit": "Boites",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Bureau",
       "locations": [
-        "Laboratoire"
+        "Bureau"
       ],
       "tags": [
         "Gants L2 verts"
@@ -5631,7 +5631,7 @@
       "placements": [
         {
           "id": "placement-legacy-u6zuih",
-          "roomId": "room-laboratoire",
+          "roomId": "room-bureau",
           "locationId": null,
           "sublocationId": null
         }
@@ -5643,9 +5643,9 @@
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unités",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
           }
@@ -5662,7 +5662,11 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-13T09:09:44.805Z",
+      "createdAt": "13/10/2026 11:09"
     },
     {
       "id": "itm-CSV-0069",
@@ -30471,6 +30475,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:09",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - S."
+    },
+    {
       "id": "history-operation-mv6glyft-1511723672-1729646645",
       "operationId": "operation-mv6glyft-1511723672-1729646645",
       "date": "13/10/2026 11:09",
@@ -38699,5 +38709,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:09:18.903Z"
+  "updatedAt": "2026-10-13T09:09:44.808Z"
 }

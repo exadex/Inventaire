@@ -16068,25 +16068,26 @@
     },
     {
       "id": "itm-web-1783931436295-60n9jt",
-      "name": "Barrettes",
+      "name": "Barrettes ELISA",
       "category": "Biomol",
       "quantity": 0,
       "unit": "Cartons",
       "minStock": 0,
       "location": "Bureau",
       "locations": [
-        "Bureau",
-        "Laboratoire"
+        "Bureau"
       ],
-      "tags": [],
+      "tags": [
+        "ELISA"
+      ],
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "Thermo Fischer",
+          "reference": "469914",
           "link": "",
-          "notes": "180",
-          "price": "180",
+          "notes": "",
+          "price": "",
           "unitPrice": "",
           "leadTime": ""
         },
@@ -16099,13 +16100,13 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
           }
@@ -16129,14 +16130,9 @@
           "roomId": "room-bureau",
           "locationId": null,
           "sublocationId": null
-        },
-        {
-          "id": "placement-legacy-xljkm5",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
         }
-      ]
+      ],
+      "supplierContactId": "contact-1785239459565-7t6yfo"
     },
     {
       "id": "itm-web-1783931436295-f32jof",
@@ -30705,6 +30701,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:19",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Barrettes ELISA."
+    },
+    {
       "id": "history-operation-mv6gx4kj-2036170517-2478457352",
       "operationId": "operation-mv6gx4kj-2036170517-2478457352",
       "date": "13/10/2026 11:18",
@@ -39422,5 +39424,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:18:00.161Z"
+  "updatedAt": "2026-10-13T09:19:43.715Z"
 }

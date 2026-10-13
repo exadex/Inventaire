@@ -4236,7 +4236,7 @@
       "id": "itm-CSV-0047",
       "name": "Seringue 20mL - BD 3P Cone luer Lock",
       "category": "Procédé ExAdEx L2",
-      "quantity": 2.5,
+      "quantity": 1.55,
       "unit": "carton",
       "minStock": 0,
       "location": "Bureau",
@@ -4299,18 +4299,47 @@
         "closedByLocation": [
           {
             "location": "Bureau",
-            "quantity": 2,
-            "updatedAt": "2026-08-25T13:27:30.217Z",
-            "updatedBy": "caroline"
+            "quantity": 1
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-csv-0047-bureau-2",
+            "label": "carton fermé nº2",
+            "location": "Bureau",
+            "remaining": 120,
+            "capacity": 120,
+            "unitKey": "custom-seringue",
+            "status": "closed",
+            "createdAt": "2026-08-25T13:27:30.217Z",
+            "updatedAt": "2026-08-25T13:27:30.217Z",
+            "updatedBy": "caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-csv-0047-bureau-1",
+            "label": "carton fermé nº1",
+            "location": "Bureau",
+            "remaining": 0,
+            "capacity": 120,
+            "unitKey": "custom-seringue",
+            "status": "finished",
+            "createdAt": "2026-08-25T13:27:30.217Z",
+            "updatedAt": "2026-10-13T08:45:51.949Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-bureau",
+            "locationId": "",
+            "sublocationId": "",
+            "finishedAt": "2026-10-13T08:45:51.949Z"
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mt8p99rd-1584791175-1124322460",
             "label": "carton ouvert nº1",
             "location": "Bureau",
-            "remaining": 60,
+            "remaining": 66,
             "capacity": 120,
             "status": "open",
             "openedAt": "2026-08-25T13:27:30.217Z",
@@ -4320,9 +4349,13 @@
               "userEmoji": "🧪",
               "userInitials": ""
             },
-            "updatedAt": "2026-08-25T13:27:30.217Z",
-            "updatedBy": "caroline",
-            "version": 1
+            "updatedAt": "2026-10-13T08:45:51.949Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "unitKey": "custom-seringue",
+            "roomId": "room-bureau",
+            "locationId": "",
+            "sublocationId": ""
           }
         ]
       },
@@ -29938,6 +29971,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6frrqu-1760423295-2325313801",
+      "operationId": "operation-mv6frrqu-1760423295-2325313801",
+      "date": "13/10/2026 10:45",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Seringue 20mL - BD 3P Cone luer Lock · Stock précédent : 2,5 cartons · Stock compté : 1,55 cartons · Écart : -0,95 cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0047",
+      "type": "recounted",
+      "previousQuantity": 2.5,
+      "countedQuantity": 1.55,
+      "difference": -0.95,
+      "unit": "cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "id": "history-operation-mv6fmogu-3812165086-3772049016",
       "operationId": "operation-mv6fmogu-3812165086-3772049016",
       "date": "13/10/2026 10:41",
@@ -37069,6 +37117,151 @@
       "toLocation": "",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6frtn2-2822701587-4255123890",
+      "operationId": "operation-mv6frrqu-1760423295-2325313801-container-mt8p99rd-1584791175-1124322460",
+      "itemId": "itm-CSV-0047",
+      "timestamp": "2026-10-13T08:45:51.950Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "container-mt8p99rd-1584791175-1124322460",
+      "containerId": "container-mt8p99rd-1584791175-1124322460",
+      "containerLabel": "carton ouvert nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 60,
+      "afterQuantity": 66,
+      "beforeCapacity": 120,
+      "afterCapacity": 120,
+      "unitBefore": "seringues",
+      "unitAfter": "seringues",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "container-mt8p99rd-1584791175-1124322460",
+        "label": "carton ouvert nº1",
+        "location": "Bureau",
+        "remaining": 60,
+        "capacity": 120,
+        "status": "open",
+        "openedAt": "2026-08-25T13:27:30.217Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-08-25T13:27:30.217Z",
+        "updatedBy": "caroline",
+        "version": 1,
+        "unitKey": "custom-seringue"
+      },
+      "after": {
+        "id": "container-mt8p99rd-1584791175-1124322460",
+        "label": "carton ouvert nº1",
+        "location": "Bureau",
+        "remaining": 66,
+        "capacity": 120,
+        "status": "open",
+        "openedAt": "2026-08-25T13:27:30.217Z",
+        "openedBy": {
+          "userId": "caroline",
+          "userName": "Caroline",
+          "userEmoji": "🧪",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-13T08:45:51.949Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "unitKey": "custom-seringue",
+        "roomId": "room-bureau",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 66,
+      "difference": 6,
+      "unit": "seringues",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Bureau",
+      "toLocation": "Bureau",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6frtn2-1361144423-4443589",
+      "operationId": "operation-mv6frrqu-1760423295-2325313801-closed-itm-csv-0047-bureau-1",
+      "itemId": "itm-CSV-0047",
+      "timestamp": "2026-10-13T08:45:51.950Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-csv-0047-bureau-1",
+      "containerId": "closed-itm-csv-0047-bureau-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 120,
+      "afterQuantity": 0,
+      "beforeCapacity": 120,
+      "afterCapacity": 120,
+      "unitBefore": "seringues",
+      "unitAfter": "seringues",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-csv-0047-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 120,
+        "capacity": 120,
+        "unitKey": "custom-seringue",
+        "status": "closed",
+        "createdAt": "2026-08-25T13:27:30.217Z",
+        "updatedAt": "2026-08-25T13:27:30.217Z",
+        "updatedBy": "caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-csv-0047-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 0,
+        "capacity": 120,
+        "unitKey": "custom-seringue",
+        "status": "finished",
+        "createdAt": "2026-08-25T13:27:30.217Z",
+        "updatedAt": "2026-10-13T08:45:51.949Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-bureau",
+        "locationId": "",
+        "sublocationId": "",
+        "finishedAt": "2026-10-13T08:45:51.949Z"
+      },
+      "quantity": 0,
+      "difference": -120,
+      "unit": "seringues",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Bureau",
+      "toLocation": "Bureau",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -37420,6 +37613,12 @@
       "itemId": "itm-CSV-0004",
       "at": "2026-10-13T08:41:52.941Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv6frrqu-1760423295-2325313801",
+      "itemId": "itm-CSV-0047",
+      "at": "2026-10-13T08:45:51.950Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -37501,5 +37700,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:41:52.941Z"
+  "updatedAt": "2026-10-13T08:45:51.950Z"
 }

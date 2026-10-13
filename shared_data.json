@@ -11463,8 +11463,8 @@
       "id": "itm-web-1783931436295-hsn9dp",
       "name": "Falcon 15",
       "category": "Culture Cell",
-      "quantity": 3.5,
-      "unit": "unités",
+      "quantity": 1,
+      "unit": "carton",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -11496,7 +11496,53 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-10-13T09:44:39.002Z",
+      "createdAt": "13/10/2026 11:44",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 10
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-10-13T09:44:38.997Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-cwj79e",
@@ -30789,6 +30835,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:44",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Falcon 15."
+    },
+    {
       "date": "13/10/2026 11:41",
       "user": "Elina",
       "action": "Demande créée",
@@ -39246,6 +39298,42 @@
       "toLocation": "",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6hvf4r-1655817076-1401652324",
+      "operationId": "migration-mv6hvf4s-3507245371-1888106858",
+      "itemId": "itm-web-1783931436295-hsn9dp",
+      "timestamp": "2026-10-13T09:44:39.003Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-hsn9dp",
+      "before": {
+        "mode": "simple",
+        "quantity": 3.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 1,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-10-13T09:44:38.997Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "openContainers": []
+      },
+      "quantity": -25,
+      "unit": "sachets",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
   "sourcingPatients": [],
@@ -39762,5 +39850,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:40:44.123Z"
+  "updatedAt": "2026-10-13T09:44:39.011Z"
 }

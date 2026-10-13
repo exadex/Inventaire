@@ -16507,22 +16507,24 @@
       "name": "Milieu de montage Fluoromount-G avec DAPI",
       "category": "Microscopie",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "Bouteille",
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
         "Laboratoire"
       ],
-      "tags": [],
+      "tags": [
+        "Microscopie"
+      ],
       "notes": "",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
           "reference": "00-4959-52",
           "link": "https://www.thermofisher.com/order/catalog/product/00-4959-52?SID=srch-srp-00-4959-52",
-          "notes": "95",
+          "notes": "",
           "price": "95",
-          "unitPrice": "4,75",
+          "unitPrice": "",
           "leadTime": ""
         },
         "secondary": []
@@ -16543,13 +16545,13 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
             "kind": "discrete",
             "contains": 1
           }
@@ -30306,6 +30308,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 09:51",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Milieu de montage Fluoromount-G avec DAPI."
+    },
+    {
       "date": "13/10/2026 09:49",
       "user": "Elina",
       "action": "Demande créée",
@@ -37455,5 +37463,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-12T13:41:59.132Z"
+  "updatedAt": "2026-10-13T07:51:17.380Z"
 }

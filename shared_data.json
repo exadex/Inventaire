@@ -4587,7 +4587,7 @@
       "category": "Procédé ExAdEx L2",
       "quantity": 3,
       "unit": "seringues",
-      "minStock": 2,
+      "minStock": 0,
       "location": "Culture L1",
       "locations": [
         "Culture L1"
@@ -30648,6 +30648,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 12:00",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 10ml."
+    },
+    {
       "date": "13/10/2026 11:59",
       "user": "Elina",
       "action": "Item modifié",
@@ -39935,5 +39941,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:59:54.550Z"
+  "updatedAt": "2026-10-13T10:00:39.842Z"
 }

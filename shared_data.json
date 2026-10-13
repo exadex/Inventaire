@@ -29949,6 +29949,18 @@
       "coordinates": []
     },
     {
+      "id": "contact-1791878664148-cy36fk",
+      "company": "Labo Plus",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "",
+      "aliases": [],
+      "coordinates": []
+    },
+    {
       "id": "contact-1785226538842-zxbobh",
       "company": "Materiel Medical",
       "salesRepresentative": "Kevin MAYR (HEXAMED)",
@@ -30132,6 +30144,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 10:04",
+      "user": "Elina",
+      "action": "Contact ajouté",
+      "detail": "Elina a ajouté le contact Labo Plus."
+    },
     {
       "date": "13/10/2026 10:02",
       "user": "Elina",

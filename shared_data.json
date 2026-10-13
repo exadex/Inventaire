@@ -2353,10 +2353,10 @@
         "primary": {
           "supplier": "Aesthetic Group",
           "reference": "FD0000000-LLF24",
-          "link": "https://www.aestheticgroup.fr/fr/raccords-d-emulsion-de-graisse/525-raccord-d-emulsion-de-graisse-fll-o-24mm-x20.html",
+          "link": "https://www.aestheticgroup.fr/fr/raccords/643-raccord-femelle-luer-lock-oint-24mm.html",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "46",
-          "unitPrice": "2,3",
+          "price": "90",
+          "unitPrice": "0.9",
           "leadTime": ""
         },
         "secondary": [
@@ -2374,13 +2374,13 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
           }
@@ -2390,6 +2390,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -30309,6 +30310,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 09:55",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié REDUCTEUR SU 2.4MM."
+    },
+    {
       "date": "13/10/2026 09:53",
       "user": "Elina",
       "action": "Item modifié",
@@ -37470,5 +37477,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T07:53:49.711Z"
+  "updatedAt": "2026-10-13T07:55:07.086Z"
 }

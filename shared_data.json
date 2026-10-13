@@ -5468,7 +5468,7 @@
     },
     {
       "id": "itm-CSV-0066",
-      "name": "Gants L2 - taille L",
+      "name": "Gants L2 - L",
       "category": "Procédé ExAdEx L2",
       "quantity": 1,
       "unit": "Boite",
@@ -5519,8 +5519,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -30677,6 +30677,12 @@
       "date": "13/10/2026 11:14",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - L."
+    },
+    {
+      "date": "13/10/2026 11:14",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Gants - S."
     },
     {
@@ -39268,5 +39274,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:14:32.482Z"
+  "updatedAt": "2026-10-13T09:14:52.231Z"
 }

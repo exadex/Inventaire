@@ -5540,9 +5540,9 @@
       "quantity": 1,
       "unit": "Boites",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Bureau",
       "locations": [
-        "Laboratoire"
+        "Bureau"
       ],
       "tags": [
         "Gants L2 verts"
@@ -5564,7 +5564,7 @@
       "placements": [
         {
           "id": "placement-legacy-17kfi5s",
-          "roomId": "room-laboratoire",
+          "roomId": "room-bureau",
           "locationId": null,
           "sublocationId": null
         }
@@ -5586,8 +5586,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -30478,6 +30478,12 @@
       "date": "13/10/2026 11:09",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - taille M."
+    },
+    {
+      "date": "13/10/2026 11:09",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Gants L2 - S."
     },
     {
@@ -38709,5 +38715,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:09:44.808Z"
+  "updatedAt": "2026-10-13T09:09:53.830Z"
 }

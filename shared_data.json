@@ -10338,48 +10338,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-k9m0fn",
-      "name": "Microtube 0,5ml",
-      "category": "Culture Cell",
-      "quantity": 3,
-      "unit": "Carton",
-      "minStock": 0.5,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Eppendorf"
-      ],
-      "notes": "Conditionnement : 5000",
-      "references": {
-        "primary": {
-          "supplier": "Sarstedt",
-          "reference": "72,699",
-          "link": "",
-          "notes": "NB11",
-          "price": "61",
-          "unitPrice": "0,0122",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-07-17T12:37:02.504Z",
-      "createdAt": "17/07/2026 14:37",
-      "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1,
-      "placements": [
-        {
-          "id": "placement-legacy-22om64",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-wncvj7",
       "name": "Microtube 1,5mL",
       "category": "Culture Cell",
@@ -30310,6 +30268,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 09:57",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Microtube 0,5ml de l'inventaire."
+    },
     {
       "date": "13/10/2026 09:55",
       "user": "Elina",

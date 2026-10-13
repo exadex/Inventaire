@@ -21813,6 +21813,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791882780771",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0071",
+      "inventoryUnit": "Boites",
+      "itemName": "Gants - taille S",
+      "requestedQuantity": 10,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 11:13",
+      "requestedAtRaw": "2026-10-13T09:13:00.772Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791882625653",
       "status": "requested",
       "itemMode": "existing",
@@ -30589,6 +30611,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:13",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Gants - taille S."
+    },
     {
       "id": "history-operation-mv6gpvh2-15235640-3328956393",
       "operationId": "operation-mv6gpvh2-15235640-3328956393",

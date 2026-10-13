@@ -120,7 +120,7 @@
       "id": "web-1791884856174",
       "name": "Réservoir à réactifs",
       "category": "Biomol",
-      "quantity": 1,
+      "quantity": 0.56,
       "unit": "cartons",
       "minStock": 0,
       "usageProfile": "routine",
@@ -179,16 +179,33 @@
         "trackingUnit": "racks",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [
           {
+            "id": "closed-web-1791884856174-reserve-1",
+            "label": "carton fermé nº1",
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-10-13T09:47:36.175Z",
-            "updatedBy": "Elina"
+            "remaining": 56,
+            "capacity": 100,
+            "unitKey": "custom-rack",
+            "status": "open",
+            "createdAt": "2026-10-13T09:47:36.175Z",
+            "updatedAt": "2026-10-13T09:48:00.999Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-13T09:48:00.999Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
           }
-        ],
-        "closedContainers": null,
-        "openContainers": []
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -30915,6 +30932,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6hzom7-1546447838-2473278373",
+      "operationId": "operation-mv6hzom7-1546447838-2473278373",
+      "date": "13/10/2026 11:48",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Réservoir à réactifs · Stock précédent : 1 cartons · Stock compté : 0,56 cartons · Écart : -0,44 cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "web-1791884856174",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 0.56,
+      "difference": -0.44,
+      "unit": "cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 11:47",
       "user": "Elina",
       "action": "Item ajouté",
@@ -39432,6 +39464,79 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mv6hzqzs-3878748783-1919925714",
+      "operationId": "operation-mv6hzom7-1546447838-2473278373-closed-web-1791884856174-reserve-1",
+      "itemId": "web-1791884856174",
+      "timestamp": "2026-10-13T09:48:01.000Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-web-1791884856174-reserve-1",
+      "containerId": "closed-web-1791884856174-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 100,
+      "afterQuantity": 56,
+      "beforeCapacity": 100,
+      "afterCapacity": 100,
+      "unitBefore": "racks",
+      "unitAfter": "racks",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1791884856174-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "custom-rack",
+        "status": "closed",
+        "createdAt": "2026-10-13T09:47:36.175Z",
+        "updatedAt": "2026-10-13T09:47:36.175Z",
+        "updatedBy": "Elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-web-1791884856174-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 56,
+        "capacity": 100,
+        "unitKey": "custom-rack",
+        "status": "open",
+        "createdAt": "2026-10-13T09:47:36.175Z",
+        "updatedAt": "2026-10-13T09:48:00.999Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-13T09:48:00.999Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 56,
+      "difference": -44,
+      "unit": "racks",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39867,6 +39972,12 @@
       "itemId": "itm-web-1783931436295-cxs8eq",
       "at": "2026-10-13T09:39:52.481Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv6hzom7-1546447838-2473278373",
+      "itemId": "web-1791884856174",
+      "at": "2026-10-13T09:48:01.000Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -39948,5 +40059,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:47:36.181Z"
+  "updatedAt": "2026-10-13T09:48:01.000Z"
 }

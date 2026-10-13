@@ -4953,43 +4953,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0053",
-      "name": "Filtre - tamis cellulaire Pluristrainer. Porosité 60",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 2,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Tamis/ Filtre"
-      ],
-      "notes": "25",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "149195",
-          "link": "https://www.dutscher.com/article/149195",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "180",
-          "unitPrice": "7,2",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-o7df0l",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0054",
       "name": "filtre 0,22 13mm",
       "category": "Procédé ExAdEx L2",
@@ -30698,6 +30661,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:55",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Filtre - tamis cellulaire Pluristrainer. Porosité 60 de l'inventaire."
+    },
     {
       "date": "13/10/2026 11:55",
       "user": "Elina",

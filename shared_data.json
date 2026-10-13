@@ -16070,7 +16070,7 @@
       "id": "itm-web-1783931436295-60n9jt",
       "name": "Barrettes ELISA",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 2,
       "unit": "Cartons",
       "minStock": 0,
       "location": "Bureau",
@@ -16111,8 +16111,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "carton",
+        "trackingUnit": "cartons",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -30701,6 +30701,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6gziv5-325679021-2155403029",
+      "operationId": "operation-mv6gziv5-325679021-2155403029",
+      "date": "13/10/2026 11:19",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Barrettes ELISA · Stock précédent : 0 Cartons · Stock compté : 2 Cartons · Écart : +2 Cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-60n9jt",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 2,
+      "difference": 2,
+      "unit": "Cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 11:19",
       "user": "Elina",
       "action": "Item modifié",
@@ -38926,6 +38941,45 @@
       "toLocation": "Bureau",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6gzjp7-3268936049-575881693",
+      "operationId": "operation-mv6gziv5-325679021-2155403029",
+      "itemId": "itm-web-1783931436295-60n9jt",
+      "timestamp": "2026-10-13T09:19:51.931Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 2,
+      "quantity": 2,
+      "difference": 2,
+      "unit": "cartons",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39343,6 +39397,12 @@
       "itemId": "itm-CSV-0082",
       "at": "2026-10-13T09:18:00.161Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6gziv5-325679021-2155403029",
+      "itemId": "itm-web-1783931436295-60n9jt",
+      "at": "2026-10-13T09:19:51.931Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -39424,5 +39484,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:19:43.715Z"
+  "updatedAt": "2026-10-13T09:19:51.931Z"
 }

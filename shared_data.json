@@ -144,7 +144,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Shieldskin",
+          "supplier": "Dutscher",
           "reference": "676253",
           "link": "",
           "notes": "",
@@ -171,7 +171,7 @@
           }
         ],
         "trackingUnitKey": "boite",
-        "trackingUnit": "Boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -183,7 +183,8 @@
         "enabled": false,
         "preparations": []
       },
-      "source": "web"
+      "source": "web",
+      "supplierContactId": "contact-1785226360650-wy85d7"
     },
     {
       "id": "web-1791882238060",
@@ -30412,6 +30413,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:06",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants chimiques - M."
+    },
+    {
       "id": "history-operation-mv6gic87-2346262602-1201471047",
       "operationId": "operation-mv6gic87-2346262602-1201471047",
       "date": "13/10/2026 11:06",
@@ -38556,5 +38563,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:06:30.134Z"
+  "updatedAt": "2026-10-13T09:06:52.174Z"
 }

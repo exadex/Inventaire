@@ -14131,7 +14131,7 @@
       "name": "Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps",
       "category": "Biomol",
       "quantity": 2,
-      "unit": "unités",
+      "unit": "Boites",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -14174,9 +14174,9 @@
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
           }
@@ -30753,6 +30753,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 15:58",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps."
+    },
+    {
       "date": "13/10/2026 15:55",
       "user": "Elina",
       "action": "Item supprimé",
@@ -40250,5 +40256,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T13:28:20.243Z"
+  "updatedAt": "2026-10-13T13:58:58.664Z"
 }

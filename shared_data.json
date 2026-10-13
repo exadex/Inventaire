@@ -5177,14 +5177,14 @@
     },
     {
       "id": "itm-CSV-0060",
-      "name": "Filtre, non stérile, 60 mm Ø, 0,45 µm",
+      "name": "Filtres 0,45 µm",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "carton",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Réserve",
       "locations": [
-        "Laboratoire"
+        "Réserve"
       ],
       "tags": [
         "Filtre"
@@ -5192,11 +5192,11 @@
       "notes": "1",
       "references": {
         "primary": {
-          "supplier": "vwr",
-          "reference": "391-2093",
+          "supplier": "",
+          "reference": "146561",
           "link": "",
-          "notes": "VA.03",
-          "price": "20",
+          "notes": "",
+          "price": "",
           "unitPrice": "",
           "leadTime": ""
         },
@@ -5206,11 +5206,41 @@
       "placements": [
         {
           "id": "placement-legacy-p8qwjl",
-          "roomId": "room-laboratoire",
+          "roomId": "room-reserve",
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-13T09:57:31.084Z",
+      "createdAt": "13/10/2026 11:57",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0064",
@@ -30623,6 +30653,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:57",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Filtres 0,45 µm."
+    },
+    {
       "date": "13/10/2026 11:56",
       "user": "Elina",
       "action": "Item supprimé",
@@ -39898,5 +39934,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:52:37.410Z"
+  "updatedAt": "2026-10-13T09:57:31.093Z"
 }

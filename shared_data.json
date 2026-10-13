@@ -2158,43 +2158,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0001",
-      "name": "Bouchon BD Luer - Lok™ avec protection mâle/femelle",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Bouchon"
-      ],
-      "notes": "100",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "394075B",
-          "link": "https://www.dutscher.com/article/394075B",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "13,1",
-          "unitPrice": "0,166",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-vpm5i0",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0004",
       "name": "REDUCTEUR SU 1.4MM",
       "category": "Procédé ExAdEx L2",
@@ -29952,6 +29915,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 10:15",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Bouchon BD Luer - Lok™ avec protection mâle/femelle de l'inventaire."
+    },
     {
       "date": "13/10/2026 10:15",
       "user": "Elina",

@@ -21719,7 +21719,7 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-08-10T15:53:36.463Z",
       "createdAt": "10/08/2026 17:53",
@@ -30679,6 +30679,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 15:01",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones non-filtrés 1000µL."
+    },
     {
       "date": "13/10/2026 14:24",
       "user": "Elina",
@@ -40111,5 +40117,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T12:24:32.901Z"
+  "updatedAt": "2026-10-13T13:01:40.718Z"
 }

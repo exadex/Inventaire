@@ -120,7 +120,7 @@
       "id": "web-1791884339893",
       "name": "plaques 96 puits fonds ronds",
       "category": "Qualité",
-      "quantity": 1,
+      "quantity": 0.43,
       "unit": "cartons",
       "minStock": 0,
       "usageProfile": "normal",
@@ -178,16 +178,33 @@
         "trackingUnit": "plaques",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [
           {
+            "id": "closed-web-1791884339893-reserve-1",
+            "label": "carton fermé nº1",
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-10-13T09:38:59.893Z",
-            "updatedBy": "Elina"
+            "remaining": 43,
+            "capacity": 100,
+            "unitKey": "plaque",
+            "status": "open",
+            "createdAt": "2026-10-13T09:38:59.893Z",
+            "updatedAt": "2026-10-13T09:39:21.984Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-13T09:39:21.984Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
           }
-        ],
-        "closedContainers": null,
-        "openContainers": []
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -30712,6 +30729,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6hojum-3700565691-2055610575",
+      "operationId": "operation-mv6hojum-3700565691-2055610575",
+      "date": "13/10/2026 11:39",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · plaques 96 puits fonds ronds · Stock précédent : 1 cartons · Stock compté : 0,43 cartons · Écart : -0,57 cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "web-1791884339893",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 0.43,
+      "difference": -0.57,
+      "unit": "cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 11:38",
       "user": "Elina",
       "action": "Item ajouté",
@@ -39015,6 +39047,79 @@
       "toLocation": "",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6homio-1820464491-2242106415",
+      "operationId": "operation-mv6hojum-3700565691-2055610575-closed-web-1791884339893-reserve-1",
+      "itemId": "web-1791884339893",
+      "timestamp": "2026-10-13T09:39:21.984Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-web-1791884339893-reserve-1",
+      "containerId": "closed-web-1791884339893-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 100,
+      "afterQuantity": 43,
+      "beforeCapacity": 100,
+      "afterCapacity": 100,
+      "unitBefore": "plaques",
+      "unitAfter": "plaques",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1791884339893-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 100,
+        "capacity": 100,
+        "unitKey": "plaque",
+        "status": "closed",
+        "createdAt": "2026-10-13T09:38:59.893Z",
+        "updatedAt": "2026-10-13T09:38:59.893Z",
+        "updatedBy": "Elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-web-1791884339893-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 43,
+        "capacity": 100,
+        "unitKey": "plaque",
+        "status": "open",
+        "createdAt": "2026-10-13T09:38:59.893Z",
+        "updatedAt": "2026-10-13T09:39:21.984Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-13T09:39:21.984Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 43,
+      "difference": -57,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39438,6 +39543,12 @@
       "itemId": "itm-web-1783931436295-60n9jt",
       "at": "2026-10-13T09:19:51.931Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv6hojum-3700565691-2055610575",
+      "itemId": "web-1791884339893",
+      "at": "2026-10-13T09:39:21.984Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -39519,5 +39630,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:38:59.899Z"
+  "updatedAt": "2026-10-13T09:39:21.984Z"
 }

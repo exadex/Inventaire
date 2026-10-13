@@ -4598,30 +4598,24 @@
       "notes": "100",
       "references": {
         "primary": {
-          "supplier": "Terumo",
-          "reference": "50008",
+          "supplier": "Honke sass Wolf - Soft ject",
+          "reference": "5100-000v0",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "30",
-          "unitPrice": "0,3",
+          "price": "",
+          "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": [
-          {
-            "reference": "5100-000V0",
-            "notes": "Fournisseur : Honke sass Wolf"
-          }
-        ]
+        "secondary": []
       },
       "source": "seed",
       "usageProfile": "normal",
-      "supplierContactId": "contact-1785239326837-r987ag",
       "createdAtRaw": "2026-07-29T08:52:12.808Z",
       "createdAt": "29/07/2026 10:52",
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -4637,6 +4631,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -30653,6 +30648,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:59",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 10ml."
+    },
+    {
       "date": "13/10/2026 11:57",
       "user": "Elina",
       "action": "Item modifié",
@@ -39934,5 +39935,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:57:31.093Z"
+  "updatedAt": "2026-10-13T09:59:54.550Z"
 }

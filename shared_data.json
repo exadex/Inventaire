@@ -4585,7 +4585,7 @@
       "id": "itm-CSV-0045",
       "name": "Seringue 10ml",
       "category": "Biomol",
-      "quantity": 3,
+      "quantity": 1,
       "unit": "carton",
       "minStock": 0,
       "location": "Réserve",
@@ -4626,8 +4626,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "custom-seringue",
-        "trackingUnit": "seringues",
+        "trackingUnitKey": "carton",
+        "trackingUnit": "cartons",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -30648,6 +30648,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6iickd-3257263245-2419482389",
+      "operationId": "operation-mv6iickd-3257263245-2419482389",
+      "date": "13/10/2026 12:02",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Seringue 10ml · Stock précédent : 3 carton · Stock compté : 1 carton · Écart : -2 carton · Note : Inventaire 13/10/26",
+      "user": "Elina",
+      "itemId": "itm-CSV-0045",
+      "type": "recounted",
+      "previousQuantity": 3,
+      "countedQuantity": 1,
+      "difference": -2,
+      "unit": "carton",
+      "note": "Inventaire 13/10/26"
+    },
+    {
       "date": "13/10/2026 12:01",
       "user": "Elina",
       "action": "Item modifié",
@@ -39419,6 +39434,45 @@
       "toLocation": "Réserve",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6iie4b-2546755193-260967407",
+      "operationId": "operation-mv6iickd-3257263245-2419482389",
+      "itemId": "itm-CSV-0045",
+      "timestamp": "2026-10-13T10:02:30.779Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 3,
+      "afterQuantity": 1,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 3,
+      "after": 1,
+      "quantity": 1,
+      "difference": -2,
+      "unit": "cartons",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire 13/10/26",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39866,6 +39920,12 @@
       "itemId": "itm-CSV-0051",
       "at": "2026-10-13T09:52:37.410Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6iickd-3257263245-2419482389",
+      "itemId": "itm-CSV-0045",
+      "at": "2026-10-13T10:02:30.779Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -39947,5 +40007,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T10:01:58.587Z"
+  "updatedAt": "2026-10-13T10:02:30.779Z"
 }

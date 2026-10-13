@@ -10128,7 +10128,7 @@
       "id": "itm-web-1783931436295-qpxakb",
       "name": "Plaque Corning 24 puits ULA",
       "category": "Culture Cell",
-      "quantity": 1.458333,
+      "quantity": 2.458333,
       "unit": "cartons",
       "minStock": 1,
       "location": "Bureau",
@@ -10193,12 +10193,46 @@
         "closedByLocation": [
           {
             "location": "Bureau",
-            "quantity": 1,
-            "updatedAt": "2026-10-13T08:53:46.803Z",
-            "updatedBy": "elina"
+            "quantity": 2
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-qpxakb-bureau-1",
+            "label": "carton fermé nº1",
+            "location": "Bureau",
+            "remaining": 24,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-10-13T08:53:46.803Z",
+            "updatedAt": "2026-10-13T08:53:46.803Z",
+            "updatedBy": "elina",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mv6g2i70-4096197047-1588999389",
+            "label": "carton fermé",
+            "location": "Bureau",
+            "roomId": "room-bureau",
+            "locationId": "",
+            "sublocationId": "",
+            "remaining": 24,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-10-13T08:54:10.332Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-13T08:54:10.332Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mv6g201f-2365804217-3048411584",
@@ -10216,7 +10250,8 @@
             },
             "updatedAt": "2026-10-13T08:53:46.803Z",
             "updatedBy": "elina",
-            "version": 1
+            "version": 1,
+            "unitKey": "plaque"
           }
         ]
       },
@@ -30161,6 +30196,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6g2ha7-3974719034-1207013529",
+      "operationId": "operation-mv6g2ha7-3974719034-1207013529",
+      "date": "13/10/2026 10:54",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Plaque Corning 24 puits ULA · Stock précédent : 1,458 cartons · Stock compté : 2,458 cartons · Écart : +1 cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-qpxakb",
+      "type": "recounted",
+      "previousQuantity": 1.458333,
+      "countedQuantity": 2.458333,
+      "difference": 1,
+      "unit": "cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 10:53",
       "user": "Elina",
       "action": "Item modifié",
@@ -37654,6 +37704,66 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mv6g2i71-201250458-2477140817",
+      "operationId": "operation-mv6g2ha7-3974719034-1207013529-closed-container-mv6g2i70-4096197047-1588999389",
+      "itemId": "itm-web-1783931436295-qpxakb",
+      "timestamp": "2026-10-13T08:54:10.333Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv6g2i70-4096197047-1588999389",
+      "containerId": "closed-container-mv6g2i70-4096197047-1588999389",
+      "containerLabel": "carton fermé",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 24,
+      "beforeCapacity": 0,
+      "afterCapacity": 24,
+      "unitBefore": "",
+      "unitAfter": "plaques",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv6g2i70-4096197047-1588999389",
+        "label": "carton fermé",
+        "location": "Bureau",
+        "roomId": "room-bureau",
+        "locationId": "",
+        "sublocationId": "",
+        "remaining": 24,
+        "capacity": 24,
+        "unitKey": "plaque",
+        "status": "closed",
+        "createdAt": "2026-10-13T08:54:10.332Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-13T08:54:10.332Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 24,
+      "difference": 24,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Bureau",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -38017,6 +38127,12 @@
       "itemId": "web-1791881388576",
       "at": "2026-10-13T08:50:28.833Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6g2ha7-3974719034-1207013529",
+      "itemId": "itm-web-1783931436295-qpxakb",
+      "at": "2026-10-13T08:54:10.333Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -38098,5 +38214,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:53:46.808Z"
+  "updatedAt": "2026-10-13T08:54:10.333Z"
 }

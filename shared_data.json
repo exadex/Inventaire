@@ -5940,7 +5940,7 @@
       "id": "itm-CSV-0073",
       "name": "Gants - taille L",
       "category": "Procédé ExAdEx L2",
-      "quantity": 4,
+      "quantity": 0,
       "unit": "unités",
       "minStock": 0,
       "location": "Laboratoire",
@@ -5971,7 +5971,34 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unités",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0074",
@@ -30639,6 +30666,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6grfey-684071891-1171480310",
+      "operationId": "operation-mv6grfey-684071891-1171480310",
+      "date": "13/10/2026 11:13",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Gants - taille L · Stock précédent : 4 unités · Stock compté : 0 unités · Écart : -4 unités · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0073",
+      "type": "recounted",
+      "previousQuantity": 4,
+      "countedQuantity": 0,
+      "difference": -4,
+      "unit": "unités",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "id": "history-operation-mv6gr758-2018553634-3936701397",
       "operationId": "operation-mv6gr758-2018553634-3936701397",
       "date": "13/10/2026 11:13",
@@ -38663,6 +38705,45 @@
       "toLocation": "",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6grgae-3548618937-3276941196",
+      "operationId": "operation-mv6grfey-684071891-1171480310",
+      "itemId": "itm-CSV-0073",
+      "timestamp": "2026-10-13T09:13:34.262Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 4,
+      "afterQuantity": 0,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 4,
+      "after": 0,
+      "quantity": 0,
+      "difference": -4,
+      "unit": "unités",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39068,6 +39149,12 @@
       "itemId": "itm-CSV-0072",
       "at": "2026-10-13T09:13:23.385Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv6grfey-684071891-1171480310",
+      "itemId": "itm-CSV-0073",
+      "at": "2026-10-13T09:13:34.262Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -39149,5 +39236,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:13:23.385Z"
+  "updatedAt": "2026-10-13T09:13:34.262Z"
 }

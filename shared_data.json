@@ -3271,7 +3271,7 @@
     },
     {
       "id": "itm-CSV-0023",
-      "name": "Bouchon Luer Lock (MC1711)",
+      "name": "Bouchon Luer Lock",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
       "unit": "unités",
@@ -3312,7 +3312,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -30011,6 +30011,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 10:12",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Bouchon Luer Lock."
+    },
+    {
       "date": "13/10/2026 10:10",
       "user": "Elina",
       "action": "Item supprimé",
@@ -37226,5 +37232,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T07:55:41.264Z"
+  "updatedAt": "2026-10-13T08:12:22.303Z"
 }

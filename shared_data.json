@@ -21824,7 +21824,7 @@
   "orders": [
     {
       "id": "ord-1791900280674",
-      "status": "ordered",
+      "status": "requested",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "test",
@@ -21835,9 +21835,9 @@
       "requestedBy": "Elina",
       "requestedAt": "13/10/2026 16:04",
       "requestedAtRaw": "2026-10-13T14:04:40.674Z",
-      "orderedBy": "Elina",
-      "orderedAt": "13/10/2026 16:05",
-      "orderedAtRaw": "2026-10-13T14:05:09.297Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -30775,6 +30775,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 16:06",
+      "user": "Elina",
+      "action": "Commande rouverte",
+      "detail": "Elina a renvoyé test vers \"À demander\"."
+    },
     {
       "date": "13/10/2026 16:06",
       "user": "Elina",

@@ -14243,16 +14243,17 @@
       "quantity": 2,
       "unit": "unités",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Réserve",
       "locations": [
+        "Réserve",
         "Laboratoire"
       ],
       "tags": [],
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "Ozyme",
+          "reference": "R1011",
           "link": "https://yris.ozyme.fr/fr/company/ozyme/product/zymoclean-gel-rna-recovery-kit-w-zymo-spin-ic-columns-capped-50-preps-zr1011",
           "notes": "187",
           "price": "187",
@@ -14265,6 +14266,12 @@
       "placements": [
         {
           "id": "placement-legacy-1nqs6al",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        },
+        {
+          "id": "placement-9a6a001d-f549-4dab-9963-3c258e6e7bb7",
           "roomId": "room-laboratoire",
           "locationId": null,
           "sublocationId": null
@@ -14278,7 +14285,7 @@
           {
             "id": "level-1",
             "key": "unite",
-            "singular": "unités",
+            "singular": "unité",
             "plural": "unités",
             "kind": "discrete",
             "contains": 1
@@ -14296,7 +14303,11 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785239611213-9k274h",
+      "createdAtRaw": "2026-10-13T09:40:44.113Z",
+      "createdAt": "13/10/2026 11:40"
     },
     {
       "id": "itm-web-1783931436295-xgl2c1",
@@ -30756,6 +30767,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:40",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps."
+    },
+    {
       "id": "history-operation-mv6hp8yz-1688838129-3813154428",
       "operationId": "operation-mv6hp8yz-1688838129-3813154428",
       "date": "13/10/2026 11:39",
@@ -39717,5 +39734,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:39:52.481Z"
+  "updatedAt": "2026-10-13T09:40:44.123Z"
 }

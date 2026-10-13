@@ -21860,6 +21860,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791898299474",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-osftkk",
+      "inventoryUnit": "Cartons",
+      "itemName": "Cones non filtrés 200µL",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 15:31",
+      "requestedAtRaw": "2026-10-13T13:31:39.475Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791898264151",
       "status": "requested",
       "itemMode": "existing",
@@ -30745,6 +30767,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 15:31",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Cones non filtrés 200µL."
+    },
     {
       "date": "13/10/2026 15:31",
       "user": "Elina",

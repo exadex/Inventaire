@@ -5792,17 +5792,19 @@
     },
     {
       "id": "itm-CSV-0074",
-      "name": "Gants orange S",
+      "name": "Gants chimiques - S",
       "category": "Procédé ExAdEx L2",
       "quantity": 2,
-      "unit": "unités",
+      "unit": "boites",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Bureau",
       "locations": [
-        "Laboratoire"
+        "Bureau"
       ],
       "tags": [
-        "Gants oranges"
+        "Gants violets",
+        "oranges",
+        "rouges"
       ],
       "notes": "50",
       "references": {
@@ -5821,11 +5823,42 @@
       "placements": [
         {
           "id": "placement-legacy-1crtj04",
-          "roomId": "room-laboratoire",
+          "roomId": "room-bureau",
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-13T09:06:18.249Z",
+      "createdAt": "13/10/2026 11:06",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0075",
@@ -30379,6 +30412,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:06",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants chimiques - S."
+    },
+    {
       "date": "13/10/2026 11:05",
       "user": "Elina",
       "action": "Item ajouté",
@@ -38457,5 +38496,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:05:14.780Z"
+  "updatedAt": "2026-10-13T09:06:18.251Z"
 }

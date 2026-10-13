@@ -4989,43 +4989,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0050",
-      "name": "Seringues 3 pièces luer lock 20 ml / bte de 50",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "mL",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Seringue luer lock"
-      ],
-      "notes": "120",
-      "references": {
-        "primary": {
-          "supplier": "robé médical",
-          "reference": "SLL20",
-          "link": "https://www.robe-materiel-medical.com/Seringues-3-pieces-NIPRO-Luer-Lock-Boite-de-100-SLL20-materiel-medical.htm",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "60,47",
-          "unitPrice": "0,503916667",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-3my3aa",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0051",
       "name": "Seringue 50mL - luer lock",
       "category": "Procédé ExAdEx L2",
@@ -30931,6 +30894,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:48",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Seringues 3 pièces luer lock 20 ml / bte de 50 de l'inventaire."
+    },
     {
       "id": "history-operation-mv6hzom7-1546447838-2473278373",
       "operationId": "operation-mv6hzom7-1546447838-2473278373",

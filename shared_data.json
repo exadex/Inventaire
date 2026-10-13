@@ -21860,6 +21860,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1791898338571",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0078",
+      "inventoryUnit": "Cartons",
+      "itemName": "Cones filtrés 20uL",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 15:32",
+      "requestedAtRaw": "2026-10-13T13:32:18.572Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1791898299474",
       "status": "requested",
       "itemMode": "existing",
@@ -30767,6 +30789,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 15:32",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Cones filtrés 20uL."
+    },
     {
       "date": "13/10/2026 15:31",
       "user": "Elina",

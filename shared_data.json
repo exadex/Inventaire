@@ -5471,7 +5471,7 @@
       "name": "Gants L2 - taille L",
       "category": "Procédé ExAdEx L2",
       "quantity": 1,
-      "unit": "unités",
+      "unit": "Boite",
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
@@ -5512,9 +5512,9 @@
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
           }
@@ -30414,6 +30414,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:08",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - taille L."
+    },
+    {
       "date": "13/10/2026 11:07",
       "user": "Elina",
       "action": "Item modifié",
@@ -38570,5 +38576,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:07:03.986Z"
+  "updatedAt": "2026-10-13T09:08:35.584Z"
 }

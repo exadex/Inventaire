@@ -4992,7 +4992,7 @@
       "id": "itm-CSV-0051",
       "name": "Seringue 50mL - luer lock",
       "category": "Biomol",
-      "quantity": 1,
+      "quantity": 0.6,
       "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -5051,30 +5051,33 @@
         "trackingUnit": "seringues",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
-          {
-            "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-08-25T13:30:04.336Z",
-            "updatedBy": "Caroline"
-          }
-        ],
-        "closedContainers": [
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [
           {
             "id": "closed-itm-csv-0051-reserve-1",
             "label": "carton fermé nº1",
             "location": "Réserve",
-            "remaining": 25,
+            "remaining": 15,
             "capacity": 25,
             "unitKey": "custom-seringue",
-            "status": "closed",
+            "status": "open",
             "createdAt": "2026-08-25T13:30:04.336Z",
-            "updatedAt": "2026-08-25T13:30:04.336Z",
-            "updatedBy": "Caroline",
-            "version": 1
+            "updatedAt": "2026-10-13T09:52:37.409Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-13T09:52:37.409Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
           }
-        ],
-        "openContainers": []
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -30872,6 +30875,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6i5m5q-3563076563-1101229707",
+      "operationId": "operation-mv6i5m5q-3563076563-1101229707",
+      "date": "13/10/2026 11:52",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Seringue 50mL - luer lock · Stock précédent : 1 cartons · Stock compté : 0,6 cartons · Écart : -0,4 cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0051",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 0.6,
+      "difference": -0.4,
+      "unit": "cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 11:52",
       "user": "Elina",
       "action": "Item modifié",
@@ -39495,6 +39513,79 @@
       "toLocation": "Réserve",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6i5o9u-4793062-2650942686",
+      "operationId": "operation-mv6i5m5q-3563076563-1101229707-closed-itm-csv-0051-reserve-1",
+      "itemId": "itm-CSV-0051",
+      "timestamp": "2026-10-13T09:52:37.410Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-csv-0051-reserve-1",
+      "containerId": "closed-itm-csv-0051-reserve-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 25,
+      "afterQuantity": 15,
+      "beforeCapacity": 25,
+      "afterCapacity": 25,
+      "unitBefore": "seringues",
+      "unitAfter": "seringues",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-csv-0051-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 25,
+        "capacity": 25,
+        "unitKey": "custom-seringue",
+        "status": "closed",
+        "createdAt": "2026-08-25T13:30:04.336Z",
+        "updatedAt": "2026-08-25T13:30:04.336Z",
+        "updatedBy": "Caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-csv-0051-reserve-1",
+        "label": "carton fermé nº1",
+        "location": "Réserve",
+        "remaining": 15,
+        "capacity": 25,
+        "unitKey": "custom-seringue",
+        "status": "open",
+        "createdAt": "2026-08-25T13:30:04.336Z",
+        "updatedAt": "2026-10-13T09:52:37.409Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-13T09:52:37.409Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 15,
+      "difference": -10,
+      "unit": "seringues",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39936,6 +40027,12 @@
       "itemId": "web-1791884856174",
       "at": "2026-10-13T09:48:01.000Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6i5m5q-3563076563-1101229707",
+      "itemId": "itm-CSV-0051",
+      "at": "2026-10-13T09:52:37.410Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -40017,5 +40114,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:52:12.713Z"
+  "updatedAt": "2026-10-13T09:52:37.410Z"
 }

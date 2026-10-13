@@ -12245,7 +12245,7 @@
       "id": "itm-CSV-0082",
       "name": "cliptip 300 ext low retention",
       "category": "Biomol",
-      "quantity": 1,
+      "quantity": 0.625,
       "unit": "Carton",
       "minStock": 1,
       "location": "Bureau",
@@ -12302,12 +12302,27 @@
         "closedByLocation": [
           {
             "location": "Bureau",
-            "quantity": 1,
-            "updatedAt": "2026-10-13T09:17:34.443Z",
-            "updatedBy": "Elina"
+            "quantity": 1
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-csv-0082-bureau-1",
+            "label": "carton fermé nº1",
+            "location": "Bureau",
+            "remaining": 5,
+            "capacity": 8,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-10-13T09:17:34.443Z",
+            "updatedAt": "2026-10-13T09:18:00.161Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-bureau",
+            "locationId": "",
+            "sublocationId": ""
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -30690,6 +30705,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6gx4kj-2036170517-2478457352",
+      "operationId": "operation-mv6gx4kj-2036170517-2478457352",
+      "date": "13/10/2026 11:18",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · cliptip 300 ext low retention · Stock précédent : 1 cartons · Stock compté : 0,625 cartons · Écart : -0,375 cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0082",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 0.625,
+      "difference": -0.375,
+      "unit": "cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 11:17",
       "user": "Elina",
       "action": "Item modifié",
@@ -38828,6 +38858,72 @@
       "toLocation": "",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6gx5gh-2302525850-4121724868",
+      "operationId": "operation-mv6gx4kj-2036170517-2478457352-closed-itm-csv-0082-bureau-1",
+      "itemId": "itm-CSV-0082",
+      "timestamp": "2026-10-13T09:18:00.161Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-csv-0082-bureau-1",
+      "containerId": "closed-itm-csv-0082-bureau-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 8,
+      "afterQuantity": 5,
+      "beforeCapacity": 8,
+      "afterCapacity": 8,
+      "unitBefore": "boîtes",
+      "unitAfter": "boîtes",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-csv-0082-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 8,
+        "capacity": 8,
+        "unitKey": "boite",
+        "status": "closed",
+        "createdAt": "2026-10-13T09:17:34.443Z",
+        "updatedAt": "2026-10-13T09:17:34.443Z",
+        "updatedBy": "Elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-itm-csv-0082-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 5,
+        "capacity": 8,
+        "unitKey": "boite",
+        "status": "closed",
+        "createdAt": "2026-10-13T09:17:34.443Z",
+        "updatedAt": "2026-10-13T09:18:00.161Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-bureau",
+        "locationId": "",
+        "sublocationId": ""
+      },
+      "quantity": 5,
+      "difference": -3,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Bureau",
+      "toLocation": "Bureau",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39239,6 +39335,12 @@
       "itemId": "itm-CSV-0073",
       "at": "2026-10-13T09:13:34.262Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv6gx4kj-2036170517-2478457352",
+      "itemId": "itm-CSV-0082",
+      "at": "2026-10-13T09:18:00.161Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -39320,5 +39422,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:17:34.446Z"
+  "updatedAt": "2026-10-13T09:18:00.161Z"
 }

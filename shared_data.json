@@ -5806,7 +5806,7 @@
     },
     {
       "id": "itm-CSV-0071",
-      "name": "Gants - taille S",
+      "name": "Gants - S",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
       "unit": "Boites",
@@ -30677,6 +30677,12 @@
       "date": "13/10/2026 11:14",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Gants - S."
+    },
+    {
+      "date": "13/10/2026 11:14",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Gants - taille S."
     },
     {
@@ -39262,5 +39268,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:14:20.498Z"
+  "updatedAt": "2026-10-13T09:14:32.482Z"
 }

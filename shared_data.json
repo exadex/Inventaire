@@ -21823,6 +21823,29 @@
   ],
   "orders": [
     {
+      "id": "ord-1791900280674",
+      "status": "requested",
+      "itemMode": "new",
+      "inventoryItemId": null,
+      "itemName": "test",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 16:04",
+      "requestedAtRaw": "2026-10-13T14:04:40.674Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": {
+        "name": "test"
+      }
+    },
+    {
       "id": "ord-1791898338571",
       "status": "requested",
       "itemMode": "existing",
@@ -30752,6 +30775,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 16:04",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour test."
+    },
     {
       "date": "13/10/2026 15:58",
       "user": "Elina",

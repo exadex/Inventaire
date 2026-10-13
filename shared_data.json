@@ -3294,7 +3294,12 @@
           "unitPrice": "0,77",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "BD 408531",
+            "notes": ""
+          }
+        ]
       },
       "source": "seed",
       "placements": [
@@ -30017,6 +30022,12 @@
       "detail": "Elina a modifié Bouchon Luer Lock."
     },
     {
+      "date": "13/10/2026 10:12",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Bouchon Luer Lock."
+    },
+    {
       "date": "13/10/2026 10:10",
       "user": "Elina",
       "action": "Item supprimé",
@@ -37232,5 +37243,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:12:22.303Z"
+  "updatedAt": "2026-10-13T08:12:56.415Z"
 }

@@ -18511,41 +18511,6 @@
       }
     },
     {
-      "id": "itm-CSV-0115",
-      "name": "Invitrogen™ eBioscience™ Fluoromount-G™, with DAPI",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "50,85",
-          "price": "50,85",
-          "unitPrice": "2",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-jz92u6",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0116",
       "name": "Lames microscopie",
       "category": "Microscopie",
@@ -30227,6 +30192,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 09:30",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Invitrogen™ eBioscience™ Fluoromount-G™, with DAPI de l'inventaire."
+    },
     {
       "date": "13/10/2026 09:28",
       "user": "Elina",

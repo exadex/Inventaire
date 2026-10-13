@@ -30473,7 +30473,7 @@
       "customerService": "",
       "salesAndQuotes": "mrichard@dutscher.com",
       "phone": "",
-      "notes": "En ligne, possibilité de changer les adresses de facturation/livraison",
+      "notes": "En ligne, possibilité de changer les adresses de facturation/livraison\nCompte : enora.lecorgne@exadex-innov.com\nmdp : dKMv4NjWyx",
       "aliases": [],
       "coordinates": [
         {
@@ -30752,6 +30752,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 16:09",
+      "user": "Elina",
+      "action": "Contact modifié",
+      "detail": "Elina a modifié le contact Dutscher."
+    },
     {
       "date": "13/10/2026 16:06",
       "user": "Elina",

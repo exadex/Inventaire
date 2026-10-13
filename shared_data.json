@@ -14240,7 +14240,7 @@
       "id": "itm-web-1783931436295-cxs8eq",
       "name": "Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 2,
       "unit": "unités",
       "minStock": 0,
       "location": "Laboratoire",
@@ -14269,7 +14269,34 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unités",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-xgl2c1",
@@ -30729,6 +30756,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6hp8yz-1688838129-3813154428",
+      "operationId": "operation-mv6hp8yz-1688838129-3813154428",
+      "date": "13/10/2026 11:39",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Zymoclean Gel RNA Recovery Kit w/ Zymo-Spin IC Columns (Capped) 50 preps · Stock précédent : 0 unités · Stock compté : 2 unités · Écart : +2 unités · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-cxs8eq",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 2,
+      "difference": 2,
+      "unit": "unités",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "id": "history-operation-mv6hojum-3700565691-2055610575",
       "operationId": "operation-mv6hojum-3700565691-2055610575",
       "date": "13/10/2026 11:39",
@@ -39120,6 +39162,45 @@
       "toLocation": "Réserve",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6hpa1t-893707143-2733825453",
+      "operationId": "operation-mv6hp8yz-1688838129-3813154428",
+      "itemId": "itm-web-1783931436295-cxs8eq",
+      "timestamp": "2026-10-13T09:39:52.481Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 2,
+      "quantity": 2,
+      "difference": 2,
+      "unit": "unités",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39549,6 +39630,12 @@
       "itemId": "web-1791884339893",
       "at": "2026-10-13T09:39:21.984Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6hp8yz-1688838129-3813154428",
+      "itemId": "itm-web-1783931436295-cxs8eq",
+      "at": "2026-10-13T09:39:52.481Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -39630,5 +39717,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:39:21.984Z"
+  "updatedAt": "2026-10-13T09:39:52.481Z"
 }

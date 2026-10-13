@@ -4990,8 +4990,8 @@
     },
     {
       "id": "itm-CSV-0051",
-      "name": "Seringue 50mL - luer lock",
-      "category": "Procédé ExAdEx L2",
+      "name": "Seringue 50mL",
+      "category": "Biomol",
       "quantity": 1,
       "unit": "cartons",
       "minStock": 0,
@@ -5000,29 +5000,24 @@
         "Réserve"
       ],
       "tags": [
-        "Seringue luer lock"
+        "Seringues"
       ],
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "15349067",
-          "link": "https://www.fishersci.fr/shop/products/3-part-50ml-luer-lock-syringes/15349067#?keyword=%2015349067",
+          "supplier": "Terumo",
+          "reference": "SS+50ES1",
+          "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques\nFournisseur : Terumo",
-          "price": "30",
+          "price": "",
           "unitPrice": "0",
           "leadTime": ""
         },
-        "secondary": [
-          {
-            "reference": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
-            "notes": "Lien direct de Terumo"
-          }
-        ]
+        "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785239326837-r987ag",
       "createdAtRaw": "2026-07-28T12:59:46.828Z",
       "createdAt": "28/07/2026 14:59",
       "stockTracking": {
@@ -5059,7 +5054,21 @@
             "updatedBy": "Caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-csv-0051-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 25,
+            "capacity": 25,
+            "unitKey": "custom-seringue",
+            "status": "closed",
+            "createdAt": "2026-08-25T13:30:04.336Z",
+            "updatedAt": "2026-08-25T13:30:04.336Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -30858,6 +30867,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:51",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 50mL."
+    },
+    {
       "date": "13/10/2026 11:49",
       "user": "Elina",
       "action": "Item supprimé",
@@ -39997,5 +40012,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:48:01.000Z"
+  "updatedAt": "2026-10-13T09:51:41.887Z"
 }

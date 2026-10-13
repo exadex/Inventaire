@@ -3274,7 +3274,7 @@
       "name": "Bouchon Luer Lock",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "Boite",
       "minStock": 0,
       "location": "Bureau",
       "locations": [
@@ -3321,9 +3321,9 @@
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
           }
@@ -30016,6 +30016,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 10:14",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Bouchon Luer Lock."
+    },
+    {
       "date": "13/10/2026 10:13",
       "user": "Elina",
       "action": "Item modifié",
@@ -37249,5 +37255,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:13:46.063Z"
+  "updatedAt": "2026-10-13T08:14:02.451Z"
 }

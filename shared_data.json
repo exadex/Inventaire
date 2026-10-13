@@ -3297,7 +3297,7 @@
         "secondary": [
           {
             "reference": "BD 408531",
-            "notes": ""
+            "notes": "Fournisseur : Thermo Fischer \nhttps://www.fishersci.com/shop/products/bd-luer-lok-caps/1482331"
           }
         ]
       },
@@ -30016,6 +30016,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 10:13",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Bouchon Luer Lock."
+    },
+    {
       "date": "13/10/2026 10:12",
       "user": "Elina",
       "action": "Item modifié",
@@ -37243,5 +37249,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:12:56.415Z"
+  "updatedAt": "2026-10-13T08:13:46.063Z"
 }

@@ -4514,73 +4514,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0042",
-      "name": "Seringue 1ml soft jet",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "seringues",
-      "minStock": 1,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Seringue"
-      ],
-      "notes": "100",
-      "references": {
-        "primary": {
-          "supplier": "Honke sass Wolf",
-          "reference": "5010",
-          "link": "https://www.henkesasswolf.de/en/search/?tx_indexedsearch_pi2%5Baction%5D=search&tx_indexedsearch_pi2%5Bcontroller%5D=Search&cHash=492a628381d5a9e4d38274fe2b890249",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "125",
-          "unitPrice": "1,25",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-u2jvcv",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-09-02T15:30:11.279Z",
-      "createdAt": "02/09/2026 17:30",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "detailed",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "custom-seringue",
-            "singular": "seringue",
-            "plural": "seringues",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "custom-seringue",
-        "trackingUnit": "seringues",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-CSV-0043",
       "name": "Seringue 20mL non luer lock",
       "category": "Procédé ExAdEx L2",
@@ -30874,6 +30807,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:53",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Seringue 1ml soft jet de l'inventaire."
+    },
     {
       "id": "history-operation-mv6i5m5q-3563076563-1101229707",
       "operationId": "operation-mv6i5m5q-3563076563-1101229707",

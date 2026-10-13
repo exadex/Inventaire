@@ -12244,9 +12244,9 @@
     {
       "id": "itm-CSV-0082",
       "name": "cliptip 300 ext low retention",
-      "category": "Culture Cell",
+      "category": "Biomol",
       "quantity": 1,
-      "unit": "unités",
+      "unit": "Carton",
       "minStock": 1,
       "location": "Bureau",
       "locations": [
@@ -12269,29 +12269,45 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785239459565-7t6yfo",
       "createdAtRaw": "2026-07-28T13:01:36.556Z",
       "createdAt": "28/07/2026 15:01",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 8
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 1,
+            "updatedAt": "2026-10-13T09:17:34.443Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -30674,6 +30690,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:17",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié cliptip 300 ext low retention."
+    },
+    {
       "date": "13/10/2026 11:15",
       "user": "Elina",
       "action": "Item modifié",
@@ -39298,5 +39320,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:15:58.252Z"
+  "updatedAt": "2026-10-13T09:17:34.446Z"
 }

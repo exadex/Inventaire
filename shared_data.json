@@ -3203,73 +3203,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0020",
-      "name": "BD luer lock caps",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 2,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Bouchon"
-      ],
-      "notes": "50",
-      "references": {
-        "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "BD 408531",
-          "link": "https://www.fishersci.com/shop/products/bd-luer-lok-caps/1482331",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "130",
-          "unitPrice": "2,6",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-07-28T12:58:00.364Z",
-      "createdAt": "28/07/2026 14:58",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-con0hf",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0023",
       "name": "Bouchon Luer Lock",
       "category": "Procédé ExAdEx L2",
@@ -30015,6 +29948,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 10:14",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé BD luer lock caps de l'inventaire."
+    },
     {
       "date": "13/10/2026 10:14",
       "user": "Elina",

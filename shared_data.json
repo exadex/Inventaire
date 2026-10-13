@@ -5741,11 +5741,11 @@
       "name": "Gants - taille XS",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "Boites",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Bureau",
       "locations": [
-        "Laboratoire"
+        "Bureau"
       ],
       "tags": [
         "Gants bleus"
@@ -5767,7 +5767,7 @@
       "placements": [
         {
           "id": "placement-legacy-6zln1c",
-          "roomId": "room-laboratoire",
+          "roomId": "room-bureau",
           "locationId": null,
           "sublocationId": null
         }
@@ -5779,9 +5779,9 @@
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unités",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
           }
@@ -5798,7 +5798,11 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-13T09:11:48.171Z",
+      "createdAt": "13/10/2026 11:11"
     },
     {
       "id": "itm-CSV-0071",
@@ -30555,6 +30559,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:11",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants - taille XS."
+    },
+    {
       "id": "history-operation-mv6gos74-2696720859-2024930414",
       "operationId": "operation-mv6gos74-2696720859-2024930414",
       "date": "13/10/2026 11:11",
@@ -38927,5 +38937,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:11:30.723Z"
+  "updatedAt": "2026-10-13T09:11:48.173Z"
 }

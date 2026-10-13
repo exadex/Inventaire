@@ -5361,7 +5361,37 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "routine",
+      "createdAtRaw": "2026-10-13T09:01:30.607Z",
+      "createdAt": "13/10/2026 11:01",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0067",
@@ -30211,6 +30241,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:01",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - taille L."
+    },
+    {
       "date": "13/10/2026 10:57",
       "user": "Elina",
       "action": "Item modifié",
@@ -38271,5 +38307,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:57:07.484Z"
+  "updatedAt": "2026-10-13T09:01:30.609Z"
 }

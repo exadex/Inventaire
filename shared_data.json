@@ -3169,7 +3169,7 @@
       "id": "itm-CSV-0023",
       "name": "Bouchon Luer Lock",
       "category": "Procédé ExAdEx L2",
-      "quantity": 0,
+      "quantity": 2,
       "unit": "Boite",
       "minStock": 0,
       "location": "Bureau",
@@ -29938,6 +29938,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6f9ytq-1696839109-3298600745",
+      "operationId": "operation-mv6f9ytq-1696839109-3298600745",
+      "date": "13/10/2026 10:32",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Bouchon Luer Lock · Stock précédent : 0 Boite · Stock compté : 2 Boite · Écart : +2 Boite · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0023",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 2,
+      "difference": 2,
+      "unit": "Boite",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 10:27",
       "user": "Elina",
       "action": "Demande créée",
@@ -36799,6 +36814,45 @@
       "toLocation": "Réserve",
       "comment": "Inventaire 12/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6f9zql-2125980277-1599897626",
+      "operationId": "operation-mv6f9ytq-1696839109-3298600745",
+      "itemId": "itm-CSV-0023",
+      "timestamp": "2026-10-13T08:32:00.045Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 2,
+      "quantity": 2,
+      "difference": 2,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -37120,6 +37174,12 @@
       "itemId": "web-1791811954343",
       "at": "2026-10-12T13:33:21.972Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6f9ytq-1696839109-3298600745",
+      "itemId": "itm-CSV-0023",
+      "at": "2026-10-13T08:32:00.045Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -37201,5 +37261,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:15:32.522Z"
+  "updatedAt": "2026-10-13T08:32:00.045Z"
 }

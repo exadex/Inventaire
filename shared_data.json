@@ -10128,8 +10128,8 @@
       "id": "itm-web-1783931436295-qpxakb",
       "name": "Plaque Corning 24 puits ULA",
       "category": "Culture Cell",
-      "quantity": 1.5,
-      "unit": "plaques",
+      "quantity": 1.458333,
+      "unit": "cartons",
       "minStock": 1,
       "location": "Bureau",
       "locations": [
@@ -10159,7 +10159,72 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-13T08:53:46.806Z",
+      "createdAt": "13/10/2026 10:53",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 24
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 1,
+            "updatedAt": "2026-10-13T08:53:46.803Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": [
+          {
+            "id": "container-mv6g201f-2365804217-3048411584",
+            "label": "carton ouvert nº1",
+            "location": "Bureau",
+            "remaining": 11,
+            "capacity": 24,
+            "status": "open",
+            "openedAt": "2026-10-13T08:53:46.803Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-13T08:53:46.803Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ]
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-06zf4c",
@@ -30096,6 +30161,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 10:53",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque Corning 24 puits ULA."
+    },
+    {
       "id": "history-operation-mv6fxo16-616822737-3800119387",
       "operationId": "operation-mv6fxo16-616822737-3800119387",
       "date": "13/10/2026 10:50",
@@ -37541,6 +37612,48 @@
       "toLocation": "Bureau",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6g201i-2813712281-3030870996",
+      "operationId": "migration-mv6g201i-950390858-1266162659",
+      "itemId": "itm-web-1783931436295-qpxakb",
+      "timestamp": "2026-10-13T08:53:46.806Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-qpxakb",
+      "before": {
+        "mode": "simple",
+        "quantity": 1.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 1.4583333333333333,
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 1,
+            "updatedAt": "2026-10-13T08:53:46.803Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "container-mv6g201f-2365804217-3048411584",
+            "location": "Bureau",
+            "remaining": 11
+          }
+        ]
+      },
+      "quantity": -1.0000000000000018,
+      "unit": "plaques",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
   "sourcingPatients": [],
@@ -37985,5 +38098,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:50:28.833Z"
+  "updatedAt": "2026-10-13T08:53:46.808Z"
 }

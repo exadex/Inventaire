@@ -5840,7 +5840,7 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785226360650-wy85d7",
       "createdAtRaw": "2026-10-13T09:12:11.109Z",
       "createdAt": "13/10/2026 11:12",
@@ -30677,6 +30677,12 @@
       "date": "13/10/2026 11:14",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Gants - taille S."
+    },
+    {
+      "date": "13/10/2026 11:14",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Gants - taille L."
     },
     {
@@ -39256,5 +39262,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:14:10.883Z"
+  "updatedAt": "2026-10-13T09:14:20.498Z"
 }

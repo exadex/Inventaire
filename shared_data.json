@@ -12097,8 +12097,8 @@
       "references": {
         "primary": {
           "supplier": "Sarsdest",
-          "reference": "70.3020.255",
-          "link": "https://www.sarstedt.com/en/products/laboratory/liquid-handling/pipette-tips/product/70.3020.255/",
+          "reference": "70.3030.265",
+          "link": "https://www.sarstedt.com/en/FRA/c/life-science/liquid-handling/pipette-tips/p/pipette-tip-20-ul-yellow/70.3030.265",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
           "price": "81,60",
           "unitPrice": "0,04",
@@ -30680,6 +30680,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 15:28",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 20uL."
+    },
+    {
       "date": "13/10/2026 15:21",
       "user": "Elina",
       "action": "Demande créée",
@@ -40135,5 +40141,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T13:02:09.673Z"
+  "updatedAt": "2026-10-13T13:28:20.243Z"
 }

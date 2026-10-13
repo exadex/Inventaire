@@ -4654,43 +4654,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0046",
-      "name": "Seringue 100ml",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "seringues",
-      "minStock": 1,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Seringue 100ml"
-      ],
-      "notes": "100",
-      "references": {
-        "primary": {
-          "supplier": "Terumo",
-          "reference": "SS+01EH1",
-          "link": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "34,7",
-          "unitPrice": "0,347",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-5azufv",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0047",
       "name": "Seringue 20mL - BD 3P Cone luer Lock",
       "category": "Procédé ExAdEx L2",
@@ -30807,6 +30770,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:53",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Seringue 100ml de l'inventaire."
+    },
     {
       "date": "13/10/2026 11:53",
       "user": "Elina",

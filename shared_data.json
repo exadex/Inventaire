@@ -5062,45 +5062,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0056",
-      "name": "filtre 0,45",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 2,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Tamis/ Filtre"
-      ],
-      "notes": "50",
-      "references": {
-        "primary": {
-          "supplier": "Sarstedt",
-          "reference": "",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques · UGAP",
-          "price": "180",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1,
-      "placements": [
-        {
-          "id": "placement-legacy-19dxg2",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0057",
       "name": "Tamis 100",
       "category": "Procédé ExAdEx L2",
@@ -30661,6 +30622,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:56",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé filtre 0,45 de l'inventaire."
+    },
     {
       "date": "13/10/2026 11:55",
       "user": "Elina",

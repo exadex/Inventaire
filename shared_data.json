@@ -214,7 +214,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Shieldskin",
+          "supplier": "Dutscher",
           "reference": "",
           "link": "",
           "notes": "Violet : 90628 (Kimtech)\nRouge : 669254 ",
@@ -241,7 +241,7 @@
           }
         ],
         "trackingUnitKey": "boite",
-        "trackingUnit": "Boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -253,7 +253,8 @@
         "enabled": false,
         "preparations": []
       },
-      "source": "web"
+      "source": "web",
+      "supplierContactId": "contact-1785226360650-wy85d7"
     },
     {
       "id": "web-1791881388576",
@@ -30413,6 +30414,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:07",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants Chimiques - L."
+    },
+    {
       "date": "13/10/2026 11:06",
       "user": "Elina",
       "action": "Item modifié",
@@ -38563,5 +38570,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:06:52.174Z"
+  "updatedAt": "2026-10-13T09:07:03.986Z"
 }

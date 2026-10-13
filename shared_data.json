@@ -2055,74 +2055,6 @@
       ]
     },
     {
-      "id": "web-1784276773489",
-      "name": "Plaques 48 puits",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 1,
-      "unit": "Carton",
-      "minStock": 0,
-      "usageProfile": "backup",
-      "locations": [
-        "Réserve"
-      ],
-      "location": "Réserve",
-      "tags": [
-        "Plaques"
-      ],
-      "notes": "Conditionnement : 300 plaques/cartons",
-      "references": {
-        "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "150687",
-          "link": "https://www.thermofisher.com/order/catalog/product/fr/fr/150687",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "createdAtRaw": "2026-07-17T08:26:13.489Z",
-      "createdAt": "17/07/2026 10:26",
-      "source": "web",
-      "placements": [
-        {
-          "id": "placement-legacy-nhwmih",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "supplierContactId": "contact-1785239459565-7t6yfo",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "carton",
-            "singular": "carton",
-            "plural": "cartons",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "carton",
-        "trackingUnit": "Carton",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "web-1784214685893",
       "name": "Petri dish, 92 x 16 mm",
       "category": "Culture Cell",
@@ -30268,6 +30200,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 10:01",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Plaques 48 puits de l'inventaire."
+    },
     {
       "date": "13/10/2026 09:57",
       "user": "Elina",

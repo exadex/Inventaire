@@ -120,7 +120,7 @@
       "id": "web-1791881388576",
       "name": "Plaques 96 puits ULA",
       "category": "Procédé ExAdEx L2",
-      "quantity": 1,
+      "quantity": 1.416667,
       "unit": "Carton",
       "minStock": 0,
       "usageProfile": "normal",
@@ -181,13 +181,58 @@
         "closedByLocation": [
           {
             "location": "Bureau",
-            "quantity": 1,
-            "updatedAt": "2026-10-13T08:49:48.576Z",
-            "updatedBy": "Elina"
+            "quantity": 1
           }
         ],
-        "closedContainers": null,
-        "openContainers": []
+        "closedContainers": [
+          {
+            "id": "closed-container-mv6fxra9-285315978-462361276",
+            "label": "carton fermé",
+            "location": "Bureau",
+            "roomId": "room-bureau",
+            "locationId": "",
+            "sublocationId": "",
+            "remaining": 24,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-10-13T08:50:28.833Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-13T08:50:28.833Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ],
+        "openContainers": [
+          {
+            "id": "closed-web-1791881388576-bureau-1",
+            "label": "carton fermé nº1",
+            "location": "Bureau",
+            "remaining": 10,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "open",
+            "createdAt": "2026-10-13T08:49:48.576Z",
+            "updatedAt": "2026-10-13T08:50:28.833Z",
+            "updatedBy": "elina",
+            "version": 2,
+            "roomId": "room-bureau",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-13T08:50:28.833Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -30051,6 +30096,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6fxo16-616822737-3800119387",
+      "operationId": "operation-mv6fxo16-616822737-3800119387",
+      "date": "13/10/2026 10:50",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Plaques 96 puits ULA · Stock précédent : 1 cartons · Stock compté : 1,417 cartons · Écart : +0,417 cartons · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "web-1791881388576",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 1.416667,
+      "difference": 0.416667,
+      "unit": "cartons",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 10:49",
       "user": "Elina",
       "action": "Item ajouté",
@@ -37348,6 +37408,139 @@
       "toLocation": "Bureau",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6fxra9-3353253803-3542880033",
+      "operationId": "operation-mv6fxo16-616822737-3800119387-closed-web-1791881388576-bureau-1",
+      "itemId": "web-1791881388576",
+      "timestamp": "2026-10-13T08:50:28.833Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-web-1791881388576-bureau-1",
+      "containerId": "closed-web-1791881388576-bureau-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 24,
+      "afterQuantity": 10,
+      "beforeCapacity": 24,
+      "afterCapacity": 24,
+      "unitBefore": "plaques",
+      "unitAfter": "plaques",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1791881388576-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 24,
+        "capacity": 24,
+        "unitKey": "plaque",
+        "status": "closed",
+        "createdAt": "2026-10-13T08:49:48.576Z",
+        "updatedAt": "2026-10-13T08:49:48.576Z",
+        "updatedBy": "Elina",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-web-1791881388576-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 10,
+        "capacity": 24,
+        "unitKey": "plaque",
+        "status": "open",
+        "createdAt": "2026-10-13T08:49:48.576Z",
+        "updatedAt": "2026-10-13T08:50:28.833Z",
+        "updatedBy": "elina",
+        "version": 2,
+        "roomId": "room-bureau",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-13T08:50:28.833Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 10,
+      "difference": -14,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Bureau",
+      "toLocation": "Bureau",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6fxra9-4228536398-2162385527",
+      "operationId": "operation-mv6fxo16-616822737-3800119387-closed-container-mv6fxra9-285315978-462361276",
+      "itemId": "web-1791881388576",
+      "timestamp": "2026-10-13T08:50:28.833Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv6fxra9-285315978-462361276",
+      "containerId": "closed-container-mv6fxra9-285315978-462361276",
+      "containerLabel": "carton fermé",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 24,
+      "beforeCapacity": 0,
+      "afterCapacity": 24,
+      "unitBefore": "",
+      "unitAfter": "plaques",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv6fxra9-285315978-462361276",
+        "label": "carton fermé",
+        "location": "Bureau",
+        "roomId": "room-bureau",
+        "locationId": "",
+        "sublocationId": "",
+        "remaining": 24,
+        "capacity": 24,
+        "unitKey": "plaque",
+        "status": "closed",
+        "createdAt": "2026-10-13T08:50:28.833Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-13T08:50:28.833Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 24,
+      "difference": 24,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Bureau",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -37705,6 +37898,12 @@
       "itemId": "itm-CSV-0047",
       "at": "2026-10-13T08:45:51.950Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6fxo16-616822737-3800119387",
+      "itemId": "web-1791881388576",
+      "at": "2026-10-13T08:50:28.833Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -37786,5 +37985,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:49:48.578Z"
+  "updatedAt": "2026-10-13T08:50:28.833Z"
 }

@@ -21585,6 +21585,29 @@
   ],
   "orders": [
     {
+      "id": "ord-1791876757134",
+      "status": "requested",
+      "itemMode": "new",
+      "inventoryItemId": null,
+      "itemName": "Cupules de pesée",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "référence à chercher",
+      "requestedBy": "Elina",
+      "requestedAt": "13/10/2026 09:32",
+      "requestedAtRaw": "2026-10-13T07:32:37.135Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": {
+        "name": "Cupules de pesée"
+      }
+    },
+    {
       "id": "ord-1791876676036",
       "status": "requested",
       "itemMode": "existing",
@@ -30214,6 +30237,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 09:32",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Cupules de pesée."
+    },
     {
       "date": "13/10/2026 09:31",
       "user": "Elina",

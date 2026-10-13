@@ -5809,11 +5809,11 @@
       "name": "Gants - taille S",
       "category": "Procédé ExAdEx L2",
       "quantity": 6,
-      "unit": "unités",
+      "unit": "Boites",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Bureau",
       "locations": [
-        "Laboratoire"
+        "Bureau"
       ],
       "tags": [
         "Gants bleus"
@@ -5835,11 +5835,42 @@
       "placements": [
         {
           "id": "placement-legacy-1ubcrdb",
-          "roomId": "room-laboratoire",
+          "roomId": "room-bureau",
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-13T09:12:11.109Z",
+      "createdAt": "13/10/2026 11:12",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0072",
@@ -30559,6 +30590,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:12",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants - taille S."
+    },
+    {
       "date": "13/10/2026 11:11",
       "user": "Elina",
       "action": "Item modifié",
@@ -38937,5 +38974,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:11:48.173Z"
+  "updatedAt": "2026-10-13T09:12:11.113Z"
 }

@@ -4990,7 +4990,7 @@
     },
     {
       "id": "itm-CSV-0051",
-      "name": "Seringue 50mL",
+      "name": "Seringue 50mL - luer lock",
       "category": "Biomol",
       "quantity": 1,
       "unit": "cartons",
@@ -5000,24 +5000,29 @@
         "Réserve"
       ],
       "tags": [
-        "Seringues"
+        "Seringue luer lock"
       ],
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Terumo",
-          "reference": "SS+50ES1",
-          "link": "",
+          "supplier": "Thermo Fischer",
+          "reference": "15349067",
+          "link": "https://www.fishersci.fr/shop/products/3-part-50ml-luer-lock-syringes/15349067#?keyword=%2015349067",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques\nFournisseur : Terumo",
-          "price": "",
+          "price": "30",
           "unitPrice": "0",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "https://www.distrimed.com/product_info.php?products_id=3126&refe=180309&gclid=Cj0KCQiA0oagBhDHARIsAI-Bbgc1dfQA-yz3_fsxVV92O4lvfijEv45bqY1BFGWgF2VmyCMGofKRasAaApaOEALw_wcB",
+            "notes": "Lien direct de Terumo"
+          }
+        ]
       },
       "source": "seed",
-      "usageProfile": "routine",
-      "supplierContactId": "contact-1785239326837-r987ag",
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239459565-7t6yfo",
       "createdAtRaw": "2026-07-28T12:59:46.828Z",
       "createdAt": "28/07/2026 14:59",
       "stockTracking": {
@@ -30867,10 +30872,10 @@
   ],
   "history": [
     {
-      "date": "13/10/2026 11:51",
+      "date": "13/10/2026 11:52",
       "user": "Elina",
       "action": "Item modifié",
-      "detail": "Elina a modifié Seringue 50mL."
+      "detail": "Elina a modifié Seringue 50mL - luer lock."
     },
     {
       "date": "13/10/2026 11:49",
@@ -40012,5 +40017,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:51:41.887Z"
+  "updatedAt": "2026-10-13T09:52:12.713Z"
 }

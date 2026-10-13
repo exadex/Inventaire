@@ -13203,43 +13203,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0099",
-      "name": "herpes",
-      "category": "Culture Cell",
-      "quantity": 5,
-      "unit": "unités",
-      "minStock": 1,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo"
-      ],
-      "tags": [
-        "Milieu"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "BEPP7-737E",
-          "link": "",
-          "notes": "130",
-          "price": "130",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-17kapbq",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0100",
       "name": "L-glutamine",
       "category": "Culture Cell",
@@ -30789,6 +30752,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 15:55",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé herpes de l'inventaire."
+    },
     {
       "date": "13/10/2026 15:32",
       "user": "Elina",

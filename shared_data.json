@@ -117,6 +117,87 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791884856174",
+      "name": "Réservoir à réactifs",
+      "category": "Biomol",
+      "quantity": 1,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "routine",
+      "placements": [
+        {
+          "id": "placement-6ab8394f-fd07-49ea-8c90-ca1ec80fb21c",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Dutscher",
+          "reference": "097802",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-13T09:47:36.174Z",
+      "createdAt": "13/10/2026 11:47",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "custom-rack",
+            "singular": "rack",
+            "plural": "racks",
+            "kind": "discrete",
+            "contains": 100
+          }
+        ],
+        "trackingUnitKey": "custom-rack",
+        "trackingUnit": "racks",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 1,
+            "updatedAt": "2026-10-13T09:47:36.175Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791884339893",
       "name": "plaques 96 puits fonds ronds",
       "category": "Qualité",
@@ -30834,6 +30915,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 11:47",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté Réservoir à réactifs dans Biomol."
+    },
+    {
       "date": "13/10/2026 11:46",
       "user": "Elina",
       "action": "Demande créée",
@@ -39861,5 +39948,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:44:39.011Z"
+  "updatedAt": "2026-10-13T09:47:36.181Z"
 }

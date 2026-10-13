@@ -5794,7 +5794,7 @@
       "id": "itm-CSV-0074",
       "name": "Gants chimiques - S",
       "category": "Procédé ExAdEx L2",
-      "quantity": 2,
+      "quantity": 0,
       "unit": "boites",
       "minStock": 0,
       "location": "Bureau",
@@ -5846,8 +5846,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -30412,6 +30412,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv6gic87-2346262602-1201471047",
+      "operationId": "operation-mv6gic87-2346262602-1201471047",
+      "date": "13/10/2026 11:06",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Gants chimiques - S · Stock précédent : 2 boites · Stock compté : 0 boites · Écart : -2 boites · Note : Inventaire du 13/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0074",
+      "type": "recounted",
+      "previousQuantity": 2,
+      "countedQuantity": 0,
+      "difference": -2,
+      "unit": "boites",
+      "note": "Inventaire du 13/10/2026"
+    },
+    {
       "date": "13/10/2026 11:06",
       "user": "Elina",
       "action": "Item modifié",
@@ -38046,6 +38061,45 @@
       "toLocation": "",
       "comment": "Migration validée du suivi simple vers le suivi par contenants.",
       "correctionReason": "Correction après comptage"
+    },
+    {
+      "id": "movement-mv6gid12-198639925-2169706862",
+      "operationId": "operation-mv6gic87-2346262602-1201471047",
+      "itemId": "itm-CSV-0074",
+      "timestamp": "2026-10-13T09:06:30.134Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 2,
+      "afterQuantity": 0,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 2,
+      "after": 0,
+      "quantity": 0,
+      "difference": -2,
+      "unit": "boîtes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 13/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -38415,6 +38469,12 @@
       "itemId": "itm-web-1783931436295-qpxakb",
       "at": "2026-10-13T08:54:10.333Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mv6gic87-2346262602-1201471047",
+      "itemId": "itm-CSV-0074",
+      "at": "2026-10-13T09:06:30.134Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -38496,5 +38556,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T09:06:18.251Z"
+  "updatedAt": "2026-10-13T09:06:30.134Z"
 }

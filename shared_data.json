@@ -13931,74 +13931,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0108",
-      "name": "Plaque 96 puits applied OPTIQUE",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "plaques",
-      "minStock": 0.5,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Plaque 96"
-      ],
-      "notes": "Conditionnement : 20\nApplied Biosystems™ Plaque de réaction optique MicroAmp™ à 96 puits avec code-barres",
-      "references": {
-        "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "10407314",
-          "link": "https://www.fishersci.fr/shop/products/applied-biosystems-microamp-optical-96-well-reaction-plate-barcode-4/p-4918085",
-          "notes": "200",
-          "price": "200",
-          "unitPrice": "10",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-07-28T13:03:38.092Z",
-      "createdAt": "28/07/2026 15:03",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "plaque",
-            "singular": "plaque",
-            "plural": "plaques",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "plaque",
-        "trackingUnit": "plaques",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-22zmsq",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0109",
       "name": "support de Plaque 96 puits applied Veriflex",
       "category": "Culture Cell",
@@ -30699,6 +30631,12 @@
     }
   ],
   "history": [
+    {
+      "date": "13/10/2026 11:37",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Plaque 96 puits applied OPTIQUE de l'inventaire."
+    },
     {
       "date": "13/10/2026 11:37",
       "user": "Elina",

@@ -9992,8 +9992,8 @@
       "id": "itm-web-1783931436295-nfh67s",
       "name": "Plaque 6 puits ULA Dutscher",
       "category": "Culture Cell",
-      "quantity": 5.5,
-      "unit": "plaques",
+      "quantity": 4,
+      "unit": "Cartons",
       "minStock": 0,
       "location": "Bureau",
       "locations": [
@@ -10030,24 +10030,39 @@
       "createdAt": "18/08/2026 09:31",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
             "key": "plaque",
             "singular": "plaque",
             "plural": "plaques",
             "kind": "discrete",
-            "contains": 1
+            "contains": 24
           }
         ],
         "trackingUnitKey": "plaque",
         "trackingUnit": "plaques",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 4,
+            "updatedAt": "2026-10-13T08:57:07.479Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -30196,6 +30211,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 10:57",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque 6 puits ULA Dutscher."
+    },
+    {
       "id": "history-operation-mv6g2ha7-3974719034-1207013529",
       "operationId": "operation-mv6g2ha7-3974719034-1207013529",
       "date": "13/10/2026 10:54",
@@ -37764,6 +37785,42 @@
       "toLocation": "Bureau",
       "comment": "Inventaire du 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv6g6avu-1852232621-3620488944",
+      "operationId": "migration-mv6g6avu-3679714221-1170307900",
+      "itemId": "itm-web-1783931436295-nfh67s",
+      "timestamp": "2026-10-13T08:57:07.482Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "corrected",
+      "entityType": "item",
+      "entityId": "itm-web-1783931436295-nfh67s",
+      "before": {
+        "mode": "simple",
+        "quantity": 5.5
+      },
+      "after": {
+        "mode": "containers",
+        "equivalentQuantity": 4,
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 4,
+            "updatedAt": "2026-10-13T08:57:07.479Z",
+            "updatedBy": "elina"
+          }
+        ],
+        "openContainers": []
+      },
+      "quantity": -36,
+      "unit": "plaques",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+      "correctionReason": "Correction après comptage"
     }
   ],
   "sourcingPatients": [],
@@ -38214,5 +38271,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:54:10.333Z"
+  "updatedAt": "2026-10-13T08:57:07.484Z"
 }

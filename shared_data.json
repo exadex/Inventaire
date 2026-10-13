@@ -117,6 +117,86 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791881388576",
+      "name": "Plaques 96 puits ULA",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "Carton",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-7b08d49d-6ec6-4b92-97bb-4da46b22ef1e",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Costar",
+          "reference": "7007",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-10-13T08:49:48.576Z",
+      "createdAt": "13/10/2026 10:49",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 24
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 1,
+            "updatedAt": "2026-10-13T08:49:48.576Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791811954343",
       "name": "boites carrées",
       "category": "Procédé ExAdEx L2",
@@ -29971,6 +30051,12 @@
   ],
   "history": [
     {
+      "date": "13/10/2026 10:49",
+      "user": "Elina",
+      "action": "Item ajouté",
+      "detail": "Elina a ajouté Plaques 96 puits ULA dans Procédé ExAdEx L2."
+    },
+    {
       "id": "history-operation-mv6frrqu-1760423295-2325313801",
       "operationId": "operation-mv6frrqu-1760423295-2325313801",
       "date": "13/10/2026 10:45",
@@ -37700,5 +37786,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-13T08:45:51.950Z"
+  "updatedAt": "2026-10-13T08:49:48.578Z"
 }

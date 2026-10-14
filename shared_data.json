@@ -19542,41 +19542,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0171",
-      "name": "pochette carton",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-cs3ilk",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0174",
       "name": "Pince à bouts plats, arrondis, acier inoxydable",
       "category": "Bureautique",
@@ -28783,6 +28748,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:40",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé pochette carton de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:40",
       "user": "Elina",

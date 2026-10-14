@@ -117,71 +117,6 @@
   },
   "inventoryItems": [
     {
-      "id": "web-1791961930510",
-      "name": "test",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 1,
-      "unit": "1",
-      "minStock": 1,
-      "usageProfile": "normal",
-      "placements": [
-        {
-          "id": "placement-cd633eb0-781f-45b0-b187-f9144990bbae",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "locations": [
-        "Bureau"
-      ],
-      "location": "Bureau",
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "createdAtRaw": "2026-10-14T07:12:10.511Z",
-      "createdAt": "14/10/2026 09:12",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "detailed",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "custom-1",
-            "singular": "1",
-            "plural": "1s",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "custom-1",
-        "trackingUnit": "1",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "source": "web"
-    },
-    {
       "id": "web-1791884856174",
       "name": "Réservoir à réactifs",
       "category": "Biomol",
@@ -30817,6 +30752,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:12",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé test de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:12",
       "user": "Enora",

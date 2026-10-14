@@ -12255,43 +12255,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0091",
-      "name": "Masque médical OP-AIR à élastiques Type II bleu",
-      "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Masque"
-      ],
-      "notes": "Conditionnement : 960",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "475407",
-          "link": "",
-          "notes": "HA.02",
-          "price": "113,1",
-          "unitPrice": "0,1178125",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-nn1rx1",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0092",
       "name": "Masque De Protection Respiratoire Jetable 3 plis",
       "category": "Culture Cell",
@@ -29388,6 +29351,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:42",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Masque médical OP-AIR à élastiques Type II bleu de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:42",
       "user": "Enora",

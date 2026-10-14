@@ -13897,41 +13897,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-wq3bza",
-      "name": "TB Green qPCR Premix Ex Taq II (Tli RNaseH Plus) (5 x 5 ml)",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "mL",
-      "minStock": 0,
-      "location": "-20°C blanc labo",
-      "locations": [
-        "-20°C blanc labo"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.takarabio.com/products/real-time-pcr/real-time-pcr-kits/dye-based-qpcr-mixes/tb-green-premix-ex-taq-ii-(tli-rnase-h-plus)?catalog=RR820A",
-          "notes": "162",
-          "price": "162",
-          "unitPrice": "6,75",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1xtbgrx",
-          "roomId": "room-laboratoire",
-          "locationId": "location-20-blanc-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-hx14gm",
       "name": "Film plaque qPCR",
       "category": "Biomol",
@@ -29133,6 +29098,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:47",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé TB Green qPCR Premix Ex Taq II (Tli RNaseH Plus) (5 x 5 ml) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:46",
       "user": "Enora",

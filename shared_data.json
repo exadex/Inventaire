@@ -19682,41 +19682,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0180",
-      "name": "Portoir Unirack PCR double face coloris bleu",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "8,8",
-          "price": "8,8",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-zln534",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0184",
       "name": "Blouse L2",
       "category": "Bureautique",
@@ -28888,6 +28853,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:38",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Portoir Unirack PCR double face coloris bleu de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:33",
       "user": "Enora",

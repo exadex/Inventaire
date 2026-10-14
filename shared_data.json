@@ -6954,73 +6954,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436294-t9aqbd",
-      "name": "Rosiglithazone (BRL 49653)",
-      "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "-20°C culture L1",
-      "locations": [
-        "-20°C culture L1"
-      ],
-      "tags": [
-        "BRL"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "49653",
-          "link": "",
-          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T11:34:33.229Z",
-      "createdAt": "10/08/2026 13:34",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-5x271o",
-          "roomId": "room-culture-l1",
-          "locationId": "location-20-culture-l1",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436294-s698y8",
       "name": "Dexamethasone (PM : 392.46)",
       "category": "Culture Cell",
@@ -29836,6 +29769,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:35",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Rosiglithazone (BRL 49653) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:34",
       "user": "Enora",

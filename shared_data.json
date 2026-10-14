@@ -20643,72 +20643,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0177",
-      "name": "Portoir pour tubes coniques 50 ml SPL - 132,7 x 249,7 x 48,1 mm",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "330133",
-          "link": "https://www.dutscher.com/article/330133",
-          "notes": "23,3",
-          "price": "23,3",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785226360650-wy85d7",
-      "createdAtRaw": "2026-08-10T11:16:17.662Z",
-      "createdAt": "10/08/2026 13:16",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-1gruqz6",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0178",
       "name": "Portoir multifonctions tubes de culture",
       "category": "Bureautique",
@@ -30090,6 +30024,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:24",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Portoir pour tubes coniques 50 ml SPL - 132,7 x 249,7 x 48,1 mm de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:23",
       "user": "Enora",

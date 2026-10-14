@@ -19577,41 +19577,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0172",
-      "name": "Minuteur 3 canaux",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "17",
-          "price": "17",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1ry3951",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0174",
       "name": "Pince à bouts plats, arrondis, acier inoxydable",
       "category": "Bureautique",
@@ -28923,6 +28888,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:33",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Minuteur 3 canaux de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:24",
       "user": "Enora",

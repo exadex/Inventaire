@@ -13719,41 +13719,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-ujjokf",
-      "name": "Smart ladder",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "-20°C blanc labo",
-      "locations": [
-        "-20°C blanc labo"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.eurogentec.com/en/catalog/smartladder-200-to-10000-bp~62cddba9-b196-47b3-bec0-c700aed35e2e",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-nfbvou",
-          "roomId": "room-laboratoire",
-          "locationId": "location-20-blanc-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-qhaqqq",
       "name": "Tampon TAE UltraPure™, 10X",
       "category": "Biomol",
@@ -29277,6 +29242,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:44",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Smart ladder de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:43",
       "user": "Enora",

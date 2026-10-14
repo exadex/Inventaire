@@ -19612,41 +19612,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0178",
-      "name": "Portoir multifonctions tubes de culture",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "tubes",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "7,9",
-          "price": "7,9",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1bxe333",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0184",
       "name": "Blouse L2",
       "category": "Bureautique",
@@ -28818,6 +28783,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:40",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Portoir multifonctions tubes de culture de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:39",
       "user": "Enora",

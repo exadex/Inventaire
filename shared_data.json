@@ -8544,43 +8544,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-wyurz7",
-      "name": "PBS poche cytiva Sangamo (a aliquoter en stérile dans bouteilles 250mL attention P/S)",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "L",
-      "minStock": 0,
-      "location": "Chambre froide",
-      "locations": [
-        "Chambre froide"
-      ],
-      "tags": [
-        "Milieu PBS"
-      ],
-      "notes": "Conditionnement : 5L",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1a5cuqw",
-          "roomId": "room-chambre-froide",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-4yhraf",
       "name": "3-Isobutyl-1-methylxanthine (IBMX)",
       "category": "Culture Cell",
@@ -29170,6 +29133,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:46",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé PBS poche cytiva Sangamo (a aliquoter en stérile dans bouteilles 250mL attention P/S) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:46",
       "user": "Enora",

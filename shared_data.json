@@ -3817,80 +3817,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0028",
-      "name": "Blouse jetable ENDO protectlab taille XL",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Culture L1",
-      "locations": [
-        "Culture L1",
-        "Culture L2"
-      ],
-      "tags": [
-        "Blouse"
-      ],
-      "notes": "50",
-      "references": {
-        "primary": {
-          "supplier": "Labotienda",
-          "reference": "RBB019",
-          "link": "https://www.labotienda.com/fr/produits-laboratoire/blouse-jetable-taille-xl-blanche-1-pc/",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "",
-          "unitPrice": "0",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T11:17:11.054Z",
-      "createdAt": "10/08/2026 13:17",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-ujyxo0",
-          "roomId": "room-culture-l1",
-          "locationId": null,
-          "sublocationId": null
-        },
-        {
-          "id": "placement-legacy-1kdwrv2",
-          "roomId": "room-culture-l2",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0029",
       "name": "CELL CULTURE FLASK, 250 ML, 75 CM², PS, CLEAR, CELLSTAR®, CELL-REPELLENT SURFACE, WHITE FILTER SCREW CAP",
       "category": "Procédé ExAdEx L2",
@@ -29566,6 +29492,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:41",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Blouse jetable ENDO protectlab taille XL de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:40",
       "user": "Enora",

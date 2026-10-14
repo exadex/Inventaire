@@ -2971,43 +2971,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0010",
-      "name": "Pour milieu + PBS ? Chercher REF",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 2,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Antibiotique"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1pk7d3q",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0012",
       "name": "Gentamicine (10 mg/ml)",
       "category": "Procédé ExAdEx L2",
@@ -29425,6 +29388,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:42",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Pour milieu + PBS ? Chercher REF de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:41",
       "user": "Enora",

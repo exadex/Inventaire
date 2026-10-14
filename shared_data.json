@@ -19472,41 +19472,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0169",
-      "name": "Pile multicanaux",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1wn9d0d",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0184",
       "name": "Blouse L2",
       "category": "Bureautique",
@@ -28678,6 +28643,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:43",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Pile multicanaux de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:41",
       "user": "Elina",

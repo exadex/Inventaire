@@ -18254,72 +18254,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-vcgdft",
-      "name": "Membranes rouges microscopie moyennes (4,5mm diameter)",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "Grace Bio-Labs wells, 12 (Round, 4.5mm diameter, 0.5mm depth)",
-      "references": {
-        "primary": {
-          "supplier": "Merck",
-          "reference": "GBL664506",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664506",
-          "notes": "6",
-          "price": "6",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-mg5m6h",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785225250289-lwwcas",
-      "createdAtRaw": "2026-08-10T15:32:03.63Z",
-      "createdAt": "10/08/2026 17:32",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-web-1783931436295-riizb7",
       "name": "Membranes rouges microscopie petites (2mm diameter)",
       "category": "Microscopie",
@@ -30358,6 +30292,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:21",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Membranes rouges microscopie moyennes (4,5mm diameter) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:21",
       "user": "Enora",

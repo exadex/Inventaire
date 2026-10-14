@@ -16297,72 +16297,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-71mz7l",
-      "name": "HUMAN DPP4 QPCR PRIMER PAIRS",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Interchim",
-          "reference": "UMW830",
-          "link": "https://www.interchim.com/rapid_search.php",
-          "notes": "196",
-          "price": "196",
-          "unitPrice": "9,8",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-19qjwgk",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785226434410-vklt4o",
-      "createdAtRaw": "2026-08-10T16:03:59.455Z",
-      "createdAt": "10/08/2026 18:03",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-web-1783931436295-2tzybk",
       "name": "Film adhésif AeraSeal™ stérile",
       "category": "Biomol",
@@ -30621,6 +30555,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:19",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé HUMAN DPP4 QPCR PRIMER PAIRS de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:19",
       "user": "Enora",

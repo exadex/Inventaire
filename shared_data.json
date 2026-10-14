@@ -14324,41 +14324,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-na9gtw",
-      "name": "ETOH",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-gkzsej",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-ebldnh",
       "name": "Triton x-100",
       "category": "Biomol",
@@ -29242,6 +29207,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:45",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé ETOH de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:44",
       "user": "Enora",

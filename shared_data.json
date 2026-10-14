@@ -19857,41 +19857,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0183",
-      "name": "Economical box for 100 microscope slides (White)",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "12,7",
-          "price": "12,7",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-14tg27x",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0184",
       "name": "Blouse L2",
       "category": "Bureautique",
@@ -29063,6 +29028,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:22",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Economical box for 100 microscope slides (White) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:47",
       "user": "Enora",

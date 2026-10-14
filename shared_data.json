@@ -15301,41 +15301,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-idc514",
-      "name": "eagle medium sans glu",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "22",
-          "price": "22",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1dyqmo8",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-2rzmhw",
       "name": "Liberase TL res Grade",
       "category": "Biomol",
@@ -28433,6 +28398,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:47",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé eagle medium sans glu de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:46",
       "user": "Elina",

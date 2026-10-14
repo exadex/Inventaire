@@ -7423,9 +7423,7 @@
         "closedByLocation": [
           {
             "location": "Culture L1",
-            "quantity": 1,
-            "updatedAt": "2026-08-25T13:23:50.071Z",
-            "updatedBy": "Caroline"
+            "quantity": 1
           }
         ],
         "closedContainers": [
@@ -29906,6 +29904,12 @@
   ],
   "history": [
     {
+      "date": "14/10/2026 09:32",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Acide ascorbique."
+    },
+    {
       "date": "14/10/2026 09:30",
       "user": "Enora",
       "action": "Item modifié",
@@ -39553,5 +39557,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-14T07:30:45.088Z"
+  "updatedAt": "2026-10-14T07:32:03.163Z"
 }

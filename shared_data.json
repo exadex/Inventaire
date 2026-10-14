@@ -12812,73 +12812,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0097",
-      "name": "F10HAM",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "mL",
-      "minStock": 1,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo"
-      ],
-      "tags": [
-        "Milieu"
-      ],
-      "notes": "Conditionnement : 500 ml",
-      "references": {
-        "primary": {
-          "supplier": "Merck",
-          "reference": "N6908",
-          "link": "",
-          "notes": "121",
-          "price": "121",
-          "unitPrice": "0,24",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785225250289-lwwcas",
-      "createdAtRaw": "2026-07-28T13:02:55.468Z",
-      "createdAt": "28/07/2026 15:02",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-1099xzw",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0098",
       "name": "Formoterol fumarate dihydrate",
       "category": "Culture Cell",
@@ -29903,6 +29836,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:34",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé F10HAM de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:32",
       "user": "Enora",

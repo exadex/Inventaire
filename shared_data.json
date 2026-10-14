@@ -19507,41 +19507,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0170",
-      "name": "pile plate",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "plaques",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1vge1sn",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0184",
       "name": "Blouse L2",
       "category": "Bureautique",
@@ -28713,6 +28678,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:41",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé pile plate de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:40",
       "user": "Elina",

@@ -17052,41 +17052,6 @@
       "supplierContactId": "contact-1785239056045-dnjj9a"
     },
     {
-      "id": "itm-web-1783931436295-l5lcx8",
-      "name": "capillaire /tube hematocrite 1,5 mm dia/ 75 mm long",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "tubes",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "20",
-          "price": "20",
-          "unitPrice": "0,2",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1m2ld7x",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0114",
       "name": "16 % aldéhyde formique (p/v) Pierce™, sans méthanol",
       "category": "Microscopie",
@@ -28468,6 +28433,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:46",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé capillaire /tube hematocrite 1,5 mm dia/ 75 mm long de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:46",
       "user": "Elina",

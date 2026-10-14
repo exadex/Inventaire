@@ -17087,41 +17087,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-cdcmee",
-      "name": "Grace Bio-Labs FastWells 9 mm diam. x 1.0 mm depth",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664112",
-          "notes": "61",
-          "price": "61",
-          "unitPrice": "6,1",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-ejijvq",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0114",
       "name": "16 % aldéhyde formique (p/v) Pierce™, sans méthanol",
       "category": "Microscopie",
@@ -28503,6 +28468,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:46",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Grace Bio-Labs FastWells 9 mm diam. x 1.0 mm depth de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:46",
       "user": "Elina",

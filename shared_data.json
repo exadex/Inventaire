@@ -19647,41 +19647,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0179",
-      "name": "Marqueur noir ultra fin",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "4,6",
-          "price": "4,6",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1h24c6o",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0184",
       "name": "Blouse L2",
       "category": "Bureautique",
@@ -28853,6 +28818,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:39",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Marqueur noir ultra fin de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:38",
       "user": "Enora",

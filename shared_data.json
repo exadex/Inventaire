@@ -13121,73 +13121,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0102",
-      "name": "Sodium Acetate Solution",
-      "category": "Culture Cell",
-      "quantity": 2,
-      "unit": "unités",
-      "minStock": 1,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Milieu"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Merck",
-          "reference": "71196-100 ml",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/71196",
-          "notes": "253",
-          "price": "253",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785225250289-lwwcas",
-      "createdAtRaw": "2026-07-28T13:03:18.533Z",
-      "createdAt": "28/07/2026 15:03",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-ywe1n2",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0105",
       "name": "insert culture plaque 24 puits 0,4µm",
       "category": "Culture Cell",
@@ -29633,6 +29566,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:40",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Sodium Acetate Solution de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:39",
       "user": "Enora",

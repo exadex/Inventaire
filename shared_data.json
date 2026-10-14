@@ -19647,41 +19647,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0175",
-      "name": "Cryoboîte blanche en carton ClearLine® - capacité : 100 cryotubes - recouverte d'un film étanche",
-      "category": "Bureautique",
-      "quantity": 0,
-      "unit": "tubes",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "6",
-          "price": "6",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1a0xbmk",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0178",
       "name": "Portoir multifonctions tubes de culture",
       "category": "Bureautique",
@@ -28958,6 +28923,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 11:24",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Cryoboîte blanche en carton ClearLine® - capacité : 100 cryotubes - recouverte d'un film étanche de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:23",
       "user": "Enora",

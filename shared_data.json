@@ -18487,72 +18487,6 @@
       }
     },
     {
-      "id": "itm-CSV-0116",
-      "name": "Lames microscopie",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "Lames Star - Frost porte - objet 76 x 26 mm version standard coloris bleu",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "100204B",
-          "link": "https://www.dutscher.com/article/100204B",
-          "notes": "15",
-          "price": "15",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-6h8b9j",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785226360650-wy85d7",
-      "createdAtRaw": "2026-08-10T15:37:46.238Z",
-      "createdAt": "10/08/2026 17:37",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-CSV-0117",
       "name": "Rat IgG1 Isotype Control",
       "category": "Microscopie",
@@ -30424,6 +30358,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:21",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Lames microscopie de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:20",
       "user": "Enora",

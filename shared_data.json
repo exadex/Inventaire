@@ -3978,43 +3978,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0039",
-      "name": "3 voies seuls, rotation 360° (boite de 100)",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Robinet"
-      ],
-      "notes": "100",
-      "references": {
-        "primary": {
-          "supplier": "distrimed",
-          "reference": "70334 ou 92831",
-          "link": "https://www.distrimed.com/product_info.php?products_id=8067",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "50",
-          "unitPrice": "0,5",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-88q2nt",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0040",
       "name": "Robinet Blanc 3 voies BD Connecta - Boîte de 100",
       "category": "Procédé ExAdEx L2",
@@ -29207,6 +29170,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:46",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé 3 voies seuls, rotation 360° (boite de 100) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:45",
       "user": "Enora",

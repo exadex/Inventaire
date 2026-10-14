@@ -13460,41 +13460,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-s3423n",
-      "name": "M-MLV RT (5)",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://france.promega.com/products/pcr/rt-pcr/m-mlv-reverse-transcriptase/?catNum=M1705",
-          "notes": "250",
-          "price": "250",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1gq4ip6",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-f3pe9l",
       "name": "OneScript RT Mix for qPCR w/gDNAOut (OwiScript)",
       "category": "Biomol",
@@ -28398,6 +28363,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 12:02",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé M-MLV RT (5) de l'inventaire."
+    },
     {
       "date": "14/10/2026 11:47",
       "user": "Elina",

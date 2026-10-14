@@ -117,6 +117,77 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1791962894471",
+      "name": "Heparin",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "Vial",
+      "minStock": 0,
+      "usageProfile": "routine",
+      "placements": [
+        {
+          "id": "placement-af7ca576-2d82-4922-b261-0cbc222e621d",
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
+          "sublocationId": "sublocation-a82f2ba1-6482-4d6c-8ea8-f589a1486d4a"
+        }
+      ],
+      "locations": [
+        "-20°C 2 salle -80"
+      ],
+      "location": "-20°C 2 salle -80",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Promocell",
+          "reference": "C-22111",
+          "link": "",
+          "notes": "Compris dans le Medium Kit (basal medium + individual supplements)",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": [
+          {
+            "reference": "Sigma - H3149",
+            "notes": "Héparine de la même origine que celle de chez Promocell. Convertir les unités en mg"
+          }
+        ]
+      },
+      "supplierContactId": "contact-1785238740524-xc8swm",
+      "createdAtRaw": "2026-10-14T07:28:14.471Z",
+      "createdAt": "14/10/2026 09:28",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "custom-vial",
+            "singular": "vial",
+            "plural": "vials",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "custom-vial",
+        "trackingUnit": "Vial",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1791884856174",
       "name": "Réservoir à réactifs",
       "category": "Biomol",
@@ -29888,6 +29959,12 @@
   ],
   "history": [
     {
+      "date": "14/10/2026 09:28",
+      "user": "Enora",
+      "action": "Item ajouté",
+      "detail": "Enora a ajouté Heparin dans Procédé ExAdEx L2."
+    },
+    {
       "date": "14/10/2026 09:24",
       "user": "Enora",
       "action": "Item supprimé",
@@ -39517,5 +39594,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-14T07:12:10.516Z"
+  "updatedAt": "2026-10-14T07:28:14.475Z"
 }

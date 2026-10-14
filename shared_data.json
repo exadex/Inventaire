@@ -15441,41 +15441,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-6ix9f4",
-      "name": "CCT 031374 hydrobromide",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "170",
-          "price": "170",
-          "unitPrice": "17€/mg",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1xgichb",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-k54ct9",
       "name": "Glycogen 20mg/ml",
       "category": "Biomol",
@@ -29098,6 +29063,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:47",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé CCT 031374 hydrobromide de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:47",
       "user": "Enora",

@@ -16847,71 +16847,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-20id4b",
-      "name": "Apo -Transferrine humain",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.thermofisher.com/order/catalog/product/21331046",
-          "notes": "166",
-          "price": "166",
-          "unitPrice": "16",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1oe7cji",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-08-10T15:59:35.958Z",
-      "createdAt": "10/08/2026 17:59",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-web-1783931436295-2sp16r",
       "name": "Glut 4",
       "category": "Microscopie",
@@ -30555,6 +30490,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:20",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Apo -Transferrine humain de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:19",
       "user": "Enora",

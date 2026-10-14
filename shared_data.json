@@ -3639,43 +3639,6 @@
       }
     },
     {
-      "id": "itm-CSV-0026",
-      "name": "CELLDISC, 4 LAYER, 1000 CM², PS, CLEAR, TC, STANDARD SCREW CAP RED, STERILE",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "celldisc"
-      ],
-      "notes": "ECHANTILLON",
-      "references": {
-        "primary": {
-          "supplier": "Greiner bio",
-          "reference": "678104",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "ECHANTILLON",
-          "unitPrice": "ECHANTILLON",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1fscdzf",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0027",
       "name": "Blouse jetable X30 IC 270B WS Labcoat LG (Sterile­only, Double bag)",
       "category": "Procédé ExAdEx L2",
@@ -29351,6 +29314,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:43",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé CELLDISC, 4 LAYER, 1000 CM², PS, CLEAR, TC, STANDARD SCREW CAP RED, STERILE de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:42",
       "user": "Enora",

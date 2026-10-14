@@ -7376,7 +7376,7 @@
       "tags": [
         "Acide Ascorbique"
       ],
-      "notes": "Conditionnement : 100g\n(+)-Sodium L-ascorbate",
+      "notes": "Conditionnement : 100g\n(+)-Sodium L-ascorbate\n\nPoudre à peser, diluer et aliquoter pour une conservation à -20°C",
       "references": {
         "primary": {
           "supplier": "Merck",
@@ -7390,7 +7390,7 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785225250289-lwwcas",
       "createdAtRaw": "2026-08-10T11:29:44.606Z",
       "createdAt": "10/08/2026 13:29",
@@ -7428,7 +7428,21 @@
             "updatedBy": "Caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436294-1cbqkj-culture-l1-1",
+            "label": "vial fermé nº1",
+            "location": "Culture L1",
+            "remaining": 100,
+            "capacity": 100,
+            "unitKey": "g",
+            "status": "closed",
+            "createdAt": "2026-08-25T13:23:50.071Z",
+            "updatedAt": "2026-08-25T13:23:50.071Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -29892,6 +29906,12 @@
   ],
   "history": [
     {
+      "date": "14/10/2026 09:30",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Acide ascorbique."
+    },
+    {
       "date": "14/10/2026 09:28",
       "user": "Enora",
       "action": "Item supprimé",
@@ -39533,5 +39553,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-14T07:28:14.475Z"
+  "updatedAt": "2026-10-14T07:30:45.088Z"
 }

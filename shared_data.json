@@ -13256,74 +13256,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0104",
-      "name": "MEM Non-Essential Amino Acids Solution (100X)",
-      "category": "Culture Cell",
-      "quantity": 6,
-      "unit": "unités",
-      "minStock": 1,
-      "location": "Frigo labo",
-      "locations": [
-        "Frigo labo"
-      ],
-      "tags": [
-        "Milieu MEM"
-      ],
-      "notes": "MEM nea 100X",
-      "references": {
-        "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "11140-035",
-          "link": "https://www.thermofisher.com/order/catalog/product/fr/en/11140035",
-          "notes": "293",
-          "price": "293",
-          "unitPrice": "29,3",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
-      "createdAtRaw": "2026-08-10T11:28:43.974Z",
-      "createdAt": "10/08/2026 13:28",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-jk0pfh",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0105",
       "name": "insert culture plaque 24 puits 0,4µm",
       "category": "Culture Cell",
@@ -29769,6 +29701,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:39",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé MEM Non-Essential Amino Acids Solution (100X) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:35",
       "user": "Enora",

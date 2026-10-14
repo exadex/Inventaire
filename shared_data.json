@@ -3639,43 +3639,6 @@
       }
     },
     {
-      "id": "itm-CSV-0027",
-      "name": "Blouse jetable X30 IC 270B WS Labcoat LG (Sterile­only, Double bag)",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Blouse"
-      ],
-      "notes": "30",
-      "references": {
-        "primary": {
-          "supplier": "Fisher scientific",
-          "reference": "",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "198",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-clnfnw",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0029",
       "name": "CELL CULTURE FLASK, 250 ML, 75 CM², PS, CLEAR, CELLSTAR®, CELL-REPELLENT SURFACE, WHITE FILTER SCREW CAP",
       "category": "Procédé ExAdEx L2",
@@ -29314,6 +29277,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:43",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Blouse jetable X30 IC 270B WS Labcoat LG (Sterile­only, Double bag) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:43",
       "user": "Enora",

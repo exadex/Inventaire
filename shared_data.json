@@ -18254,72 +18254,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-riizb7",
-      "name": "Membranes rouges microscopie petites (2mm diameter)",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "Grace Bio-Labswells, 24 (Round, 2mm diameter, 0.5mm depth)",
-      "references": {
-        "primary": {
-          "supplier": "Merck",
-          "reference": "GBL664508",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/gbl664508",
-          "notes": "30",
-          "price": "30",
-          "unitPrice": "0,03",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-p7amkm",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785225250289-lwwcas",
-      "createdAtRaw": "2026-08-10T15:31:38.799Z",
-      "createdAt": "10/08/2026 17:31",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-CSV-0113",
       "name": "oct componoun tissue",
       "category": "Microscopie",
@@ -30292,6 +30226,12 @@
     }
   ],
   "history": [
+    {
+      "date": "14/10/2026 09:22",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Membranes rouges microscopie petites (2mm diameter) de l'inventaire."
+    },
     {
       "date": "14/10/2026 09:21",
       "user": "Enora",

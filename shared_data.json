@@ -15594,11 +15594,10 @@
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
-        "Laboratoire",
-        "Laboratoire → Placards"
+        "Laboratoire"
       ],
       "tags": [],
-      "notes": "Contient la solution de PicroSirius + acide acétique",
+      "notes": "Contient la solution de PicroSirius + acide acétique\nVolume approximatif ",
       "references": {
         "primary": {
           "supplier": "Abcam",
@@ -28270,6 +28269,12 @@
   ],
   "history": [
     {
+      "date": "15/10/2026 11:58",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Picro Sirius Red Stain Kit."
+    },
+    {
       "id": "history-operation-mv9d7rky-3918279385-3225025879",
       "operationId": "operation-mv9d7rky-3918279385-3225025879",
       "date": "15/10/2026 11:57",
@@ -38299,5 +38304,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T09:57:36.595Z"
+  "updatedAt": "2026-10-15T09:58:23.725Z"
 }

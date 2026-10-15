@@ -80,6 +80,12 @@
         "roomId": "room-culture-l1",
         "name": "Salle culture L1",
         "icon": "📍"
+      },
+      {
+        "id": "location-122ecaf5-d904-4ca4-b655-40a8ffc70952",
+        "roomId": "room-laboratoire",
+        "name": "Placards",
+        "icon": "📍"
       }
     ],
     "sublocations": [
@@ -28233,6 +28239,12 @@
   ],
   "history": [
     {
+      "date": "15/10/2026 11:56",
+      "user": "Elina",
+      "action": "Localisation ajoutée",
+      "detail": "Elina a ajouté Placards."
+    },
+    {
       "date": "15/10/2026 11:53",
       "user": "Enora",
       "action": "Item modifié",
@@ -38162,5 +38174,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T09:53:22.637Z"
+  "updatedAt": "2026-10-15T09:56:16.605Z"
 }

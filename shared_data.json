@@ -15644,7 +15644,7 @@
         "quantityStep": 1,
         "precision": 6,
         "closedByLocation": [],
-        "closedContainers": null,
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28239,6 +28239,12 @@
       "detail": "Enora a modifié Picro Sirius Red Stain Kit."
     },
     {
+      "date": "15/10/2026 10:39",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Picro Sirius Red Stain Kit."
+    },
+    {
       "date": "15/10/2026 10:36",
       "user": "Enora",
       "action": "Item supprimé",
@@ -38150,5 +38156,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T08:39:03.388Z"
+  "updatedAt": "2026-10-15T08:39:30.048Z"
 }

@@ -15589,12 +15589,13 @@
       "id": "itm-web-1783931436295-9q0nut",
       "name": "Picro Sirius Red Stain Kit",
       "category": "Microscopie",
-      "quantity": 0,
+      "quantity": 0.4,
       "unit": "Bouteille",
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
-        "Laboratoire"
+        "Laboratoire",
+        "Laboratoire → Placards"
       ],
       "tags": [],
       "notes": "Contient la solution de PicroSirius + acide acétique",
@@ -15651,7 +15652,37 @@
         "precision": 6,
         "closedByLocation": [],
         "closedContainers": [],
-        "openContainers": []
+        "openContainers": [
+          {
+            "id": "closed-container-mv9d7sgj-309549141-4036297507",
+            "label": "bouteille ouvert",
+            "location": "Laboratoire → Placards",
+            "roomId": "room-laboratoire",
+            "locationId": "location-122ecaf5-d904-4ca4-b655-40a8ffc70952",
+            "sublocationId": "",
+            "remaining": 100,
+            "capacity": 250,
+            "unitKey": "mL",
+            "status": "open",
+            "createdAt": "2026-10-15T09:57:36.595Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-15T09:57:36.595Z",
+            "updatedBy": "elina",
+            "version": 1,
+            "openedAt": "2026-10-15T09:57:36.595Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            }
+          }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -28239,6 +28270,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mv9d7rky-3918279385-3225025879",
+      "operationId": "operation-mv9d7rky-3918279385-3225025879",
+      "date": "15/10/2026 11:57",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Picro Sirius Red Stain Kit · Stock précédent : 0 bouteilles · Stock compté : 0,4 bouteilles · Écart : +0,4 bouteilles · Note : Inventaire 15/10/2026 - Volumes approximatif",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-9q0nut",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 0.4,
+      "difference": 0.4,
+      "unit": "bouteilles",
+      "note": "Inventaire 15/10/2026 - Volumes approximatif"
+    },
+    {
       "date": "15/10/2026 11:56",
       "user": "Elina",
       "action": "Item modifié",
@@ -37640,6 +37686,73 @@
       "toLocation": "",
       "comment": "Inventaire 13/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mv9d7sgj-374199935-3732467842",
+      "operationId": "operation-mv9d7rky-3918279385-3225025879-closed-container-mv9d7sgj-309549141-4036297507",
+      "itemId": "itm-web-1783931436295-9q0nut",
+      "timestamp": "2026-10-15T09:57:36.595Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mv9d7sgj-309549141-4036297507",
+      "containerId": "closed-container-mv9d7sgj-309549141-4036297507",
+      "containerLabel": "bouteille ouvert",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 0,
+      "afterQuantity": 100,
+      "beforeCapacity": 0,
+      "afterCapacity": 250,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mv9d7sgj-309549141-4036297507",
+        "label": "bouteille ouvert",
+        "location": "Laboratoire → Placards",
+        "roomId": "room-laboratoire",
+        "locationId": "location-122ecaf5-d904-4ca4-b655-40a8ffc70952",
+        "sublocationId": "",
+        "remaining": 100,
+        "capacity": 250,
+        "unitKey": "mL",
+        "status": "open",
+        "createdAt": "2026-10-15T09:57:36.595Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-15T09:57:36.595Z",
+        "updatedBy": "elina",
+        "version": 1,
+        "openedAt": "2026-10-15T09:57:36.595Z",
+        "openedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        }
+      },
+      "quantity": 100,
+      "difference": 100,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Laboratoire → Placards",
+      "comment": "Inventaire 15/10/2026 - Volumes approximatif",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -38099,6 +38212,12 @@
       "itemId": "itm-CSV-0045",
       "at": "2026-10-13T10:04:16.900Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mv9d7rky-3918279385-3225025879",
+      "itemId": "itm-web-1783931436295-9q0nut",
+      "at": "2026-10-15T09:57:36.595Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -38180,5 +38299,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T09:56:45.449Z"
+  "updatedAt": "2026-10-15T09:57:36.595Z"
 }

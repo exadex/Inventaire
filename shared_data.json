@@ -71,8 +71,8 @@
       {
         "id": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
         "roomId": "room-culture-l1",
-        "name": "Frigo culture L1 à l'entré",
-        "icon": "📍",
+        "name": "Frigo culture L1 à l'entrée",
+        "icon": "❄️",
         "order": 0
       },
       {
@@ -3200,6 +3200,18 @@
           {
             "reference": "C-22111",
             "notes": "EGM + suppléments en tubes séparés"
+          },
+          {
+            "reference": "C-22210",
+            "notes": "EGM seul"
+          },
+          {
+            "reference": "C-39210",
+            "notes": "Suppléments en tubes séparés"
+          },
+          {
+            "reference": "C-39215",
+            "notes": "Supplément 2+"
           }
         ]
       },
@@ -3236,9 +3248,7 @@
         "closedByLocation": [
           {
             "location": "Frigo culture L1",
-            "quantity": 7,
-            "updatedAt": "2026-07-27T09:26:58.686Z",
-            "updatedBy": "Elina"
+            "quantity": 7
           }
         ],
         "closedContainers": [
@@ -28269,6 +28279,12 @@
   ],
   "history": [
     {
+      "date": "15/10/2026 16:24",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Endothelial Cell Growth Medium 2."
+    },
+    {
       "date": "15/10/2026 11:58",
       "user": "Elina",
       "action": "Item modifié",
@@ -38304,5 +38320,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T09:58:23.725Z"
+  "updatedAt": "2026-10-15T14:24:33.627Z"
 }

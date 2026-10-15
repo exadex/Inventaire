@@ -15710,41 +15710,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-2sp16r",
-      "name": "Glut 4",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "-20°C blanc labo",
-      "locations": [
-        "-20°C blanc labo"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "92",
-          "price": "92",
-          "unitPrice": "4,6",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1kgx7nl",
-          "roomId": "room-laboratoire",
-          "locationId": "location-20-blanc-labo",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-2km4yc",
       "name": "Prox 1",
       "category": "Microscopie",
@@ -28323,6 +28288,12 @@
     }
   ],
   "history": [
+    {
+      "date": "15/10/2026 10:33",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Glut 4 de l'inventaire."
+    },
     {
       "date": "15/10/2026 10:33",
       "user": "Enora",

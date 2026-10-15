@@ -6733,7 +6733,7 @@
     },
     {
       "id": "itm-web-1783931436294-vseygc",
-      "name": "n-acetyl-L-cysteine",
+      "name": "NAC (N-Acetyl-L-Cysteine)",
       "category": "Culture Cell",
       "quantity": 0,
       "unit": "g",
@@ -6766,7 +6766,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -6782,6 +6782,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28289,6 +28290,12 @@
   ],
   "history": [
     {
+      "date": "15/10/2026 10:35",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié NAC (N-Acetyl-L-Cysteine)."
+    },
+    {
       "date": "15/10/2026 10:33",
       "user": "Enora",
       "action": "Item supprimé",
@@ -38188,5 +38195,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T08:33:43.147Z"
+  "updatedAt": "2026-10-15T08:35:03.767Z"
 }

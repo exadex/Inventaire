@@ -15584,14 +15584,14 @@
       "name": "Picro Sirius Red Stain Kit",
       "category": "Microscopie",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "Bouteille",
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
         "Laboratoire"
       ],
       "tags": [],
-      "notes": "",
+      "notes": "Contient la solution de PicroSirius + acide acétique",
       "references": {
         "primary": {
           "supplier": "Abcam",
@@ -15613,30 +15613,38 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-abcam",
       "createdAtRaw": "2026-08-10T16:05:40.647Z",
       "createdAt": "10/08/2026 18:05",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
+        "mode": "containers",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "mL",
+            "singular": "mL",
+            "plural": "mL",
+            "kind": "continuous",
+            "contains": 250
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "mL",
+        "trackingUnit": "mL",
         "quantityStep": 1,
-        "precision": 0,
+        "precision": 6,
         "closedByLocation": [],
-        "closedContainers": [],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28225,6 +28233,12 @@
   ],
   "history": [
     {
+      "date": "15/10/2026 10:39",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Picro Sirius Red Stain Kit."
+    },
+    {
       "date": "15/10/2026 10:36",
       "user": "Enora",
       "action": "Item supprimé",
@@ -38136,5 +38150,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T08:35:03.767Z"
+  "updatedAt": "2026-10-15T08:39:03.388Z"
 }

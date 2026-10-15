@@ -15646,7 +15646,7 @@
     },
     {
       "id": "itm-web-1783931436295-1j3kur",
-      "name": "Solution Acide acétique ( dans le kit de psr)",
+      "name": "Solution Acide acétique (kit Picro)",
       "category": "Microscopie",
       "quantity": 0,
       "unit": "unités",
@@ -15677,7 +15677,37 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-15T08:33:43.145Z",
+      "createdAt": "15/10/2026 10:33",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-2sp16r",
@@ -28296,6 +28326,12 @@
     {
       "date": "15/10/2026 10:33",
       "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Solution Acide acétique (kit Picro)."
+    },
+    {
+      "date": "15/10/2026 10:33",
+      "user": "Enora",
       "action": "Item supprimé",
       "detail": "Enora a supprimé IFN2A humain de chez Sigma Aldrich de l'inventaire."
     },
@@ -38181,5 +38217,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-14T07:32:03.163Z"
+  "updatedAt": "2026-10-15T08:33:43.147Z"
 }

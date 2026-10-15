@@ -15750,41 +15750,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-nertdf",
-      "name": "IFN2A humain de chez Sigma Aldrich",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/srp4594",
-          "notes": "255",
-          "price": "255",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-187on22",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-2lgkif",
       "name": "PDGF Receptor α (D1E1E) XP® Rabbit mAb #3174",
       "category": "Microscopie",
@@ -28328,6 +28293,12 @@
     }
   ],
   "history": [
+    {
+      "date": "15/10/2026 10:33",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé IFN2A humain de chez Sigma Aldrich de l'inventaire."
+    },
     {
       "date": "15/10/2026 10:32",
       "user": "Enora",

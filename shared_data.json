@@ -15615,7 +15615,7 @@
         {
           "id": "placement-legacy-1hkghq6",
           "roomId": "room-laboratoire",
-          "locationId": null,
+          "locationId": "location-122ecaf5-d904-4ca4-b655-40a8ffc70952",
           "sublocationId": null
         }
       ],
@@ -28241,6 +28241,12 @@
     {
       "date": "15/10/2026 11:56",
       "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Picro Sirius Red Stain Kit."
+    },
+    {
+      "date": "15/10/2026 11:56",
+      "user": "Elina",
       "action": "Localisation ajoutée",
       "detail": "Elina a ajouté Placards."
     },
@@ -38174,5 +38180,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-15T09:56:16.605Z"
+  "updatedAt": "2026-10-15T09:56:45.449Z"
 }

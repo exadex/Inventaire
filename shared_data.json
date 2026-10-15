@@ -17360,41 +17360,6 @@
       }
     },
     {
-      "id": "itm-CSV-0125",
-      "name": "bacterio diam 90 mm avec ou sans ergot sterile",
-      "category": "Qualité",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "",
-          "price": "",
-          "unitPrice": "0,05",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-k7gbwj",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0126",
       "name": "Milieu déshydraté gélose nutritive",
       "category": "Qualité",
@@ -28363,6 +28328,12 @@
     }
   ],
   "history": [
+    {
+      "date": "15/10/2026 10:32",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé bacterio diam 90 mm avec ou sans ergot sterile de l'inventaire."
+    },
     {
       "date": "14/10/2026 12:02",
       "user": "Elina",

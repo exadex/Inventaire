@@ -15646,71 +15646,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-1j3kur",
-      "name": "Solution Acide acétique (kit Picro)",
-      "category": "Microscopie",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "246,82",
-          "price": "246,82",
-          "unitPrice": "1",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-14f8lex",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-10-15T08:33:43.145Z",
-      "createdAt": "15/10/2026 10:33",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "detailed",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-web-1783931436295-2km4yc",
       "name": "Prox 1",
       "category": "Microscopie",
@@ -28289,6 +28224,12 @@
     }
   ],
   "history": [
+    {
+      "date": "15/10/2026 10:36",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Solution Acide acétique (kit Picro) de l'inventaire."
+    },
     {
       "date": "15/10/2026 10:35",
       "user": "Enora",

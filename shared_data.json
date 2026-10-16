@@ -6958,11 +6958,11 @@
       "tags": [
         "BSA"
       ],
-      "notes": "Conditionnement : 25g",
+      "notes": "Conditionnement : 25g ou 10g",
       "references": {
         "primary": {
           "supplier": "merck",
-          "reference": "A6003-25G",
+          "reference": "A6003",
           "link": "https://www.sigmaaldrich.com/FR/fr/product/sigma/a6003",
           "notes": "450",
           "price": "450",
@@ -28668,6 +28668,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:46",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié BSA free fatty acid - pour collagénase."
+    },
+    {
       "date": "16/10/2026 11:45",
       "user": "Enora",
       "action": "Demande créée",
@@ -42306,5 +42312,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:44:37.769Z"
+  "updatedAt": "2026-10-16T09:46:35.455Z"
 }

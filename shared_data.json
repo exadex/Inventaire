@@ -6946,7 +6946,7 @@
     },
     {
       "id": "itm-web-1783931436294-8xgtpz",
-      "name": "BSA free fatty acid 25g",
+      "name": "BSA free fatty acid - pour collagénase",
       "category": "Culture Cell",
       "quantity": 3,
       "unit": "g",
@@ -6979,7 +6979,37 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-16T09:44:37.767Z",
+      "createdAt": "16/10/2026 11:44",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "g",
+            "singular": "g",
+            "plural": "g",
+            "kind": "continuous",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "g",
+        "trackingUnit": "g",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-tnuw1r",
@@ -28616,6 +28646,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:44",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié BSA free fatty acid - pour collagénase."
+    },
+    {
       "date": "16/10/2026 11:43",
       "user": "Enora",
       "action": "Item modifié",
@@ -42242,5 +42278,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:43:32.750Z"
+  "updatedAt": "2026-10-16T09:44:37.769Z"
 }

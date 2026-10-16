@@ -13365,43 +13365,6 @@
       "supplierContactId": "contact-1785226360650-wy85d7"
     },
     {
-      "id": "itm-CSV-0107",
-      "name": "Plaque 6 puits, Repellent, avec LID, stérile",
-      "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "plaques",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Plaque 6"
-      ],
-      "notes": "ECHANTILLON",
-      "references": {
-        "primary": {
-          "supplier": "Greiner bio",
-          "reference": "657970",
-          "link": "",
-          "notes": "ECHANTILLON",
-          "price": "ECHANTILLON",
-          "unitPrice": "ECHANTILLON",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1vho6vt",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0109",
       "name": "support de Plaque 96 puits applied Veriflex",
       "category": "Culture Cell",
@@ -28727,6 +28690,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 10:31",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Plaque 6 puits, Repellent, avec LID, stérile de l'inventaire."
+    },
     {
       "date": "16/10/2026 10:31",
       "user": "Enora",

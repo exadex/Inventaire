@@ -8316,19 +8316,19 @@
     },
     {
       "id": "itm-web-1783931436294-t6s1p3",
-      "name": "DMEM glutamax 1g/L",
+      "name": "DMEM Low glucose + glutamax",
       "category": "Culture Cell",
       "quantity": 5,
-      "unit": "mL",
+      "unit": "Bouteille",
       "minStock": 3,
       "location": "Frigo labo",
       "locations": [
         "Frigo labo"
       ],
       "tags": [
-        "Milieu DMEM"
+        "Prolif hmads"
       ],
-      "notes": "Conditionnement : 500 ml",
+      "notes": "Périmé depuis 2024",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -8349,14 +8349,14 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
             "contains": 1
           }
         ],
@@ -8365,6 +8365,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28690,6 +28691,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:03",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM Low glucose + glutamax."
+    },
+    {
       "date": "16/10/2026 11:02",
       "user": "Enora",
       "action": "Item modifié",
@@ -39263,5 +39270,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:02:14.756Z"
+  "updatedAt": "2026-10-16T09:03:47.604Z"
 }

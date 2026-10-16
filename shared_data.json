@@ -10172,7 +10172,7 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785226360650-wy85d7",
       "createdAtRaw": "2026-08-18T07:31:46.501Z",
       "createdAt": "18/08/2026 09:31",
@@ -10210,7 +10210,60 @@
             "updatedBy": "elina"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-nfh67s-bureau-1",
+            "label": "carton fermé nº1",
+            "location": "Bureau",
+            "remaining": 24,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-10-13T08:57:07.479Z",
+            "updatedAt": "2026-10-13T08:57:07.479Z",
+            "updatedBy": "elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-nfh67s-bureau-2",
+            "label": "carton fermé nº2",
+            "location": "Bureau",
+            "remaining": 24,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-10-13T08:57:07.479Z",
+            "updatedAt": "2026-10-13T08:57:07.479Z",
+            "updatedBy": "elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-nfh67s-bureau-3",
+            "label": "carton fermé nº3",
+            "location": "Bureau",
+            "remaining": 24,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-10-13T08:57:07.479Z",
+            "updatedAt": "2026-10-13T08:57:07.479Z",
+            "updatedBy": "elina",
+            "version": 1
+          },
+          {
+            "id": "closed-itm-web-1783931436295-nfh67s-bureau-4",
+            "label": "carton fermé nº4",
+            "location": "Bureau",
+            "remaining": 24,
+            "capacity": 24,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-10-13T08:57:07.479Z",
+            "updatedAt": "2026-10-13T08:57:07.479Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28586,6 +28639,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:33",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Plaque 6 puits ULA Dutscher."
+    },
+    {
       "date": "16/10/2026 10:32",
       "user": "Enora",
       "action": "Item supprimé",
@@ -39063,5 +39122,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:32:28.748Z"
+  "updatedAt": "2026-10-16T08:33:20.335Z"
 }

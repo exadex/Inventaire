@@ -4550,7 +4550,39 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239645718-kyl2xz",
+      "createdAtRaw": "2026-10-16T13:15:59.423Z",
+      "createdAt": "16/10/2026 15:15",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "flacon",
+            "singular": "flacon",
+            "plural": "flacons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "flacon",
+        "trackingUnit": "flacons",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0031",
@@ -28779,6 +28811,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 15:15",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Flacon pour culture en suspension, 250ml, PS,bch vissant avec filtre blanc, transparent, CELLSTAR."
+    },
+    {
       "id": "history-operation-mvaxwlmq-1219753740-3487845281",
       "operationId": "operation-mvaxwlmq-1219753740-3487845281",
       "date": "16/10/2026 14:24",
@@ -42645,5 +42683,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T12:24:34.022Z"
+  "updatedAt": "2026-10-16T13:15:59.425Z"
 }

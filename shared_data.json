@@ -8086,9 +8086,9 @@
         "Culture L1"
       ],
       "tags": [
-        "Milieu DMEM"
+        "Milieu"
       ],
-      "notes": "Conditionnement : 500 ml\nPERIME DEPUIS 01/2022 !!",
+      "notes": "Conditionnement : 500 ml\nPERIME DEPUIS 01/2022 !!\nL-Glutamine dedans",
       "references": {
         "primary": {
           "supplier": "Merck",
@@ -8135,9 +8135,7 @@
         "closedByLocation": [
           {
             "location": "Frigo labo",
-            "quantity": 2,
-            "updatedAt": "2026-08-11T14:50:54.348Z",
-            "updatedBy": "Caroline"
+            "quantity": 2
           }
         ],
         "closedContainers": [
@@ -28560,6 +28558,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:53",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM - low glucose."
+    },
+    {
       "date": "16/10/2026 10:52",
       "user": "Enora",
       "action": "Item ajouté",
@@ -39091,5 +39095,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:52:24.737Z"
+  "updatedAt": "2026-10-16T08:53:20.068Z"
 }

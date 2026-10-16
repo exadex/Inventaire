@@ -4134,8 +4134,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
+        "trackingUnitKey": "tube",
+        "trackingUnit": "tubes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -28621,6 +28621,12 @@
       "detail": "Enora a modifié EGM SupplementMix 2+ (seul)."
     },
     {
+      "date": "16/10/2026 11:37",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié EGM SupplementMix 2+ (seul)."
+    },
+    {
       "id": "history-operation-mvaru2i9-2699070651-3288190857",
       "operationId": "operation-mvaru2i9-2699070651-3288190857",
       "date": "16/10/2026 11:34",
@@ -42217,5 +42223,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:37:25.881Z"
+  "updatedAt": "2026-10-16T09:37:40.610Z"
 }

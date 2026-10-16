@@ -14818,7 +14818,7 @@
       "id": "itm-web-1783931436295-0te4tf",
       "name": "Glucose Uptake-Glo™ Assay",
       "category": "Biomol",
-      "quantity": 2,
+      "quantity": 3,
       "unit": "kit",
       "minStock": 1,
       "location": "-80°C",
@@ -14881,7 +14881,7 @@
         "closedByLocation": [
           {
             "location": "-80°C",
-            "quantity": 1
+            "quantity": 2
           }
         ],
         "closedContainers": [
@@ -14902,6 +14902,19 @@
             },
             "updatedAt": "2026-08-12T07:55:20.365Z",
             "updatedBy": "caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mvb1jcmc-1022073877-3533314376",
+            "label": "kit fermé nº2",
+            "location": "-80°C",
+            "remaining": 5,
+            "capacity": 5,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-10-16T14:06:12.900Z",
+            "updatedAt": "2026-10-16T14:06:12.900Z",
+            "updatedBy": "elina",
             "version": 1
           }
         ],
@@ -19906,7 +19919,22 @@
       "newItemData": null,
       "invoiceReceivedAt": "",
       "invoiceReceivedAtRaw": "",
-      "invoiceReceivedBy": ""
+      "invoiceReceivedBy": "",
+      "addedToInventoryQuantity": 1,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-10-16T14:06:12.900Z",
+      "addedToInventoryAt": "16/10/2026 16:06",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1792134891680-1792159572033-gj506w907x",
+          "quantity": 1,
+          "before": 2,
+          "after": 3,
+          "at": "2026-10-16T14:06:12.900Z",
+          "user": "Elina",
+          "orderId": "ord-1792134891680"
+        }
+      ]
     },
     {
       "id": "ord-1791898338571",
@@ -28838,6 +28866,18 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 16:06",
+      "action": "Réception de commande",
+      "detail": "Réception de commande : stock 2 → 3 (+1) · Commande ord-1792134891680",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "orderId": "ord-1792134891680",
+      "operationId": "order-receipt-ord-1792134891680-1792159572033-gj506w907x",
+      "before": 2,
+      "quantity": 1,
+      "after": 3
+    },
     {
       "date": "16/10/2026 16:05",
       "user": "Elina",
@@ -42148,6 +42188,49 @@
       "toLocation": "",
       "comment": "Inventaire 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvb1jcmc-3168826089-2151676689",
+      "operationId": "order-receipt-ord-1792134891680-1792159572033-gj506w907x",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "timestamp": "2026-10-16T14:06:12.900Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 2,
+      "after": 3,
+      "quantity": 1,
+      "difference": 1,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "-80°C",
+      "comment": "Réception de commande — Stock 2 → 3 (+1) — Commande ord-1792134891680",
+      "correctionReason": "",
+      "orderId": "ord-1792134891680",
+      "orderReference": "ord-1792134891680"
     }
   ],
   "sourcingPatients": [],
@@ -42796,5 +42879,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T13:43:43.421Z"
+  "updatedAt": "2026-10-16T14:06:12.900Z"
 }

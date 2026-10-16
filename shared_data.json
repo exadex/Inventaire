@@ -8113,7 +8113,7 @@
     },
     {
       "id": "itm-web-1783931436294-prq1rh",
-      "name": "DMEM sans glucose - Pour glucose uptake",
+      "name": "DMEM glucose free - Pour glucose uptake",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "bouteilles",
@@ -28690,6 +28690,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:02",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM glucose free - Pour glucose uptake."
+    },
+    {
       "date": "16/10/2026 11:01",
       "user": "Enora",
       "action": "Item modifié",
@@ -39257,5 +39263,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:01:24.015Z"
+  "updatedAt": "2026-10-16T09:02:14.756Z"
 }

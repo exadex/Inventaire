@@ -8904,7 +8904,8 @@
       "minStock": 1,
       "location": "Culture L1",
       "locations": [
-        "Culture L1"
+        "Culture L1",
+        "Frigo labo"
       ],
       "tags": [
         "PBS"
@@ -9036,9 +9037,9 @@
             "unitKey": "mL",
             "status": "finished",
             "createdAt": "2026-08-12T07:43:29.299Z",
-            "updatedAt": "2026-10-16T09:19:16.577Z",
+            "updatedAt": "2026-10-16T09:21:24.079Z",
             "updatedBy": "enora",
-            "version": 2,
+            "version": 3,
             "roomId": "room-laboratoire",
             "locationId": "location-frigo-labo",
             "sublocationId": "",
@@ -28685,6 +28686,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvard0u8-4212348138-1118343214",
+      "operationId": "operation-mvard0u8-4212348138-1118343214",
+      "date": "16/10/2026 11:21",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · PBS · Stock précédent : 0 poches · Stock compté : 0 poches · Écart : 0 poches · Note : Inventaire",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-c9o2wm",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 0,
+      "difference": 0,
+      "unit": "poches",
+      "note": "Inventaire"
+    },
+    {
       "date": "16/10/2026 11:20",
       "user": "Enora",
       "action": "Item modifié",
@@ -40925,6 +40941,77 @@
       "toLocation": "Frigo labo",
       "comment": "Inventaire du 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvard2sv-2783022364-3263360847",
+      "operationId": "operation-mvard0u8-4212348138-1118343214-closed-itm-web-1783931436295-c9o2wm-frigo-labo-5",
+      "itemId": "itm-web-1783931436295-c9o2wm",
+      "timestamp": "2026-10-16T09:21:24.079Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-5",
+      "containerId": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-5",
+      "containerLabel": "bouteille fermé nº5",
+      "containerStatusBefore": "finished",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": 0,
+      "afterQuantity": 0,
+      "beforeCapacity": 500,
+      "afterCapacity": 500,
+      "unitBefore": "mL",
+      "unitAfter": "mL",
+      "automatic": true,
+      "automaticOpen": false,
+      "automaticFinish": true,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-5",
+        "label": "bouteille fermé nº5",
+        "location": "Frigo labo",
+        "remaining": 0,
+        "capacity": 500,
+        "unitKey": "mL",
+        "status": "finished",
+        "createdAt": "2026-08-12T07:43:29.299Z",
+        "updatedAt": "2026-10-16T09:19:16.577Z",
+        "updatedBy": "enora",
+        "version": 2,
+        "roomId": "room-laboratoire",
+        "locationId": "location-frigo-labo",
+        "sublocationId": "",
+        "finishedAt": "2026-10-16T09:19:16.577Z"
+      },
+      "after": {
+        "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-5",
+        "label": "bouteille fermé nº5",
+        "location": "Frigo labo",
+        "remaining": 0,
+        "capacity": 500,
+        "unitKey": "mL",
+        "status": "finished",
+        "createdAt": "2026-08-12T07:43:29.299Z",
+        "updatedAt": "2026-10-16T09:21:24.079Z",
+        "updatedBy": "enora",
+        "version": 3,
+        "roomId": "room-laboratoire",
+        "locationId": "location-frigo-labo",
+        "sublocationId": "",
+        "finishedAt": "2026-10-16T09:19:16.577Z"
+      },
+      "quantity": 0,
+      "difference": 0,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Frigo labo",
+      "toLocation": "Frigo labo",
+      "comment": "Inventaire",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -41450,6 +41537,12 @@
       "itemId": "itm-web-1783931436295-c9o2wm",
       "at": "2026-10-16T09:19:16.578Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvard0u8-4212348138-1118343214",
+      "itemId": "itm-web-1783931436295-c9o2wm",
+      "at": "2026-10-16T09:21:24.079Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -41531,5 +41624,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:20:54.628Z"
+  "updatedAt": "2026-10-16T09:21:24.079Z"
 }

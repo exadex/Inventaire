@@ -19349,6 +19349,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1792134891680",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-0te4tf",
+      "inventoryUnit": "kit",
+      "itemName": "Glucose Uptake-Glo™ Assay",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "16/10/2026 09:14",
+      "requestedAtRaw": "2026-10-16T07:14:51.681Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1792134816489",
       "status": "invoiced",
       "itemMode": "new",
@@ -28304,6 +28326,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 09:14",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Glucose Uptake-Glo™ Assay."
+    },
     {
       "date": "16/10/2026 09:14",
       "user": "Enora",

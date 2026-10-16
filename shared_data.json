@@ -207,9 +207,9 @@
         }
       ],
       "locations": [
-        "Culture L1"
+        "Culture L1 → Frigo culture L1 à l'entrée"
       ],
-      "location": "Culture L1",
+      "location": "Culture L1 → Frigo culture L1 à l'entrée",
       "tags": [
         "Culture"
       ],
@@ -259,21 +259,68 @@
         "trackingUnit": "mL",
         "quantityStep": 1,
         "precision": 6,
-        "closedByLocation": [
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [
           {
+            "id": "closed-web-1792142654343-frigo-culture-l1-a-l-entree-1",
+            "label": "poche fermé nº1",
             "location": "Frigo culture L1 à l'entrée",
-            "quantity": 1,
-            "updatedAt": "2026-10-16T10:17:52.997Z",
-            "updatedBy": "Elina"
+            "remaining": 0,
+            "capacity": 5000,
+            "unitKey": "mL",
+            "status": "finished",
+            "createdAt": "2026-10-16T10:17:52.997Z",
+            "updatedAt": "2026-10-16T10:18:34.548Z",
+            "updatedBy": "elina",
+            "version": 3,
+            "openedAt": "2026-10-16T10:18:34.548Z",
+            "openedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "finishedAt": "2026-10-16T10:18:34.548Z"
           }
-        ],
-        "closedContainers": null,
-        "openContainers": []
+        ]
       },
       "aliquotTracking": {
         "version": 1,
         "enabled": true,
-        "preparations": []
+        "preparations": [
+          {
+            "id": "preparation-mvatelrp-1400285263-1504201480",
+            "label": "Préparation nº1",
+            "createdCount": 20,
+            "representedSourceQuantity": 5000,
+            "sourceUnit": "mL",
+            "volume": 250,
+            "volumeUnit": "mL",
+            "concentration": 1,
+            "concentrationUnit": "X",
+            "locations": [
+              {
+                "location": "Culture L1 → Frigo culture L1 à l'entrée",
+                "quantity": 20
+              }
+            ],
+            "openAliquots": [],
+            "preparedAt": "2026-10-16T10:18:33.629Z",
+            "preparedBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "sourceContainerId": "closed-web-1792142654343-frigo-culture-l1-a-l-entree-1",
+            "note": "Inventaire 16/10/2026",
+            "status": "active",
+            "updatedAt": "2026-10-16T10:18:34.548Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ]
       },
       "source": "web"
     },
@@ -28729,6 +28776,15 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvatel25-4100268730-2648142555",
+      "operationId": "operation-mvatel25-4100268730-2648142555",
+      "date": "16/10/2026 12:18",
+      "action": "Stock mis à jour",
+      "detail": "Elina · aliquots_prepared · PBS · Inventaire 16/10/2026",
+      "user": "Elina",
+      "itemId": "web-1792142654343"
+    },
+    {
       "date": "16/10/2026 12:17",
       "user": "Elina",
       "action": "Item modifié",
@@ -41761,6 +41817,75 @@
       "toLocation": "",
       "comment": "Inventaire 16/10",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvatelrp-2290665395-446770116",
+      "operationId": "operation-mvatel25-4100268730-2648142555",
+      "itemId": "web-1792142654343",
+      "timestamp": "2026-10-16T10:18:34.549Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "aliquots_prepared",
+      "entityType": "preparation",
+      "entityId": "preparation-mvatelrp-1400285263-1504201480",
+      "containerId": "closed-web-1792142654343-frigo-culture-l1-a-l-entree-1",
+      "containerLabel": "poche fermé nº1",
+      "containerStatusBefore": "open",
+      "containerStatusAfter": "finished",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": true,
+      "automaticOpen": false,
+      "automaticFinish": true,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "preparation-mvatelrp-1400285263-1504201480",
+        "label": "Préparation nº1",
+        "createdCount": 20,
+        "representedSourceQuantity": 5000,
+        "sourceUnit": "mL",
+        "volume": 250,
+        "volumeUnit": "mL",
+        "concentration": 1,
+        "concentrationUnit": "X",
+        "locations": [
+          {
+            "location": "Culture L1 → Frigo culture L1 à l'entrée",
+            "quantity": 20
+          }
+        ],
+        "openAliquots": [],
+        "preparedAt": "2026-10-16T10:18:33.629Z",
+        "preparedBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "sourceContainerId": "closed-web-1792142654343-frigo-culture-l1-a-l-entree-1",
+        "note": "Inventaire 16/10/2026",
+        "status": "active",
+        "updatedAt": "2026-10-16T10:18:34.548Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 20,
+      "difference": null,
+      "unit": "aliquotes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "mL",
+      "fromLocation": "",
+      "toLocation": "Culture L1 → Frigo culture L1 à l'entrée",
+      "comment": "Inventaire 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -42310,6 +42435,12 @@
       "itemId": "itm-web-1783931436295-56643c",
       "at": "2026-10-16T09:34:37.829Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvatel25-4100268730-2648142555",
+      "itemId": "web-1792142654343",
+      "at": "2026-10-16T10:18:34.549Z",
+      "type": "aliquots_prepared"
     }
   ],
   "agentOperations": [
@@ -42391,5 +42522,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T10:17:52.999Z"
+  "updatedAt": "2026-10-16T10:18:34.549Z"
 }

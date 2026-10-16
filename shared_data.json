@@ -19372,7 +19372,7 @@
     },
     {
       "id": "ord-1792134816489",
-      "status": "invoiced",
+      "status": "received",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "Test",
@@ -19392,9 +19392,9 @@
       "newItemData": {
         "name": "Test"
       },
-      "invoiceReceivedAt": "16/10/2026 09:14",
-      "invoiceReceivedAtRaw": "2026-10-16T07:14:05.277Z",
-      "invoiceReceivedBy": "Enora"
+      "invoiceReceivedAt": "",
+      "invoiceReceivedAtRaw": "",
+      "invoiceReceivedBy": ""
     },
     {
       "id": "ord-1791898338571",
@@ -28326,6 +28326,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 09:18",
+      "user": "Enora",
+      "action": "Commande remise en arrivée",
+      "detail": "Enora a remis Test dans les arrivées."
+    },
     {
       "date": "16/10/2026 09:15",
       "user": "Enora",

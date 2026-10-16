@@ -9148,7 +9148,7 @@
       "tags": [
         "Milieu"
       ],
-      "notes": "Périmé depuis 2020\nConditionnement : 500mL",
+      "notes": "Périmé depuis 2020\n1 ouvert dans le frigo L1\nConditionnement : 500mL",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -9188,8 +9188,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
+        "trackingUnitKey": "bouteille",
+        "trackingUnit": "bouteilles",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -28690,6 +28690,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:01",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié RPMI 1640 GlutaMAX - Pour lipolyse."
+    },
+    {
       "date": "16/10/2026 11:00",
       "user": "Enora",
       "action": "Item modifié",
@@ -39251,5 +39257,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:00:35.094Z"
+  "updatedAt": "2026-10-16T09:01:24.015Z"
 }

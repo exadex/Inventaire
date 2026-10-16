@@ -8900,31 +8900,35 @@
       "name": "PBS",
       "category": "Culture Cell",
       "quantity": 0,
-      "unit": "bouteilles",
+      "unit": "Poche",
       "minStock": 1,
-      "location": "Frigo labo",
+      "location": "Culture L1",
       "locations": [
-        "Frigo labo"
+        "Culture L1"
       ],
       "tags": [
-        "Milieu PBS"
+        "PBS"
       ],
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Thermo Fischer",
-          "reference": "14190-094",
-          "link": "https://www.thermofisher.com/order/catalog/product/14190094",
+          "supplier": "Cytiva",
+          "reference": "SH30028.09",
+          "link": "",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
-          "price": "23,4",
-          "unitPrice": "1,15",
-          "leadTime": "rapide"
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "14190-094",
+            "notes": "Thermo Fischer\nhttps://www.thermofisher.com/order/catalog/product/14190094\nDélais de livraison rapide\nPrix : 23.4€"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "routine",
-      "supplierContactId": "contact-1785239459565-7t6yfo",
       "createdAtRaw": "2026-08-10T11:43:23.774Z",
       "createdAt": "10/08/2026 13:43",
       "stockTracking": {
@@ -8934,9 +8938,9 @@
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "bouteille",
-            "singular": "bouteille",
-            "plural": "bouteilles",
+            "key": "custom-poche",
+            "singular": "poche",
+            "plural": "poches",
             "kind": "discrete",
             "contains": 1
           },
@@ -8946,7 +8950,7 @@
             "singular": "mL",
             "plural": "mL",
             "kind": "continuous",
-            "contains": 500
+            "contains": 5000
           }
         ],
         "trackingUnitKey": "mL",
@@ -9045,14 +9049,14 @@
       },
       "aliquotTracking": {
         "version": 1,
-        "enabled": false,
+        "enabled": true,
         "preparations": []
       },
       "placements": [
         {
           "id": "placement-legacy-sssgtb",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
+          "roomId": "room-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
           "sublocationId": null
         }
       ]
@@ -28681,6 +28685,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:20",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié PBS."
+    },
+    {
       "id": "history-operation-mvaraab2-1931933759-3208730069",
       "operationId": "operation-mvaraab2-1931933759-3208730069",
       "date": "16/10/2026 11:19",
@@ -41521,5 +41531,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:19:16.578Z"
+  "updatedAt": "2026-10-16T09:20:54.628Z"
 }

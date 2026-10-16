@@ -4133,27 +4133,27 @@
     },
     {
       "id": "itm-CSV-0032",
-      "name": "Plaque multi puits culture suspension, 6 puits",
+      "name": "Plaque 6 puits",
       "category": "Procédé ExAdEx L2",
       "quantity": 0,
       "unit": "plaques",
       "minStock": 0,
-      "location": "Laboratoire",
+      "location": "Réserve",
       "locations": [
-        "Laboratoire"
+        "Réserve"
       ],
       "tags": [
-        "Flask culture suspension"
+        "plaque"
       ],
       "notes": "ECHANTILLON",
       "references": {
         "primary": {
-          "supplier": "Greiner bio",
-          "reference": "657185",
+          "supplier": "Sarstedt",
+          "reference": "83.3920",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "ECHANTILLON",
-          "unitPrice": "ECHANTILLON",
+          "price": "",
+          "unitPrice": "",
           "leadTime": ""
         },
         "secondary": []
@@ -4162,11 +4162,42 @@
       "placements": [
         {
           "id": "placement-legacy-12qja3e",
-          "roomId": "room-laboratoire",
+          "roomId": "room-reserve",
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-10-16T08:31:27.481Z",
+      "createdAt": "16/10/2026 10:31",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0033",
@@ -28697,6 +28728,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:31",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Plaque 6 puits."
+    },
+    {
       "id": "history-operation-mvapapay-87230788-81299821",
       "operationId": "operation-mvapapay-87230788-81299821",
       "date": "16/10/2026 10:23",
@@ -39144,5 +39181,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:23:35.666Z"
+  "updatedAt": "2026-10-16T08:31:27.488Z"
 }

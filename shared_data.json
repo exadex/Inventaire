@@ -3832,7 +3832,7 @@
     },
     {
       "id": "itm-CSV-0018",
-      "name": "Endothelial Cell Growth Medium 2",
+      "name": "EGM / EBM",
       "category": "Procédé ExAdEx L2",
       "quantity": 7,
       "unit": "bouteilles",
@@ -3842,7 +3842,7 @@
         "Culture L1"
       ],
       "tags": [
-        "Milieu EGM"
+        "Milieu"
       ],
       "notes": "",
       "references": {
@@ -28591,6 +28591,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:29",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié EGM / EBM."
+    },
+    {
       "date": "16/10/2026 11:27",
       "user": "Enora",
       "action": "Item modifié",
@@ -41559,5 +41565,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:27:13.886Z"
+  "updatedAt": "2026-10-16T09:29:35.584Z"
 }

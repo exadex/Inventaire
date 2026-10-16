@@ -123,6 +123,72 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1792138017063",
+      "name": "Combitips 50mL non stérile",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-927a4e4a-f273-41d2-9f46-a5cdcc5ba851",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [],
+      "notes": "Une boite entamé",
+      "references": {
+        "primary": {
+          "supplier": "Dutscher",
+          "reference": "0030069.277",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-16T08:06:57.063Z",
+      "createdAt": "16/10/2026 10:06",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "carton",
+        "trackingUnit": "cartons",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1792137962386",
       "name": "Combitips 1,25mL Non stérile",
       "category": "Procédé ExAdEx L2",
@@ -28439,6 +28505,12 @@
       "date": "16/10/2026 10:06",
       "user": "Enora",
       "action": "Item ajouté",
+      "detail": "Enora a ajouté Combitips 50mL non stérile dans Procédé ExAdEx L2."
+    },
+    {
+      "date": "16/10/2026 10:06",
+      "user": "Enora",
+      "action": "Item ajouté",
       "detail": "Enora a ajouté Combitips 1,25mL Non stérile dans Procédé ExAdEx L2."
     },
     {
@@ -38579,5 +38651,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:06:02.391Z"
+  "updatedAt": "2026-10-16T08:06:57.069Z"
 }

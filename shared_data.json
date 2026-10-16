@@ -8280,7 +8280,7 @@
       "category": "Culture Cell",
       "quantity": 24,
       "unit": "bouteilles",
-      "minStock": 3,
+      "minStock": 1,
       "location": "Culture L1",
       "locations": [
         "Culture L1"
@@ -8288,11 +8288,11 @@
       "tags": [
         "Milieu DMEM"
       ],
-      "notes": "Conditionnement : 500ml\nDMEM W/GLUTAMAX-I,PYR,4.5G GLU Milieu de Eagle modifié par Dulbecco (D-MEM) 500 mL X1",
+      "notes": "4.5g/L de glucose \nPérimé depuis 2023 et 2026",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
-          "reference": "31960-021",
+          "reference": "31966-021",
           "link": "https://www.thermofisher.com/order/catalog/product/fr/fr/31966021",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
           "price": "75,5",
@@ -8340,9 +8340,7 @@
         "closedByLocation": [
           {
             "location": "Frigo labo",
-            "quantity": 24,
-            "updatedAt": "2026-08-12T07:40:21.5Z",
-            "updatedBy": "Caroline"
+            "quantity": 24
           }
         ],
         "closedContainers": [
@@ -28584,6 +28582,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:09",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM, high glucose, GlutaMAX™ Supplement, pyruvate."
+    },
+    {
       "date": "16/10/2026 11:06",
       "user": "Enora",
       "action": "Item modifié",
@@ -39241,5 +39245,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:06:02.940Z"
+  "updatedAt": "2026-10-16T09:09:48.031Z"
 }

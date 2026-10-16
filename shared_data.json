@@ -8113,7 +8113,7 @@
     },
     {
       "id": "itm-web-1783931436294-prq1rh",
-      "name": "DMEM sans glucose (pour glucose uptake)",
+      "name": "DMEM sans glucose - Pour glucose uptake",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "bouteilles",
@@ -8125,7 +8125,7 @@
       "tags": [
         "Milieu DMEM"
       ],
-      "notes": "Conditionnement : 500mL",
+      "notes": "2 bouteilles ouvertes dont 1 périmé depuis 2025 \nConditionnement : 500mL",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -8172,9 +8172,7 @@
         "closedByLocation": [
           {
             "location": "Frigo culture L1",
-            "quantity": 1,
-            "updatedAt": "2026-08-12T07:41:13.243Z",
-            "updatedBy": "Caroline"
+            "quantity": 1
           }
         ],
         "closedContainers": [
@@ -28692,6 +28690,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:00",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM sans glucose - Pour glucose uptake."
+    },
+    {
       "date": "16/10/2026 10:59",
       "user": "Enora",
       "action": "Item modifié",
@@ -39247,5 +39251,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:59:08.464Z"
+  "updatedAt": "2026-10-16T09:00:35.094Z"
 }

@@ -8278,7 +8278,7 @@
       "id": "itm-web-1783931436294-h0uujo",
       "name": "DMEM, high glucose, GlutaMAX",
       "category": "Culture Cell",
-      "quantity": 0,
+      "quantity": 12,
       "unit": "bouteilles",
       "minStock": 1,
       "location": "Culture L1",
@@ -28668,6 +28668,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvar2vps-1354220849-2806729666",
+      "operationId": "operation-mvar2vps-1354220849-2806729666",
+      "date": "16/10/2026 11:13",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · DMEM, high glucose, GlutaMAX · Stock précédent : 0 bouteilles · Stock compté : 12 bouteilles · Écart : +12 bouteilles · Note : Inventaire du 16/10/2026",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436294-h0uujo",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 12,
+      "difference": 12,
+      "unit": "bouteilles",
+      "note": "Inventaire du 16/10/2026"
+    },
+    {
       "date": "16/10/2026 11:13",
       "user": "Enora",
       "action": "Item modifié",
@@ -40384,6 +40399,45 @@
       "toLocation": "Frigo labo",
       "comment": "Inventaire du 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvar2wj5-2382693472-1112534087",
+      "operationId": "operation-mvar2vps-1354220849-2806729666",
+      "itemId": "itm-web-1783931436294-h0uujo",
+      "timestamp": "2026-10-16T09:13:29.393Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 12,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 12,
+      "quantity": 12,
+      "difference": 12,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -40885,6 +40939,12 @@
       "itemId": "itm-web-1783931436294-h0uujo",
       "at": "2026-10-16T09:12:39.881Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvar2vps-1354220849-2806729666",
+      "itemId": "itm-web-1783931436294-h0uujo",
+      "at": "2026-10-16T09:13:29.393Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -40966,5 +41026,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:13:21.127Z"
+  "updatedAt": "2026-10-16T09:13:29.393Z"
 }

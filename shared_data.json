@@ -19350,7 +19350,7 @@
   "orders": [
     {
       "id": "ord-1792134816489",
-      "status": "received",
+      "status": "invoiced",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "Test",
@@ -19369,7 +19369,10 @@
       "receivedAtRaw": "2026-10-16T07:13:52.961Z",
       "newItemData": {
         "name": "Test"
-      }
+      },
+      "invoiceReceivedAt": "16/10/2026 09:14",
+      "invoiceReceivedAtRaw": "2026-10-16T07:14:05.277Z",
+      "invoiceReceivedBy": "Enora"
     },
     {
       "id": "ord-1791898338571",
@@ -28301,6 +28304,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 09:14",
+      "user": "Enora",
+      "action": "Facture reçue",
+      "detail": "Enora a marqué Test comme facture reçue."
+    },
     {
       "date": "16/10/2026 09:13",
       "user": "Enora",

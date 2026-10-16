@@ -258,7 +258,7 @@
       "id": "web-1792137890432",
       "name": "Combitips 25mL Stérile",
       "category": "Procédé ExAdEx L2",
-      "quantity": 1,
+      "quantity": 5,
       "unit": "Carton",
       "minStock": 0,
       "usageProfile": "normal",
@@ -306,7 +306,7 @@
           }
         ],
         "trackingUnitKey": "carton",
-        "trackingUnit": "Carton",
+        "trackingUnit": "cartons",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -28502,6 +28502,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvaoqqqo-3041620080-4091333699",
+      "operationId": "operation-mvaoqqqo-3041620080-4091333699",
+      "date": "16/10/2026 10:08",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · Combitips 25mL Stérile · Stock précédent : 1 Carton · Stock compté : 5 Carton · Écart : +4 Carton · Note : Inventaire du 16/10/2026",
+      "user": "Enora",
+      "itemId": "web-1792137890432",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 5,
+      "difference": 4,
+      "unit": "Carton",
+      "note": "Inventaire du 16/10/2026"
+    },
+    {
       "date": "16/10/2026 10:06",
       "user": "Enora",
       "action": "Item ajouté",
@@ -38105,6 +38120,45 @@
       "toLocation": "Laboratoire → Placards",
       "comment": "Inventaire 15/10/2026 - Volumes approximatif",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvaoqs3z-3855785702-4270700981",
+      "operationId": "operation-mvaoqqqo-3041620080-4091333699",
+      "itemId": "web-1792137890432",
+      "timestamp": "2026-10-16T08:08:04.559Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 1,
+      "afterQuantity": 5,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 1,
+      "after": 5,
+      "quantity": 5,
+      "difference": 4,
+      "unit": "cartons",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -38570,6 +38624,12 @@
       "itemId": "itm-web-1783931436295-9q0nut",
       "at": "2026-10-15T09:57:36.595Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvaoqqqo-3041620080-4091333699",
+      "itemId": "web-1792137890432",
+      "at": "2026-10-16T08:08:04.559Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -38651,5 +38711,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:06:57.069Z"
+  "updatedAt": "2026-10-16T08:08:04.559Z"
 }

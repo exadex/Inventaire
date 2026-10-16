@@ -44,7 +44,7 @@
         "id": "location-20-1-salle-80",
         "roomId": "room-piece-80",
         "name": "-20°C 1 salle -80",
-        "icon": "1️⃣",
+        "icon": "🌨️",
         "order": 0
       },
       {
@@ -19925,7 +19925,7 @@
   "orders": [
     {
       "id": "ord-1792159341660",
-      "status": "requested",
+      "status": "ordered",
       "itemMode": "existing",
       "inventoryItemId": "itm-CSV-0018",
       "inventoryUnit": "bouteilles",
@@ -19937,9 +19937,9 @@
       "requestedBy": "Elina",
       "requestedAt": "16/10/2026 16:02",
       "requestedAtRaw": "2026-10-16T14:02:21.660Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
+      "orderedBy": "Elina",
+      "orderedAt": "16/10/2026 16:42",
+      "orderedAtRaw": "2026-10-16T14:42:25.035Z",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -28915,6 +28915,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 16:42",
+      "user": "Elina",
+      "action": "Commande effectuée",
+      "detail": "Elina a marqué EGM / EBM comme commandé."
+    },
     {
       "date": "16/10/2026 16:08",
       "user": "Elina",

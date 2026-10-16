@@ -882,7 +882,13 @@
         "precision": 0,
         "closedByLocation": [],
         "closedContainers": [],
-        "openContainers": []
+        "openContainers": [],
+        "unitStates": {
+          "closed": 3,
+          "open": 2,
+          "updatedAt": "2026-10-16T13:43:43.421Z",
+          "updatedBy": "elina"
+        }
       },
       "aliquotTracking": {
         "version": 1,
@@ -28811,6 +28817,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvb0qekn-3626603566-2971598639",
+      "operationId": "operation-mvb0qekn-3626603566-2971598639",
+      "date": "16/10/2026 15:43",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Combitips 25mL Stérile · Stock précédent : 5 Carton · Stock compté : 5 Carton · Écart : 0 Carton · Note : Inventaire 16/10/2026",
+      "user": "Elina",
+      "itemId": "web-1792137890432",
+      "type": "recounted",
+      "previousQuantity": 5,
+      "countedQuantity": 5,
+      "difference": 0,
+      "unit": "Carton",
+      "note": "Inventaire 16/10/2026"
+    },
+    {
       "date": "16/10/2026 15:15",
       "user": "Elina",
       "action": "Item modifié",
@@ -42041,6 +42062,52 @@
       "toLocation": "",
       "comment": "Inventaire 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvb0qfct-232821329-964480768",
+      "operationId": "operation-mvb0qekn-3626603566-2971598639",
+      "itemId": "web-1792137890432",
+      "timestamp": "2026-10-16T13:43:43.421Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 5,
+      "afterQuantity": 5,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": {
+        "closed": 3,
+        "open": 2,
+        "updatedAt": "2026-10-16T13:43:43.421Z",
+        "updatedBy": "elina"
+      },
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 5,
+      "after": 5,
+      "quantity": 5,
+      "difference": 0,
+      "unit": "cartons",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -42602,6 +42669,12 @@
       "itemId": "web-1792142654343",
       "at": "2026-10-16T12:24:34.022Z",
       "type": "preparation_corrected"
+    },
+    {
+      "operationId": "operation-mvb0qekn-3626603566-2971598639",
+      "itemId": "web-1792137890432",
+      "at": "2026-10-16T13:43:43.421Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -42683,5 +42756,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T13:15:59.425Z"
+  "updatedAt": "2026-10-16T13:43:43.421Z"
 }

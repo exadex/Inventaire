@@ -1483,7 +1483,7 @@
       "quantity": 2,
       "unit": "cartons",
       "minStock": 0,
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "placements": [
         {
           "id": "placement-2fdd62c4-e332-4b91-a057-ac18995e9b27",
@@ -1497,7 +1497,7 @@
       ],
       "location": "Réserve",
       "tags": [
-        "plaque 48"
+        "plaque"
       ],
       "notes": "",
       "references": {
@@ -1549,7 +1549,34 @@
             "updatedBy": "Caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-web-1787650981533-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:43:01.533Z",
+            "updatedAt": "2026-08-25T09:43:01.533Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-web-1787650981533-reserve-2",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:43:01.533Z",
+            "updatedAt": "2026-08-25T09:43:01.533Z",
+            "updatedBy": "Caroline",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28602,6 +28629,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:36",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Plaque 48 puits - Dutscher."
+    },
+    {
       "date": "16/10/2026 10:35",
       "user": "Enora",
       "action": "Item modifié",
@@ -39097,5 +39130,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:35:36.411Z"
+  "updatedAt": "2026-10-16T08:36:10.597Z"
 }

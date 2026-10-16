@@ -19691,28 +19691,6 @@
   ],
   "orders": [
     {
-      "id": "ord-1792143932588",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-web-1783931436294-8xgtpz",
-      "inventoryUnit": "g",
-      "itemName": "BSA free fatty acid - pour collagénase",
-      "requestedQuantity": 1,
-      "receivedQuantity": 0,
-      "priority": "critique",
-      "notes": "",
-      "requestedBy": "Enora",
-      "requestedAt": "16/10/2026 11:45",
-      "requestedAtRaw": "2026-10-16T09:45:32.589Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
       "id": "ord-1792134891680",
       "status": "received",
       "itemMode": "existing",
@@ -28667,6 +28645,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 11:46",
+      "user": "Enora",
+      "action": "Demande supprimée",
+      "detail": "Enora a supprimé la demande pour BSA free fatty acid - pour collagénase."
+    },
     {
       "date": "16/10/2026 11:46",
       "user": "Enora",

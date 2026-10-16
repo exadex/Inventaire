@@ -126,7 +126,7 @@
       "id": "web-1792138802365",
       "name": "boite ø 35",
       "category": "Qualité",
-      "quantity": 1,
+      "quantity": 0.6,
       "unit": "cartons",
       "minStock": 0,
       "usageProfile": "normal",
@@ -184,16 +184,33 @@
         "trackingUnit": "sachets",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [
           {
+            "id": "closed-web-1792138802365-bureau-1",
+            "label": "carton fermé nº1",
             "location": "Bureau",
-            "quantity": 1,
-            "updatedAt": "2026-10-16T08:20:02.367Z",
-            "updatedBy": "Enora"
+            "remaining": 15,
+            "capacity": 25,
+            "unitKey": "sachet",
+            "status": "open",
+            "createdAt": "2026-10-16T08:20:02.367Z",
+            "updatedAt": "2026-10-16T08:20:33.791Z",
+            "updatedBy": "enora",
+            "version": 2,
+            "roomId": "room-bureau",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-16T08:20:33.791Z",
+            "openedBy": {
+              "userId": "enora",
+              "userName": "Enora",
+              "userEmoji": "⭐️",
+              "userInitials": ""
+            }
           }
-        ],
-        "closedContainers": null,
-        "openContainers": []
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -28680,6 +28697,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvap6ruf-1622293976-4145053128",
+      "operationId": "operation-mvap6ruf-1622293976-4145053128",
+      "date": "16/10/2026 10:20",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · boite ø 35 · Stock précédent : 1 cartons · Stock compté : 0,6 cartons · Écart : -0,4 cartons · Note : Inventaire du 16/10/2026",
+      "user": "Enora",
+      "itemId": "web-1792138802365",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 0.6,
+      "difference": -0.4,
+      "unit": "cartons",
+      "note": "Inventaire du 16/10/2026"
+    },
+    {
       "date": "16/10/2026 10:20",
       "user": "Enora",
       "action": "Item ajouté",
@@ -38415,6 +38447,79 @@
       "toLocation": "",
       "comment": "Inventaire du 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvap6u80-2361686007-1146919021",
+      "operationId": "operation-mvap6ruf-1622293976-4145053128-closed-web-1792138802365-bureau-1",
+      "itemId": "web-1792138802365",
+      "timestamp": "2026-10-16T08:20:33.792Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-web-1792138802365-bureau-1",
+      "containerId": "closed-web-1792138802365-bureau-1",
+      "containerLabel": "carton fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 25,
+      "afterQuantity": 15,
+      "beforeCapacity": 25,
+      "afterCapacity": 25,
+      "unitBefore": "sachets",
+      "unitAfter": "sachets",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1792138802365-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 25,
+        "capacity": 25,
+        "unitKey": "sachet",
+        "status": "closed",
+        "createdAt": "2026-10-16T08:20:02.367Z",
+        "updatedAt": "2026-10-16T08:20:02.367Z",
+        "updatedBy": "Enora",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-web-1792138802365-bureau-1",
+        "label": "carton fermé nº1",
+        "location": "Bureau",
+        "remaining": 15,
+        "capacity": 25,
+        "unitKey": "sachet",
+        "status": "open",
+        "createdAt": "2026-10-16T08:20:02.367Z",
+        "updatedAt": "2026-10-16T08:20:33.791Z",
+        "updatedBy": "enora",
+        "version": 2,
+        "roomId": "room-bureau",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-16T08:20:33.791Z",
+        "openedBy": {
+          "userId": "enora",
+          "userName": "Enora",
+          "userEmoji": "⭐️",
+          "userInitials": ""
+        }
+      },
+      "quantity": 15,
+      "difference": -10,
+      "unit": "sachets",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Bureau",
+      "toLocation": "Bureau",
+      "comment": "Inventaire du 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -38892,6 +38997,12 @@
       "itemId": "itm-CSV-0059",
       "at": "2026-10-16T08:12:18.531Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvap6ruf-1622293976-4145053128",
+      "itemId": "web-1792138802365",
+      "at": "2026-10-16T08:20:33.792Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -38973,5 +39084,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:20:02.374Z"
+  "updatedAt": "2026-10-16T08:20:33.792Z"
 }

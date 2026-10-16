@@ -123,6 +123,73 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1792142654343",
+      "name": "PBS",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "Poche",
+      "minStock": 0,
+      "usageProfile": "routine",
+      "placements": [
+        {
+          "id": "placement-511c0429-ef63-420f-ac54-0f28f1e4d686",
+          "roomId": "room-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Culture L1"
+      ],
+      "location": "Culture L1",
+      "tags": [
+        "Culture"
+      ],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Cytiva",
+          "reference": "SH30028.09",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-10-16T09:24:14.343Z",
+      "createdAt": "16/10/2026 11:24",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "custom-poche",
+            "singular": "poche",
+            "plural": "poches",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "custom-poche",
+        "trackingUnit": "Poche",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": true,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1792141052477",
       "name": "Nutrient mixture F-10 Ham",
       "category": "Procédé ExAdEx L2",
@@ -8904,8 +8971,7 @@
       "minStock": 1,
       "location": "Culture L1",
       "locations": [
-        "Culture L1",
-        "Frigo labo"
+        "Culture L1"
       ],
       "tags": [
         "PBS"
@@ -28686,6 +28752,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:24",
+      "user": "Enora",
+      "action": "Item ajouté",
+      "detail": "Enora a ajouté PBS dans Procédé ExAdEx L2."
+    },
+    {
       "id": "history-operation-mvard0u8-4212348138-1118343214",
       "operationId": "operation-mvard0u8-4212348138-1118343214",
       "date": "16/10/2026 11:21",
@@ -41624,5 +41696,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:21:24.079Z"
+  "updatedAt": "2026-10-16T09:24:14.349Z"
 }

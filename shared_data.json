@@ -123,6 +123,73 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1792141052477",
+      "name": "Nutrient mixture F-10 Ham",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 1,
+      "unit": "Bouteille",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-341f60d0-5422-40fa-8d35-fd83a107986d",
+          "roomId": "room-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Culture L1"
+      ],
+      "location": "Culture L1",
+      "tags": [
+        "Milieu"
+      ],
+      "notes": "Périmé depuis 2020. \nPrésence de glutamine\ndate de Christian",
+      "references": {
+        "primary": {
+          "supplier": "Sigma",
+          "reference": "N6908-500",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-10-16T08:57:32.477Z",
+      "createdAt": "16/10/2026 10:57",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "bouteille",
+        "trackingUnit": "Bouteille",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1792140959797",
       "name": "RPMI 1640",
       "category": "Procédé ExAdEx L2",
@@ -28625,6 +28692,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:57",
+      "user": "Enora",
+      "action": "Item ajouté",
+      "detail": "Enora a ajouté Nutrient mixture F-10 Ham dans Procédé ExAdEx L2."
+    },
+    {
       "date": "16/10/2026 10:55",
       "user": "Enora",
       "action": "Item ajouté",
@@ -39168,5 +39241,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:55:59.808Z"
+  "updatedAt": "2026-10-16T08:57:32.484Z"
 }

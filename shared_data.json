@@ -275,13 +275,13 @@
       ],
       "location": "Réserve",
       "tags": [],
-      "notes": "",
+      "notes": "Deux cartons entamés",
       "references": {
         "primary": {
           "supplier": "Dutscher",
           "reference": "0030069.390",
           "link": "",
-          "notes": "Un carton entamé",
+          "notes": "",
           "price": "",
           "unitPrice": "",
           "leadTime": ""
@@ -28502,6 +28502,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:09",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Combitips 25mL Stérile."
+    },
+    {
       "id": "history-operation-mvaoqqqo-3041620080-4091333699",
       "operationId": "operation-mvaoqqqo-3041620080-4091333699",
       "date": "16/10/2026 10:08",
@@ -38711,5 +38717,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:08:04.559Z"
+  "updatedAt": "2026-10-16T08:09:00.311Z"
 }

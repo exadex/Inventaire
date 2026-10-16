@@ -3839,8 +3839,7 @@
       "minStock": 1,
       "location": "Culture L1",
       "locations": [
-        "Culture L1",
-        "Frigo culture L1"
+        "Culture L1"
       ],
       "tags": [
         "Milieu"
@@ -3885,7 +3884,7 @@
       "createdAt": "27/07/2026 11:26",
       "stockTracking": {
         "version": 1,
-        "mode": "containers",
+        "mode": "simple",
         "traceabilityMode": "detailed",
         "packagingLevels": [
           {
@@ -28615,6 +28614,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:30",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié EGM / EBM."
+    },
+    {
       "id": "history-operation-mvaro69l-2467445717-1772174376",
       "operationId": "operation-mvaro69l-2467445717-1772174376",
       "date": "16/10/2026 11:30",
@@ -42079,5 +42084,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:30:04.161Z"
+  "updatedAt": "2026-10-16T09:30:20.458Z"
 }

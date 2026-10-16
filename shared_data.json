@@ -8320,7 +8320,7 @@
       "category": "Culture Cell",
       "quantity": 2,
       "unit": "Bouteille",
-      "minStock": 3,
+      "minStock": 0,
       "location": "Frigo labo",
       "locations": [
         "Frigo labo"
@@ -28691,6 +28691,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:04",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM Low glucose + glutamax."
+    },
+    {
       "id": "history-operation-mvaqqoxd-2485332219-2448718922",
       "operationId": "operation-mvaqqoxd-2485332219-2448718922",
       "date": "16/10/2026 11:04",
@@ -39330,5 +39336,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:04:01.123Z"
+  "updatedAt": "2026-10-16T09:04:15.936Z"
 }

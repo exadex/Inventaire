@@ -8926,7 +8926,7 @@
       "id": "itm-web-1783931436295-56643c",
       "name": "EGM SupplementPack - Tubes individuels",
       "category": "Culture Cell",
-      "quantity": 6,
+      "quantity": 1,
       "unit": "tubes",
       "minStock": 0,
       "location": "-20°C 2 salle -80",
@@ -8968,8 +8968,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "tube",
+        "trackingUnit": "tubes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -28614,6 +28614,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvaru2i9-2699070651-3288190857",
+      "operationId": "operation-mvaru2i9-2699070651-3288190857",
+      "date": "16/10/2026 11:34",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · EGM SupplementPack - Tubes individuels · Stock précédent : 6 tubes · Stock compté : 1 tubes · Écart : -5 tubes · Note : Inventaire 16/10",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-56643c",
+      "type": "recounted",
+      "previousQuantity": 6,
+      "countedQuantity": 1,
+      "difference": -5,
+      "unit": "tubes",
+      "note": "Inventaire 16/10"
+    },
+    {
       "date": "16/10/2026 11:34",
       "user": "Enora",
       "action": "Item modifié",
@@ -41526,6 +41541,45 @@
       "toLocation": "",
       "comment": "Inventaire du 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvaru39h-3575072374-3706187280",
+      "operationId": "operation-mvaru2i9-2699070651-3288190857",
+      "itemId": "itm-web-1783931436295-56643c",
+      "timestamp": "2026-10-16T09:34:37.829Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 6,
+      "afterQuantity": 1,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 6,
+      "after": 1,
+      "quantity": 1,
+      "difference": -5,
+      "unit": "tubes",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire 16/10",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -42069,6 +42123,12 @@
       "itemId": "itm-CSV-0018",
       "at": "2026-10-16T09:30:57.226Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvaru2i9-2699070651-3288190857",
+      "itemId": "itm-web-1783931436295-56643c",
+      "at": "2026-10-16T09:34:37.829Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -42150,5 +42210,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:34:21.472Z"
+  "updatedAt": "2026-10-16T09:34:37.829Z"
 }

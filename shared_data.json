@@ -8924,22 +8924,22 @@
     },
     {
       "id": "itm-web-1783931436295-56643c",
-      "name": "SupplementPack containing all media supplements as individual vials",
+      "name": "EGM SupplementPack - Tubes individuels",
       "category": "Culture Cell",
       "quantity": 6,
-      "unit": "flacons",
-      "minStock": 1,
-      "location": "Frigo labo",
+      "unit": "tubes",
+      "minStock": 0,
+      "location": "-20°C 2 salle -80",
       "locations": [
-        "Frigo labo"
+        "-20°C 2 salle -80"
       ],
       "tags": [
-        "Milieu EGM"
+        "Milieu"
       ],
-      "notes": "1 Pack for 500 ml",
+      "notes": "Facteurs de croissance. Inventaire approximatif, plutot utilisé pour besoin commandes",
       "references": {
         "primary": {
-          "supplier": "Merck",
+          "supplier": "Promocell",
           "reference": "C-39211",
           "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/c39211?srsltid=AfmBOor3TjNv9VDRN5sWquj6s4RZeAKVEZXC-1AwN8gB5diWVKb9qYD1",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
@@ -8951,19 +8951,19 @@
       },
       "source": "seed",
       "usageProfile": "normal",
-      "supplierContactId": "contact-1785225250289-lwwcas",
+      "supplierContactId": "contact-1785238740524-xc8swm",
       "createdAtRaw": "2026-08-10T11:39:56.262Z",
       "createdAt": "10/08/2026 13:39",
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "tube",
+            "singular": "tube",
+            "plural": "tubes",
             "kind": "discrete",
             "contains": 1
           }
@@ -8984,9 +8984,9 @@
       "placements": [
         {
           "id": "placement-legacy-14saqyg",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
-          "sublocationId": null
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
+          "sublocationId": "sublocation-a82f2ba1-6482-4d6c-8ea8-f589a1486d4a"
         }
       ]
     },
@@ -28614,6 +28614,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:34",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié EGM SupplementPack - Tubes individuels."
+    },
+    {
       "id": "history-operation-mvarpc95-1744258116-1801143084",
       "operationId": "operation-mvarpc95-1744258116-1801143084",
       "date": "16/10/2026 11:30",
@@ -42144,5 +42150,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:30:57.226Z"
+  "updatedAt": "2026-10-16T09:34:21.472Z"
 }

@@ -123,6 +123,74 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1792144133924",
+      "name": "Dexamethasone",
+      "category": "Culture Cell",
+      "quantity": 1,
+      "unit": "flacon",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-0d690b61-af48-4f37-8e7f-88f5a0781611",
+          "roomId": "room-culture-l1",
+          "locationId": "location-frigo-culture-l1",
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Frigo culture L1"
+      ],
+      "location": "Frigo culture L1",
+      "tags": [
+        "actif"
+      ],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "Thermo Fischer",
+          "reference": "D4902",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785239459565-7t6yfo",
+      "createdAtRaw": "2026-10-16T09:48:53.924Z",
+      "createdAt": "16/10/2026 11:48",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "flacon",
+            "singular": "flacon",
+            "plural": "flacons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "flacon",
+        "trackingUnit": "flacon",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1792142654343",
       "name": "PBS",
       "category": "Procédé ExAdEx L2",
@@ -28646,6 +28714,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:48",
+      "user": "Enora",
+      "action": "Item ajouté",
+      "detail": "Enora a ajouté Dexamethasone dans Culture Cell."
+    },
+    {
       "date": "16/10/2026 11:46",
       "user": "Enora",
       "action": "Demande supprimée",
@@ -42296,5 +42370,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:46:35.455Z"
+  "updatedAt": "2026-10-16T09:48:53.926Z"
 }

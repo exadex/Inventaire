@@ -12315,73 +12315,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0089",
-      "name": "T75",
-      "category": "Culture Cell",
-      "quantity": 1,
-      "unit": "unités",
-      "minStock": 0.5,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Flask"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Sarsdest",
-          "reference": "3814",
-          "link": "https://www.dutscher.com/article/003814",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "490",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-07-28T13:02:09.812Z",
-      "createdAt": "28/07/2026 15:02",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-1mzsfoq",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0090",
       "name": "Sac Kraft pour Dasri (conditionnement par 25)",
       "category": "Culture Cell",
@@ -28559,6 +28492,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 10:40",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé T75 de l'inventaire."
+    },
     {
       "date": "16/10/2026 10:40",
       "user": "Enora",

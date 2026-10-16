@@ -123,6 +123,86 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1792138802365",
+      "name": "boite ø 35",
+      "category": "Qualité",
+      "quantity": 1,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-67a577f1-6f6d-43f5-aca9-366edecefcd5",
+          "roomId": "room-bureau",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Bureau"
+      ],
+      "location": "Bureau",
+      "tags": [],
+      "notes": "",
+      "references": {
+        "primary": {
+          "supplier": "",
+          "reference": "",
+          "link": "",
+          "notes": "",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "createdAtRaw": "2026-10-16T08:20:02.366Z",
+      "createdAt": "16/10/2026 10:20",
+      "stockTracking": {
+        "version": 1,
+        "mode": "containers",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "sachet",
+            "singular": "sachet",
+            "plural": "sachets",
+            "kind": "discrete",
+            "contains": 25
+          }
+        ],
+        "trackingUnitKey": "sachet",
+        "trackingUnit": "sachets",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [
+          {
+            "location": "Bureau",
+            "quantity": 1,
+            "updatedAt": "2026-10-16T08:20:02.367Z",
+            "updatedBy": "Enora"
+          }
+        ],
+        "closedContainers": null,
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1792138590984",
       "name": "Tamis 100µm",
       "category": "Procédé ExAdEx L2",
@@ -28600,6 +28680,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:20",
+      "user": "Enora",
+      "action": "Item ajouté",
+      "detail": "Enora a ajouté boite ø 35 dans Qualité."
+    },
+    {
       "date": "16/10/2026 10:16",
       "user": "Enora",
       "action": "Item ajouté",
@@ -38887,5 +38973,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:16:30.990Z"
+  "updatedAt": "2026-10-16T08:20:02.374Z"
 }

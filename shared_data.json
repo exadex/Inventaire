@@ -9138,19 +9138,19 @@
     },
     {
       "id": "itm-web-1783931436295-sxbsy8",
-      "name": "RPMI 1640 Medium, GlutaMAX™ Supplement, HEPES (pour lipolyse)",
+      "name": "RPMI 1640 GlutaMAX - Pour lipolyse",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "unités",
+      "unit": "Bouteille",
       "minStock": 0,
-      "location": "Frigo labo",
+      "location": "Culture L1",
       "locations": [
-        "Frigo labo"
+        "Culture L1"
       ],
       "tags": [
         "Milieu"
       ],
-      "notes": "Conditionnement : 500mL",
+      "notes": "Périmé depuis 2020\nConditionnement : 500mL",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -9167,8 +9167,8 @@
       "placements": [
         {
           "id": "placement-legacy-2xl7sj",
-          "roomId": "room-laboratoire",
-          "locationId": "location-frigo-labo",
+          "roomId": "room-culture-l1",
+          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
           "sublocationId": null
         }
       ],
@@ -9179,14 +9179,14 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
             "contains": 1
           }
         ],
@@ -28692,6 +28692,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:59",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié RPMI 1640 GlutaMAX - Pour lipolyse."
+    },
+    {
       "date": "16/10/2026 10:57",
       "user": "Enora",
       "action": "Item ajouté",
@@ -39241,5 +39247,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:57:32.484Z"
+  "updatedAt": "2026-10-16T08:59:08.464Z"
 }

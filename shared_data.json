@@ -10342,7 +10342,7 @@
     },
     {
       "id": "itm-web-1783931436295-qpxakb",
-      "name": "Plaque Corning 24 puits ULA",
+      "name": "Plaque 24 puits ULA",
       "category": "Culture Cell",
       "quantity": 2.458333,
       "unit": "cartons",
@@ -10352,7 +10352,7 @@
         "Bureau"
       ],
       "tags": [
-        "Plaque 24 ula"
+        "Plaque"
       ],
       "notes": "Conditionnement : 24",
       "references": {
@@ -10376,7 +10376,7 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "supplierContactId": "contact-1785226360650-wy85d7",
       "createdAtRaw": "2026-10-13T08:53:46.806Z",
       "createdAt": "13/10/2026 10:53",
@@ -28602,6 +28602,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:35",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Plaque 24 puits ULA."
+    },
+    {
       "date": "16/10/2026 10:34",
       "user": "Enora",
       "action": "Item supprimé",
@@ -39091,5 +39097,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:33:20.335Z"
+  "updatedAt": "2026-10-16T08:35:36.411Z"
 }

@@ -156,7 +156,12 @@
           "unitPrice": "",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "14190-094",
+            "notes": ""
+          }
+        ]
       },
       "createdAtRaw": "2026-10-16T09:24:14.343Z",
       "createdAt": "16/10/2026 11:24",
@@ -28758,6 +28763,12 @@
       "detail": "Enora a modifié PBS."
     },
     {
+      "date": "16/10/2026 11:26",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié PBS."
+    },
+    {
       "date": "16/10/2026 11:24",
       "user": "Enora",
       "action": "Item ajouté",
@@ -41702,5 +41713,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:26:28.199Z"
+  "updatedAt": "2026-10-16T09:26:47.641Z"
 }

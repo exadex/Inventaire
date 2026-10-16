@@ -4090,7 +4090,7 @@
     },
     {
       "id": "itm-CSV-0019",
-      "name": "EGM SupplementMix 2+ (seul)",
+      "name": "EGM SupplementMix 2+ Individuel",
       "category": "Procédé ExAdEx L2",
       "quantity": 9,
       "unit": "Tubes",
@@ -28615,6 +28615,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:40",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié EGM SupplementMix 2+ Individuel."
+    },
+    {
       "date": "16/10/2026 11:39",
       "user": "Enora",
       "action": "Item modifié",
@@ -42229,5 +42235,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:39:41.081Z"
+  "updatedAt": "2026-10-16T09:40:14.272Z"
 }

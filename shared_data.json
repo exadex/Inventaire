@@ -4893,7 +4893,7 @@
       "id": "itm-CSV-0059",
       "name": "Tamis 40",
       "category": "Procédé ExAdEx L2",
-      "quantity": 2,
+      "quantity": 1,
       "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -4942,8 +4942,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "carton",
+        "trackingUnit": "cartons",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -28532,6 +28532,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvaow6cc-1359869471-3494575512",
+      "operationId": "operation-mvaow6cc-1359869471-3494575512",
+      "date": "16/10/2026 10:12",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · Tamis 40 · Stock précédent : 2 cartons · Stock compté : 1 cartons · Écart : -1 cartons · Note : Inventaire du 16/10/2026",
+      "user": "Enora",
+      "itemId": "itm-CSV-0059",
+      "type": "recounted",
+      "previousQuantity": 2,
+      "countedQuantity": 1,
+      "difference": -1,
+      "unit": "cartons",
+      "note": "Inventaire du 16/10/2026"
+    },
+    {
       "date": "16/10/2026 10:10",
       "user": "Enora",
       "action": "Item modifié",
@@ -38201,6 +38216,45 @@
       "toLocation": "",
       "comment": "Inventaire du 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvaow82r-1959302030-1440538784",
+      "operationId": "operation-mvaow6cc-1359869471-3494575512",
+      "itemId": "itm-CSV-0059",
+      "timestamp": "2026-10-16T08:12:18.531Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 2,
+      "afterQuantity": 1,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 2,
+      "after": 1,
+      "quantity": 1,
+      "difference": -1,
+      "unit": "cartons",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -38672,6 +38726,12 @@
       "itemId": "web-1792137890432",
       "at": "2026-10-16T08:08:04.559Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvaow6cc-1359869471-3494575512",
+      "itemId": "itm-CSV-0059",
+      "at": "2026-10-16T08:12:18.531Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -38753,5 +38813,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:10:26.903Z"
+  "updatedAt": "2026-10-16T08:12:18.531Z"
 }

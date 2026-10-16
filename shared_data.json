@@ -4894,7 +4894,7 @@
       "name": "Tamis 40",
       "category": "Procédé ExAdEx L2",
       "quantity": 2,
-      "unit": "unités",
+      "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
       "locations": [
@@ -4903,14 +4903,14 @@
       "tags": [
         "Tamis/ Filtre"
       ],
-      "notes": "50",
+      "notes": "1 carton entamé",
       "references": {
         "primary": {
-          "supplier": "servilab",
-          "reference": "352340",
+          "supplier": "Biologix",
+          "reference": "15-1040",
           "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "100*",
+          "price": "",
           "unitPrice": "",
           "leadTime": ""
         },
@@ -4924,7 +4924,37 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-16T08:10:26.897Z",
+      "createdAt": "16/10/2026 10:10",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0060",
@@ -28502,6 +28532,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:10",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Tamis 40."
+    },
+    {
       "date": "16/10/2026 10:09",
       "user": "Enora",
       "action": "Item modifié",
@@ -38717,5 +38753,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:09:00.311Z"
+  "updatedAt": "2026-10-16T08:10:26.903Z"
 }

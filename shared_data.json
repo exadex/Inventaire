@@ -4090,14 +4090,14 @@
     },
     {
       "id": "itm-CSV-0019",
-      "name": "SupplementMix / Endothelial Cell Growth Medium 2",
+      "name": "EGM SupplementMix 2+ (seul)",
       "category": "Procédé ExAdEx L2",
       "quantity": 9,
       "unit": "Tubes",
       "minStock": 1,
-      "location": "-20°C culture L1",
+      "location": "-20°C 2 salle -80",
       "locations": [
-        "-20°C culture L1"
+        "-20°C 2 salle -80"
       ],
       "tags": [
         "Milieu EGM"
@@ -4106,11 +4106,11 @@
       "references": {
         "primary": {
           "supplier": "Promocell",
-          "reference": "C-39216",
-          "link": "https://promocell.com/product/endothelial-cell-growth-medium-2/",
+          "reference": "C-39215",
+          "link": "",
           "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
-          "price": "50,85",
-          "unitPrice": "2",
+          "price": "",
+          "unitPrice": "",
           "leadTime": "15 jours"
         },
         "secondary": []
@@ -4123,14 +4123,14 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
+            "key": "tube",
+            "singular": "tube",
+            "plural": "tubes",
+            "kind": "discrete",
             "contains": 1
           }
         ],
@@ -4139,6 +4139,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -4149,9 +4150,9 @@
       "placements": [
         {
           "id": "placement-legacy-1sad1bs",
-          "roomId": "room-culture-l1",
-          "locationId": "location-20-culture-l1",
-          "sublocationId": null
+          "roomId": "room-piece-80",
+          "locationId": "location-20-2-salle-80",
+          "sublocationId": "sublocation-400c33ea-ed94-4a3c-90d3-b406ca307c8c"
         }
       ]
     },
@@ -28614,6 +28615,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:37",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié EGM SupplementMix 2+ (seul)."
+    },
+    {
       "id": "history-operation-mvaru2i9-2699070651-3288190857",
       "operationId": "operation-mvaru2i9-2699070651-3288190857",
       "date": "16/10/2026 11:34",
@@ -42210,5 +42217,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:34:37.829Z"
+  "updatedAt": "2026-10-16T09:37:25.881Z"
 }

@@ -5058,7 +5058,7 @@
       "id": "itm-CSV-0059",
       "name": "Tamis 40",
       "category": "Procédé ExAdEx L2",
-      "quantity": 1,
+      "quantity": 2,
       "unit": "cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -28697,6 +28697,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvapapay-87230788-81299821",
+      "operationId": "operation-mvapapay-87230788-81299821",
+      "date": "16/10/2026 10:23",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · Tamis 40 · Stock précédent : 1 cartons · Stock compté : 2 cartons · Écart : +1 cartons · Note : Inventaire du 16/10/2026",
+      "user": "Enora",
+      "itemId": "itm-CSV-0059",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 2,
+      "difference": 1,
+      "unit": "cartons",
+      "note": "Inventaire du 16/10/2026"
+    },
+    {
       "id": "history-operation-mvap6ruf-1622293976-4145053128",
       "operationId": "operation-mvap6ruf-1622293976-4145053128",
       "date": "16/10/2026 10:20",
@@ -38520,6 +38535,45 @@
       "toLocation": "Bureau",
       "comment": "Inventaire du 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvapaqk2-486093568-3838011413",
+      "operationId": "operation-mvapapay-87230788-81299821",
+      "itemId": "itm-CSV-0059",
+      "timestamp": "2026-10-16T08:23:35.666Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 1,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 1,
+      "after": 2,
+      "quantity": 2,
+      "difference": 1,
+      "unit": "cartons",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -39003,6 +39057,12 @@
       "itemId": "web-1792138802365",
       "at": "2026-10-16T08:20:33.792Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvapapay-87230788-81299821",
+      "itemId": "itm-CSV-0059",
+      "at": "2026-10-16T08:23:35.666Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -39084,5 +39144,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:20:33.792Z"
+  "updatedAt": "2026-10-16T08:23:35.666Z"
 }

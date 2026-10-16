@@ -8763,7 +8763,7 @@
       "id": "itm-web-1783931436294-y4uvlu",
       "name": "DMEM/F12 (1:1) W GLUT-I",
       "category": "Culture Cell",
-      "quantity": 5,
+      "quantity": 4,
       "unit": "Bouteilles",
       "minStock": 0,
       "location": "Frigo labo",
@@ -28668,6 +28668,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvar4mje-675450089-3063053986",
+      "operationId": "operation-mvar4mje-675450089-3063053986",
+      "date": "16/10/2026 11:14",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · DMEM/F12 (1:1) W GLUT-I · Stock précédent : 5 Bouteilles · Stock compté : 4 Bouteilles · Écart : -1 Bouteilles · Note : Inventaire du 16/10/2026",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436294-y4uvlu",
+      "type": "recounted",
+      "previousQuantity": 5,
+      "countedQuantity": 4,
+      "difference": -1,
+      "unit": "Bouteilles",
+      "note": "Inventaire du 16/10/2026"
+    },
+    {
       "id": "history-operation-mvar4a97-127671663-2707600865",
       "operationId": "operation-mvar4a97-127671663-2707600865",
       "date": "16/10/2026 11:14",
@@ -40498,6 +40513,45 @@
       "toLocation": "",
       "comment": "Inventaire du 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvar4nni-882033052-1109716504",
+      "operationId": "operation-mvar4mje-675450089-3063053986",
+      "itemId": "itm-web-1783931436294-y4uvlu",
+      "timestamp": "2026-10-16T09:14:51.198Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 5,
+      "afterQuantity": 4,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 5,
+      "after": 4,
+      "quantity": 4,
+      "difference": -1,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -41011,6 +41065,12 @@
       "itemId": "itm-web-1783931436294-y4uvlu",
       "at": "2026-10-16T09:14:35.159Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvar4mje-675450089-3063053986",
+      "itemId": "itm-web-1783931436294-y4uvlu",
+      "at": "2026-10-16T09:14:51.198Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -41092,5 +41152,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:14:35.159Z"
+  "updatedAt": "2026-10-16T09:14:51.198Z"
 }

@@ -9886,7 +9886,7 @@
         "Réserve"
       ],
       "tags": [
-        "Plaque 24"
+        "Plaque"
       ],
       "notes": "",
       "references": {
@@ -9902,7 +9902,7 @@
         "secondary": []
       },
       "source": "seed",
-      "usageProfile": "normal",
+      "usageProfile": "routine",
       "createdAtRaw": "2026-07-17T08:15:32.008Z",
       "createdAt": "17/07/2026 10:15",
       "placements": [
@@ -9948,7 +9948,21 @@
             "updatedBy": "caroline"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-xj2mx3-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-08-25T09:29:40.605Z",
+            "updatedAt": "2026-08-25T09:29:40.605Z",
+            "updatedBy": "caroline",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "container-mt8grf99-3024833973-3259982001",
@@ -9966,7 +9980,8 @@
             },
             "updatedAt": "2026-08-25T09:29:40.605Z",
             "updatedBy": "caroline",
-            "version": 1
+            "version": 1,
+            "unitKey": "plaque"
           }
         ]
       },
@@ -28582,6 +28597,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:38",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Plaque 24 puits."
+    },
+    {
       "date": "16/10/2026 10:37",
       "user": "Enora",
       "action": "Item supprimé",
@@ -39089,5 +39110,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:36:10.597Z"
+  "updatedAt": "2026-10-16T08:38:21.990Z"
 }

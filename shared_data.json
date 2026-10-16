@@ -4132,74 +4132,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0032",
-      "name": "Plaque 6 puits",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "plaques",
-      "minStock": 0,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "plaque"
-      ],
-      "notes": "ECHANTILLON",
-      "references": {
-        "primary": {
-          "supplier": "Sarstedt",
-          "reference": "83.3920",
-          "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-12qja3e",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239153980-6o71tv",
-      "createdAtRaw": "2026-10-16T08:31:27.481Z",
-      "createdAt": "16/10/2026 10:31",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "detailed",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "plaque",
-            "singular": "plaque",
-            "plural": "plaques",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "plaque",
-        "trackingUnit": "plaques",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-CSV-0033",
       "name": "T 25 cm²FLACON DE CULTURE ULA COL u INCLINÉ BOUCHON VENTILÉ STÉRILE.",
       "category": "Procédé ExAdEx L2",
@@ -28653,6 +28585,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 10:32",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Plaque 6 puits de l'inventaire."
+    },
     {
       "date": "16/10/2026 10:32",
       "user": "Enora",

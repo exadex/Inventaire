@@ -8207,114 +8207,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436294-qufvjj",
-      "name": "DMEM - low glucose",
-      "category": "Culture Cell",
-      "quantity": 2,
-      "unit": "bouteilles",
-      "minStock": 1,
-      "location": "Culture L1",
-      "locations": [
-        "Culture L1"
-      ],
-      "tags": [
-        "Milieu"
-      ],
-      "notes": "Conditionnement : 500 ml\nPERIME DEPUIS 01/2022 !!\nL-Glutamine dedans",
-      "references": {
-        "primary": {
-          "supplier": "Merck",
-          "reference": "D6046",
-          "link": "https://www.sigmaaldrich.com/UA/en/product/sigma/d6046?srsltid=AfmBOorOvdjyE0F8i0FTetViuGBuWpTeTod1jJRoq-S-FP05EXbVo33x",
-          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
-          "price": "32",
-          "unitPrice": "0,06",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785225250289-lwwcas",
-      "createdAtRaw": "2026-07-28T13:07:04.452Z",
-      "createdAt": "28/07/2026 15:07",
-      "stockTracking": {
-        "version": 1,
-        "mode": "containers",
-        "traceabilityMode": "detailed",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "bouteille",
-            "singular": "bouteille",
-            "plural": "bouteilles",
-            "kind": "discrete",
-            "contains": 1
-          },
-          {
-            "id": "level-2",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
-            "contains": 500
-          }
-        ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
-        "quantityStep": 1,
-        "precision": 6,
-        "closedByLocation": [
-          {
-            "location": "Frigo labo",
-            "quantity": 2
-          }
-        ],
-        "closedContainers": [
-          {
-            "id": "closed-itm-web-1783931436294-qufvjj-frigo-labo-1",
-            "label": "bouteille fermé nº1",
-            "location": "Frigo labo",
-            "remaining": 500,
-            "capacity": 500,
-            "unitKey": "mL",
-            "status": "closed",
-            "createdAt": "2026-08-11T14:50:54.348Z",
-            "updatedAt": "2026-08-11T14:50:54.348Z",
-            "updatedBy": "Caroline",
-            "version": 1
-          },
-          {
-            "id": "closed-itm-web-1783931436294-qufvjj-frigo-labo-2",
-            "label": "bouteille fermé nº2",
-            "location": "Frigo labo",
-            "remaining": 500,
-            "capacity": 500,
-            "unitKey": "mL",
-            "status": "closed",
-            "createdAt": "2026-08-11T14:50:54.348Z",
-            "updatedAt": "2026-08-11T14:50:54.348Z",
-            "updatedBy": "Caroline",
-            "version": 1
-          }
-        ],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-1xln8v1",
-          "roomId": "room-culture-l1",
-          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436294-t6s1p3",
       "name": "DMEM Low glucose + glutamax",
       "category": "Culture Cell",
@@ -28690,6 +28582,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 11:05",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé DMEM - low glucose de l'inventaire."
+    },
     {
       "date": "16/10/2026 11:04",
       "user": "Enora",

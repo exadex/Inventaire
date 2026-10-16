@@ -159,7 +159,7 @@
         "secondary": [
           {
             "reference": "14190-094",
-            "notes": ""
+            "notes": "Thermo Fischer\nhttps://www.thermofisher.com/order/catalog/product/14190094\nDélais de livraison rapide\nPrix : 23.4€"
           }
         ]
       },
@@ -28593,6 +28593,12 @@
     {
       "date": "16/10/2026 11:27",
       "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié PBS."
+    },
+    {
+      "date": "16/10/2026 11:27",
+      "user": "Enora",
       "action": "Item supprimé",
       "detail": "Enora a supprimé PBS de l'inventaire."
     },
@@ -41553,5 +41559,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:26:47.641Z"
+  "updatedAt": "2026-10-16T09:27:13.886Z"
 }

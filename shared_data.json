@@ -19350,7 +19350,7 @@
   "orders": [
     {
       "id": "ord-1792134891680",
-      "status": "received",
+      "status": "invoiced",
       "itemMode": "existing",
       "inventoryItemId": "itm-web-1783931436295-0te4tf",
       "inventoryUnit": "kit",
@@ -19368,7 +19368,10 @@
       "receivedBy": "Enora",
       "receivedAt": "16/10/2026 09:15",
       "receivedAtRaw": "2026-10-16T07:15:07.874Z",
-      "newItemData": null
+      "newItemData": null,
+      "invoiceReceivedAt": "16/10/2026 09:19",
+      "invoiceReceivedAtRaw": "2026-10-16T07:19:57.799Z",
+      "invoiceReceivedBy": "Enora"
     },
     {
       "id": "ord-1792134816489",
@@ -28326,6 +28329,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 09:19",
+      "user": "Enora",
+      "action": "Facture reçue",
+      "detail": "Enora a marqué Glucose Uptake-Glo™ Assay comme facture reçue."
+    },
     {
       "date": "16/10/2026 09:19",
       "user": "Enora",

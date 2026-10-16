@@ -3834,7 +3834,7 @@
       "id": "itm-CSV-0018",
       "name": "EGM / EBM",
       "category": "Procédé ExAdEx L2",
-      "quantity": 0,
+      "quantity": 3,
       "unit": "bouteilles",
       "minStock": 1,
       "location": "Culture L1",
@@ -28614,6 +28614,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvarpc95-1744258116-1801143084",
+      "operationId": "operation-mvarpc95-1744258116-1801143084",
+      "date": "16/10/2026 11:30",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · EGM / EBM · Stock précédent : 0 bouteilles · Stock compté : 3 bouteilles · Écart : +3 bouteilles · Note : Inventaire du 16/10/2026",
+      "user": "Enora",
+      "itemId": "itm-CSV-0018",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 3,
+      "difference": 3,
+      "unit": "bouteilles",
+      "note": "Inventaire du 16/10/2026"
+    },
+    {
       "date": "16/10/2026 11:30",
       "user": "Enora",
       "action": "Item modifié",
@@ -41466,6 +41481,45 @@
       "toLocation": "Frigo culture L1",
       "comment": "inventaire 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvarpd1m-923392014-287557268",
+      "operationId": "operation-mvarpc95-1744258116-1801143084",
+      "itemId": "itm-CSV-0018",
+      "timestamp": "2026-10-16T09:30:57.226Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 3,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 3,
+      "quantity": 3,
+      "difference": 3,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire du 16/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -42003,6 +42057,12 @@
       "itemId": "itm-CSV-0018",
       "at": "2026-10-16T09:30:04.161Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvarpc95-1744258116-1801143084",
+      "itemId": "itm-CSV-0018",
+      "at": "2026-10-16T09:30:57.226Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -42084,5 +42144,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:30:20.458Z"
+  "updatedAt": "2026-10-16T09:30:57.226Z"
 }

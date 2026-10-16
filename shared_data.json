@@ -8771,9 +8771,9 @@
         "Frigo labo"
       ],
       "tags": [
-        "Milieu DMEM"
+        "Milieu"
       ],
-      "notes": "DMEM/F12 (1:1) W GLUT-I 500ML",
+      "notes": "",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -8805,8 +8805,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
+        "trackingUnitKey": "bouteille",
+        "trackingUnit": "bouteilles",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -28668,6 +28668,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:14",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM/F12 (1:1) W GLUT-I."
+    },
+    {
       "id": "history-operation-mvar2vps-1354220849-2806729666",
       "operationId": "operation-mvar2vps-1354220849-2806729666",
       "date": "16/10/2026 11:13",
@@ -41026,5 +41032,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:13:29.393Z"
+  "updatedAt": "2026-10-16T09:14:14.179Z"
 }

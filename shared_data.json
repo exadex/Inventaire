@@ -19372,7 +19372,7 @@
     },
     {
       "id": "ord-1792134816489",
-      "status": "ordered",
+      "status": "requested",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "Test",
@@ -19383,9 +19383,9 @@
       "requestedBy": "Enora",
       "requestedAt": "16/10/2026 09:13",
       "requestedAtRaw": "2026-10-16T07:13:36.490Z",
-      "orderedBy": "Enora",
-      "orderedAt": "16/10/2026 09:13",
-      "orderedAtRaw": "2026-10-16T07:13:45.745Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -28326,6 +28326,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 09:19",
+      "user": "Enora",
+      "action": "Commande rouverte",
+      "detail": "Enora a renvoyé Test vers \"À demander\"."
+    },
     {
       "date": "16/10/2026 09:19",
       "user": "Enora",

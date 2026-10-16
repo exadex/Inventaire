@@ -4159,43 +4159,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0033",
-      "name": "T 25 cm²FLACON DE CULTURE ULA COL u INCLINÉ BOUCHON VENTILÉ STÉRILE.",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "flacons",
-      "minStock": 0,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Flask ULA T25"
-      ],
-      "notes": "25",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "004616B",
-          "link": "https://www.dutscher.com/article/004616B",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "300",
-          "unitPrice": "12",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-18kzurr",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0035",
       "name": "T25cm FLACON DE CULTURE ULA RECTANGLE COL INCLINE BOUCHON VENTILE STERILE x5x5",
       "category": "Procédé ExAdEx L2",
@@ -28596,6 +28559,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 10:40",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé T 25 cm²FLACON DE CULTURE ULA COL u INCLINÉ BOUCHON VENTILÉ STÉRILE. de l'inventaire."
+    },
     {
       "date": "16/10/2026 10:38",
       "user": "Enora",

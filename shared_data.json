@@ -10478,43 +10478,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-06zf4c",
-      "name": "Plaque corning 96 puits ULA",
-      "category": "Culture Cell",
-      "quantity": 2,
-      "unit": "plaques",
-      "minStock": 2,
-      "location": "Bureau",
-      "locations": [
-        "Bureau"
-      ],
-      "tags": [
-        "Plaque 96 ula"
-      ],
-      "notes": "Conditionnement : 24",
-      "references": {
-        "primary": {
-          "supplier": "Dutscher",
-          "reference": "7007",
-          "link": "https://www.dutscher.com/article/007007",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "700",
-          "unitPrice": "29,16666667",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1p3jd5c",
-          "roomId": "room-bureau",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-wncvj7",
       "name": "Microtube 1,5mL",
       "category": "Culture Cell",
@@ -28638,6 +28601,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 10:34",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Plaque corning 96 puits ULA de l'inventaire."
+    },
     {
       "date": "16/10/2026 10:33",
       "user": "Enora",

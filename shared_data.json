@@ -8677,7 +8677,7 @@
     },
     {
       "id": "itm-web-1783931436294-y4uvlu",
-      "name": "DMEM/F12 (1:1) W GLUT-I 500ML",
+      "name": "DMEM/F12 (1:1) W GLUT-I",
       "category": "Culture Cell",
       "quantity": 7,
       "unit": "Bouteilles",
@@ -8710,14 +8710,14 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
+            "key": "bouteille",
+            "singular": "bouteille",
+            "plural": "bouteilles",
+            "kind": "discrete",
             "contains": 1
           }
         ],
@@ -8726,6 +8726,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28583,6 +28584,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:06",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM/F12 (1:1) W GLUT-I."
+    },
+    {
       "date": "16/10/2026 11:05",
       "user": "Enora",
       "action": "Item supprimé",
@@ -39234,5 +39241,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:04:38.097Z"
+  "updatedAt": "2026-10-16T09:06:02.940Z"
 }

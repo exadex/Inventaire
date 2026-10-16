@@ -145,7 +145,7 @@
       "tags": [
         "Culture"
       ],
-      "notes": "",
+      "notes": "15 bouteilles de 250mL sans P/S",
       "references": {
         "primary": {
           "supplier": "Cytiva",
@@ -175,7 +175,7 @@
           }
         ],
         "trackingUnitKey": "custom-poche",
-        "trackingUnit": "Poche",
+        "trackingUnit": "poches",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -28752,6 +28752,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:26",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié PBS."
+    },
+    {
       "date": "16/10/2026 11:24",
       "user": "Enora",
       "action": "Item ajouté",
@@ -41696,5 +41702,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:24:14.349Z"
+  "updatedAt": "2026-10-16T09:26:28.199Z"
 }

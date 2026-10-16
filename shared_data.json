@@ -4351,43 +4351,6 @@
       ]
     },
     {
-      "id": "itm-CSV-0037",
-      "name": "Plaque 24 puits, Repellent, avec LID, stérile",
-      "category": "Procédé ExAdEx L2",
-      "quantity": 0,
-      "unit": "plaques",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [
-        "Plaque 24 ula"
-      ],
-      "notes": "ECHANTILLON",
-      "references": {
-        "primary": {
-          "supplier": "Greiner bio",
-          "reference": "662970",
-          "link": "https://shop.gbo.com/fr/france/products/bioscience/culture-cellulaire/support-de-culture-cellstar-cell-repellent-surface/microplaques-surface-cell-repellent/657970.html?sword_list%5B0%5D=657970&no_cache=1&_ga=2.29147902.314801138.1677662655-627813974.1674230259",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "ECHANTILLON",
-          "unitPrice": "ECHANTILLON",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-velfwt",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-CSV-0040",
       "name": "Robinet Blanc 3 voies BD Connecta - Boîte de 100",
       "category": "Procédé ExAdEx L2",
@@ -28690,6 +28653,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 10:32",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Plaque 24 puits, Repellent, avec LID, stérile de l'inventaire."
+    },
     {
       "date": "16/10/2026 10:31",
       "user": "Enora",

@@ -19885,7 +19885,7 @@
     },
     {
       "id": "ord-1792134891680",
-      "status": "received",
+      "status": "invoiced",
       "itemMode": "existing",
       "inventoryItemId": "itm-web-1783931436295-0te4tf",
       "inventoryUnit": "kit",
@@ -19904,9 +19904,9 @@
       "receivedAt": "16/10/2026 09:15",
       "receivedAtRaw": "2026-10-16T07:15:07.874Z",
       "newItemData": null,
-      "invoiceReceivedAt": "",
-      "invoiceReceivedAtRaw": "",
-      "invoiceReceivedBy": ""
+      "invoiceReceivedAt": "16/10/2026 16:03",
+      "invoiceReceivedAtRaw": "2026-10-16T14:03:29.934Z",
+      "invoiceReceivedBy": "Elina"
     },
     {
       "id": "ord-1791898338571",
@@ -28838,6 +28838,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 16:03",
+      "user": "Elina",
+      "action": "Facture reçue",
+      "detail": "Elina a marqué Glucose Uptake-Glo™ Assay comme facture reçue."
+    },
     {
       "date": "16/10/2026 16:02",
       "user": "Elina",

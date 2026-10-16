@@ -4625,7 +4625,39 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239645718-kyl2xz",
+      "createdAtRaw": "2026-10-16T14:08:14.904Z",
+      "createdAt": "16/10/2026 16:08",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0035",
@@ -28884,6 +28916,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 16:08",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Plaque multi puits culture suspension, 24 puits."
+    },
+    {
       "id": "history-operation-mvb1lb5r-3206697532-3866844212",
       "operationId": "operation-mvb1lb5r-3206697532-3866844212",
       "date": "16/10/2026 16:07",
@@ -43179,5 +43217,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T14:07:48.475Z"
+  "updatedAt": "2026-10-16T14:08:14.906Z"
 }

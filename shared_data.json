@@ -3580,7 +3580,7 @@
       "tags": [
         "ACL"
       ],
-      "notes": "",
+      "notes": "Dont 1 ouvert",
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
@@ -3601,7 +3601,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -3617,6 +3617,7 @@
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
+        "closedContainers": [],
         "openContainers": []
       },
       "aliquotTracking": {
@@ -28615,6 +28616,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:43",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié ACL -eBioscience™ 10X RBC Lysis Buffer (Multi-species) 50 ml."
+    },
+    {
       "date": "16/10/2026 11:40",
       "user": "Enora",
       "action": "Item modifié",
@@ -42235,5 +42242,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:40:14.272Z"
+  "updatedAt": "2026-10-16T09:43:32.750Z"
 }

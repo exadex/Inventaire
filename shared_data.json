@@ -9648,7 +9648,7 @@
     },
     {
       "id": "itm-web-1783931436295-cgioxi",
-      "name": "Plaque 6 puits - Sarstedt fond plat",
+      "name": "Plaque 6 puits - Fond plat",
       "category": "Culture Cell",
       "quantity": 2.54,
       "unit": "cartons",
@@ -28656,6 +28656,12 @@
     {
       "date": "16/10/2026 10:32",
       "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Plaque 6 puits - Fond plat."
+    },
+    {
+      "date": "16/10/2026 10:32",
+      "user": "Enora",
       "action": "Item supprimé",
       "detail": "Enora a supprimé Plaque 24 puits, Repellent, avec LID, stérile de l'inventaire."
     },
@@ -39119,5 +39125,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:31:27.488Z"
+  "updatedAt": "2026-10-16T08:32:28.748Z"
 }

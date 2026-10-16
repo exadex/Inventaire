@@ -123,6 +123,74 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1792138590984",
+      "name": "Tamis 100µm",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 3,
+      "unit": "cartons",
+      "minStock": 0,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-7afb644a-9c0e-479d-81d7-3bd43eb29f06",
+          "roomId": "room-reserve",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Réserve"
+      ],
+      "location": "Réserve",
+      "tags": [
+        "Tamis/ Filtre"
+      ],
+      "notes": "1 carton ouvert ",
+      "references": {
+        "primary": {
+          "supplier": "Dutscher",
+          "reference": "352360",
+          "link": "",
+          "notes": "50 unités par carton",
+          "price": "",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-16T08:16:30.984Z",
+      "createdAt": "16/10/2026 10:16",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "carton",
+        "trackingUnit": "cartons",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1792138017063",
       "name": "Combitips 50mL non stérile",
       "category": "Procédé ExAdEx L2",
@@ -28532,6 +28600,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 10:16",
+      "user": "Enora",
+      "action": "Item ajouté",
+      "detail": "Enora a ajouté Tamis 100µm dans Procédé ExAdEx L2."
+    },
+    {
       "id": "history-operation-mvaow6cc-1359869471-3494575512",
       "operationId": "operation-mvaow6cc-1359869471-3494575512",
       "date": "16/10/2026 10:12",
@@ -38813,5 +38887,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T08:12:18.531Z"
+  "updatedAt": "2026-10-16T08:16:30.990Z"
 }

@@ -8968,172 +8968,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-c9o2wm",
-      "name": "PBS",
-      "category": "Culture Cell",
-      "quantity": 0,
-      "unit": "Poche",
-      "minStock": 1,
-      "location": "Culture L1",
-      "locations": [
-        "Culture L1"
-      ],
-      "tags": [
-        "PBS"
-      ],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Cytiva",
-          "reference": "SH30028.09",
-          "link": "",
-          "notes": "NA71 : Sérum et autre milieu pour culture cellulaire animale",
-          "price": "",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": [
-          {
-            "reference": "14190-094",
-            "notes": "Thermo Fischer\nhttps://www.thermofisher.com/order/catalog/product/14190094\nDélais de livraison rapide\nPrix : 23.4€"
-          }
-        ]
-      },
-      "source": "seed",
-      "usageProfile": "routine",
-      "createdAtRaw": "2026-08-10T11:43:23.774Z",
-      "createdAt": "10/08/2026 13:43",
-      "stockTracking": {
-        "version": 1,
-        "mode": "containers",
-        "traceabilityMode": "detailed",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "custom-poche",
-            "singular": "poche",
-            "plural": "poches",
-            "kind": "discrete",
-            "contains": 1
-          },
-          {
-            "id": "level-2",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
-            "contains": 5000
-          }
-        ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
-        "quantityStep": 1,
-        "precision": 6,
-        "closedByLocation": [],
-        "closedContainers": [
-          {
-            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-1",
-            "label": "bouteille fermé nº1",
-            "location": "Frigo labo",
-            "remaining": 0,
-            "capacity": 500,
-            "unitKey": "mL",
-            "status": "finished",
-            "createdAt": "2026-08-12T07:43:29.299Z",
-            "updatedAt": "2026-10-16T09:19:16.577Z",
-            "updatedBy": "enora",
-            "version": 2,
-            "roomId": "room-laboratoire",
-            "locationId": "location-frigo-labo",
-            "sublocationId": "",
-            "finishedAt": "2026-10-16T09:19:16.577Z"
-          },
-          {
-            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-2",
-            "label": "bouteille fermé nº2",
-            "location": "Frigo labo",
-            "remaining": 0,
-            "capacity": 500,
-            "unitKey": "mL",
-            "status": "finished",
-            "createdAt": "2026-08-12T07:43:29.299Z",
-            "updatedAt": "2026-10-16T09:19:16.577Z",
-            "updatedBy": "enora",
-            "version": 2,
-            "roomId": "room-laboratoire",
-            "locationId": "location-frigo-labo",
-            "sublocationId": "",
-            "finishedAt": "2026-10-16T09:19:16.577Z"
-          },
-          {
-            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-3",
-            "label": "bouteille fermé nº3",
-            "location": "Frigo labo",
-            "remaining": 0,
-            "capacity": 500,
-            "unitKey": "mL",
-            "status": "finished",
-            "createdAt": "2026-08-12T07:43:29.299Z",
-            "updatedAt": "2026-10-16T09:19:16.577Z",
-            "updatedBy": "enora",
-            "version": 2,
-            "roomId": "room-laboratoire",
-            "locationId": "location-frigo-labo",
-            "sublocationId": "",
-            "finishedAt": "2026-10-16T09:19:16.577Z"
-          },
-          {
-            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-4",
-            "label": "bouteille fermé nº4",
-            "location": "Frigo labo",
-            "remaining": 0,
-            "capacity": 500,
-            "unitKey": "mL",
-            "status": "finished",
-            "createdAt": "2026-08-12T07:43:29.299Z",
-            "updatedAt": "2026-10-16T09:19:16.577Z",
-            "updatedBy": "enora",
-            "version": 2,
-            "roomId": "room-laboratoire",
-            "locationId": "location-frigo-labo",
-            "sublocationId": "",
-            "finishedAt": "2026-10-16T09:19:16.577Z"
-          },
-          {
-            "id": "closed-itm-web-1783931436295-c9o2wm-frigo-labo-5",
-            "label": "bouteille fermé nº5",
-            "location": "Frigo labo",
-            "remaining": 0,
-            "capacity": 500,
-            "unitKey": "mL",
-            "status": "finished",
-            "createdAt": "2026-08-12T07:43:29.299Z",
-            "updatedAt": "2026-10-16T09:21:24.079Z",
-            "updatedBy": "enora",
-            "version": 3,
-            "roomId": "room-laboratoire",
-            "locationId": "location-frigo-labo",
-            "sublocationId": "",
-            "finishedAt": "2026-10-16T09:19:16.577Z"
-          }
-        ],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": true,
-        "preparations": []
-      },
-      "placements": [
-        {
-          "id": "placement-legacy-sssgtb",
-          "roomId": "room-culture-l1",
-          "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-4yhraf",
       "name": "3-Isobutyl-1-methylxanthine (IBMX)",
       "category": "Culture Cell",
@@ -28756,6 +28590,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 11:27",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé PBS de l'inventaire."
+    },
     {
       "date": "16/10/2026 11:26",
       "user": "Enora",

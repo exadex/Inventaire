@@ -8276,18 +8276,17 @@
     },
     {
       "id": "itm-web-1783931436294-h0uujo",
-      "name": "DMEM, high glucose, GlutaMAX™ Supplement, pyruvate",
+      "name": "DMEM, high glucose, GlutaMAX",
       "category": "Culture Cell",
       "quantity": 0,
       "unit": "bouteilles",
       "minStock": 1,
       "location": "Culture L1",
       "locations": [
-        "Culture L1",
-        "Frigo labo"
+        "Culture L1"
       ],
       "tags": [
-        "Milieu DMEM"
+        "Milieu"
       ],
       "notes": "4.5g/L de glucose \nPérimé depuis 2023 et 2026",
       "references": {
@@ -8300,12 +8299,7 @@
           "unitPrice": "0,75",
           "leadTime": ""
         },
-        "secondary": [
-          {
-            "reference": "3772613",
-            "notes": "UGAP"
-          }
-        ]
+        "secondary": []
       },
       "source": "seed",
       "usageProfile": "normal",
@@ -8314,7 +8308,7 @@
       "createdAt": "10/08/2026 13:33",
       "stockTracking": {
         "version": 1,
-        "mode": "containers",
+        "mode": "simple",
         "traceabilityMode": "detailed",
         "packagingLevels": [
           {
@@ -28674,6 +28668,12 @@
   ],
   "history": [
     {
+      "date": "16/10/2026 11:13",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié DMEM, high glucose, GlutaMAX."
+    },
+    {
       "id": "history-operation-mvar1s1y-1444547870-1401876134",
       "operationId": "operation-mvar1s1y-1444547870-1401876134",
       "date": "16/10/2026 11:12",
@@ -40966,5 +40966,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T09:12:39.881Z"
+  "updatedAt": "2026-10-16T09:13:21.127Z"
 }

@@ -9977,53 +9977,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-tm3qnv",
-      "name": "Plaque 48 puits fond plats standart",
-      "category": "Culture Cell",
-      "quantity": 2,
-      "unit": "Carton",
-      "minStock": 1,
-      "location": "Réserve",
-      "locations": [
-        "Réserve"
-      ],
-      "tags": [
-        "Plaque 48"
-      ],
-      "notes": "Conditionnement : 50 plaques/cartons",
-      "references": {
-        "primary": {
-          "supplier": "Sarstedt",
-          "reference": "83.3923",
-          "link": "https://www.sarstedt.com/fr/produits/laboratoire/culture-cellulaire-tissulaire/culture/produit/83.3923/",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "55,2",
-          "unitPrice": "0,0552",
-          "leadTime": ""
-        },
-        "secondary": [
-          {
-            "reference": "353078",
-            "notes": ""
-          }
-        ]
-      },
-      "source": "seed",
-      "usageProfile": "normal",
-      "createdAtRaw": "2026-07-17T08:28:12.186Z",
-      "createdAt": "17/07/2026 10:28",
-      "updatedAt": "2026-08-10T11:45:29.112Z",
-      "version": 1,
-      "placements": [
-        {
-          "id": "placement-legacy-1xap806",
-          "roomId": "room-reserve",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-bcmh1a",
       "name": "Plaque 96 puits - Sarstedt fond plat",
       "category": "Culture Cell",
@@ -28628,6 +28581,12 @@
     }
   ],
   "history": [
+    {
+      "date": "16/10/2026 10:37",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Plaque 48 puits fond plats standart de l'inventaire."
+    },
     {
       "date": "16/10/2026 10:36",
       "user": "Enora",

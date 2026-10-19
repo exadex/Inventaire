@@ -4808,7 +4808,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-19T07:25:02.074Z",
+      "createdAt": "19/10/2026 09:25",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0041",
@@ -28916,6 +28947,12 @@
   ],
   "history": [
     {
+      "date": "19/10/2026 09:25",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Robinet Blanc 3 voies BD Connecta - Boîte de 100."
+    },
+    {
       "date": "16/10/2026 16:42",
       "user": "Elina",
       "action": "Commande rouverte",
@@ -41029,5 +41066,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-16T14:08:14.906Z"
+  "updatedAt": "2026-10-19T07:25:02.077Z"
 }

@@ -326,7 +326,7 @@
         ]
       },
       "source": "web",
-      "hasMinimumStock": false
+      "hasMinimumStock": true
     },
     {
       "id": "web-1792141052477",
@@ -28957,6 +28957,12 @@
       "date": "19/10/2026 09:25",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié PBS."
+    },
+    {
+      "date": "19/10/2026 09:25",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Robinet Blanc 3 voies BD Connecta - Boîte de 100."
     },
     {
@@ -41073,5 +41079,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19T07:25:38.238Z"
+  "updatedAt": "2026-10-19T07:25:51.667Z"
 }

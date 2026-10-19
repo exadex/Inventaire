@@ -302,10 +302,10 @@
             "locations": [
               {
                 "location": "Culture L1 → Frigo culture L1 à l'entrée",
+                "quantity": 15,
                 "roomId": "room-culture-l1",
                 "locationId": "location-36a970f0-ea07-492d-9504-dd7be4b2b4c6",
-                "sublocationId": "",
-                "quantity": 15
+                "sublocationId": ""
               }
             ],
             "openAliquots": [],
@@ -325,7 +325,8 @@
           }
         ]
       },
-      "source": "web"
+      "source": "web",
+      "hasMinimumStock": false
     },
     {
       "id": "web-1792141052477",
@@ -28950,6 +28951,12 @@
       "date": "19/10/2026 09:25",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié PBS."
+    },
+    {
+      "date": "19/10/2026 09:25",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Robinet Blanc 3 voies BD Connecta - Boîte de 100."
     },
     {
@@ -41066,5 +41073,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19T07:25:02.077Z"
+  "updatedAt": "2026-10-19T07:25:38.238Z"
 }

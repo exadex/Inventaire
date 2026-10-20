@@ -2003,7 +2003,7 @@
       "id": "web-1787650829308",
       "name": "Plaque 48 puits - Thermo",
       "category": "Procédé ExAdEx L2",
-      "quantity": 1,
+      "quantity": 0.92,
       "unit": "cartons",
       "minStock": 0,
       "usageProfile": "normal",
@@ -2064,28 +2064,33 @@
         "trackingUnit": "plaques",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [
-          {
-            "location": "Réserve",
-            "quantity": 1
-          }
-        ],
-        "closedContainers": [
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [
           {
             "id": "closed-web-1787650829308-reserve-1",
             "label": "unité fermé nº1",
             "location": "Réserve",
-            "remaining": 75,
+            "remaining": 69,
             "capacity": 75,
             "unitKey": "plaque",
-            "status": "closed",
+            "status": "open",
             "createdAt": "2026-08-25T09:40:29.309Z",
-            "updatedAt": "2026-08-25T09:40:29.309Z",
-            "updatedBy": "Caroline",
-            "version": 1
+            "updatedAt": "2026-10-20T07:02:21.044Z",
+            "updatedBy": "enora",
+            "version": 2,
+            "roomId": "room-reserve",
+            "locationId": "",
+            "sublocationId": "",
+            "openedAt": "2026-10-20T07:02:21.044Z",
+            "openedBy": {
+              "userId": "enora",
+              "userName": "Enora",
+              "userEmoji": "⭐️",
+              "userInitials": ""
+            }
           }
-        ],
-        "openContainers": []
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -28948,6 +28953,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvgc5lh8-82891815-3844992163",
+      "operationId": "operation-mvgc5lh8-82891815-3844992163",
+      "date": "20/10/2026 09:02",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · Plaque 48 puits - Thermo · Stock précédent : 1 unités · Stock compté : 0,92 unités · Écart : -0,08 unités · Note : sortie de stock 20 10 2026",
+      "user": "Enora",
+      "itemId": "web-1787650829308",
+      "type": "recounted",
+      "previousQuantity": 1,
+      "countedQuantity": 0.92,
+      "difference": -0.08,
+      "unit": "unités",
+      "note": "sortie de stock 20 10 2026"
+    },
+    {
       "date": "19/10/2026 09:25",
       "user": "Elina",
       "action": "Item modifié",
@@ -40425,6 +40445,81 @@
       "toLocation": "-80°C",
       "comment": "Inventaire 16/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvgc5nxx-148124484-4029277907",
+      "operationId": "operation-mvgc5lh8-82891815-3844992163-closed-web-1787650829308-reserve-1",
+      "itemId": "web-1787650829308",
+      "timestamp": "2026-10-20T07:02:21.045Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "container",
+      "entityId": "closed-web-1787650829308-reserve-1",
+      "containerId": "closed-web-1787650829308-reserve-1",
+      "containerLabel": "unité fermé nº1",
+      "containerStatusBefore": "closed",
+      "containerStatusAfter": "open",
+      "beforeQuantity": 75,
+      "afterQuantity": 69,
+      "beforeCapacity": 75,
+      "afterCapacity": 75,
+      "unitBefore": "plaques",
+      "unitAfter": "plaques",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": {
+        "id": "closed-web-1787650829308-reserve-1",
+        "label": "unité fermé nº1",
+        "location": "Réserve",
+        "remaining": 75,
+        "capacity": 75,
+        "unitKey": "plaque",
+        "status": "closed",
+        "createdAt": "2026-08-25T09:40:29.309Z",
+        "updatedAt": "2026-08-25T09:40:29.309Z",
+        "updatedBy": "Caroline",
+        "version": 1
+      },
+      "after": {
+        "id": "closed-web-1787650829308-reserve-1",
+        "label": "unité fermé nº1",
+        "location": "Réserve",
+        "remaining": 69,
+        "capacity": 75,
+        "unitKey": "plaque",
+        "status": "open",
+        "createdAt": "2026-08-25T09:40:29.309Z",
+        "updatedAt": "2026-10-20T07:02:21.044Z",
+        "updatedBy": "enora",
+        "version": 2,
+        "roomId": "room-reserve",
+        "locationId": "",
+        "sublocationId": "",
+        "openedAt": "2026-10-20T07:02:21.044Z",
+        "openedBy": {
+          "userId": "enora",
+          "userName": "Enora",
+          "userEmoji": "⭐️",
+          "userInitials": ""
+        }
+      },
+      "quantity": 69,
+      "difference": -6,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "Réserve",
+      "toLocation": "Réserve",
+      "comment": "sortie de stock 20 10 2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -40998,6 +41093,12 @@
       "itemId": "itm-web-1783931436295-0te4tf",
       "at": "2026-10-16T14:07:48.475Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvgc5lh8-82891815-3844992163",
+      "itemId": "web-1787650829308",
+      "at": "2026-10-20T07:02:21.045Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -41079,5 +41180,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-19T07:25:51.667Z"
+  "updatedAt": "2026-10-20T07:02:21.045Z"
 }

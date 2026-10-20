@@ -19130,7 +19130,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:08:37.218Z",
+      "createdAt": "20/10/2026 13:08",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0151",
@@ -29424,6 +29455,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:08",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié CD73 PE."
+    },
     {
       "date": "20/10/2026 13:08",
       "user": "Elina",
@@ -41796,5 +41833,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:08:20.578Z"
+  "updatedAt": "2026-10-20T11:08:37.222Z"
 }

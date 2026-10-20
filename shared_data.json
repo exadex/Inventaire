@@ -5630,8 +5630,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "carton",
+        "trackingUnit": "cartons",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -5642,7 +5642,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": false
     },
     {
       "id": "itm-CSV-0064",
@@ -29144,6 +29145,12 @@
       "date": "20/10/2026 13:04",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Filtres 0,45 µm."
+    },
+    {
+      "date": "20/10/2026 13:04",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié filtre 0,22 13mm."
     },
     {
@@ -41428,5 +41435,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:04:32.774Z"
+  "updatedAt": "2026-10-20T11:04:45.306Z"
 }

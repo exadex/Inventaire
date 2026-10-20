@@ -19301,7 +19301,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:07:04.767Z",
+      "createdAt": "20/10/2026 13:07",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0155",
@@ -29329,6 +29360,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:07",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié IgG1 APC."
+    },
     {
       "date": "20/10/2026 13:06",
       "user": "Elina",
@@ -41671,5 +41708,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:06:36.988Z"
+  "updatedAt": "2026-10-20T11:07:04.773Z"
 }

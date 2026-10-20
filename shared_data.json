@@ -19511,7 +19511,38 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:05:34.041Z",
+      "createdAt": "20/10/2026 13:05",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0161",
@@ -29143,6 +29174,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:05",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié CD146 RPE."
+    },
     {
       "date": "20/10/2026 13:05",
       "user": "Elina",
@@ -41449,5 +41486,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:05:11.693Z"
+  "updatedAt": "2026-10-20T11:05:34.047Z"
 }

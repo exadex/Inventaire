@@ -6358,7 +6358,8 @@
       "usageProfile": "normal",
       "supplierContactId": "contact-1785226360650-wy85d7",
       "createdAtRaw": "2026-10-13T09:13:58.29Z",
-      "createdAt": "13/10/2026 11:13"
+      "createdAt": "13/10/2026 11:13",
+      "hasMinimumStock": false
     },
     {
       "id": "itm-CSV-0073",
@@ -29143,6 +29144,12 @@
   ],
   "history": [
     {
+      "date": "20/10/2026 13:05",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Gants - M."
+    },
+    {
       "date": "20/10/2026 13:04",
       "user": "Elina",
       "action": "Item modifié",
@@ -41442,5 +41449,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:04:57.964Z"
+  "updatedAt": "2026-10-20T11:05:11.693Z"
 }

@@ -20261,7 +20261,7 @@
       "category": "Cones pipettes",
       "quantity": 0.5,
       "unit": "carton",
-      "minStock": 2,
+      "minStock": 0.5,
       "location": "Laboratoire",
       "locations": [
         "Laboratoire"
@@ -20359,7 +20359,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": true
     }
   ],
   "experiments": [
@@ -29423,6 +29424,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:08",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones non-filtrés 1000µL."
+    },
     {
       "date": "20/10/2026 13:07",
       "user": "Elina",
@@ -41789,5 +41796,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:07:55.832Z"
+  "updatedAt": "2026-10-20T11:08:20.578Z"
 }

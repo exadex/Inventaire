@@ -19441,7 +19441,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:06:09.445Z",
+      "createdAt": "20/10/2026 13:06",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0159",
@@ -29205,6 +29236,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:06",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié MSCA1 APC."
+    },
     {
       "date": "20/10/2026 13:05",
       "user": "Elina",
@@ -41523,5 +41560,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:05:56.885Z"
+  "updatedAt": "2026-10-20T11:06:09.448Z"
 }

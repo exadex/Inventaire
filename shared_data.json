@@ -4953,7 +4953,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": false
     },
     {
       "id": "itm-CSV-0045",
@@ -29139,6 +29140,12 @@
   ],
   "history": [
     {
+      "date": "20/10/2026 13:04",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 20mL non luer lock."
+    },
+    {
       "date": "20/10/2026 13:03",
       "user": "Elina",
       "action": "Item modifié",
@@ -41414,5 +41421,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:03:54.336Z"
+  "updatedAt": "2026-10-20T11:04:21.395Z"
 }

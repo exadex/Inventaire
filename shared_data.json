@@ -19304,7 +19304,7 @@
       ],
       "hasMinimumStock": false,
       "usageProfile": "normal",
-      "createdAtRaw": "2026-10-20T11:07:04.767Z",
+      "createdAtRaw": "2026-10-20T11:07:12.604Z",
       "createdAt": "20/10/2026 13:07",
       "stockTracking": {
         "version": 1,
@@ -41708,5 +41708,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:07:04.773Z"
+  "updatedAt": "2026-10-20T11:07:12.609Z"
 }

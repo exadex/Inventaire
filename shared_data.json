@@ -5370,7 +5370,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -5393,7 +5393,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": false
     },
     {
       "id": "itm-CSV-0055",
@@ -29143,6 +29144,12 @@
       "date": "20/10/2026 13:04",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié filtre 0,22 13mm."
+    },
+    {
+      "date": "20/10/2026 13:04",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Seringue 20mL non luer lock."
     },
     {
@@ -41421,5 +41428,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:04:21.395Z"
+  "updatedAt": "2026-10-20T11:04:32.774Z"
 }

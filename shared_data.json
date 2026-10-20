@@ -19266,7 +19266,38 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:07:24.855Z",
+      "createdAt": "20/10/2026 13:07",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0154",
@@ -29360,6 +29391,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:07",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié FITC anti-huma CD26."
+    },
     {
       "date": "20/10/2026 13:07",
       "user": "Elina",
@@ -41708,5 +41745,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:07:12.609Z"
+  "updatedAt": "2026-10-20T11:07:24.860Z"
 }

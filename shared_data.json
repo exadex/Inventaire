@@ -19173,7 +19173,7 @@
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
@@ -19196,7 +19196,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": false
     },
     {
       "id": "itm-CSV-0152",
@@ -29422,6 +29423,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:07",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié PE Mouse Anti-Human CD90."
+    },
     {
       "date": "20/10/2026 13:07",
       "user": "Elina",
@@ -41782,5 +41789,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:07:38.504Z"
+  "updatedAt": "2026-10-20T11:07:55.832Z"
 }

@@ -19476,7 +19476,38 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:05:56.879Z",
+      "createdAt": "20/10/2026 13:05",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0160",
@@ -29174,6 +29205,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:05",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié CD90-FITC."
+    },
     {
       "date": "20/10/2026 13:05",
       "user": "Elina",
@@ -41486,5 +41523,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:05:44.115Z"
+  "updatedAt": "2026-10-20T11:05:56.885Z"
 }

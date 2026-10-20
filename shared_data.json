@@ -19681,7 +19681,38 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:01:52.522Z",
+      "createdAt": "20/10/2026 13:01",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0166",
@@ -28983,6 +29014,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:01",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié NucBlue Live cell stain."
+    },
     {
       "date": "20/10/2026 13:00",
       "user": "Elina",
@@ -41217,5 +41254,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:00:43.210Z"
+  "updatedAt": "2026-10-20T11:01:52.527Z"
 }

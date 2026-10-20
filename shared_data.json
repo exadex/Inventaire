@@ -326,7 +326,7 @@
         ]
       },
       "source": "web",
-      "hasMinimumStock": false
+      "hasMinimumStock": true
     },
     {
       "id": "web-1792141052477",
@@ -29145,6 +29145,12 @@
       "detail": "Elina a modifié PBS."
     },
     {
+      "date": "20/10/2026 13:03",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié PBS."
+    },
+    {
       "date": "20/10/2026 13:02",
       "user": "Elina",
       "action": "Item modifié",
@@ -41408,5 +41414,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:03:33.725Z"
+  "updatedAt": "2026-10-20T11:03:54.336Z"
 }

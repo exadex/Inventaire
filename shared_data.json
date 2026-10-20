@@ -19646,7 +19646,38 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": false,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-10-20T11:02:00.131Z",
+      "createdAt": "20/10/2026 13:02",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-CSV-0165",
@@ -29014,6 +29045,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/10/2026 13:02",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié IgG1-BV650."
+    },
     {
       "date": "20/10/2026 13:01",
       "user": "Elina",
@@ -41254,5 +41291,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:01:52.527Z"
+  "updatedAt": "2026-10-20T11:02:00.137Z"
 }

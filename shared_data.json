@@ -3980,7 +3980,7 @@
       "id": "itm-CSV-0018",
       "name": "EGM / EBM",
       "category": "Procédé ExAdEx L2",
-      "quantity": 3,
+      "quantity": 2,
       "unit": "bouteilles",
       "minStock": 1,
       "location": "Culture L1",
@@ -4217,7 +4217,13 @@
             "finishedAt": "2026-07-30T08:17:31.089Z",
             "unitKey": "mL"
           }
-        ]
+        ],
+        "unitStates": {
+          "closed": 2,
+          "open": 1,
+          "updatedAt": "2026-10-21T13:50:24.412Z",
+          "updatedBy": "enora"
+        }
       },
       "aliquotTracking": {
         "version": 1,
@@ -14898,8 +14904,7 @@
       "minStock": 1,
       "location": "-80°C",
       "locations": [
-        "-80°C",
-        "Pièce -80°C → -80°C"
+        "-80°C"
       ],
       "tags": [],
       "notes": "Conditionnement : 5mL",
@@ -29517,6 +29522,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvi6694r-548216943-2340239760",
+      "operationId": "operation-mvi6694r-548216943-2340239760",
+      "date": "21/10/2026 15:50",
+      "action": "Comptage / Ajustement",
+      "detail": "Enora · EGM / EBM · Stock précédent : 3 bouteilles · Stock compté : 2 bouteilles · Écart : -1 bouteilles · Note : Inventaire 21/10/2026",
+      "user": "Enora",
+      "itemId": "itm-CSV-0018",
+      "type": "recounted",
+      "previousQuantity": 3,
+      "countedQuantity": 2,
+      "difference": -1,
+      "unit": "bouteilles",
+      "note": "Inventaire 21/10/2026"
+    },
+    {
       "id": "history-operation-mvhwr48g-1083047036-272580671",
       "operationId": "operation-mvhwr48g-1083047036-272580671",
       "date": "21/10/2026 11:26",
@@ -41323,6 +41343,52 @@
       "toLocation": "Pièce -80°C → -80°C",
       "comment": "Réception le 21/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvi66a3h-2253211208-2530239035",
+      "operationId": "operation-mvi6694r-548216943-2340239760",
+      "itemId": "itm-CSV-0018",
+      "timestamp": "2026-10-21T13:50:24.413Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "⭐️",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 3,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": {
+        "closed": 2,
+        "open": 1,
+        "updatedAt": "2026-10-21T13:50:24.412Z",
+        "updatedBy": "enora"
+      },
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 3,
+      "after": 2,
+      "quantity": 2,
+      "difference": -1,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Inventaire 21/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -41908,6 +41974,12 @@
       "itemId": "itm-web-1783931436295-0te4tf",
       "at": "2026-10-21T09:26:41.678Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvi6694r-548216943-2340239760",
+      "itemId": "itm-CSV-0018",
+      "at": "2026-10-21T13:50:24.413Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -41989,5 +42061,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-21T09:26:41.678Z"
+  "updatedAt": "2026-10-21T13:50:24.413Z"
 }

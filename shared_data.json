@@ -14893,12 +14893,13 @@
       "id": "itm-web-1783931436295-0te4tf",
       "name": "Glucose Uptake-Glo™ Assay",
       "category": "Biomol",
-      "quantity": 0.6,
+      "quantity": 1.6,
       "unit": "kit",
       "minStock": 1,
       "location": "-80°C",
       "locations": [
-        "-80°C"
+        "-80°C",
+        "Pièce -80°C → -80°C"
       ],
       "tags": [],
       "notes": "Conditionnement : 5mL",
@@ -14953,8 +14954,36 @@
         "trackingUnit": "mL",
         "quantityStep": 1,
         "precision": 6,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Pièce -80°C → -80°C",
+            "quantity": 1
+          }
+        ],
+        "closedContainers": [
+          {
+            "id": "closed-container-mvhwr571-2606362274-2810799459",
+            "label": "kit fermé",
+            "location": "Pièce -80°C → -80°C",
+            "roomId": "room-piece-80",
+            "locationId": "location-80",
+            "sublocationId": "",
+            "remaining": 5,
+            "capacity": 5,
+            "unitKey": "mL",
+            "status": "closed",
+            "createdAt": "2026-10-21T09:26:41.677Z",
+            "createdBy": {
+              "userId": "elina",
+              "userName": "Elina",
+              "userEmoji": "🔬",
+              "userInitials": ""
+            },
+            "updatedAt": "2026-10-21T09:26:41.677Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "closed-container-mspso14d-1515073633-4204132232",
@@ -29488,6 +29517,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvhwr48g-1083047036-272580671",
+      "operationId": "operation-mvhwr48g-1083047036-272580671",
+      "date": "21/10/2026 11:26",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Glucose Uptake-Glo™ Assay · Stock précédent : 0,6 kits · Stock compté : 1,6 kits · Écart : +1 kits · Note : Réception le 21/10/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "type": "recounted",
+      "previousQuantity": 0.6,
+      "countedQuantity": 1.6,
+      "difference": 1,
+      "unit": "kits",
+      "note": "Réception le 21/10/2026"
+    },
+    {
       "date": "20/10/2026 13:09",
       "user": "Elina",
       "action": "Item modifié",
@@ -41217,6 +41261,68 @@
       "toLocation": "Réserve",
       "comment": "sortie de stock 20 10 2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvhwr572-2037130192-2581230995",
+      "operationId": "operation-mvhwr48g-1083047036-272580671-closed-container-mvhwr571-2606362274-2810799459",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "timestamp": "2026-10-21T09:26:41.678Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "received",
+      "entityType": "container",
+      "entityId": "closed-container-mvhwr571-2606362274-2810799459",
+      "containerId": "closed-container-mvhwr571-2606362274-2810799459",
+      "containerLabel": "kit fermé",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "closed",
+      "beforeQuantity": 0,
+      "afterQuantity": 5,
+      "beforeCapacity": 0,
+      "afterCapacity": 5,
+      "unitBefore": "",
+      "unitAfter": "mL",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": null,
+      "after": {
+        "id": "closed-container-mvhwr571-2606362274-2810799459",
+        "label": "kit fermé",
+        "location": "Pièce -80°C → -80°C",
+        "roomId": "room-piece-80",
+        "locationId": "location-80",
+        "sublocationId": "",
+        "remaining": 5,
+        "capacity": 5,
+        "unitKey": "mL",
+        "status": "closed",
+        "createdAt": "2026-10-21T09:26:41.677Z",
+        "createdBy": {
+          "userId": "elina",
+          "userName": "Elina",
+          "userEmoji": "🔬",
+          "userInitials": ""
+        },
+        "updatedAt": "2026-10-21T09:26:41.677Z",
+        "updatedBy": "elina",
+        "version": 1
+      },
+      "quantity": 5,
+      "difference": 5,
+      "unit": "mL",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Pièce -80°C → -80°C",
+      "comment": "Réception le 21/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -41796,6 +41902,12 @@
       "itemId": "web-1787650829308",
       "at": "2026-10-20T07:02:21.045Z",
       "type": "containers_recounted"
+    },
+    {
+      "operationId": "operation-mvhwr48g-1083047036-272580671",
+      "itemId": "itm-web-1783931436295-0te4tf",
+      "at": "2026-10-21T09:26:41.678Z",
+      "type": "containers_recounted"
     }
   ],
   "agentOperations": [
@@ -41877,5 +41989,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-20T11:09:35.917Z"
+  "updatedAt": "2026-10-21T09:26:41.678Z"
 }

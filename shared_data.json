@@ -29263,6 +29263,16 @@
           "type": "email",
           "value": "rsturtzer@dutscher.com"
         }
+      ],
+      "supplierCredentials": [
+        {
+          "id": "credential-1792679226132-9135d613-cc54-42a9-8e63-5bad8eb8c1b6",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "XPY20jtAxOLxv8tg",
+          "ciphertext": "TOl+W/jFSKlVDBAZMBrVD8dlU2l/5CRPwNekW+peH4wC6z+Ao/FjdpWDnov4hAqNiDrTBVKhSOc6MhmPAxHhSCjDy1v8xJ8F4JKNkhM3KSGlpHwbNvZpoOH0FCvrqpaDunSsNgcQeo+ms0HYiJwJtUTKkw6hIAyQ3DZkaHK3r7ScccsB5YytgR7m160VaoLy+2rKz1WZJkUyJQw5Z26SrwrjsBycPw35hnKpdp06WpDN0BCAIRioXv3eH8i80bBNj9f3qg=="
+        }
       ]
     },
     {
@@ -29521,6 +29531,12 @@
     }
   ],
   "history": [
+    {
+      "date": "22/10/2026 16:27",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Dutscher."
+    },
     {
       "date": "22/10/2026 11:46",
       "user": "Enora",
@@ -42067,5 +42083,12 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-21T13:50:24.413Z"
+  "updatedAt": "2026-10-21T13:50:24.413Z",
+  "supplierAccessCrypto": {
+    "version": 2,
+    "iterations": 600000,
+    "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+    "iv": "frNcX9CjeDYhX8Cw",
+    "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
+  }
 }

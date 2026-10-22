@@ -29262,7 +29262,7 @@
       "customerService": "",
       "salesAndQuotes": "mrichard@dutscher.com",
       "phone": "",
-      "notes": "En ligne, possibilité de changer les adresses de facturation/livraison\nCompte : enora.lecorgne@exadex-innov.com\nmdp : dKMv4NjWyx",
+      "notes": "En ligne, possibilité de changer les adresses de facturation/livraison\n",
       "aliases": [],
       "coordinates": [
         {
@@ -29551,6 +29551,12 @@
     }
   ],
   "history": [
+    {
+      "date": "22/10/2026 16:38",
+      "user": "Enora",
+      "action": "Contact modifié",
+      "detail": "Enora a modifié le contact Dutscher."
+    },
     {
       "date": "22/10/2026 16:37",
       "user": "Enora",

@@ -29120,7 +29120,17 @@
       "phone": "08 01 84 05 42",
       "notes": "Code de réduction de 390e : TRIAL260311-001578-A",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1792679431015-819a9253-8b3c-43e9-8573-2b67ff8a98c8",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "1ufQUcSKzHcddETl",
+          "ciphertext": "l2n+TXfijLLsZcAfNcnoRH8ym4Bl1ihVtgwx8B1507Qi8kQP6Tnsy469mkoSOV/ILAKFursDg/JObK/yhySeK5Pi7VEyohN9Dzcei8ECPIEzVuYoswOVXrye5OPvoknbpgHYyLyAcP5PFUjfvgQ0RIaTAvB2zK4TlvpKyVWGzWGU82cn2NO09DJvj4us/azCZwzptpUvhidfNSH6bGySwzKuMvz5iU7ufJziZpQgvi47PBsdSQaBuea/wHxtX+/d"
+        }
+      ]
     },
     {
       "id": "contact-1785239809949-wko6z2",
@@ -29531,6 +29541,12 @@
     }
   ],
   "history": [
+    {
+      "date": "22/10/2026 16:30",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Abcam."
+    },
     {
       "date": "22/10/2026 16:27",
       "user": "Enora",
@@ -42083,12 +42099,12 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-21T13:50:24.413Z",
   "supplierAccessCrypto": {
     "version": 2,
     "iterations": 600000,
     "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
-  }
+  },
+  "updatedAt": "2026-10-21T13:50:24.413Z"
 }

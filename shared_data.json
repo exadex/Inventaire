@@ -29118,7 +29118,7 @@
       "customerService": "orders@abcam.com",
       "salesAndQuotes": "",
       "phone": "08 01 84 05 42",
-      "notes": "",
+      "notes": "Code de réduction de 390e : TRIAL260311-001578-A",
       "aliases": [],
       "coordinates": []
     },
@@ -29521,6 +29521,12 @@
     }
   ],
   "history": [
+    {
+      "date": "22/10/2026 11:46",
+      "user": "Enora",
+      "action": "Contact modifié",
+      "detail": "Enora a modifié le contact Abcam."
+    },
     {
       "id": "history-operation-mvi6694r-548216943-2340239760",
       "operationId": "operation-mvi6694r-548216943-2340239760",

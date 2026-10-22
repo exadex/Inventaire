@@ -29161,8 +29161,8 @@
           "version": 2,
           "iterations": 600000,
           "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
-          "iv": "gCz8c96d9wopVjpB",
-          "ciphertext": "t9XsRvNhi/Oeh2ftYBzLPR9dMYwnziHVza+CKKMZYlN/bXEjNF4+ovr2vkkBSfNeJI2vNBvsWvkfWhsreW0qmZ9xJhVX9EBTRihiBmAMxVLNGTgRmxIks5NJle94QmN4hZsRNinWVOTMUSRwGJpnI48XJOXS3RASEpypn5wokqMhdTdZdImYJexID2Q2wM4PyzkPfkPqkM4LDrTg/KhmdBYYlOHk6KiUB9xR6xDDNc01guVVc5QQkgjysmrW+B4RM3UHvcGxL03o5aGQVymQ7K0="
+          "iv": "/I4SyhnACgAf8B3j",
+          "ciphertext": "Al+0cE//kjxA4VlpYA/RMbyS5JIOObye3Jikr3QliW8WQQuLnkV3gebbtgZVc/a5tMwAaLQqO9CXxkeadbrijg23Z9+CBQ+n5pLNDzaKgt5KhHRKs3coEl3wdyXOSD4xoSrh+lspMLENeRxfnYEdXTtGsBMgLmQqYgk51n34jkbBdBjDv0sAvs1YdYK9UJJd5Ay7etPsoiAWxNW4Id8R/7Nsx7yu+G5IcTN2C58l7yuuGXpTXoU2oja+ieMzs+sVYCHrSsMGZZI="
         }
       ]
     },
@@ -29551,6 +29551,12 @@
     }
   ],
   "history": [
+    {
+      "date": "22/10/2026 16:36",
+      "user": "Enora",
+      "action": "Identifiant fournisseur modifié",
+      "detail": "Enora a modifié les identifiants du fournisseur Agilent."
+    },
     {
       "date": "22/10/2026 16:36",
       "user": "Enora",

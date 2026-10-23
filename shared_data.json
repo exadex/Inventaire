@@ -29305,7 +29305,17 @@
       "phone": "",
       "notes": "",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1792742107004-cbd6f947-0863-4d34-8c64-f1d23d33f3b9",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "/oIhPYWu95w0C1x+",
+          "ciphertext": "rXFjAHF1XBO/GYS85FOTOO8UALOLEB8F5Tp9nHsaOgSrJ+6IscM2FRHaVDxmeCydQjJYYGjo5SvPCwveU4DgdfeBHvNXgnlu4Jag1q43D7ONiWzDxR3mZLHeJZbo/wrg6IJtSYxdkb5Fe4bgSOs71aOskDtLU11kfJhJUFOlg5ceQ7LuXpwy2tzslLfSRc3QVObR/jZPhx3dL3x461ML347xjYilnxbkSOmCS883QqXpSDlwHJ4rew880+81NMRj2Vgp8Hz+DTXHDutyikwGnvcgfgpzwjXp2IS+0noF45gJYgzxn1knOD/UNfXw7I86l7RWcPRsZkNJABlJ0j6249UIpnkMBKk0rH8++RNOQvV60nTv3g8i8KjzfPFkr8o8GKB1NmZOj3TbJt0TQnU/yERujpQ9mJl0MYFP+hbokmpuvrqhDXxNintxDhw6lJBF1xbgWYZPLSkwkJqUGXbCm4B7OJQJBWMdkCnzRrwcSzShfO2gzFuZZX+kPIXgVJJGI6FMkSfK43whRNt8Rmc="
+        }
+      ]
     },
     {
       "id": "contact-1785239670404-c3gs01",
@@ -29563,6 +29573,12 @@
     }
   ],
   "history": [
+    {
+      "date": "23/10/2026 09:55",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Eurofins."
+    },
     {
       "date": "23/10/2026 09:37",
       "user": "Enora",

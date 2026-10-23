@@ -29312,8 +29312,8 @@
           "version": 2,
           "iterations": 600000,
           "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
-          "iv": "/oIhPYWu95w0C1x+",
-          "ciphertext": "rXFjAHF1XBO/GYS85FOTOO8UALOLEB8F5Tp9nHsaOgSrJ+6IscM2FRHaVDxmeCydQjJYYGjo5SvPCwveU4DgdfeBHvNXgnlu4Jag1q43D7ONiWzDxR3mZLHeJZbo/wrg6IJtSYxdkb5Fe4bgSOs71aOskDtLU11kfJhJUFOlg5ceQ7LuXpwy2tzslLfSRc3QVObR/jZPhx3dL3x461ML347xjYilnxbkSOmCS883QqXpSDlwHJ4rew880+81NMRj2Vgp8Hz+DTXHDutyikwGnvcgfgpzwjXp2IS+0noF45gJYgzxn1knOD/UNfXw7I86l7RWcPRsZkNJABlJ0j6249UIpnkMBKk0rH8++RNOQvV60nTv3g8i8KjzfPFkr8o8GKB1NmZOj3TbJt0TQnU/yERujpQ9mJl0MYFP+hbokmpuvrqhDXxNintxDhw6lJBF1xbgWYZPLSkwkJqUGXbCm4B7OJQJBWMdkCnzRrwcSzShfO2gzFuZZX+kPIXgVJJGI6FMkSfK43whRNt8Rmc="
+          "iv": "WdOxihnq8uJ7Or7y",
+          "ciphertext": "Lp6zV+VX4atzpyg7g+0PShezT6ousFBSli58Wi2IJNXHv34eXBc6OOCk05f6ybYvFwqI7PojOhYHMhM61Chc/f1AVD9c+deGvlnCllC7tw8geuBYoZb0iXbbm345JuURrBr9CA90sZAyP5o+Lyjrq8fyz8FAsIfZ8TheR3XudJ1QWxKmPDj4FtqUUt9OaY+1CPs5hdR3YiVztN/tzP3JPje7fdiyXi7MfyTiMJY3bAHPf1gbkM+blWAw2LDEdUX1ZHEsQT2+"
         }
       ]
     },
@@ -29573,6 +29573,12 @@
     }
   ],
   "history": [
+    {
+      "date": "23/10/2026 10:05",
+      "user": "Enora",
+      "action": "Identifiant fournisseur modifié",
+      "detail": "Enora a modifié les identifiants du fournisseur Eurofins."
+    },
     {
       "date": "23/10/2026 09:55",
       "user": "Enora",

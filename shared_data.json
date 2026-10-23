@@ -20530,6 +20530,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1792742834368",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0123",
+      "inventoryUnit": "unités",
+      "itemName": "XTT Cell Proliferation Kit II",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "23/10/2026 10:07",
+      "requestedAtRaw": "2026-10-23T08:07:14.369Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1792159341660",
       "status": "requested",
       "itemMode": "existing",
@@ -29573,6 +29595,12 @@
     }
   ],
   "history": [
+    {
+      "date": "23/10/2026 10:07",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour XTT Cell Proliferation Kit II."
+    },
     {
       "date": "23/10/2026 10:05",
       "user": "Enora",

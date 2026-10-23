@@ -29296,6 +29296,18 @@
       ]
     },
     {
+      "id": "contact-1792741071785-e11p87",
+      "company": "Eurofins",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "",
+      "salesAndQuotes": "",
+      "phone": "",
+      "notes": "",
+      "aliases": [],
+      "coordinates": []
+    },
+    {
       "id": "contact-1785239670404-c3gs01",
       "company": "Facelitate",
       "salesRepresentative": "",
@@ -29551,6 +29563,12 @@
     }
   ],
   "history": [
+    {
+      "date": "23/10/2026 09:37",
+      "user": "Enora",
+      "action": "Contact ajouté",
+      "detail": "Enora a ajouté le contact Eurofins."
+    },
     {
       "date": "22/10/2026 16:38",
       "user": "Enora",

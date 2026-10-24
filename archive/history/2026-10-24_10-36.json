@@ -1,0 +1,164 @@
+[
+  {
+    "date": "21/08/2026 11:36",
+    "user": "Elina",
+    "action": "Item supprimé",
+    "detail": "Elina a supprimé 0,5 de l'inventaire."
+  },
+  {
+    "date": "21/08/2026 10:45",
+    "user": "Elina",
+    "action": "Item modifié",
+    "detail": "Elina a modifié Gentamicine (10 mg/ml)."
+  },
+  {
+    "date": "21/08/2026 10:37",
+    "user": "Elina",
+    "action": "Item modifié",
+    "detail": "Elina a modifié Glucose Uptake-Glo™ Assay."
+  },
+  {
+    "date": "21/08/2026 10:29",
+    "user": "Elina",
+    "action": "Experience supprimee",
+    "detail": "Elina a supprime Test."
+  },
+  {
+    "date": "21/08/2026 10:29",
+    "user": "Elina",
+    "action": "Protocole supprimé",
+    "detail": "Elina a supprimé le protocole \"Test\"."
+  },
+  {
+    "date": "21/08/2026 10:29",
+    "user": "Elina",
+    "action": "Protocole enregistré",
+    "detail": "Elina a enregistré le protocole « Test » depuis Test."
+  },
+  {
+    "date": "21/08/2026 10:28",
+    "user": "Elina",
+    "action": "Experience modifiée",
+    "detail": "Elina a modifié Test."
+  },
+  {
+    "date": "21/08/2026 10:27",
+    "user": "Elina",
+    "action": "Experience créée",
+    "detail": "Elina a créé Test depuis Nouveau protocole."
+  },
+  {
+    "date": "21/08/2026 10:24",
+    "user": "Elina",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Elina a ajouté 1 échantillon P236 T0 pour T0&T14."
+  },
+  {
+    "date": "21/08/2026 10:23",
+    "user": "Elina",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Elina a ajouté 1 échantillon P236 T0 pour T0&T14."
+  },
+  {
+    "date": "21/08/2026 10:21",
+    "user": "Elina",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Elina a ajouté 1 échantillon P236 T0 pour T0&T14."
+  },
+  {
+    "id": "history-operation-mt0528i8-606394158-2464700243",
+    "operationId": "operation-mt0528i8-606394158-2464700243",
+    "date": "19/08/2026 15:40",
+    "action": "Comptage / Ajustement",
+    "detail": "Elina · Boîte C.C 100 mm, standard · Stock précédent : 0,967 cartons · Stock compté : 0,933 cartons · Écart : -0,033 cartons · Note : Pour hmads",
+    "user": "Elina",
+    "itemId": "itm-web-1783931436294-6j33l2",
+    "type": "recounted",
+    "previousQuantity": 0.966667,
+    "countedQuantity": 0.933333,
+    "difference": -0.033334,
+    "unit": "cartons",
+    "note": "Pour hmads"
+  },
+  {
+    "id": "history-operation-msyepxjz-3606349863-1056042320",
+    "operationId": "operation-msyepxjz-3606349863-1056042320",
+    "date": "18/08/2026 10:34",
+    "action": "Stock mis à jour",
+    "detail": "Caroline · preparation_corrected · L-glutamine · MAJ",
+    "user": "Caroline",
+    "itemId": "itm-CSV-0100"
+  },
+  {
+    "date": "18/08/2026 10:34",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Rat IgG1 Isotype Control."
+  },
+  {
+    "date": "18/08/2026 10:33",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Recombinant Human TNF-alpha Protein, CF."
+  },
+  {
+    "date": "18/08/2026 10:32",
+    "user": "Caroline",
+    "action": "Item supprimé",
+    "detail": "Caroline a supprimé Pipette tip, 1,000 µl, transparent, Biosphere® plus, 96 piece(s)/box de l'inventaire."
+  },
+  {
+    "date": "18/08/2026 10:32",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Cones non-filtrés 1000µL."
+  },
+  {
+    "date": "18/08/2026 10:32",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Cones non-filtrés 1000µL."
+  },
+  {
+    "date": "18/08/2026 10:30",
+    "user": "Caroline",
+    "action": "Item supprimé",
+    "detail": "Caroline a supprimé cones 10µl non filtrés de l'inventaire."
+  },
+  {
+    "date": "18/08/2026 10:30",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Cones non-filtrés 10µL."
+  },
+  {
+    "date": "18/08/2026 10:30",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Cones non-filtrés 10µL."
+  },
+  {
+    "date": "18/08/2026 10:30",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Cones non-filtrés 10µL."
+  },
+  {
+    "date": "18/08/2026 10:26",
+    "user": "Caroline",
+    "action": "Item supprimé",
+    "detail": "Caroline a supprimé Film adhésif AeraSeal™ stérile de l'inventaire."
+  },
+  {
+    "date": "18/08/2026 10:24",
+    "user": "Caroline",
+    "action": "Item supprimé",
+    "detail": "Caroline a supprimé Cones non filtrés 1000µL de l'inventaire."
+  },
+  {
+    "date": "18/08/2026 10:24",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Cones non-filtrés 1000µL."
+  }
+]

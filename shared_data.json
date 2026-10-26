@@ -14406,7 +14406,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Sarstedt",
           "reference": "",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/pcr-biologie-moleculaire/films-pcr/produit/95.1994/",
           "notes": "60",
@@ -14424,7 +14424,39 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239153980-6o71tv",
+      "createdAtRaw": "2026-10-26T12:55:15.228Z",
+      "createdAt": "26/10/2026 13:55",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-e36sm0",
@@ -29814,6 +29846,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 13:55",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Film plaque qPCR."
+    },
+    {
       "date": "26/10/2026 13:54",
       "user": "Enora",
       "action": "Item modifié",
@@ -42035,5 +42073,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T12:54:42.667Z"
+  "updatedAt": "2026-10-26T12:55:15.234Z"
 }

@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017866865",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-wncvj7",
+      "inventoryUnit": "cartons",
+      "itemName": "Microtube 1,5mL",
+      "requestedQuantity": 3,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:31",
+      "requestedAtRaw": "2026-10-26T12:31:06.866Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793017849132",
       "status": "requested",
       "itemMode": "existing",
@@ -29843,6 +29865,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:31",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Microtube 1,5mL."
+    },
     {
       "date": "26/10/2026 13:30",
       "user": "Enora",

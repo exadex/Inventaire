@@ -15518,72 +15518,6 @@
       }
     },
     {
-      "id": "itm-web-1783931436295-4d1j08",
-      "name": "Human Interleukin 6 (IL6) ELISA",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "Ozyme",
-          "reference": "HUDL01522",
-          "link": "https://yris.ozyme.fr/fr/company/ozyme/product/human-interleukin-6-il6-elisa-hudl01522?search-context-name=HUDL01522",
-          "notes": "713",
-          "price": "713",
-          "unitPrice": "",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-f2meh0",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239611213-9k274h",
-      "createdAtRaw": "2026-08-10T16:01:06.51Z",
-      "createdAt": "10/08/2026 18:01",
-      "stockTracking": {
-        "version": 1,
-        "mode": "simple",
-        "traceabilityMode": "periodic",
-        "packagingLevels": [
-          {
-            "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
-            "kind": "discrete",
-            "contains": 1
-          }
-        ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
-        "quantityStep": 1,
-        "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
-        "openContainers": []
-      },
-      "aliquotTracking": {
-        "version": 1,
-        "enabled": false,
-        "preparations": []
-      }
-    },
-    {
       "id": "itm-web-1783931436295-aqwsrn",
       "name": "Human Pro-Collagen I alpha 1 DuoSet ELISA",
       "category": "Biomol",
@@ -30154,6 +30088,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 15:27",
+      "user": "Elina",
+      "action": "Item supprimé",
+      "detail": "Elina a supprimé Human Interleukin 6 (IL6) ELISA de l'inventaire."
+    },
     {
       "date": "26/10/2026 15:21",
       "user": "Elina",

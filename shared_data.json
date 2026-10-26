@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017849132",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-cwj79e",
+      "inventoryUnit": "cartons",
+      "itemName": "Falcon 50",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:30",
+      "requestedAtRaw": "2026-10-26T12:30:49.133Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793017798690",
       "status": "requested",
       "itemMode": "existing",
@@ -29821,6 +29843,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:30",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Falcon 50."
+    },
     {
       "date": "26/10/2026 13:29",
       "user": "Enora",

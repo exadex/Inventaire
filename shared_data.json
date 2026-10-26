@@ -14546,11 +14546,11 @@
       "references": {
         "primary": {
           "supplier": "Sarstedt",
-          "reference": "",
+          "reference": "95.1994",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/pcr-biologie-moleculaire/films-pcr/produit/95.1994/",
           "notes": "60",
-          "price": "60",
-          "unitPrice": "0,6",
+          "price": "60.8",
+          "unitPrice": "0,608",
           "leadTime": ""
         },
         "secondary": []
@@ -15328,15 +15328,20 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
-          "reference": "",
+          "supplier": "R&D systems",
+          "reference": "HUDL01522",
           "link": "https://www.rndsystems.com/search?keywords=Human+IL-6+DuoSet+ELISA",
           "notes": "283",
           "price": "283",
           "unitPrice": "60€/plaque",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "HUDL01522",
+            "notes": "Fournisseur : Ozyme\nRef : HUDL01522\nhttps://yris.ozyme.fr/fr/company/ozyme/product/human-interleukin-6-il6-elisa-hudl01522?search-context-name=HUDL01522"
+          }
+        ]
       },
       "source": "seed",
       "placements": [
@@ -15346,7 +15351,39 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239056045-dnjj9a",
+      "createdAtRaw": "2026-10-26T14:27:58.501Z",
+      "createdAt": "26/10/2026 15:27",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaque",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-0zyus6",
@@ -30089,6 +30126,24 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 15:38",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Film plaque qPCR."
+    },
+    {
+      "date": "26/10/2026 15:28",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Human IL-6 DuoSet ELISA 5 plates."
+    },
+    {
+      "date": "26/10/2026 15:27",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Human IL-6 DuoSet ELISA 5 plates."
+    },
+    {
       "date": "26/10/2026 15:27",
       "user": "Elina",
       "action": "Item supprimé",
@@ -42656,5 +42711,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:21:07.781Z"
+  "updatedAt": "2026-10-26T14:38:09.686Z"
 }

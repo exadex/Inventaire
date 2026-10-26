@@ -29564,7 +29564,17 @@
       "phone": "",
       "notes": "",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793012031510-f5aef704-e8d5-479d-9fe5-889760450909",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "eoTc45NrrqV6gQ2V",
+          "ciphertext": "dHBGrLjllgT9PLEs9ARXeO6jDYK9RDUpybQ69UyjVqBfRHx7+QCrT2rZNQUHOIx2y2dyD4e9pszPZtE8loUh7+j6vT9yUcbvu5yfTQS9inJJ8v7o9zE1rh1hcnRoxnJZ+eD2jPm1WU+P6ExvA/LxDqwDVxmjHgIROxI05tKco8tN4+zptqBlWH467ov733Dspp0+fu3w3uaV7rKE2sikUjnC8ZbzbW/doMETlxALJAhetSRmpbEarnfC"
+        }
+      ]
     },
     {
       "id": "contact-1785239108709-s3tej8",
@@ -29642,6 +29652,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:53",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Roth."
+    },
     {
       "date": "26/10/2026 11:52",
       "user": "Enora",

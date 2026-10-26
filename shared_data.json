@@ -30959,12 +30959,16 @@
     {
       "id": "sample-client-1783950067755-qnq4at",
       "type": "client_product",
-      "clientCode": "ASH001",
-      "rawClientCode": "ASH001",
-      "normalizedClientKey": "ASH1",
-      "clientId": "client-ASH1",
-      "canonicalClientCode": "ASH001",
-      "location": "Frigo culture L1",
+      "studyType": "client",
+      "clientCode": "ASH",
+      "rawClientCode": "ASH",
+      "normalizedClientKey": "ASH",
+      "clientId": "client-ASH",
+      "canonicalClientCode": "ASH",
+      "roomId": "room-culture-l1",
+      "locationId": "location-frigo-culture-l1",
+      "sublocationId": null,
+      "location": "Frigo culture L1 principal",
       "notes": "Conserver à RT puis à 4°C une fois ouvert. Conserver à l'abri de la lumière\nOuvert le 10/07/2026",
       "createdAtRaw": "2026-07-13T13:41:07.755Z",
       "createdAt": "13/07/2026 15:41",
@@ -30976,21 +30980,17 @@
       "lotNumber": "",
       "category": "",
       "baseName": "Test item",
+      "arnQiazol": null,
+      "arnBead": null,
       "creationDate": "",
       "measureValue": 0.05,
       "measureUnit": "L",
-      "replicaNumber": null,
-      "replicaCount": 1,
       "generalData": {},
       "specificData": {},
       "groupId": "",
       "replicaId": "sample-client-1783950067755-qnq4at",
-      "arnQiazol": null,
-      "arnBead": null,
-      "studyType": "client",
-      "roomId": "room-culture-l1",
-      "locationId": "location-frigo-culture-l1",
-      "sublocationId": null
+      "replicaNumber": null,
+      "replicaCount": 1
     }
   ],
   "clients": [
@@ -31628,6 +31628,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 17:11",
+      "user": "Elina",
+      "action": "Produit client modifié",
+      "detail": "Elina a modifié Test item pour ASH."
+    },
     {
       "date": "26/10/2026 17:10",
       "user": "Elina",
@@ -44436,5 +44442,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T16:10:50.266Z"
+  "updatedAt": "2026-10-26T16:11:08.126Z"
 }

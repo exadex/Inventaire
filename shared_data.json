@@ -5036,12 +5036,12 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Aesthetic Group",
+          "supplier": "Dutscher",
           "reference": "300629",
-          "link": "https://www.aestheticgroup.fr/fr/recherche?controller=search&orderby=position&orderway=desc&search_query=300629&submit_search=",
+          "link": "",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "70",
-          "unitPrice": "0,583333333",
+          "price": "66.56",
+          "unitPrice": "0,55467",
           "leadTime": ""
         },
         "secondary": [
@@ -5052,8 +5052,8 @@
         ]
       },
       "source": "seed",
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239809949-wko6z2",
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785226360650-wy85d7",
       "createdAtRaw": "2026-07-28T12:59:32.068Z",
       "createdAt": "28/07/2026 14:59",
       "stockTracking": {
@@ -5163,7 +5163,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true
     },
     {
       "id": "itm-CSV-0049",
@@ -30154,6 +30155,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 15:21",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 20mL - BD 3P Cone luer Lock."
+    },
+    {
       "date": "26/10/2026 15:16",
       "user": "Elina",
       "action": "Demande créée",
@@ -42709,5 +42716,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:15:37.798Z"
+  "updatedAt": "2026-10-26T14:21:07.781Z"
 }

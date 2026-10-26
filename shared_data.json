@@ -29397,7 +29397,17 @@
       "phone": "",
       "notes": "devis à faire en ligne\n",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793011519049-8effdf20-e404-40ec-88dd-f9e5f449ba28",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "8u5sSxzKhhcWlXER",
+          "ciphertext": "/3nBN6+dNPuhMJvwz2Xb73zNip8Eym53weGELb7g0KPwP6hjoFII+ajssBvhcSdzay0u4jzZ+zffcf0C1HRUKit2M4nQ+LNeE/QYB3LKZxD+ud2wKZxttyV5BKLMz+QUJ13QMQw0nQgWxKTABSUXqJ/rwcjaRcO6VwlH/1VNMBhy6ykhBB+14OI8zzF1mMztHl46CUdcm5T6DQaD6umEPjqys02AZHGupuaRUnAsl7ggxy+H0djp6R47R3c3p6eqnVXy10JVZE0="
+        }
+      ]
     },
     {
       "id": "contact-1791878664148-cy36fk",
@@ -29595,6 +29605,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:45",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Invivogen."
+    },
     {
       "date": "26/10/2026 11:43",
       "user": "Enora",

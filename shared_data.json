@@ -22773,7 +22773,7 @@
       "notes": "",
       "createdAtRaw": "2026-10-26T15:38:55.660Z",
       "createdAt": "26/10/2026 16:38",
-      "baseName": "P242_ASH001 D4_Veh D0",
+      "baseName": "P242_ASH001 D4_Veh_D0",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -22787,7 +22787,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1793029135661-2e9u7c",
       "groupId": "sample-group-1793029135661-pa0s78",
-      "name": "P242_ASH001 D4_Veh D0_1",
+      "name": "P242_ASH001 D4_Veh_D0_1",
       "replicaNumber": 1,
       "replicaCount": 5,
       "generalData": {
@@ -22802,7 +22802,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P242_ASH001 D4_Veh D0",
+        "baseName": "P242_ASH001 D4_Veh_D0",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -22836,7 +22836,7 @@
       "notes": "",
       "createdAtRaw": "2026-10-26T15:38:55.660Z",
       "createdAt": "26/10/2026 16:38",
-      "baseName": "P242_ASH001 D4_Veh D0",
+      "baseName": "P242_ASH001 D4_Veh_D0",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -22850,7 +22850,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1793029135661-colfe9",
       "groupId": "sample-group-1793029135661-pa0s78",
-      "name": "P242_ASH001 D4_Veh D0_2",
+      "name": "P242_ASH001 D4_Veh_D0_2",
       "replicaNumber": 2,
       "replicaCount": 5,
       "generalData": {
@@ -22865,7 +22865,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P242_ASH001 D4_Veh D0",
+        "baseName": "P242_ASH001 D4_Veh_D0",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -22899,7 +22899,7 @@
       "notes": "",
       "createdAtRaw": "2026-10-26T15:38:55.660Z",
       "createdAt": "26/10/2026 16:38",
-      "baseName": "P242_ASH001 D4_Veh D0",
+      "baseName": "P242_ASH001 D4_Veh_D0",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -22913,7 +22913,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1793029135661-raucqv",
       "groupId": "sample-group-1793029135661-pa0s78",
-      "name": "P242_ASH001 D4_Veh D0_3",
+      "name": "P242_ASH001 D4_Veh_D0_3",
       "replicaNumber": 3,
       "replicaCount": 5,
       "generalData": {
@@ -22928,7 +22928,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P242_ASH001 D4_Veh D0",
+        "baseName": "P242_ASH001 D4_Veh_D0",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -22962,7 +22962,7 @@
       "notes": "",
       "createdAtRaw": "2026-10-26T15:38:55.660Z",
       "createdAt": "26/10/2026 16:38",
-      "baseName": "P242_ASH001 D4_Veh D0",
+      "baseName": "P242_ASH001 D4_Veh_D0",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -22976,7 +22976,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1793029135661-f75bfj",
       "groupId": "sample-group-1793029135661-pa0s78",
-      "name": "P242_ASH001 D4_Veh D0_4",
+      "name": "P242_ASH001 D4_Veh_D0_4",
       "replicaNumber": 4,
       "replicaCount": 5,
       "generalData": {
@@ -22991,7 +22991,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P242_ASH001 D4_Veh D0",
+        "baseName": "P242_ASH001 D4_Veh_D0",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -23025,7 +23025,7 @@
       "notes": "",
       "createdAtRaw": "2026-10-26T15:38:55.660Z",
       "createdAt": "26/10/2026 16:38",
-      "baseName": "P242_ASH001 D4_Veh D0",
+      "baseName": "P242_ASH001 D4_Veh_D0",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -23039,7 +23039,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1793029135661-5e9nro",
       "groupId": "sample-group-1793029135661-pa0s78",
-      "name": "P242_ASH001 D4_Veh D0_5",
+      "name": "P242_ASH001 D4_Veh_D0_5",
       "replicaNumber": 5,
       "replicaCount": 5,
       "generalData": {
@@ -23054,7 +23054,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P242_ASH001 D4_Veh D0",
+        "baseName": "P242_ASH001 D4_Veh_D0",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -31604,6 +31604,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 16:43",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a modifié 5 échantillons P242_ASH001 D4_Veh_D0 pour ASH001."
+    },
     {
       "date": "26/10/2026 16:42",
       "user": "Elina",
@@ -44394,5 +44400,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:42:46.176Z"
+  "updatedAt": "2026-10-26T15:43:04.993Z"
 }

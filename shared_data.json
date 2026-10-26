@@ -13768,10 +13768,10 @@
     },
     {
       "id": "itm-web-1783931436295-cvk4ll",
-      "name": "Stainless steel beads 5mm",
+      "name": "Billes - Stainless steel beads 5mm",
       "category": "Biomol",
       "quantity": 0,
-      "unit": "unités",
+      "unit": "Boite",
       "minStock": 0,
       "location": "Laboratoire",
       "locations": [
@@ -13781,10 +13781,10 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Qiagen",
           "reference": "",
           "link": "https://www.qiagen.com/fr-us/products/instruments-and-automation/accessories/beads/?catno=69989",
-          "notes": "151",
+          "notes": "200/Boites",
           "price": "151",
           "unitPrice": "0,755",
           "leadTime": ""
@@ -13799,7 +13799,39 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785238792341-6i99yn",
+      "createdAtRaw": "2026-10-26T14:12:10.868Z",
+      "createdAt": "26/10/2026 15:12",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-cxs8eq",
@@ -30017,6 +30049,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 15:12",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Billes - Stainless steel beads 5mm."
+    },
+    {
       "date": "26/10/2026 15:11",
       "user": "Elina",
       "action": "Demande créée",
@@ -42414,5 +42452,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:06:23.047Z"
+  "updatedAt": "2026-10-26T14:12:10.875Z"
 }

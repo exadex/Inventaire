@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017506262",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "web-1787650981533",
+      "inventoryUnit": "cartons",
+      "itemName": "Plaque 48 puits - Dutscher",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:25",
+      "requestedAtRaw": "2026-10-26T12:25:06.262Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793017485885",
       "status": "requested",
       "itemMode": "existing",
@@ -29667,6 +29689,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:25",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Plaque 48 puits - Dutscher."
+    },
     {
       "date": "26/10/2026 13:24",
       "user": "Enora",

@@ -12001,7 +12001,7 @@
       "notes": "Conditionnement : 1920",
       "references": {
         "primary": {
-          "supplier": "Sarsdest",
+          "supplier": "Sarstedt",
           "reference": "2869323",
           "link": "https://www.ugap.fr/laboratoire-1/consommables-scientifiques-gauss-32634/pointes-et-micropipettes-36277/pointes-36422/pointe-1000-l-a-filtre-graduee-rack-de-96-biosphere-plus-x-1920-p2869323",
           "notes": "UGAP\nNB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -12103,7 +12103,9 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-CSV-0077",
@@ -30310,6 +30312,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 16:23",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 1000µL Sarstedt."
+    },
+    {
       "date": "26/10/2026 16:22",
       "user": "Elina",
       "action": "Item modifié",
@@ -43015,5 +43023,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:22:39.461Z"
+  "updatedAt": "2026-10-26T15:23:21.091Z"
 }

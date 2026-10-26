@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017784404",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-7pfrox",
+      "inventoryUnit": "cartons",
+      "itemName": "Pipette 5 ml",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:29",
+      "requestedAtRaw": "2026-10-26T12:29:44.405Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793017758867",
       "status": "requested",
       "itemMode": "existing",
@@ -29777,6 +29799,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:29",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Pipette 5 ml."
+    },
     {
       "date": "26/10/2026 13:29",
       "user": "Enora",

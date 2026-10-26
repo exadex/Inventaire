@@ -29477,7 +29477,17 @@
       "phone": "01 34 60 15 16",
       "notes": "devis à faire en ligne\nContacter Simon Roubille par Linkedin ",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793011754657-2dd67825-a3b4-4e31-b9f8-209db4ef575c",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "LWDjv3DlBybF69+C",
+          "ciphertext": "yb86myrvGVotfxvJOitxv4SD7AEHXhDbG7kDY37nUsNJRUIyUlSBWhSDoXUPTe0FYBTVy2Uq3Y53+tN6TiFmDKBzd8iMbimEjSJJIrobrD1vwYCloalfuERDKs0VO8cs3TabP8KAD0Vzqd67AKbyG5U8FS/QDc3IsMl1AOB6vGLLkdKm+Qmi22YJE7w65hUYG6pM9+VvXv76Y9+7T4pCEIcZ+LaagfAMZi18vx6qY+YEtFzR2iE7+DCefdsubV0WT6rWQ3IEiBM="
+        }
+      ]
     },
     {
       "id": "contact-1785238690509-eg8ax0",
@@ -29615,6 +29625,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:49",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Ozyme."
+    },
     {
       "date": "26/10/2026 11:47",
       "user": "Enora",

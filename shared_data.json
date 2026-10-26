@@ -14325,41 +14325,6 @@
       ]
     },
     {
-      "id": "itm-web-1783931436295-d1vox6",
-      "name": "Film PCR",
-      "category": "Biomol",
-      "quantity": 0,
-      "unit": "unités",
-      "minStock": 0,
-      "location": "Laboratoire",
-      "locations": [
-        "Laboratoire"
-      ],
-      "tags": [],
-      "notes": "",
-      "references": {
-        "primary": {
-          "supplier": "",
-          "reference": "",
-          "link": "",
-          "notes": "Echantillon",
-          "price": "Echantillon",
-          "unitPrice": "Echantillon",
-          "leadTime": ""
-        },
-        "secondary": []
-      },
-      "source": "seed",
-      "placements": [
-        {
-          "id": "placement-legacy-1ae2zel",
-          "roomId": "room-laboratoire",
-          "locationId": null,
-          "sublocationId": null
-        }
-      ]
-    },
-    {
       "id": "itm-web-1783931436295-f1weix",
       "name": "8 pCPT 2 o me CAMP Am",
       "category": "Biomol",
@@ -29968,6 +29933,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:46",
+      "user": "Enora",
+      "action": "Item supprimé",
+      "detail": "Enora a supprimé Film PCR de l'inventaire."
+    },
     {
       "date": "26/10/2026 13:45",
       "user": "Enora",

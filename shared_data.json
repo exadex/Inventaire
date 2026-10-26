@@ -13717,7 +13717,7 @@
       "references": {
         "primary": {
           "supplier": "Qiagen",
-          "reference": "",
+          "reference": "79306",
           "link": "https://www.qiagen.com/fr-us/products/discovery-and-translational-research/lab-essentials/buffers-reagents/qiazol-lysis-reagent",
           "notes": "303",
           "price": "303",
@@ -30127,6 +30127,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 15:43",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Qiazol."
+    },
+    {
       "date": "26/10/2026 15:42",
       "user": "Elina",
       "action": "Item modifié",
@@ -42730,5 +42736,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:42:17.197Z"
+  "updatedAt": "2026-10-26T14:43:58.463Z"
 }

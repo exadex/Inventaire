@@ -14287,7 +14287,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Ozyme",
           "reference": "",
           "link": "https://yris.ozyme.fr/fr/company/ozyme/product/onescript-rt-mix-for-qpcr-w-gdnaout-ozya012?search-context-name=OZYA012",
           "notes": "204",
@@ -14320,7 +14320,7 @@
           {
             "id": "level-1",
             "key": "unite",
-            "singular": "unités",
+            "singular": "unité",
             "plural": "unités",
             "kind": "discrete",
             "contains": 1
@@ -14332,19 +14332,18 @@
         "precision": 0,
         "closedByLocation": [],
         "closedContainers": [],
-        "openContainers": [],
-        "unitStates": {
-          "closed": 4,
-          "open": 0,
-          "updatedAt": "2026-10-26T14:02:51.920Z",
-          "updatedBy": "elina"
-        }
+        "openContainers": []
       },
       "aliquotTracking": {
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": true,
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239611213-9k274h",
+      "createdAtRaw": "2026-10-26T15:29:36.765Z",
+      "createdAt": "26/10/2026 16:29"
     },
     {
       "id": "itm-web-1783931436295-0hdzoo",
@@ -30346,6 +30345,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 16:29",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié OneScript RT Mix for qPCR w/gDNAOut (OwiScript)."
+    },
+    {
       "date": "26/10/2026 16:26",
       "user": "Elina",
       "action": "Item modifié",
@@ -43069,5 +43074,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:26:51.629Z"
+  "updatedAt": "2026-10-26T15:29:36.772Z"
 }

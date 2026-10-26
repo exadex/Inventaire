@@ -17991,7 +17991,7 @@
       "name": "XTT Cell Proliferation Kit II",
       "category": "Qualité",
       "quantity": 2,
-      "unit": "unités",
+      "unit": "Boite",
       "minStock": 0,
       "location": "-20°C blanc labo",
       "locations": [
@@ -18005,8 +18005,8 @@
           "reference": "11465015001",
           "link": "https://www.sigmaaldrich.com/FR/fr/product/roche/11465015001#product-documentation",
           "notes": "",
-          "price": "",
-          "unitPrice": "0,2",
+          "price": "444",
+          "unitPrice": "",
           "leadTime": ""
         },
         "secondary": [
@@ -18031,31 +18031,47 @@
       "createdAt": "10/08/2026 17:39",
       "stockTracking": {
         "version": 1,
-        "mode": "simple",
+        "mode": "containers",
         "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "unite",
-            "singular": "unité",
-            "plural": "unités",
+            "key": "boite",
+            "singular": "boîte",
+            "plural": "boîtes",
             "kind": "discrete",
             "contains": 1
+          },
+          {
+            "id": "level-2",
+            "key": "flacon",
+            "singular": "flacon",
+            "plural": "flacons",
+            "kind": "discrete",
+            "contains": 5
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "flacon",
+        "trackingUnit": "flacons",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "-20°C blanc labo",
+            "quantity": 2,
+            "updatedAt": "2026-10-26T14:49:06.621Z",
+            "updatedBy": "Elina"
+          }
+        ],
+        "closedContainers": null,
         "openContainers": []
       },
       "aliquotTracking": {
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": true
     },
     {
       "id": "itm-CSV-0126",
@@ -30121,6 +30137,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 15:49",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié XTT Cell Proliferation Kit II."
+    },
     {
       "date": "26/10/2026 15:46",
       "user": "Elina",
@@ -42767,5 +42789,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:46:44.847Z"
+  "updatedAt": "2026-10-26T14:49:06.628Z"
 }

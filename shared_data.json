@@ -20718,6 +20718,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793027664576",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "web-1793027648443",
+      "inventoryUnit": "Boite",
+      "itemName": "Etiquettes cryo",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "26/10/2026 16:14",
+      "requestedAtRaw": "2026-10-26T15:14:24.576Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793024162332",
       "status": "requested",
       "itemMode": "existing",
@@ -30222,6 +30244,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 16:14",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Etiquettes cryo."
+    },
     {
       "date": "26/10/2026 16:14",
       "user": "Elina",

@@ -29658,10 +29658,26 @@
       "phone": "",
       "notes": "",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793012168045-c88f24ce-b78f-401c-b72d-e90de85cbdb9",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "DXy2nEGP2ZSO7onb",
+          "ciphertext": "mtv7L9X0BLEn7cnHJh0c9n511GEqN9laTMrgpOpEuZKoDRDbvKn2PkBK/ygFQds3nwqHTxq0zcdbS5J32CRtXgP1nhlsyn1I3HxA6Oe7+DjwBKHxVbzy8W6VfO3RJ4IGSGWSoAZupxh5JUPtOq8NRrT4V40HKUN7EeQ9lC4TKtLhgWZ2lr5vCYpuZkeYjzs9gFj05cFx7yVowBS//7f+f379dJKSH/A9x+SL8bV1r8MQTudfbt4f/IeqyPrylOkXw8wubc5rX7KOugK659si36I3E3FdGBAF/idYFBU/z376wQIf4M8FKfX2uCmS3kaVMEUc5CNOZeIli3eKWjwkc2cxomjqClDB8nAIcszyNkDaCK4i0KN2wb5QrwcnkZaWuGAHGKBFWcmDL/2X7K1FSs4hVqC6Ndzr+bsv51zD5Fg1geI6iweNZh/7FGod5a2Rxg+xWv/i8Rz8NjLyYKKZwMD2q+Sb2MBDzgBRfJPRWy1Jj1BBsCGqoSGkY9D4DpPGvFJ8fAjyUGwb/Yij2TqgTsn19t0eCiWopq9Aep1DRnOepGz5FUkFpe9UV4+jzvwUQkxBJc04yaYc8zeQRGQNXw=="
+        }
+      ]
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:56",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur VWR."
+    },
     {
       "date": "26/10/2026 11:55",
       "user": "Enora",

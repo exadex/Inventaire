@@ -11112,13 +11112,11 @@
       "locations": [
         "Réserve"
       ],
-      "tags": [
-        "Eppendorf"
-      ],
+      "tags": [],
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Sarsdest",
+          "supplier": "Sarstedt",
           "reference": "72.691",
           "link": "https://www.sarstedt.com/en/FRA/c/life-science/sample-handling/reaction-tubes/p/reaction-tubes/72.691",
           "notes": "NB12",
@@ -11169,9 +11167,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-07-17T14:54:57.737Z",
-            "updatedBy": "Caroline"
+            "quantity": 1
           }
         ],
         "closedContainers": [
@@ -11224,7 +11220,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true
     },
     {
       "id": "itm-web-1783931436295-c47v8h",
@@ -30312,6 +30309,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 16:22",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Microtube 2mL."
+    },
+    {
       "date": "26/10/2026 16:19",
       "user": "Elina",
       "action": "Item ajouté",
@@ -43005,5 +43008,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:19:23.597Z"
+  "updatedAt": "2026-10-26T15:22:03.912Z"
 }

@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017485885",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "web-1791810854422",
+      "inventoryUnit": "cartons",
+      "itemName": "cônes 10uL filtrés",
+      "requestedQuantity": 3,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:24",
+      "requestedAtRaw": "2026-10-26T12:24:45.886Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793013128876",
       "status": "requested",
       "itemMode": "existing",
@@ -29645,6 +29667,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:24",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour cônes 10uL filtrés."
+    },
     {
       "date": "26/10/2026 13:23",
       "user": "Enora",

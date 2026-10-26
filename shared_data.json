@@ -13647,7 +13647,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "Qiagen",
           "reference": "",
           "link": "https://www.qiagen.com/fr-us/products/discovery-and-translational-research/lab-essentials/buffers-reagents/qiazol-lysis-reagent",
           "notes": "303",
@@ -13665,7 +13665,39 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785238792341-6i99yn",
+      "createdAtRaw": "2026-10-26T12:54:42.661Z",
+      "createdAt": "26/10/2026 13:54",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-cvk4ll",
@@ -29782,6 +29814,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 13:54",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Qiazol."
+    },
+    {
       "date": "26/10/2026 13:53",
       "user": "Enora",
       "action": "Demande supprimée",
@@ -41997,5 +42035,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T12:41:07.707Z"
+  "updatedAt": "2026-10-26T12:54:42.667Z"
 }

@@ -4254,20 +4254,15 @@
       "notes": "100",
       "references": {
         "primary": {
-          "supplier": "Aesthetic Group",
-          "reference": "FD0001711-MC",
-          "link": "https://www.aestheticgroup.fr/en/caps/125-luer-lock-cap-mc1711.html?search_query=FD0001711-MC&results=1",
+          "supplier": "Dutscher",
+          "reference": "921017",
+          "link": "https://www.dutscher.com/article/921017",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "77",
-          "unitPrice": "0,77",
+          "price": "90",
+          "unitPrice": "0.9",
           "leadTime": ""
         },
-        "secondary": [
-          {
-            "reference": "394075B",
-            "notes": "Fournisseur : Dutscher\nhttps://www.dutscher.com/article/394075B"
-          }
-        ]
+        "secondary": []
       },
       "source": "seed",
       "placements": [
@@ -4278,8 +4273,8 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
-      "supplierContactId": "contact-1785239809949-wko6z2",
+      "usageProfile": "routine",
+      "supplierContactId": "contact-1785226360650-wy85d7",
       "createdAtRaw": "2026-08-10T15:33:59.879Z",
       "createdAt": "10/08/2026 17:33",
       "stockTracking": {
@@ -29908,6 +29903,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 13:41",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Bouchon Luer Lock."
+    },
+    {
       "date": "26/10/2026 13:35",
       "user": "Enora",
       "action": "Item modifié",
@@ -42021,5 +42022,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T12:35:31.810Z"
+  "updatedAt": "2026-10-26T12:41:07.707Z"
 }

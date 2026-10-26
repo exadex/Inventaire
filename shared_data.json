@@ -29636,7 +29636,17 @@
       "phone": "08 00 23 20 79 / 07 87 61 13 40 Nicolas Dumoitier / 06 09 51 25 93 Messeguer Virginie",
       "notes": "Compte : accounting@exadex-innov.com - mdp : ExAdEx2026!\nVoir devis annuel ",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793012100622-76703f8d-7764-4d79-a95a-65e3a5ba1ba3",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "Ij3n6idk2kjDDwSg",
+          "ciphertext": "EaEkWnHHD2FohmSt7lbdQNn9g5pT+BAWxGqQ9D5pdb12qLj1nqKP2qC2KD7XQWNApKq3svMOcYfLFOvx6BDIYWQOSAfYFAuVjarsFWZBcaDO9DaFDFPO/ZrKAjx1V6Dbjq4+og319ysEJH1aBako8aph/uJLU9HS+CT8GONVmrtv6vI9wcXmhav58gjBXQDLkcGzalhnNpLDBXL0niNHIuh4+KUMmClk9uoTiCi1SLUU89kWEib4sX6LR8ljoi2bwi/aihs1+9vBhWxhoELmV1EjuFtn7NPG"
+        }
+      ]
     },
     {
       "id": "contact-1785239695813-he7yob",
@@ -29652,6 +29662,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:55",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Thermo Fischer."
+    },
     {
       "date": "26/10/2026 11:53",
       "user": "Enora",

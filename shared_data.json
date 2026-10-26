@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017657770",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0077",
+      "inventoryUnit": "Cartons",
+      "itemName": "Cones filtrés 200µL",
+      "requestedQuantity": 4,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:27",
+      "requestedAtRaw": "2026-10-26T12:27:37.770Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793017632283",
       "status": "requested",
       "itemMode": "existing",
@@ -29711,6 +29733,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:27",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Cones filtrés 200µL."
+    },
     {
       "date": "26/10/2026 13:27",
       "user": "Enora",

@@ -20625,6 +20625,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793024049092",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-4d1j08",
+      "inventoryUnit": "unités",
+      "itemName": "Human Interleukin 6 (IL6) ELISA",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "26/10/2026 15:14",
+      "requestedAtRaw": "2026-10-26T14:14:09.093Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793023943237",
       "status": "requested",
       "itemMode": "existing",
@@ -30076,6 +30098,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 15:14",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Human Interleukin 6 (IL6) ELISA."
+    },
     {
       "id": "history-operation-mvpc6dfb-2480760060-3552739829",
       "operationId": "operation-mvpc6dfb-2480760060-3552739829",

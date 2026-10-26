@@ -15710,7 +15710,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "R&D systems",
           "reference": "",
           "link": "",
           "notes": "378",
@@ -15728,7 +15728,39 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239056045-dnjj9a",
+      "createdAtRaw": "2026-10-26T15:26:51.622Z",
+      "createdAt": "26/10/2026 16:26",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-pk2ssq",
@@ -30314,6 +30346,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 16:26",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Human Pro-Collagen I alpha 1 DuoSet ELISA."
+    },
+    {
       "date": "26/10/2026 16:24",
       "user": "Elina",
       "action": "Item modifié",
@@ -43031,5 +43069,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:24:08.135Z"
+  "updatedAt": "2026-10-26T15:26:51.629Z"
 }

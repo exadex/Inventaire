@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017632283",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-kwjv0i",
+      "inventoryUnit": "Cartons",
+      "itemName": "Cones filtrés 1000µL Sarstedt",
+      "requestedQuantity": 4,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:27",
+      "requestedAtRaw": "2026-10-26T12:27:12.283Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793017506262",
       "status": "requested",
       "itemMode": "existing",
@@ -29689,6 +29711,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:27",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Cones filtrés 1000µL Sarstedt."
+    },
     {
       "date": "26/10/2026 13:25",
       "user": "Enora",

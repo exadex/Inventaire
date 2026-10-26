@@ -20658,6 +20658,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793024162332",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-aqwsrn",
+      "inventoryUnit": "unités",
+      "itemName": "Human Pro-Collagen I alpha 1 DuoSet ELISA",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "26/10/2026 15:16",
+      "requestedAtRaw": "2026-10-26T14:16:02.332Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793024049092",
       "status": "requested",
       "itemMode": "existing",
@@ -30131,6 +30153,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 15:16",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Human Pro-Collagen I alpha 1 DuoSet ELISA."
+    },
     {
       "id": "history-operation-mvpc9y86-992704942-130120304",
       "operationId": "operation-mvpc9y86-992704942-130120304",

@@ -29509,9 +29509,16 @@
       "customerService": "info@promocell.com",
       "salesAndQuotes": "",
       "phone": "",
-      "notes": "",
+      "notes": "Offre de prix à indiquer ",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [
+        {
+          "id": "coordinate-1793011856611-0",
+          "label": "Commercial",
+          "type": "email",
+          "value": "abdelwahab.bensmail@promocell.com"
+        }
+      ]
     },
     {
       "id": "contact-1785238792341-6i99yn",
@@ -29625,6 +29632,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:50",
+      "user": "Enora",
+      "action": "Contact modifié",
+      "detail": "Enora a modifié le contact Promocell."
+    },
     {
       "date": "26/10/2026 11:49",
       "user": "Enora",

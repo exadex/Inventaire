@@ -21099,28 +21099,6 @@
       }
     },
     {
-      "id": "ord-1791876676036",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-web-1783931436295-9ujt1f",
-      "inventoryUnit": "unités",
-      "itemName": "Milieu de montage Fluoromount-G avec DAPI",
-      "requestedQuantity": 1,
-      "receivedQuantity": 0,
-      "priority": "urgent",
-      "notes": "",
-      "requestedBy": "Elina",
-      "requestedAt": "13/10/2026 09:31",
-      "requestedAtRaw": "2026-10-13T07:31:16.036Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
       "id": "ord-1791812789383",
       "status": "requested",
       "itemMode": "existing",
@@ -29825,6 +29803,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:53",
+      "user": "Enora",
+      "action": "Demande supprimée",
+      "detail": "Enora a supprimé la demande pour Milieu de montage Fluoromount-G avec DAPI."
+    },
     {
       "date": "26/10/2026 13:53",
       "user": "Enora",

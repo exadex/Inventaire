@@ -29530,7 +29530,17 @@
       "phone": "01 60 92 09 26",
       "notes": "",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793011954091-646c1674-3d19-41e5-a8ec-8112c35e0775",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "xmdPj0CYgkM0gjZO",
+          "ciphertext": "r8bSD5UbISdMAbjsD2caI6FjyPhrPVjzZFHp9sAEIlFIaSSjzgn6lYIEXiQdugzSyOKxU1OVK+SkdvKl/3w/VtsdQYtl1o3+1U9w0YcHzS3Ts8AtEdWMPhCWoU8Nyp+H0TnMl2r6CkMzY1wW9DZdllU2nndvNaumq65KOipPHbgq/IHG+5u5fvJdS/xwMl0Qo7lhQd8ufkBfh+jh2gNExrbI3OII3uerfSaBAILTalc8jEhwSPRWhjeVHkZbtQfAtQYGzxAbmw=="
+        }
+      ]
     },
     {
       "id": "contact-1785239056045-dnjj9a",
@@ -29632,6 +29642,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:52",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Qiagen."
+    },
     {
       "date": "26/10/2026 11:50",
       "user": "Enora",

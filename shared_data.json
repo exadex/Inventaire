@@ -21162,29 +21162,6 @@
       "newItemData": null
     },
     {
-      "id": "ord-1791877696834",
-      "status": "requested",
-      "itemMode": "new",
-      "inventoryItemId": null,
-      "itemName": "Sabot de pesée",
-      "requestedQuantity": 1,
-      "receivedQuantity": 0,
-      "priority": "pas urgent",
-      "notes": "Fournisseur : Dutscher\nRef : 320191\nPrix : 43,29€\nTaille de 43*58*13 ",
-      "requestedBy": "Elina",
-      "requestedAt": "13/10/2026 09:48",
-      "requestedAtRaw": "2026-10-13T07:48:16.834Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": {
-        "name": "Sabot de pesée"
-      }
-    },
-    {
       "id": "ord-1791877088684",
       "status": "requested",
       "itemMode": "new",
@@ -29912,6 +29889,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:57",
+      "user": "Enora",
+      "action": "Demande supprimée",
+      "detail": "Enora a supprimé la demande pour Sabot de pesée."
+    },
     {
       "date": "26/10/2026 13:56",
       "user": "Enora",

@@ -20459,6 +20459,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793017879881",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-9a6sx8",
+      "inventoryUnit": "cartons",
+      "itemName": "Microtube 2mL",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:31",
+      "requestedAtRaw": "2026-10-26T12:31:19.881Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793017866865",
       "status": "requested",
       "itemMode": "existing",
@@ -29865,6 +29887,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:31",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Microtube 2mL."
+    },
     {
       "date": "26/10/2026 13:31",
       "user": "Enora",

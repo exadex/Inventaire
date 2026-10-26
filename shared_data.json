@@ -6036,7 +6036,7 @@
           "reference": "065745B",
           "link": "",
           "notes": "HA.01",
-          "price": "16,47",
+          "price": "21",
           "unitPrice": "",
           "leadTime": ""
         },
@@ -6065,8 +6065,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "boite",
+        "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -6081,7 +6081,8 @@
       "usageProfile": "normal",
       "supplierContactId": "contact-1785226360650-wy85d7",
       "createdAtRaw": "2026-10-13T09:09:44.805Z",
-      "createdAt": "13/10/2026 11:09"
+      "createdAt": "13/10/2026 11:09",
+      "hasMinimumStock": true
     },
     {
       "id": "itm-CSV-0069",
@@ -30125,6 +30126,12 @@
       "date": "26/10/2026 15:46",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Gants L2 - S."
+    },
+    {
+      "date": "26/10/2026 15:46",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Gants - S."
     },
     {
@@ -42755,5 +42762,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:46:07.728Z"
+  "updatedAt": "2026-10-26T14:46:31.841Z"
 }

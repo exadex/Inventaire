@@ -21828,7 +21828,7 @@
       "notes": "",
       "createdAtRaw": "2026-10-26T15:34:01.226Z",
       "createdAt": "26/10/2026 16:34",
-      "baseName": "ASH001-Donor 4 - D0",
+      "baseName": "ASH001-D4_Veh 1_D0",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -21842,7 +21842,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1793028841228-3r6bou",
       "groupId": "sample-group-1793028841228-qd0ejo",
-      "name": "ASH001-Donor 4 - D0_1",
+      "name": "ASH001-D4_Veh 1_D0_1",
       "replicaNumber": 1,
       "replicaCount": 20,
       "generalData": {
@@ -21872,6 +21872,29 @@
         "notes": ""
       },
       "specificData": {
+        "type": "created_sample",
+        "studyType": "client",
+        "clientCode": "ASH001",
+        "rawClientCode": "ASH001",
+        "normalizedClientKey": "ASH1",
+        "clientId": "client-ASH1",
+        "canonicalClientCode": "ASH001",
+        "roomId": "room-laboratoire",
+        "locationId": "location-20-blanc-labo",
+        "sublocationId": null,
+        "location": "-20°C blanc labo",
+        "baseName": "ASH001-D4_Veh 1_D0",
+        "category": "Sécrétion",
+        "arnQiazol": null,
+        "arnBead": null,
+        "creationDate": "2026-10-23",
+        "measureValue": 500,
+        "measureUnit": "mL",
+        "quantity": 500,
+        "unit": "mL",
+        "arrivalDate": "",
+        "referenceNumber": "",
+        "lotNumber": "",
         "notes": ""
       }
     },
@@ -31604,6 +31627,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 16:35",
+      "user": "Elina",
+      "action": "Échantillon client modifié",
+      "detail": "Elina a modifié 1 échantillon ASH001-D4_Veh 1_D0 pour ASH001."
+    },
     {
       "date": "26/10/2026 16:34",
       "user": "Elina",
@@ -44346,5 +44375,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:34:40.178Z"
+  "updatedAt": "2026-10-26T15:35:27.068Z"
 }

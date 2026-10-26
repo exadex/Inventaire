@@ -12296,7 +12296,7 @@
       "notes": "Conditionnement : 1920\nFilter tip, 20 µl, transparent, Biosphere® plus, 96 piece(s)/box",
       "references": {
         "primary": {
-          "supplier": "Sarsdest",
+          "supplier": "Sarstedt",
           "reference": "70.3030.265",
           "link": "https://www.sarstedt.com/en/FRA/c/life-science/liquid-handling/pipette-tips/p/pipette-tip-20-ul-yellow/70.3030.265",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -12401,7 +12401,9 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "supplierContactId": "contact-1785239153980-6o71tv"
     },
     {
       "id": "itm-CSV-0081",
@@ -30312,6 +30314,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 16:24",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Cones filtrés 20uL."
+    },
+    {
       "date": "26/10/2026 16:23",
       "user": "Elina",
       "action": "Item modifié",
@@ -43023,5 +43031,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:23:21.091Z"
+  "updatedAt": "2026-10-26T15:24:08.135Z"
 }

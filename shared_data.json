@@ -29443,7 +29443,17 @@
       "phone": "01 85 16 94 34",
       "notes": "Faire le devis en ligne et le transférer en commande en ligne",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793011655220-dbec5c4c-e15f-425d-9df6-d6f3f143066a",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "22/uJTTPiWeZITV1",
+          "ciphertext": "5WGXu8cNgGMeGuE1a4Cu/b1gnl2JRIGWe+rFEUSlfO7e6JjE64dhg4S48Siu7fcDXnvf8oL1UT+RU3/vdu/wfEpTYMvbsSI7zgSBqUwuvsyWVWcC186ZdkQCq7Q7g6Be8vsh8bFpnfTOaQE+jXDjMPKf2vxpgk/jZkKLM7QKCF1npwWjyhOH6rt4TWoBQfNNh+xXKXivlqd9px0nmQVdBqK4AuijKDJgLsqeDpLpzHVrnN+lZmZbJ9jv5PlLleEW5xaQ8yTkP0kcWJgBxPDP7THgclP6WwkWJ+tL8DOdZ4TSSgT1sNvH77bgK+J270AOqnmpME9LH+hDLggnVksmIPYLU2UK4h4jkNQHskj/xwmVXO3lbxgO/mxghpNKms51HfTUcMxNth+fjyGmeEn3dxVvASqm8GKazjMV9HfmmyfnHEr2GrpAB7VJ6ra52TaLo7cUeBoV3ispBhWVHksWL1ZtJyAu7FbyrIidVLWUsBIIvCy0Xz01Rm+bFLFa4viB0/LVS4w7jtdZWNbWQMfq4Gd/51L/cYC6MCaiZ33kzZfI71wQhwYyGp/iG9tI+ByEgwR6YX4zFymYccMKsxiQWqyOlLyztw9OzlyzAbI0k5GzP+GiazxNLYeSuzOcwBaE01KnUMwWzlasT0RJN7BwkimJ+tIXq+Pgbgqa5wpkWBosmaKs/pH5mrMQtzBXfvPoYxLy47OYybXxwY0OJB9pMGUPZq4nejOa2SVhZQQJwG9Pd09NosAbs5JFBRhN4CPX7sAQlC0qGCU6uzQUsHIsibCZGSsRdoIC2xl0Vg/48mSgMD7ALOU6X0zKZYXsxm9ZNIVHRfsAP8urOfTPUhLZLUm5hqlaizIZmZBMMoBtHJ4ao4vH0Cqg3YW47qi5n8RPS5BZvjkFYEKIXNiia4ISgQP7PjEXaNUPvhvNoI0RvX0aB5cs3zbcGXkHtAXh7eoaQ9Cc56DjMRXzIgkTdqVmrIrVPhHUAh/cYhZSUk4jTHA8mZDwbTMCZTaxOsxOovggb1tKRkYnx6URD6vlWVXJaQz6ecaB2zvBh7y+PBL6nEKA0mEJSYM8ctGefrOwvNZG/R5pNesFz8HXcqwZxv26TceWHIhvpix1wSeF5yBJXdcHqXaw5SWmLpPGpLKBBo4ReKZi8SQEkJBC5UATebW5ed9/0MuK2L2flhuaxocF0e/w2JgyWhxkNpP1Dpqz4Tuvzsh/24YX68jBnL3Why/JdwkjwScJidbl1ebxMgQYDBmct7cU/MjqWeJGh4VdGo101DmLf23HUneYw13lN4Tx9AXyWZIuUVUSUZmkFtqZI/uuxfWJx/lMXHBIZG8MNRTSwLcC6OnAeP+2vQnJifRIlOgNeDT8hxNeaG3WknUXh2NB0+SGIXstSf87YtvoVrpVQic1yjYGJrt5GY/e2QNmKpumuXTcfqyQjKnY5/mm6RCV2cSy5MsKWtfHQtA2agr08Cc9thlGQj+1p/abfWTndRX520UC3R+G8jdzA8YMhz/fvyOvTwdPJWQWgBEaDfYPT3+VxsmfTT8O7QPF58LBkntcTFKSxn3v7SZCLIbQr/Eh7NtUMd3l39mdKi+xoIgjEljVHeCyyIzon4VWpxFqwkkRsPLJvrkDd5WSYTGGWsJ7vcCw4z5juOG8JAomu6hsK3RNEbXtzbGpYjd/b8LUKiwXtmE1Bm77RsIqOw0rGNYMfF0wyzCsMldHAtJLHTTQX+mXzKnaUwx1tyVrO7a55QojFjlJGdCTmULxMqc+NMPO31kVMjGx4hzTXfmVg4nL2oFHQI6lGrSUeOkemqMZNEljXVMkzwbqErHwgQSelAXjqTSlN0RZvek4BTf3lisBnqtVC9+4Sc6ABv30LhdfQxbgNDX4e2WhqbeOUr4XmJwgXPwGUBW31oThDivT76ePJY0P+PvzP8fW9iVjJT8="
+        }
+      ]
     },
     {
       "id": "contact-1785236448869-8v19zw",
@@ -29605,6 +29615,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 11:47",
+      "user": "Enora",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Enora a modifié les identifiants du fournisseur Merck."
+    },
     {
       "date": "26/10/2026 11:45",
       "user": "Enora",

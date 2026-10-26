@@ -20667,9 +20667,9 @@
       "id": "ord-1793024049092",
       "status": "requested",
       "itemMode": "existing",
-      "inventoryItemId": "itm-web-1783931436295-4d1j08",
-      "inventoryUnit": "unités",
-      "itemName": "Human Interleukin 6 (IL6) ELISA",
+      "inventoryItemId": "itm-web-1783931436295-s0pszg",
+      "inventoryUnit": "plaques",
+      "itemName": "Human IL-6 DuoSet ELISA 5 plates",
       "requestedQuantity": 1,
       "receivedQuantity": 0,
       "priority": "pas urgent",
@@ -20683,7 +20683,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-26T15:03:30.410Z",
+      "modifiedBy": "Elina"
     },
     {
       "id": "ord-1793023943237",
@@ -30144,6 +30146,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 16:03",
+      "user": "Elina",
+      "action": "Demande modifiée",
+      "detail": "Elina a modifié la demande pour Human IL-6 DuoSet ELISA 5 plates (quantité : 1 → 1 ; priorité : pas urgent → pas urgent)."
+    },
     {
       "date": "26/10/2026 16:02",
       "user": "Elina",

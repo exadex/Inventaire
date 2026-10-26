@@ -9834,7 +9834,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "Sarsdest",
+          "supplier": "Sarstedt",
           "reference": "86.1253.001",
           "link": "https://www.sarstedt.com/fr/produits/laboratoire/manipulation-des-liquides/pipettes-serologiques/produit/86.1253.001/",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
@@ -9965,7 +9965,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true
     },
     {
       "id": "itm-web-1783931436295-yln0s3",
@@ -30312,6 +30313,12 @@
       "date": "26/10/2026 16:22",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Pipette 5 ml."
+    },
+    {
+      "date": "26/10/2026 16:22",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Microtube 2mL."
     },
     {
@@ -43008,5 +43015,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T15:22:03.912Z"
+  "updatedAt": "2026-10-26T15:22:39.461Z"
 }

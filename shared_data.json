@@ -20417,6 +20417,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793018841540",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-hx14gm",
+      "inventoryUnit": "plaques",
+      "itemName": "Film plaque qPCR",
+      "requestedQuantity": 4,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:47",
+      "requestedAtRaw": "2026-10-26T12:47:21.541Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793018744199",
       "status": "requested",
       "itemMode": "existing",
@@ -29933,6 +29955,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:47",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Film plaque qPCR."
+    },
     {
       "date": "26/10/2026 13:46",
       "user": "Enora",

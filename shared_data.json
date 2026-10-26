@@ -5021,7 +5021,7 @@
     },
     {
       "id": "itm-CSV-0047",
-      "name": "Seringue 20mL - BD 3P Cone luer Lock",
+      "name": "Seringue 20mL - luer Lock",
       "category": "Procédé ExAdEx L2",
       "quantity": 1.55,
       "unit": "carton",
@@ -30121,6 +30121,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 15:45",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Seringue 20mL - luer Lock."
+    },
+    {
       "date": "26/10/2026 15:44",
       "user": "Elina",
       "action": "Item modifié",
@@ -42736,5 +42742,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:44:35.764Z"
+  "updatedAt": "2026-10-26T14:45:10.903Z"
 }

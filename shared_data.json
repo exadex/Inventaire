@@ -20587,6 +20587,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793023860400",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-n1d52k",
+      "inventoryUnit": "unités",
+      "itemName": "contenant 120ml (bouteilles bouchon jaune)",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "26/10/2026 15:11",
+      "requestedAtRaw": "2026-10-26T14:11:00.402Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793023740065",
       "status": "requested",
       "itemMode": "existing",
@@ -29994,6 +30016,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 15:11",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour contenant 120ml (bouteilles bouchon jaune)."
+    },
     {
       "date": "26/10/2026 15:09",
       "user": "Elina",

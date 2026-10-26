@@ -20894,7 +20894,7 @@
       "itemName": "Bouchon Luer Lock",
       "requestedQuantity": 2,
       "receivedQuantity": 0,
-      "priority": "critique",
+      "priority": "pas urgent",
       "notes": "",
       "requestedBy": "Enora",
       "requestedAt": "26/10/2026 13:42",
@@ -20905,7 +20905,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-26T15:02:37.248Z",
+      "modifiedBy": "Elina"
     },
     {
       "id": "ord-1793017950764",
@@ -30142,6 +30144,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 16:02",
+      "user": "Elina",
+      "action": "Demande modifiée",
+      "detail": "Elina a modifié la demande pour Bouchon Luer Lock (quantité : 2 → 2 ; priorité : critique → pas urgent)."
+    },
     {
       "date": "26/10/2026 16:02",
       "user": "Elina",

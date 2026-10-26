@@ -20548,6 +20548,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793019441837",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "web-1793019406291",
+      "inventoryUnit": "Carton",
+      "itemName": "Sabot de pesée",
+      "requestedQuantity": 1,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:57",
+      "requestedAtRaw": "2026-10-26T12:57:21.838Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793019101444",
       "status": "requested",
       "itemMode": "existing",
@@ -29889,6 +29911,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:57",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Sabot de pesée."
+    },
     {
       "date": "26/10/2026 13:57",
       "user": "Enora",

@@ -20619,6 +20619,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793023943237",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-cvk4ll",
+      "inventoryUnit": "Boite",
+      "itemName": "Billes - Stainless steel beads 5mm",
+      "requestedQuantity": 3,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "26/10/2026 15:12",
+      "requestedAtRaw": "2026-10-26T14:12:23.237Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793023860400",
       "status": "requested",
       "itemMode": "existing",
@@ -30048,6 +30070,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 15:12",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Billes - Stainless steel beads 5mm."
+    },
     {
       "date": "26/10/2026 15:12",
       "user": "Elina",

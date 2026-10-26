@@ -30923,11 +30923,15 @@
     {
       "id": "sample-client-1783950114371-9vaw87",
       "type": "client_product",
-      "clientCode": "ASH001",
-      "rawClientCode": "ASH001",
-      "normalizedClientKey": "ASH1",
-      "clientId": "client-ASH1",
-      "canonicalClientCode": "ASH001",
+      "studyType": "client",
+      "clientCode": "ASH",
+      "rawClientCode": "ASH",
+      "normalizedClientKey": "ASH",
+      "clientId": "client-ASH",
+      "canonicalClientCode": "ASH",
+      "roomId": "room-culture-l1",
+      "locationId": null,
+      "sublocationId": null,
       "location": "Culture L1",
       "notes": "Arrivé en double. \nConserver à RT puis à 4°C une fois ouvert. \nConserver à l'abri de la lumière",
       "createdAtRaw": "2026-07-13T13:41:54.371Z",
@@ -30940,21 +30944,17 @@
       "lotNumber": "",
       "category": "",
       "baseName": "Test item bis",
+      "arnQiazol": null,
+      "arnBead": null,
       "creationDate": "",
       "measureValue": 0.05,
       "measureUnit": "L",
-      "replicaNumber": null,
-      "replicaCount": 1,
       "generalData": {},
       "specificData": {},
       "groupId": "",
       "replicaId": "sample-client-1783950114371-9vaw87",
-      "arnQiazol": null,
-      "arnBead": null,
-      "studyType": "client",
-      "roomId": "room-culture-l1",
-      "locationId": null,
-      "sublocationId": null
+      "replicaNumber": null,
+      "replicaCount": 1
     },
     {
       "id": "sample-client-1783950067755-qnq4at",
@@ -31628,6 +31628,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 17:10",
+      "user": "Elina",
+      "action": "Produit client modifié",
+      "detail": "Elina a modifié Test item bis pour ASH."
+    },
     {
       "date": "26/10/2026 17:10",
       "user": "Elina",
@@ -44430,5 +44436,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T16:10:02.295Z"
+  "updatedAt": "2026-10-26T16:10:50.266Z"
 }

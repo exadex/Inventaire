@@ -4326,8 +4326,8 @@
           "reference": "921017",
           "link": "https://www.dutscher.com/article/921017",
           "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "90",
-          "unitPrice": "0.9",
+          "price": "80.82",
+          "unitPrice": "",
           "leadTime": ""
         },
         "secondary": []
@@ -30124,6 +30124,12 @@
       "date": "26/10/2026 15:45",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Bouchon Luer Lock."
+    },
+    {
+      "date": "26/10/2026 15:45",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Seringue 20mL - luer Lock."
     },
     {
@@ -42742,5 +42748,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:45:10.903Z"
+  "updatedAt": "2026-10-26T14:45:36.689Z"
 }

@@ -14095,7 +14095,7 @@
       "id": "itm-web-1783931436295-f3pe9l",
       "name": "OneScript RT Mix for qPCR w/gDNAOut (OwiScript)",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 4,
       "unit": "unités",
       "minStock": 0,
       "location": "-20°C blanc labo",
@@ -14131,7 +14131,40 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unités",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [],
+        "unitStates": {
+          "closed": 4,
+          "open": 0,
+          "updatedAt": "2026-10-26T14:02:51.920Z",
+          "updatedBy": "elina"
+        }
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-0hdzoo",
@@ -29912,6 +29945,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvpbtj3x-2270939069-3482928434",
+      "operationId": "operation-mvpbtj3x-2270939069-3482928434",
+      "date": "26/10/2026 15:02",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · OneScript RT Mix for qPCR w/gDNAOut (OwiScript) · Stock précédent : 0 unités · Stock compté : 4 unités · Écart : +4 unités · Note : inventaire 26/10/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-f3pe9l",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 4,
+      "difference": 4,
+      "unit": "unités",
+      "note": "inventaire 26/10/2026"
+    },
+    {
       "date": "26/10/2026 13:57",
       "user": "Enora",
       "action": "Demande créée",
@@ -41478,6 +41526,52 @@
       "toLocation": "",
       "comment": "Inventaire 21/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvpbtk7l-2187669351-2873305683",
+      "operationId": "operation-mvpbtj3x-2270939069-3482928434",
+      "itemId": "itm-web-1783931436295-f3pe9l",
+      "timestamp": "2026-10-26T14:02:51.921Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 4,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": {
+        "closed": 4,
+        "open": 0,
+        "updatedAt": "2026-10-26T14:02:51.920Z",
+        "updatedBy": "elina"
+      },
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 4,
+      "quantity": 4,
+      "difference": 4,
+      "unit": "unités",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "inventaire 26/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -42069,6 +42163,12 @@
       "itemId": "itm-CSV-0018",
       "at": "2026-10-21T13:50:24.413Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvpbtj3x-2270939069-3482928434",
+      "itemId": "itm-web-1783931436295-f3pe9l",
+      "at": "2026-10-26T14:02:51.921Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -42157,5 +42257,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T12:56:46.299Z"
+  "updatedAt": "2026-10-26T14:02:51.921Z"
 }

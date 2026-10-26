@@ -20791,28 +20791,6 @@
       "newItemData": null
     },
     {
-      "id": "ord-1793012974449",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "web-1791884856174",
-      "inventoryUnit": "cartons",
-      "itemName": "Réservoir à réactifs",
-      "requestedQuantity": 1,
-      "receivedQuantity": 0,
-      "priority": "critique",
-      "notes": "",
-      "requestedBy": "Enora",
-      "requestedAt": "26/10/2026 12:09",
-      "requestedAtRaw": "2026-10-26T11:09:34.450Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
       "id": "ord-1792742834368",
       "status": "requested",
       "itemMode": "existing",
@@ -29955,6 +29933,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:48",
+      "user": "Enora",
+      "action": "Demande supprimée",
+      "detail": "Enora a supprimé la demande pour Réservoir à réactifs."
+    },
     {
       "date": "26/10/2026 13:47",
       "user": "Enora",

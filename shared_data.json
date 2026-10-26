@@ -11266,7 +11266,7 @@
     },
     {
       "id": "itm-web-1783931436295-xpwlf5",
-      "name": "Falcon fac 15 mL",
+      "name": "Falcon facs 15 mL",
       "category": "Culture Cell",
       "quantity": 1,
       "unit": "unités",
@@ -11302,21 +11302,21 @@
           "sublocationId": null
         }
       ],
-      "usageProfile": "normal",
+      "usageProfile": "backup",
       "supplierContactId": "contact-1785239153980-6o71tv",
       "createdAtRaw": "2026-08-10T15:24:14.382Z",
       "createdAt": "10/08/2026 17:24",
       "stockTracking": {
         "version": 1,
         "mode": "simple",
-        "traceabilityMode": "periodic",
+        "traceabilityMode": "detailed",
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "mL",
-            "singular": "mL",
-            "plural": "mL",
-            "kind": "continuous",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
             "contains": 1
           }
         ],
@@ -11332,7 +11332,8 @@
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": true
     },
     {
       "id": "itm-web-1783931436295-hsn9dp",
@@ -29910,6 +29911,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 13:34",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Falcon facs 15 mL."
+    },
+    {
       "date": "26/10/2026 13:32",
       "user": "Enora",
       "action": "Demande créée",
@@ -42011,5 +42018,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-21T13:50:24.413Z"
+  "updatedAt": "2026-10-26T12:34:29.010Z"
 }

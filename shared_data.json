@@ -123,6 +123,73 @@
   },
   "inventoryItems": [
     {
+      "id": "web-1793019406291",
+      "name": "Sabot de pesée",
+      "category": "Procédé ExAdEx L2",
+      "quantity": 0,
+      "unit": "Carton",
+      "minStock": 0,
+      "hasMinimumStock": true,
+      "usageProfile": "normal",
+      "placements": [
+        {
+          "id": "placement-46405a21-076c-4232-abe5-bc77eb6273a0",
+          "roomId": "room-laboratoire",
+          "locationId": null,
+          "sublocationId": null
+        }
+      ],
+      "locations": [
+        "Laboratoire"
+      ],
+      "location": "Laboratoire",
+      "tags": [],
+      "notes": "Taille de 43*58*13",
+      "references": {
+        "primary": {
+          "supplier": "Dutscher",
+          "reference": "320191",
+          "link": "",
+          "notes": "",
+          "price": "43,29",
+          "unitPrice": "",
+          "leadTime": ""
+        },
+        "secondary": []
+      },
+      "supplierContactId": "contact-1785226360650-wy85d7",
+      "createdAtRaw": "2026-10-26T12:56:46.292Z",
+      "createdAt": "26/10/2026 13:56",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "carton",
+            "singular": "carton",
+            "plural": "cartons",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "carton",
+        "trackingUnit": "Carton",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      },
+      "source": "web"
+    },
+    {
       "id": "web-1792144133924",
       "name": "Dexamethasone",
       "category": "Culture Cell",
@@ -29846,6 +29913,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 13:56",
+      "user": "Enora",
+      "action": "Item ajouté",
+      "detail": "Enora a ajouté Sabot de pesée dans Procédé ExAdEx L2."
+    },
+    {
       "date": "26/10/2026 13:55",
       "user": "Enora",
       "action": "Item modifié",
@@ -42073,5 +42146,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T12:55:15.234Z"
+  "updatedAt": "2026-10-26T12:56:46.299Z"
 }

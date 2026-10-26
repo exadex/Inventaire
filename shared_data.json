@@ -1722,7 +1722,7 @@
           "reference": "70.3010.255",
           "link": "",
           "notes": "",
-          "price": "",
+          "price": "140",
           "unitPrice": "",
           "leadTime": ""
         },
@@ -1818,7 +1818,8 @@
         "enabled": false,
         "preparations": []
       },
-      "source": "web"
+      "source": "web",
+      "hasMinimumStock": true
     },
     {
       "id": "web-1791810530207",
@@ -30126,6 +30127,12 @@
   ],
   "history": [
     {
+      "date": "26/10/2026 15:39",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié cônes 10uL filtrés."
+    },
+    {
       "date": "26/10/2026 15:38",
       "user": "Elina",
       "action": "Item modifié",
@@ -42711,5 +42718,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:38:09.686Z"
+  "updatedAt": "2026-10-26T14:39:48.711Z"
 }

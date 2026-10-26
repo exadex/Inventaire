@@ -20452,6 +20452,28 @@
   ],
   "orders": [
     {
+      "id": "ord-1793018744199",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-xcczxu",
+      "inventoryUnit": "unités",
+      "itemName": "Qiazol",
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "26/10/2026 13:45",
+      "requestedAtRaw": "2026-10-26T12:45:44.200Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793018605732",
       "status": "requested",
       "itemMode": "existing",
@@ -29946,6 +29968,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 13:45",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Qiazol."
+    },
     {
       "date": "26/10/2026 13:43",
       "user": "Enora",

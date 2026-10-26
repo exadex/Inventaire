@@ -15248,7 +15248,7 @@
       "id": "itm-web-1783931436295-rztgyv",
       "name": "Human Adiponectine/Acrp30 DuoSet ELISA (5 plates)",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 2,
       "unit": "plaques",
       "minStock": 0,
       "location": "Frigo labo",
@@ -15277,7 +15277,40 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "plaque",
+            "singular": "plaques",
+            "plural": "plaques",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "plaque",
+        "trackingUnit": "plaques",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": [],
+        "unitStates": {
+          "closed": 1,
+          "open": 1,
+          "updatedAt": "2026-10-26T14:15:37.797Z",
+          "updatedBy": "elina"
+        }
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-s0pszg",
@@ -30099,6 +30132,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvpc9y86-992704942-130120304",
+      "operationId": "operation-mvpc9y86-992704942-130120304",
+      "date": "26/10/2026 15:15",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Human Adiponectine/Acrp30 DuoSet ELISA (5 plates) · Stock précédent : 0 plaques · Stock compté : 2 plaques · Écart : +2 plaques · Note : 26/10/2026\n",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-rztgyv",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 2,
+      "difference": 2,
+      "unit": "plaques",
+      "note": "26/10/2026\n"
+    },
+    {
       "date": "26/10/2026 15:14",
       "user": "Elina",
       "action": "Demande créée",
@@ -41884,6 +41932,52 @@
       "toLocation": "",
       "comment": "Inventaire 26/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvpc9z5y-2479405671-2516790883",
+      "operationId": "operation-mvpc9y86-992704942-130120304",
+      "itemId": "itm-web-1783931436295-rztgyv",
+      "timestamp": "2026-10-26T14:15:37.798Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": {
+        "closed": 1,
+        "open": 1,
+        "updatedAt": "2026-10-26T14:15:37.797Z",
+        "updatedBy": "elina"
+      },
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 2,
+      "quantity": 2,
+      "difference": 2,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "26/10/2026\n",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -42493,6 +42587,12 @@
       "itemId": "itm-web-1783931436295-cvk4ll",
       "at": "2026-10-26T14:12:51.115Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvpc9y86-992704942-130120304",
+      "itemId": "itm-web-1783931436295-rztgyv",
+      "at": "2026-10-26T14:15:37.798Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -42581,5 +42681,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T14:12:51.115Z"
+  "updatedAt": "2026-10-26T14:15:37.798Z"
 }

@@ -20782,7 +20782,7 @@
       "itemName": "Sabot de pesée",
       "requestedQuantity": 1,
       "receivedQuantity": 0,
-      "priority": "critique",
+      "priority": "pas urgent",
       "notes": "",
       "requestedBy": "Enora",
       "requestedAt": "26/10/2026 13:57",
@@ -20793,7 +20793,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-26T15:02:09.684Z",
+      "modifiedBy": "Elina"
     },
     {
       "id": "ord-1793019101444",
@@ -30140,6 +30142,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/10/2026 16:02",
+      "user": "Elina",
+      "action": "Demande modifiée",
+      "detail": "Elina a modifié la demande pour Sabot de pesée (quantité : 1 → 1 ; priorité : critique → pas urgent)."
+    },
     {
       "date": "26/10/2026 15:50",
       "user": "Elina",

@@ -28023,12 +28023,15 @@
       "id": "sample-client-1785334188625-hr3ivu",
       "type": "client_product",
       "studyType": "client",
-      "clientCode": "APHM000",
-      "rawClientCode": "APHM003NOP",
-      "normalizedClientKey": "APHM0",
-      "clientId": "client-APHM3",
-      "canonicalClientCode": "APHM000",
-      "location": "Frigo culture L1",
+      "clientCode": "APHM",
+      "rawClientCode": "APHM",
+      "normalizedClientKey": "APHM",
+      "clientId": "client-APHM",
+      "canonicalClientCode": "APHM",
+      "roomId": "room-culture-l1",
+      "locationId": "location-frigo-culture-l1",
+      "sublocationId": null,
+      "location": "Frigo culture L1 principal",
       "notes": "Poudre lyophilisée, stérile, stocker à RT\nReconstitué le 02/09/2026 dans 5mL EBM (injecté 60µL, reste 4940µL). Stocké à 4°C (falcon 15)",
       "createdAtRaw": "2026-07-29T14:09:48.625Z",
       "createdAt": "29/07/2026 16:09",
@@ -28050,10 +28053,7 @@
       "groupId": "",
       "replicaId": "sample-client-1785334188625-hr3ivu",
       "replicaNumber": null,
-      "replicaCount": 1,
-      "roomId": "room-culture-l1",
-      "locationId": "location-frigo-culture-l1",
-      "sublocationId": null
+      "replicaCount": 1
     },
     {
       "id": "sample-client-1785334027130-p8t9wm",
@@ -32785,6 +32785,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 14:46",
+      "user": "Elina",
+      "action": "Produit client modifié",
+      "detail": "Elina a modifié APHM003_produit n°16 pour APHM."
+    },
     {
       "date": "28/10/2026 14:46",
       "user": "Elina",
@@ -45893,5 +45899,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-28T13:46:02.545Z"
+  "updatedAt": "2026-10-28T13:46:12.535Z"
 }

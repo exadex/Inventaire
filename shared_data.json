@@ -21500,9 +21500,9 @@
       "inventoryItemId": "itm-CSV-0082",
       "inventoryUnit": "Carton",
       "itemName": "cliptip 300 ext low retention",
-      "requestedQuantity": 5,
+      "requestedQuantity": 8,
       "receivedQuantity": 0,
-      "priority": "urgent",
+      "priority": "critique",
       "notes": "",
       "requestedBy": "Elina",
       "requestedAt": "13/10/2026 15:21",
@@ -21513,7 +21513,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-28T08:45:58.298Z",
+      "modifiedBy": "Enora"
     },
     {
       "id": "ord-1791884786074",
@@ -31782,6 +31784,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 09:45",
+      "user": "Enora",
+      "action": "Demande modifiée",
+      "detail": "Enora a modifié la demande pour cliptip 300 ext low retention (quantité : 5 → 8 ; priorité : urgent → critique)."
+    },
     {
       "date": "28/10/2026 09:45",
       "user": "Enora",

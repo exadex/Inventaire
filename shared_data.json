@@ -31727,18 +31727,6 @@
       "updatedAtRaw": "2026-10-28T13:16:43.982Z"
     },
     {
-      "studyType": "rd",
-      "id": "client-GLPAGONIST",
-      "normalizedKey": "GLPAGONIST",
-      "canonicalCode": "GLPAGONIST",
-      "rawCodes": [
-        "GLP-Agonist",
-        "GLPAGONIST"
-      ],
-      "createdAtRaw": "2026-10-28T13:17:51.153Z",
-      "updatedAtRaw": "2026-10-28T13:17:51.153Z"
-    },
-    {
       "id": "client-LUB1",
       "normalizedKey": "LUB1",
       "canonicalCode": "LUB001",
@@ -45267,5 +45255,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-28T13:18:05.226Z"
+  "updatedAt": "2026-10-28T13:18:12.539Z"
 }

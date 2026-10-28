@@ -20962,7 +20962,7 @@
       "itemName": "OneScript RT Mix for qPCR w/gDNAOut (OwiScript)",
       "requestedQuantity": 3,
       "receivedQuantity": 0,
-      "priority": "critique",
+      "priority": "pas urgent",
       "notes": "",
       "requestedBy": "Elina",
       "requestedAt": "26/10/2026 15:03",
@@ -20973,7 +20973,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-28T08:38:04.867Z",
+      "modifiedBy": "Enora"
     },
     {
       "id": "ord-1793019441837",
@@ -31796,6 +31798,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 09:38",
+      "user": "Enora",
+      "action": "Demande modifiée",
+      "detail": "Enora a modifié la demande pour OneScript RT Mix for qPCR w/gDNAOut (OwiScript) (quantité : 3 → 3 ; priorité : critique → pas urgent)."
+    },
     {
       "date": "28/10/2026 09:37",
       "user": "Enora",

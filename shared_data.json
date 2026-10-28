@@ -20938,7 +20938,7 @@
       "itemName": "ONEGreen FAST qPCR Premix (sybr green)",
       "requestedQuantity": 5,
       "receivedQuantity": 0,
-      "priority": "critique",
+      "priority": "pas urgent",
       "notes": "",
       "requestedBy": "Elina",
       "requestedAt": "26/10/2026 15:09",
@@ -20949,7 +20949,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-28T08:37:32.358Z",
+      "modifiedBy": "Enora"
     },
     {
       "id": "ord-1793023386396",
@@ -31794,6 +31796,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 09:37",
+      "user": "Enora",
+      "action": "Demande modifiée",
+      "detail": "Enora a modifié la demande pour ONEGreen FAST qPCR Premix (sybr green) (quantité : 5 → 5 ; priorité : critique → pas urgent)."
+    },
     {
       "date": "28/10/2026 09:37",
       "user": "Enora",

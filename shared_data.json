@@ -23826,11 +23826,11 @@
       "id": "sample-created-1788442400829-8cg0ve",
       "type": "created_sample",
       "studyType": "client",
-      "clientCode": "APHM000",
-      "rawClientCode": "APHM003",
-      "normalizedClientKey": "APHM0",
-      "clientId": "client-APHM3",
-      "canonicalClientCode": "APHM000",
+      "clientCode": "TEST",
+      "rawClientCode": "Test",
+      "normalizedClientKey": "TEST",
+      "clientId": "client-TEST",
+      "canonicalClientCode": "TEST",
       "location": "-20°C blanc labo",
       "notes": "",
       "createdAtRaw": "2026-09-03T13:33:20.828Z",
@@ -23855,11 +23855,11 @@
       "generalData": {
         "type": "created_sample",
         "studyType": "client",
-        "clientCode": "APHM003",
-        "rawClientCode": "APHM003",
-        "normalizedClientKey": "APHM3",
-        "clientId": "client-APHM3",
-        "canonicalClientCode": "APHM003",
+        "clientCode": "TEST",
+        "rawClientCode": "Test",
+        "normalizedClientKey": "TEST",
+        "clientId": "client-TEST",
+        "canonicalClientCode": "TEST",
         "roomId": "room-laboratoire",
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
@@ -23889,11 +23889,11 @@
       "id": "sample-created-1788442400829-rhiyuq",
       "type": "created_sample",
       "studyType": "client",
-      "clientCode": "APHM000",
-      "rawClientCode": "APHM003",
-      "normalizedClientKey": "APHM0",
-      "clientId": "client-APHM3",
-      "canonicalClientCode": "APHM000",
+      "clientCode": "TEST",
+      "rawClientCode": "Test",
+      "normalizedClientKey": "TEST",
+      "clientId": "client-TEST",
+      "canonicalClientCode": "TEST",
       "location": "-20°C blanc labo",
       "notes": "",
       "createdAtRaw": "2026-09-03T13:33:20.828Z",
@@ -23918,11 +23918,11 @@
       "generalData": {
         "type": "created_sample",
         "studyType": "client",
-        "clientCode": "APHM003",
-        "rawClientCode": "APHM003",
-        "normalizedClientKey": "APHM3",
-        "clientId": "client-APHM3",
-        "canonicalClientCode": "APHM003",
+        "clientCode": "TEST",
+        "rawClientCode": "Test",
+        "normalizedClientKey": "TEST",
+        "clientId": "client-TEST",
+        "canonicalClientCode": "TEST",
         "roomId": "room-laboratoire",
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
@@ -23952,11 +23952,11 @@
       "id": "sample-created-1788442400829-0oko7e",
       "type": "created_sample",
       "studyType": "client",
-      "clientCode": "APHM000",
-      "rawClientCode": "APHM003",
-      "normalizedClientKey": "APHM0",
-      "clientId": "client-APHM3",
-      "canonicalClientCode": "APHM000",
+      "clientCode": "TEST",
+      "rawClientCode": "Test",
+      "normalizedClientKey": "TEST",
+      "clientId": "client-TEST",
+      "canonicalClientCode": "TEST",
       "location": "-20°C blanc labo",
       "notes": "",
       "createdAtRaw": "2026-09-03T13:33:20.828Z",
@@ -23981,11 +23981,11 @@
       "generalData": {
         "type": "created_sample",
         "studyType": "client",
-        "clientCode": "APHM003",
-        "rawClientCode": "APHM003",
-        "normalizedClientKey": "APHM3",
-        "clientId": "client-APHM3",
-        "canonicalClientCode": "APHM003",
+        "clientCode": "TEST",
+        "rawClientCode": "Test",
+        "normalizedClientKey": "TEST",
+        "clientId": "client-TEST",
+        "canonicalClientCode": "TEST",
         "roomId": "room-laboratoire",
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
@@ -31911,11 +31911,12 @@
       "canonicalCode": "APHM003",
       "studyType": "client",
       "rawCodes": [
-        "APHM003"
+        "APHM003",
+        "APHM000"
       ],
       "id": "client-APHM3",
-      "createdAtRaw": "2026-10-28T13:41:23.290Z",
-      "updatedAtRaw": "2026-10-28T13:41:23.290Z"
+      "createdAtRaw": "2026-10-28T13:41:23.319Z",
+      "updatedAtRaw": "2026-10-28T13:41:23.319Z"
     },
     {
       "id": "client-APHM3",
@@ -31924,7 +31925,8 @@
       "rawCodes": [
         "APHM003",
         "APHM003-nop",
-        "APHM003NOP"
+        "APHM003NOP",
+        "APHM000"
       ],
       "createdAtRaw": "2026-07-29T13:46:22.099Z",
       "updatedAtRaw": "2026-10-28T13:37:37.543Z",
@@ -32048,6 +32050,18 @@
       "createdAtRaw": "2026-08-21T08:21:56.046Z",
       "updatedAtRaw": "2026-08-21T08:21:56.046Z",
       "studyType": "rd"
+    },
+    {
+      "studyType": "client",
+      "id": "client-TEST",
+      "normalizedKey": "TEST",
+      "canonicalCode": "TEST",
+      "rawCodes": [
+        "Test",
+        "TEST"
+      ],
+      "createdAtRaw": "2026-10-28T13:41:55.187Z",
+      "updatedAtRaw": "2026-10-28T13:41:55.187Z"
     }
   ],
   "supplierContacts": [
@@ -32591,6 +32605,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 14:41",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a modifié 3 échantillons P236_APHM003_24h Contrôle positif Anti-inflammatoire pour TEST."
+    },
     {
       "date": "28/10/2026 14:38",
       "user": "Elina",
@@ -45555,5 +45575,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-28T13:41:23.291Z"
+  "updatedAt": "2026-10-28T13:41:55.198Z"
 }

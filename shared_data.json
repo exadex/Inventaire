@@ -21067,7 +21067,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-28T08:39:05.302Z",
+      "modifiedBy": "Enora"
     },
     {
       "id": "ord-1793018605732",
@@ -31800,6 +31802,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 09:39",
+      "user": "Enora",
+      "action": "Demande modifiée",
+      "detail": "Enora a modifié la demande pour Qiazol (quantité : 2 → 2 ; priorité : critique → critique)."
+    },
     {
       "date": "28/10/2026 09:38",
       "user": "Enora",

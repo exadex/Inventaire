@@ -31113,6 +31113,9 @@
       "replicaCount": 1
     }
   ],
+  "customClientSampleCategories": [
+    "Sécrétions Lipolyse"
+  ],
   "clients": [
     {
       "id": "client-APHM",
@@ -44718,5 +44721,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-26T16:22:23.156Z"
+  "updatedAt": "2026-10-28T13:14:02.694Z"
 }

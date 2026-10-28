@@ -21069,10 +21069,10 @@
       "itemMode": "existing",
       "inventoryItemId": "itm-CSV-0047",
       "inventoryUnit": "carton",
-      "itemName": "Seringue 20mL - BD 3P Cone luer Lock",
+      "itemName": "Seringue 20mL - luer Lock",
       "requestedQuantity": 1,
       "receivedQuantity": 0,
-      "priority": "critique",
+      "priority": "pas urgent",
       "notes": "",
       "requestedBy": "Enora",
       "requestedAt": "26/10/2026 13:43",
@@ -21083,7 +21083,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-10-28T08:37:07.172Z",
+      "modifiedBy": "Enora"
     },
     {
       "id": "ord-1793018524226",
@@ -31792,6 +31794,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 09:37",
+      "user": "Enora",
+      "action": "Demande modifiée",
+      "detail": "Enora a modifié la demande pour Seringue 20mL - luer Lock (quantité : 1 → 1 ; priorité : critique → pas urgent)."
+    },
     {
       "date": "28/10/2026 09:36",
       "user": "Enora",

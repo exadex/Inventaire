@@ -21492,28 +21492,6 @@
       "newItemData": null
     },
     {
-      "id": "ord-1791898209449",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-CSV-0081",
-      "inventoryUnit": "Cartons",
-      "itemName": "Cones non-filtrés 10µL",
-      "requestedQuantity": 4,
-      "receivedQuantity": 0,
-      "priority": "urgent",
-      "notes": "",
-      "requestedBy": "Elina",
-      "requestedAt": "13/10/2026 15:30",
-      "requestedAtRaw": "2026-10-13T13:30:09.45Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
       "id": "ord-1791897704496",
       "status": "requested",
       "itemMode": "existing",
@@ -31802,6 +31780,12 @@
     }
   ],
   "history": [
+    {
+      "date": "28/10/2026 09:45",
+      "user": "Enora",
+      "action": "Demande supprimée",
+      "detail": "Enora a supprimé la demande pour Cones non-filtrés 10µL."
+    },
     {
       "date": "28/10/2026 09:39",
       "user": "Enora",

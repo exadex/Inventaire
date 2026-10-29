@@ -13853,7 +13853,7 @@
       "category": "Biomol",
       "quantity": 1,
       "unit": "Bouteille",
-      "minStock": 1,
+      "minStock": 0.5,
       "location": "Laboratoire",
       "locations": [
         "Laboratoire"
@@ -33485,6 +33485,12 @@
       "detail": "Elina a modifié Qiazol."
     },
     {
+      "date": "29/10/2026 11:57",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Qiazol."
+    },
+    {
       "id": "history-operation-mvtfhjjh-219444526-3405929498",
       "operationId": "operation-mvtfhjjh-219444526-3405929498",
       "date": "29/10/2026 11:56",
@@ -47145,5 +47151,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-29T10:57:03.050Z"
+  "updatedAt": "2026-10-29T10:57:27.333Z"
 }

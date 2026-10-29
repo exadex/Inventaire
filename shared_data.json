@@ -11543,7 +11543,7 @@
       "name": "Falcon 15",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "carton",
+      "unit": "Carton",
       "minStock": 1,
       "location": "Réserve",
       "locations": [
@@ -11614,14 +11614,29 @@
             "updatedBy": "elina"
           }
         ],
-        "closedContainers": null,
+        "closedContainers": [
+          {
+            "id": "closed-itm-web-1783931436295-hsn9dp-reserve-1",
+            "label": "carton fermé nº1",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-10-13T09:44:38.997Z",
+            "updatedAt": "2026-10-13T09:44:38.997Z",
+            "updatedBy": "elina",
+            "version": 1
+          }
+        ],
         "openContainers": []
       },
       "aliquotTracking": {
         "version": 1,
         "enabled": false,
         "preparations": []
-      }
+      },
+      "hasMinimumStock": true
     },
     {
       "id": "itm-web-1783931436295-cwj79e",
@@ -33483,6 +33498,12 @@
       "date": "29/10/2026 11:58",
       "user": "Elina",
       "action": "Item modifié",
+      "detail": "Elina a modifié Falcon 15."
+    },
+    {
+      "date": "29/10/2026 11:58",
+      "user": "Elina",
+      "action": "Item modifié",
       "detail": "Elina a modifié Réservoir à réactifs."
     },
     {
@@ -47158,5 +47179,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-29T10:58:42.366Z"
+  "updatedAt": "2026-10-29T10:58:55.480Z"
 }

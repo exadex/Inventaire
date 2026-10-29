@@ -4193,6 +4193,12 @@
         "trackingUnit": "mL",
         "quantityStep": 1,
         "precision": 6,
+        "unitStates": {
+          "closed": 1,
+          "open": 1,
+          "updatedAt": "2026-10-29T10:30:49.952Z",
+          "updatedBy": "elina"
+        },
         "closedByLocation": [],
         "closedContainers": [
           {
@@ -4356,13 +4362,7 @@
             "finishedAt": "2026-07-30T08:17:31.089Z",
             "unitKey": "mL"
           }
-        ],
-        "unitStates": {
-          "closed": 2,
-          "open": 1,
-          "updatedAt": "2026-10-21T13:50:24.412Z",
-          "updatedBy": "enora"
-        }
+        ]
       },
       "aliquotTracking": {
         "version": 1,
@@ -33137,6 +33137,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvtekf1c-3869361681-1655869026",
+      "operationId": "operation-mvtekf1c-3869361681-1655869026",
+      "date": "29/10/2026 11:30",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · EGM / EBM · Stock précédent : 2 bouteilles · Stock compté : 2 bouteilles · Écart : 0 bouteilles · Note : Une bouteille finie et une bouteille ouverte le 29/10/2026",
+      "user": "Elina",
+      "itemId": "itm-CSV-0018",
+      "type": "recounted",
+      "previousQuantity": 2,
+      "countedQuantity": 2,
+      "difference": 0,
+      "unit": "bouteilles",
+      "note": "Une bouteille finie et une bouteille ouverte le 29/10/2026"
+    },
+    {
       "date": "28/10/2026 15:00",
       "user": "Elina",
       "action": "Échantillons clients ajoutés",
@@ -45883,6 +45898,57 @@
       "toLocation": "",
       "comment": "26/10/2026\n",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvtekfvl-148969962-3390083160",
+      "operationId": "operation-mvtekf1c-3869361681-1655869026",
+      "itemId": "itm-CSV-0018",
+      "timestamp": "2026-10-29T10:30:49.953Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 2,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": {
+        "closed": 2,
+        "open": 1,
+        "updatedAt": "2026-10-21T13:50:24.412Z",
+        "updatedBy": "enora"
+      },
+      "unitStatesAfter": {
+        "closed": 1,
+        "open": 1,
+        "updatedAt": "2026-10-29T10:30:49.952Z",
+        "updatedBy": "elina"
+      },
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 2,
+      "after": 2,
+      "quantity": 2,
+      "difference": 0,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Une bouteille finie et une bouteille ouverte le 29/10/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -46498,6 +46564,12 @@
       "itemId": "itm-web-1783931436295-rztgyv",
       "at": "2026-10-26T14:15:37.798Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvtekf1c-3869361681-1655869026",
+      "itemId": "itm-CSV-0018",
+      "at": "2026-10-29T10:30:49.953Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -46586,5 +46658,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-28T14:00:54.313Z"
+  "updatedAt": "2026-10-29T10:30:49.953Z"
 }

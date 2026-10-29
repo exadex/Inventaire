@@ -13851,7 +13851,7 @@
       "id": "itm-web-1783931436295-xcczxu",
       "name": "Qiazol",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 1,
       "unit": "Bouteille",
       "minStock": 0,
       "location": "Laboratoire",
@@ -13900,13 +13900,19 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "unite",
-        "trackingUnit": "unités",
+        "trackingUnitKey": "bouteille",
+        "trackingUnit": "bouteilles",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
         "closedContainers": [],
-        "openContainers": []
+        "openContainers": [],
+        "unitStates": {
+          "closed": 0,
+          "open": 1,
+          "updatedAt": "2026-10-29T10:56:35.499Z",
+          "updatedBy": "elina"
+        }
       },
       "aliquotTracking": {
         "version": 1,
@@ -33479,6 +33485,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mvtfhjjh-219444526-3405929498",
+      "operationId": "operation-mvtfhjjh-219444526-3405929498",
+      "date": "29/10/2026 11:56",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · Qiazol · Stock précédent : 0 Bouteille · Stock compté : 1 Bouteille · Écart : +1 Bouteille · Note : 1 bouteille Ouverte à moitié",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436295-xcczxu",
+      "type": "recounted",
+      "previousQuantity": 0,
+      "countedQuantity": 1,
+      "difference": 1,
+      "unit": "Bouteille",
+      "note": "1 bouteille Ouverte à moitié"
+    },
+    {
       "date": "29/10/2026 11:56",
       "user": "Elina",
       "action": "Item modifié",
@@ -46363,6 +46384,52 @@
       "toLocation": "",
       "comment": "Une bouteille finie et une bouteille ouverte le 29/10/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mvtfhkfg-1150604101-3543652033",
+      "operationId": "operation-mvtfhjjh-219444526-3405929498",
+      "itemId": "itm-web-1783931436295-xcczxu",
+      "timestamp": "2026-10-29T10:56:35.500Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 0,
+      "afterQuantity": 1,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": {
+        "closed": 0,
+        "open": 1,
+        "updatedAt": "2026-10-29T10:56:35.499Z",
+        "updatedBy": "elina"
+      },
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 1,
+      "quantity": 1,
+      "difference": 1,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "1 bouteille Ouverte à moitié",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -46984,6 +47051,12 @@
       "itemId": "itm-CSV-0018",
       "at": "2026-10-29T10:30:49.953Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mvtfhjjh-219444526-3405929498",
+      "itemId": "itm-web-1783931436295-xcczxu",
+      "at": "2026-10-29T10:56:35.500Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -47072,5 +47145,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-29T10:56:01.998Z"
+  "updatedAt": "2026-10-29T10:56:35.500Z"
 }

@@ -1113,7 +1113,7 @@
       "name": "Réservoir à réactifs",
       "category": "Biomol",
       "quantity": 0.56,
-      "unit": "cartons",
+      "unit": "Carton",
       "minStock": 0,
       "usageProfile": "routine",
       "placements": [
@@ -1204,7 +1204,8 @@
         "enabled": false,
         "preparations": []
       },
-      "source": "web"
+      "source": "web",
+      "hasMinimumStock": true
     },
     {
       "id": "web-1791884339893",
@@ -33479,6 +33480,12 @@
   ],
   "history": [
     {
+      "date": "29/10/2026 11:58",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Réservoir à réactifs."
+    },
+    {
       "date": "29/10/2026 11:57",
       "user": "Elina",
       "action": "Item modifié",
@@ -47151,5 +47158,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-10-29T10:57:27.333Z"
+  "updatedAt": "2026-10-29T10:58:42.366Z"
 }

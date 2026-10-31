@@ -158,7 +158,7 @@
         "secondary": []
       },
       "supplierContactId": "contact-1785226360650-wy85d7",
-      "createdAtRaw": "2026-10-26T15:19:23.590Z",
+      "createdAtRaw": "2026-10-26T15:19:23.59Z",
       "createdAt": "26/10/2026 16:19",
       "stockTracking": {
         "version": 1,
@@ -20900,7 +20900,7 @@
       "receivedAt": "",
       "receivedAtRaw": "",
       "newItemData": null,
-      "modifiedAtRaw": "2026-10-26T15:03:30.410Z",
+      "modifiedAtRaw": "2026-10-26T15:03:30.41Z",
       "modifiedBy": "Elina"
     },
     {
@@ -21078,7 +21078,7 @@
       "notes": "",
       "requestedBy": "Enora",
       "requestedAt": "26/10/2026 13:45",
-      "requestedAtRaw": "2026-10-26T12:45:44.200Z",
+      "requestedAtRaw": "2026-10-26T12:45:44.2Z",
       "orderedBy": "",
       "orderedAt": "",
       "orderedAtRaw": "",
@@ -21240,7 +21240,7 @@
       "notes": "",
       "requestedBy": "Enora",
       "requestedAt": "26/10/2026 13:29",
-      "requestedAtRaw": "2026-10-26T12:29:58.690Z",
+      "requestedAtRaw": "2026-10-26T12:29:58.69Z",
       "orderedBy": "",
       "orderedAt": "",
       "orderedAtRaw": "",
@@ -21328,7 +21328,7 @@
       "notes": "",
       "requestedBy": "Enora",
       "requestedAt": "26/10/2026 13:27",
-      "requestedAtRaw": "2026-10-26T12:27:37.770Z",
+      "requestedAtRaw": "2026-10-26T12:27:37.77Z",
       "orderedBy": "",
       "orderedAt": "",
       "orderedAtRaw": "",
@@ -22468,7 +22468,7 @@
       "sublocationId": null,
       "location": "Frigo labo",
       "notes": "",
-      "createdAtRaw": "2026-10-28T13:58:21.200Z",
+      "createdAtRaw": "2026-10-28T13:58:21.2Z",
       "createdAt": "28/10/2026 14:58",
       "baseName": "P243_T0",
       "category": "Fixation (tissu)",
@@ -22531,7 +22531,7 @@
       "sublocationId": null,
       "location": "Frigo labo",
       "notes": "",
-      "createdAtRaw": "2026-10-28T13:58:21.200Z",
+      "createdAtRaw": "2026-10-28T13:58:21.2Z",
       "createdAt": "28/10/2026 14:58",
       "baseName": "P243_T0",
       "category": "Fixation (tissu)",
@@ -24295,7 +24295,7 @@
       "sublocationId": null,
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-10-26T15:38:55.660Z",
+      "createdAtRaw": "2026-10-26T15:38:55.66Z",
       "createdAt": "26/10/2026 16:38",
       "baseName": "P242_ASH001 D4_Veh_J0",
       "category": "Sécrétion",
@@ -24358,7 +24358,7 @@
       "sublocationId": null,
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-10-26T15:38:55.660Z",
+      "createdAtRaw": "2026-10-26T15:38:55.66Z",
       "createdAt": "26/10/2026 16:38",
       "baseName": "P242_ASH001 D4_Veh_J0",
       "category": "Sécrétion",
@@ -24421,7 +24421,7 @@
       "sublocationId": null,
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-10-26T15:38:55.660Z",
+      "createdAtRaw": "2026-10-26T15:38:55.66Z",
       "createdAt": "26/10/2026 16:38",
       "baseName": "P242_ASH001 D4_Veh_J0",
       "category": "Sécrétion",
@@ -24484,7 +24484,7 @@
       "sublocationId": null,
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-10-26T15:38:55.660Z",
+      "createdAtRaw": "2026-10-26T15:38:55.66Z",
       "createdAt": "26/10/2026 16:38",
       "baseName": "P242_ASH001 D4_Veh_J0",
       "category": "Sécrétion",
@@ -24547,7 +24547,7 @@
       "sublocationId": null,
       "location": "-20°C blanc labo",
       "notes": "",
-      "createdAtRaw": "2026-10-26T15:38:55.660Z",
+      "createdAtRaw": "2026-10-26T15:38:55.66Z",
       "createdAt": "26/10/2026 16:38",
       "baseName": "P242_ASH001 D4_Veh_J0",
       "category": "Sécrétion",
@@ -32856,8 +32856,8 @@
       "rawCodes": [
         "APHM003"
       ],
-      "createdAtRaw": "2026-10-28T13:48:37.150Z",
-      "updatedAtRaw": "2026-10-28T13:48:37.150Z"
+      "createdAtRaw": "2026-10-28T13:48:37.15Z",
+      "updatedAtRaw": "2026-10-28T13:48:37.15Z"
     },
     {
       "studyType": "client",
@@ -38303,240 +38303,6 @@
       "detail": "Elina a supprimé Cones non-filtrés 1000µL de l'inventaire."
     },
     {
-      "date": "31/08/2026 15:22",
-      "user": "Elina",
-      "action": "Item modifié",
-      "detail": "Elina a modifié Luminex® Multiplex Assay Customization Tool."
-    },
-    {
-      "date": "31/08/2026 15:17",
-      "user": "Elina",
-      "action": "Item modifié",
-      "detail": "Elina a modifié Fetal Bovine Serum (FBS)."
-    },
-    {
-      "date": "26/08/2026 15:51",
-      "user": "Caroline",
-      "action": "Patient sourcing supprimé",
-      "detail": "Caroline a supprimé le patient P234."
-    },
-    {
-      "date": "26/08/2026 15:49",
-      "user": "Caroline",
-      "action": "Patient sourcing créé",
-      "detail": "Caroline a créé le patient P234."
-    },
-    {
-      "date": "25/08/2026 17:54",
-      "user": "Caroline",
-      "action": "Experience modifiée",
-      "detail": "Caroline a modifié Test APHM."
-    },
-    {
-      "date": "25/08/2026 17:08",
-      "user": "Caroline",
-      "action": "Experience modifiée",
-      "detail": "Caroline a modifié Test APHM."
-    },
-    {
-      "date": "25/08/2026 15:35",
-      "user": "Caroline",
-      "action": "Experience créée",
-      "detail": "Caroline a créé Test APHM depuis Nouveau protocole."
-    },
-    {
-      "date": "25/08/2026 15:30",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Seringue 50mL - luer lock."
-    },
-    {
-      "date": "25/08/2026 15:27",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Seringue 20mL - BD 3P Cone luer Lock."
-    },
-    {
-      "date": "25/08/2026 15:25",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Seringue 20mL non luer lock."
-    },
-    {
-      "date": "25/08/2026 15:23",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Acide ascorbique."
-    },
-    {
-      "date": "25/08/2026 15:18",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Acide ascorbique."
-    },
-    {
-      "date": "25/08/2026 15:16",
-      "user": "Caroline",
-      "action": "Protocole supprimé",
-      "detail": "Caroline a supprimé le protocole \"Test\"."
-    },
-    {
-      "date": "25/08/2026 11:58",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 12 puits - Sarstedt."
-    },
-    {
-      "date": "25/08/2026 11:57",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 12 puits - Sarstedt."
-    },
-    {
-      "date": "25/08/2026 11:56",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 12 Puits."
-    },
-    {
-      "id": "history-operation-mt8hkj6t-3707057913-1107687542",
-      "operationId": "operation-mt8hkj6t-3707057913-1107687542",
-      "date": "25/08/2026 11:52",
-      "action": "Comptage / Ajustement",
-      "detail": "Caroline · Plaque 6 puits - Sarstedt fond plat · Stock précédent : 3 cartons · Stock compté : 2,54 cartons · Écart : -0,46 cartons · Note : Comptage",
-      "user": "Caroline",
-      "itemId": "itm-web-1783931436295-cgioxi",
-      "type": "recounted",
-      "previousQuantity": 3,
-      "countedQuantity": 2.54,
-      "difference": -0.46,
-      "unit": "cartons",
-      "note": "Comptage"
-    },
-    {
-      "date": "25/08/2026 11:52",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 6 puits - Sarstedt fond plat."
-    },
-    {
-      "id": "history-operation-mt8hhazy-38246948-2619667606",
-      "operationId": "operation-mt8hhazy-38246948-2619667606",
-      "date": "25/08/2026 11:49",
-      "action": "Comptage / Ajustement",
-      "detail": "Caroline · Plaque 96 puits - Sarstedt fond plat · Stock précédent : 3 cartons · Stock compté : 2,8 cartons · Écart : -0,2 cartons · Note : Comptage",
-      "user": "Caroline",
-      "itemId": "itm-web-1783931436295-bcmh1a",
-      "type": "recounted",
-      "previousQuantity": 3,
-      "countedQuantity": 2.8,
-      "difference": -0.2,
-      "unit": "cartons",
-      "note": "Comptage"
-    },
-    {
-      "date": "25/08/2026 11:49",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 96 puits - Sarstedt fond plat."
-    },
-    {
-      "date": "25/08/2026 11:43",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Plaque 48 puits - Dutscher dans Procédé ExAdEx L2."
-    },
-    {
-      "date": "25/08/2026 11:41",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 48 puits - Thermo."
-    },
-    {
-      "date": "25/08/2026 11:41",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 48 puits."
-    },
-    {
-      "date": "25/08/2026 11:40",
-      "user": "Caroline",
-      "action": "Item ajouté",
-      "detail": "Caroline a ajouté Plaque 48 puits dans Procédé ExAdEx L2."
-    },
-    {
-      "id": "history-operation-mt8gy4k4-606530164-3719788734",
-      "operationId": "operation-mt8gy4k4-606530164-3719788734",
-      "date": "25/08/2026 11:34",
-      "action": "Comptage / Ajustement",
-      "detail": "Caroline · Plaque 24 puits - companion 6,3µm · Stock précédent : 0 cartons · Stock compté : 0,34 cartons · Écart : +0,34 cartons · Note : Comptage",
-      "user": "Caroline",
-      "itemId": "itm-CSV-0106",
-      "type": "recounted",
-      "previousQuantity": 0,
-      "countedQuantity": 0.34,
-      "difference": 0.34,
-      "unit": "cartons",
-      "note": "Comptage"
-    },
-    {
-      "date": "25/08/2026 11:34",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 24 puits - companion 6,3µm."
-    },
-    {
-      "id": "history-operation-mt8gwr84-2112483494-2811782618",
-      "operationId": "operation-mt8gwr84-2112483494-2811782618",
-      "date": "25/08/2026 11:33",
-      "action": "Comptage / Ajustement",
-      "detail": "Caroline · Plaque companion 24 puits 6,3µm · Stock précédent : 0,34 cartons · Stock compté : 0 cartons · Écart : -0,34 cartons · Note : comptage",
-      "user": "Caroline",
-      "itemId": "itm-CSV-0106",
-      "type": "recounted",
-      "previousQuantity": 0.34,
-      "countedQuantity": 0,
-      "difference": -0.34,
-      "unit": "cartons",
-      "note": "comptage"
-    },
-    {
-      "date": "25/08/2026 11:29",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Plaque 24 puits."
-    },
-    {
-      "id": "history-operation-mt8g406d-2553637025-3370688591",
-      "operationId": "operation-mt8g406d-2553637025-3370688591",
-      "date": "25/08/2026 11:11",
-      "action": "Comptage / Ajustement",
-      "detail": "Caroline · Luminex® Multiplex Assay Customization Tool · Stock précédent : 0 kit · Stock compté : 0 kit · Écart : 0 kit · Note : IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip",
-      "user": "Caroline",
-      "itemId": "web-1786540743486",
-      "type": "recounted",
-      "previousQuantity": 0,
-      "countedQuantity": 0,
-      "difference": 0,
-      "unit": "kit",
-      "note": "IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip"
-    },
-    {
-      "date": "25/08/2026 11:10",
-      "user": "Caroline",
-      "action": "Item modifié",
-      "detail": "Caroline a modifié Luminex® Multiplex Assay Customization Tool."
-    },
-    {
-      "id": "history-operation-mt8g25mb-3546539726-801908872",
-      "operationId": "operation-mt8g25mb-3546539726-801908872",
-      "date": "25/08/2026 11:10",
-      "action": "Stock mis à jour",
-      "detail": "Caroline · consumed · Luminex® Multiplex Assay Customization Tool · IEB001 · Reste 1 vial de chaque standard, 1 vial de diluent RD6-52 et assez de wash buffer pour une manip supplémentaire. Du reste il n'en reste pas assez pour une manip",
-      "user": "Caroline",
-      "itemId": "web-1786540743486"
-    },
-    {
       "date": "Aujourd'hui 09:12",
       "user": "Caroline",
       "action": "Stock ajuste",
@@ -38556,48 +38322,6 @@
     }
   ],
   "stockMovements": [
-    {
-      "id": "movement-mt8p99rg-44133160-609876621",
-      "operationId": "migration-mt8p99rg-2114469484-821197728",
-      "itemId": "itm-CSV-0047",
-      "timestamp": "2026-08-25T13:27:30.22Z",
-      "userId": "caroline",
-      "userName": "Caroline",
-      "userEmoji": "🧪",
-      "userInitials": "",
-      "type": "configuration_changed",
-      "entityType": "item",
-      "entityId": "itm-CSV-0047",
-      "before": {
-        "mode": "simple",
-        "quantity": 2.5
-      },
-      "after": {
-        "mode": "containers",
-        "equivalentQuantity": 2.5,
-        "closedByLocation": [
-          {
-            "location": "Bureau",
-            "quantity": 2,
-            "updatedAt": "2026-08-25T13:27:30.217Z",
-            "updatedBy": "caroline"
-          }
-        ],
-        "openContainers": [
-          {
-            "id": "container-mt8p99rd-1584791175-1124322460",
-            "location": "Bureau",
-            "remaining": 60
-          }
-        ]
-      },
-      "quantity": 0,
-      "unit": "cartons",
-      "fromLocation": "",
-      "toLocation": "",
-      "comment": "Migration validée du suivi simple vers le suivi par contenants.",
-      "correctionReason": ""
-    },
     {
       "id": "movement-mtl9tjuj-869496058-3912502642",
       "operationId": "operation-mtl9tj2a-2971038193-3718728346",
@@ -46236,7 +45960,7 @@
       "unitStatesAfter": {
         "closed": 4,
         "open": 0,
-        "updatedAt": "2026-10-26T14:02:51.920Z",
+        "updatedAt": "2026-10-26T14:02:51.92Z",
         "updatedBy": "elina"
       },
       "automatic": false,
@@ -46449,7 +46173,7 @@
       "id": "movement-mvtfhkfg-1150604101-3543652033",
       "operationId": "operation-mvtfhjjh-219444526-3405929498",
       "itemId": "itm-web-1783931436295-xcczxu",
-      "timestamp": "2026-10-29T10:56:35.500Z",
+      "timestamp": "2026-10-29T10:56:35.5Z",
       "userId": "elina",
       "userName": "Elina",
       "userEmoji": "🔬",
@@ -47115,7 +46839,7 @@
     {
       "operationId": "operation-mvtfhjjh-219444526-3405929498",
       "itemId": "itm-web-1783931436295-xcczxu",
-      "at": "2026-10-29T10:56:35.500Z",
+      "at": "2026-10-29T10:56:35.5Z",
       "type": "recounted"
     }
   ],

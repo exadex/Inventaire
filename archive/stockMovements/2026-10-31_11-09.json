@@ -1,0 +1,42 @@
+{
+  "id": "movement-mt8p99rg-44133160-609876621",
+  "operationId": "migration-mt8p99rg-2114469484-821197728",
+  "itemId": "itm-CSV-0047",
+  "timestamp": "2026-08-25T13:27:30.22Z",
+  "userId": "caroline",
+  "userName": "Caroline",
+  "userEmoji": "🧪",
+  "userInitials": "",
+  "type": "configuration_changed",
+  "entityType": "item",
+  "entityId": "itm-CSV-0047",
+  "before": {
+    "mode": "simple",
+    "quantity": 2.5
+  },
+  "after": {
+    "mode": "containers",
+    "equivalentQuantity": 2.5,
+    "closedByLocation": [
+      {
+        "location": "Bureau",
+        "quantity": 2,
+        "updatedAt": "2026-08-25T13:27:30.217Z",
+        "updatedBy": "caroline"
+      }
+    ],
+    "openContainers": [
+      {
+        "id": "container-mt8p99rd-1584791175-1124322460",
+        "location": "Bureau",
+        "remaining": 60
+      }
+    ]
+  },
+  "quantity": 0,
+  "unit": "cartons",
+  "fromLocation": "",
+  "toLocation": "",
+  "comment": "Migration validée du suivi simple vers le suivi par contenants.",
+  "correctionReason": ""
+}

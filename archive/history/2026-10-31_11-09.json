@@ -1,0 +1,236 @@
+[
+  {
+    "date": "31/08/2026 15:22",
+    "user": "Elina",
+    "action": "Item modifié",
+    "detail": "Elina a modifié Luminex® Multiplex Assay Customization Tool."
+  },
+  {
+    "date": "31/08/2026 15:17",
+    "user": "Elina",
+    "action": "Item modifié",
+    "detail": "Elina a modifié Fetal Bovine Serum (FBS)."
+  },
+  {
+    "date": "26/08/2026 15:51",
+    "user": "Caroline",
+    "action": "Patient sourcing supprimé",
+    "detail": "Caroline a supprimé le patient P234."
+  },
+  {
+    "date": "26/08/2026 15:49",
+    "user": "Caroline",
+    "action": "Patient sourcing créé",
+    "detail": "Caroline a créé le patient P234."
+  },
+  {
+    "date": "25/08/2026 17:54",
+    "user": "Caroline",
+    "action": "Experience modifiée",
+    "detail": "Caroline a modifié Test APHM."
+  },
+  {
+    "date": "25/08/2026 17:08",
+    "user": "Caroline",
+    "action": "Experience modifiée",
+    "detail": "Caroline a modifié Test APHM."
+  },
+  {
+    "date": "25/08/2026 15:35",
+    "user": "Caroline",
+    "action": "Experience créée",
+    "detail": "Caroline a créé Test APHM depuis Nouveau protocole."
+  },
+  {
+    "date": "25/08/2026 15:30",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Seringue 50mL - luer lock."
+  },
+  {
+    "date": "25/08/2026 15:27",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Seringue 20mL - BD 3P Cone luer Lock."
+  },
+  {
+    "date": "25/08/2026 15:25",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Seringue 20mL non luer lock."
+  },
+  {
+    "date": "25/08/2026 15:23",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Acide ascorbique."
+  },
+  {
+    "date": "25/08/2026 15:18",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Acide ascorbique."
+  },
+  {
+    "date": "25/08/2026 15:16",
+    "user": "Caroline",
+    "action": "Protocole supprimé",
+    "detail": "Caroline a supprimé le protocole \"Test\"."
+  },
+  {
+    "date": "25/08/2026 11:58",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 12 puits - Sarstedt."
+  },
+  {
+    "date": "25/08/2026 11:57",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 12 puits - Sarstedt."
+  },
+  {
+    "date": "25/08/2026 11:56",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 12 Puits."
+  },
+  {
+    "id": "history-operation-mt8hkj6t-3707057913-1107687542",
+    "operationId": "operation-mt8hkj6t-3707057913-1107687542",
+    "date": "25/08/2026 11:52",
+    "action": "Comptage / Ajustement",
+    "detail": "Caroline · Plaque 6 puits - Sarstedt fond plat · Stock précédent : 3 cartons · Stock compté : 2,54 cartons · Écart : -0,46 cartons · Note : Comptage",
+    "user": "Caroline",
+    "itemId": "itm-web-1783931436295-cgioxi",
+    "type": "recounted",
+    "previousQuantity": 3,
+    "countedQuantity": 2.54,
+    "difference": -0.46,
+    "unit": "cartons",
+    "note": "Comptage"
+  },
+  {
+    "date": "25/08/2026 11:52",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 6 puits - Sarstedt fond plat."
+  },
+  {
+    "id": "history-operation-mt8hhazy-38246948-2619667606",
+    "operationId": "operation-mt8hhazy-38246948-2619667606",
+    "date": "25/08/2026 11:49",
+    "action": "Comptage / Ajustement",
+    "detail": "Caroline · Plaque 96 puits - Sarstedt fond plat · Stock précédent : 3 cartons · Stock compté : 2,8 cartons · Écart : -0,2 cartons · Note : Comptage",
+    "user": "Caroline",
+    "itemId": "itm-web-1783931436295-bcmh1a",
+    "type": "recounted",
+    "previousQuantity": 3,
+    "countedQuantity": 2.8,
+    "difference": -0.2,
+    "unit": "cartons",
+    "note": "Comptage"
+  },
+  {
+    "date": "25/08/2026 11:49",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 96 puits - Sarstedt fond plat."
+  },
+  {
+    "date": "25/08/2026 11:43",
+    "user": "Caroline",
+    "action": "Item ajouté",
+    "detail": "Caroline a ajouté Plaque 48 puits - Dutscher dans Procédé ExAdEx L2."
+  },
+  {
+    "date": "25/08/2026 11:41",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 48 puits - Thermo."
+  },
+  {
+    "date": "25/08/2026 11:41",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 48 puits."
+  },
+  {
+    "date": "25/08/2026 11:40",
+    "user": "Caroline",
+    "action": "Item ajouté",
+    "detail": "Caroline a ajouté Plaque 48 puits dans Procédé ExAdEx L2."
+  },
+  {
+    "id": "history-operation-mt8gy4k4-606530164-3719788734",
+    "operationId": "operation-mt8gy4k4-606530164-3719788734",
+    "date": "25/08/2026 11:34",
+    "action": "Comptage / Ajustement",
+    "detail": "Caroline · Plaque 24 puits - companion 6,3µm · Stock précédent : 0 cartons · Stock compté : 0,34 cartons · Écart : +0,34 cartons · Note : Comptage",
+    "user": "Caroline",
+    "itemId": "itm-CSV-0106",
+    "type": "recounted",
+    "previousQuantity": 0,
+    "countedQuantity": 0.34,
+    "difference": 0.34,
+    "unit": "cartons",
+    "note": "Comptage"
+  },
+  {
+    "date": "25/08/2026 11:34",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 24 puits - companion 6,3µm."
+  },
+  {
+    "id": "history-operation-mt8gwr84-2112483494-2811782618",
+    "operationId": "operation-mt8gwr84-2112483494-2811782618",
+    "date": "25/08/2026 11:33",
+    "action": "Comptage / Ajustement",
+    "detail": "Caroline · Plaque companion 24 puits 6,3µm · Stock précédent : 0,34 cartons · Stock compté : 0 cartons · Écart : -0,34 cartons · Note : comptage",
+    "user": "Caroline",
+    "itemId": "itm-CSV-0106",
+    "type": "recounted",
+    "previousQuantity": 0.34,
+    "countedQuantity": 0,
+    "difference": -0.34,
+    "unit": "cartons",
+    "note": "comptage"
+  },
+  {
+    "date": "25/08/2026 11:29",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Plaque 24 puits."
+  },
+  {
+    "id": "history-operation-mt8g406d-2553637025-3370688591",
+    "operationId": "operation-mt8g406d-2553637025-3370688591",
+    "date": "25/08/2026 11:11",
+    "action": "Comptage / Ajustement",
+    "detail": "Caroline · Luminex® Multiplex Assay Customization Tool · Stock précédent : 0 kit · Stock compté : 0 kit · Écart : 0 kit · Note : IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip",
+    "user": "Caroline",
+    "itemId": "web-1786540743486",
+    "type": "recounted",
+    "previousQuantity": 0,
+    "countedQuantity": 0,
+    "difference": 0,
+    "unit": "kit",
+    "note": "IEB001\nReste 1 vial de chaque standard, 1 via de diluent RD6-52 et assez de wash buffer. Du reste il n'en a pas assez pour refaire une  manip"
+  },
+  {
+    "date": "25/08/2026 11:10",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Luminex® Multiplex Assay Customization Tool."
+  },
+  {
+    "id": "history-operation-mt8g25mb-3546539726-801908872",
+    "operationId": "operation-mt8g25mb-3546539726-801908872",
+    "date": "25/08/2026 11:10",
+    "action": "Stock mis à jour",
+    "detail": "Caroline · consumed · Luminex® Multiplex Assay Customization Tool · IEB001 · Reste 1 vial de chaque standard, 1 vial de diluent RD6-52 et assez de wash buffer pour une manip supplémentaire. Du reste il n'en reste pas assez pour une manip",
+    "user": "Caroline",
+    "itemId": "web-1786540743486"
+  }
+]

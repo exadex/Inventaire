@@ -33322,6 +33322,18 @@
       "coordinates": []
     },
     {
+      "id": "contact-1793715028741-7rj5dm",
+      "company": "Laboccaz",
+      "salesRepresentative": "",
+      "afterSalesService": "",
+      "customerService": "support@laboccaz.com",
+      "salesAndQuotes": "",
+      "phone": "0255991402",
+      "notes": "",
+      "aliases": [],
+      "coordinates": []
+    },
+    {
       "id": "contact-1785226538842-zxbobh",
       "company": "Materiel Medical",
       "salesRepresentative": "Kevin MAYR (HEXAMED)",
@@ -33572,6 +33584,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/11/2026 15:10",
+      "user": "Elina",
+      "action": "Contact ajouté",
+      "detail": "Elina a ajouté le contact Laboccaz."
+    },
     {
       "date": "03/11/2026 14:16",
       "user": "Elina",

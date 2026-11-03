@@ -33331,7 +33331,17 @@
       "phone": "0255991402",
       "notes": "",
       "aliases": [],
-      "coordinates": []
+      "coordinates": [],
+      "supplierCredentials": [
+        {
+          "id": "credential-1793715144885-92e68372-82e7-4d34-87cc-db451361d688",
+          "version": 2,
+          "iterations": 600000,
+          "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
+          "iv": "sYfbVEH7h7s7a7qH",
+          "ciphertext": "bDW4u73XJEDzNqMVUqswZjEEIAjDXtTTwmGfxkHUkhLeVUy7xSFFm5IA8dviyUpmNt+3rF2i0oTtMXGd9iZj6ijmvELXxyYTCTZ7yRQ3T0EPQC5X1OzVGKthxAX7xoAeAq79vN/VX+8ZI0m2uDnH1VNNEtsUCehC+6FzkPLZm3yDf/xi1XoG7Udz66/jTW8tgkoe0znIRVI969tv0u8y4jW6yexUHa+pBMM7zNo5CY6T1pwiCSKQMSCZOL0+PkTwpKhMkwgVD+/Xg3jj"
+        }
+      ]
     },
     {
       "id": "contact-1785226538842-zxbobh",
@@ -33584,6 +33594,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/11/2026 15:12",
+      "user": "Elina",
+      "action": "Identifiant fournisseur ajouté",
+      "detail": "Elina a modifié les identifiants du fournisseur Laboccaz."
+    },
     {
       "date": "03/11/2026 15:10",
       "user": "Elina",

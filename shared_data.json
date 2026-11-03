@@ -20834,6 +20834,29 @@
   ],
   "orders": [
     {
+      "id": "ord-1793717881060",
+      "status": "requested",
+      "itemMode": "new",
+      "inventoryItemId": null,
+      "itemName": "Falcon 15",
+      "requestedQuantity": 4,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "62.554.0016\nATTENTION COMMANDER QU UNE SEULE REF",
+      "requestedBy": "Enora",
+      "requestedAt": "03/11/2026 15:58",
+      "requestedAtRaw": "2026-11-03T14:58:01.061Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": {
+        "name": "Falcon 15"
+      }
+    },
+    {
       "id": "ord-1793027664576",
       "status": "requested",
       "itemMode": "existing",
@@ -33592,6 +33615,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/11/2026 15:58",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour Falcon 15."
+    },
     {
       "date": "03/11/2026 15:56",
       "user": "Enora",

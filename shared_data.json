@@ -11479,14 +11479,12 @@
       "locations": [
         "Réserve"
       ],
-      "tags": [
-        "Tube FACS"
-      ],
+      "tags": [],
       "notes": "Conditionnement : 500",
       "references": {
         "primary": {
           "supplier": "Sarstedt",
-          "reference": "352059",
+          "reference": "62.554.001",
           "link": "",
           "notes": "ugap",
           "price": "215",
@@ -11524,8 +11522,8 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "mL",
-        "trackingUnit": "mL",
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
@@ -33595,6 +33593,12 @@
   ],
   "history": [
     {
+      "date": "03/11/2026 15:56",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié Falcon facs 15 mL."
+    },
+    {
       "date": "03/11/2026 15:55",
       "user": "Enora",
       "action": "Identifiant fournisseur modifié",
@@ -47069,5 +47073,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-03T13:16:33.285Z"
+  "updatedAt": "2026-11-03T14:56:54.572Z"
 }

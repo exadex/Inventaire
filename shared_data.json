@@ -21825,6 +21825,46 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-created-1793711595023-ni50y7",
+      "type": "created_sample",
+      "studyType": "rd",
+      "clientCode": "P243",
+      "rawClientCode": "P243",
+      "normalizedClientKey": "P243",
+      "clientId": "client-1793711595014-r897ak",
+      "canonicalClientCode": "P243",
+      "roomId": "room-laboratoire",
+      "locationId": "location-20-gris-labo",
+      "sublocationId": null,
+      "location": "-20°C gris labo",
+      "notes": "",
+      "createdAtRaw": "2026-11-03T13:13:15.013Z",
+      "createdAt": "03/11/2026 14:13",
+      "baseName": "P243_T7",
+      "category": "ARN",
+      "arnQiazol": true,
+      "arnBead": true,
+      "creationDate": "2026-11-03",
+      "measureValue": 100,
+      "measureUnit": "mg",
+      "quantity": 100,
+      "unit": "mg",
+      "arrivalDate": "",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "replicaId": "sample-created-1793711595023-ni50y7",
+      "groupId": "",
+      "name": "P243_T7",
+      "replicaNumber": null,
+      "replicaCount": 1,
+      "generalData": {
+        "notes": ""
+      },
+      "specificData": {
+        "notes": ""
+      }
+    },
+    {
       "id": "sample-created-1793270596555-cix0ni",
       "type": "created_sample",
       "studyType": "rd",
@@ -32943,6 +32983,30 @@
       "studyType": "client"
     },
     {
+      "normalizedKey": "P243",
+      "canonicalCode": "P243",
+      "parentId": "client-1793711595013-lawpwp",
+      "studyType": "rd",
+      "id": "client-1793711595014-r897ak",
+      "rawCodes": [
+        "P243"
+      ],
+      "createdAtRaw": "2026-11-03T13:13:15.014Z",
+      "updatedAtRaw": "2026-11-03T13:13:15.014Z"
+    },
+    {
+      "normalizedKey": "PATIENTSOUSTRAITEMENT",
+      "canonicalCode": "Patient sous traitement",
+      "parentId": "client-GLP1AGONIST",
+      "studyType": "rd",
+      "id": "client-1793711595013-lawpwp",
+      "rawCodes": [
+        "Patient sous traitement"
+      ],
+      "createdAtRaw": "2026-11-03T13:13:15.013Z",
+      "updatedAtRaw": "2026-11-03T13:13:15.013Z"
+    },
+    {
       "id": "client-T0&T14",
       "normalizedKey": "T0&T14",
       "canonicalCode": "T0&T14",
@@ -33496,6 +33560,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/11/2026 14:13",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a ajouté 1 échantillon P243_T7 pour P243."
+    },
     {
       "date": "29/10/2026 11:59",
       "user": "Elina",
@@ -46929,5 +46999,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-03T12:32:18.955Z"
+  "updatedAt": "2026-11-03T13:13:15.030Z"
 }

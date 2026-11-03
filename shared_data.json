@@ -33212,8 +33212,8 @@
           "version": 2,
           "iterations": 600000,
           "salt": "ecD56K0k3JFMGHVEZ8zXvg==",
-          "iv": "XPY20jtAxOLxv8tg",
-          "ciphertext": "TOl+W/jFSKlVDBAZMBrVD8dlU2l/5CRPwNekW+peH4wC6z+Ao/FjdpWDnov4hAqNiDrTBVKhSOc6MhmPAxHhSCjDy1v8xJ8F4JKNkhM3KSGlpHwbNvZpoOH0FCvrqpaDunSsNgcQeo+ms0HYiJwJtUTKkw6hIAyQ3DZkaHK3r7ScccsB5YytgR7m160VaoLy+2rKz1WZJkUyJQw5Z26SrwrjsBycPw35hnKpdp06WpDN0BCAIRioXv3eH8i80bBNj9f3qg=="
+          "iv": "C11cd7oTiLw22T+5",
+          "ciphertext": "iUiDhVIkNO/zm6IscwfG0Ba50jpvAYkjAy3qGiVrTAl4+KrWbwhgW6ndg4+ei4rIyXpWPrKW/mlA/zqjAO1pYSASYVtjJLdwy5XcAmngQTVUHceKUQKAVtn4pwY0zTI991WoyMfDnJQxc9iLb0pyyTw4E1JTQsVxggACR83JypHpEGrcOWVMg6NGbAMJSa/mGZm25vNxC22xf9gAp2z4o8cmSix2oOlpgWa/vHfBBrjyYluKhBk+o7v5gYPyaiYxUwFVYw=="
         }
       ]
     },
@@ -33594,6 +33594,12 @@
     }
   ],
   "history": [
+    {
+      "date": "03/11/2026 15:55",
+      "user": "Enora",
+      "action": "Identifiant fournisseur modifié",
+      "detail": "Enora a modifié les identifiants du fournisseur Dutscher."
+    },
     {
       "date": "03/11/2026 15:12",
       "user": "Elina",

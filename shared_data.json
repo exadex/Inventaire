@@ -20841,31 +20841,6 @@
   ],
   "orders": [
     {
-      "id": "ord-1793780742453",
-      "status": "requested",
-      "itemMode": "existing",
-      "inventoryItemId": "itm-web-1783931436295-hsn9dp",
-      "inventoryUnit": "Carton",
-      "itemName": "Falcon 15",
-      "reference": "62554502",
-      "referenceType": "primary",
-      "referenceIndex": null,
-      "requestedQuantity": 4,
-      "receivedQuantity": 0,
-      "priority": "critique",
-      "notes": "",
-      "requestedBy": "Enora",
-      "requestedAt": "04/11/2026 09:25",
-      "requestedAtRaw": "2026-11-04T08:25:42.454Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": null
-    },
-    {
       "id": "ord-1793780477839",
       "status": "requested",
       "itemMode": "existing",
@@ -33657,6 +33632,12 @@
     }
   ],
   "history": [
+    {
+      "date": "04/11/2026 09:26",
+      "user": "Enora",
+      "action": "Demande supprimée",
+      "detail": "Enora a supprimé la demande pour Falcon 15."
+    },
     {
       "date": "04/11/2026 09:25",
       "user": "Enora",

@@ -21663,12 +21663,12 @@
     },
     {
       "id": "ord-1791877088684",
-      "status": "received",
+      "status": "ordered",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "Pipette multicanaux 200µL",
       "requestedQuantity": 1,
-      "receivedQuantity": 1,
+      "receivedQuantity": 0,
       "priority": "critique",
       "notes": "225",
       "requestedBy": "Elina",
@@ -21677,9 +21677,9 @@
       "orderedBy": "Elina",
       "orderedAt": "04/11/2026 16:16",
       "orderedAtRaw": "2026-11-04T15:16:10.109Z",
-      "receivedBy": "Elina",
-      "receivedAt": "04/11/2026 16:16",
-      "receivedAtRaw": "2026-11-04T15:16:19.076Z",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
       "newItemData": {
         "name": "Pipette multicanaux 200µL"
       },
@@ -33839,6 +33839,12 @@
     }
   ],
   "history": [
+    {
+      "date": "04/11/2026 16:16",
+      "user": "Elina",
+      "action": "Réception annulée",
+      "detail": "Elina a renvoyé Pipette multicanaux 200µL vers \"Commandé\"."
+    },
     {
       "date": "04/11/2026 16:16",
       "user": "Elina",

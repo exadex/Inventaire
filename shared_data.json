@@ -20841,6 +20841,31 @@
   ],
   "orders": [
     {
+      "id": "ord-1793780477839",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0018",
+      "inventoryUnit": "bouteilles",
+      "itemName": "EGM / EBM",
+      "reference": "C-22111",
+      "referenceType": "secondary",
+      "referenceIndex": 1,
+      "requestedQuantity": 10,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "04/11/2026 09:21",
+      "requestedAtRaw": "2026-11-04T08:21:17.840Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793719005726",
       "status": "requested",
       "itemMode": "existing",
@@ -33631,6 +33656,12 @@
     }
   ],
   "history": [
+    {
+      "date": "04/11/2026 09:21",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour EGM / EBM."
+    },
     {
       "date": "04/11/2026 09:05",
       "user": "Enora",

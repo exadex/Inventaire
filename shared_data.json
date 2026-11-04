@@ -21861,6 +21861,42 @@
   ],
   "clientSamples": [
     {
+      "id": "sample-created-1793801615671-j4zyoi",
+      "type": "created_sample",
+      "studyType": "rd",
+      "clientCode": "T0&T14",
+      "rawClientCode": "T0&T14",
+      "normalizedClientKey": "T0&T14",
+      "clientId": "client-T0&T14",
+      "canonicalClientCode": "T0&T14",
+      "roomId": "room-culture-l1",
+      "locationId": "location-20-culture-l1",
+      "sublocationId": null,
+      "location": "-20°C culture L1",
+      "notes": "",
+      "createdAtRaw": "2026-11-04T14:13:35.671Z",
+      "createdAt": "04/11/2026 15:13",
+      "baseName": "Test",
+      "category": "ARN",
+      "arnQiazol": true,
+      "arnBead": false,
+      "creationDate": "2026-11-04",
+      "measureValue": 100,
+      "measureUnit": "mg",
+      "quantity": 100,
+      "unit": "mg",
+      "arrivalDate": "",
+      "referenceNumber": "",
+      "lotNumber": "",
+      "replicaId": "sample-created-1793801615671-j4zyoi",
+      "groupId": "",
+      "name": "Test",
+      "replicaNumber": null,
+      "replicaCount": 1,
+      "generalData": {},
+      "specificData": {}
+    },
+    {
       "id": "sample-created-1793711595023-ni50y7",
       "type": "created_sample",
       "studyType": "rd",
@@ -32924,8 +32960,8 @@
   "physicalTubes": [
     {
       "id": "physical-tube-1793799866455-mkqtl7",
-      "sampleId": null,
-      "provisionalId": "Test",
+      "sampleId": "sample-created-1793801615671-j4zyoi",
+      "provisionalId": "",
       "createdAt": "2026-11-04T13:44:26.455Z",
       "notes": ""
     },
@@ -32995,13 +33031,6 @@
   ],
   "tubePositions": [
     {
-      "id": "tube-position-tube-box-1793789896039-s8ig6v-1-1",
-      "boxId": "tube-box-1793789896039-s8ig6v",
-      "row": 1,
-      "column": 1,
-      "tubeId": "physical-tube-1793799866455-mkqtl7"
-    },
-    {
       "id": "tube-position-tube-box-1793789896039-s8ig6v-1-2",
       "boxId": "tube-box-1793789896039-s8ig6v",
       "row": 1,
@@ -33063,6 +33092,13 @@
       "row": 1,
       "column": 9,
       "tubeId": "physical-tube-1793801510434-svmvhq"
+    },
+    {
+      "id": "tube-position-tube-box-1793789896039-s8ig6v-1-1",
+      "boxId": "tube-box-1793789896039-s8ig6v",
+      "row": 1,
+      "column": 1,
+      "tubeId": "physical-tube-1793799866455-mkqtl7"
     }
   ],
   "tubeLocationStructures": [],

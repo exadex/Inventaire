@@ -32942,6 +32942,20 @@
       "provisionalId": "Test003",
       "createdAt": "2026-11-04T13:52:58.055Z",
       "notes": ""
+    },
+    {
+      "id": "physical-tube-1793800747258-mc9npv",
+      "sampleId": null,
+      "provisionalId": "test '",
+      "createdAt": "2026-11-04T13:59:07.258Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1793800747258-3e7l75",
+      "sampleId": null,
+      "provisionalId": "Test06",
+      "createdAt": "2026-11-04T13:59:07.258Z",
+      "notes": ""
     }
   ],
   "tubePositions": [
@@ -32965,6 +32979,20 @@
       "row": 1,
       "column": 3,
       "tubeId": "physical-tube-1793800378055-tj8z9k"
+    },
+    {
+      "id": "tube-position-tube-box-1793789896039-s8ig6v-1-4",
+      "boxId": "tube-box-1793789896039-s8ig6v",
+      "row": 1,
+      "column": 4,
+      "tubeId": "physical-tube-1793800747258-mc9npv"
+    },
+    {
+      "id": "tube-position-tube-box-1793789896039-s8ig6v-1-5",
+      "boxId": "tube-box-1793789896039-s8ig6v",
+      "row": 1,
+      "column": 5,
+      "tubeId": "physical-tube-1793800747258-3e7l75"
     }
   ],
   "tubeLocationStructures": [],

@@ -20853,7 +20853,7 @@
       "requestedQuantity": 10,
       "receivedQuantity": 0,
       "priority": "critique",
-      "notes": "",
+      "notes": "FAIRE FIGURER \"LONGEST SHELF LIFE\" sur le BC",
       "requestedBy": "Enora",
       "requestedAt": "04/11/2026 09:21",
       "requestedAtRaw": "2026-11-04T08:21:17.840Z",
@@ -20863,7 +20863,9 @@
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
-      "newItemData": null
+      "newItemData": null,
+      "modifiedAtRaw": "2026-11-04T10:21:15.857Z",
+      "modifiedBy": "Enora"
     },
     {
       "id": "ord-1793719005726",
@@ -33632,6 +33634,12 @@
     }
   ],
   "history": [
+    {
+      "date": "04/11/2026 11:21",
+      "user": "Enora",
+      "action": "Demande modifiée",
+      "detail": "Enora a modifié la demande pour EGM / EBM (quantité : 10 → 10 ; priorité : critique → critique)."
+    },
     {
       "date": "04/11/2026 09:26",
       "user": "Enora",

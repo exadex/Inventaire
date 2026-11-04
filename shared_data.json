@@ -20898,7 +20898,7 @@
       "requestedQuantity": 4,
       "receivedQuantity": 0,
       "priority": "critique",
-      "notes": "62.554.0016\nATTENTION COMMANDER QU UNE SEULE REF - SARSTEDT ",
+      "notes": "62.554.016\nATTENTION COMMANDER QU UNE SEULE REF - SARSTEDT ",
       "requestedBy": "Enora",
       "requestedAt": "03/11/2026 15:58",
       "requestedAtRaw": "2026-11-03T14:58:01.061Z",
@@ -20912,8 +20912,8 @@
         "name": "Falcon 15"
       },
       "inventoryUnit": "",
-      "modifiedAtRaw": "2026-11-03T14:58:42.150Z",
-      "modifiedBy": "Enora"
+      "modifiedAtRaw": "2026-11-04T11:07:25.417Z",
+      "modifiedBy": "Elina"
     },
     {
       "id": "ord-1793027664576",
@@ -33646,6 +33646,12 @@
     }
   ],
   "history": [
+    {
+      "date": "04/11/2026 12:07",
+      "user": "Elina",
+      "action": "Demande modifiée",
+      "detail": "Elina a modifié la demande pour Falcon 15 (quantité : 4 → 4 ; priorité : critique → critique)."
+    },
     {
       "date": "04/11/2026 11:58",
       "user": "Elina",

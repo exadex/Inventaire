@@ -20842,6 +20842,31 @@
   ],
   "orders": [
     {
+      "id": "ord-1793868658356",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-CSV-0082",
+      "inventoryUnit": "Carton",
+      "itemName": "cliptip 300",
+      "reference": "94410517",
+      "referenceType": "primary",
+      "referenceIndex": null,
+      "requestedQuantity": 4,
+      "receivedQuantity": 0,
+      "priority": "critique",
+      "notes": "",
+      "requestedBy": "Enora",
+      "requestedAt": "05/11/2026 09:50",
+      "requestedAtRaw": "2026-11-05T08:50:58.356Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793780477839",
       "status": "requested",
       "itemMode": "existing",
@@ -33816,6 +33841,12 @@
     }
   ],
   "history": [
+    {
+      "date": "05/11/2026 09:50",
+      "user": "Enora",
+      "action": "Demande créée",
+      "detail": "Enora a créé une demande pour cliptip 300."
+    },
     {
       "date": "05/11/2026 09:50",
       "user": "Enora",

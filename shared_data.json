@@ -12551,7 +12551,7 @@
     },
     {
       "id": "itm-CSV-0082",
-      "name": "cliptip 300 ext low retention",
+      "name": "cliptip 300",
       "category": "Biomol",
       "quantity": 0.625,
       "unit": "Carton",
@@ -12567,14 +12567,19 @@
       "references": {
         "primary": {
           "supplier": "Thermo Fischer",
-          "reference": "94410610",
+          "reference": "94410517",
           "link": "",
-          "notes": "NB13 Culture Cellulaire Eucaryote : Consommables En Plastique Specifiques",
-          "price": "55",
+          "notes": "Quick rack",
+          "price": "54",
           "unitPrice": "0,057291667",
           "leadTime": ""
         },
-        "secondary": []
+        "secondary": [
+          {
+            "reference": "94410610",
+            "notes": "avec boite"
+          }
+        ]
       },
       "source": "seed",
       "usageProfile": "routine",
@@ -12645,7 +12650,8 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true
     },
     {
       "id": "itm-CSV-0083",
@@ -33835,6 +33841,12 @@
   ],
   "history": [
     {
+      "date": "05/11/2026 09:50",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié cliptip 300."
+    },
+    {
       "date": "04/11/2026 16:37",
       "user": "Elina",
       "action": "Item modifié",
@@ -47429,5 +47441,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-04T15:37:06.972Z"
+  "updatedAt": "2026-11-05T08:50:22.023Z"
 }

@@ -12569,7 +12569,7 @@
           "supplier": "Thermo Fischer",
           "reference": "94410517",
           "link": "",
-          "notes": "Quick rack",
+          "notes": "Quick rack - non stérile",
           "price": "54",
           "unitPrice": "0,057291667",
           "leadTime": ""
@@ -33842,6 +33842,12 @@
   ],
   "history": [
     {
+      "date": "05/11/2026 09:52",
+      "user": "Enora",
+      "action": "Item modifié",
+      "detail": "Enora a modifié cliptip 300."
+    },
+    {
       "date": "05/11/2026 09:50",
       "user": "Enora",
       "action": "Demande créée",
@@ -47454,5 +47460,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-05T08:50:22.023Z"
+  "updatedAt": "2026-11-05T08:52:48.186Z"
 }

@@ -1,0 +1,434 @@
+[
+  {
+    "date": "04/09/2026 17:52",
+    "user": "Caroline",
+    "action": "Protocole supprimé",
+    "detail": "Caroline a supprimé le protocole \"Test\"."
+  },
+  {
+    "date": "04/09/2026 15:33",
+    "user": "Elina",
+    "action": "Contact ajouté",
+    "detail": "Elina a ajouté le contact Agilent."
+  },
+  {
+    "date": "03/09/2026 15:33",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a modifié 3 échantillons P236_APHM003_24h Contrôle positif Anti-inflammatoire pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:33",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a modifié 3 échantillons P236_APHM003_24h Contrôle positif Anti-oxydant pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:33",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a modifié 3 échantillons P236_APHM003_24h Contrôle positif Anti-inflammatoire pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:33",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h Contrôle positif Dex pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:32",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h Contrôle positif NAC pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:32",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h Contrôle négatif pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:31",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°20 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:31",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°19 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:31",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°18 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:30",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°16 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:30",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°15 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:29",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°13 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:29",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°12 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:29",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°11 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:28",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°10 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:28",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°9 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:28",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°8 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:27",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°7 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:26",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°6 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:26",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°5 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:24",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°4 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:23",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°3 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 15:22",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_24h produit n°2 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:53",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a modifié 3 échantillons P236_APHM003_24h produit n°1 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:52",
+    "user": "Caroline",
+    "action": "Échantillons clients ajoutés",
+    "detail": "Caroline a ajouté 3 échantillons P236_APHM003_p1_24h pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:48",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°20 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:48",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°13 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:48",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°1 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:48",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°2 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:48",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°3 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:48",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°4 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:47",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°5 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:47",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°6 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:47",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°7 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:47",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°8 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:47",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°9 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:47",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°10 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:47",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°11 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:46",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°12 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:46",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°15 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:46",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°16 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:46",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°18 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:43",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°19 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:42",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°1 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:42",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°2 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:42",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°3 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:41",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°4 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:41",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°5 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:40",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°6 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:40",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°7 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:39",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°8 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:39",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°9 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:39",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°10 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:38",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°11 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:37",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°12 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:37",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°13 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:36",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°15 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:35",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°16 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:35",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°18 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:34",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°19 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:32",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°20 pour APHM003."
+  },
+  {
+    "date": "03/09/2026 13:31",
+    "user": "Caroline",
+    "action": "Produit client modifié",
+    "detail": "Caroline a modifié APHM003_produit n°20 pour APHM003."
+  },
+  {
+    "id": "history-operation-mtlffcey-4054715575-1946513272",
+    "operationId": "operation-mtlffcey-4054715575-1946513272",
+    "date": "03/09/2026 13:13",
+    "action": "Comptage / Ajustement",
+    "detail": "Caroline · Heparine · Stock précédent : 1 aliquots · Stock compté : 0,001 aliquots · Écart : -0,999 aliquots · Note : Je n'ai pas trouvé de vial stock, que les aliquotes",
+    "user": "Caroline",
+    "itemId": "web-1788424502969",
+    "type": "recounted",
+    "previousQuantity": 1,
+    "countedQuantity": 0.0012,
+    "difference": -0.9988,
+    "unit": "aliquots",
+    "note": "Je n'ai pas trouvé de vial stock, que les aliquotes"
+  },
+  {
+    "date": "03/09/2026 10:38",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Heparine."
+  },
+  {
+    "id": "history-operation-mtl9tj2a-2971038193-3718728346",
+    "operationId": "operation-mtl9tj2a-2971038193-3718728346",
+    "date": "03/09/2026 10:36",
+    "action": "Stock mis à jour",
+    "detail": "Caroline · aliquots_prepared · Heparine · Aliquots déjà préparé, je ne connais pas la quantité de source utilisée",
+    "user": "Caroline",
+    "itemId": "web-1788424502969"
+  },
+  {
+    "date": "03/09/2026 10:35",
+    "user": "Caroline",
+    "action": "Item ajouté",
+    "detail": "Caroline a ajouté Heparine dans Culture Cell."
+  },
+  {
+    "date": "02/09/2026 17:30",
+    "user": "Caroline",
+    "action": "Item modifié",
+    "detail": "Caroline a modifié Seringue 1ml soft jet."
+  },
+  {
+    "date": "02/09/2026 09:58",
+    "user": "Elina",
+    "action": "Item supprimé",
+    "detail": "Elina a supprimé Cones non-filtrés 1000µL de l'inventaire."
+  }
+]

@@ -20868,7 +20868,7 @@
     },
     {
       "id": "ord-1793780477839",
-      "status": "requested",
+      "status": "ordered",
       "itemMode": "existing",
       "inventoryItemId": "itm-CSV-0018",
       "inventoryUnit": "bouteilles",
@@ -20883,9 +20883,9 @@
       "requestedBy": "Enora",
       "requestedAt": "04/11/2026 09:21",
       "requestedAtRaw": "2026-11-04T08:21:17.84Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
+      "orderedBy": "Elina",
+      "orderedAt": "09/11/2026 15:43",
+      "orderedAtRaw": "2026-11-09T14:43:54.728Z",
       "receivedBy": "",
       "receivedAt": "",
       "receivedAtRaw": "",
@@ -33841,6 +33841,12 @@
     }
   ],
   "history": [
+    {
+      "date": "09/11/2026 15:43",
+      "user": "Elina",
+      "action": "Commande effectuée",
+      "detail": "Elina a marqué EGM / EBM comme commandé."
+    },
     {
       "date": "05/11/2026 09:52",
       "user": "Enora",

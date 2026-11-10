@@ -21672,7 +21672,7 @@
       "requestedQuantity": 1,
       "receivedQuantity": 0,
       "priority": "critique",
-      "notes": "225",
+      "notes": "Acheté sur Rewake, Eppendorf 450€",
       "requestedBy": "Elina",
       "requestedAt": "13/10/2026 09:38",
       "requestedAtRaw": "2026-10-13T07:38:08.684Z",
@@ -21686,7 +21686,7 @@
         "name": "Pipette multicanaux 200µL"
       },
       "inventoryUnit": "",
-      "modifiedAtRaw": "2026-10-26T14:50:16.769Z",
+      "modifiedAtRaw": "2026-11-10T11:18:43.283Z",
       "modifiedBy": "Elina"
     },
     {
@@ -33841,6 +33841,12 @@
     }
   ],
   "history": [
+    {
+      "date": "10/11/2026 12:18",
+      "user": "Elina",
+      "action": "Demande modifiée",
+      "detail": "Elina a modifié la demande pour Pipette multicanaux 200µL (quantité : 1 → 1 ; priorité : critique → critique)."
+    },
     {
       "date": "10/11/2026 12:17",
       "user": "Elina",

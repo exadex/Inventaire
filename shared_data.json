@@ -4120,7 +4120,7 @@
       "id": "itm-CSV-0018",
       "name": "EGM / EBM",
       "category": "Procédé ExAdEx L2",
-      "quantity": 2,
+      "quantity": 12,
       "unit": "bouteilles",
       "minStock": 1,
       "location": "Culture L1",
@@ -20891,7 +20891,22 @@
       "receivedAtRaw": "2026-11-12T13:54:35.123Z",
       "newItemData": null,
       "modifiedAtRaw": "2026-11-04T10:21:15.857Z",
-      "modifiedBy": "Enora"
+      "modifiedBy": "Enora",
+      "addedToInventoryQuantity": 10,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-12T13:55:06.151Z",
+      "addedToInventoryAt": "12/11/2026 14:55",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1793780477839-1794491704774-uyddhs5f56m",
+          "quantity": 10,
+          "before": 2,
+          "after": 12,
+          "at": "2026-11-12T13:55:06.151Z",
+          "user": "Enora",
+          "orderId": "ord-1793780477839"
+        }
+      ]
     },
     {
       "id": "ord-1793719005726",
@@ -33842,6 +33857,18 @@
   ],
   "history": [
     {
+      "date": "12/11/2026 14:55",
+      "action": "Réception de commande",
+      "detail": "Réception de commande : stock 2 → 12 (+10) · Commande C-22111",
+      "user": "Enora",
+      "itemId": "itm-CSV-0018",
+      "orderId": "ord-1793780477839",
+      "operationId": "order-receipt-ord-1793780477839-1794491704774-uyddhs5f56m",
+      "before": 2,
+      "quantity": 10,
+      "after": 12
+    },
+    {
       "date": "12/11/2026 14:54",
       "user": "Enora",
       "action": "Commande reçue",
@@ -46187,6 +46214,49 @@
       "toLocation": "",
       "comment": "1 bouteille Ouverte à moitié",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mwdm125j-1354407128-3589535127",
+      "operationId": "order-receipt-ord-1793780477839-1794491704774-uyddhs5f56m",
+      "itemId": "itm-CSV-0018",
+      "timestamp": "2026-11-12T13:55:06.151Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 2,
+      "after": 12,
+      "quantity": 10,
+      "difference": 10,
+      "unit": "bouteilles",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Réception de commande — Stock 2 → 12 (+10) — Commande C-22111",
+      "correctionReason": "",
+      "orderId": "ord-1793780477839",
+      "orderReference": "C-22111"
     }
   ],
   "sourcingPatients": [],
@@ -46902,5 +46972,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-05T08:52:48.186Z"
+  "updatedAt": "2026-11-12T13:55:06.151Z"
 }

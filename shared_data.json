@@ -20868,7 +20868,7 @@
     },
     {
       "id": "ord-1793780477839",
-      "status": "ordered",
+      "status": "received",
       "itemMode": "existing",
       "inventoryItemId": "itm-CSV-0018",
       "inventoryUnit": "bouteilles",
@@ -20877,7 +20877,7 @@
       "referenceType": "secondary",
       "referenceIndex": 1,
       "requestedQuantity": 10,
-      "receivedQuantity": 0,
+      "receivedQuantity": 10,
       "priority": "critique",
       "notes": "FAIRE FIGURER \"LONGEST SHELF LIFE\" sur le BC",
       "requestedBy": "Enora",
@@ -20886,9 +20886,9 @@
       "orderedBy": "Elina",
       "orderedAt": "09/11/2026 15:43",
       "orderedAtRaw": "2026-11-09T14:43:54.728Z",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
+      "receivedBy": "Enora",
+      "receivedAt": "12/11/2026 14:54",
+      "receivedAtRaw": "2026-11-12T13:54:35.123Z",
       "newItemData": null,
       "modifiedAtRaw": "2026-11-04T10:21:15.857Z",
       "modifiedBy": "Enora"
@@ -33841,6 +33841,12 @@
     }
   ],
   "history": [
+    {
+      "date": "12/11/2026 14:54",
+      "user": "Enora",
+      "action": "Commande reçue",
+      "detail": "Enora a marqué EGM / EBM comme arrivé."
+    },
     {
       "date": "10/11/2026 12:18",
       "user": "Elina",

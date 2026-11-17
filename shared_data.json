@@ -8018,7 +8018,7 @@
       "name": "Triacsin C, acyl-CoA synthetase inhibitor",
       "category": "Culture Cell",
       "quantity": 1,
-      "unit": "g",
+      "unit": "Tube",
       "minStock": 0,
       "location": "-20°C culture L1",
       "locations": [
@@ -8048,7 +8048,38 @@
           "locationId": "location-20-culture-l1",
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "usageProfile": "normal",
+      "createdAtRaw": "2026-11-17T10:35:19.636Z",
+      "createdAt": "17/11/2026 11:35",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "tube",
+            "singular": "tube",
+            "plural": "tubes",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "g",
+        "trackingUnit": "g",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436294-1cbqkj",
@@ -33920,6 +33951,12 @@
   ],
   "history": [
     {
+      "date": "17/11/2026 11:35",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié Triacsin C, acyl-CoA synthetase inhibitor."
+    },
+    {
       "date": "17/11/2026 11:34",
       "user": "Elina",
       "action": "Demande créée",
@@ -47253,5 +47290,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-17T09:04:58.195Z"
+  "updatedAt": "2026-11-17T10:35:19.649Z"
 }

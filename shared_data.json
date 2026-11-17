@@ -20855,6 +20855,31 @@
   ],
   "orders": [
     {
+      "id": "ord-1794911656747",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436295-h7xdiv",
+      "inventoryUnit": "unités",
+      "itemName": "duo set ELISA Ancillary Reagent Kit 2",
+      "reference": "",
+      "referenceType": "primary",
+      "referenceIndex": null,
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "tres urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "17/11/2026 11:34",
+      "requestedAtRaw": "2026-11-17T10:34:16.748Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1794906326864",
       "status": "requested",
       "itemMode": "existing",
@@ -33894,6 +33919,12 @@
     }
   ],
   "history": [
+    {
+      "date": "17/11/2026 11:34",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour duo set ELISA Ancillary Reagent Kit 2."
+    },
     {
       "date": "17/11/2026 10:05",
       "user": "Elina",

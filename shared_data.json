@@ -15433,7 +15433,7 @@
       "notes": "",
       "references": {
         "primary": {
-          "supplier": "",
+          "supplier": "R&D systems",
           "reference": "",
           "link": "https://www.rndsystems.com/search?keywords=Duoset+Ancillary+Reagent+Kit+2",
           "notes": "200",
@@ -15451,7 +15451,39 @@
           "locationId": "location-frigo-labo",
           "sublocationId": null
         }
-      ]
+      ],
+      "hasMinimumStock": true,
+      "usageProfile": "normal",
+      "supplierContactId": "contact-1785239056045-dnjj9a",
+      "createdAtRaw": "2026-11-17T10:36:28.568Z",
+      "createdAt": "17/11/2026 11:36",
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unité",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-rztgyv",
@@ -33976,6 +34008,12 @@
   ],
   "history": [
     {
+      "date": "17/11/2026 11:36",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié duo set ELISA Ancillary Reagent Kit 2."
+    },
+    {
       "date": "17/11/2026 11:35",
       "user": "Elina",
       "action": "Demande créée",
@@ -47321,5 +47359,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-17T10:35:19.649Z"
+  "updatedAt": "2026-11-17T10:36:28.575Z"
 }

@@ -20855,6 +20855,31 @@
   ],
   "orders": [
     {
+      "id": "ord-1794906326864",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436294-8xgtpz",
+      "inventoryUnit": "Pot",
+      "itemName": "BSA free fatty acid",
+      "reference": "A6003",
+      "referenceType": "primary",
+      "referenceIndex": null,
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "urgent",
+      "notes": "Des pots 25g",
+      "requestedBy": "Elina",
+      "requestedAt": "17/11/2026 10:05",
+      "requestedAtRaw": "2026-11-17T09:05:26.865Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1793868658356",
       "status": "requested",
       "itemMode": "existing",
@@ -33869,6 +33894,12 @@
     }
   ],
   "history": [
+    {
+      "date": "17/11/2026 10:05",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour BSA free fatty acid."
+    },
     {
       "id": "history-operation-mwkgv6fz-2623211985-2601593875",
       "operationId": "operation-mwkgv6fz-2623211985-2601593875",

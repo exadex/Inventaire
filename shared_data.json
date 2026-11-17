@@ -20886,6 +20886,31 @@
   ],
   "orders": [
     {
+      "id": "ord-1794911729167",
+      "status": "requested",
+      "itemMode": "existing",
+      "inventoryItemId": "itm-web-1783931436294-1bvmx2",
+      "inventoryUnit": "Tube",
+      "itemName": "Triacsin C, acyl-CoA synthetase inhibitor",
+      "reference": "ab141888",
+      "referenceType": "primary",
+      "referenceIndex": null,
+      "requestedQuantity": 2,
+      "receivedQuantity": 0,
+      "priority": "pas urgent",
+      "notes": "",
+      "requestedBy": "Elina",
+      "requestedAt": "17/11/2026 11:35",
+      "requestedAtRaw": "2026-11-17T10:35:29.167Z",
+      "orderedBy": "",
+      "orderedAt": "",
+      "orderedAtRaw": "",
+      "receivedBy": "",
+      "receivedAt": "",
+      "receivedAtRaw": "",
+      "newItemData": null
+    },
+    {
       "id": "ord-1794911656747",
       "status": "requested",
       "itemMode": "existing",
@@ -33950,6 +33975,12 @@
     }
   ],
   "history": [
+    {
+      "date": "17/11/2026 11:35",
+      "user": "Elina",
+      "action": "Demande créée",
+      "detail": "Elina a créé une demande pour Triacsin C, acyl-CoA synthetase inhibitor."
+    },
     {
       "date": "17/11/2026 11:35",
       "user": "Elina",

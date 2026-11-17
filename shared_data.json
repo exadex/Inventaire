@@ -7332,7 +7332,7 @@
       "name": "BSA free fatty acid",
       "category": "Culture Cell",
       "quantity": 3,
-      "unit": "g",
+      "unit": "Pot",
       "minStock": 0,
       "location": "Frigo labo",
       "locations": [
@@ -7373,10 +7373,10 @@
         "packagingLevels": [
           {
             "id": "level-1",
-            "key": "g",
-            "singular": "g",
-            "plural": "g",
-            "kind": "continuous",
+            "key": "custom-pot",
+            "singular": "pot",
+            "plural": "pots",
+            "kind": "discrete",
             "contains": 1
           }
         ],
@@ -33870,6 +33870,12 @@
       "detail": "Elina a modifié BSA free fatty acid."
     },
     {
+      "date": "17/11/2026 10:04",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié BSA free fatty acid."
+    },
+    {
       "date": "13/11/2026 09:49",
       "user": "Enora",
       "action": "Réception annulée",
@@ -47112,5 +47118,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-17T09:04:13.911Z"
+  "updatedAt": "2026-11-17T09:04:35.426Z"
 }

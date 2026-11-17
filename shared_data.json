@@ -15434,7 +15434,7 @@
       "references": {
         "primary": {
           "supplier": "R&D systems",
-          "reference": "",
+          "reference": "DY008B",
           "link": "https://www.rndsystems.com/search?keywords=Duoset+Ancillary+Reagent+Kit+2",
           "notes": "200",
           "price": "200",
@@ -34008,6 +34008,12 @@
   ],
   "history": [
     {
+      "date": "17/11/2026 11:53",
+      "user": "Elina",
+      "action": "Item modifié",
+      "detail": "Elina a modifié duo set ELISA Ancillary Reagent Kit 2."
+    },
+    {
       "date": "17/11/2026 11:36",
       "user": "Elina",
       "action": "Item modifié",
@@ -47359,5 +47365,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-17T10:36:28.575Z"
+  "updatedAt": "2026-11-17T10:53:16.428Z"
 }

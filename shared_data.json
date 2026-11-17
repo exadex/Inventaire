@@ -7331,7 +7331,7 @@
       "id": "itm-web-1783931436294-8xgtpz",
       "name": "BSA free fatty acid",
       "category": "Culture Cell",
-      "quantity": 3,
+      "quantity": 2,
       "unit": "Pot",
       "minStock": 0,
       "location": "Frigo labo",
@@ -7380,13 +7380,19 @@
             "contains": 1
           }
         ],
-        "trackingUnitKey": "g",
-        "trackingUnit": "g",
+        "trackingUnitKey": "custom-pot",
+        "trackingUnit": "pots",
         "quantityStep": 1,
         "precision": 0,
         "closedByLocation": [],
         "closedContainers": [],
-        "openContainers": []
+        "openContainers": [],
+        "unitStates": {
+          "closed": 1,
+          "open": 1,
+          "updatedAt": "2026-11-17T09:04:58.195Z",
+          "updatedBy": "elina"
+        }
       },
       "aliquotTracking": {
         "version": 1,
@@ -33864,6 +33870,21 @@
   ],
   "history": [
     {
+      "id": "history-operation-mwkgv6fz-2623211985-2601593875",
+      "operationId": "operation-mwkgv6fz-2623211985-2601593875",
+      "date": "17/11/2026 10:04",
+      "action": "Comptage / Ajustement",
+      "detail": "Elina · BSA free fatty acid · Stock précédent : 3 Pot · Stock compté : 2 Pot · Écart : -1 Pot · Note : Ouverture d'un pot 17/11/2026",
+      "user": "Elina",
+      "itemId": "itm-web-1783931436294-8xgtpz",
+      "type": "recounted",
+      "previousQuantity": 3,
+      "countedQuantity": 2,
+      "difference": -1,
+      "unit": "Pot",
+      "note": "Ouverture d'un pot 17/11/2026"
+    },
+    {
       "date": "17/11/2026 10:04",
       "user": "Elina",
       "action": "Item modifié",
@@ -46397,6 +46418,52 @@
       "toLocation": "",
       "comment": "Inventaire 12/11/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mwkgv7f7-951175894-3799960648",
+      "operationId": "operation-mwkgv6fz-2623211985-2601593875",
+      "itemId": "itm-web-1783931436294-8xgtpz",
+      "timestamp": "2026-11-17T09:04:58.195Z",
+      "userId": "elina",
+      "userName": "Elina",
+      "userEmoji": "🔬",
+      "userInitials": "",
+      "type": "recounted",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": 3,
+      "afterQuantity": 2,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": {
+        "closed": 1,
+        "open": 1,
+        "updatedAt": "2026-11-17T09:04:58.195Z",
+        "updatedBy": "elina"
+      },
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 3,
+      "after": 2,
+      "quantity": 2,
+      "difference": -1,
+      "unit": "pots",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Ouverture d'un pot 17/11/2026",
+      "correctionReason": ""
     }
   ],
   "sourcingPatients": [],
@@ -47030,6 +47097,12 @@
       "itemId": "itm-web-1783931436295-56643c",
       "at": "2026-11-12T13:56:24.43Z",
       "type": "recounted"
+    },
+    {
+      "operationId": "operation-mwkgv6fz-2623211985-2601593875",
+      "itemId": "itm-web-1783931436294-8xgtpz",
+      "at": "2026-11-17T09:04:58.195Z",
+      "type": "recounted"
     }
   ],
   "agentOperations": [
@@ -47118,5 +47191,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-17T09:04:35.426Z"
+  "updatedAt": "2026-11-17T09:04:58.195Z"
 }

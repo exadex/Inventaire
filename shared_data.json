@@ -22039,46 +22039,6 @@
   ],
   "clientSamples": [
     {
-      "id": "sample-created-1795097373297-dh9bym",
-      "type": "created_sample",
-      "studyType": "client",
-      "clientCode": "APHM003 - Sécrétions",
-      "rawClientCode": "APHM003 - Sécrétions",
-      "normalizedClientKey": "APHM003SECRETIONS",
-      "clientId": "client-1795096391014-yi36bi",
-      "canonicalClientCode": "APHM003 - Sécrétions",
-      "roomId": "room-laboratoire",
-      "locationId": "location-20-blanc-labo",
-      "sublocationId": "sublocation-4d16fd72-a086-4c90-9c88-19a5530c2e80",
-      "location": "Tiroir Clients",
-      "notes": "",
-      "createdAtRaw": "2026-11-19T14:09:33.297Z",
-      "createdAt": "19/11/2026 15:09",
-      "baseName": "P236_APHM003_48h_P15",
-      "category": "Sécrétion",
-      "arnQiazol": null,
-      "arnBead": null,
-      "creationDate": "2026-09-04",
-      "measureValue": 1,
-      "measureUnit": "mL",
-      "quantity": 1,
-      "unit": "mL",
-      "arrivalDate": "",
-      "referenceNumber": "",
-      "lotNumber": "",
-      "replicaId": "sample-created-1795097373297-dh9bym",
-      "groupId": "",
-      "name": "P236_APHM003_48h_P15",
-      "replicaNumber": null,
-      "replicaCount": 1,
-      "generalData": {
-        "notes": ""
-      },
-      "specificData": {
-        "notes": ""
-      }
-    },
-    {
       "id": "sample-created-1795097321687-w150tf",
       "type": "created_sample",
       "studyType": "client",
@@ -36624,6 +36584,12 @@
     }
   ],
   "history": [
+    {
+      "date": "19/11/2026 15:10",
+      "user": "Elina",
+      "action": "Produit client supprimé",
+      "detail": "Elina a supprimé P236_APHM003_48h_P15 des études clients."
+    },
     {
       "date": "19/11/2026 15:09",
       "user": "Elina",

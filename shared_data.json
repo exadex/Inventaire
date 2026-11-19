@@ -33683,6 +33683,90 @@
       "provisionalId": "P236_APHM003_48h_P20-3",
       "createdAt": "2026-11-19T12:12:35.934Z",
       "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-jqt47c",
+      "sampleId": "sample-created-1788442344813-rai2nw",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-6911u6",
+      "sampleId": "sample-created-1788442344813-n092rb",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-mf4qj5",
+      "sampleId": "sample-created-1788442344813-bga3tz",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-428jg9",
+      "sampleId": "sample-created-1788442400829-8cg0ve",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-44k88d",
+      "sampleId": "sample-created-1788442400829-rhiyuq",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-t1syfw",
+      "sampleId": "sample-created-1788442400829-0oko7e",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-1zwsxu",
+      "sampleId": "sample-created-1788442371557-u4q0ra",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-kctc55",
+      "sampleId": "sample-created-1788442371557-ei207o",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-my90xp",
+      "sampleId": "sample-created-1788442371557-mrhog3",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-9gwfdo",
+      "sampleId": "sample-created-1788442307853-o9ovw0",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-rq8s3w",
+      "sampleId": "sample-created-1788442307853-5a3xch",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094037385-52lh40",
+      "sampleId": "sample-created-1788442307853-f5cq8e",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:13:57.385Z",
+      "notes": ""
     }
   ],
   "tubePositions": [
@@ -34196,6 +34280,90 @@
       "row": 7,
       "column": 9,
       "tubeId": "physical-tube-1795090355934-ca436g"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-1",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 1,
+      "tubeId": "physical-tube-1795094037385-jqt47c"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-2",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 2,
+      "tubeId": "physical-tube-1795094037385-6911u6"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-3",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 3,
+      "tubeId": "physical-tube-1795094037385-mf4qj5"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-4",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 4,
+      "tubeId": "physical-tube-1795094037385-428jg9"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-5",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 5,
+      "tubeId": "physical-tube-1795094037385-44k88d"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-6",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 6,
+      "tubeId": "physical-tube-1795094037385-t1syfw"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-7",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 7,
+      "tubeId": "physical-tube-1795094037385-1zwsxu"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-8",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 8,
+      "tubeId": "physical-tube-1795094037385-kctc55"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-1-9",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 1,
+      "column": 9,
+      "tubeId": "physical-tube-1795094037385-my90xp"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-2-1",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 2,
+      "column": 1,
+      "tubeId": "physical-tube-1795094037385-9gwfdo"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-2-2",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 2,
+      "column": 2,
+      "tubeId": "physical-tube-1795094037385-rq8s3w"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-2-3",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 2,
+      "column": 3,
+      "tubeId": "physical-tube-1795094037385-52lh40"
     }
   ],
   "tubeLocationStructures": [],

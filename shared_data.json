@@ -25659,7 +25659,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:31:28.493Z",
       "createdAt": "03/09/2026 15:31",
-      "baseName": "P236_APHM003_24h produit n°19",
+      "baseName": "P236_APHM003_24h_P2",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -25673,7 +25673,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442288493-sek4zn",
       "groupId": "sample-group-1788442288493-19mp8e",
-      "name": "P236_APHM003_24h produit n°19_1",
+      "name": "P236_APHM003_24h_P2_1",
       "replicaNumber": 1,
       "replicaCount": 3,
       "generalData": {
@@ -25688,7 +25688,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h produit n°19",
+        "baseName": "P236_APHM003_24h_P2",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -25722,7 +25722,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:31:28.493Z",
       "createdAt": "03/09/2026 15:31",
-      "baseName": "P236_APHM003_24h produit n°19",
+      "baseName": "P236_APHM003_24h_P2",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -25736,7 +25736,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442288493-d524zk",
       "groupId": "sample-group-1788442288493-19mp8e",
-      "name": "P236_APHM003_24h produit n°19_2",
+      "name": "P236_APHM003_24h_P2_2",
       "replicaNumber": 2,
       "replicaCount": 3,
       "generalData": {
@@ -25751,7 +25751,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h produit n°19",
+        "baseName": "P236_APHM003_24h_P2",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -25785,7 +25785,7 @@
       "notes": "",
       "createdAtRaw": "2026-09-03T13:31:28.493Z",
       "createdAt": "03/09/2026 15:31",
-      "baseName": "P236_APHM003_24h produit n°19",
+      "baseName": "P236_APHM003_24h_P2",
       "category": "Sécrétion",
       "arnQiazol": null,
       "arnBead": null,
@@ -25799,7 +25799,7 @@
       "lotNumber": "",
       "replicaId": "sample-created-1788442288493-w3ofct",
       "groupId": "sample-group-1788442288493-19mp8e",
-      "name": "P236_APHM003_24h produit n°19_3",
+      "name": "P236_APHM003_24h_P2_3",
       "replicaNumber": 3,
       "replicaCount": 3,
       "generalData": {
@@ -25814,7 +25814,7 @@
         "locationId": "location-20-blanc-labo",
         "sublocationId": null,
         "location": "-20°C blanc labo",
-        "baseName": "P236_APHM003_24h produit n°19",
+        "baseName": "P236_APHM003_24h_P2",
         "category": "Sécrétion",
         "arnQiazol": null,
         "arnBead": null,
@@ -34910,6 +34910,12 @@
     }
   ],
   "history": [
+    {
+      "date": "19/11/2026 14:07",
+      "user": "Elina",
+      "action": "Échantillons clients ajoutés",
+      "detail": "Elina a modifié 3 échantillons P236_APHM003_24h_P2 pour APHM003."
+    },
     {
       "date": "19/11/2026 14:07",
       "user": "Elina",
@@ -48322,5 +48328,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-19T13:07:25.761Z"
+  "updatedAt": "2026-11-19T13:07:34.910Z"
 }

@@ -33767,6 +33767,13 @@
       "provisionalId": "",
       "createdAt": "2026-11-19T13:13:57.385Z",
       "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094073085-hi890s",
+      "sampleId": "sample-created-1788442288493-sek4zn",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:14:33.085Z",
+      "notes": ""
     }
   ],
   "tubePositions": [
@@ -34364,6 +34371,13 @@
       "row": 2,
       "column": 3,
       "tubeId": "physical-tube-1795094037385-52lh40"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-2-4",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 2,
+      "column": 4,
+      "tubeId": "physical-tube-1795094073085-hi890s"
     }
   ],
   "tubeLocationStructures": [],

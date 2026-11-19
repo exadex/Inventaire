@@ -33159,6 +33159,17 @@
       "physicalPath": [],
       "createdAt": "2026-11-18T10:55:41.802Z",
       "comment": ""
+    },
+    {
+      "id": "tube-box-1795093939443-t2wdsv",
+      "name": "APHM003 - Sécrétions 24h",
+      "rows": 9,
+      "columns": 9,
+      "locationType": "sublocation",
+      "locationId": "sublocation-4d16fd72-a086-4c90-9c88-19a5530c2e80",
+      "physicalPath": [],
+      "createdAt": "2026-11-19T13:12:19.443Z",
+      "comment": ""
     }
   ],
   "physicalTubes": [
@@ -34910,6 +34921,12 @@
     }
   ],
   "history": [
+    {
+      "date": "19/11/2026 14:12",
+      "user": "Elina",
+      "action": "Boîte de tubes créée",
+      "detail": "Elina a créé la boîte « APHM003 - Sécrétions 24h » à l’emplacement Tiroir Clients."
+    },
     {
       "date": "19/11/2026 14:11",
       "user": "Elina",
@@ -48430,5 +48447,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-19T13:11:47.776Z"
+  "updatedAt": "2026-11-19T13:12:19.454Z"
 }

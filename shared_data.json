@@ -33774,6 +33774,13 @@
       "provisionalId": "",
       "createdAt": "2026-11-19T13:14:33.085Z",
       "notes": ""
+    },
+    {
+      "id": "physical-tube-1795094121473-j1mqra",
+      "sampleId": "sample-created-1788442288493-d524zk",
+      "provisionalId": "",
+      "createdAt": "2026-11-19T13:15:21.473Z",
+      "notes": ""
     }
   ],
   "tubePositions": [
@@ -34378,6 +34385,13 @@
       "row": 2,
       "column": 4,
       "tubeId": "physical-tube-1795094073085-hi890s"
+    },
+    {
+      "id": "tube-position-tube-box-1795093939443-t2wdsv-2-5",
+      "boxId": "tube-box-1795093939443-t2wdsv",
+      "row": 2,
+      "column": 5,
+      "tubeId": "physical-tube-1795094121473-j1mqra"
     }
   ],
   "tubeLocationStructures": [],

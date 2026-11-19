@@ -123,6 +123,11 @@
         "id": "sublocation-4d16fd72-a086-4c90-9c88-19a5530c2e80",
         "locationId": "location-20-blanc-labo",
         "name": "Tiroir Clients"
+      },
+      {
+        "id": "sublocation-4fee323e-f111-4c63-a868-fe41b874b51e",
+        "locationId": "location-20-blanc-labo",
+        "name": "Tiroir R&D"
       }
     ]
   },
@@ -34024,6 +34029,12 @@
   ],
   "history": [
     {
+      "date": "19/11/2026 13:03",
+      "user": "Elina",
+      "action": "Sous-localisation ajoutée",
+      "detail": "Elina a ajouté Tiroir R&D."
+    },
+    {
       "date": "18/11/2026 11:55",
       "user": "Elina",
       "action": "Boîte de tubes créée",
@@ -47399,5 +47410,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-18T10:55:41.818Z"
+  "updatedAt": "2026-11-19T12:03:24.487Z"
 }

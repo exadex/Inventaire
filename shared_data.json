@@ -29460,11 +29460,11 @@
       "id": "sample-client-1785333850466-v4hn6c",
       "type": "client_product",
       "studyType": "client",
-      "clientCode": "APHM003",
-      "rawClientCode": "APHM003",
-      "normalizedClientKey": "APHM3",
-      "clientId": "client-APHM3",
-      "canonicalClientCode": "APHM003",
+      "clientCode": "APHM003 - Produits",
+      "rawClientCode": "APHM003 - Produits",
+      "normalizedClientKey": "APHM003PRODUITS",
+      "clientId": "client-1795096691098-d1l12b",
+      "canonicalClientCode": "APHM003 - Produits",
       "roomId": "room-culture-l1",
       "locationId": "location-frigo-culture-l1",
       "sublocationId": null,
@@ -36017,6 +36017,12 @@
     }
   ],
   "history": [
+    {
+      "date": "19/11/2026 14:59",
+      "user": "Elina",
+      "action": "Produit client modifié",
+      "detail": "Elina a modifié APHM003_produit n°9 pour APHM003 - Produits."
+    },
     {
       "date": "19/11/2026 14:59",
       "user": "Elina",
@@ -49729,5 +49735,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-19T13:59:23.259Z"
+  "updatedAt": "2026-11-19T13:59:29.274Z"
 }

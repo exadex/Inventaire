@@ -23626,18 +23626,18 @@
       "locationId": "location-20-blanc-labo",
       "sublocationId": null,
       "location": "-20°C blanc labo",
-      "notes": "",
+      "notes": "Extraction faite le 20/11/2026",
       "createdAtRaw": "2026-11-20T09:42:41.662Z",
       "createdAt": "20/11/2026 10:42",
       "baseName": "P241_EVO001_CTL",
       "category": "ARN",
-      "arnQiazol": true,
-      "arnBead": true,
+      "arnQiazol": false,
+      "arnBead": false,
       "creationDate": "2026-11-20",
-      "measureValue": 50,
-      "measureUnit": "mg",
-      "quantity": 50,
-      "unit": "mg",
+      "measureValue": 15,
+      "measureUnit": "µL",
+      "quantity": 15,
+      "unit": "µL",
       "arrivalDate": "",
       "referenceNumber": "",
       "lotNumber": "",
@@ -23673,7 +23673,30 @@
         "notes": ""
       },
       "specificData": {
-        "notes": ""
+        "type": "created_sample",
+        "studyType": "client",
+        "clientCode": "EVO-001 - Biomol",
+        "rawClientCode": "EVO-001 - Biomol",
+        "normalizedClientKey": "EVO001BIOMOL",
+        "clientId": "client-1795167761663-yvlv68",
+        "canonicalClientCode": "EVO-001 - Biomol",
+        "roomId": "room-laboratoire",
+        "locationId": "location-20-blanc-labo",
+        "sublocationId": null,
+        "location": "-20°C blanc labo",
+        "baseName": "P241_EVO001_CTL",
+        "category": "ARN",
+        "arnQiazol": false,
+        "arnBead": false,
+        "creationDate": "2026-11-20",
+        "measureValue": 15,
+        "measureUnit": "µL",
+        "quantity": 15,
+        "unit": "µL",
+        "arrivalDate": "",
+        "referenceNumber": "",
+        "lotNumber": "",
+        "notes": "Extraction faite le 20/11/2026"
       }
     },
     {
@@ -38701,6 +38724,12 @@
     {
       "date": "20/11/2026 10:49",
       "user": "Elina",
+      "action": "Échantillon client modifié",
+      "detail": "Elina a modifié 1 échantillon P241_EVO001_CTL pour EVO-001 - Biomol."
+    },
+    {
+      "date": "20/11/2026 10:49",
+      "user": "Elina",
       "action": "Échantillons clients ajoutés",
       "detail": "Elina a ajouté 5 échantillons P241_EVO001_Low Dose 20 pour EVO-001 - Biomol."
     },
@@ -52542,5 +52571,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-20T09:49:10.443Z"
+  "updatedAt": "2026-11-20T09:49:46.299Z"
 }

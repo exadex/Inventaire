@@ -37294,6 +37294,17 @@
       "physicalPath": [],
       "createdAt": "2026-11-19T13:12:19.443Z",
       "comment": ""
+    },
+    {
+      "id": "tube-box-1795172143100-lngg79",
+      "name": "EVO001 - ARN",
+      "rows": 9,
+      "columns": 9,
+      "locationType": "sublocation",
+      "locationId": "sublocation-4d16fd72-a086-4c90-9c88-19a5530c2e80",
+      "physicalPath": [],
+      "createdAt": "2026-11-20T10:55:43.100Z",
+      "comment": ""
     }
   ],
   "physicalTubes": [
@@ -40000,6 +40011,12 @@
     }
   ],
   "history": [
+    {
+      "date": "20/11/2026 11:55",
+      "user": "Elina",
+      "action": "Boîte de tubes créée",
+      "detail": "Elina a créé la boîte « EVO001 - ARN » à l’emplacement Tiroir Clients."
+    },
     {
       "date": "20/11/2026 10:57",
       "user": "Elina",
@@ -53904,5 +53921,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-20T09:57:24.112Z"
+  "updatedAt": "2026-11-20T10:55:43.107Z"
 }

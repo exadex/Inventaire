@@ -21841,12 +21841,12 @@
     },
     {
       "id": "ord-1791877088684",
-      "status": "ordered",
+      "status": "received",
       "itemMode": "new",
       "inventoryItemId": null,
       "itemName": "Pipette multicanaux 200µL",
       "requestedQuantity": 1,
-      "receivedQuantity": 0,
+      "receivedQuantity": 1,
       "priority": "critique",
       "notes": "Acheté sur Rewake, Eppendorf 450€",
       "requestedBy": "Elina",
@@ -21855,9 +21855,9 @@
       "orderedBy": "Elina",
       "orderedAt": "10/11/2026 12:17",
       "orderedAtRaw": "2026-11-10T11:17:06.857Z",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
+      "receivedBy": "Enora",
+      "receivedAt": "26/11/2026 12:24",
+      "receivedAtRaw": "2026-11-26T11:24:07.384Z",
       "newItemData": {
         "name": "Pipette multicanaux 200µL"
       },
@@ -40431,6 +40431,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/11/2026 12:24",
+      "user": "Enora",
+      "action": "Commande reçue",
+      "detail": "Enora a marqué Pipette multicanaux 200µL comme arrivé."
+    },
     {
       "date": "26/11/2026 12:23",
       "user": "Enora",

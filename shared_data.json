@@ -11321,7 +11321,7 @@
       "id": "itm-web-1783931436295-n1d52k",
       "name": "contenant 120ml (bouteilles bouchon jaune)",
       "category": "Culture Cell",
-      "quantity": 1.5,
+      "quantity": 2.5,
       "unit": "unités",
       "minStock": 1,
       "location": "Culture L1",
@@ -11354,7 +11354,34 @@
           "locationId": null,
           "sublocationId": null
         }
-      ]
+      ],
+      "stockTracking": {
+        "version": 1,
+        "mode": "simple",
+        "traceabilityMode": "detailed",
+        "packagingLevels": [
+          {
+            "id": "level-1",
+            "key": "unite",
+            "singular": "unités",
+            "plural": "unités",
+            "kind": "discrete",
+            "contains": 1
+          }
+        ],
+        "trackingUnitKey": "unite",
+        "trackingUnit": "unités",
+        "quantityStep": 1,
+        "precision": 0,
+        "closedByLocation": [],
+        "closedContainers": [],
+        "openContainers": []
+      },
+      "aliquotTracking": {
+        "version": 1,
+        "enabled": false,
+        "preparations": []
+      }
     },
     {
       "id": "itm-web-1783931436295-zbiref",
@@ -21295,7 +21322,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:20",
       "receivedAtRaw": "2026-11-26T11:20:35.769Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 1,
+      "addedToInventoryQuantity": 1,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:25:48.272Z",
+      "addedToInventoryAt": "26/11/2026 12:25",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1793023860400-1795692347197-p5ilu58f1od",
+          "quantity": 1,
+          "before": 1.5,
+          "after": 2.5,
+          "at": "2026-11-26T11:25:48.272Z",
+          "user": "Enora",
+          "orderId": "ord-1793023860400"
+        }
+      ]
     },
     {
       "id": "ord-1793023740065",
@@ -40500,6 +40543,18 @@
     {
       "date": "26/11/2026 12:25",
       "action": "Réception de commande",
+      "detail": "Réception de commande : stock 1.5 → 2.5 (+1) · Commande ord-1793023860400",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-n1d52k",
+      "orderId": "ord-1793023860400",
+      "operationId": "order-receipt-ord-1793023860400-1795692347197-p5ilu58f1od",
+      "before": 1.5,
+      "quantity": 1,
+      "after": 2.5
+    },
+    {
+      "date": "26/11/2026 12:25",
+      "action": "Réception de commande",
       "detail": "Réception de commande : stock 1 → 5 (+4) · Commande ord-1793719005726",
       "user": "Enora",
       "itemId": "itm-web-1783931436295-hsn9dp",
@@ -53831,6 +53886,49 @@
       "correctionReason": "",
       "orderId": "ord-1793719005726",
       "orderReference": "ord-1793719005726"
+    },
+    {
+      "id": "movement-mwxguzjk-2306675454-1583739652",
+      "operationId": "order-receipt-ord-1793023860400-1795692347197-p5ilu58f1od",
+      "itemId": "itm-web-1783931436295-n1d52k",
+      "timestamp": "2026-11-26T11:25:48.272Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 1.5,
+      "after": 2.5,
+      "quantity": 1,
+      "difference": 1,
+      "unit": "unités",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Réception de commande — Stock 1.5 → 2.5 (+1) — Commande ord-1793023860400",
+      "correctionReason": "",
+      "orderId": "ord-1793023860400",
+      "orderReference": "ord-1793023860400"
     }
   ],
   "sourcingPatients": [],
@@ -54558,5 +54656,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:25:39.652Z"
+  "updatedAt": "2026-11-26T11:25:48.272Z"
 }

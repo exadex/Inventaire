@@ -20953,12 +20953,13 @@
       "id": "itm-CSV-0192",
       "name": "Cones non-filtrés 1000µL",
       "category": "Cones pipettes",
-      "quantity": 0.5,
+      "quantity": 2.5,
       "unit": "carton",
       "minStock": 0.5,
       "location": "Laboratoire",
       "locations": [
-        "Laboratoire"
+        "Laboratoire",
+        "Réserve"
       ],
       "tags": [
         "pointes"
@@ -21015,8 +21016,40 @@
         "trackingUnit": "sachets",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
-        "closedContainers": [],
+        "closedByLocation": [
+          {
+            "location": "Laboratoire",
+            "quantity": 2
+          }
+        ],
+        "closedContainers": [
+          {
+            "id": "closed-container-mwxgw6pv-884901803-2805589966",
+            "label": "carton fermé nº1",
+            "location": "Laboratoire",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:44.227Z",
+            "updatedAt": "2026-11-26T11:26:44.227Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgw6pv-991066364-1710818237",
+            "label": "carton fermé nº2",
+            "location": "Laboratoire",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:44.227Z",
+            "updatedAt": "2026-11-26T11:26:44.227Z",
+            "updatedBy": "enora",
+            "version": 1
+          }
+        ],
         "openContainers": [
           {
             "id": "closed-container-mv592iaw-2557803474-920111857",
@@ -22180,7 +22213,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:24",
       "receivedAtRaw": "2026-11-26T11:24:25.499Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 2,
+      "addedToInventoryQuantity": 2,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:26:44.227Z",
+      "addedToInventoryAt": "26/11/2026 12:26",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1791812789383-1795692402471-mvxxj2njckl",
+          "quantity": 2,
+          "before": 0.5,
+          "after": 2.5,
+          "at": "2026-11-26T11:26:44.227Z",
+          "user": "Enora",
+          "orderId": "ord-1791812789383"
+        }
+      ]
     },
     {
       "id": "ord-1791805203962",
@@ -40729,6 +40778,18 @@
     {
       "date": "26/11/2026 12:26",
       "action": "Réception de commande",
+      "detail": "Réception de commande : stock 0.5 → 2.5 (+2) · Commande ord-1791812789383",
+      "user": "Enora",
+      "itemId": "itm-CSV-0192",
+      "orderId": "ord-1791812789383",
+      "operationId": "order-receipt-ord-1791812789383-1795692402471-mvxxj2njckl",
+      "before": 0.5,
+      "quantity": 2,
+      "after": 2.5
+    },
+    {
+      "date": "26/11/2026 12:26",
+      "action": "Réception de commande",
       "detail": "Réception de commande : stock 1.92 → 3.92 (+2) · Commande ord-1793017758867",
       "user": "Enora",
       "itemId": "itm-web-1783931436295-xj2mx3",
@@ -54335,6 +54396,49 @@
       "correctionReason": "",
       "orderId": "ord-1793017758867",
       "orderReference": "ord-1793017758867"
+    },
+    {
+      "id": "movement-mwxgw6pv-3831017854-25606722",
+      "operationId": "order-receipt-ord-1791812789383-1795692402471-mvxxj2njckl",
+      "itemId": "itm-CSV-0192",
+      "timestamp": "2026-11-26T11:26:44.227Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0.5,
+      "after": 2.5,
+      "quantity": 2,
+      "difference": 2,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Laboratoire",
+      "comment": "Réception de commande — Stock 0.5 → 2.5 (+2) — Commande ord-1791812789383",
+      "correctionReason": "",
+      "orderId": "ord-1791812789383",
+      "orderReference": "ord-1791812789383"
     }
   ],
   "sourcingPatients": [],
@@ -55062,5 +55166,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:26:34.502Z"
+  "updatedAt": "2026-11-26T11:26:44.227Z"
 }

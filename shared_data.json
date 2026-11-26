@@ -12073,7 +12073,7 @@
       "id": "itm-web-1783931436295-osftkk",
       "name": "Cones non filtrés 200µL",
       "category": "Culture Cell",
-      "quantity": 3.6,
+      "quantity": 4.6,
       "unit": "Cartons",
       "minStock": 1,
       "location": "Réserve",
@@ -12135,7 +12135,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 3
+            "quantity": 4
           }
         ],
         "closedContainers": [
@@ -12194,6 +12194,19 @@
             "locationId": "",
             "sublocationId": "",
             "finishedAt": "2026-10-12T12:54:08.699Z"
+          },
+          {
+            "id": "closed-container-mwxgy7ac-3886588678-2108728450",
+            "label": "carton fermé nº5",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:28:18.276Z",
+            "updatedAt": "2026-11-26T11:28:18.276Z",
+            "updatedBy": "enora",
+            "version": 1
           }
         ],
         "openContainers": [
@@ -22211,7 +22224,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:24",
       "receivedAtRaw": "2026-11-26T11:24:55.500Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 1,
+      "addedToInventoryQuantity": 1,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:28:18.276Z",
+      "addedToInventoryAt": "26/11/2026 12:28",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1791898299474-1795692497093-1u0esr670z4",
+          "quantity": 1,
+          "before": 3.6,
+          "after": 4.6,
+          "at": "2026-11-26T11:28:18.276Z",
+          "user": "Enora",
+          "orderId": "ord-1791898299474"
+        }
+      ]
     },
     {
       "id": "ord-1791884513820",
@@ -40892,6 +40921,18 @@
     {
       "date": "26/11/2026 12:28",
       "action": "Réception de commande",
+      "detail": "Réception de commande : stock 3.6 → 4.6 (+1) · Commande ord-1791898299474",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-osftkk",
+      "orderId": "ord-1791898299474",
+      "operationId": "order-receipt-ord-1791898299474-1795692497093-1u0esr670z4",
+      "before": 3.6,
+      "quantity": 1,
+      "after": 4.6
+    },
+    {
+      "date": "26/11/2026 12:28",
+      "action": "Réception de commande",
       "detail": "Réception de commande : stock 1.5 → 5.5 (+4) · Commande ord-1793013128876",
       "user": "Enora",
       "itemId": "web-1791810854422",
@@ -54669,6 +54710,49 @@
       "correctionReason": "",
       "orderId": "ord-1793013128876",
       "orderReference": "ord-1793013128876"
+    },
+    {
+      "id": "movement-mwxgy7ac-1799230266-2396616719",
+      "operationId": "order-receipt-ord-1791898299474-1795692497093-1u0esr670z4",
+      "itemId": "itm-web-1783931436295-osftkk",
+      "timestamp": "2026-11-26T11:28:18.276Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 3.6,
+      "after": 4.6,
+      "quantity": 1,
+      "difference": 1,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Réception de commande — Stock 3.6 → 4.6 (+1) — Commande ord-1791898299474",
+      "correctionReason": "",
+      "orderId": "ord-1791898299474",
+      "orderReference": "ord-1791898299474"
     }
   ],
   "sourcingPatients": [],
@@ -55396,5 +55480,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:28:02.150Z"
+  "updatedAt": "2026-11-26T11:28:18.276Z"
 }

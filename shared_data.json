@@ -21015,8 +21015,7 @@
       "minStock": 0.5,
       "location": "Laboratoire",
       "locations": [
-        "Laboratoire",
-        "Réserve"
+        "Laboratoire"
       ],
       "tags": [
         "pointes"
@@ -21395,32 +21394,6 @@
           "orderId": "ord-1793719005726"
         }
       ]
-    },
-    {
-      "id": "ord-1793717881060",
-      "status": "requested",
-      "itemMode": "new",
-      "inventoryItemId": null,
-      "itemName": "Falcon 15",
-      "requestedQuantity": 4,
-      "receivedQuantity": 0,
-      "priority": "critique",
-      "notes": "62.554.016\nATTENTION COMMANDER QU UNE SEULE REF - SARSTEDT ",
-      "requestedBy": "Enora",
-      "requestedAt": "03/11/2026 15:58",
-      "requestedAtRaw": "2026-11-03T14:58:01.061Z",
-      "orderedBy": "",
-      "orderedAt": "",
-      "orderedAtRaw": "",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
-      "newItemData": {
-        "name": "Falcon 15"
-      },
-      "inventoryUnit": "",
-      "modifiedAtRaw": "2026-11-04T11:07:25.417Z",
-      "modifiedBy": "Elina"
     },
     {
       "id": "ord-1793027664576",
@@ -40848,6 +40821,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/11/2026 12:27",
+      "user": "Enora",
+      "action": "Demande supprimée",
+      "detail": "Enora a supprimé la demande pour Falcon 15."
+    },
     {
       "date": "26/11/2026 12:26",
       "action": "Réception de commande",

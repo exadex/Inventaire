@@ -21729,13 +21729,13 @@
     },
     {
       "id": "ord-1791898338571",
-      "status": "ordered",
+      "status": "received",
       "itemMode": "existing",
       "inventoryItemId": "itm-CSV-0078",
       "inventoryUnit": "Cartons",
       "itemName": "Cones filtrés 20uL",
       "requestedQuantity": 1,
-      "receivedQuantity": 0,
+      "receivedQuantity": 1,
       "priority": "urgent",
       "notes": "",
       "requestedBy": "Elina",
@@ -21744,9 +21744,9 @@
       "orderedBy": "Enora",
       "orderedAt": "12/11/2026 16:32",
       "orderedAtRaw": "2026-11-12T15:32:01.56Z",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
+      "receivedBy": "Enora",
+      "receivedAt": "26/11/2026 12:23",
+      "receivedAtRaw": "2026-11-26T11:23:27.591Z",
       "newItemData": null
     },
     {
@@ -40431,6 +40431,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/11/2026 12:23",
+      "user": "Enora",
+      "action": "Commande reçue",
+      "detail": "Enora a marqué Cones filtrés 20uL comme arrivé."
+    },
     {
       "date": "26/11/2026 12:23",
       "user": "Enora",

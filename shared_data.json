@@ -11597,7 +11597,7 @@
       "id": "itm-web-1783931436295-hsn9dp",
       "name": "Falcon 15",
       "category": "Culture Cell",
-      "quantity": 1,
+      "quantity": 5,
       "unit": "Carton",
       "minStock": 1,
       "location": "Réserve",
@@ -11664,9 +11664,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1,
-            "updatedAt": "2026-10-13T09:44:38.997Z",
-            "updatedBy": "elina"
+            "quantity": 5
           }
         ],
         "closedContainers": [
@@ -11681,6 +11679,58 @@
             "createdAt": "2026-10-13T09:44:38.997Z",
             "updatedAt": "2026-10-13T09:44:38.997Z",
             "updatedBy": "elina",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgusw3-442095791-3232049525",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:25:39.651Z",
+            "updatedAt": "2026-11-26T11:25:39.651Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgusw4-1344429170-2397678073",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:25:39.651Z",
+            "updatedAt": "2026-11-26T11:25:39.651Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgusw4-1711794812-728005689",
+            "label": "carton fermé nº4",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:25:39.651Z",
+            "updatedAt": "2026-11-26T11:25:39.651Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgusw4-1008931393-1810660943",
+            "label": "carton fermé nº5",
+            "location": "Réserve",
+            "remaining": 10,
+            "capacity": 10,
+            "unitKey": "sachet",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:25:39.651Z",
+            "updatedAt": "2026-11-26T11:25:39.651Z",
+            "updatedBy": "enora",
             "version": 1
           }
         ],
@@ -21089,7 +21139,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:20",
       "receivedAtRaw": "2026-11-26T11:20:24.725Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 4,
+      "addedToInventoryQuantity": 4,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:25:39.652Z",
+      "addedToInventoryAt": "26/11/2026 12:25",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1793719005726-1795692338474-eyf4uxd1kmg",
+          "quantity": 4,
+          "before": 1,
+          "after": 5,
+          "at": "2026-11-26T11:25:39.652Z",
+          "user": "Enora",
+          "orderId": "ord-1793719005726"
+        }
+      ]
     },
     {
       "id": "ord-1793717881060",
@@ -40432,6 +40498,18 @@
   ],
   "history": [
     {
+      "date": "26/11/2026 12:25",
+      "action": "Réception de commande",
+      "detail": "Réception de commande : stock 1 → 5 (+4) · Commande ord-1793719005726",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-hsn9dp",
+      "orderId": "ord-1793719005726",
+      "operationId": "order-receipt-ord-1793719005726-1795692338474-eyf4uxd1kmg",
+      "before": 1,
+      "quantity": 4,
+      "after": 5
+    },
+    {
       "date": "26/11/2026 12:24",
       "user": "Enora",
       "action": "Commande reçue",
@@ -53710,6 +53788,49 @@
       "toLocation": "",
       "comment": "Ouverture d'un pot 17/11/2026",
       "correctionReason": ""
+    },
+    {
+      "id": "movement-mwxgusw4-2875141495-715334205",
+      "operationId": "order-receipt-ord-1793719005726-1795692338474-eyf4uxd1kmg",
+      "itemId": "itm-web-1783931436295-hsn9dp",
+      "timestamp": "2026-11-26T11:25:39.652Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 1,
+      "after": 5,
+      "quantity": 4,
+      "difference": 4,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Réception de commande — Stock 1 → 5 (+4) — Commande ord-1793719005726",
+      "correctionReason": "",
+      "orderId": "ord-1793719005726",
+      "orderReference": "ord-1793719005726"
     }
   ],
   "sourcingPatients": [],
@@ -54437,5 +54558,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-20T10:55:43.107Z"
+  "updatedAt": "2026-11-26T11:25:39.652Z"
 }

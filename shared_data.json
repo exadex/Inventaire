@@ -10439,7 +10439,7 @@
       "id": "itm-web-1783931436295-xj2mx3",
       "name": "Plaque 24 puits",
       "category": "Culture Cell",
-      "quantity": 1.92,
+      "quantity": 3.92,
       "unit": "Carton",
       "minStock": 0,
       "location": "Réserve",
@@ -10504,7 +10504,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1
+            "quantity": 3
           }
         ],
         "closedContainers": [
@@ -10519,6 +10519,32 @@
             "createdAt": "2026-08-25T09:29:40.605Z",
             "updatedAt": "2026-08-25T09:29:40.605Z",
             "updatedBy": "caroline",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgvz7q-425275631-2609681478",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:34.502Z",
+            "updatedAt": "2026-11-26T11:26:34.502Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgvz7q-1601550471-2427130409",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 50,
+            "capacity": 50,
+            "unitKey": "plaque",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:34.502Z",
+            "updatedAt": "2026-11-26T11:26:34.502Z",
+            "updatedBy": "enora",
             "version": 1
           }
         ],
@@ -21788,7 +21814,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:21",
       "receivedAtRaw": "2026-11-26T11:21:35.659Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 2,
+      "addedToInventoryQuantity": 2,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:26:34.502Z",
+      "addedToInventoryAt": "26/11/2026 12:26",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1793017758867-1795692393424-2lkug7svep5",
+          "quantity": 2,
+          "before": 1.92,
+          "after": 3.92,
+          "at": "2026-11-26T11:26:34.502Z",
+          "user": "Enora",
+          "orderId": "ord-1793017758867"
+        }
+      ]
     },
     {
       "id": "ord-1793017703012",
@@ -40687,6 +40729,18 @@
     {
       "date": "26/11/2026 12:26",
       "action": "Réception de commande",
+      "detail": "Réception de commande : stock 1.92 → 3.92 (+2) · Commande ord-1793017758867",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-xj2mx3",
+      "orderId": "ord-1793017758867",
+      "operationId": "order-receipt-ord-1793017758867-1795692393424-2lkug7svep5",
+      "before": 1.92,
+      "quantity": 2,
+      "after": 3.92
+    },
+    {
+      "date": "26/11/2026 12:26",
+      "action": "Réception de commande",
       "detail": "Réception de commande : stock 0.4 → 5.4 (+5) · Commande ord-1793017703012",
       "user": "Enora",
       "itemId": "itm-CSV-0081",
@@ -54238,6 +54292,49 @@
       "correctionReason": "",
       "orderId": "ord-1793017703012",
       "orderReference": "ord-1793017703012"
+    },
+    {
+      "id": "movement-mwxgvz7q-2774525675-387631272",
+      "operationId": "order-receipt-ord-1793017758867-1795692393424-2lkug7svep5",
+      "itemId": "itm-web-1783931436295-xj2mx3",
+      "timestamp": "2026-11-26T11:26:34.502Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 1.92,
+      "after": 3.92,
+      "quantity": 2,
+      "difference": 2,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Réception de commande — Stock 1.92 → 3.92 (+2) — Commande ord-1793017758867",
+      "correctionReason": "",
+      "orderId": "ord-1793017758867",
+      "orderReference": "ord-1793017758867"
     }
   ],
   "sourcingPatients": [],
@@ -54965,5 +55062,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:26:12.313Z"
+  "updatedAt": "2026-11-26T11:26:34.502Z"
 }

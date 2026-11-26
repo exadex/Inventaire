@@ -12188,7 +12188,7 @@
       "id": "itm-web-1783931436295-kwjv0i",
       "name": "Cones filtrés 1000µL Sarstedt",
       "category": "Culture Cell",
-      "quantity": 0.75,
+      "quantity": 4.75,
       "unit": "Cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -12246,7 +12246,12 @@
         "trackingUnit": "boîtes",
         "quantityStep": 1,
         "precision": 0,
-        "closedByLocation": [],
+        "closedByLocation": [
+          {
+            "location": "Réserve",
+            "quantity": 4
+          }
+        ],
         "closedContainers": [
           {
             "id": "closed-itm-web-1783931436295-kwjv0i-reserve-1",
@@ -12264,6 +12269,58 @@
             "locationId": "",
             "sublocationId": "",
             "finishedAt": "2026-10-12T13:21:47.296Z"
+          },
+          {
+            "id": "closed-container-mwxgwi83-1604689800-1493273606",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:59.139Z",
+            "updatedAt": "2026-11-26T11:26:59.139Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgwi83-2424227362-1559239162",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:59.139Z",
+            "updatedAt": "2026-11-26T11:26:59.139Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgwi83-3930165254-4094928955",
+            "label": "carton fermé nº4",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:59.139Z",
+            "updatedAt": "2026-11-26T11:26:59.139Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgwi83-1707956765-945683540",
+            "label": "carton fermé nº5",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:26:59.139Z",
+            "updatedAt": "2026-11-26T11:26:59.139Z",
+            "updatedBy": "enora",
+            "version": 1
           }
         ],
         "openContainers": [
@@ -21945,7 +22002,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:23",
       "receivedAtRaw": "2026-11-26T11:23:19.995Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 4,
+      "addedToInventoryQuantity": 4,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:26:59.139Z",
+      "addedToInventoryAt": "26/11/2026 12:26",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1793017632283-1795692418047-mn4bo8dk1wn",
+          "quantity": 4,
+          "before": 0.75,
+          "after": 4.75,
+          "at": "2026-11-26T11:26:59.139Z",
+          "user": "Enora",
+          "orderId": "ord-1793017632283"
+        }
+      ]
     },
     {
       "id": "ord-1793017506262",
@@ -40778,6 +40851,18 @@
     {
       "date": "26/11/2026 12:26",
       "action": "Réception de commande",
+      "detail": "Réception de commande : stock 0.75 → 4.75 (+4) · Commande ord-1793017632283",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "orderId": "ord-1793017632283",
+      "operationId": "order-receipt-ord-1793017632283-1795692418047-mn4bo8dk1wn",
+      "before": 0.75,
+      "quantity": 4,
+      "after": 4.75
+    },
+    {
+      "date": "26/11/2026 12:26",
+      "action": "Réception de commande",
       "detail": "Réception de commande : stock 0.5 → 2.5 (+2) · Commande ord-1791812789383",
       "user": "Enora",
       "itemId": "itm-CSV-0192",
@@ -54439,6 +54524,49 @@
       "correctionReason": "",
       "orderId": "ord-1791812789383",
       "orderReference": "ord-1791812789383"
+    },
+    {
+      "id": "movement-mwxgwi83-1955950818-302634260",
+      "operationId": "order-receipt-ord-1793017632283-1795692418047-mn4bo8dk1wn",
+      "itemId": "itm-web-1783931436295-kwjv0i",
+      "timestamp": "2026-11-26T11:26:59.139Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0.75,
+      "after": 4.75,
+      "quantity": 4,
+      "difference": 4,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Réception de commande — Stock 0.75 → 4.75 (+4) — Commande ord-1793017632283",
+      "correctionReason": "",
+      "orderId": "ord-1793017632283",
+      "orderReference": "ord-1793017632283"
     }
   ],
   "sourcingPatients": [],
@@ -55166,5 +55294,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:26:44.227Z"
+  "updatedAt": "2026-11-26T11:26:59.139Z"
 }

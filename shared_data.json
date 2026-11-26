@@ -1852,7 +1852,7 @@
       "id": "web-1791810854422",
       "name": "cônes 10uL filtrés",
       "category": "Procédé ExAdEx L2",
-      "quantity": 1.5,
+      "quantity": 5.5,
       "unit": "cartons",
       "minStock": 0,
       "usageProfile": "routine",
@@ -1914,7 +1914,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 1
+            "quantity": 5
           }
         ],
         "closedContainers": [
@@ -1933,6 +1933,58 @@
             "roomId": "room-reserve",
             "locationId": "",
             "sublocationId": ""
+          },
+          {
+            "id": "closed-container-mwxgxuue-1594740547-3411938918",
+            "label": "carton fermé nº2",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:28:02.150Z",
+            "updatedAt": "2026-11-26T11:28:02.150Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgxuue-4212727091-1605269152",
+            "label": "carton fermé nº3",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:28:02.150Z",
+            "updatedAt": "2026-11-26T11:28:02.150Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgxuue-1701901959-3832675028",
+            "label": "carton fermé nº4",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:28:02.150Z",
+            "updatedAt": "2026-11-26T11:28:02.150Z",
+            "updatedBy": "enora",
+            "version": 1
+          },
+          {
+            "id": "closed-container-mwxgxuue-2452001552-3593416745",
+            "label": "carton fermé nº5",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:28:02.150Z",
+            "updatedAt": "2026-11-26T11:28:02.150Z",
+            "updatedBy": "enora",
+            "version": 1
           }
         ],
         "openContainers": [
@@ -22035,7 +22087,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:22",
       "receivedAtRaw": "2026-11-26T11:22:53.461Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 4,
+      "addedToInventoryQuantity": 4,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:28:02.150Z",
+      "addedToInventoryAt": "26/11/2026 12:28",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1793013128876-1795692480567-mh1ezv521eb",
+          "quantity": 4,
+          "before": 1.5,
+          "after": 5.5,
+          "at": "2026-11-26T11:28:02.150Z",
+          "user": "Enora",
+          "orderId": "ord-1793013128876"
+        }
+      ]
     },
     {
       "id": "ord-1792742834368",
@@ -40822,6 +40890,18 @@
   ],
   "history": [
     {
+      "date": "26/11/2026 12:28",
+      "action": "Réception de commande",
+      "detail": "Réception de commande : stock 1.5 → 5.5 (+4) · Commande ord-1793013128876",
+      "user": "Enora",
+      "itemId": "web-1791810854422",
+      "orderId": "ord-1793013128876",
+      "operationId": "order-receipt-ord-1793013128876-1795692480567-mh1ezv521eb",
+      "before": 1.5,
+      "quantity": 4,
+      "after": 5.5
+    },
+    {
       "date": "26/11/2026 12:27",
       "user": "Enora",
       "action": "Demande supprimée",
@@ -54546,6 +54626,49 @@
       "correctionReason": "",
       "orderId": "ord-1793017632283",
       "orderReference": "ord-1793017632283"
+    },
+    {
+      "id": "movement-mwxgxuue-2783752351-1930195169",
+      "operationId": "order-receipt-ord-1793013128876-1795692480567-mh1ezv521eb",
+      "itemId": "web-1791810854422",
+      "timestamp": "2026-11-26T11:28:02.150Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 1.5,
+      "after": 5.5,
+      "quantity": 4,
+      "difference": 4,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Réception de commande — Stock 1.5 → 5.5 (+4) — Commande ord-1793013128876",
+      "correctionReason": "",
+      "orderId": "ord-1793013128876",
+      "orderReference": "ord-1793013128876"
     }
   ],
   "sourcingPatients": [],
@@ -55273,5 +55396,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:26:59.139Z"
+  "updatedAt": "2026-11-26T11:28:02.150Z"
 }

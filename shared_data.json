@@ -12605,7 +12605,7 @@
       "id": "itm-CSV-0078",
       "name": "Cones filtrés 20uL",
       "category": "Culture Cell",
-      "quantity": 2,
+      "quantity": 3,
       "unit": "Cartons",
       "minStock": 0,
       "location": "Réserve",
@@ -12661,7 +12661,7 @@
         "closedByLocation": [
           {
             "location": "Réserve",
-            "quantity": 2
+            "quantity": 3
           }
         ],
         "closedContainers": [
@@ -12707,6 +12707,19 @@
             "locationId": "",
             "sublocationId": "",
             "finishedAt": "2026-10-12T13:29:13.97Z"
+          },
+          {
+            "id": "closed-container-mwxgyn85-2591646027-674965753",
+            "label": "carton fermé nº4",
+            "location": "Réserve",
+            "remaining": 4,
+            "capacity": 4,
+            "unitKey": "boite",
+            "status": "closed",
+            "createdAt": "2026-11-26T11:28:38.933Z",
+            "updatedAt": "2026-11-26T11:28:38.933Z",
+            "updatedBy": "enora",
+            "version": 1
           }
         ],
         "openContainers": []
@@ -22202,7 +22215,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:23",
       "receivedAtRaw": "2026-11-26T11:23:27.591Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 1,
+      "addedToInventoryQuantity": 1,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:28:38.933Z",
+      "addedToInventoryAt": "26/11/2026 12:28",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1791898338571-1795692517634-ffzkpccjydr",
+          "quantity": 1,
+          "before": 2,
+          "after": 3,
+          "at": "2026-11-26T11:28:38.933Z",
+          "user": "Enora",
+          "orderId": "ord-1791898338571"
+        }
+      ]
     },
     {
       "id": "ord-1791898299474",
@@ -40921,6 +40950,18 @@
     {
       "date": "26/11/2026 12:28",
       "action": "Réception de commande",
+      "detail": "Réception de commande : stock 2 → 3 (+1) · Commande ord-1791898338571",
+      "user": "Enora",
+      "itemId": "itm-CSV-0078",
+      "orderId": "ord-1791898338571",
+      "operationId": "order-receipt-ord-1791898338571-1795692517634-ffzkpccjydr",
+      "before": 2,
+      "quantity": 1,
+      "after": 3
+    },
+    {
+      "date": "26/11/2026 12:28",
+      "action": "Réception de commande",
       "detail": "Réception de commande : stock 3.6 → 4.6 (+1) · Commande ord-1791898299474",
       "user": "Enora",
       "itemId": "itm-web-1783931436295-osftkk",
@@ -54753,6 +54794,49 @@
       "correctionReason": "",
       "orderId": "ord-1791898299474",
       "orderReference": "ord-1791898299474"
+    },
+    {
+      "id": "movement-mwxgyn85-971813052-22912737",
+      "operationId": "order-receipt-ord-1791898338571-1795692517634-ffzkpccjydr",
+      "itemId": "itm-CSV-0078",
+      "timestamp": "2026-11-26T11:28:38.933Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 2,
+      "after": 3,
+      "quantity": 1,
+      "difference": 1,
+      "unit": "",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "Réserve",
+      "comment": "Réception de commande — Stock 2 → 3 (+1) — Commande ord-1791898338571",
+      "correctionReason": "",
+      "orderId": "ord-1791898338571",
+      "orderReference": "ord-1791898338571"
     }
   ],
   "sourcingPatients": [],
@@ -55480,5 +55564,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:28:18.276Z"
+  "updatedAt": "2026-11-26T11:28:38.933Z"
 }

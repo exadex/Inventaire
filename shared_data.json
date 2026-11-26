@@ -14855,7 +14855,7 @@
       "id": "itm-web-1783931436295-hx14gm",
       "name": "Film plaque qPCR",
       "category": "Biomol",
-      "quantity": 0,
+      "quantity": 4,
       "unit": "plaques",
       "minStock": 0,
       "location": "Laboratoire",
@@ -21458,7 +21458,23 @@
       "receivedBy": "Enora",
       "receivedAt": "26/11/2026 12:24",
       "receivedAtRaw": "2026-11-26T11:24:32.179Z",
-      "newItemData": null
+      "newItemData": null,
+      "inventoryReceiptTargetQuantity": 4,
+      "addedToInventoryQuantity": 4,
+      "addedToInventory": true,
+      "addedToInventoryAtRaw": "2026-11-26T11:26:02.503Z",
+      "addedToInventoryAt": "26/11/2026 12:26",
+      "inventoryReceiptOperations": [
+        {
+          "operationId": "order-receipt-ord-1793018841540-1795692361420-w5hupxp16if",
+          "quantity": 4,
+          "before": 0,
+          "after": 4,
+          "at": "2026-11-26T11:26:02.503Z",
+          "user": "Enora",
+          "orderId": "ord-1793018841540"
+        }
+      ]
     },
     {
       "id": "ord-1793018744199",
@@ -40583,6 +40599,18 @@
   ],
   "history": [
     {
+      "date": "26/11/2026 12:26",
+      "action": "Réception de commande",
+      "detail": "Réception de commande : stock 0 → 4 (+4) · Commande ord-1793018841540",
+      "user": "Enora",
+      "itemId": "itm-web-1783931436295-hx14gm",
+      "orderId": "ord-1793018841540",
+      "operationId": "order-receipt-ord-1793018841540-1795692361420-w5hupxp16if",
+      "before": 0,
+      "quantity": 4,
+      "after": 4
+    },
+    {
       "date": "26/11/2026 12:25",
       "action": "Réception de commande",
       "detail": "Réception de commande : stock 1.8 → 3.8 (+2) · Commande ord-1793017879881",
@@ -54026,6 +54054,49 @@
       "correctionReason": "",
       "orderId": "ord-1793017879881",
       "orderReference": "ord-1793017879881"
+    },
+    {
+      "id": "movement-mwxgvaiv-1941433389-653749132",
+      "operationId": "order-receipt-ord-1793018841540-1795692361420-w5hupxp16if",
+      "itemId": "itm-web-1783931436295-hx14gm",
+      "timestamp": "2026-11-26T11:26:02.503Z",
+      "userId": "enora",
+      "userName": "Enora",
+      "userEmoji": "🧪",
+      "userInitials": "",
+      "type": "order_received",
+      "entityType": "item",
+      "entityId": "",
+      "containerId": "",
+      "containerLabel": "",
+      "containerStatusBefore": "",
+      "containerStatusAfter": "",
+      "beforeQuantity": null,
+      "afterQuantity": null,
+      "beforeCapacity": null,
+      "afterCapacity": null,
+      "unitBefore": "",
+      "unitAfter": "",
+      "unitStatesBefore": null,
+      "unitStatesAfter": null,
+      "automatic": false,
+      "automaticOpen": false,
+      "automaticFinish": false,
+      "containerTransitions": [],
+      "preparationId": "",
+      "before": 0,
+      "after": 4,
+      "quantity": 4,
+      "difference": 4,
+      "unit": "plaques",
+      "sourceEquivalentConsumed": 0,
+      "sourceUnit": "",
+      "fromLocation": "",
+      "toLocation": "",
+      "comment": "Réception de commande — Stock 0 → 4 (+4) — Commande ord-1793018841540",
+      "correctionReason": "",
+      "orderId": "ord-1793018841540",
+      "orderReference": "ord-1793018841540"
     }
   ],
   "sourcingPatients": [],
@@ -54753,5 +54824,5 @@
     "iv": "frNcX9CjeDYhX8Cw",
     "verifier": "GJAbEL/M9X7H9mcx+LWX4TDXKpSk+/UIUfa4m95aTN6iwpXZHu2F2863qskIAuDayj7Yiu1NziGcog=="
   },
-  "updatedAt": "2026-11-26T11:25:55.237Z"
+  "updatedAt": "2026-11-26T11:26:02.503Z"
 }

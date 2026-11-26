@@ -21533,13 +21533,13 @@
     },
     {
       "id": "ord-1793017758867",
-      "status": "ordered",
+      "status": "received",
       "itemMode": "existing",
       "inventoryItemId": "itm-web-1783931436295-xj2mx3",
       "inventoryUnit": "Carton",
       "itemName": "Plaque 24 puits",
       "requestedQuantity": 2,
-      "receivedQuantity": 0,
+      "receivedQuantity": 2,
       "priority": "critique",
       "notes": "",
       "requestedBy": "Enora",
@@ -21548,9 +21548,9 @@
       "orderedBy": "Enora",
       "orderedAt": "12/11/2026 16:32",
       "orderedAtRaw": "2026-11-12T15:32:01.56Z",
-      "receivedBy": "",
-      "receivedAt": "",
-      "receivedAtRaw": "",
+      "receivedBy": "Enora",
+      "receivedAt": "26/11/2026 12:21",
+      "receivedAtRaw": "2026-11-26T11:21:35.659Z",
       "newItemData": null
     },
     {
@@ -40431,6 +40431,12 @@
     }
   ],
   "history": [
+    {
+      "date": "26/11/2026 12:21",
+      "user": "Enora",
+      "action": "Commande reçue",
+      "detail": "Enora a marqué Plaque 24 puits comme arrivé."
+    },
     {
       "date": "26/11/2026 12:21",
       "user": "Enora",
